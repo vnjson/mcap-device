@@ -11,8 +11,9 @@
   audio: 
     name: qu
     action: play
-    speed: 10 # normal = 1
+    speed: 5 # normal = 1
     volume: 0.5
     loop: true
-- Русалка на ветвях сидит;
+- $: Русалка на ветвях сидит;
+  audio: false
 - jump: $init
