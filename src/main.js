@@ -1,3 +1,4 @@
+
 import plugins from './plugins.js'
 import './theme.css'
 
@@ -28,9 +29,16 @@ function init (tree){
 
   $vnjs.on('postload', ()=>{
       $vnjs.exec({screen: 'stream'})
-      $vnjs.exec({jump: '$root.$init'})
+      // ?jump=scene.label
+      // ?jump=scene  //default $init
+      const label = new URL( location.href ).searchParams.get("jump")
+      if(label){
+        label.includes('.')? $vnjs.exec({jump:  label}):$vnjs.exec({jump:  label+'.$init'})
+      }
+      else{
+          $vnjs.exec({jump: '$root.$init'})
+      }
   })
-
   $vnjs.on('init', ()=>{
     $vnjs.exec()
   })

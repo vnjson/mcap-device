@@ -16,31 +16,42 @@ var load = _=>{
           this.$store[asset.name] = sound;
           if( this.current.assets.length-1>=++i){
             this.emit('load', asset)
-            load();
+            load()
             
           }else{
             this.emit('postload') 
           }             
-        });
+        })
+        sound.on('loaderror', ()=>{
+          console.error(`File not found [ ${asset.name} ]`)
+        })
   }
   else if(/\.png|\.jpg|\.jpeg|\.webp|\.gif/i.test(asset.url)){
-    
       if(this.TREE.$root.hasOwnProperty('package')){
           if(this.TREE.$root.package.hasOwnProperty('preload') ){
+            
             if(this.current.assets.length-1>=++i){
               if(this.TREE.$root.package.preload){
                     let img = new Image();
-                    img.src =  asset.url;
+                    img.src =  asset.url; 
+
+                    img.onerror = ()=>{
+                     
+                      this.$store[asset.name] = img
+                      this.emit('load', asset)
+                      console.error('Image not found')
+                      load()
+                    };
                     img.onload = ()=>{
                       this.$store[asset.name] = img
                       this.emit('load', asset)
                       load()
-                      
-                    };
+                    }
+
               }
               else{
                 this.$store[asset.name] = asset.url
-                 load()
+                load()
               }
 
             }else{
@@ -49,7 +60,7 @@ var load = _=>{
 
           }
       }
- 
+
 
   
 

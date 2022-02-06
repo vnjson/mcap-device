@@ -19,12 +19,31 @@
   font-size: 22px;
   width: 100%;
   font-weight: bold;
-  padding: 10px; }
+  padding-left: 10px;
+  padding-bottom: 10px;
+
+}
 
 .dialog-box__reply {
   color: wheat;
   font-size: 22px;
-  padding: 10px;
-  width: 90%; 
+  padding-left: 10px;
+  width: 100%; 
+
 }
 
+.dialog-box__container{
+  display: flex; 
+  height: 100%; 
+
+}
+.dialog-box__avatar{
+  margin-top: 15px;
+  width: 150px;
+  height: 150px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.dialog-box__reply-wrapper{
+  position: relative;
+}
