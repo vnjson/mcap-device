@@ -10,20 +10,22 @@ import scenesToJson     from 'scenes-to-json'
 import chokidar         from 'chokidar'
 import html             from 'rollup-plugin-html'
 import fs               from 'fs'
+import YAML             from 'yaml'
 
 
+const config = YAML.parse(fs.readFileSync('./config.yaml', 'utf8'))
 
 const PORT = fs.readdirSync(__dirname)
                .filter(item=>/^9\d{3}/.test(item))[0]
 
-if(!PORT){
+if(config.port<9000){
     console.error('[!] Некорректный номер порта')
     process.exit()
 }
 export default {
-  input: './src/main.js',
+  input: `${config.src}/main.js`,
   output: {
-    file: `./public/js/app.js`,
+    file: `public/js/app.js`,
     name: 'app',
     format: 'iife',
     sourcemap: false
@@ -41,39 +43,39 @@ export default {
       babelHelpers: 'bundled',
       //presets: ['env'],
       plugins: [
-            ["babel-plugin-root-import", { "rootPathSuffix": "./src"}]
+            ["babel-plugin-root-import", { "rootPathSuffix": `${config.src}`}]
       ]
     }),
     copy({
-      targets: [{ src: './src/public/*', dest: `./public/` }]
+      targets: [{ src: `${config.src}/public/*`, dest: `public/` }]
     }),
 
     files({
-      output: `./public/assets`,
+      output: `public/assets`,
       extensions: /\.(waw|ogg|mp3)$/,
       hash: false,
     }),
 
     serve({
       contentBase:[`./public/`],
-      port: PORT||9000
+      port: config.port||9000
     }),
 
   ],
 
   watch: [
-  	'./src/plugins',
-    './src/public',
-    './src/main.js',
-    './src/plugins.js',
-    './src/plugins/**/*.html'
+  	`${config.src}/plugins`,
+    `${config.src}/public`,
+    `${config.src}/main.js`,
+    `${config.src}/plugins.js`,
+    `${config.src}/plugins/**/*.html`
   ]
 };
 
 
 function buildScenes (){
 
-  let src = './src/scenes'
+  let src = `${config.src}/scenes`
   let dist = `./public/scenes`
   let basePath = `./scenes`
 
@@ -93,7 +95,7 @@ function buildScenes (){
 
 buildScenes()
 
-chokidar.watch('./src/scenes').on('change', (event, path) => {
+chokidar.watch(`${config.src}/scenes`).on('change', (event, path) => {
   buildScenes()
 });
 
