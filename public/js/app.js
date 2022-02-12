@@ -484,7 +484,7 @@
     }
   }
 
-  function assetsLoader$1 () {
+  function assetsLoader () {
     var getAssets = _ => {
       this.emit('preload');
       var i = 0;
@@ -1374,85 +1374,6 @@
     });
   }
 
-  function assetsLoader (_assets) {
-    var i = 0;
-
-    var load = _ => {
-      var asset = _assets[i];
-
-      if (_assets.length > i) {
-        if (/\.png|\.jpg|.webp/i.test(asset.url)) {
-          let img = new Image();
-          img.src = asset.url;
-
-          img.onload = () => {
-            this.$store[asset.name] = asset.url;
-            load();
-          };
-        }
-
-        if (/\.mp3|\.wav|\.ogg/i.test(asset.url)) {
-          var sound = new Howl({
-            src: asset.url
-          });
-          sound.on('load', _ => {
-            this.$store[asset.name] = sound;
-            load();
-          });
-        }
-
-        ++i;
-      } else {
-        this.current.assets = this.current.assets.concat(_assets);
-        this.emit('postloadAssetsInlcudeScene');
-      }
-    };
-
-    load();
-  }
-
-  function loadScene () {
-    var obj = {};
-    window.obj = obj; //var loaded = false
-
-    var pathName = null;
-    this.on('load-scene', url => {
-      this.exec({
-        screen: "loader"
-      });
-
-      if (obj[url]) {
-        this.exec({
-          jump: pathName,
-          clear: 'all'
-        });
-        this.exec({
-          screen: "stream"
-        });
-      } else {
-        fetch(url).then(r => r.json()).then(r => init(r));
-
-        var init = data => {
-          pathName = data.package.sceneName + "." + data.package.labelName;
-          this.TREE[data.package.sceneName] = data.sceneBody;
-          assetsLoader.call(this, data.sceneBody.assets);
-          this.on('postloadAssetsInlcudeScene', () => {
-            this.exec({
-              screen: "stream"
-            });
-            this.exec({
-              clear: 'all'
-            });
-            this.exec({
-              jump: pathName
-            });
-            obj[url] = true;
-          });
-        };
-      }
-    });
-  }
-
   var css$3 = ".screen-stream__slide{\r\n  position: absolute;\r\n  display: none;\r\n  top: 5%;\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5);\r\n  z-index: 2000;\r\n}";
   n(css$3,{});
 
@@ -1956,7 +1877,7 @@
 
   function plugins () {
     this.use(debug);
-    this.use(assetsLoader$1);
+    this.use(assetsLoader);
     /*screens*/
 
     this.use(screen);
@@ -1979,8 +1900,8 @@
     this.use(dialogBox);
     this.use(hands);
     this.use(data$1);
-    this.use(qa);
-    this.use(loadScene);
+    this.use(qa); //this.use(loadScene)
+
     this.use(slide);
     this.use(content);
     this.use(voice);

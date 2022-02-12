@@ -19,7 +19,7 @@ import show               from './plugins/show/index.js'
 import showAuto           from './plugins/show-auto/index.js'
 import scene              from './plugins/scene/index.js'
 import soundHover         from './plugins/sound-hover/index.js'
-
+import table              from './plugins/table/index.js'
 import clear              from './plugins/clear/index.js'
 import data               from './plugins/data/index.js'
 import qa                 from './plugins/qa/index.js'
@@ -59,6 +59,7 @@ export default function(){
   this.use(term)
   this.use(cloud)
   this.use(soundHover)
+  this.use(table)
   this.use(clear)
   this.use(dialogBox)
   this.use(hands)

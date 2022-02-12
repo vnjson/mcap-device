@@ -109,7 +109,7 @@
       }
     ],
     "package": {
-      "prelaod": true
+      "preload": true
     }
   }
 }
