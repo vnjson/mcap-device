@@ -32,7 +32,7 @@
     "file": "/src/plugins.js"
   },
   {
-    "hash": "0fa811ca67defce220a8b1fe144814d4",
+    "hash": "fd2254938e2bd7a6b90f7c72e4e08fb5",
     "file": "/src/theme.css"
   },
   {
@@ -442,5 +442,9 @@
   {
     "hash": "82b28a3d938ab30d625ee07a1250e0e7",
     "file": "/src/plugins/animate/index.js"
+  },
+  {
+    "hash": "113858a33cbf3a324658c56aa99a27fb",
+    "file": "/.vnjson/version.json"
   }
 ]
