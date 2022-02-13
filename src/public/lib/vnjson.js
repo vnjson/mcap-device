@@ -21,7 +21,9 @@ class Vnjson {
     this.conf = conf
     this.debug = conf.debug
     this.on('jump', this.jumpHandler)
-    this.on('next', this.next)
+    this.on('next', ()=>{
+      setTimeout(this.next, 0)
+    })
     this.on('timeout', this.timeoutHandler)
   }
 
