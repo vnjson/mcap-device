@@ -1034,7 +1034,7 @@
     });
   }
 
-  var css$7 = ".stream__show-left {\r\n  position: absolute;\r\n  left: 50px;\r\n  top: 119px;\r\n  width: 260px;\r\n  height: 450px;\r\n  background-repeat: no-repeat;\r\n  background-size: contain;\r\n  background-position: center;\r\n  z-index: 9999; }\r\n\r\n.stream__show-center {\r\n  position: absolute;\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  top: 119px;\r\n  width: 260px;\r\n  height: 450px;\r\n  background-repeat: no-repeat;\r\n  background-size: contain;\r\n  background-position: center;\r\n  z-index: 9999; }\r\n\r\n.stream__show-right {\r\n  position: absolute;\r\n  right: 50px;\r\n  top: 119px;\r\n  width: 260px;\r\n  height: 450px;\r\n  background-repeat: no-repeat;\r\n  background-size: contain;\r\n  background-position: center;\r\n  z-index: 9999; }\r\n";
+  var css$7 = ".stream__show-left {\r\n  position: absolute;\r\n  left: 50px;\r\n  bottom: 210px;\r\n  top: unset;\r\n  width: 260px;\r\n  height: 450px;\r\n  background-repeat: no-repeat;\r\n  background-size: contain;\r\n  background-position: center;\r\n  z-index: 9999; }\r\n\r\n.stream__show-center {\r\n  position: absolute;\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  bottom: 210px;\r\n  top: unset;\r\n  width: 260px;\r\n  height: 450px;\r\n  background-repeat: no-repeat;\r\n  background-size: contain;\r\n  background-position: center;\r\n  z-index: 9999; }\r\n\r\n.stream__show-right {\r\n  position: absolute;\r\n  right: 50px;\r\n  bottom: 210px;\r\n  top: unset;\r\n  width: 260px;\r\n  height: 450px;\r\n  background-repeat: no-repeat;\r\n  background-size: contain;\r\n  background-position: center;\r\n  z-index: 9999; }\r\n";
   n(css$7,{});
 
   function show () {
