@@ -21,9 +21,7 @@ class Vnjson {
     this.conf = conf
     this.debug = conf.debug
     this.on('jump', this.jumpHandler)
-    this.on('next', ()=>{
-      setTimeout(this.next, 0)
-    })
+    this.on('next', this.next)
     this.on('timeout', this.timeoutHandler)
   }
 
@@ -202,6 +200,7 @@ class Vnjson {
   }
 
   next (){
+
     if(this.getCurrentLabelBody().length-2<this.current.index){
   
       this.current.index = this.current.index;
