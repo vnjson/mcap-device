@@ -5,8 +5,7 @@
   "main": "rollup.config.js",
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -cw",
-    "update": "node node_modules/vnjson-update/bin/update.js"
+    "dev": "rollup -cw"
   },
   "author": "",
   "license": "ISC",
@@ -25,8 +24,7 @@
     "rollup-plugin-pug-html": "0.0.2",
     "rollup-plugin-serve": "^1.1.0",
     "rollup-plugin-styles": "^3.14.1",
-    "scenes-to-json": "^0.8.0",
-    "vnjson-update": "^1.0.0"
+    "scenes-to-json": "^0.8.0"
   },
   "dependencies": {},
   "keywords": [

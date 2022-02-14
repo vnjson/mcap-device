@@ -76,5 +76,6 @@ export default function(){
   this.use(mcPlayer)
   /*zim*/
   this.use(zimIntro)
-  this.on('next', this.next)
+
+
 }
