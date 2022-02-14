@@ -47,7 +47,7 @@ export default {
       ]
     }),
     copy({
-      targets: [{ src: `${config.src}/public/*`, dest: `public/` }]
+      targets: [{ src: `${config.src}/static/*`, dest: `public/` }]
     }),
 
     files({
@@ -65,7 +65,7 @@ export default {
 
   watch: [
   	`${config.src}/plugins`,
-    `${config.src}/public`,
+    `${config.src}/static`,
     `${config.src}/main.js`,
     `${config.src}/plugins.js`,
     `${config.src}/plugins/**/*.html`
