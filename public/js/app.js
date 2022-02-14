@@ -674,6 +674,7 @@
       if (param === 'clear') {
         $tpl.find('.dialog-box__name').empty();
         $tpl.find('.dialog-box__reply').empty();
+        $tpl.find('.dialog-box__avatar').css('background-image', `unset`);
       } else if (param) {
         $tpl.show();
       } else {
@@ -1082,7 +1083,7 @@
     });
   }
 
-  var css$6 = ".stream__show-auto-left {\r\n  position: absolute;\r\n  left: 50px;\r\n  top: 119px;\r\n}\r\n\r\n.stream__show-auto-center {\r\n  position: absolute;\r\n  top: 119px;\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n\r\n}\r\n\r\n.stream__show-auto-right {\r\n  position: absolute;\r\n  right: 50px;\r\n  top: 119px;\r\n\r\n}\r\n";
+  var css$6 = ".stream__show-auto-left {\r\n  position: absolute;\r\n  left: 50px;\r\n  bottom: 210px;\r\n  top: unset;\r\n}\r\n\r\n.stream__show-auto-center {\r\n  position: absolute;\r\n  bottom: 210px;\r\n  top: unset;\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n\r\n}\r\n\r\n.stream__show-auto-right {\r\n  position: absolute;\r\n  right: 50px;\r\n  bottom: 210px;\r\n  top: unset;\r\n\r\n}\r\n";
   n(css$6,{});
 
   function showAuto () {

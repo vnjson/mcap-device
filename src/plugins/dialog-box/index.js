@@ -34,6 +34,8 @@ export default function (){
     if(param==='clear'){
        $tpl.find('.dialog-box__name').empty()
        $tpl.find('.dialog-box__reply').empty()
+       $tpl.find('.dialog-box__avatar').css('background-image', `unset`)
+      
     }
     else if(param){
       $tpl.show()

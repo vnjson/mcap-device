@@ -1,12 +1,14 @@
 .stream__show-auto-left {
   position: absolute;
   left: 50px;
-  top: 119px;
+  bottom: 210px;
+  top: unset;
 }
 
 .stream__show-auto-center {
   position: absolute;
-  top: 119px;
+  bottom: 210px;
+  top: unset;
   left: 50%;
   transform: translateX(-50%);
 
@@ -15,6 +17,7 @@
 .stream__show-auto-right {
   position: absolute;
   right: 50px;
-  top: 119px;
+  bottom: 210px;
+  top: unset;
 
 }
