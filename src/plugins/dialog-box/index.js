@@ -7,9 +7,11 @@ export default function (){
 
   const $tpl = $(tpl)
   this.$store.$stream.append($tpl)
-
+  let disabled = false
   $tpl.on('mousedown', e=>{
-      this.next()
+      if(!disabled){
+          this.next()
+      }
   });
 
 	this.on('character', (character, reply)=>{
@@ -35,12 +37,17 @@ export default function (){
        $tpl.find('.dialog-box__name').empty()
        $tpl.find('.dialog-box__reply').empty()
        $tpl.find('.dialog-box__avatar').css('background-image', `unset`)
-      
+       disabled = false
     }
-    else if(param){
+    else if(param==='disabled'){
+        disabled = true
+    }
+    else if(param===true){
+      disabled = false
       $tpl.show()
     }
     else{
+      disabled = false
       $tpl.hide()
     }
   })

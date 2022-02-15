@@ -82,10 +82,6 @@
         "url": "./scenes/assets/t4s.mp3"
       },
       {
-        "name": "test",
-        "url": "./scenes/assets/test.jpg"
-      },
-      {
         "name": "tg",
         "url": "./scenes/assets/tg.mp3"
       },
@@ -100,15 +96,53 @@
         "next": true
       },
       {
+        "menu": {
+          "next": "Как подключить zim",
+          "label_1_tree__fs": "Файловая структура",
+          "yaml-scripts": "YAML скрипты",
+          "plug": "Список плагинов",
+          "onClick": {
+            "hands": true,
+            "dialog-box": true
+          }
+        },
+        "dialog-box": "disabled"
+      },
+      {
         "$": "У лукоморья дуб зелёный;",
-        "center": "test"
+        "status-bar": true,
+        "dialog-box": true
+      },
+      {
+        "content": [
+          {
+            "$root.$init": "Том 1",
+            "disabled": "Глава 1",
+            "beginning.plug": "Глава 2",
+            "beginning.zim-label": "Глава 3"
+          },
+          {
+            "experienced.$init": "Том 2",
+            "disabled": "Глава 1",
+            "experienced.how-write-plugin": "Глава 2"
+          },
+          {
+            "disabled": "Том 3",
+            "experienced.test": "Глава 1",
+            "experienced.$init": "Глава 2"
+          },
+          {
+            "disabled": "Том 4",
+            "experienced.test": "Глава 1",
+            "experienced.$init": "Глава 2"
+          }
+        ]
       },
       "И днём и ночью кот учёный",
       "Всё ходит по цепи кругом;",
       "Идёт направо — песнь заводит,",
       {
-        "$": "Налево — сказку говорит.",
-        "dialog-box": "clear"
+        "$": "Налево — сказку говорит."
       },
       "Там чудеса там леший бродит",
       "Русалка на ветвях сидит;",
@@ -121,8 +155,7 @@
         "id": "$",
         "name": ". . . .",
         "nameColor": "#49de58",
-        "replyColor": "#a4deaa",
-        "avatar": "test"
+        "replyColor": "#a4deaa"
       }
     ],
     "package": {
