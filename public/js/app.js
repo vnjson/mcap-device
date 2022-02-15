@@ -1550,9 +1550,17 @@
     function clickHandler() {
       let label = $(this).data('label');
       $tpl.hide();
-      $vnjs.exec({
-        jump: label
-      });
+
+      if (label === 'next') {
+        $vnjs.exec({
+          next: true
+        });
+      } else {
+        $vnjs.exec({
+          jump: label
+        });
+      }
+
       $tpl.off('click', clickHandler);
     }
 
@@ -1773,7 +1781,7 @@
       });
     } catch (err) {
       this.current.data.player = {
-        name: 'mcap_uknown__' + new Date().toLocaleDateString(),
+        name: 'mcap_uknown_' + new Date().toLocaleDateString(),
         uuid: new Date().toLocaleString()
       };
       this.emit('player-load', this.current.data.player.name);

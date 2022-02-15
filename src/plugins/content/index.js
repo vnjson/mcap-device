@@ -77,7 +77,13 @@ function renderTree(data){
 function clickHandler(){
     let label = $(this).data('label')
     $tpl.hide()   
-    $vnjs.exec({ jump: label })
+    if(label==='next'){
+        $vnjs.exec({ next: true })
+    }
+    else{
+        $vnjs.exec({ jump: label })
+    }
+
     $tpl.off('click', clickHandler)
 }
 $tpl.on('click', '.stage-item', clickHandler)

@@ -16,7 +16,7 @@ const rndID = new Date().toLocaleDateString()
   } 
   catch (err) {
       this.current.data.player = {
-        name: 'mcap_uknown__'+new Date().toLocaleDateString(),
+        name: 'mcap_uknown_'+new Date().toLocaleDateString(),
         uuid: new Date().toLocaleString()
       }
 
