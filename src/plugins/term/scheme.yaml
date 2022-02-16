@@ -14,5 +14,6 @@
 
 # скрыть терминал
 - term: false
-
+# Показать интерпретатор python
+- term: python
 - jump: $init

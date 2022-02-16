@@ -12,8 +12,10 @@ export default function (){
 
   this.on('term', param=>{
 
-
-    if(param){
+    if(param===true){
+         $($tpl).fadeIn() 
+    }
+    else if(param){
       var data = this.getDataByName(param)
 
       if( /\./.test(param) ){
@@ -41,6 +43,14 @@ export default function (){
       else{
         if(param==='clear'){
           $tpl.find('pre code').empty()
+        }
+        else if(param==='python'){
+          let $iframe = $('<iframe id="brython" src="/data/brython-repl.html" width="758" height="430"></iframe>')
+          $iframe.css('border', 0)
+          $tpl.find('pre code').empty()
+          $tpl.find('pre code').css({overflow: 'hidden', padding: 0})
+          $tpl.find('pre code').append($iframe)
+          $($tpl).fadeIn()
         }
         else{
         let img = $(`<img src=${this.getAssetByName(param).url} />`)
