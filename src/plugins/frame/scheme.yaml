@@ -1,0 +1,62 @@
+- frame:
+    img: lock
+    1: false
+    2: false
+    3: false
+    4: false
+- frame:
+    img: lock
+    1: true
+    2: false
+    3: false
+    4: false
+- frame:
+    img: lock
+    1: true
+    2: true
+    3: false
+    4: false
+- frame:
+    img: lock
+    1: true
+    2: true
+    3: true
+    4: false
+- frame:
+    img: lock
+    1: true
+    2: true
+    3: true
+    4: true
+- frame: false
+############
+- frame:
+    img: met
+    1: false
+    2: false
+    3: false
+    4: false
+- frame:
+    img: met
+    1: true
+    2: false
+    3: false
+    4: false
+- frame:
+    img: met
+    1: true
+    2: true
+    3: false
+    4: false
+- frame:
+    img: met
+    1: true
+    2: true
+    3: true
+    4: false
+- frame:
+    img: met
+    1: true
+    2: true
+    3: true
+    4: true

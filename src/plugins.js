@@ -12,6 +12,7 @@ import hands              from './plugins/hands/index.js'
 import cloud              from './plugins/cloud/index.js'
 import audio              from './plugins/audio/index.js'
 import animate            from './plugins/animate/index.js'
+import frame              from './plugins/frame/index.js'
 import menu               from './plugins/menu/index.js'
 import mainMenu           from './plugins/main-menu/index.js'
 import term               from './plugins/term/index.js'
@@ -23,6 +24,7 @@ import table              from './plugins/table/index.js'
 import clear              from './plugins/clear/index.js'
 import data               from './plugins/data/index.js'
 import qa                 from './plugins/qa/index.js'
+
 //import loadScene          from './plugins/load-scene/index.js'
 import slide              from './plugins/slide/index.js'
 import content            from './plugins/content/index.js'
@@ -53,6 +55,7 @@ export default function(){
   this.use(show)
   this.use(showAuto)
   this.use(audio)
+  this.use(frame)
   this.use(animate)
   this.use(menu)
   this.use(mainMenu)
@@ -65,6 +68,7 @@ export default function(){
   this.use(hands)
   this.use(data)
   this.use(qa)
+
   //this.use(loadScene)
   this.use(slide)  
   this.use(content)

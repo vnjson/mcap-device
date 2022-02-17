@@ -23,7 +23,7 @@
             width: 150
             jump: $root.$init            
        - image:
-            name: Screenshot_45
+            name: Screenshot_45  # this.label.table[2].row[2].image.name = img
             width: 250
        - text:
             content: test
