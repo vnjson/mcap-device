@@ -11,3 +11,9 @@
 - chess: nnnnnnnn/NNNNNNNN/nnnnnnnn/NNNNNNNN/nnnnnnnn/NNNNNNNN/nnnnnnnn/8 w - - 0 1
 - chess: nnnnnnnn/NNNNNNNN/nnnnnnnn/NNNNNNNN/nnnnnnnn/NNNNNNNN/nnnnnnnn/NNNNNNNN w - - 0 1
 - chess: false
+
+
+
+############
+# В файле packgae.yaml необходимо дописать параметр chess: true
+############
