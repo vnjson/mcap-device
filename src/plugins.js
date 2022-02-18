@@ -24,6 +24,7 @@ import table              from './plugins/table/index.js'
 import clear              from './plugins/clear/index.js'
 import data               from './plugins/data/index.js'
 import qa                 from './plugins/qa/index.js'
+import chess              from './plugins/chess/index.js'
 
 //import loadScene          from './plugins/load-scene/index.js'
 import slide              from './plugins/slide/index.js'
@@ -68,7 +69,7 @@ export default function(){
   this.use(hands)
   this.use(data)
   this.use(qa)
-
+  this.use(chess)
   //this.use(loadScene)
   this.use(slide)  
   this.use(content)

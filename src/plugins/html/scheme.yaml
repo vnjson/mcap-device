@@ -5,7 +5,7 @@ redBox: <div class="red-box"></div>
 
 
 # вызывается из скрипта
-- htmlChunkt: true
+- htmlChunk: true
   redBox: true
 
 

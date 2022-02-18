@@ -131,7 +131,8 @@
       }
     ],
     "package": {
-      "preload": true
+      "preload": true,
+      "chess": true
     }
   }
 }

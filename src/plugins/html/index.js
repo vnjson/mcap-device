@@ -16,10 +16,10 @@ this.on('postload', ()=>{
 
 
 
-function eventRegistration(event, tpl){
+export function eventRegistration(event, tpl){
 
   var $tpl = $(tpl)
-  $tpl.hide().addClass("component")
+  $tpl.hide().addClass("component").addClass('event__'+event)
   this.$store.$stream.append($tpl)
 
   this.on(event, data=>{
@@ -36,3 +36,4 @@ function eventRegistration(event, tpl){
   })
 
 }
+

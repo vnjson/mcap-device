@@ -5,7 +5,6 @@ import { babel }        from '@rollup/plugin-babel'
 import url              from '@rollup/plugin-url'
 import copy             from 'rollup-plugin-copy'
 import files            from 'rollup-plugin-import-file'
-import pug              from 'rollup-plugin-pug-html'
 import scenesToJson     from 'scenes-to-json'
 import chokidar         from 'chokidar'
 import html             from 'rollup-plugin-html'
@@ -31,7 +30,6 @@ export default {
     sourcemap: false
   },
   plugins: [
-    pug(),
     yaml(),
     html(),
     styles(),
