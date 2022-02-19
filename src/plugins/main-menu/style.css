@@ -10,6 +10,7 @@
   overflow: auto;
   max-height: 95%;
   top: 200px;
+  color: #34d1a2;
 }
   .main-menu__item--quetion {
     background: rgba(70, 70, 70, 0.7);
@@ -35,7 +36,6 @@
     font-size: 26px;
     display: flex;
     align-items: center;
-    color: #34d1a2;
     transition: 0.1s;
     white-space: nowrap;
     overflow: hidden;

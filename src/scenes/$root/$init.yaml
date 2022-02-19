@@ -2,9 +2,8 @@
   next: true
 - dialog-box: disabled
   main-menu:
-    disabled_1: 
-        text: Как подключить zim
-        icon: bullbasaur
+    disabled_1: Как подключить zim
+
     lab: 
         text: Файловая структура
         icon: charmander
@@ -40,9 +39,13 @@
 
       #dialog-box: true
 - $: У лукоморья дуб зелёный;
+  $voice: att
+
 - $: И днём и ночью кот учёный
+
 - $: Всё ходит по цепи кругом;
 - $: Идёт направо — песнь заводит,
+  $voice: err1
 - Налево — сказку говорит.
 - Там чудеса там леший бродит
 - Русалка на ветвях сидит;
