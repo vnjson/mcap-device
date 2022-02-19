@@ -1,12 +1,11 @@
----
-- menu:
+- main-menu:
     _mark1: В начало
     disabled: Общая концепция
     $root.$init: Отправиться в начало
     next: Список плагинов
 
 
-- menu:
+- main-menu:
     zim-label: Как подключить zim
     label_1_tree__fs: Файловая структура
     yaml-scripts: YAML скрипты
@@ -16,5 +15,26 @@
     onClick:
       hands: true
       dialog-box: true
+
+- main-menu:
+    disabled_1: 
+        text: Как подключить zim
+        icon: bullbasaur
+    lab: 
+        text: Файловая структура
+        icon: charmander
+    next: YAML скрипты
+    test_1:
+        text: Тестовый пунк меню
+        icon: snorlax
+    test_2:
+        text: 50px 50px
+        icon: zubat
+    css:
+      top: 50px
+    onClick:
+      hands: true
+      #dialog-box: true
+
 
 # onClick - execute the code after the jump

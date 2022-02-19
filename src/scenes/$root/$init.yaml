@@ -1,6 +1,44 @@
 - dialog-box: true
   next: true
+- dialog-box: disabled
+  main-menu:
+    disabled_1: 
+        text: Как подключить zim
+        icon: bullbasaur
+    lab: 
+        text: Файловая структура
+        icon: charmander
+    next_1: YAML скрипты
+    test_1:
+        text: Тестовый пунк меню
+        icon: snorlax
+    next:
+        text: 50px 50px
+        icon: zubat
+    css:
+      top: 50px
+    onClick:
+      hands: true
+- menu:
+    disabled_1: 
+        text: Как подключить zim
+        icon: bullbasaur
+    lab: 
+        text: Файловая структура
+        icon: charmander
+    next_1: YAML скрипты
+    test_1:
+        text: Тестовый пунк меню
+        icon: snorlax
+    next:
+        text: 32px 32px
+        icon: zubat
+    css:
+      top: 50px
+    onClick:
+      dialog-box: true
 
+      #dialog-box: true
 - $: У лукоморья дуб зелёный;
 - $: И днём и ночью кот учёный
 - $: Всё ходит по цепи кругом;

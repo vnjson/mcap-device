@@ -2,12 +2,14 @@
   width: 50%;
   padding: 10px;
   background-color: transparent;
-
+  left: 50%;
+  transform: translateX(-50%);
   flex-direction: column;
   display: none;
   /*box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);*/
   overflow: auto;
   max-height: 95%;
+  top: 200px;
 }
   .main-menu__item--quetion {
     background: rgba(70, 70, 70, 0.7);
@@ -39,6 +41,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     box-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+
   }
     .main-menu__item span {
       padding: 20px 20px;
@@ -62,4 +65,13 @@
 
 .main-menu__item.disabled{
   opacity: 0.6;
+}
+
+.main-menu .menu-item__icon{
+  width: 50px;
+  height: 50px;
+  margin-left: 15px;
+}
+.main-menu .menu-item__icon+span{
+  padding-left: 20px;
 }

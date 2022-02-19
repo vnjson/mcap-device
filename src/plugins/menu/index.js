@@ -5,21 +5,21 @@ import tpl from "./tpl.html"
 
 export default function (){
 
-  var $tpl = $(tpl)
+  const $tpl = $(tpl)
   this.$store.$stream.append($tpl)
 
   this.on('menu', menu);
 
   function menu (menuObj){
-    var onClickObj = null
+    let onClickObj = null
     $tpl.html('')
 
 
-    for(var [label, menuItem ] of Object.entries(menuObj)){
-      var character = this.getCharacterById(label)
+    for(let [label, menuItem ] of Object.entries(menuObj)){
+      let character = this.getCharacterById(label)
 
       if(character){
-        var str = null
+        let str = null
         if(label==='$'){
             character.name = '';
         }
@@ -39,7 +39,14 @@ export default function (){
       else{
         let str = null
         if(/disabled/i.test(label) ){
-            str = `<div data-label="${ label }" class="stream__menu-item disabled"><span class="sound-hover">${ menuItem }</span></div>`;
+                   // c исконками
+                    if(typeof menuItem==='object'){
+                              str = `<div data-label="${ label }" class="stream__menu-item disabled"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-hover">${ menuItem.text }</span></div>`;
+                    }
+                    // без иконок
+                    else{
+                              str = `<div data-label="${ label }" class="stream__menu-item disabled"><span class="sound-hover">${ menuItem }</span></div>`;
+                    }
         }
         else if(label==='onClick'){
           onClickObj = menuItem
@@ -48,14 +55,21 @@ export default function (){
           $tpl.css(menuItem)
         }
         else{
-            str = `<div data-label="${ label }" class="stream__menu-item"><span class="sound-hover">${ menuItem }</span></div>`;
+                    // c исконками
+                    if(typeof menuItem==='object'){
+                              str = `<div data-label="${ label }" class="stream__menu-item"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-hover">${ menuItem.text }</span></div>`;
+                    }
+                    // без иконок
+                    else{
+                              str = `<div data-label="${ label }" class="stream__menu-item"><span class="sound-hover">${ menuItem }</span></div>`;
+                    }
         }
         
         $('.stream__menu-menu').append($(str))
       }
     }
 
-var $vnjs = this
+let $vnjs = this
 function onClickMenuHandler(label){
   if(menuObj.hasOwnProperty('onClick') ){
       $vnjs.exec(onClickObj)

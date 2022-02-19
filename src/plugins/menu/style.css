@@ -3,6 +3,9 @@
   padding: 10px;
   background: black;
   flex-direction: column;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 200px;
   display: none;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
   overflow: auto;
@@ -49,4 +52,14 @@
       text-overflow: ellipsis; }
 .stream__menu-menu .stream__menu-item:last-child{
   margin-bottom: 0;
+}
+
+
+.stream__menu-menu .menu-item__icon{
+  width: 32px;
+  height: 32px;
+  margin-left: 15px;
+}
+.stream__menu-menu .menu-item__icon+span{
+  /*padding-left: 20px;*/
 }

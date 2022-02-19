@@ -7,6 +7,8 @@ export default function (){
   $('#screen').on('mouseover', '.sound-hover', function (){
        itemSound.play()
   })
- 
+  $('#screen').on('mousedown', '.sound-click', function (){
+       itemSound.play()
+  })
 
 }

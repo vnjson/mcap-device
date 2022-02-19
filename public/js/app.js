@@ -836,25 +836,25 @@
     });
   }
 
-  var css$b = ".stream__menu-menu {\r\n  width: 80%;\r\n  padding: 10px;\r\n  background: black;\r\n  flex-direction: column;\r\n  display: none;\r\n  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);\r\n  overflow: auto;\r\n  max-height: 95%;\r\n}\r\n  .stream__menu-menu .stream__menu-quetion {\r\n    background: rgba(70, 70, 70, 0.7);\r\n    width: 100%;\r\n    min-height: 40px;\r\n    font-size: 16px;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 10px 20px;\r\n    color: wheat;\r\n    transition: 0.1s;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    margin-bottom: 10px;\r\n  }\r\n  .stream__menu-menu .stream__menu-item {\r\n    margin-bottom: 10px;\r\n    background: rgba(120, 120, 120, 0.7);\r\n    width: 100%;\r\n    min-height: 40px;\r\n    font-size: 16px;\r\n    display: flex;\r\n    align-items: center;\r\n    color: wheat;\r\n    transition: 0.1s;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    text-overflow: ellipsis; }\r\n    .stream__menu-menu .stream__menu-item span {\r\n      padding: 10px 20px;\r\n      display: flex;\r\n      flex: 1; }\r\n    .stream__menu-menu .stream__menu-item:hover {\r\n      cursor: pointer;\r\n      background: rgba(200, 100, 100, 0.8); }\r\n    .stream__menu-menu .stream__menu-item span {\r\n      white-space: nowrap;\r\n      overflow: hidden;\r\n      text-overflow: ellipsis; }\r\n.stream__menu-menu .stream__menu-item:last-child{\r\n  margin-bottom: 0;\r\n}";
+  var css$b = ".stream__menu-menu {\r\n  width: 80%;\r\n  padding: 10px;\r\n  background: black;\r\n  flex-direction: column;\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  top: 200px;\r\n  display: none;\r\n  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);\r\n  overflow: auto;\r\n  max-height: 95%;\r\n}\r\n  .stream__menu-menu .stream__menu-quetion {\r\n    background: rgba(70, 70, 70, 0.7);\r\n    width: 100%;\r\n    min-height: 40px;\r\n    font-size: 16px;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 10px 20px;\r\n    color: wheat;\r\n    transition: 0.1s;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    margin-bottom: 10px;\r\n  }\r\n  .stream__menu-menu .stream__menu-item {\r\n    margin-bottom: 10px;\r\n    background: rgba(120, 120, 120, 0.7);\r\n    width: 100%;\r\n    min-height: 40px;\r\n    font-size: 16px;\r\n    display: flex;\r\n    align-items: center;\r\n    color: wheat;\r\n    transition: 0.1s;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    text-overflow: ellipsis; }\r\n    .stream__menu-menu .stream__menu-item span {\r\n      padding: 10px 20px;\r\n      display: flex;\r\n      flex: 1; }\r\n    .stream__menu-menu .stream__menu-item:hover {\r\n      cursor: pointer;\r\n      background: rgba(200, 100, 100, 0.8); }\r\n    .stream__menu-menu .stream__menu-item span {\r\n      white-space: nowrap;\r\n      overflow: hidden;\r\n      text-overflow: ellipsis; }\r\n.stream__menu-menu .stream__menu-item:last-child{\r\n  margin-bottom: 0;\r\n}\r\n\r\n\r\n.stream__menu-menu .menu-item__icon{\r\n  width: 32px;\r\n  height: 32px;\r\n  margin-left: 15px;\r\n}\r\n.stream__menu-menu .menu-item__icon+span{\r\n  /*padding-left: 20px;*/\r\n}";
   n(css$b,{});
 
-  var tpl$4 = "<div class=\"stream__menu-menu component center\"></div>";
+  var tpl$4 = "<div class=\"stream__menu-menu component\"></div>";
 
   function menu () {
-    var $tpl = $(tpl$4);
+    const $tpl = $(tpl$4);
     this.$store.$stream.append($tpl);
     this.on('menu', menu);
 
     function menu(menuObj) {
-      var onClickObj = null;
+      let onClickObj = null;
       $tpl.html('');
 
-      for (var [label, menuItem] of Object.entries(menuObj)) {
-        var character = this.getCharacterById(label);
+      for (let [label, menuItem] of Object.entries(menuObj)) {
+        let character = this.getCharacterById(label);
 
         if (character) {
-          var str = null;
+          let str = null;
 
           if (label === '$') {
             character.name = '';
@@ -876,20 +876,32 @@
           let str = null;
 
           if (/disabled/i.test(label)) {
-            str = `<div data-label="${label}" class="stream__menu-item disabled"><span class="sound-hover">${menuItem}</span></div>`;
+            // c исконками
+            if (typeof menuItem === 'object') {
+              str = `<div data-label="${label}" class="stream__menu-item disabled"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-hover">${menuItem.text}</span></div>`;
+            } // без иконок
+            else {
+              str = `<div data-label="${label}" class="stream__menu-item disabled"><span class="sound-hover">${menuItem}</span></div>`;
+            }
           } else if (label === 'onClick') {
             onClickObj = menuItem;
           } else if (label === 'css') {
             $tpl.css(menuItem);
           } else {
-            str = `<div data-label="${label}" class="stream__menu-item"><span class="sound-hover">${menuItem}</span></div>`;
+            // c исконками
+            if (typeof menuItem === 'object') {
+              str = `<div data-label="${label}" class="stream__menu-item"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-hover">${menuItem.text}</span></div>`;
+            } // без иконок
+            else {
+              str = `<div data-label="${label}" class="stream__menu-item"><span class="sound-hover">${menuItem}</span></div>`;
+            }
           }
 
           $('.stream__menu-menu').append($(str));
         }
       }
 
-      var $vnjs = this;
+      let $vnjs = this;
 
       function onClickMenuHandler(label) {
         if (menuObj.hasOwnProperty('onClick')) {
@@ -927,10 +939,10 @@
     }
   }
 
-  var css$a = ".main-menu {\r\n  width: 50%;\r\n  padding: 10px;\r\n  background-color: transparent;\r\n\r\n  flex-direction: column;\r\n  display: none;\r\n  /*box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);*/\r\n  overflow: auto;\r\n  max-height: 95%;\r\n}\r\n  .main-menu__item--quetion {\r\n    background: rgba(70, 70, 70, 0.7);\r\n    width: 100%;\r\n    min-height: 50px;\r\n    font-size: 26px;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 10px 20px;\r\n    color: white;\r\n    transition: 0.1s;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    margin-bottom: 10px;\r\n    box-shadow: 3px 3px 10px rgba(0,0,0,0.5);\r\n  }\r\n  .main-menu__item {\r\n    margin-bottom: 20px;\r\n    background-color: #333;\r\n    width: 100%;\r\n    min-height: 50px;\r\n    font-size: 26px;\r\n    display: flex;\r\n    align-items: center;\r\n    color: #34d1a2;\r\n    transition: 0.1s;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    box-shadow: 3px 3px 10px rgba(0,0,0,0.7);\r\n  }\r\n    .main-menu__item span {\r\n      padding: 20px 20px;\r\n      padding-left: 50px;\r\n      display: flex;\r\n      flex: 1;\r\n      /*display: flex;\r\n      justify-content: center;*/\r\n    }\r\n    .main-menu__item:hover {\r\n      cursor: pointer;\r\n      color: darkcyan;\r\n      background: rgba(0, 0, 0, 0.7); }\r\n    .main-menu__item span {\r\n      white-space: nowrap;\r\n      overflow: hidden;\r\n      text-overflow: ellipsis; }\r\n.main-menu__item:last-child{\r\n  margin-bottom: 0;\r\n}\r\n\r\n.main-menu__item.disabled{\r\n  opacity: 0.6;\r\n}";
+  var css$a = ".main-menu {\r\n  width: 50%;\r\n  padding: 10px;\r\n  background-color: transparent;\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  flex-direction: column;\r\n  display: none;\r\n  /*box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);*/\r\n  overflow: auto;\r\n  max-height: 95%;\r\n  top: 200px;\r\n}\r\n  .main-menu__item--quetion {\r\n    background: rgba(70, 70, 70, 0.7);\r\n    width: 100%;\r\n    min-height: 50px;\r\n    font-size: 26px;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 10px 20px;\r\n    color: white;\r\n    transition: 0.1s;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    margin-bottom: 10px;\r\n    box-shadow: 3px 3px 10px rgba(0,0,0,0.5);\r\n  }\r\n  .main-menu__item {\r\n    margin-bottom: 20px;\r\n    background-color: #333;\r\n    width: 100%;\r\n    min-height: 50px;\r\n    font-size: 26px;\r\n    display: flex;\r\n    align-items: center;\r\n    color: #34d1a2;\r\n    transition: 0.1s;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    box-shadow: 3px 3px 10px rgba(0,0,0,0.7);\r\n\r\n  }\r\n    .main-menu__item span {\r\n      padding: 20px 20px;\r\n      padding-left: 50px;\r\n      display: flex;\r\n      flex: 1;\r\n      /*display: flex;\r\n      justify-content: center;*/\r\n    }\r\n    .main-menu__item:hover {\r\n      cursor: pointer;\r\n      color: darkcyan;\r\n      background: rgba(0, 0, 0, 0.7); }\r\n    .main-menu__item span {\r\n      white-space: nowrap;\r\n      overflow: hidden;\r\n      text-overflow: ellipsis; }\r\n.main-menu__item:last-child{\r\n  margin-bottom: 0;\r\n}\r\n\r\n.main-menu__item.disabled{\r\n  opacity: 0.6;\r\n}\r\n\r\n.main-menu .menu-item__icon{\r\n  width: 50px;\r\n  height: 50px;\r\n  margin-left: 15px;\r\n}\r\n.main-menu .menu-item__icon+span{\r\n  padding-left: 20px;\r\n}";
   n(css$a,{});
 
-  var tpl$3 = "<div class=\"main-menu component center\"></div>";
+  var tpl$3 = "<div class=\"main-menu component\"></div>";
 
   function mainMenu () {
     var $tpl = $(tpl$3);
@@ -967,13 +979,28 @@
           let str = null;
 
           if (/disabled/i.test(label)) {
-            str = `<div data-label="${label}" class="main-menu__item disabled"><span class="sound-hover">${menuItem}</span></div>`;
+            // c исконками
+            if (typeof menuItem === 'object') {
+              str = `<div data-label="${label}" class="main-menu__item disabled"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${menuItem.text}</span></div>`;
+            } // без иконок
+            else {
+              str = `<div data-label="${label}" class="main-menu__item disabled"><span class="sound-click">${menuItem}</span></div>`;
+            }
           } else if (label === 'onClick') {
             onClickObj = menuItem;
           } else if (label === 'css') {
             $tpl.css(menuItem);
-          } else {
-            str = `<div data-label="${label}" class="main-menu__item"><span class="sound-hover">${menuItem}</span></div>`;
+          }
+          /**
+           * Вывод обычного пункта меню
+           */
+          else {
+            // c исконками
+            if (typeof menuItem === 'object') {
+              str = `<div data-label="${label}" class="main-menu__item"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${menuItem.text}</span></div>`;
+            } else {
+              str = `<div data-label="${label}" class="main-menu__item"><span class="sound-click">${menuItem}</span></div>`;
+            }
           }
 
           $('.main-menu').append($(str));
@@ -1227,6 +1254,9 @@
       volume: 0.1
     });
     $('#screen').on('mouseover', '.sound-hover', function () {
+      itemSound.play();
+    });
+    $('#screen').on('mousedown', '.sound-click', function () {
       itemSound.play();
     });
   }

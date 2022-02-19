@@ -42,7 +42,14 @@ export default function (){
       else{
         let str = null
         if(/disabled/i.test(label) ){
-            str = `<div data-label="${ label }" class="main-menu__item disabled"><span class="sound-hover">${ menuItem }</span></div>`;
+                  // c исконками
+                  if(typeof menuItem==='object'){
+                      str = `<div data-label="${ label }" class="main-menu__item disabled"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${ menuItem.text }</span></div>`;
+                  }
+                  // без иконок
+                  else{
+                      str = `<div data-label="${ label }" class="main-menu__item disabled"><span class="sound-click">${ menuItem }</span></div>`;
+                  }
         }
 
         else if(label==='onClick'){
@@ -51,10 +58,18 @@ export default function (){
         else if(label==='css'){
           $tpl.css(menuItem)
         }
+        /**
+         * Вывод обычного пункта меню
+         */
         else{
-            str = `<div data-label="${ label }" class="main-menu__item"><span class="sound-hover">${ menuItem }</span></div>`;
+                  // c исконками
+                  if(typeof menuItem==='object'){
+                      str = `<div data-label="${ label }" class="main-menu__item"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${ menuItem.text }</span></div>`;
+                  }
+                  else{
+                      str = `<div data-label="${ label }" class="main-menu__item"><span class="sound-click">${ menuItem }</span></div>`;
+                  }
         }
-        
         $('.main-menu').append($(str))
       }
     }

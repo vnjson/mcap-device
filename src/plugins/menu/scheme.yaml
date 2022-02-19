@@ -35,3 +35,25 @@
       width: 300px
       top: 50px
       right: 20px
+
+      
+# Добавление иконок
+- dialog-box: disabled
+  menu:
+    disabled_1: 
+        text: Как подключить zim
+        icon: bullbasaur
+    lab: 
+        text: Файловая структура
+        icon: charmander
+    next_1: YAML скрипты
+    test_1:
+        text: Тестовый пунк меню
+        icon: snorlax
+    next:
+        text: 32px 32px
+        icon: zubat
+    css:
+      top: 50px
+    onClick:
+      dialog-box: true

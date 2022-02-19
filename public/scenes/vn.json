@@ -6,6 +6,10 @@
         "url": "./scenes/assets/att.mp3"
       },
       {
+        "name": "bullbasaur",
+        "url": "./scenes/assets/bullbasaur.png"
+      },
+      {
         "name": "c10s",
         "url": "./scenes/assets/c10s.mp3"
       },
@@ -16,6 +20,10 @@
       {
         "name": "c4s",
         "url": "./scenes/assets/c4s.mp3"
+      },
+      {
+        "name": "charmander",
+        "url": "./scenes/assets/charmander.png"
       },
       {
         "name": "err1",
@@ -30,10 +38,6 @@
         "url": "./scenes/assets/hr.mp3"
       },
       {
-        "name": "lock",
-        "url": "./scenes/assets/lock.jpg"
-      },
-      {
         "name": "m10s",
         "url": "./scenes/assets/m10s.mp3"
       },
@@ -44,10 +48,6 @@
       {
         "name": "m4s",
         "url": "./scenes/assets/m4s.mp3"
-      },
-      {
-        "name": "met",
-        "url": "./scenes/assets/met.jpg"
       },
       {
         "name": "mtf",
@@ -78,6 +78,10 @@
         "url": "./scenes/assets/qu.mp3"
       },
       {
+        "name": "snorlax",
+        "url": "./scenes/assets/snorlax.png"
+      },
+      {
         "name": "t10s",
         "url": "./scenes/assets/t10s.mp3"
       },
@@ -96,12 +100,71 @@
       {
         "name": "tpw",
         "url": "./scenes/assets/tpw.mp3"
+      },
+      {
+        "name": "zubat",
+        "url": "./scenes/assets/zubat.png"
       }
     ],
     "$init": [
       {
         "dialog-box": true,
         "next": true
+      },
+      {
+        "dialog-box": "disabled",
+        "main-menu": {
+          "disabled_1": {
+            "text": "Как подключить zim",
+            "icon": "bullbasaur"
+          },
+          "lab": {
+            "text": "Файловая структура",
+            "icon": "charmander"
+          },
+          "next_1": "YAML скрипты",
+          "test_1": {
+            "text": "Тестовый пунк меню",
+            "icon": "snorlax"
+          },
+          "next": {
+            "text": "50px 50px",
+            "icon": "zubat"
+          },
+          "css": {
+            "top": "50px"
+          },
+          "onClick": {
+            "hands": true
+          }
+        }
+      },
+      {
+        "menu": {
+          "disabled_1": {
+            "text": "Как подключить zim",
+            "icon": "bullbasaur"
+          },
+          "lab": {
+            "text": "Файловая структура",
+            "icon": "charmander"
+          },
+          "next_1": "YAML скрипты",
+          "test_1": {
+            "text": "Тестовый пунк меню",
+            "icon": "snorlax"
+          },
+          "next": {
+            "text": "32px 32px",
+            "icon": "zubat"
+          },
+          "css": {
+            "top": "50px"
+          },
+          "onClick": {
+            "dialog-box": true
+          }
+        }
       },
       {
         "$": "У лукоморья дуб зелёный;"
@@ -132,7 +195,7 @@
     ],
     "package": {
       "preload": true,
-      "chess": true
+      "chess": false
     }
   }
 }
