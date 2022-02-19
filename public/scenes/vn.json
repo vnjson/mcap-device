@@ -175,7 +175,8 @@
       },
       {
         "$": "Идёт направо — песнь заводит,",
-        "$voice": "err1"
+        "$voice": "err1",
+        "jump": "ch.$init"
       },
       "Налево — сказку говорит.",
       "Там чудеса там леший бродит",
@@ -192,9 +193,69 @@
         "replyColor": "#a4deaa"
       }
     ],
+    "content": [
+      {
+        "content": [
+          {
+            "$root.$init": "Том 1",
+            "disabled": "Глава 1",
+            "beginning.plug": "Глава 2",
+            "beginning.zim-label": "Глава 3"
+          },
+          {
+            "experienced.$init": "Том 2",
+            "disabled": "Глава 1",
+            "experienced.how-write-plugin": "Глава 2"
+          },
+          {
+            "disabled": "Том 3",
+            "experienced.test": "Глава 1",
+            "experienced.$init": "Глава 2"
+          },
+          {
+            "disabled": "Том 4",
+            "experienced.test": "Глава 1",
+            "experienced.$init": "Глава 2"
+          }
+        ]
+      }
+    ],
     "package": {
       "preload": true,
       "chess": false
     }
+  },
+  "ch": {
+    "assets": [],
+    "$init": [
+      "test"
+    ],
+    "_content": [
+      {
+        "content": [
+          {
+            "$root.$init": "222222222",
+            "disabled": "Глава 1",
+            "beginning.plug": "Глава 2",
+            "beginning.zim-label": "Глава 3"
+          },
+          {
+            "experienced.$init": "Том 2",
+            "disabled": "Глава 1",
+            "experienced.how-write-plugin": "Глава 2"
+          },
+          {
+            "disabled": "Том 3",
+            "experienced.test": "Глава 1",
+            "experienced.$init": "Глава 2"
+          },
+          {
+            "disabled": "Том 4",
+            "experienced.test": "Глава 1",
+            "experienced.$init": "Глава 2"
+          }
+        ]
+      }
+    ]
   }
 }

@@ -29,13 +29,15 @@ export default function (){
 
   $('.stream__hand-right').css('background-image', `url(${icoContent})`)
   $('.stream__hands').on('click', '.stream__hand-right', e=>{
-    if(this.TREE.$root.content){
-        this.exec({ jump: '$root.content' })
-    }
-    /*
-    else{
-      console.warn('Scene: { ' +'$root.content'+ ' } not found')
-    }*/
+          if(this.TREE[this.current.sceneName].content){
+              this.exec({ jump: `${this.current.sceneName}.content` })
+          }
+          else if(this.TREE.$root.content){
+              this.exec({ jump: `$root.content` })
+          }
+          else{
+            console.warn('Scene: { ' +'$root.content'+ ' } not found')
+          }
 
   })
 
