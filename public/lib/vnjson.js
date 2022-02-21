@@ -11,7 +11,7 @@
   'use strict';
 
 class Vnjson {
-  version = '1.7.5';
+  version = '1.7.6';
   //current object
   ctx = {};
   //loaded scenes
@@ -104,11 +104,7 @@ class Vnjson {
     return this.current.character;
   }
   getCharacterById (id){
-    return this.TREE.$root.characters.filter(character=>{
-              return character.id === id;
-    }).pop()
-
-
+    return this.TREE.$root.characters.find(character=>character.id === id)
   }
   getCtx (){
     let ctx = this.getCurrentLabelBody()[this.current.index];

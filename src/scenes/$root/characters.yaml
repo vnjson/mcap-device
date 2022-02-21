@@ -4,6 +4,11 @@
   replyColor: '#a4deaa'
 
 - id: kr
-  name: "krab"
-  nameColor: '#49de58'
+  name: Корней
+  nameColor: orange
   replyColor: '#a4deaa'
+
+- id: al
+  name: Алиса
+  nameColor: magenta
+  replyColor: crimson

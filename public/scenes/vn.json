@@ -121,30 +121,10 @@
         "$": "test2"
       },
       {
-        "$": "test3",
-        "help": false,
-        "ready": false
+        "$": "test3 @kr так же протестируем и @al"
       },
       {
-        "$": "У лукоморья дуб зелёный;",
-        "set-name": "$",
-        "dialog-box": "disabled"
-      },
-      {
-        "$": "И днём и ночью кот учёный",
-        "dialog-box": true
-      },
-      {
-        "kr": "1234"
-      },
-      {
-        "$": "test"
-      },
-      {
-        "kr": "555"
-      },
-      {
-        "$": "Всё ходит по цепи кругом;"
+        "$": "Всё ходит по цепи @al кругом @$ привет @kr тестируем строку"
       },
       {
         "$": "Идёт направо — песнь заводит,"
@@ -153,7 +133,7 @@
       "Там чудеса там леший бродит",
       "Русалка на ветвях сидит;",
       {
-        "jump": "a2.in"
+        "jump": "$init"
       }
     ],
     "characters": [
@@ -165,25 +145,20 @@
       },
       {
         "id": "kr",
-        "name": "krab",
-        "nameColor": "#49de58",
+        "name": "Корней",
+        "nameColor": "orange",
         "replyColor": "#a4deaa"
+      },
+      {
+        "id": "al",
+        "name": "Алиса",
+        "nameColor": "magenta",
+        "replyColor": "crimson"
       }
     ],
     "package": {
       "preload": false,
       "chess": false
     }
-  },
-  "a2": {
-    "assets": [],
-    "in": [
-      {
-        "$": "papapa"
-      },
-      {
-        "jump": "$root.$init"
-      }
-    ]
   }
 }
