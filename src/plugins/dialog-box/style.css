@@ -5,14 +5,18 @@
   width: 100%;
   line-height: 32px;
   height: 200px;
-  background: rgba(0, 0, 0, 0.8);
+
   cursor: pointer;
   display: block;
   padding-top: 10px;
   padding-left: 10px;
   word-spacing: 10px;
   display: none;
-  top: unset; }
+  top: unset;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
 
 .dialog-box__name {
   color: wheat;
@@ -21,7 +25,6 @@
   font-weight: bold;
   padding-left: 10px;
   padding-bottom: 10px;
-
 }
 
 .dialog-box__reply {
@@ -29,13 +32,11 @@
   font-size: 22px;
   padding-left: 10px;
   width: 100%; 
-
 }
 
 .dialog-box__container{
   display: flex; 
   height: 100%; 
-
 }
 .dialog-box__avatar{
   margin-top: 15px;

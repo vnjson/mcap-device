@@ -2,3 +2,8 @@
   name: ". . . ."
   nameColor: '#49de58'
   replyColor: '#a4deaa'
+
+- id: kr
+  name: "krab"
+  nameColor: '#49de58'
+  replyColor: '#a4deaa'

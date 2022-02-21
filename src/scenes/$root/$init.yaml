@@ -1,53 +1,30 @@
 - dialog-box: true
   next: true
-- dialog-box: disabled
-  main-menu:
-    disabled_1: Как подключить zim
 
-    lab: 
-        text: Файловая структура
-        icon: charmander
-    next_1: YAML скрипты
-    test_1:
-        text: Тестовый пунк меню
-        icon: snorlax
-    next:
-        text: 50px 50px
-        icon: zubat
-    css:
-      top: 50px
-    onClick:
-      hands: true
-- menu:
-    disabled_1: 
-        text: Как подключить zim
-        icon: bullbasaur
-    lab: 
-        text: Файловая структура
-        icon: charmander
-    next_1: YAML скрипты
-    test_1:
-        text: Тестовый пунк меню
-        icon: snorlax
-    next:
-        text: 32px 32px
-        icon: zubat
-    css:
-      top: 50px
-    onClick:
-      dialog-box: true
+- status-bar: true
+  ready: true
+  help: true
+  $: test
 
-      #dialog-box: true
+- $: test2
+- $: test3
+  help: false
+  ready: false
+
+
 - $: У лукоморья дуб зелёный;
-  $voice: att
-
+  set-name: $
+  dialog-box: disabled
 - $: И днём и ночью кот учёный
+  dialog-box: true
+- kr: '1234'
+- $: test
 
+- kr: '555'
 - $: Всё ходит по цепи кругом;
 - $: Идёт направо — песнь заводит,
-  $voice: err1
-  jump: ch.$init
 - Налево — сказку говорит.
 - Там чудеса там леший бродит
 - Русалка на ветвях сидит;
-- jump: $init
+- jump: a2.in
+#- jump: $init

@@ -6,33 +6,40 @@ import playerImg from './assets/player.svg'
 
 export default function (){
 
-  const $tpl = $(tpl)
-  this.$store.$stream.append($tpl)
+  const $tpl = $(tpl);
+  let ready = false;
+  let help = false;
+  this.$store.$stream.append($tpl);
   this.on('status-bar', param=>{
     if(param){
-      $tpl.css('display', 'flex')
+      $tpl.css('display', 'flex');
     }
     else{
-      $tpl.hide()
+      $tpl.hide();
     }
-
   })
   function clearStatus (){
     $('.status-bar__image-containter').css('background-image', `unset`)
     $('.status-bar__item').toArray().map(el=>{ 
-      $(el).removeClass('status-active')
+      $(el).removeClass('status-active');
     })
   }
-  var readyStatus = false
+  var readyStatus = false;
   $('.status-bar__status--ready').on('click', function (){
       clearStatus()
       if(readyStatus){
-          readyStatus = false
+          readyStatus = false;
       }
       else{
-        helpStatus = false
-        readyStatus = true
+        helpStatus = false;
+        readyStatus = true;
+        /**
+         * При клике на кнопку [ готов ] определяем стоит ли нам выполнить плагин [next] или нет
+         */
+        ready?$vnjs.exec({next: true}):false;
+        // красим в зеленый
         $(this).addClass('status-active')
+        // добавляем изображение
         $('.status-bar__image-containter').css('background-image', `url(${readyImg})`)
       }
   })
@@ -45,7 +52,13 @@ export default function (){
       else{
           readyStatus = false
           helpStatus = true
+         /**
+          * При клике на кнопку [ помощь ] определяем стоит ли нам выполнить плагин [next] или нет
+          */
+          help?$vnjs.exec({next: true}):false;
+          // красим в красный
           $(this).addClass('status-active')
+          // добавляем изображение
           $('.status-bar__image-containter').css('background-image', `url(${helpImg})`)
       }
   })
@@ -54,6 +67,9 @@ this.on('player-load', name=>{
     $('#status-bar__player-logo').attr('src', playerImg)
     $('.status-bar__player-name').html(this.current.data.player.name)
 })
-
-
+/**
+ * Следим за статусом ready и help
+ */
+this.on('ready', e=>ready=e)
+this.on('help', e=>help=e)
 }

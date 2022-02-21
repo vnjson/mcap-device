@@ -112,77 +112,48 @@
         "next": true
       },
       {
-        "dialog-box": "disabled",
-        "main-menu": {
-          "disabled_1": "Как подключить zim",
-          "lab": {
-            "text": "Файловая структура",
-            "icon": "charmander"
-          },
-          "next_1": "YAML скрипты",
-          "test_1": {
-            "text": "Тестовый пунк меню",
-            "icon": "snorlax"
-          },
-          "next": {
-            "text": "50px 50px",
-            "icon": "zubat"
-          },
-          "css": {
-            "top": "50px"
-          },
-          "onClick": {
-            "hands": true
-          }
-        }
+        "status-bar": true,
+        "ready": true,
+        "help": true,
+        "$": "test"
       },
       {
-        "menu": {
-          "disabled_1": {
-            "text": "Как подключить zim",
-            "icon": "bullbasaur"
-          },
-          "lab": {
-            "text": "Файловая структура",
-            "icon": "charmander"
-          },
-          "next_1": "YAML скрипты",
-          "test_1": {
-            "text": "Тестовый пунк меню",
-            "icon": "snorlax"
-          },
-          "next": {
-            "text": "32px 32px",
-            "icon": "zubat"
-          },
-          "css": {
-            "top": "50px"
-          },
-          "onClick": {
-            "dialog-box": true
-          }
-        }
+        "$": "test2"
+      },
+      {
+        "$": "test3",
+        "help": false,
+        "ready": false
       },
       {
         "$": "У лукоморья дуб зелёный;",
-        "$voice": "att"
+        "set-name": "$",
+        "dialog-box": "disabled"
       },
       {
-        "$": "И днём и ночью кот учёный"
+        "$": "И днём и ночью кот учёный",
+        "dialog-box": true
+      },
+      {
+        "kr": "1234"
+      },
+      {
+        "$": "test"
+      },
+      {
+        "kr": "555"
       },
       {
         "$": "Всё ходит по цепи кругом;"
       },
       {
-        "$": "Идёт направо — песнь заводит,",
-        "$voice": "err1",
-        "jump": "ch.$init"
+        "$": "Идёт направо — песнь заводит,"
       },
       "Налево — сказку говорит.",
       "Там чудеса там леший бродит",
       "Русалка на ветвях сидит;",
       {
-        "jump": "$init"
+        "jump": "a2.in"
       }
     ],
     "characters": [
@@ -191,70 +162,27 @@
         "name": ". . . .",
         "nameColor": "#49de58",
         "replyColor": "#a4deaa"
-      }
-    ],
-    "content": [
+      },
       {
-        "content": [
-          {
-            "$root.$init": "Том 1",
-            "disabled": "Глава 1",
-            "beginning.plug": "Глава 2",
-            "beginning.zim-label": "Глава 3"
-          },
-          {
-            "experienced.$init": "Том 2",
-            "disabled": "Глава 1",
-            "experienced.how-write-plugin": "Глава 2"
-          },
-          {
-            "disabled": "Том 3",
-            "experienced.test": "Глава 1",
-            "experienced.$init": "Глава 2"
-          },
-          {
-            "disabled": "Том 4",
-            "experienced.test": "Глава 1",
-            "experienced.$init": "Глава 2"
-          }
-        ]
+        "id": "kr",
+        "name": "krab",
+        "nameColor": "#49de58",
+        "replyColor": "#a4deaa"
       }
     ],
     "package": {
-      "preload": true,
+      "preload": false,
       "chess": false
     }
   },
-  "ch": {
+  "a2": {
     "assets": [],
-    "$init": [
-      "test"
-    ],
-    "_content": [
+    "in": [
       {
-        "content": [
-          {
-            "$root.$init": "222222222",
-            "disabled": "Глава 1",
-            "beginning.plug": "Глава 2",
-            "beginning.zim-label": "Глава 3"
-          },
-          {
-            "experienced.$init": "Том 2",
-            "disabled": "Глава 1",
-            "experienced.how-write-plugin": "Глава 2"
-          },
-          {
-            "disabled": "Том 3",
-            "experienced.test": "Глава 1",
-            "experienced.$init": "Глава 2"
-          },
-          {
-            "disabled": "Том 4",
-            "experienced.test": "Глава 1",
-            "experienced.$init": "Глава 2"
-          }
-        ]
+        "$": "papapa"
+      },
+      {
+        "jump": "$root.$init"
       }
     ]
   }

@@ -63,6 +63,20 @@ h1,h2,h3,h4,h5,h6{
 .show{
   display: block;
 }
+
+input[type="text"]{
+  border: none;
+  outline: 0;
+  background-color: rgba(0,0,0,0.5);
+  color: gray;
+  padding: 10px 15px;
+}
+button{
+  border: none;
+  outline: 0;
+  color: gray;
+}
+
 @font-face {
   font-family: Minecraft;
   src: url(../fonts/Minecraft.ttf); 

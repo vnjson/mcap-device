@@ -1,11 +1,15 @@
-import "./colors.css";
+
 import "./style.css";
 import tpl from "./tpl.html"
 
+import dialogBoxImage from './assets/dialog-box.png'
 
 export default function (){
 
   const $tpl = $(tpl)
+  $tpl.css('background-image', `url(${dialogBoxImage})`)
+
+
   this.$store.$stream.append($tpl)
   let disabled = false
   $tpl.on('mousedown', e=>{
