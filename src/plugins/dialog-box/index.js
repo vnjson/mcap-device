@@ -70,8 +70,9 @@ if(characterAliaces){
 
       let cid = id.replace('@', '').trim();
       let character = this.getCharacterById(cid);
-
-      newReply = newReply.replace(id, `<span class="dialog-box__reply-character-name" style="color: ${character.nameColor}">${character.name}</span> `); /*пробел на конце нужен из за спец символов $! которые получаю вместе с пробелом*/
+      if(character){
+          newReply = newReply.replace(id, `<span class="dialog-box__reply-character-name" style="color: ${character.nameColor}">${character.name}</span> `); /*пробел на конце нужен из за спец символов $! которые получаю вместе с пробелом*/
+      }
   })
   $tpl.find('.dialog-box__reply').html(newReply).css({ color: replyColor });
 }

@@ -1,13 +1,26 @@
 - dialog-box: true
   next: true
 
-- status-bar: true
-  ready: true
-  help: true
-  $: test
+
 
 - $: test2
+  status-bar: true
+  wiki:
+    list:
+      - Юань
+      - Хакасы
+      - Явка
+      - Баба-яга
+    css:
+       left: 10px
+
+
+
 - $: 'test3 @kr @$1! так же протестируем и @al'
+  wiki:
+    - Абажур
+    - Вагонетка
+    - Жабры
 
 
 - $: Всё ходит по цепи @al кругом @$ привет @kr тестируем строку

@@ -14,13 +14,7 @@ import YAML             from 'yaml'
 
 const config = YAML.parse(fs.readFileSync('./config.yaml', 'utf8'))
 
-const PORT = fs.readdirSync(__dirname)
-               .filter(item=>/^9\d{3}/.test(item))[0]
 
-if(config.port<9000){
-    console.error('[!] Некорректный номер порта')
-    process.exit()
-}
 export default {
   input: `${config.src}/main.js`,
   output: {

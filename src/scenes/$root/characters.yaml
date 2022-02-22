@@ -3,10 +3,6 @@
   nameColor: '#49de58'
   replyColor: '#a4deaa'
 
-- id: $1!
-  name: test
-  nameColor: red
-  replyColor: '#a4deaa'
 
 - id: kr
   name: Корней
