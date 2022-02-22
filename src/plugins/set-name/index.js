@@ -16,7 +16,7 @@ export default function (){
   })
   $('.stream__set-name-wrapper .stream__set-name-btn').on('click', ()=>{
         let input = $('.stream__set-name-wrapper input')
-        if(input.val().length>1){
+     
             $tpl.fadeOut();
             let char = this.TREE.$root.characters.find(character=>character.id===cid)
             //this.current.data[cid] = value;
@@ -24,7 +24,7 @@ export default function (){
             input.val('');
             this.exec({ next: true })
            // this.exec({ next: true, 'set-data': { [cid]: value } });
-        }
+       
 
   })
 }
