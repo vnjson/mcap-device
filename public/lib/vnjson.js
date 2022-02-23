@@ -36,20 +36,16 @@ class Vnjson {
    */
   current = {
     index: 0,
-    labelName: 'entry',
+    labelName: '$init',
     sceneName: '$root',
     character: null,
-    render: {
-      screen: null,
-      audio: null,
-      scene: null, //bg
-      show: {}//left right center show
-    },
+    /*
     options: {
       typespeed: 30,
       volume: 100,
       zoom: 100
     },
+    */
     data: { 
       score: null
     },
@@ -154,18 +150,18 @@ class Vnjson {
   }
   emit (event, ...args){
       if(event in this.plugins) {
-          this.plugins[event].forEach(handler=>handler.call(this, ...args))
+          this.plugins[event].forEach(handler=>handler.call(this, ...args));
       }
       else {
-        let e = ['setScore', 'screenInit'].indexOf(event)
-        if(e===-1){
-          console.error(`Plugin { ${event} } not found [ ${this.current.sceneName+'.'+this.current.labelName+'.'+this.current.index} ]`)
+        let exclude = ['setScore', 'screenInit'].indexOf(event);
+        if(exclude===-1){
+          console.error(`Plugin { ${event} } not found [ ${this.current.sceneName+'.'+this.current.labelName+'.'+this.current.index} ]`);
         }
       }
       return this;
   }
   off (event){
-    delete this.plugins[event]
+    delete this.plugins[event];
     return this;
   }
   exec (ctx){
@@ -190,7 +186,7 @@ class Vnjson {
         }
       }
     }/*else*/
-    this.emit('exec', this.ctx)
+    this.emit('exec', this.ctx);
     return this;
   }
 
@@ -199,7 +195,7 @@ class Vnjson {
     if(this.getCurrentLabelBody().length-2<this.current.index){
   
       this.current.index = this.current.index;
-      console.warn(`No way out of the label [ ${this.current.labelName} ]`)
+      console.warn(`No way out of the label [ ${this.current.labelName} ]`);
     }else{
       this.current.index++;
       this.exec();
@@ -218,11 +214,11 @@ class Vnjson {
                         .map( ctx=>{
                           return ctx.hasOwnProperty(pathname)
                         })
-                        .indexOf(true)
+                        .indexOf(true);
                        
-        let label = [ this.current.sceneName, this.current.labelName, index ].join('.')
+        let label = [ this.current.sceneName, this.current.labelName, index ].join('.');
 
-        this.exec({jump: label})
+        this.exec({jump: label});
     }
     else{
         let path = pathname.split('.');

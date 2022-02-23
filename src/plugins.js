@@ -36,11 +36,9 @@ import html               from './plugins/html/index.js';
 import discordLog         from './plugins/discord-log/index.js';
 import statusBar          from './plugins/status-bar/index.js';
 import mcPlayer           from './plugins/mc-player/index.js';
+import paintBoard         from './plugins/paint-board/index.js';
 /*zim*/
 import zimIntro           from './plugins/zim-intro/index.js';
-
-/*embed*/
-
 
 
 
@@ -82,6 +80,7 @@ export default function(){
   this.use(discordLog);
   this.use(statusBar);
   this.use(mcPlayer);
+  this.use(paintBoard);
   /*zim*/
   this.use(zimIntro);
   this.on('next', this.next);

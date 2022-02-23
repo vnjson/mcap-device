@@ -138,27 +138,11 @@ import { FenEditor } from "./src/FenEditor.js"
     })
 
 
- /*
-
-
-    $('#empty__board').on('click', function (){
-       editor.state.fen = '8/8/8/8/8/8/8/8 w - - 0 1'
-    })
-
-
-*/
-/*
-setTimeout(()=>{
-     editor.state.fen = '8/8/8/8/8/8/4r1b1/8 w - - 0 1'
-}, 1000)
-*/
-
-
     window.addEventListener("message", event=>{
         let fen = event.data.fen
         console.log(fen)
         editor.state.fen = fen
-   })
+    })
   
 </script>
 </body>

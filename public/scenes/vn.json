@@ -6,10 +6,6 @@
         "url": "./scenes/assets/att.mp3"
       },
       {
-        "name": "bullbasaur",
-        "url": "./scenes/assets/bullbasaur.png"
-      },
-      {
         "name": "c10s",
         "url": "./scenes/assets/c10s.mp3"
       },
@@ -22,10 +18,6 @@
         "url": "./scenes/assets/c4s.mp3"
       },
       {
-        "name": "charmander",
-        "url": "./scenes/assets/charmander.png"
-      },
-      {
         "name": "err1",
         "url": "./scenes/assets/err1.mp3"
       },
@@ -36,6 +28,14 @@
       {
         "name": "hr",
         "url": "./scenes/assets/hr.mp3"
+      },
+      {
+        "name": "img1",
+        "url": "./scenes/assets/img1.webp"
+      },
+      {
+        "name": "img2",
+        "url": "./scenes/assets/img2.jpg"
       },
       {
         "name": "m10s",
@@ -78,10 +78,6 @@
         "url": "./scenes/assets/qu.mp3"
       },
       {
-        "name": "snorlax",
-        "url": "./scenes/assets/snorlax.png"
-      },
-      {
         "name": "t10s",
         "url": "./scenes/assets/t10s.mp3"
       },
@@ -100,10 +96,6 @@
       {
         "name": "tpw",
         "url": "./scenes/assets/tpw.mp3"
-      },
-      {
-        "name": "zubat",
-        "url": "./scenes/assets/zubat.png"
       }
     ],
     "$init": [
@@ -114,31 +106,18 @@
       {
         "$": "test2",
         "status-bar": true,
-        "wiki": {
-          "list": [
-            "Юань",
-            "Хакасы",
-            "Явка",
-            "Баба-яга"
-          ],
-          "css": {
-            "left": "10px"
-          }
-        }
+        "paint-board": "img2"
       },
       {
-        "$": "test3 @kr @$1! так же протестируем и @al",
-        "wiki": [
-          "Абажур",
-          "Вагонетка",
-          "Жабры"
-        ]
+        "$": "test3 @kr @$1! так же протестируем и @al"
       },
       {
-        "$": "Всё ходит по цепи @al кругом @$ привет @kr тестируем строку"
+        "$": "Всё ходит по цепи @al кругом @$ привет @kr тестируем строку",
+        "paint-board": "img1"
       },
       {
-        "$": "Идёт направо — песнь заводит,"
+        "$": "Идёт направо — песнь заводит,",
+        "paint-board": false
       },
       "Налево — сказку говорит.",
       "Там чудеса там леший бродит",
@@ -169,7 +148,8 @@
     ],
     "package": {
       "preload": false,
-      "chess": false
+      "chess": false,
+      "paint-board": true
     },
     "wiki": {
       "Абажур": "Колпак для лампы, светильника",
