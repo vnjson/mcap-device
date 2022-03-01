@@ -57,3 +57,6 @@
       top: 50px
     onClick:
       dialog-box: true
+
+
+- menu: false # hide menu

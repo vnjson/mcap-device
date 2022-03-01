@@ -8,7 +8,14 @@ export default function (){
   const $tpl = $(tpl)
   this.$store.$stream.append($tpl)
 
-  this.on('menu', menu);
+  this.on('menu', obj=>{
+      if(obj){
+        menu.call(this, obj);
+      }
+      else{
+        $tpl.hide();
+      }  
+  });
 
   function menu (menuObj){
     let onClickObj = null
@@ -41,11 +48,11 @@ export default function (){
         if(/disabled/i.test(label) ){
                    // c исконками
                     if(typeof menuItem==='object'){
-                              str = `<div data-label="${ label }" class="stream__menu-item disabled"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-hover">${ menuItem.text }</span></div>`;
+                              str = `<div data-label="${ label }" class="stream__menu-item disabled"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${ menuItem.text }</span></div>`;
                     }
                     // без иконок
                     else{
-                              str = `<div data-label="${ label }" class="stream__menu-item disabled"><span class="sound-hover">${ menuItem }</span></div>`;
+                              str = `<div data-label="${ label }" class="stream__menu-item disabled"><span class="sound-click">${ menuItem }</span></div>`;
                     }
         }
         else if(label==='onClick'){
@@ -57,11 +64,11 @@ export default function (){
         else{
                     // c исконками
                     if(typeof menuItem==='object'){
-                              str = `<div data-label="${ label }" class="stream__menu-item"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-hover">${ menuItem.text }</span></div>`;
+                              str = `<div data-label="${ label }" class="stream__menu-item"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${ menuItem.text }</span></div>`;
                     }
                     // без иконок
                     else{
-                              str = `<div data-label="${ label }" class="stream__menu-item"><span class="sound-hover">${ menuItem }</span></div>`;
+                              str = `<div data-label="${ label }" class="stream__menu-item"><span class="sound-click">${ menuItem }</span></div>`;
                     }
         }
         

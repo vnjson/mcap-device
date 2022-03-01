@@ -38,3 +38,5 @@
 
 
 # onClick - execute the code after the jump
+# 
+- main-menu: false # hide menu

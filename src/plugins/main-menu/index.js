@@ -8,8 +8,14 @@ export default function (){
   var $tpl = $(tpl)
   this.$store.$stream.append($tpl)
 
-  this.on('main-menu', menu);
-
+  this.on('main-menu', obj=>{
+      if(obj){
+        menu.call(this, obj);
+      }
+      else{
+        $tpl.hide();
+      }  
+  });
   function menu (menuObj){
     var onClickObj = null
     $tpl.html('') 
