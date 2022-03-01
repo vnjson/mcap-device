@@ -40,3 +40,4 @@
 # onClick - execute the code after the jump
 # 
 - main-menu: false # hide menu
+- main-menu: true # показать готовое меню. но которое было скрыто

@@ -9,7 +9,10 @@ export default function (){
   this.$store.$stream.append($tpl)
 
   this.on('menu', obj=>{
-      if(obj){
+      if(obj===true){
+        $tpl.show();
+      }
+      else if(obj){
         menu.call(this, obj);
       }
       else{

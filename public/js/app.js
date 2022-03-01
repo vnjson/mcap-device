@@ -867,7 +867,9 @@
     const $tpl = $(tpl$5);
     this.$store.$stream.append($tpl);
     this.on('menu', obj => {
-      if (obj) {
+      if (obj === true) {
+        $tpl.show();
+      } else if (obj) {
         menu.call(this, obj);
       } else {
         $tpl.hide();
@@ -976,7 +978,9 @@
     var $tpl = $(tpl$4);
     this.$store.$stream.append($tpl);
     this.on('main-menu', obj => {
-      if (obj) {
+      if (obj === true) {
+        $tpl.show();
+      } else if (obj) {
         menu.call(this, obj);
       } else {
         $tpl.hide();
