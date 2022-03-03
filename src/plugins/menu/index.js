@@ -1,18 +1,24 @@
 
 import "./style.css";
-import tpl from "./tpl.html"
+import tpl from "./tpl.html";
 
+const $tpl = $(tpl);
+$tpl.on("click", ".stream__menu-item", clickHundler);
+
+let onClickObj = null;
+let menuObj = null;
 
 export default function (){
 
-  const $tpl = $(tpl)
-  this.$store.$stream.append($tpl)
 
+  this.$store.$stream.append($tpl)
+  let prevObj = null;
   this.on('menu', obj=>{
       if(obj===true){
-        $tpl.show();
+         menu.call(this, prevObj);
       }
       else if(obj){
+        prevObj = obj;
         menu.call(this, obj);
       }
       else{
@@ -20,9 +26,17 @@ export default function (){
       }  
   });
 
-  function menu (menuObj){
-    let onClickObj = null
-    $tpl.html('')
+
+
+}
+
+
+/**
+ * menu
+ */
+function menu (param){
+    menuObj = param;
+    $tpl.html('');
 
 
     for(let [label, menuItem ] of Object.entries(menuObj)){
@@ -79,12 +93,25 @@ export default function (){
       }
     }
 
-let $vnjs = this
+
+$tpl.css({display: 'flex'});
+
+
+}
+
+/**
+ * 
+ */
+
 function onClickMenuHandler(label){
   if(menuObj.hasOwnProperty('onClick') ){
       $vnjs.exec(onClickObj)
   }
 }
+/**
+ * 
+ */
+
 function clickHundler(){
 
     let label = $(this).data('label')
@@ -92,6 +119,7 @@ function clickHundler(){
     if(label==='next'){
         onClickMenuHandler(label)
         setTimeout(()=>{
+
           $vnjs.exec({ next: true })
         },0)
     }
@@ -103,16 +131,6 @@ function clickHundler(){
 
      },0)
     }
-    $tpl.hide()
-    $tpl.off( "click", clickHundler)
-}
-$tpl.css({display: 'flex'});
-$tpl.on("click", ".stream__menu-item", clickHundler);
-
-
-
-
-}
-
-
+    $tpl.hide();
+    //$tpl.off( "click", clickHundler)
 }

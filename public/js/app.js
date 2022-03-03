@@ -605,15 +605,15 @@
 
   var tpl$c = "<div id=\"loader\">\r\n    <div class=\"loader\"><span>{</span><span>}</span></div>\r\n</div>";
 
-  var $tpl$4 = $(tpl$c);
-  $('#screen').append($tpl$4);
+  var $tpl$6 = $(tpl$c);
+  $('#screen').append($tpl$6);
   function loaderScreen () {
     this.on('preload', () => {
-      $tpl$4.css('display', 'flex');
+      $tpl$6.css('display', 'flex');
     });
     this.on('load', () => {});
     this.on('postload', () => {
-      $tpl$4.fadeOut();
+      $tpl$6.fadeOut();
     });
   }
 
@@ -640,35 +640,35 @@
 
   var dialogBoxImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAADICAYAAAB26ZNJAAABbmlDQ1BpY2MAACiRdZE7SwNBFIU/oxLRSIqkELFIEcUiAVGQlBJBG7VIIvhqks1LyCbLboIEW8HGQrAQbXwV/gNtBVsFQVAEESt/gK9GwnrHDSRIMsvs/Tgz5zJzBlxzBU23usZAL5bN2Gw0sLS8EnC/4cKPjwiepGYZ8/GZBG3H9wMdqt6HVa/2+1qOvnTG0qCjR3hSM8yy8JTw3EbZULwj7NfyybTwsXDIlAMK3yg95fCr4pzDn4rNRGwaXKpnINfEqSbW8qYuPCoc1AsVrX4edRNPprgYlzoocwiLGLNECZCiwjoFyoSlFiWz1r6xP98CJfFo8jeoYoojR168IVEr0jUjNSt6Rr4CVZX7/zyt7MS4090The4X2/4YBvce1HZt++fEtmun0PkMV8WGvyQ5Rb5E321owSPwbsHFdUNL7cPlNgw8GUkz+Sd1ynRls/B+Dv3L4LuD3lUnq/o6Z4+Q2JQnuoWDQxiR/d61XxVkaBT4cFhYAAAACXBIWXMAAArwAAAK8AFCrDSYAAAFAUlEQVR4Xu3YMQHAIBDAwKf+pSEKCcwld3MUZM3MHgAAAOBp3y0AAAAA/s8AAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDuHwAlzNu7SaAAAAAElFTkSuQmCC";
 
-  const $tpl$3 = $(tpl$9);
+  const $tpl$5 = $(tpl$9);
   function dialogBox () {
-    $tpl$3.css('background-image', `url(${dialogBoxImage})`);
-    this.$store.$stream.append($tpl$3);
+    $tpl$5.css('background-image', `url(${dialogBoxImage})`);
+    this.$store.$stream.append($tpl$5);
     let disabled = false;
-    $tpl$3.on('mousedown', e => {
+    $tpl$5.on('mousedown', e => {
       if (!disabled) {
         this.next();
       }
     });
     this.on('character', (character, reply) => {
       if (character.avatar) {
-        $tpl$3.find('.dialog-box__reply-wrapper').css('width', '75%');
-        $tpl$3.find('.dialog-box__avatar').show().css({
+        $tpl$5.find('.dialog-box__reply-wrapper').css('width', '75%');
+        $tpl$5.find('.dialog-box__avatar').show().css({
           backgroundImage: `url('${this.getAssetByName(character.avatar).url}')`
         });
-        $tpl$3.find('.dialog-box__name').html(character.name).css({
+        $tpl$5.find('.dialog-box__name').html(character.name).css({
           color: character.nameColor
         });
-        $tpl$3.find('.dialog-box__reply').html(reply).css({
+        $tpl$5.find('.dialog-box__reply').html(reply).css({
           color: character.replyColor
         });
       } else {
-        $tpl$3.find('.dialog-box__reply-wrapper').css('width', '90%');
-        $tpl$3.find('.dialog-box__avatar').hide();
-        $tpl$3.find('.dialog-box__name').html(character.name).css({
+        $tpl$5.find('.dialog-box__reply-wrapper').css('width', '90%');
+        $tpl$5.find('.dialog-box__avatar').hide();
+        $tpl$5.find('.dialog-box__name').html(character.name).css({
           color: character.nameColor
         });
-        $tpl$3.find('.dialog-box__reply').html(reply).css({
+        $tpl$5.find('.dialog-box__reply').html(reply).css({
           color: character.replyColor
         });
       }
@@ -677,18 +677,18 @@
     });
     this.on('dialog-box', param => {
       if (param === 'clear') {
-        $tpl$3.find('.dialog-box__name').empty();
-        $tpl$3.find('.dialog-box__reply').empty();
-        $tpl$3.find('.dialog-box__avatar').css('background-image', `unset`);
+        $tpl$5.find('.dialog-box__name').empty();
+        $tpl$5.find('.dialog-box__reply').empty();
+        $tpl$5.find('.dialog-box__avatar').css('background-image', `unset`);
         disabled = false;
       } else if (param === 'disabled') {
         disabled = true;
       } else if (param === true) {
         disabled = false;
-        $tpl$3.show();
+        $tpl$5.show();
       } else {
         disabled = false;
-        $tpl$3.hide();
+        $tpl$5.hide();
       }
     });
   }
@@ -707,7 +707,7 @@
           /*пробел на конце нужен из за спец символов $! которые получаю вместе с пробелом*/
         }
       });
-      $tpl$3.find('.dialog-box__reply').html(newReply).css({
+      $tpl$5.find('.dialog-box__reply').html(newReply).css({
         color: replyColor
       });
     }
@@ -863,110 +863,122 @@
 
   var tpl$5 = "<div class=\"stream__menu-menu component\"></div>";
 
-  function menu () {
-    const $tpl = $(tpl$5);
-    this.$store.$stream.append($tpl);
+  const $tpl$4 = $(tpl$5);
+  $tpl$4.on("click", ".stream__menu-item", clickHundler$1);
+  let onClickObj$1 = null;
+  let menuObj$1 = null;
+  function menu$1 () {
+    this.$store.$stream.append($tpl$4);
+    let prevObj = null;
     this.on('menu', obj => {
       if (obj === true) {
-        $tpl.show();
+        menu$2.call(this, prevObj);
       } else if (obj) {
-        menu.call(this, obj);
+        prevObj = obj;
+        menu$2.call(this, obj);
       } else {
-        $tpl.hide();
+        $tpl$4.hide();
       }
     });
+  }
+  /**
+   * menu
+   */
 
-    function menu(menuObj) {
-      let onClickObj = null;
-      $tpl.html('');
+  function menu$2(param) {
+    menuObj$1 = param;
+    $tpl$4.html('');
 
-      for (let [label, menuItem] of Object.entries(menuObj)) {
-        let character = this.getCharacterById(label);
+    for (let [label, menuItem] of Object.entries(menuObj$1)) {
+      let character = this.getCharacterById(label);
 
-        if (character) {
-          let str = null;
+      if (character) {
+        let str = null;
 
-          if (label === '$') {
-            character.name = '';
-          }
+        if (label === '$') {
+          character.name = '';
+        }
 
-          if (character.name !== '') {
-            str = `<div class="stream__menu-quetion">
+        if (character.name !== '') {
+          str = `<div class="stream__menu-quetion">
                           <span style='color:${character.nameColor}; padding-right: 20px;'>${character.name}:</span>
                           <span style='color:${character.replyColor}; '>${menuItem}</span>
                     </div>`;
-          } else {
-            str = `<div class="stream__menu-quetion">
+        } else {
+          str = `<div class="stream__menu-quetion">
                           <span style='color:${character.replyColor};'>${menuItem}</span>
                     </div>`;
+        }
+
+        $('.stream__menu-menu').append(str);
+      } else {
+        let str = null;
+
+        if (/disabled/i.test(label)) {
+          // c исконками
+          if (typeof menuItem === 'object') {
+            str = `<div data-label="${label}" class="stream__menu-item disabled"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${menuItem.text}</span></div>`;
+          } // без иконок
+          else {
+            str = `<div data-label="${label}" class="stream__menu-item disabled"><span class="sound-click">${menuItem}</span></div>`;
           }
-
-          $('.stream__menu-menu').append(str);
+        } else if (label === 'onClick') {
+          onClickObj$1 = menuItem;
+        } else if (label === 'css') {
+          $tpl$4.css(menuItem);
         } else {
-          let str = null;
-
-          if (/disabled/i.test(label)) {
-            // c исконками
-            if (typeof menuItem === 'object') {
-              str = `<div data-label="${label}" class="stream__menu-item disabled"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${menuItem.text}</span></div>`;
-            } // без иконок
-            else {
-              str = `<div data-label="${label}" class="stream__menu-item disabled"><span class="sound-click">${menuItem}</span></div>`;
-            }
-          } else if (label === 'onClick') {
-            onClickObj = menuItem;
-          } else if (label === 'css') {
-            $tpl.css(menuItem);
-          } else {
-            // c исконками
-            if (typeof menuItem === 'object') {
-              str = `<div data-label="${label}" class="stream__menu-item"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${menuItem.text}</span></div>`;
-            } // без иконок
-            else {
-              str = `<div data-label="${label}" class="stream__menu-item"><span class="sound-click">${menuItem}</span></div>`;
-            }
+          // c исконками
+          if (typeof menuItem === 'object') {
+            str = `<div data-label="${label}" class="stream__menu-item"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${menuItem.text}</span></div>`;
+          } // без иконок
+          else {
+            str = `<div data-label="${label}" class="stream__menu-item"><span class="sound-click">${menuItem}</span></div>`;
           }
-
-          $('.stream__menu-menu').append($(str));
-        }
-      }
-
-      let $vnjs = this;
-
-      function onClickMenuHandler(label) {
-        if (menuObj.hasOwnProperty('onClick')) {
-          $vnjs.exec(onClickObj);
-        }
-      }
-
-      function clickHundler() {
-        let label = $(this).data('label');
-
-        if (label === 'next') {
-          onClickMenuHandler();
-          setTimeout(() => {
-            $vnjs.exec({
-              next: true
-            });
-          }, 0);
-        } else {
-          onClickMenuHandler();
-          setTimeout(() => {
-            $vnjs.exec({
-              jump: label
-            });
-          }, 0);
         }
 
-        $tpl.hide();
-        $tpl.off("click", clickHundler);
+        $('.stream__menu-menu').append($(str));
       }
-
-      $tpl.css({
-        display: 'flex'
-      });
-      $tpl.on("click", ".stream__menu-item", clickHundler);
     }
+
+    $tpl$4.css({
+      display: 'flex'
+    });
+  }
+  /**
+   * 
+   */
+
+
+  function onClickMenuHandler$1(label) {
+    if (menuObj$1.hasOwnProperty('onClick')) {
+      $vnjs.exec(onClickObj$1);
+    }
+  }
+  /**
+   * 
+   */
+
+
+  function clickHundler$1() {
+    let label = $(this).data('label');
+
+    if (label === 'next') {
+      onClickMenuHandler$1();
+      setTimeout(() => {
+        $vnjs.exec({
+          next: true
+        });
+      }, 0);
+    } else {
+      onClickMenuHandler$1();
+      setTimeout(() => {
+        $vnjs.exec({
+          jump: label
+        });
+      }, 0);
+    }
+
+    $tpl$4.hide(); //$tpl.off( "click", clickHundler)
   }
 
   var css$c = ".main-menu {\r\n  width: 50%;\r\n  padding: 10px;\r\n  background-color: transparent;\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  flex-direction: column;\r\n  display: none;\r\n  /*box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);*/\r\n  overflow: auto;\r\n  max-height: 95%;\r\n  top: 200px;\r\n  color: #34d1a2;\r\n}\r\n  .main-menu__item--quetion {\r\n    background: rgba(70, 70, 70, 0.7);\r\n    width: 100%;\r\n    min-height: 50px;\r\n    font-size: 26px;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 10px 20px;\r\n    color: white;\r\n    transition: 0.1s;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    margin-bottom: 10px;\r\n    box-shadow: 3px 3px 10px rgba(0,0,0,0.5);\r\n  }\r\n  .main-menu__item {\r\n    margin-bottom: 20px;\r\n    background-color: #333;\r\n    width: 100%;\r\n    min-height: 50px;\r\n    font-size: 26px;\r\n    display: flex;\r\n    align-items: center;\r\n    transition: 0.1s;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    box-shadow: 3px 3px 10px rgba(0,0,0,0.7);\r\n\r\n  }\r\n    .main-menu__item span {\r\n      padding: 20px 20px;\r\n      padding-left: 50px;\r\n      display: flex;\r\n      flex: 1;\r\n      /*display: flex;\r\n      justify-content: center;*/\r\n    }\r\n    .main-menu__item:hover {\r\n      cursor: pointer;\r\n      color: darkcyan;\r\n      background: rgba(0, 0, 0, 0.7); }\r\n    .main-menu__item span {\r\n      white-space: nowrap;\r\n      overflow: hidden;\r\n      text-overflow: ellipsis; }\r\n.main-menu__item:last-child{\r\n  margin-bottom: 0;\r\n}\r\n\r\n.main-menu__item.disabled{\r\n  opacity: 0.6;\r\n}\r\n\r\n.main-menu .menu-item__icon{\r\n  width: 50px;\r\n  height: 50px;\r\n  margin-left: 15px;\r\n}\r\n.main-menu .menu-item__icon+span{\r\n  padding-left: 20px;\r\n}";
@@ -974,112 +986,126 @@
 
   var tpl$4 = "<div class=\"main-menu component\"></div>";
 
+  const $tpl$3 = $(tpl$4);
+  let onClickObj = null;
+  let menuObj = null;
   function mainMenu () {
-    var $tpl = $(tpl$4);
-    this.$store.$stream.append($tpl);
+    this.$store.$stream.append($tpl$3);
+    let prevObj = null;
     this.on('main-menu', obj => {
       if (obj === true) {
-        $tpl.show();
+        menu.call(this, prevObj);
       } else if (obj) {
+        prevObj = obj;
         menu.call(this, obj);
       } else {
-        $tpl.hide();
+        $tpl$3.hide();
       }
     });
+  }
+  /**
+   * menu
+   */
 
-    function menu(menuObj) {
-      var onClickObj = null;
-      $tpl.html('');
+  function menu(param) {
+    menuObj = param;
+    $tpl$3.html('');
 
-      for (var [label, menuItem] of Object.entries(menuObj)) {
-        var character = this.getCharacterById(label);
+    for (var [label, menuItem] of Object.entries(menuObj)) {
+      var character = this.getCharacterById(label);
 
-        if (character) {
-          var str = null;
+      if (character) {
+        var str = null;
 
-          if (label === '$') {
-            character.name = '';
-          }
+        if (label === '$') {
+          character.name = '';
+        }
 
-          if (character.name !== '') {
-            str = `<div class="main-menu__item--quetion">
+        if (character.name !== '') {
+          str = `<div class="main-menu__item--quetion">
                           <span style='color:${character.nameColor}; padding-right: 20px;'>${character.name}:</span>
                           <span style='color:${character.replyColor}; '>${menuItem}</span>
                     </div>`;
-          } else {
-            str = `<div class="main-menu__item--quetion">
+        } else {
+          str = `<div class="main-menu__item--quetion">
                           <span style='color:${character.replyColor};'>${menuItem}</span>
                     </div>`;
-          }
+        }
 
-          $('.main-menu').append(str);
-        } else {
-          let str = null;
+        $('.main-menu').append(str);
+      } else {
+        let str = null;
 
-          if (/disabled/i.test(label)) {
-            // c исконками
-            if (typeof menuItem === 'object') {
-              str = `<div data-label="${label}" class="main-menu__item disabled"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${menuItem.text}</span></div>`;
-            } // без иконок
-            else {
-              str = `<div data-label="${label}" class="main-menu__item disabled"><span class="sound-click">${menuItem}</span></div>`;
-            }
-          } else if (label === 'onClick') {
-            onClickObj = menuItem;
-          } else if (label === 'css') {
-            $tpl.css(menuItem);
-          }
-          /**
-           * Вывод обычного пункта меню
-           */
+        if (/disabled/i.test(label)) {
+          // c исконками
+          if (typeof menuItem === 'object') {
+            str = `<div data-label="${label}" class="main-menu__item disabled"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${menuItem.text}</span></div>`;
+          } // без иконок
           else {
-            // c исконками
-            if (typeof menuItem === 'object') {
-              str = `<div data-label="${label}" class="main-menu__item"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${menuItem.text}</span></div>`;
-            } else {
-              str = `<div data-label="${label}" class="main-menu__item"><span class="sound-click">${menuItem}</span></div>`;
-            }
+            str = `<div data-label="${label}" class="main-menu__item disabled"><span class="sound-click">${menuItem}</span></div>`;
           }
-
-          $('.main-menu').append($(str));
+        } else if (label === 'onClick') {
+          onClickObj = menuItem;
+        } else if (label === 'css') {
+          $tpl$3.css(menuItem);
         }
-      }
-
-      var $vnjs = this;
-
-      function onClickMenuHandler(label) {
-        if (menuObj.hasOwnProperty('onClick')) {
-          $vnjs.exec(onClickObj);
-        }
-      }
-
-      function clickHundler() {
-        let label = $(this).data('label');
-
-        if (label === 'next') {
-          onClickMenuHandler();
-          setTimeout(() => {
-            $vnjs.exec({
-              next: true
-            });
-          }, 0);
-        } else {
-          onClickMenuHandler();
-          setTimeout(() => {
-            $vnjs.exec({
-              jump: label
-            });
-          }, 0);
+        /**
+         * Вывод обычного пункта меню
+         */
+        else {
+          // c исконками
+          if (typeof menuItem === 'object') {
+            str = `<div data-label="${label}" class="main-menu__item"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${menuItem.text}</span></div>`;
+          } else {
+            str = `<div data-label="${label}" class="main-menu__item"><span class="sound-click">${menuItem}</span></div>`;
+          }
         }
 
-        $tpl.hide();
-        $tpl.off("click", clickHundler);
+        $('.main-menu').append($(str));
       }
+    }
 
-      $tpl.css({
-        display: 'flex'
-      });
-      $tpl.on("click", ".main-menu__item", clickHundler);
+    $tpl$3.css({
+      display: 'flex'
+    });
+  }
+  /**
+   * click handler
+   */
+
+
+  $tpl$3.on("click", ".main-menu__item", clickHundler);
+
+  function clickHundler() {
+    let label = $(this).data('label');
+
+    if (label === 'next') {
+      onClickMenuHandler();
+      setTimeout(() => {
+        $vnjs.exec({
+          next: true
+        });
+      }, 0);
+    } else {
+      onClickMenuHandler();
+      setTimeout(() => {
+        $vnjs.exec({
+          jump: label
+        });
+      }, 0);
+    }
+
+    $tpl$3.hide(); //$tpl.off( "click", clickHundler)
+  }
+  /**
+   *  onClick:
+   *    dialog-box: true
+   */
+
+
+  function onClickMenuHandler(label) {
+    if (menuObj.hasOwnProperty('onClick')) {
+      $vnjs.exec(onClickObj);
     }
   }
 
@@ -2249,7 +2275,7 @@
     this.use(audio);
     this.use(frame$1);
     this.use(animate);
-    this.use(menu);
+    this.use(menu$1);
     this.use(mainMenu);
     this.use(term);
     this.use(cloud);

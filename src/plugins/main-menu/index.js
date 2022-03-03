@@ -1,29 +1,40 @@
 
 import "./style.css";
-import tpl from "./tpl.html"
+import tpl from "./tpl.html";
+
+const $tpl = $(tpl);
+let onClickObj = null;
+let menuObj = null;
 
 
 export default function (){
 
-  var $tpl = $(tpl)
-  this.$store.$stream.append($tpl)
+  this.$store.$stream.append($tpl);
 
+  let prevObj = null;
   this.on('main-menu', obj=>{
       if(obj===true){
-        $tpl.show();
+         menu.call(this, prevObj);
       }
       else if(obj){
+        prevObj = obj;
         menu.call(this, obj);
       }
       else{
+
         $tpl.hide();
       }  
   });
-  function menu (menuObj){
-    var onClickObj = null
-    $tpl.html('') 
 
 
+}
+/**
+ * menu
+ */
+
+function menu (param){
+    menuObj = param;
+    $tpl.html(''); 
 
     for(var [label, menuItem ] of Object.entries(menuObj)){
       var character = this.getCharacterById(label)
@@ -83,15 +94,20 @@ export default function (){
       }
     }
 
-var $vnjs = this
-function onClickMenuHandler(label){
 
-  if(menuObj.hasOwnProperty('onClick') ){
 
-      $vnjs.exec(onClickObj)
+  $tpl.css({display: 'flex'});
 
-  }
+
 }
+
+
+/**
+ * click handler
+ */
+
+$tpl.on("click", ".main-menu__item", clickHundler);
+
 function clickHundler(){
 
     let label = $(this).data('label')
@@ -110,15 +126,20 @@ function clickHundler(){
       },0)
     }
     $tpl.hide()
-    $tpl.off( "click", clickHundler)
-}
-$tpl.css({display: 'flex'});
-$tpl.on("click", ".main-menu__item", clickHundler);
-
-
-
-
+    //$tpl.off( "click", clickHundler)
 }
 
 
+/**
+ *  onClick:
+ *    dialog-box: true
+ */
+
+function onClickMenuHandler(label){
+
+  if(menuObj.hasOwnProperty('onClick') ){
+
+      $vnjs.exec(onClickObj)
+
+  }
 }
