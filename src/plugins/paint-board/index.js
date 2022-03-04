@@ -11,7 +11,7 @@ this.on('setTree', ()=>{
 
 var init = ()=>{
 
-    const $tpl = $('<iframe id="paint-board__vnjson" src="/data/paint-board/index.html" width="800" height="500"></iframe>');
+    const $tpl = $('<iframe id="paint-board__vnjson" src="data/paint-board/index.html" width="800" height="500"></iframe>');
     this.$store.$stream.append($tpl);  
     this.on('paint-board', imgID=>{
         if(imgID){

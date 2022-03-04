@@ -27,6 +27,7 @@ import qa                 from './plugins/qa/index.js';
 import chess              from './plugins/chess/index.js';
 import setName            from './plugins/set-name/index.js';
 import wiki               from './plugins/wiki/index.js';
+import crossWord          from './plugins/crossword/index.js';
 //import loadScene          from './plugins/load-scene/index.js';
 import slide              from './plugins/slide/index.js';
 import content            from './plugins/content/index.js';
@@ -71,6 +72,7 @@ export default function(){
   this.use(chess);
   this.use(setName);
   this.use(wiki);
+  this.use(crossWord);
   //this.use(loadScene)
   this.use(slide);  
   this.use(content);

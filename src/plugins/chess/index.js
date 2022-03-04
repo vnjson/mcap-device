@@ -11,7 +11,7 @@ this.on('setTree', ()=>{
 
 var chessInit = ()=>{
 
-const $tpl = $('<iframe id="chess__vnjson" src="/data/chess/index.html" width="500" height="500"></iframe>')
+const $tpl = $('<iframe id="chess__vnjson" src="data/chess/index.html" width="500" height="500"></iframe>')
     this.$store.$stream.append($tpl)  
     this.on('chess', fen=>{
         if(fen){

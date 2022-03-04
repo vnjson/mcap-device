@@ -1,6 +1,6 @@
 import './style.css'
 import tree from './tree.js'
-import log from './log.js'
+//import log from './log.js'
 import score from './score.js'
 import asideTpl from './aside.html'
 
@@ -20,7 +20,7 @@ export default function  (){
 var $aside = $(asideTpl)
  $($aside).appendTo('.wrapper')
 
-log()
+//log()
 console.log('|  vnjson.js@'+this.version+ '  [ window ] development: 1400x1080 | production: 1024x768')
 /**
  * Что бы отображалось в консоле data

@@ -104,48 +104,83 @@
         "next": true
       },
       {
-        "menu": {
-          "next": "Как подключить zim",
-          "label_1_tree__fs": "Файловая структура",
-          "yaml-scripts": "YAML скрипты",
-          "plug": "Список плагинов",
-          "disabled": "---",
-          "$root.$init": "Вернуться в начало"
-        }
+        "crossword": [
+          {
+            "clue": "Ответ ежик",
+            "answer": "Ежик",
+            "position": 1,
+            "orientation": "across",
+            "startx": 1,
+            "starty": 1
+          },
+          {
+            "clue": "Ответ пчела",
+            "answer": "пчела",
+            "position": 2,
+            "orientation": "down",
+            "startx": 3,
+            "starty": 3
+          },
+          {
+            "clue": "Ответ арбуз",
+            "answer": "арбуз",
+            "position": 4,
+            "orientation": "across",
+            "startx": 9,
+            "starty": 3
+          }
+        ]
       },
       {
-        "$": "test3 @kr @$1! так же протестируем и @al",
-        "menu": false
+        "$": "test3 @kr @$1! так же протестируем и @al"
       },
       {
         "$": "Всё ходит по цепи @al кругом @$ привет @kr тестируем строку",
-        "menu": true
+        "crossword": [
+          {
+            "clue": "Ответ краб",
+            "answer": "краб",
+            "position": 1,
+            "orientation": "across",
+            "startx": 1,
+            "starty": 1
+          },
+          {
+            "clue": "Ответ арбуз",
+            "answer": "арбуз",
+            "position": 2,
+            "orientation": "down",
+            "startx": 3,
+            "starty": 4
+          },
+          {
+            "clue": "Ответ арбуз",
+            "answer": "арбуз",
+            "position": 4,
+            "orientation": "down",
+            "startx": 7,
+            "starty": 3
+          },
+          {
+            "clue": "Ответ краб",
+            "answer": "краб",
+            "position": 5,
+            "orientation": "across",
+            "startx": 3,
+            "starty": 11
+          }
+        ]
       },
       {
         "$": "Идёт направо — песнь заводит"
       },
       {
-        "$": "Налево — сказку говорит.",
-        "menu": false
+        "$": "Налево — сказку говорит."
       },
       {
-        "$": "Там чудеса там леший бродит",
-        "menu": true
+        "$": "Там чудеса там леший бродит"
       },
       "Русалка на ветвях сидит;",
-      "t",
-      {
-        "menu": false,
-        "$": "eee"
-      },
-      "test",
-      {
-        "menu": true,
-        "$": "ff"
-      },
-      {
-        "menu": false
-      },
       {
         "jump": "$init"
       }
@@ -173,7 +208,8 @@
     "package": {
       "preload": false,
       "chess": false,
-      "paint-board": true
+      "paint-board": true,
+      "crossword": true
     },
     "wiki": {
       "Абажур": "Колпак для лампы, светильника",

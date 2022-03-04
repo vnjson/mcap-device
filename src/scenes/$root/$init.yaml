@@ -2,36 +2,70 @@
   next: true
 
 
+- crossword:
+    - clue: Ответ ежик
+      answer: Ежик
+      position: 1
+      orientation: across
+      startx: 1
+      starty: 1
 
-- menu:
-    next: Как подключить zim
-    label_1_tree__fs: Файловая структура
-    yaml-scripts: YAML скрипты
-    plug: Список плагинов
-    disabled: ---
-    $root.$init: Вернуться в начало
+    - clue: Ответ пчела
+      answer: пчела
+      position: 2
+      orientation: down
+      startx: 3
+      starty: 3
 
+    - clue: Ответ арбуз
+      answer: арбуз
+      position: 4
+      orientation: across
+      startx: 9
+      starty: 3
 
 - $: 'test3 @kr @$1! так же протестируем и @al'
-  menu: false
+
 
 - $: Всё ходит по цепи @al кругом @$ привет @kr тестируем строку
-  menu: true
 
+  crossword:
+    - clue: Ответ краб
+      answer: краб
+      position: 1
+      orientation: across
+      startx: 1
+      starty: 1
+
+    - clue: Ответ арбуз
+      answer: арбуз
+      position: 2
+      orientation: down
+      startx: 3
+      starty: 4
+
+    - clue: Ответ арбуз
+      answer: арбуз
+      position: 4
+      orientation: down
+      startx: 7
+      starty: 3
+
+    - clue: Ответ краб
+      answer: краб
+      position: 5
+      orientation: across
+      startx: 3
+      starty: 11
 - $: Идёт направо — песнь заводит
 - $: Налево — сказку говорит.
-  menu: false
+
 
 - $: Там чудеса там леший бродит
-  menu: true
+
 - Русалка на ветвях сидит;
-- t
-- menu: false
-  $: eee
-- test  
-- menu: true
-  $: ff
-- menu: false  
+
+ 
 - jump: $init
 
 
