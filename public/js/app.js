@@ -1533,7 +1533,7 @@
     });
   }
 
-  var css$4 = "\r\n\r\n#crossword{\r\n\r\n  top: 50px;\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  border: 0;\r\n  display: none;\r\n  box-shadow: 3px 3px 5px rgba(0,0,0,0.3);\r\n  background-color: antiquewhite;\r\n  padding: 10px;\r\n}";
+  var css$4 = "\r\n\r\n#crossword{\r\n  top: 50px;\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  border: 0;\r\n  display: none;\r\n  box-shadow: 3px 3px 5px rgba(0,0,0,0.3);\r\n  background-color: antiquewhite;\r\n  padding: 5px;\r\n}";
   n(css$4,{});
 
   function crossWord () {

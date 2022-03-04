@@ -128,6 +128,14 @@
             "orientation": "across",
             "startx": 9,
             "starty": 3
+          },
+          {
+            "clue": "Ответ белка",
+            "answer": "белка",
+            "position": 8,
+            "orientation": "across",
+            "startx": 8,
+            "starty": 12
           }
         ]
       },

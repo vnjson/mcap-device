@@ -1,7 +1,6 @@
 
 
 #crossword{
-
   top: 50px;
   left: 50%;
   transform: translateX(-50%);
@@ -9,5 +8,5 @@
   display: none;
   box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
   background-color: antiquewhite;
-  padding: 10px;
+  padding: 5px;
 }

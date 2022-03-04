@@ -24,6 +24,14 @@
       startx: 9
       starty: 3
 
+    - clue: Ответ белка
+      answer: белка
+      position: 8
+      orientation: across
+      startx: 8
+      starty: 12
+
+
 - $: 'test3 @kr @$1! так же протестируем и @al'
 
 
@@ -57,6 +65,8 @@
       orientation: across
       startx: 3
       starty: 11
+
+
 - $: Идёт направо — песнь заводит
 - $: Налево — сказку говорит.
 
