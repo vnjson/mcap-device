@@ -1,7 +1,7 @@
-
 /**
 * Jesse Weisbeck's Crossword Puzzle (for all 3 people left who want to play them)
 *
+* modified by Konstantin Budnikov
 */
 (function($){
 	$.fn.crossword = function(entryData) {
@@ -25,10 +25,10 @@
 			
 			// append clues markup after puzzle wrapper div
 			// This should be moved into a configuration object
-			this.after('<div id="puzzle-clues"><h2>По горизонтали</h2><ol id="across"></ol><h2>Во вертикали</h2><ol id="down"></ol></div>');
+			this.after('<div id="puzzle-clues"><h2>По горизонтали</h2><ol id="across"></ol><h2>По вертикали</h2><ol id="down"></ol></div>');
 			
 			// initialize some variables
-			var tbl = ['<table id="puzzle">'],
+			var tbl = ['<table id="puzzle" class="crosswordtable">'],
 			    puzzEl = this,
 				clues = $('#puzzle-clues'),
 				clueLiEls,
@@ -133,7 +133,7 @@
 						mode = "setting ui";
 						if (solvedToggle) solvedToggle = false;
 
-						//console.log('input click: '+solvedToggle);
+						console.log('input click: '+solvedToggle);
 					
 						nav.updateByEntry(e);
 						e.preventDefault();
@@ -191,7 +191,7 @@
 						}
 
 						// while we're in here, add clues to DOM!
-						$('#' + puzz.data[i].orientation).append('<li tabindex="1" data-position="' + i + '">' + puzz.data[i].clue + '</li>'); 
+						$('#' + puzz.data[i].orientation).append('<li class="nonumber" tabindex="1" data-position="' + i + '">' + puzz.data[i].position + ". " + puzz.data[i].clue + '</li>'); 
 					}				
 					
 					// Calculate rows/cols by finding max coords of each entry, then picking the highest
@@ -230,8 +230,7 @@
 					- Adds tabindexes to <inputs> 
 				*/
 				buildEntries: function() {
-					var puzzCells = $('#puzzle td'),
-						light,
+					var light,
 						$groupedLights,
 						hasOffset = false,
 						positionOffset = entryCount - puzz.data[puzz.data.length-1].position; // diff. between total ENTRIES and highest POSITIONS
@@ -240,7 +239,7 @@
 						var letters = puzz.data[x-1].answer.split('');
 
 						for (var i=0; i < entries[x-1].length; ++i) {
-							light = $(puzzCells +'[data-coords="' + entries[x-1][i] + '"]');
+							light = $('[data-coords="' + entries[x-1][i] + '"]');
 							
 							// check if POSITION property of the entry on current go-round is same as previous. 
 							// If so, it means there's an across & down entry for the position.
@@ -254,19 +253,15 @@
 							if($(light).empty()){
 								$(light)
 									.addClass('entry-' + (hasOffset ? x - positionOffset : x) + ' position-' + (x-1) )
-									.append('<input maxlength="1" val="" type="text" tabindex="-1" />');
+									.append('<input class="crosswinput" maxlength="1" val="" type="text" tabindex="-1" />');
+									// Put entry number in first 'light' of each entry, skipping it if already present
+									if (i == 0) {
+										$(light).append('<span>' + puzz.data[x-1].position + '</span>');
+									}
 							}
 						};
 						
 					};	
-					// Put entry number in first 'light' of each entry, skipping it if already present
-					for (var i=1, p = entryCount; i < p; ++i) {
-						$groupedLights = $('.entry-' + i);
-						if(!$('.entry-' + i +':eq(0) span').length){
-							$groupedLights.eq(0)
-								.append('<span>' +/* puzz.data[i].position + */'</span>');
-						}
-					}	
 					
 					util.highlightEntry();
 					util.highlightClue();
@@ -437,7 +432,7 @@
 					
 						util.getActivePositionFromClassGroup(e.target);
 						
-						clue = $(clueLiEls + '[data-position=' + activePosition + ']');
+						clue = $('[data-position=' + activePosition + ']');
 						activeClueIndex = $(clueLiEls).index(clue);
 						
 						currOri = clue.parent().prop('id');
@@ -468,10 +463,10 @@
 				highlightClue: function() {
 					var clue;				
 					$('.clues-active').removeClass('clues-active');
-					$(clueLiEls + '[data-position=' + activePosition + ']').addClass('clues-active');
+					$('[data-position=' + activePosition + ']').addClass('clues-active');
 					
 					if (mode === 'interacting') {
-						clue = $(clueLiEls + '[data-position=' + activePosition + ']');
+						clue = $('[data-position=' + activePosition + ']');
 						activeClueIndex = $(clueLiEls).index(clue);
 					};
 				},
@@ -499,8 +494,8 @@
 
 						if(classes.length > 1){
 							// get orientation for each reported position
-							e1Ori = $(clueLiEls + '[data-position=' + classes[0].split('-')[1] + ']').parent().prop('id');
-							e2Ori = $(clueLiEls + '[data-position=' + classes[1].split('-')[1] + ']').parent().prop('id');
+							e1Ori = $('[data-position=' + classes[0].split('-')[1] + ']').parent().prop('id');
+							e2Ori = $('[data-position=' + classes[1].split('-')[1] + ']').parent().prop('id');
 
 							// test if clicked input is first in series. If so, and it intersects with
 							// entry of opposite orientation, switch to select this one instead
@@ -520,7 +515,7 @@
 							activePosition = classes[0].split('-')[1];						
 						}
 						
-						///console.log('getActivePositionFromClassGroup activePosition: '+activePosition);
+						console.log('getActivePositionFromClassGroup activePosition: '+activePosition);
 						
 				},
 				
