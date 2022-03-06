@@ -259,14 +259,14 @@
 						};
 						
 					};	
-					
 					// Put entry number in first 'light' of each entry, skipping it if already present
 					for (var i=1, p = entryCount; i < p; ++i) {
 						$groupedLights = $('.entry-' + i);
-						if(!$('.entry-' + i +':eq(0) span').length){
+						//if(!$('.entry-' + i +':eq(0) span').length){
+							console.log(puzz.data[i])
 							$groupedLights.eq(0)
-								.append('<span>' + puzz.data[i].position + '</span>');
-						}
+								.append('<span>' +/* puzz.data[i].position + */'</span>');
+						//}
 					}	
 					
 					util.highlightEntry();

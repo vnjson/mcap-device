@@ -133,7 +133,7 @@
 						mode = "setting ui";
 						if (solvedToggle) solvedToggle = false;
 
-						console.log('input click: '+solvedToggle);
+						//console.log('input click: '+solvedToggle);
 					
 						nav.updateByEntry(e);
 						e.preventDefault();
@@ -259,13 +259,12 @@
 						};
 						
 					};	
-					
 					// Put entry number in first 'light' of each entry, skipping it if already present
 					for (var i=1, p = entryCount; i < p; ++i) {
 						$groupedLights = $('.entry-' + i);
 						if(!$('.entry-' + i +':eq(0) span').length){
 							$groupedLights.eq(0)
-								.append('<span>' + puzz.data[i].position + '</span>');
+								.append('<span>' +/* puzz.data[i].position + */'</span>');
 						}
 					}	
 					

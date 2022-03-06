@@ -212,7 +212,7 @@
     "package": {
       "preload": false,
       "chess": false,
-      "paint-board": true,
+      "paint-board": false,
       "crossword": true
     },
     "wiki": {
