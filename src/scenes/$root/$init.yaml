@@ -1,92 +1,27 @@
-- dialog-box: true
+- dialog-box: false
+  status-bar: true
   next: true
 
-- crossword:
-    - clue: Ответ ежик
-      answer: Ежик
-      position: 1
-      orientation: across
-      startx: 1
-      starty: 1
-
-    - clue: Ответ пчела
-      answer: пчела
-      position: 2
-      orientation: down
-      startx: 3
-      starty: 3
-
-    - clue: Ответ арбуз
-      answer: арбуз
-      position: 4
-      orientation: across
-      startx: 9
-      starty: 3
 
 #- $: Идёт направо — песнь заводит
-
-#- $: Налево — сказку говорит.
+- scene: img1
+  screen:
+    onClick: true
+- $: Налево — сказку говорит.
+  dialog-box: true
 
 - $: 'test3  так же протестируем '
-  test:
-    name: Название теста
-    self-control: true
-    quetions:
-      - quetion: Туристы, приезжающие на Майорку, обязаны заплатить налог
-        correct: 3
-        variants:
-          - На песок
-          - На пальмы
-          - На солнце
-
-      - quetion: Что в Российской империи было вещевым эквивалентом денег?
-        correct: 1
-        variants:
-          - Шкуры пушных зверей
-          - Крупный рогатый скот
-          - Табак
-          - Женские серьги
-
-      - quetion: Кто из знаменитых художников за жизнь продал всего одну картину? 
-        correct: 1
-        variants:
-          - Винсент Ван Гог
-          - Пьер Огюст Ренуар
+  dialog-box: true
     
 
 - $: Всё ходит по цепи @al кругом @$ привет @kr тестируем строку
 
-
-
 - $: Идёт направо — песнь заводит
-
+  dialog-box: false
+  screen:
+    onClick: true
 - $: Налево — сказку говорит.
-  test:
-    name: Название 222222
-    self-control: false
-    quetions:
-      - quetion: Туристы, приезжающие на Майорку, обязаны заплатить нало
-        correct: 3
-        variants:
-          - На плавки
-          - На пальмы
-          - На солнце
-
-      - quetion: Что в Российской империи было вещевым эквивалентом денег?
-        correct: 1
-        variants:
-          - Шкуры пушных зверей
-          - Крупный рогатый скот
-          - Табак
-          - Женские серьги
-
-      - quetion: Кто из знаменитых художников за жизнь продал всего одну картину? 
-        correct: 1
-        variants:
-          - Винсент Ван Гог
-          - Пьер Огюст Ренуар
-    
-
+  dialog-box: true
 - $: Там чудеса там леший бродит
 
 - Русалка на ветвях сидит;

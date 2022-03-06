@@ -19,14 +19,16 @@ export default function (){
     else if(prevScreen&&prevScreen!==id){
       $('#'+prevScreen).fadeOut()
       prevScreen = id;
-      this.$store.$screen = $('#'+id)
+      
       $('#'+id).fadeIn()
     }
     else{
       prevScreen = id
       $('#'+id).fadeIn()
     }
-    
+    if(typeof id==='string'){
+      this.$store.$screen = $('#'+id);
+    }
     //this.emit('screenInit', id);
   })
 
