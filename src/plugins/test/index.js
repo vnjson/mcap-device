@@ -6,6 +6,8 @@ let TEST = null;
 let answers = [];
 
 let qIndex = 0;
+let _trueAnswer = 0;
+let _falseAnswer = 0;
 
 export default function (){
   $vnjs.current.data.tests = {};
@@ -18,12 +20,13 @@ export default function (){
             TEST = data;
             qIndex = 0;
             answers = [];
-
+            _trueAnswer = 0;
+            _falseAnswer = 0;
             $('.stream__test-name').html(TEST.name);
             renderQuetion.call(this);
       }
       else{
-         $tpl.fadeOut();
+         $tpl.hide();
       }
 
 
@@ -62,7 +65,7 @@ $tpl.find('.stream__test-variants').on('click', '.stream__variants-item', functi
                 $(this).addClass('stream__variants-item_success');
             }
             else{}
-
+            ++_trueAnswer;
             answers.push({answer: true, quetion: _quetionItem})
 
       }
@@ -70,19 +73,21 @@ $tpl.find('.stream__test-variants').on('click', '.stream__variants-item', functi
             if(TEST['self-control']===true){
                 $(this).addClass('stream__variants-item_fail');
                 // навешиваем класс на правильный ответ
-                $('.stream__variants-item').toArray().map( function(item, i){
-                    /*if($(item).data('index')===i){
+                $('.stream__variants-item').toArray().map(item=>{
+                    if($(item).data('index')===TEST.quetions[qIndex].correct-1){
                         $(item).addClass('stream__variants-item_success');
-                    }*/
-                })
+                    }
+                });
                 
             }
             else{}
+            ++_falseAnswer;
             answers.push({answer: false, quetion: _quetionItem})
       }
     click = false;
     next();
   }
+
 
 });
 
@@ -94,13 +99,22 @@ function next(){
         ++qIndex;
         if(qIndex===TEST.quetions.length){
             $vnjs.current.data.tests[TEST.name] = answers;
-            $vnjs.exec({next: true, test: false});
+
+            $('.stream__test-result-item_true').html(_trueAnswer);
+            $('.stream__test-result-item_false').html( _falseAnswer);
+            $('.stream__test-result').show();
         }
         else{
-
             renderQuetion(); 
         }
        
    }, 800);
 
 }
+
+
+$tpl.find('.stream__test-next-btn').on('click', function (){
+    $vnjs.exec({next: true, test: false});
+    $('.stream__test-result').hide();
+
+});

@@ -437,22 +437,38 @@
   var css$m = "#screen {\r\n  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVR4AWM8ZsOAF1BNAasXA8PvbSASjUYo+L0NXS9EnJAVhE0gqGCEuIFgXAAA5aUvR45cttUAAAAASUVORK5CYII=);\r\n  position: relative;\r\n  overflow: hidden;\r\n}\r\n\r\n.screen {\r\n  display: none;\r\n  width: 100%;\r\n  height: 100%;\r\n  /*transition: background-image 0.5s;*/\r\n  background-repeat: no-repeat;\r\n}\r\n";
   n(css$m,{});
 
+  let click$1 = false;
   function screen () {
     var prevScreen = null;
     this.on('screen', id => {
-      if (prevScreen && prevScreen !== id) {
+      if (id.onClick === true) {
+        /**
+         * При повторном вызове плагина с параметром onClick почему то dialog-box
+         * не успевает скрыться. Срабатывает слушатель click
+         */
+        setTimeout(() => {
+          click$1 = true;
+        }, 300);
+      } else if (prevScreen && prevScreen !== id) {
         $('#' + prevScreen).fadeOut();
         prevScreen = id;
+        this.$store.$screen = $('#' + id);
         $('#' + id).fadeIn();
       } else {
         prevScreen = id;
         $('#' + id).fadeIn();
-      }
+      } //this.emit('screenInit', id);
 
-      this.$store.$screen = $('#' + id);
-      this.emit('screenInit', id);
     });
   }
+  $('#screen').on('click', function () {
+    if (click$1) {
+      click$1 = false;
+      $vnjs.exec({
+        next: true
+      });
+    }
+  });
 
   var css$l = "#loader {\r\n  background: black;\r\n  z-index: 9999;\r\n  width: 100%;\r\n  height: 100%;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  color: white;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\n.loader {\r\n  color: wheat;\r\n  font-family: Consolas, Menlo, Monaco, monospace;\r\n  font-weight: bold;\r\n  font-size: 100px;\r\n  opacity: 0.8;\r\n}\r\n.loader span {\r\n  display: inline-block;\r\n  animation: pulse 0.4s alternate infinite ease-in-out;\r\n}\r\n.loader span:nth-child(2) {\r\n  animation-delay: 0.4s;\r\n}\r\n\r\n@keyframes pulse {\r\n  to {\r\n    transform: scale(0.8);\r\n    opacity: 0.5; \r\n  } \r\n}\r\n";
   n(css$l,{});
@@ -1567,15 +1583,17 @@
     };
   }
 
-  var css$4 = "\r\n.stream__test{\r\n  width: 600px;\r\n\r\n  top: 50px;\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  background-color: wheat;\r\n  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);\r\n  padding: 20px;\r\n  border-radius: 4px;\r\n\r\n}\r\n\r\n.stream__test-name{\r\n\r\n  border-bottom: 2px solid gray;\r\n  padding: 5px;\r\n  font-size: 24px;\r\n  padding-bottom: 10px;\r\n  color: brown;\r\n}\r\n.stream__test-quetion{\r\n\r\n  padding: 15px 0;\r\n  color: black;\r\n}\r\n\r\n.stream__variants-item{\r\n  padding: 10px;\r\n  margin-top: 5px;\r\n  background-color: darkslateblue;\r\n\r\n  color: rgba(255, 255, 255, 0.7);\r\n  cursor: pointer;\r\n  border-radius: 4px;\r\n}\r\n\r\n.stream__variants-item_success{\r\n  background-color: darkcyan;\r\n  color: white;\r\n}\r\n\r\n.stream__variants-item_fail{\r\n  background-color: crimson;\r\n  color: white;\r\n}\r\n.stream__variants-item:hover,\r\n.stream__variants-item_success:hover,\r\n.stream__variants-item_fail:hover{\r\n\r\n  filter: brightness(110%);\r\n}";
+  var css$4 = "\r\n.stream__test{\r\n  width: 600px;\r\n  min-height: 250px;\r\n  top: 50px;\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  background-color: wheat;\r\n  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);\r\n  padding: 20px;\r\n  border-radius: 4px;\r\n\r\n}\r\n\r\n.stream__test-name{\r\n\r\n  border-bottom: 2px solid gray;\r\n  padding: 5px;\r\n  font-size: 24px;\r\n  padding-bottom: 10px;\r\n  color: brown;\r\n}\r\n\r\n.stream__test-quetions-wrapper{\r\n  position: relative;\r\n}\r\n\r\n\r\n.stream__test-quetion{\r\n\r\n  padding: 15px 0;\r\n  color: black;\r\n}\r\n\r\n.stream__variants-item{\r\n  padding: 10px;\r\n  margin-top: 5px;\r\n  background-color: darkslateblue;\r\n\r\n  color: rgba(255, 255, 255, 0.7);\r\n  cursor: pointer;\r\n  border-radius: 4px;\r\n}\r\n\r\n.stream__variants-item_success{\r\n  background-color: darkcyan;\r\n  color: white;\r\n}\r\n\r\n.stream__variants-item_fail{\r\n  background-color: crimson;\r\n  color: white;\r\n}\r\n.stream__variants-item:hover,\r\n.stream__variants-item_success:hover,\r\n.stream__variants-item_fail:hover{\r\n\r\n  filter: brightness(110%);\r\n}\r\n\r\n/**\r\n * RESULT\r\n */\r\n.stream__test-result{\r\n  width: 100%;\r\n  height: 100%;\r\n  top: 0;\r\n  left: 0;\r\n  position: absolute;\r\n  border-radius: 4px;\r\n  display: none;\r\n  background-color: wheat;\r\n  padding: 20px 0;\r\n}\r\n.stream__test-result-data{\r\n  height: 110px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n}\r\n.stream__test-result-item{\r\n  color: black;\r\n  padding: 10px 0;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  width: 250px;\r\n}\r\n.stream__test-result-item:first-child span:last-child{\r\n  color: darkcyan;\r\n}\r\n.stream__test-result-item:last-child span:last-child{\r\n  color: crimson;\r\n}\r\n.stream__test-next-btn{\r\n  background-color: burlywood;\r\n  color: black;\r\n  border-radius: 4px;\r\n  padding: 10px 10px;\r\n  width: 250px;\r\n  text-align: center;\r\n  cursor: pointer;\r\n  margin: 0 auto;\r\n  box-shadow: 2px 2px 2px rgba(0,0,0,0.3);\r\n  /*border: 2px solid magenta;*/\r\n}\r\n.stream__test-next-btn:hover{\r\n  background-color:  darkslateblue;\r\n  color: white;\r\n}";
   n(css$4,{});
 
-  var tpl$1 = "<div class=\"stream__test component\">\r\n    <div class=\"stream__test-name\"></div>\r\n    <div class=\"stream__test-quetion\"></div>\r\n    <div class=\"stream__test-variants\"></div>\r\n</div>";
+  var tpl$1 = "<div class=\"stream__test component\">\r\n    <div class=\"stream__test-name\"></div>\r\n    <div class=\"stream__test-quetions-wrapper\">\r\n        <div class=\"stream__test-quetion\"></div>\r\n        <div class=\"stream__test-variants\"></div>\r\n        <!--result-->\r\n        <div class=\"stream__test-result\">\r\n            <div class=\"stream__test-result-data\">\r\n                <div class=\"stream__test-result-item\">\r\n                      <span>Правильно</span>\r\n                      <span class=\"stream__test-result-item_true\">0</span>\r\n                </div>\r\n               <div class=\"stream__test-result-item\">\r\n                      <span>Не правильно</span>\r\n                      <span class=\"stream__test-result-item_false\">0</span>\r\n                </div>\r\n            </div>\r\n            <div class=\"stream__test-next-btn\">Продолжить</div>\r\n        </div>\r\n    </div>\r\n</div>";
 
   const $tpl$2 = $(tpl$1);
   let TEST = null;
   let answers = [];
   let qIndex = 0;
+  let _trueAnswer = 0;
+  let _falseAnswer = 0;
   function test () {
     $vnjs.current.data.tests = {};
     this.$store.$stream.append($tpl$2);
@@ -1585,10 +1603,12 @@
         TEST = data;
         qIndex = 0;
         answers = [];
+        _trueAnswer = 0;
+        _falseAnswer = 0;
         $('.stream__test-name').html(TEST.name);
         renderQuetion.call(this);
       } else {
-        $tpl$2.fadeOut();
+        $tpl$2.hide();
       }
     });
   }
@@ -1619,6 +1639,7 @@
           $(this).addClass('stream__variants-item_success');
         }
 
+        ++_trueAnswer;
         answers.push({
           answer: true,
           quetion: _quetionItem
@@ -1627,13 +1648,14 @@
         if (TEST['self-control'] === true) {
           $(this).addClass('stream__variants-item_fail'); // навешиваем класс на правильный ответ
 
-          $('.stream__variants-item').toArray().map(function (item, i) {
-            /*if($(item).data('index')===i){
-                $(item).addClass('stream__variants-item_success');
-            }*/
+          $('.stream__variants-item').toArray().map(item => {
+            if ($(item).data('index') === TEST.quetions[qIndex].correct - 1) {
+              $(item).addClass('stream__variants-item_success');
+            }
           });
         }
 
+        ++_falseAnswer;
         answers.push({
           answer: false,
           quetion: _quetionItem
@@ -1652,15 +1674,22 @@
 
       if (qIndex === TEST.quetions.length) {
         $vnjs.current.data.tests[TEST.name] = answers;
-        $vnjs.exec({
-          next: true,
-          test: false
-        });
+        $('.stream__test-result-item_true').html(_trueAnswer);
+        $('.stream__test-result-item_false').html(_falseAnswer);
+        $('.stream__test-result').show();
       } else {
         renderQuetion();
       }
     }, 800);
   }
+
+  $tpl$2.find('.stream__test-next-btn').on('click', function () {
+    $vnjs.exec({
+      next: true,
+      test: false
+    });
+    $('.stream__test-result').hide();
+  });
 
   var css$3 = ".screen-stream__slide{\r\n  position: absolute;\r\n  display: none;\r\n  top: 5%;\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5);\r\n  z-index: 2000;\r\n}";
   n(css$3,{});

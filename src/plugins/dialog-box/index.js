@@ -39,21 +39,21 @@ export default function (){
   this.on('dialog-box', param=>{
 
     if(param==='clear'){
-       $tpl.find('.dialog-box__name').empty()
-       $tpl.find('.dialog-box__reply').empty()
-       $tpl.find('.dialog-box__avatar').css('background-image', `unset`)
-       disabled = false
+       $tpl.find('.dialog-box__name').empty();
+       $tpl.find('.dialog-box__reply').empty();
+       $tpl.find('.dialog-box__avatar').css('background-image', `unset`);
+       disabled = false;
     }
     else if(param==='disabled'){
-        disabled = true
+        disabled = true;
     }
     else if(param===true){
-      disabled = false
-      $tpl.show()
+      disabled = false;
+      $tpl.show();
     }
     else{
-      disabled = false
-      $tpl.hide()
+      disabled = false;
+      $tpl.hide();
     }
   })
 
