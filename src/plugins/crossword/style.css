@@ -6,7 +6,8 @@
   transform: translateX(-50%);
   border: 0;
   display: none;
-  box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+  box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
   background-color: antiquewhite;
   padding: 5px;
+  border-radius: 4px;
 }
