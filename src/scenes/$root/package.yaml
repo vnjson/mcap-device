@@ -1,4 +1,4 @@
 preload: false
 chess: false
 paint-board: false
-crossword: true
+crossword: false

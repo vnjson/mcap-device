@@ -4,27 +4,7 @@
 
 - $: 'test3  так же протестируем '
 
-- crossword:
-    - clue: Ответ ежик
-      answer: Ежик
-      position: 1
-      orientation: across
-      startx: 1
-      starty: 1
 
-    - clue: Ответ пчела
-      answer: пчела
-      position: 2
-      orientation: down
-      startx: 3
-      starty: 3
-
-    - clue: Ответ арбуз
-      answer: арбуз
-      position: 4
-      orientation: across
-      startx: 9
-      starty: 3
 - $: 'test3  так же протестируем '
 
 
