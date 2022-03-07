@@ -1,0 +1,48 @@
+
+
+- clear-data: true # обнуляет данные текущего пользователя
+- clear-data-all: true # удалит переменные всех пользователей
+
+# ложим данные в хранилище $vnjs.current.data
+- set-data:
+    age: меньше 12
+    gender: M
+
+
+# получаем данные данные в хранилище $vnjs.current.data
+- switch:
+    age===меньше12:
+      jump: $root.$init
+    age===больше12:
+      $: Возраст больше 12 лет
+    age===17:
+      target: _17лет
+
+
+- status-bar: true
+  menu:
+    _mark1: Прыгаем по метке и там присваиваем данные
+    _mark2: Ещё один пукт меню
+
+
+- _mark1: true
+  $: Записываю данные
+  set-data:
+      age: меньше12
+      name: Сергей
+
+
+# получаем данные данные в хранилище $vnjs.current.data
+- switch:
+    age===меньше12:
+      $: Меньше 12
+    age===больше12:
+      $: Возраст больше 12 лет
+
+- dialog-box: false
+  switch:
+    name===Сергей: # приимает объект для выполнения
+      $: Показываем диалоговое окно
+      dialog-box: true
+      scene: lake
+      sound: pianino

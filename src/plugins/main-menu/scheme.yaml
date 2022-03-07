@@ -1,0 +1,43 @@
+- main-menu:
+    _mark1: В начало
+    disabled: Общая концепция
+    $root.$init: Отправиться в начало
+    next: Список плагинов
+
+
+- main-menu:
+    zim-label: Как подключить zim
+    label_1_tree__fs: Файловая структура
+    yaml-scripts: YAML скрипты
+    plug: Список плагинов
+    disabled: ---
+    $root.$init: Вернуться в начало
+    onClick:
+      hands: true
+      dialog-box: true
+
+- main-menu:
+    disabled_1: 
+        text: Как подключить zim
+        icon: bullbasaur
+    lab: 
+        text: Файловая структура
+        icon: charmander
+    next: YAML скрипты
+    test_1:
+        text: Тестовый пунк меню
+        icon: snorlax
+    test_2:
+        text: 50px 50px
+        icon: zubat
+    css:
+      top: 50px
+    onClick:
+      hands: true
+      #dialog-box: true
+
+
+# onClick - execute the code after the jump
+# 
+- main-menu: false # hide menu
+- main-menu: true # показать готовое меню. но которое было скрыто

@@ -1,0 +1,13 @@
+# require ./static/data/paint-board/index.html
+# 
+# 
+- paint-board: imageName
+- paint-board: false
+
+# Размер изображениия
+# width: 800
+# height: 450
+# 
+############
+# В файле package.yaml необходимо дописать параметр paint-board: true
+############

@@ -1,0 +1,17 @@
+- centerimg: characterImage_1
+- leftimg: characterImage_2
+- rightimg: characterImage_3
+
+- centerimg: false # очистить элемент персонажа
+- leftimg: false #
+- rightimg: false #
+
+
+# применяем стили
+- leftimg:
+    name: characterImage_1
+    css:
+      width: 800px
+      bottom: 0
+      left: 0
+      

@@ -1,0 +1,25 @@
+# require ./static/data/crossword/index.html
+############
+# В файле package.yaml необходимо дописать параметр crossword: true
+############
+- crossword:
+    - clue: Ответ ежик
+      answer: Ежик
+      position: 1
+      orientation: across
+      startx: 1
+      starty: 1
+
+    - clue: Ответ пчела
+      answer: пчела
+      position: 2
+      orientation: down
+      startx: 3
+      starty: 3
+
+    - clue: Ответ арбуз
+      answer: арбуз
+      position: 4
+      orientation: across
+      startx: 9
+      starty: 3
