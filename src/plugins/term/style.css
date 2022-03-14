@@ -31,11 +31,13 @@
 
 
 /* term theme */
+
 .stream__term-board pre code{
   font-family: Consolas;
   font-size: 20px;
-  color: darkcyan;
+  /*color: darkcyan;*/
 }
+/*
 .hljs-bullet{
   color: darkcyan;
 }
@@ -53,4 +55,4 @@
 }
 .hljs-comment{
   color: gray;
-}
+}*/

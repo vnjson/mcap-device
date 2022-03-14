@@ -1,7 +1,9 @@
 import "./style.css";
-import tpl from "./tpl.html"
+import tpl from "./tpl.html";
+import map from './map.js';
+
 document.addEventListener('DOMContentLoaded', ()=>{
-    hljs.highlightAll();
+  hljs.highlightAll();
 })
 /**/
 export default function (){
@@ -13,7 +15,7 @@ export default function (){
   this.on('term', param=>{
 
     if(param===true){
-         $($tpl).fadeIn() 
+         $tpl.fadeIn() 
     }
     else if(param){
       var data = this.getDataByName(param)
@@ -25,45 +27,52 @@ export default function (){
           console.warn(this.current.sceneName+'.'+this.current.labelName+'.'+this.current.index)
         }
         else{
+                $tpl.find('pre code').removeAttr('class');
                 let str = param.split('.')
                 let langName = str[1]
-
+                let val = map[langName];
+                if(val){
+                  langName = val;
+                }
                 $tpl.find('pre code').css('overflow', 'auto')
-                var html = hljs.highlight(data.body, { language:langName }).value
+                $tpl.find('pre code').addClass('language-'+langName).addClass('hljs')
+                var html = hljs.highlight(data.body, { language: langName }).value
                 $tpl.find('pre code').html(html)
+                // yaml reply from Norrator
                 $tpl.find('pre code .hljs-string').toArray().map(str=>{
                   if($(str).html()==='$:'){
                     $(str).addClass('hljs-reply')
                   }
-                })
+                });
 
-                  $($tpl).fadeIn() 
+                $tpl.fadeIn();
             }
       }
       else{
         if(param==='clear'){
-          $tpl.find('pre code').empty()
+          $tpl.find('pre code').empty();
         }
         else if(param==='python'){
           let $iframe = $('<iframe id="brython" src="/data/brython-repl.html" width="758" height="430"></iframe>')
-          $iframe.css('border', 0)
-          $tpl.find('pre code').empty()
-          $tpl.find('pre code').css({overflow: 'hidden', padding: 0})
-          $tpl.find('pre code').append($iframe)
-          $($tpl).fadeIn()
+          $iframe.css('border', 0);
+          $tpl.find('pre code').empty();
+          $tpl.find('pre code').css({overflow: 'hidden', padding: 0});
+          $tpl.find('pre code').append($iframe);
+          $tpl.fadeIn();
         }
         else{
-        let img = $(`<img src=${this.getAssetByName(param).url} />`)
-            $tpl.find('pre code').empty()
-            $tpl.find('pre code').css('overflow', 'hidden')
-            $tpl.find('pre code').append(img)
-            $($tpl).fadeIn()
+        let img = $(`<img src=${this.getAssetByName(param).url} />`);
+            $tpl.find('pre code').empty();
+            $tpl.find('pre code').css('overflow', 'hidden');
+            $tpl.find('pre code').append(img);
+            $tpl.fadeIn();
 
         }
       }
     }
     else{
-      $($tpl).hide()
+      $tpl.hide();
+      $tpl.find('pre code').removeAttr('class');
     }
 
   })
