@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name=robots content="index, follow">
+    <meta name=description content=Brython >
+    <meta name=author content="Pierre Quentel">
+    <meta name=keywords content="Python, Brython">
+    <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Brython interactive mode</title>
+    <script src="brython.min.js"></script>
+    <script src="brython_stdlib.js"></script>
+
+    <style>
+    html, body{margin: 0;padding: 0;}
+    *{box-sizing: border-box;}
+    body{
+        width: 758px;
+        height: 430px;
+        overflow: hidden;
+    }
+    .codearea {
+        background-color:#000;
+        color:#fff;
+        font-family: 'Consolas', 'Oxygen Mono','Liberation Mono', 'DejaVu Sans Mono', monospace;
+        font-size:14px;
+        overflow:auto;
+        border: 0;
+        width: 758px;
+        height: 430px;
+        resize: none;
+    }
+
+    </style>
+</head>
+
+<body onload="brython(1)">
+    <textarea id="code" class="codearea" rows="20" cols="80"></textarea>
+
+    <div id=content></div>
+    <script type="text/python3">
+          from interpreter import Interpreter
+          Interpreter("code");
+   </script>
+</body>
+
+</html>

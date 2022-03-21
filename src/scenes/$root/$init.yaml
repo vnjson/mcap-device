@@ -3,19 +3,19 @@
   next: true
 
 - $: test3  так же протестируем
-  term: app.lua
+  term: craftos
 
 - $: test3  так же протестируем
-  term: t.py
+  term: python
 
 - $: test3  так же протестируем
-  term: style.css
+  term: img2
 
 - $: test3  так же протестируем 
   term: a.yaml
 
 - $: test3  так же протестируем 
-  term: test.js
+  term: craftos
 
 
 - $: Всё ходит по цепи @al кругом @$ привет @kr тестируем строку

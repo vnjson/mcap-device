@@ -1039,9 +1039,19 @@
           if (param === 'clear') {
             $tpl.find('pre code').empty();
           } else if (param === 'python') {
-            let $iframe = $('<iframe id="brython" src="/data/brython-repl.html" width="758" height="430"></iframe>');
-            $iframe.css('border', 0);
             $tpl.find('pre code').empty();
+            let $iframe = $('<iframe id="brython" src="data/brython/index.html" width="758" height="430"></iframe>');
+            $iframe.css('border', 0);
+            $tpl.find('pre code').css({
+              overflow: 'hidden',
+              padding: 0
+            });
+            $tpl.find('pre code').append($iframe);
+            $tpl.fadeIn();
+          } else if (param === 'craftos') {
+            $tpl.find('pre code').empty();
+            let $iframe = $('<iframe id="craftos" src="data/craft-os/index.html" width="758" height="430"></iframe>');
+            $iframe.css('border', 0);
             $tpl.find('pre code').css({
               overflow: 'hidden',
               padding: 0
