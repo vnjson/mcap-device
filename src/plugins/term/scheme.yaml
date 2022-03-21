@@ -16,7 +16,8 @@
 - term: false
 # Показать интерпретатор python
 - term: python
-- jump: $init
+# Показать эмулятор Craft OS 1.8
+- term: craftos
 
 
 
