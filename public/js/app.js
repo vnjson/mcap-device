@@ -1057,7 +1057,9 @@
               padding: 0
             });
             $tpl.find('pre code').append($iframe);
-            $tpl.fadeIn();
+            setTimeout(() => {
+              $tpl.show();
+            }, 1500);
           } else {
             let img = $(`<img src=${this.getAssetByName(param).url} />`);
             $tpl.find('pre code').empty();

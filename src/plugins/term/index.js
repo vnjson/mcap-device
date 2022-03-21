@@ -66,7 +66,9 @@ export default function (){
           $iframe.css('border', 0);
           $tpl.find('pre code').css({overflow: 'hidden', padding: 0});
           $tpl.find('pre code').append($iframe);
-          $tpl.fadeIn();
+          setTimeout(()=>{
+            $tpl.show();
+          },1500);
         }
 
         else{
