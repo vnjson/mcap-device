@@ -2130,18 +2130,12 @@
     this.$store.$stream.append($tpl);
     let flag = false;
     this.on('clipboard', data => {
-      flag = true;
+      flag = true; // получаем файл
 
-      if (data.includes('.')) {
-        // получаем файл
-        let dataFile = this.getDataByName(data);
+      let dataFile = this.getDataByName(data);
 
-        if (dataFile) {
-          $tpl.val(dataFile.body);
-        } else {
-          console.error('Data file not found');
-          console.warn(this.current.sceneName + '.' + this.current.labelName + '.' + this.current.index);
-        }
+      if (dataFile) {
+        $tpl.val(dataFile.body);
       } else {
         $tpl.val(data);
       }

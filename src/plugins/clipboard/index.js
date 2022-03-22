@@ -5,17 +5,10 @@ export default function (){
   let flag = false;
   this.on('clipboard', data=>{
       flag = true;
-
-      if(data.includes('.')){
-            // получаем файл
-            let dataFile = this.getDataByName(data);
-            if(dataFile){
-                $tpl.val(dataFile.body)
-            }
-            else{
-                console.error('Data file not found')
-                console.warn(this.current.sceneName+'.'+this.current.labelName+'.'+this.current.index)
-            }
+      // получаем файл
+      let dataFile = this.getDataByName(data);
+      if(dataFile){
+          $tpl.val(dataFile.body)
       }
       else{
           $tpl.val(data);
