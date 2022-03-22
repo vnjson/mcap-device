@@ -83,11 +83,7 @@ export default function (){
         outputHtml(output)
     };
 
-    window.addEventListener('error', function(e) {
-        e.preventDefault();
-        console.error(e.message);
-        return true;
-    }, true);
+
       //logger.scrollTop = 99999999999; 
 /**
  * Terminal

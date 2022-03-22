@@ -11,7 +11,7 @@ fetch(`scenes/vn.json`)
   .catch(err=>console.error('Invalid script', err.message))
 
 function init (tree){
-  var debug = false
+  let debug = false
   if(tree.$root.hasOwnProperty('package')){
     debug = tree.$root.package.debug||false
   }

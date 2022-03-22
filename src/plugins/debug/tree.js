@@ -74,11 +74,5 @@ for(let scene in this.TREE){
       }
     });
 
-/**
- * reload
- */
-$('.browser-reload').on('click', ()=>{
-   location.reload(true)
- })
     
 }

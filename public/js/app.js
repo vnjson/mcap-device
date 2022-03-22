@@ -27,7 +27,7 @@
     }
   }
 
-  var css$n = "\n#vnjson__tree{\n\n  background: wheat;\n  width: 375px;\n  height: 1081px;\n\n}\n\n\n.vnjson__tree-header{\n  display: flex;\n  align-items: center;\n  justify-content: flex-start;\n  background: #445;\n  color: wheat;\n  font-family: Arial;\n  font-size: 16px;\n  user-select: none;\n\n}\n.vnjson__tree-header--tab{\n  padding: 0 15px;\n  transition: 0.3s;\n  font-weight: 600;\n  height: 50px;\n  display: flex;\n  align-items: center;\n  align-content: center;\n}\n.vnjson__tree-header--tab:hover{\n  background: #223;\n  cursor: pointer;\n}\n.debug-active{\n  background: #223;\n}\n\n.debug__color-input{\n  background-color: #f5deb3;\n  border-style: unset;\n  cursor: pointer;\n  outline: unset;\n  width: 60px;\n  padding: 2.5px;\n  text-transform: lowercase;\n  margin-left: 3px;\n}\n.wrapper #vnjson__tree .vnjson__tree-header .vnjson__tree-color-picker .huebee{\n  left: -270px !important;\n  top: 40px !important;\n\n\n}\n.wrapper #vnjson__tree .vnjson__tree-header .vnjson__tree-color-picker .huebee .huebee__container{\n  width: 320px !important;\n}\n/*\n.vnjson__tree-coords{\n  display: flex;\n  flex-direction: column;\n\n}\n*/\n.vnjson__tree-header span{\n  font-size: 12px;\n  font-family: Arial;\n  color: wheat;\n}\n\n.vnjson__cursor-left,\n.vnjson__cursor-top{\n  display: inline-block;\n  width: 25px;\n  text-align: end;\n}\n\n#root{\n  cursor: pointer;\n}\n#root:hover{\n  color: skyblue;\n}\n\n.jstree-ocl{\n pointer-events: none;\n} \n.jstree-anchor{\n  pointer-events: none;\n}\n\n\n/*score*/\n.stream__score{\n\n  background: wheat;\n  padding: 5px;\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  padding-top: 10px;\n  border-top: 1px solid 778;\n}\n.stream__score--item{\n  border: 1px dashed rgba(0,0,0,0.5);\n  padding: 5px;\n  white-space: nowrap;\n  margin-bottom: 5px;\n}\n\n\n.stream__score--param {\n  display: flex;\n  justify-content: space-between;\n  padding: 3px 0;\n  font-size: 15px;\n}\n.stream__score--param span:first-child{\n  padding-left: 10px;\n\n}\n.stream__score--param span:last-child{\n  display: flex;\n  justify-content: flex-end;\n  padding-right: 10px;\n  color: darkcyan;\n}\n.stream__score--param:nth-child(2n){\n  background: rgba(200,200,200,0.5);\n}\n/*reload*/\n.browser-reload{\n  width: 375px;\n  height: 312px;\n\n  background: wheat;\n  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiICB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9InJnYmEoMCwwLDAsMC4wNSkiIGQ9Ik0yIDEyQzIgMTYuOTcgNi4wMyAyMSAxMSAyMUMxMy4zOSAyMSAxNS42OCAyMC4wNiAxNy40IDE4LjRMMTUuOSAxNi45QzE0LjYzIDE4LjI1IDEyLjg2IDE5IDExIDE5QzQuNzYgMTkgMS42NCAxMS40NiA2LjA1IDcuMDVDMTAuNDYgMi42NCAxOCA1Ljc3IDE4IDEySDE1TDE5IDE2SDE5LjFMMjMgMTJIMjBDMjAgNy4wMyAxNS45NyAzIDExIDNDNi4wMyAzIDIgNy4wMyAyIDEyWiIgLz4KPC9zdmc+);\n  background-repeat: no-repeat;\n  background-size: 50%;\n  background-position: center;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 32px;\n  color: gray;\n  cursor: pointer;\n  user-select: none;\n \n}\n\n\n/*logger*/\n#debug-logger{\n  background: wheat;\n  width: 1024px;\n  height: 280px;\n  overflow: auto;\n  padding: 0;\n  padding-bottom: 15px;\n  /*position: absolute;\n  top: 768px;*/\n  margin: 0;\n}\n\n.log-boolean,\n.log-undefined {\n  color: magenta;\n}\n.log-object,\n.log-string {\n  color: #778;\n}\n.log-number {\n  color: cyan;\n}\n\n.error-boolean,\n.error-undefined {\n  color: magenta;\n}\n.error-object,\n.error-string {\n  color: red;\n}\n.error-number {\n  color: cyan;\n}\n.warn-boolean,\n.warn-undefined {\n  color: magenta;\n}\n.warn-object,\n.warn-string {\n  color: #e58a00;\n}\n.warn-number {\n  color: cyan;\n}\n#debug-logger{\n  display: flex;\n  flex-direction: column;\n}\n#debug-logger span {\n\n\n  width: 100%;\n  display: block;\n  padding: 10px 15px;\n}\n#debug-logger span:nth-child(2n){\n  background: rgba(0,0,0,0.03);\n}\n/**/\n\n#debug__vnjson--show{\n  height: 718px;\n  font-family: Consolas, Arial;\n  overflow: auto;\n  font-size: 16px;\n  position: relative;\n  border: 1px solid rgba(0,0,0,0.1);\n}\n#vnjson__tree-root{\n  position: absolute;\n  top: 0;\n  width: 301px;\n\n}\n#vnjson__tree-vnjson{\n  position: absolute;\n  top: 0;\n  display: none;\n  width: 100%;\n}\n\n#vnjson__tree-score{\n  position: absolute;\n  top: 0;\n  display: none;\n  width: 100%;\n}\n\n.json-document{\n  padding-top: 0;\n}\n\n\n/*qr*/\n#vnjson__tree-qr{\n  display: none;\n  position: absolute;\n  top: 0;\n  display: none;\n  width: 100%;\n  padding: 15px;\n}\n\n#debug__qrcode{\n\n  margin-top: 25px;\n\n}\n#debug__qrcode--text{\n  padding: 3px 5px;\n  height: 30px;\n  background: cornsilk;\n  width: 75%;\n}\n#debug__qrcode img{\n  width: 100%;\n}\n\n\n\n#debug__qrcode--generate{\n  height: 30px;\n  width: 22%;\n}\n#debug__html-code{\n  margin-top: 15px;\n  width: 310px;\n  padding: 10px;\n  min-height: 200px;\n  word-break: break-all;\n  background: cornsilk;\n  overflow-x: hidden;\n  outline: unset;\n  border: unset;\n  resize: none;\n}\n#debug__copy-to-clipboard{\n\n}\n\n.debug__terminal{\n  height: 33px;\n  background: burlywood;\n  display: flex;\n\n}\n.debug__terminal-tilda{\n  padding-top: 15px;\n  padding-right: 10px;\n  padding-left: 10px;\n  color: #582282;\n  background-color: rgba(0, 0, 0, 0.1);\n  cursor: pointer;\n}\n.debug__terminal-tilda:active{\n  background-color: rgba(0, 0, 0, 0.3);\n}\n.debug__terminal-input{\n  outline: none;\n  border: unset;\n  background-color: transparent;\n  width: 90%;\n  caret-color: magenta;\n  font-size: 16px;\n  font-family: Consolas;\n  flex: 1;\n  padding-left: 5px;\n  color: #582282;\n}\n.debug__terminal-input::-webkit-input-placeholder { \n  color: #ffd5aa;\n  padding: 3px 5px;\n}\n.debug__terminal-input::input-placeholder { \n  color: #ffd5aa;\n  padding: 3px 5px;\n}\n\n";
+  var css$n = "\n#vnjson__tree{\n\n  background: wheat;\n  width: 375px;\n\n\n}\n\n\n.vnjson__tree-header{\n  display: flex;\n  align-items: center;\n  justify-content: flex-start;\n  background: #445;\n  color: wheat;\n  font-family: Arial;\n  font-size: 16px;\n  user-select: none;\n\n}\n.vnjson__tree-header--tab{\n  padding: 0 15px;\n  transition: 0.3s;\n  font-weight: 600;\n  height: 50px;\n  display: flex;\n  align-items: center;\n  align-content: center;\n}\n.vnjson__tree-header--tab:hover{\n  background: #223;\n  cursor: pointer;\n}\n.debug-active{\n  background: #223;\n}\n\n.debug__color-input{\n  background-color: #f5deb3;\n  border-style: unset;\n  cursor: pointer;\n  outline: unset;\n  width: 60px;\n  padding: 2.5px;\n  text-transform: lowercase;\n  margin-left: 3px;\n}\n.wrapper #vnjson__tree .vnjson__tree-header .vnjson__tree-color-picker .huebee{\n  left: -270px !important;\n  top: 40px !important;\n\n\n}\n.wrapper #vnjson__tree .vnjson__tree-header .vnjson__tree-color-picker .huebee .huebee__container{\n  width: 320px !important;\n}\n/*\n.vnjson__tree-coords{\n  display: flex;\n  flex-direction: column;\n\n}\n*/\n.vnjson__tree-header span{\n  font-size: 12px;\n  font-family: Arial;\n  color: wheat;\n}\n\n.vnjson__cursor-left,\n.vnjson__cursor-top{\n  display: inline-block;\n  width: 25px;\n  text-align: end;\n}\n\n#root{\n  cursor: pointer;\n}\n#root:hover{\n  color: skyblue;\n}\n\n.jstree-ocl{\n pointer-events: none;\n} \n.jstree-anchor{\n  pointer-events: none;\n}\n\n\n/*score*/\n.stream__score{\n\n  background: wheat;\n  padding: 5px;\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  padding-top: 10px;\n  border-top: 1px solid 778;\n}\n.stream__score--item{\n  border: 1px dashed rgba(0,0,0,0.5);\n  padding: 5px;\n  white-space: nowrap;\n  margin-bottom: 5px;\n}\n\n\n.stream__score--param {\n  display: flex;\n  justify-content: space-between;\n  padding: 3px 0;\n  font-size: 15px;\n}\n.stream__score--param span:first-child{\n  padding-left: 10px;\n\n}\n.stream__score--param span:last-child{\n  display: flex;\n  justify-content: flex-end;\n  padding-right: 10px;\n  color: darkcyan;\n}\n.stream__score--param:nth-child(2n){\n  background: rgba(200,200,200,0.5);\n}\n/*reload*/\n.browser-reload{\n  width: 375px;\n  height: 312px;\n\n  background: wheat;\n  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiICB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9InJnYmEoMCwwLDAsMC4wNSkiIGQ9Ik0yIDEyQzIgMTYuOTcgNi4wMyAyMSAxMSAyMUMxMy4zOSAyMSAxNS42OCAyMC4wNiAxNy40IDE4LjRMMTUuOSAxNi45QzE0LjYzIDE4LjI1IDEyLjg2IDE5IDExIDE5QzQuNzYgMTkgMS42NCAxMS40NiA2LjA1IDcuMDVDMTAuNDYgMi42NCAxOCA1Ljc3IDE4IDEySDE1TDE5IDE2SDE5LjFMMjMgMTJIMjBDMjAgNy4wMyAxNS45NyAzIDExIDNDNi4wMyAzIDIgNy4wMyAyIDEyWiIgLz4KPC9zdmc+);\n  background-repeat: no-repeat;\n  background-size: 50%;\n  background-position: center;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 32px;\n  color: gray;\n  cursor: pointer;\n  user-select: none;\n \n}\n\n\n/*logger*/\n#debug-logger{\n  background: wheat;\n  width: 1024px;\n  height: 280px;\n  overflow: auto;\n  padding: 0;\n  padding-bottom: 15px;\n  /*position: absolute;\n  top: 768px;*/\n  margin: 0;\n}\n\n.log-boolean,\n.log-undefined {\n  color: magenta;\n}\n.log-object,\n.log-string {\n  color: #778;\n}\n.log-number {\n  color: cyan;\n}\n\n.error-boolean,\n.error-undefined {\n  color: magenta;\n}\n.error-object,\n.error-string {\n  color: red;\n}\n.error-number {\n  color: cyan;\n}\n.warn-boolean,\n.warn-undefined {\n  color: magenta;\n}\n.warn-object,\n.warn-string {\n  color: #e58a00;\n}\n.warn-number {\n  color: cyan;\n}\n#debug-logger{\n  display: flex;\n  flex-direction: column;\n}\n#debug-logger span {\n\n\n  width: 100%;\n  display: block;\n  padding: 10px 15px;\n}\n#debug-logger span:nth-child(2n){\n  background: rgba(0,0,0,0.03);\n}\n/**/\n\n#debug__vnjson--show{\n  height: 718px;\n  font-family: Consolas, Arial;\n  overflow: auto;\n  font-size: 16px;\n  position: relative;\n  border: 1px solid rgba(0,0,0,0.1);\n}\n#vnjson__tree-root{\n  position: absolute;\n  top: 0;\n  width: 301px;\n\n}\n#vnjson__tree-vnjson{\n  position: absolute;\n  top: 0;\n  display: none;\n  width: 100%;\n}\n\n#vnjson__tree-score{\n  position: absolute;\n  top: 0;\n  display: none;\n  width: 100%;\n}\n\n.json-document{\n  padding-top: 0;\n}\n\n\n/*qr*/\n#vnjson__tree-qr{\n  display: none;\n  position: absolute;\n  top: 0;\n  display: none;\n  width: 100%;\n  padding: 15px;\n}\n\n#debug__qrcode{\n\n  margin-top: 25px;\n\n}\n#debug__qrcode--text{\n  padding: 3px 5px;\n  height: 30px;\n  background: cornsilk;\n  width: 75%;\n}\n#debug__qrcode img{\n  width: 100%;\n}\n\n\n\n#debug__qrcode--generate{\n  height: 30px;\n  width: 22%;\n}\n#debug__html-code{\n  margin-top: 15px;\n  width: 310px;\n  padding: 10px;\n  min-height: 200px;\n  word-break: break-all;\n  background: cornsilk;\n  overflow-x: hidden;\n  outline: unset;\n  border: unset;\n  resize: none;\n}\n#debug__copy-to-clipboard{\n\n}\n\n.debug__terminal{\n  height: 33px;\n  background: burlywood;\n  display: flex;\n\n}\n.debug__terminal-tilda{\n  padding-top: 15px;\n  padding-right: 10px;\n  padding-left: 10px;\n  color: #582282;\n  background-color: rgba(0, 0, 0, 0.1);\n  cursor: pointer;\n}\n.debug__terminal-tilda:active{\n  background-color: rgba(0, 0, 0, 0.3);\n}\n.debug__terminal-input{\n  outline: none;\n  border: unset;\n  background-color: transparent;\n  width: 90%;\n  caret-color: magenta;\n  font-size: 16px;\n  font-family: Consolas;\n  flex: 1;\n  padding-left: 5px;\n  color: #582282;\n}\n.debug__terminal-input::-webkit-input-placeholder { \n  color: #ffd5aa;\n  padding: 3px 5px;\n}\n.debug__terminal-input::input-placeholder { \n  color: #ffd5aa;\n  padding: 3px 5px;\n}\n\n";
   n(css$n,{});
 
   function tree () {
@@ -103,13 +103,6 @@
         });
       }
     });
-    /**
-     * reload
-     */
-
-    $('.browser-reload').on('click', () => {
-      location.reload(true);
-    });
   }
 
   var scoreTpl = "<div class=\"stream__score\">\n <div class=\"stream__score--item\">\n    <h5>логика</h5>\n    <div class=\"stream__score--param\">\n      <span>мозговой_штурм</span><span class=\"stream__score--msh\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>критическое_мышление</span><span class=\"stream__score--km\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>рефлексивное_мышление</span> <span class=\"stream__score--rm\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>стратегическое_мышление</span> <span class=\"stream__score--sm\">0</span>     \n    </div>\n </div>\n\n\n <div class=\"stream__score--item\">\n    <h5>творчество</h5>\n    <div class=\"stream__score--param\">\n      <span>интуиция</span><span class=\"stream__score--ti\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>креативность</span><span class=\"stream__score--tk\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>оригинальность</span> <span class=\"stream__score--to\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>продуктивность</span> <span class=\"stream__score--tp\">0</span>     \n    </div>\n </div>\n\n <div class=\"stream__score--item\">\n    <h5>эмоции</h5>\n    <div class=\"stream__score--param\">\n      <span>понимание_эмоций</span><span class=\"stream__score--ep\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>выражение_эмоций</span><span class=\"stream__score--ev\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>восприятие_эмоций</span> <span class=\"stream__score--eve\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>управление_эмоциями</span> <span class=\"stream__score--ey\">0</span>     \n    </div>\n </div>\n\n\n <div class=\"stream__score--item\">\n    <h5>общение</h5>\n    <div class=\"stream__score--param\">\n      <span>кругозор</span><span class=\"stream__score--oki\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>лидерство</span><span class=\"stream__score--oli\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>адекватность</span> <span class=\"stream__score--oai\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>чувство_юмора</span> <span class=\"stream__score--och\">0</span>     \n    </div>\n </div>\n<!---->\n\n <div class=\"stream__score--item\">\n    <h5>теория</h5>\n    <div class=\"stream__score--param\">\n      <span>понимание</span><span class=\"stream__score--t2p\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>умение_доказать</span><span class=\"stream__score--t2y\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>умение_объяснить</span> <span class=\"stream__score--t2yo\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>доклады_презентации</span> <span class=\"stream__score--t2d\">0</span>     \n    </div>\n </div>\n\n\n <div class=\"stream__score--item\">\n    <h5>практика</h5>\n    <div class=\"stream__score--param\">\n      <span>работа_в_команде</span><span class=\"stream__score--prk\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>работа_на_занятии</span><span class=\"stream__score--prz\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>работа_самостоятельно</span> <span class=\"stream__score--prs\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>качество_и_время_работы</span> <span class=\"stream__score--pkvr\">0</span>     \n    </div>\n </div>\n\n <div class=\"stream__score--item\">\n    <h5>прилежание</h5>\n    <div class=\"stream__score--param\">\n      <span>упорство</span><span class=\"stream__score--p2y\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>аккуратность</span><span class=\"stream__score--p2a\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>внимательность</span> <span class=\"stream__score--p2v\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>самоорганизация</span> <span class=\"stream__score--p2s\">0</span>     \n    </div>\n </div>\n\n <div class=\"stream__score--item\">\n    <h5>квалификация</h5>\n    <div class=\"stream__score--param\">\n      <span>специализация</span><span class=\"stream__score--k2s\">0</span>     \n    </div>\n    <div class=\"stream__score--param\">\n      <span>универсальность</span><span class=\"stream__score--k2y\">0</span>     \n    </div>\n </div>\n\n</div>\n";
@@ -167,7 +160,7 @@
     }
   }
 
-  var asideTpl = "<div id=\"vnjson__tree\">\n  <div class=\"vnjson__tree-header\">\n    <div class=\"vnjson__tree-header--tab debug-active\" data-id=\"vnjson__tree-root\">labels</div>\n    <div class=\"vnjson__tree-header--tab\" data-id=\"vnjson__tree-vnjson\">vn.json</div>\n    <div class=\"vnjson__tree-header--tab\" data-id=\"vnjson__tree-score\">score</div>\n    <div class=\"vnjson__tree-header--tab\" data-id=\"vnjson__tree-qr\">qr</div>\n    <div class=\"vnjson__tree-color-picker\"><input class=\"debug__color-input\" value=\"#f5deb3\"></div>\n    \n  <!--  \n\n    <div class=\"vnjson__tree-coords\">\n      <span>left: <span class=\"vnjson__cursor-left\">0</span>px</span>\n      <span>top: <span class=\"vnjson__cursor-top\">0</span>px</span>\n    </div>  -->\n\n  </div>\n\n  <div id=\"debug__vnjson--show\">\n    <div id=\"vnjson__tree-root\"></div>\n    <div id=\"vnjson__tree-vnjson\">\n      <pre id=\"json-renderer\"></pre>\n    </div>\n    <div id=\"vnjson__tree-score\"></div>\n    <div id=\"vnjson__tree-qr\">\n      <input id=\"debug__qrcode--text\" type=\"text\" value=\"https://github.com/vnjson/mcap-man\" spellcheck=\"false\" placeholder=\"Введите ссылку\">\n      <button id=\"debug__qrcode--generate\">qr-code</button>\n      <div id=\"debug__qrcode\"></div>\n      <div id=\"debug__clipboard-container\"></div>\n    </div>\n   \n  </div>\n<div class=\"browser-reload\"></div>\n</div>\n";
+  var asideTpl = "<div id=\"vnjson__tree\">\n  <div class=\"vnjson__tree-header\">\n    <div class=\"vnjson__tree-header--tab debug-active\" data-id=\"vnjson__tree-root\">labels</div>\n    <div class=\"vnjson__tree-header--tab\" data-id=\"vnjson__tree-vnjson\">vn.json</div>\n  \n    <div class=\"vnjson__tree-header--tab\" data-id=\"vnjson__tree-score\">score</div>\n  <!--  \n    <div class=\"vnjson__tree-header--tab\" data-id=\"vnjson__tree-qr\">qr</div>\n  -->\n    <div class=\"vnjson__tree-color-picker\"><input class=\"debug__color-input\" value=\"#f5deb3\"></div>\n    \n  <!--  \n\n    <div class=\"vnjson__tree-coords\">\n      <span>left: <span class=\"vnjson__cursor-left\">0</span>px</span>\n      <span>top: <span class=\"vnjson__cursor-top\">0</span>px</span>\n    </div>  -->\n\n  </div>\n\n  <div id=\"debug__vnjson--show\">\n    <div id=\"vnjson__tree-root\"></div>\n    <div id=\"vnjson__tree-vnjson\">\n      <pre id=\"json-renderer\"></pre>\n    </div>\n    <div id=\"vnjson__tree-score\"></div>\n    <div id=\"vnjson__tree-qr\">\n      <input id=\"debug__qrcode--text\" type=\"text\" value=\"https://github.com/vnjson/mcap-man\" spellcheck=\"false\" placeholder=\"Введите ссылку\">\n      <button id=\"debug__qrcode--generate\">qr-code</button>\n      <div id=\"debug__qrcode\"></div>\n      <div id=\"debug__clipboard-container\"></div>\n    </div>\n   \n  </div>\n\n\n</div>\n";
 
   function debug () {
     if (this.debug) {
@@ -1005,7 +998,7 @@
       if (param === true) {
         $tpl.fadeIn();
       } else if (param) {
-        var data = this.getDataByName(param);
+        let data = this.getDataByName(param);
 
         if (/\./.test(param)) {
           if (!data) {
@@ -1023,7 +1016,7 @@
 
             $tpl.find('pre code').css('overflow', 'auto');
             $tpl.find('pre code').addClass('language-' + langName).addClass('hljs');
-            var html = hljs.highlight(data.body, {
+            let html = hljs.highlight(data.body, {
               language: langName
             }).value;
             $tpl.find('pre code').html(html); // yaml reply from Norrator
@@ -1041,7 +1034,6 @@
           } else if (param === 'python') {
             $tpl.find('pre code').empty();
             let $iframe = $('<iframe id="brython" src="data/brython/index.html" width="758" height="430"></iframe>');
-            $iframe.css('border', 0);
             $tpl.find('pre code').css({
               overflow: 'hidden',
               padding: 0
@@ -1051,15 +1043,12 @@
           } else if (param === 'craftos') {
             $tpl.find('pre code').empty();
             let $iframe = $('<iframe id="craftos" src="data/craft-os/index.html" width="758" height="430"></iframe>');
-            $iframe.css('border', 0);
             $tpl.find('pre code').css({
               overflow: 'hidden',
               padding: 0
             });
             $tpl.find('pre code').append($iframe);
-            setTimeout(() => {
-              $tpl.show();
-            }, 1500);
+            $tpl.show();
           } else {
             let img = $(`<img src=${this.getAssetByName(param).url} />`);
             $tpl.find('pre code').empty();
@@ -2136,6 +2125,83 @@
     };
   }
 
+  function clipBoard () {
+    const $tpl = $('<textarea class="stream__clipboard" style="position: absolute; left:-99999px;top:0;"></textarea>');
+    this.$store.$stream.append($tpl);
+    let flag = false;
+    this.on('clipboard', data => {
+      flag = true;
+
+      if (data.includes('.')) {
+        // получаем файл
+        let dataFile = this.getDataByName(data);
+
+        if (dataFile) {
+          $tpl.val(dataFile.body);
+        } else {
+          console.error('Data file not found');
+          console.warn(this.current.sceneName + '.' + this.current.labelName + '.' + this.current.index);
+        }
+      } else {
+        $tpl.val(data);
+      }
+    });
+    $('.dialog-box').on("click", function () {
+      if (flag) {
+        copyToClipboard(document.querySelector('.stream__clipboard'));
+        flag = false;
+      }
+    });
+  }
+
+  function copyToClipboard(elem) {
+    var targetId = "_hiddenCopyText_";
+    var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+    var origSelectionStart, origSelectionEnd;
+
+    if (isInput) {
+      target = elem;
+      origSelectionStart = elem.selectionStart;
+      origSelectionEnd = elem.selectionEnd;
+    } else {
+      target = document.getElementById(targetId);
+
+      if (!target) {
+        var target = document.createElement("textarea");
+        target.style.position = "absolute";
+        target.style.left = "-9999px";
+        target.style.top = "0";
+        target.id = targetId;
+        document.body.appendChild(target);
+      }
+
+      target.textContent = elem.textContent;
+    }
+
+    var currentFocus = document.activeElement;
+    target.focus();
+    target.setSelectionRange(0, target.value.length);
+    var succeed;
+
+    try {
+      succeed = document.execCommand("copy");
+    } catch (e) {
+      succeed = false;
+    }
+
+    if (currentFocus && typeof currentFocus.focus === "function") {
+      currentFocus.focus();
+    }
+
+    if (isInput) {
+      elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+    } else {
+      target.textContent = "";
+    }
+
+    return succeed;
+  }
+
   const event = "zim-intro";
   function init$1() {
     window.frame = new Frame('zim', 1024, 768, light, dark);
@@ -2344,6 +2410,7 @@
     this.use(statusBar);
     this.use(mcPlayer);
     this.use(paintBoard);
+    this.use(clipBoard);
     /*zim*/
 
     this.use(zimIntro);
@@ -2357,7 +2424,7 @@
   fetch(`scenes/vn.json`).then(r => r.json()).then(tree => init(tree)).catch(err => console.error('Invalid script', err.message));
 
   function init(tree) {
-    var debug = false;
+    let debug = false;
 
     if (tree.$root.hasOwnProperty('package')) {
       debug = tree.$root.package.debug || false;

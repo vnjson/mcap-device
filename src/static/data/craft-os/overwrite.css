@@ -1,5 +1,10 @@
+html{
+
+}
 body{
   overflow: hidden !important;
+  background-color: rgb(17,17,17);
+
 }
 .styles_fileList__2E00A{
   display: none;
@@ -13,19 +18,28 @@ body{
 .styles_terminalView__1GLM4{
   overflow: hidden !important;
   width: 758px !important;
-  height: 430px !important;
+  height: 400px !important;
   align-items: flex-start !important;
   justify-content: flex-start !important;
 }
 .styles_terminalWrapper__2h9UN{
   width: 758px !important;
-  height: 410px !important;
+  height: 400px !important;
 }
 canvas{
   width: 758px !important;
-  height: 410px !important;
+  height: 400px !important;
+}
+.styles_terminalWrapper__2h9UN{
+
+}
+.styles_terminalView__8godB{
+  /*margin-top: 20px;*/
 }
 
+.infoContainer{
+  display: none;
+}
 .styles_terminalView__8godB{
-  margin-top: 20px;
+  background-color: transparent !important;
 }

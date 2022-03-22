@@ -566,11 +566,11 @@ define(['require', 'exports'], (function (require, exports) { 'use strict';
         8: "rgb(153,153,153)",
         9: "rgb(76,153,178)",
         a: "rgb(178,102,229)",
-        b: "rgb(37,49,146)",
+        b: "rgb(17,17,17)",//
         c: "rgb(127,102,76)",
         d: "rgb(87,166,78)",
         e: "rgb(204,76,76)",
-        f: "rgb(0,0,0)", // Black
+        f: "rgb(17,17,17)", // Black
     };
     class TerminalData {
         constructor() {
@@ -712,11 +712,11 @@ define(['require', 'exports'], (function (require, exports) { 'use strict';
         ctx.rect(0, 0, width * cellWidth * scale + terminalMargin * 2, height * cellHeight * scale + terminalMargin * 2);
         ctx.fillStyle = defaultPalette.b;
         ctx.fill();
-        const startX = Math.floor((width - text.length) / 2);
+        /*const startX = Math.floor((width - text.length) / 2);
         const startY = Math.floor((height - 1) / 2);
         for (let x = 0; x < text.length; x++) {
             foreground(ctx, startX + x, startY, "0", text.charAt(x), defaultPalette, scale, font);
-        }
+        }*/
     };
 
     const log = logger("Terminal");

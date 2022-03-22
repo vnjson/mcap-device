@@ -39,6 +39,7 @@ import discordLog         from './plugins/discord-log/index.js';
 import statusBar          from './plugins/status-bar/index.js';
 import mcPlayer           from './plugins/mc-player/index.js';
 import paintBoard         from './plugins/paint-board/index.js';
+import clipBoard          from './plugins/clipboard/index.js';
 /*zim*/
 import zimIntro           from './plugins/zim-intro/index.js';
 
@@ -85,6 +86,7 @@ export default function(){
   this.use(statusBar);
   this.use(mcPlayer);
   this.use(paintBoard);
+  this.use(clipBoard);
   /*zim*/
   this.use(zimIntro);
   this.on('next', this.next);

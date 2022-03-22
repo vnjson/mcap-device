@@ -1,4 +1,6 @@
 preload: false
+debug: false
+
 chess: false
 paint-board: false
 crossword: false

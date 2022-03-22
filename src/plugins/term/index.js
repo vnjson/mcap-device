@@ -18,7 +18,7 @@ export default function (){
          $tpl.fadeIn() 
     }
     else if(param){
-      var data = this.getDataByName(param)
+      let data = this.getDataByName(param)
 
       if( /\./.test(param) ){
             
@@ -36,7 +36,7 @@ export default function (){
                 }
                 $tpl.find('pre code').css('overflow', 'auto')
                 $tpl.find('pre code').addClass('language-'+langName).addClass('hljs')
-                var html = hljs.highlight(data.body, { language: langName }).value
+                let html = hljs.highlight(data.body, { language: langName }).value
                 $tpl.find('pre code').html(html)
                 // yaml reply from Norrator
                 $tpl.find('pre code .hljs-string').toArray().map(str=>{
@@ -55,7 +55,7 @@ export default function (){
         else if(param==='python'){
           $tpl.find('pre code').empty();
           let $iframe = $('<iframe id="brython" src="data/brython/index.html" width="758" height="430"></iframe>')
-          $iframe.css('border', 0);
+
           $tpl.find('pre code').css({overflow: 'hidden', padding: 0});
           $tpl.find('pre code').append($iframe);
           $tpl.fadeIn();
@@ -63,12 +63,11 @@ export default function (){
         else if(param==='craftos'){
           $tpl.find('pre code').empty();
           let $iframe = $('<iframe id="craftos" src="data/craft-os/index.html" width="758" height="430"></iframe>')
-          $iframe.css('border', 0);
+
           $tpl.find('pre code').css({overflow: 'hidden', padding: 0});
           $tpl.find('pre code').append($iframe);
-          setTimeout(()=>{
-            $tpl.show();
-          },1500);
+          $tpl.show();
+
         }
 
         else{
