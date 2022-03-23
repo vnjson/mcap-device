@@ -4,7 +4,6 @@ html{
 body{
   overflow: hidden !important;
   background-color: rgb(17,17,17);
-
 }
 .styles_fileList__2E00A{
   display: none;
@@ -13,7 +12,7 @@ body{
   display: none;
 }
 .styles_infoButtons__3o10Q{
-  display: none;
+  /*display: none;*/
 }
 .styles_terminalView__1GLM4{
   overflow: hidden !important;

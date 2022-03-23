@@ -2,8 +2,8 @@
   status-bar: true
   next: true
 
-#- $: test3  так же протестируем
-  #term: craftos
+- $: test3  так же протестируем
+  term: craftos
 
 
 - $: Мороз и солнце; день чудесный!
