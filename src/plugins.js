@@ -40,6 +40,8 @@ import statusBar          from './plugins/status-bar/index.js';
 import mcPlayer           from './plugins/mc-player/index.js';
 import paintBoard         from './plugins/paint-board/index.js';
 import clipBoard          from './plugins/clipboard/index.js';
+import craftos            from './plugins/craftos/index.js';
+
 /*zim*/
 import zimIntro           from './plugins/zim-intro/index.js';
 
@@ -87,7 +89,11 @@ export default function(){
   this.use(mcPlayer);
   this.use(paintBoard);
   this.use(clipBoard);
+  this.use(craftos);
   /*zim*/
   this.use(zimIntro);
+
   this.on('next', this.next);
+
+  
 }

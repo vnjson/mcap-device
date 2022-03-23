@@ -2,22 +2,28 @@
   status-bar: true
   next: true
 
+
 - $: test3  так же протестируем
-  term: python
+  craftos:
+    file: text.txt
+    set: test test test
+    #set: app.lua
+  #term: craftos
+
 
 
 - $: Мороз и солнце; день чудесный!
-  term: t.py
+  craftos:
+    file: text.txt
+    set: 111 1111 111 111 111
+
+
 
 - $: Еще ты дремлешь, друг прелестный
+  
 - $: Пора, красавица, проснись
-  term: app.lua
 
 - $: Открой сомкнуты негой взоры
 
 - $: Навстречу северной Авроры 
-  clipboard: Привет Мир!
-
 - jump: $init
-
-

@@ -8,14 +8,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
 /**/
 export default function (){
 
-  var $tpl = $(tpl)
+  const $tpl = $(tpl);
 
-  this.$store.$stream.append($tpl)
+  this.$store.$stream.append($tpl);
 
   this.on('term', param=>{
 
     if(param===true){
-         $tpl.fadeIn() 
+         $tpl.fadeIn();
     }
     else if(param){
       let data = this.getDataByName(param)
@@ -35,16 +35,15 @@ export default function (){
                   langName = val;
                 }
                 $tpl.find('pre code').css({overflow: 'auto', padding: 10});
-                $tpl.find('pre code').addClass('language-'+langName).addClass('hljs')
-                let html = hljs.highlight(data.body, { language: langName }).value
-                $tpl.find('pre code').html(html)
+                $tpl.find('pre code').addClass('language-'+langName).addClass('hljs');
+                let html = hljs.highlight(data.body, { language: langName }).value;
+                $tpl.find('pre code').html(html);
                 // yaml reply from Norrator
                 $tpl.find('pre code .hljs-string').toArray().map(str=>{
                   if($(str).html()==='$:'){
-                    $(str).addClass('hljs-reply')
+                    $(str).addClass('hljs-reply');
                   }
                 });
-
                 $tpl.fadeIn();
             }
       }
@@ -60,16 +59,6 @@ export default function (){
           $tpl.find('pre code').append($iframe);
           $tpl.fadeIn();
         }
-        else if(param==='craftos'){
-          $tpl.find('pre code').empty();
-          let $iframe = $('<iframe id="craftos" src="data/craft-os/index.html" width="758" height="430"></iframe>')
-
-          $tpl.find('pre code').css({overflow: 'hidden', padding: 0});
-          $tpl.find('pre code').append($iframe);
-          $tpl.show();
-
-        }
-
         else{
         let img = $(`<img src=${this.getAssetByName(param).url} />`);
             $tpl.find('pre code').empty();

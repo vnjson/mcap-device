@@ -21,20 +21,22 @@ export default function (){
 	this.on('character', (character, reply)=>{
 
       if(character.avatar){
-          $tpl.find('.dialog-box__reply-wrapper').css('width', '75%')
+          $tpl.find('.dialog-box__reply-wrapper').css('width', '75%');
           $tpl.find('.dialog-box__avatar').show().css({
             backgroundImage: `url('${this.getAssetByName(character.avatar).url}')`
-          })
-          $tpl.find('.dialog-box__name').html(character.name).css({ color: character.nameColor })
-          $tpl.find('.dialog-box__reply').html(reply).css({ color: character.replyColor })
+          });
+          $tpl.find('.dialog-box__name').html(character.name).css({ color: character.nameColor });
+          $tpl.find('.dialog-box__reply').html(reply).css({ color: character.replyColor });
       }
       else{
-          $tpl.find('.dialog-box__reply-wrapper').css('width', '90%')
-          $tpl.find('.dialog-box__avatar').hide()
-          $tpl.find('.dialog-box__name').html(character.name).css({ color: character.nameColor })
-          $tpl.find('.dialog-box__reply').html(reply).css({ color: character.replyColor })
+          $tpl.find('.dialog-box__reply-wrapper').css('width', '90%');
+          $tpl.find('.dialog-box__avatar').hide();
+          $tpl.find('.dialog-box__name').html(character.name).css({ color: character.nameColor });
+          $tpl.find('.dialog-box__reply').html(reply).css({ color: character.replyColor });
       }
-      setCharacterToReply.call(this, reply, character.replyColor)
+      if(reply){
+        setCharacterToReply.call(this, reply, character.replyColor);
+      }
 	});
   this.on('dialog-box', param=>{
 
