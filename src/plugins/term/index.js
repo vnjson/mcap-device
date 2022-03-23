@@ -34,7 +34,7 @@ export default function (){
                 if(val){
                   langName = val;
                 }
-                $tpl.find('pre code').css('overflow', 'auto')
+                $tpl.find('pre code').css({overflow: 'auto', padding: 10});
                 $tpl.find('pre code').addClass('language-'+langName).addClass('hljs')
                 let html = hljs.highlight(data.body, { language: langName }).value
                 $tpl.find('pre code').html(html)
@@ -56,7 +56,7 @@ export default function (){
           $tpl.find('pre code').empty();
           let $iframe = $('<iframe id="brython" src="data/brython/index.html" width="758" height="430"></iframe>')
 
-          $tpl.find('pre code').css({overflow: 'hidden', padding: 0});
+          $tpl.find('pre code').css({overflow: 'hidden', padding: 10});
           $tpl.find('pre code').append($iframe);
           $tpl.fadeIn();
         }

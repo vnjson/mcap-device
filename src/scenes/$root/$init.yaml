@@ -3,17 +3,15 @@
   next: true
 
 - $: test3  так же протестируем
-  term: craftos
+  term: python
 
 
 - $: Мороз и солнце; день чудесный!
-  clipboard: test.js
+  term: t.py
 
 - $: Еще ты дремлешь, друг прелестный
-
-
 - $: Пора, красавица, проснись
-  clipboard: app.lua
+  term: app.lua
 
 - $: Открой сомкнуты негой взоры
 
