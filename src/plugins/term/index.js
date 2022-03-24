@@ -51,14 +51,6 @@ export default function (){
         if(param==='clear'){
           $tpl.find('pre code').empty();
         }
-        else if(param==='python'){
-          $tpl.find('pre code').empty();
-          let $iframe = $('<iframe id="brython" src="data/brython/index.html" width="758" height="430"></iframe>')
-
-          $tpl.find('pre code').css({overflow: 'hidden', padding: 10});
-          $tpl.find('pre code').append($iframe);
-          $tpl.fadeIn();
-        }
         else{
         let img = $(`<img src=${this.getAssetByName(param).url} />`);
             $tpl.find('pre code').empty();

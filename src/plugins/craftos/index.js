@@ -1,13 +1,3 @@
-/**
-
-computer[0].files[].attributes: "{\"modification\":0,\"creation\":0}"
-computer[0].files[].children: "[\"text.txt\",\"ttt.js\"]"
-computer[0].files[text.txt].attributes: "{\"creation\":1648054957483,\"modification\":1648054957492}"
-computer[0].files[text.txt].b64: "Cg=="
-computer[0].files[ttt.js].attributes: "{\"creation\":1648055025988,\"modification\":1648055025996}"
-computer[0].files[ttt.js].b64: "MTIzNAo="
-
-*/
 
 import "./style.css";
 const $tpl = $('<div class="stream__craftos component"></div>');
@@ -52,26 +42,22 @@ function showTerminal (){
 
 
 class FileSystem {
-  files = [];
-  #currentFile = {
-      attrs: {
-        creation: null,
-        modification: null
-      }
-  };
+
   constructor (){
+    this.files = [];
+    this.currentFile = {
+        attrs: {
+          creation: null,
+          modification: null
+        }
+    };
     this.readStore();
   }
-  init (){
 
-  }
   readStore (){
     let files = localStorage.getItem('computer[0].files[].children');
     if(files){
       this.files = JSON.parse(files);
-    }
-    else{
-     // console.error('Files not exist');
     }
   }
   getKeys (name){
@@ -88,7 +74,7 @@ class FileSystem {
           let body_b64 = localStorage.getItem(this.getKeys(name).body);
           let body = atob(body_b64);
 
-          this.#currentFile = {
+          this.currentFile = {
             attrs: JSON.parse(attrs), 
             body, 
             name
@@ -101,25 +87,35 @@ class FileSystem {
     return this.files.find(file=>file===name);
   }
   writeFile (name, body){
-    if(this.fileExist(name)){
-        this.readFile(name);
-        this.createFile(name, body);
-    }
-    else{
-      this.files.push(name);
-      this.createFile(name, body, false);
-    }
+    if(this.fileExist(name)) return;
+    this.files.push(name);
+    this.createFile(name, body, false);
+ 
+  }
+  updateFile (name, body){
+    if(!this.fileExist(name)) return;
+    this.createFile(name, body, true);
+    
+  }
+  appendChunk(name, _body){
+    if( !this.fileExist(name) ) return;
+    let oldBody = this.readFile(name);
+    if(oldBody.includes(_body)) return;
+
+    let body = [ oldBody,  _body].join('\n');
+    
+    this.createFile(name, body, true);
+
   }
   createFile(name, body, isExist){
       localStorage.setItem('computer[0].files[].children', JSON.stringify(this.files))
-      this.#currentFile.body = btoa(body);
-      this.#currentFile.attrs.modification = new Date().getTime();
+      this.currentFile.body = btoa(body);
+      this.currentFile.attrs.modification = new Date().getTime();
       if(!isExist){
-        this.#currentFile.attrs.creation = this.#currentFile.attrs.modification;
+        this.currentFile.attrs.creation = this.currentFile.attrs.modification;
       }
-     
-      localStorage.setItem(this.getKeys(name).attrs,  JSON.stringify(this.#currentFile.attrs) );
-      localStorage.setItem(this.getKeys(name).body,  this.#currentFile.body);
+      localStorage.setItem(this.getKeys(name).attrs,  JSON.stringify(this.currentFile.attrs) );
+      localStorage.setItem(this.getKeys(name).body,  this.currentFile.body);
   }
   removeFile (name){
     this.files = this.files.filter(file=>file!==name);
@@ -127,27 +123,44 @@ class FileSystem {
     localStorage.removeItem(this.getKeys(name).attrs);
     localStorage.removeItem(this.getKeys(name).body);
   }
+  removeAllFiles (){
+      localStorage.removeItem('computer[0].files[].children');
+      this.files.forEach(name=>{
+        localStorage.removeItem(this.getKeys(name).attrs);
+        localStorage.removeItem(this.getKeys(name).body);
+      })
+  }
 }
 
 
 function fileManager(param){
-  let fs = new FileSystem();
+  const fs = new FileSystem();
+  const key = Object.keys(param)[0];
+  // Если существует файл с именем которое передали в param[key].body
+  // То данные для вставки беруться из него
+  const dataFile = $vnjs.getDataByName(param[key]?.body);
+  const body = dataFile?.body||param[key].body;
 
-  if(param.set){
-        // Если в параметр set ложим существующий файл в папке $root/data
-        // то это файл положим в файловую систему CraftOS
-        let dataFile = $vnjs.getDataByName(param.set);
-        if(dataFile){
-            fs.writeFile(param.file, dataFile.body)
-        }
-        else{
-            fs.writeFile(param.file, param.set)
-        }
-        
+  switch (key){
+    case 'create':
+            fs.writeFile(param[key].name, body);
+            break;
+    case 'update':
+            fs.updateFile(param[key].name, body);
+            break;
+    case 'append':
+            fs.appendChunk(param[key].name, body);
+            break;
+    case 'remove':
+            fs.removeFile(param[key]);
+            close();
+            break;
+    case 'removeAll':
+            fs.removeAllFiles();
+            close();
+            break;
+    default:
+        console.error('Uknown parameter');
+        console.warn($vnjs.current.sceneName+'.'+$vnjs.current.labelName+'.'+$vnjs.current.index);
   }
-  if(param.remove){
-        fs.removeFile(param.file)
-
-  }
-
 }

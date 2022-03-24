@@ -1,4 +1,4 @@
-preload: false
+preload: true
 debug: false
 
 chess: false
