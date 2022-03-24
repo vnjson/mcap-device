@@ -54,10 +54,13 @@
   craftos:
     remove: text.txt
 
+- craftos: true
 
 - $: Пора, красавица, проснись
   craftos:
     removeAll: true
+- craftos: false
+- craftos: true
 - $: Открой сомкнуты негой взоры
 
 - $: Навстречу северной Авроры 

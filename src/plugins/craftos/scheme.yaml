@@ -1,5 +1,10 @@
 # require ./static/data/craft-os/index.html
 
+# Старт
+# Есле передать параметры внесто true, то терминал тоже запустится
+- craftos: true
+# Стоп
+- craftos: false
 
 ###
 
