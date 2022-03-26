@@ -1,5 +1,5 @@
 /*debug*/
-import debug              from './plugins/debug/index.js';
+//import debug              from './plugins/debug/index.js';
 import debugDialogBox     from './plugins/debug-dialog-box/index.js';
 
 import assetsLoader       from './plugins/assets-loader/index.js';
@@ -52,7 +52,7 @@ import brython            from './plugins/brython/index.js';
 export default function(){
 
   if($vnjs.debug){
-    this.use(debug);
+    //this.use(debug);
     this.use(debugDialogBox);
   }
 

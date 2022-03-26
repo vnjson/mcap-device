@@ -6,29 +6,51 @@
   align-items: center;
 
 }
-#debug__character{
+.debug__dialog-box-controls >div{
+  height: 70px;
   width: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#debug__character{
+  width: 100%;
+  height: 46%;
   color: black;
   background-color: burlywood;
   border-radius: 4px;
   padding: 3px 5px;
+  text-align: center;
 }
-#debug__reply{
-  width: 89%;
-  color: black;
-  background-color: burlywood;
-  border-radius: 4px;
-  padding: 3px 5px;
-}
+
 .debug__btn{
   background-color: burlywood;
   border-radius: 4px;
   padding: 3px 5px;
   cursor: pointer;
   color: black;
-  width: 5%;
-  text-align: center;
+  width: 100%;
+  height: 46%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
+
+
+#debug__reply{
+  width: 94.5%;
+  color: black;
+  background-color: burlywood;
+  border-radius: 4px;
+  padding: 3px 5px;
+  resize: unset;
+  height: 70px;
+  border: unset;
+  outline: unset;
+  caret-color: deepskyblue;
+}
+
 .debug__btn:hover{
   background-color: rgba(0,0,0,0.3);
 }

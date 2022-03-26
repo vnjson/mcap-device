@@ -10,30 +10,33 @@ const $tpl = $(tpl);
  * controls
  */
 const tplControls = `<div class="debug__dialog-box-controls">
-                        <input  id="debug__character" type="text" value="$">
-                        <input id="debug__reply" type="text" placeholder="text">
-                        <div class="debug__btn"> -> </div>
-                     </div>`
+                        <div>
+                            <input  id="debug__character" type="text" value="$">
+                            <div class="debug__btn"> -> </div>
+                        </div>
+                        <textarea id="debug__reply" placeholder="text"></textarea>
+                     </div>`;
 const $tplControls = $(tplControls);
 
 
 export default function (){
   
-$tpl.css('background-image', `url(${dialogBoxImage})`)
+$tpl.css('background-image', `url(${dialogBoxImage})`);
 
-$('.game').append($tplControls)
+$('.game').append($tplControls);
 /**/
 
-$('.game').append($tpl)
+$('.game').append($tpl);
 
 
 $('.debug__btn').on('click', function (){
+
     let cid = $('#debug__character').val();
     let character = $vnjs.getCharacterById(cid);
     let reply = $('#debug__reply');
-    print(character, reply.val() )
-    reply.val('')
-})
+    print(character, reply.val() );
+    reply.val('');
+});
 
 
 };
