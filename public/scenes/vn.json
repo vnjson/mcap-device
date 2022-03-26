@@ -105,93 +105,13 @@
         "next": true
       },
       {
-        "$": "test3  так же протестируем",
-        "craftos": {
-          "create": {
-            "name": "text.txt",
-            "body": "test test test"
-          }
-        }
+        "$": "Мороз и <font color=\"magenta\">солнце</font> день чудесный!"
       },
       {
-        "craftos": {
-          "create": {
-            "name": "000.txt",
-            "body": "t.py"
-          }
-        },
-        "next": true
+        "$": "Еще ты дремлешь, друг прелестный"
       },
       {
-        "craftos": false,
-        "next": true
-      },
-      {
-        "$": "111 111 111",
-        "craftos": {
-          "update": {
-            "name": "text.txt",
-            "body": "111 111 111 222"
-          }
-        }
-      },
-      {
-        "craftos": false,
-        "next": true
-      },
-      {
-        "$": "Мороз и солнце; день чудесный!",
-        "craftos": {
-          "append": {
-            "name": "text.txt",
-            "body": "333 333 333 333"
-          }
-        }
-      },
-      {
-        "craftos": false,
-        "next": true
-      },
-      {
-        "craftos": {
-          "append": {
-            "name": "text.txt",
-            "body": "444 444 444 444"
-          }
-        }
-      },
-      {
-        "craftos": false,
-        "next": true
-      },
-      {
-        "craftos": {
-          "append": {
-            "name": "text.txt",
-            "body": "test.js"
-          }
-        }
-      },
-      {
-        "$": "Еще ты дремлешь, друг прелестный",
-        "craftos": {
-          "remove": "text.txt"
-        }
-      },
-      {
-        "craftos": true
-      },
-      {
-        "$": "Пора, красавица, проснись",
-        "craftos": {
-          "removeAll": true
-        }
-      },
-      {
-        "craftos": false
-      },
-      {
-        "craftos": true
+        "$": "Пора, красавица, проснись"
       },
       {
         "$": "Открой сомкнуты негой взоры"
@@ -208,7 +128,8 @@
         "id": "$",
         "name": ". . . .",
         "nameColor": "#49de58",
-        "replyColor": "#a4deaa"
+        "replyColor": "#a4deaa",
+        "avatar": "img2"
       },
       {
         "id": "kr",
@@ -232,7 +153,7 @@
     },
     "package": {
       "preload": true,
-      "debug": false,
+      "debug": true,
       "chess": false,
       "paint-board": false,
       "crossword": false

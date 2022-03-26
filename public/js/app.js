@@ -27,8 +27,8 @@
     }
   }
 
-  var css$p = "\n#vnjson__tree{\n\n  background: wheat;\n  width: 375px;\n\n\n}\n\n\n.vnjson__tree-header{\n  display: flex;\n  align-items: center;\n  justify-content: flex-start;\n  background: #445;\n  color: wheat;\n  font-family: Arial;\n  font-size: 16px;\n  user-select: none;\n\n}\n.vnjson__tree-header--tab{\n  padding: 0 15px;\n  transition: 0.3s;\n  font-weight: 600;\n  height: 50px;\n  display: flex;\n  align-items: center;\n  align-content: center;\n}\n.vnjson__tree-header--tab:hover{\n  background: #223;\n  cursor: pointer;\n}\n.debug-active{\n  background: #223;\n}\n\n.debug__color-input{\n  background-color: #f5deb3;\n  border-style: unset;\n  cursor: pointer;\n  outline: unset;\n  width: 60px;\n  padding: 2.5px;\n  text-transform: lowercase;\n  margin-left: 3px;\n}\n.wrapper #vnjson__tree .vnjson__tree-header .vnjson__tree-color-picker .huebee{\n  left: -270px !important;\n  top: 40px !important;\n\n\n}\n.wrapper #vnjson__tree .vnjson__tree-header .vnjson__tree-color-picker .huebee .huebee__container{\n  width: 320px !important;\n}\n/*\n.vnjson__tree-coords{\n  display: flex;\n  flex-direction: column;\n\n}\n*/\n.vnjson__tree-header span{\n  font-size: 12px;\n  font-family: Arial;\n  color: wheat;\n}\n\n.vnjson__cursor-left,\n.vnjson__cursor-top{\n  display: inline-block;\n  width: 25px;\n  text-align: end;\n}\n\n#root{\n  cursor: pointer;\n}\n#root:hover{\n  color: skyblue;\n}\n\n.jstree-ocl{\n pointer-events: none;\n} \n.jstree-anchor{\n  pointer-events: none;\n}\n\n\n/*score*/\n.stream__score{\n\n  background: wheat;\n  padding: 5px;\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  padding-top: 10px;\n  border-top: 1px solid 778;\n}\n.stream__score--item{\n  border: 1px dashed rgba(0,0,0,0.5);\n  padding: 5px;\n  white-space: nowrap;\n  margin-bottom: 5px;\n}\n\n\n.stream__score--param {\n  display: flex;\n  justify-content: space-between;\n  padding: 3px 0;\n  font-size: 15px;\n}\n.stream__score--param span:first-child{\n  padding-left: 10px;\n\n}\n.stream__score--param span:last-child{\n  display: flex;\n  justify-content: flex-end;\n  padding-right: 10px;\n  color: darkcyan;\n}\n.stream__score--param:nth-child(2n){\n  background: rgba(200,200,200,0.5);\n}\n/*reload*/\n.browser-reload{\n  width: 375px;\n  height: 312px;\n\n  background: wheat;\n  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiICB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9InJnYmEoMCwwLDAsMC4wNSkiIGQ9Ik0yIDEyQzIgMTYuOTcgNi4wMyAyMSAxMSAyMUMxMy4zOSAyMSAxNS42OCAyMC4wNiAxNy40IDE4LjRMMTUuOSAxNi45QzE0LjYzIDE4LjI1IDEyLjg2IDE5IDExIDE5QzQuNzYgMTkgMS42NCAxMS40NiA2LjA1IDcuMDVDMTAuNDYgMi42NCAxOCA1Ljc3IDE4IDEySDE1TDE5IDE2SDE5LjFMMjMgMTJIMjBDMjAgNy4wMyAxNS45NyAzIDExIDNDNi4wMyAzIDIgNy4wMyAyIDEyWiIgLz4KPC9zdmc+);\n  background-repeat: no-repeat;\n  background-size: 50%;\n  background-position: center;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 32px;\n  color: gray;\n  cursor: pointer;\n  user-select: none;\n \n}\n\n\n/*logger*/\n#debug-logger{\n  background: wheat;\n  width: 1024px;\n  height: 280px;\n  overflow: auto;\n  padding: 0;\n  padding-bottom: 15px;\n  /*position: absolute;\n  top: 768px;*/\n  margin: 0;\n}\n\n.log-boolean,\n.log-undefined {\n  color: magenta;\n}\n.log-object,\n.log-string {\n  color: #778;\n}\n.log-number {\n  color: cyan;\n}\n\n.error-boolean,\n.error-undefined {\n  color: magenta;\n}\n.error-object,\n.error-string {\n  color: red;\n}\n.error-number {\n  color: cyan;\n}\n.warn-boolean,\n.warn-undefined {\n  color: magenta;\n}\n.warn-object,\n.warn-string {\n  color: #e58a00;\n}\n.warn-number {\n  color: cyan;\n}\n#debug-logger{\n  display: flex;\n  flex-direction: column;\n}\n#debug-logger span {\n\n\n  width: 100%;\n  display: block;\n  padding: 10px 15px;\n}\n#debug-logger span:nth-child(2n){\n  background: rgba(0,0,0,0.03);\n}\n/**/\n\n#debug__vnjson--show{\n  height: 718px;\n  font-family: Consolas, Arial;\n  overflow: auto;\n  font-size: 16px;\n  position: relative;\n  border: 1px solid rgba(0,0,0,0.1);\n}\n#vnjson__tree-root{\n  position: absolute;\n  top: 0;\n  width: 301px;\n\n}\n#vnjson__tree-vnjson{\n  position: absolute;\n  top: 0;\n  display: none;\n  width: 100%;\n}\n\n#vnjson__tree-score{\n  position: absolute;\n  top: 0;\n  display: none;\n  width: 100%;\n}\n\n.json-document{\n  padding-top: 0;\n}\n\n\n/*qr*/\n#vnjson__tree-qr{\n  display: none;\n  position: absolute;\n  top: 0;\n  display: none;\n  width: 100%;\n  padding: 15px;\n}\n\n#debug__qrcode{\n\n  margin-top: 25px;\n\n}\n#debug__qrcode--text{\n  padding: 3px 5px;\n  height: 30px;\n  background: cornsilk;\n  width: 75%;\n}\n#debug__qrcode img{\n  width: 100%;\n}\n\n\n\n#debug__qrcode--generate{\n  height: 30px;\n  width: 22%;\n}\n#debug__html-code{\n  margin-top: 15px;\n  width: 310px;\n  padding: 10px;\n  min-height: 200px;\n  word-break: break-all;\n  background: cornsilk;\n  overflow-x: hidden;\n  outline: unset;\n  border: unset;\n  resize: none;\n}\n#debug__copy-to-clipboard{\n\n}\n\n.debug__terminal{\n  height: 33px;\n  background: burlywood;\n  display: flex;\n\n}\n.debug__terminal-tilda{\n  padding-top: 15px;\n  padding-right: 10px;\n  padding-left: 10px;\n  color: #582282;\n  background-color: rgba(0, 0, 0, 0.1);\n  cursor: pointer;\n}\n.debug__terminal-tilda:active{\n  background-color: rgba(0, 0, 0, 0.3);\n}\n.debug__terminal-input{\n  outline: none;\n  border: unset;\n  background-color: transparent;\n  width: 90%;\n  caret-color: magenta;\n  font-size: 16px;\n  font-family: Consolas;\n  flex: 1;\n  padding-left: 5px;\n  color: #582282;\n}\n.debug__terminal-input::-webkit-input-placeholder { \n  color: #ffd5aa;\n  padding: 3px 5px;\n}\n.debug__terminal-input::input-placeholder { \n  color: #ffd5aa;\n  padding: 3px 5px;\n}\n\n";
-  n(css$p,{});
+  var css$q = "\n#vnjson__tree{\n\n  background: wheat;\n  width: 375px;\n\n  \n}\n\n\n.vnjson__tree-header{\n  display: flex;\n  align-items: center;\n  justify-content: flex-start;\n  background: #445;\n  color: wheat;\n  font-family: Arial;\n  font-size: 16px;\n  user-select: none;\n\n}\n.vnjson__tree-header--tab{\n  padding: 0 15px;\n  transition: 0.3s;\n  font-weight: 600;\n  height: 50px;\n  display: flex;\n  align-items: center;\n  align-content: center;\n}\n.vnjson__tree-header--tab:hover{\n  background: #223;\n  cursor: pointer;\n}\n.debug-active{\n  background: #223;\n}\n\n.debug__color-input{\n  background-color: #f5deb3;\n  border-style: unset;\n  cursor: pointer;\n  outline: unset;\n  width: 60px;\n  padding: 2.5px;\n  text-transform: lowercase;\n  margin-left: 3px;\n}\n.wrapper #vnjson__tree .vnjson__tree-header .vnjson__tree-color-picker .huebee{\n  left: -270px !important;\n  top: 40px !important;\n\n\n}\n.wrapper #vnjson__tree .vnjson__tree-header .vnjson__tree-color-picker .huebee .huebee__container{\n  width: 320px !important;\n}\n/*\n.vnjson__tree-coords{\n  display: flex;\n  flex-direction: column;\n\n}\n*/\n.vnjson__tree-header span{\n  font-size: 12px;\n  font-family: Arial;\n  color: wheat;\n}\n\n.vnjson__cursor-left,\n.vnjson__cursor-top{\n  display: inline-block;\n  width: 25px;\n  text-align: end;\n}\n\n#root{\n  cursor: pointer;\n}\n#root:hover{\n  color: skyblue;\n}\n\n.jstree-ocl{\n pointer-events: none;\n} \n.jstree-anchor{\n  pointer-events: none;\n}\n\n\n/*score*/\n.stream__score{\n\n  background: wheat;\n  padding: 5px;\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  padding-top: 10px;\n  border-top: 1px solid 778;\n}\n.stream__score--item{\n  border: 1px dashed rgba(0,0,0,0.5);\n  padding: 5px;\n  white-space: nowrap;\n  margin-bottom: 5px;\n}\n\n\n.stream__score--param {\n  display: flex;\n  justify-content: space-between;\n  padding: 3px 0;\n  font-size: 15px;\n}\n.stream__score--param span:first-child{\n  padding-left: 10px;\n\n}\n.stream__score--param span:last-child{\n  display: flex;\n  justify-content: flex-end;\n  padding-right: 10px;\n  color: darkcyan;\n}\n.stream__score--param:nth-child(2n){\n  background: rgba(200,200,200,0.5);\n}\n/*reload*/\n.browser-reload{\n  width: 375px;\n  height: 312px;\n\n  background: wheat;\n  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiICB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9InJnYmEoMCwwLDAsMC4wNSkiIGQ9Ik0yIDEyQzIgMTYuOTcgNi4wMyAyMSAxMSAyMUMxMy4zOSAyMSAxNS42OCAyMC4wNiAxNy40IDE4LjRMMTUuOSAxNi45QzE0LjYzIDE4LjI1IDEyLjg2IDE5IDExIDE5QzQuNzYgMTkgMS42NCAxMS40NiA2LjA1IDcuMDVDMTAuNDYgMi42NCAxOCA1Ljc3IDE4IDEySDE1TDE5IDE2SDE5LjFMMjMgMTJIMjBDMjAgNy4wMyAxNS45NyAzIDExIDNDNi4wMyAzIDIgNy4wMyAyIDEyWiIgLz4KPC9zdmc+);\n  background-repeat: no-repeat;\n  background-size: 50%;\n  background-position: center;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 32px;\n  color: gray;\n  cursor: pointer;\n  user-select: none;\n \n}\n\n\n/*logger*/\n#debug-logger{\n  background: wheat;\n  width: 1024px;\n  height: 280px;\n  overflow: auto;\n  padding: 0;\n  padding-bottom: 15px;\n  /*position: absolute;\n  top: 768px;*/\n  margin: 0;\n}\n\n.log-boolean,\n.log-undefined {\n  color: magenta;\n}\n.log-object,\n.log-string {\n  color: #778;\n}\n.log-number {\n  color: cyan;\n}\n\n.error-boolean,\n.error-undefined {\n  color: magenta;\n}\n.error-object,\n.error-string {\n  color: red;\n}\n.error-number {\n  color: cyan;\n}\n.warn-boolean,\n.warn-undefined {\n  color: magenta;\n}\n.warn-object,\n.warn-string {\n  color: #e58a00;\n}\n.warn-number {\n  color: cyan;\n}\n#debug-logger{\n  display: flex;\n  flex-direction: column;\n}\n#debug-logger span {\n\n\n  width: 100%;\n  display: block;\n  padding: 10px 15px;\n}\n#debug-logger span:nth-child(2n){\n  background: rgba(0,0,0,0.03);\n}\n/**/\n\n#debug__vnjson--show{\n  height: 718px;\n  font-family: Consolas, Arial;\n  overflow: auto;\n  font-size: 16px;\n  position: relative;\n  border: 1px solid rgba(0,0,0,0.1);\n}\n#vnjson__tree-root{\n  position: absolute;\n  top: 0;\n  width: 301px;\n\n}\n#vnjson__tree-vnjson{\n  position: absolute;\n  top: 0;\n  display: none;\n  width: 100%;\n}\n\n#vnjson__tree-score{\n  position: absolute;\n  top: 0;\n  display: none;\n  width: 100%;\n}\n\n.json-document{\n  padding-top: 0;\n}\n\n\n/*qr*/\n#vnjson__tree-qr{\n  display: none;\n  position: absolute;\n  top: 0;\n  display: none;\n  width: 100%;\n  padding: 15px;\n}\n\n#debug__qrcode{\n\n  margin-top: 25px;\n\n}\n#debug__qrcode--text{\n  padding: 3px 5px;\n  height: 30px;\n  background: cornsilk;\n  width: 75%;\n}\n#debug__qrcode img{\n  width: 100%;\n}\n\n\n\n#debug__qrcode--generate{\n  height: 30px;\n  width: 22%;\n}\n#debug__html-code{\n  margin-top: 15px;\n  width: 310px;\n  padding: 10px;\n  min-height: 200px;\n  word-break: break-all;\n  background: cornsilk;\n  overflow-x: hidden;\n  outline: unset;\n  border: unset;\n  resize: none;\n}\n#debug__copy-to-clipboard{\n\n}\n\n.debug__terminal{\n  height: 33px;\n  background: burlywood;\n  display: flex;\n\n}\n.debug__terminal-tilda{\n  padding-top: 15px;\n  padding-right: 10px;\n  padding-left: 10px;\n  color: #582282;\n  background-color: rgba(0, 0, 0, 0.1);\n  cursor: pointer;\n}\n.debug__terminal-tilda:active{\n  background-color: rgba(0, 0, 0, 0.3);\n}\n.debug__terminal-input{\n  outline: none;\n  border: unset;\n  background-color: transparent;\n  width: 90%;\n  caret-color: magenta;\n  font-size: 16px;\n  font-family: Consolas;\n  flex: 1;\n  padding-left: 5px;\n  color: #582282;\n}\n.debug__terminal-input::-webkit-input-placeholder { \n  color: #ffd5aa;\n  padding: 3px 5px;\n}\n.debug__terminal-input::input-placeholder { \n  color: #ffd5aa;\n  padding: 3px 5px;\n}\n\n";
+  n(css$q,{});
 
   function tree () {
     this.on('init', scene => {
@@ -162,17 +162,97 @@
 
   var asideTpl = "<div id=\"vnjson__tree\">\n  <div class=\"vnjson__tree-header\">\n    <div class=\"vnjson__tree-header--tab debug-active\" data-id=\"vnjson__tree-root\">labels</div>\n    <div class=\"vnjson__tree-header--tab\" data-id=\"vnjson__tree-vnjson\">vn.json</div>\n  \n    <div class=\"vnjson__tree-header--tab\" data-id=\"vnjson__tree-score\">score</div>\n  <!--  \n    <div class=\"vnjson__tree-header--tab\" data-id=\"vnjson__tree-qr\">qr</div>\n  -->\n    <div class=\"vnjson__tree-color-picker\"><input class=\"debug__color-input\" value=\"#f5deb3\"></div>\n    \n  <!--  \n\n    <div class=\"vnjson__tree-coords\">\n      <span>left: <span class=\"vnjson__cursor-left\">0</span>px</span>\n      <span>top: <span class=\"vnjson__cursor-top\">0</span>px</span>\n    </div>  -->\n\n  </div>\n\n  <div id=\"debug__vnjson--show\">\n    <div id=\"vnjson__tree-root\"></div>\n    <div id=\"vnjson__tree-vnjson\">\n      <pre id=\"json-renderer\"></pre>\n    </div>\n    <div id=\"vnjson__tree-score\"></div>\n    <div id=\"vnjson__tree-qr\">\n      <input id=\"debug__qrcode--text\" type=\"text\" value=\"https://github.com/vnjson/mcap-man\" spellcheck=\"false\" placeholder=\"Введите ссылку\">\n      <button id=\"debug__qrcode--generate\">qr-code</button>\n      <div id=\"debug__qrcode\"></div>\n      <div id=\"debug__clipboard-container\"></div>\n    </div>\n   \n  </div>\n\n\n</div>\n";
 
+  var css$p = ".debug__dialog-box-controls{\n  background-color: wheat;\n  padding: 5px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n\n}\n#debug__character{\n  width: 5%;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n}\n#debug__reply{\n  width: 89%;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n}\n.debug__btn{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  cursor: pointer;\n  color: black;\n  width: 5%;\n  text-align: center;\n}\n.debug__btn:hover{\n  background-color: rgba(0,0,0,0.3);\n}\n/**\n * \n */\n\n.debug__dialog-box {\n  z-index: 7000;\n  /*position: absolute;\n  bottom: -200px;*/\n  width: 1024px;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: block;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.debug__dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.debug__dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.debug__dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.debug__dialog-box__avatar{\n  margin-top: 15px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n}\n.debug__dialog-box__reply-wrapper{\n  position: relative;\n}\n";
+  n(css$p,{});
+
+  var tpl$e = "\n<div class=\"debug__dialog-box\">\n  <div class=\"debug__dialog-box__container\">\n        <div class=\"debug__dialog-box__avatar\"></div>\n        <div class=\"debug__dialog-box__reply-wrapper\">\n          <div class=\"debug__dialog-box__name\"></div>\n          <div class=\"debug__dialog-box__reply\"></div>\n        </div>\n  </div>\n</div>";
+
+  var dialogBoxImage$1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAADICAYAAAB26ZNJAAABbmlDQ1BpY2MAACiRdZE7SwNBFIU/oxLRSIqkELFIEcUiAVGQlBJBG7VIIvhqks1LyCbLboIEW8HGQrAQbXwV/gNtBVsFQVAEESt/gK9GwnrHDSRIMsvs/Tgz5zJzBlxzBU23usZAL5bN2Gw0sLS8EnC/4cKPjwiepGYZ8/GZBG3H9wMdqt6HVa/2+1qOvnTG0qCjR3hSM8yy8JTw3EbZULwj7NfyybTwsXDIlAMK3yg95fCr4pzDn4rNRGwaXKpnINfEqSbW8qYuPCoc1AsVrX4edRNPprgYlzoocwiLGLNECZCiwjoFyoSlFiWz1r6xP98CJfFo8jeoYoojR168IVEr0jUjNSt6Rr4CVZX7/zyt7MS4090The4X2/4YBvce1HZt++fEtmun0PkMV8WGvyQ5Rb5E321owSPwbsHFdUNL7cPlNgw8GUkz+Sd1ynRls/B+Dv3L4LuD3lUnq/o6Z4+Q2JQnuoWDQxiR/d61XxVkaBT4cFhYAAAACXBIWXMAAArwAAAK8AFCrDSYAAAFAUlEQVR4Xu3YMQHAIBDAwKf+pSEKCcwld3MUZM3MHgAAAOBp3y0AAAAA/s8AAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDuHwAlzNu7SaAAAAAElFTkSuQmCC";
+
+  const $tpl$a = $(tpl$e);
+  /**
+   * controls
+   */
+
+  const tplControls = `<div class="debug__dialog-box-controls">
+                        <input  id="debug__character" type="text" value="$">
+                        <input id="debug__reply" type="text" placeholder="text">
+                        <div class="debug__btn"> -> </div>
+                     </div>`;
+  const $tplControls = $(tplControls);
+  function dialogBox$1 () {
+    $tpl$a.css('background-image', `url(${dialogBoxImage$1})`);
+    $('.game').append($tplControls);
+    /**/
+
+    $('.game').append($tpl$a);
+    $('.debug__btn').on('click', function () {
+      let cid = $('#debug__character').val();
+      let character = $vnjs.getCharacterById(cid);
+      let reply = $('#debug__reply');
+      print(character, reply.val());
+      reply.val('');
+    });
+  }
+
+  function print(character, reply) {
+    if (character.avatar) {
+      $tpl$a.find('.debug__dialog-box__reply-wrapper').css('width', '75%');
+      $tpl$a.find('.debug__dialog-box__avatar').show().css({
+        backgroundImage: `url('${$vnjs.getAssetByName(character.avatar).url}')`
+      });
+      $tpl$a.find('.debug__dialog-box__name').html(character.name).css({
+        color: character.nameColor
+      });
+      $tpl$a.find('.debug__dialog-box__reply').html(reply).css({
+        color: character.replyColor
+      });
+    } else {
+      $tpl$a.find('.debug__dialog-box__reply-wrapper').css('width', '90%');
+      $tpl$a.find('.debug__dialog-box__avatar').hide();
+      $tpl$a.find('.debug__dialog-box__name').html(character.name).css({
+        color: character.nameColor
+      });
+      $tpl$a.find('.debug__dialog-box__reply').html(reply).css({
+        color: character.replyColor
+      });
+    }
+
+    if (reply) {
+      setCharacterToReply$1.call($vnjs, reply, character.replyColor);
+    }
+  }
+
+  function setCharacterToReply$1(reply, replyColor) {
+    let characterAliaces = reply.match(/(@\w+)|(@\$.*?[\s])/gi);
+
+    if (characterAliaces) {
+      let newReply = reply;
+      characterAliaces.forEach(id => {
+        let cid = id.replace('@', '').trim();
+        let character = $vnjs.getCharacterById(cid);
+
+        if (character) {
+          newReply = newReply.replace(id, `<span class="debug__dialog-box__reply-character-name" style="color: ${character.nameColor}">${character.name}</span> `);
+          /*пробел на конце нужен из за спец символов $! которые получаю вместе с пробелом*/
+        }
+      });
+      $tpl$a.find('.debug__dialog-box__reply').html(newReply).css({
+        color: replyColor
+      });
+    }
+  }
+
   function debug () {
     if (this.debug) {
       this.on('postload', _ => {
+        dialogBox$1();
         tree.call(this);
         score.call(this);
         aside();
       });
       var $aside = $(asideTpl);
-      $($aside).appendTo('.wrapper'); //log()
-
-      console.log('|  vnjson.js@' + this.version + '  [ window ] development: 1400x1080 | production: 1024x768');
+      $($aside).appendTo('.wrapper');
       /**
        * Что бы отображалось в консоле data
        */
@@ -183,28 +263,19 @@
           var _obj = { ...this.current.data
           };
           delete _obj.score;
-          delete _obj.player;
-          console.log('<i style="background: #000000;padding: 3px 3px; color: #f4f5e9;">| data |</i> ' + JSON.stringify(_obj));
+          delete _obj.player; // console.log('<i style="background: #000000;padding: 3px 3px; color: #f4f5e9;">| data |</i> '+ JSON.stringify(_obj))
         }
       });
-      this.on('preload', () => {
-        console.log('<i style="background: darkcyan;padding: 3px 10px; color: #f4f5e9;">preload</i>');
+      this.on('preload', () => {//console.log('<i style="background: darkcyan;padding: 3px 10px; color: #f4f5e9;">preload</i>')
       });
-      this.on('load', asset => {
-        console.log('  ' + JSON.stringify(asset));
+      this.on('load', asset => {//console.log('  '+ JSON.stringify(asset) )
       });
-      this.on('postload', () => {
-        console.log('<i style="background: darkcyan;padding: 3px 10px; color: #f4f5e9;">postload</i>');
+      this.on('postload', () => {//console.log('<i style="background: darkcyan;padding: 3px 10px; color: #f4f5e9;">postload</i>')
       });
-      this.on('screenInit', screen => {
-        console.log('<i style="background: #3872c9;padding: 3px 10px; color: #f4f5e9;">screen</i>  ' + screen);
+      this.on('screenInit', screen => {//console.log('<i style="background: #3872c9;padding: 3px 10px; color: #f4f5e9;">screen</i>  '+screen)
       });
       this.on('init', () => {
-        if (this.current.index !== 0) {
-          console.log('<i style="background: #582282;padding: 3px 10px; color: #f4f5e9">jump</i>  ' + this.current.sceneName + '.' + this.current.labelName + '.' + this.current.index);
-        } else {
-          console.log('<i style="background: #582282;padding: 3px 10px; color: #f4f5e9">jump</i>  ' + this.current.sceneName + '.' + this.current.labelName);
-        }
+        if (this.current.index !== 0) ;
       });
     }
   }
@@ -246,41 +317,47 @@
      * qr-code
      */
 
+    /*
     const qrcode = new QRCode("debug__qrcode");
-    const qrcodeText = document.getElementById("debug__qrcode--text");
-    $('#debug__qrcode--generate').on('mousedown', function (e) {
-      qrcode.makeCode(qrcodeText.value);
-      outputImgCode();
+    const qrcodeText = document.getElementById("debug__qrcode--text")
+    
+    $('#debug__qrcode--generate').on('mousedown', function (e){
+    	qrcode.makeCode(qrcodeText.value);
+    	outputImgCode()
+    })
+    $(document).on('keypress',function(e) {
+        if(e.which == 13) {
+    			qrcode.makeCode(qrcodeText.value);
+    			outputImgCode()
+        }
     });
-    $(document).on('keypress', function (e) {
-      if (e.which == 13) {
-        qrcode.makeCode(qrcodeText.value);
-        outputImgCode();
-      }
-    });
-
-    function outputImgCode() {
-      setTimeout(() => {
-        $('#debug__clipboard-container').html('');
-        const tpl = `<div>
-				<p>используйте html - plugin для вставки кода в новелу</p>
-      			<button id="debug__copy-to-clipboard">copy</button>
-      		</div>`;
-        $('#debug__clipboard-container').append(tpl);
-        const str = $('#debug__qrcode').html();
-        const wrapper = $('<textarea id="debug__html-code" spellcheck="false"></textarea>');
-        wrapper.text(str.split('</canvas>')[1]);
-        $('#debug__clipboard-container').append(wrapper);
-      }, 100);
-      $('#debug__clipboard-container').on("click", '#debug__copy-to-clipboard', function () {
+    
+    
+    function outputImgCode(){
+    
+    setTimeout(()=>{
+    $('#debug__clipboard-container').html('')
+    const tpl = `<div>
+    				<p>используйте html - plugin для вставки кода в новелу</p>
+          			<button id="debug__copy-to-clipboard">copy</button>
+          		</div>`
+    $('#debug__clipboard-container').append(tpl)	
+    const str = $('#debug__qrcode').html()
+    const wrapper = $('<textarea id="debug__html-code" spellcheck="false"></textarea>')
+    			wrapper.text(str.split('</canvas>')[1])
+    			$('#debug__clipboard-container').append(wrapper)	
+    		},100)
+    $('#debug__clipboard-container').on("click", '#debug__copy-to-clipboard', function() {
         copyToClipboard(document.getElementById("debug__html-code"));
-      });
-    } //outputImgCode()
+    });
+    
+    
+    }*/
+    //outputImgCode()
 
     /*
      * clipboard
      */
-
 
     function copyToClipboard(elem) {
       var targetId = "_hiddenCopyText_";
@@ -2207,7 +2284,6 @@
 
   function close() {
     open = false;
-    $tpl$1.empty();
     $tpl$1.hide();
   }
 
@@ -2246,10 +2322,8 @@
       };
     }
 
-    readFile(_name) {
-      let name = this.files.find(file => file === _name);
-
-      if (name) {
+    readFile(name) {
+      if (this.fileExist(name)) {
         let attrs = localStorage.getItem(this.getKeys(name).attrs);
         let body_b64 = localStorage.getItem(this.getKeys(name).body);
         let body = atob(body_b64);

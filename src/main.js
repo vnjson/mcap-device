@@ -38,7 +38,7 @@ function init (tree){
       else{
           $vnjs.exec({jump: '$root.$init'})
       }
-  })
+  });
   $vnjs.on('init', ()=>{
     $vnjs.exec()
   })

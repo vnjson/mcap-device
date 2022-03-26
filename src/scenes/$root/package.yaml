@@ -1,5 +1,5 @@
 preload: true
-debug: false
+debug: true
 
 chess: false
 paint-board: false

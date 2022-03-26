@@ -1,0 +1,88 @@
+.debug__dialog-box-controls{
+  background-color: wheat;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+#debug__character{
+  width: 5%;
+  color: black;
+  background-color: burlywood;
+  border-radius: 4px;
+  padding: 3px 5px;
+}
+#debug__reply{
+  width: 89%;
+  color: black;
+  background-color: burlywood;
+  border-radius: 4px;
+  padding: 3px 5px;
+}
+.debug__btn{
+  background-color: burlywood;
+  border-radius: 4px;
+  padding: 3px 5px;
+  cursor: pointer;
+  color: black;
+  width: 5%;
+  text-align: center;
+}
+.debug__btn:hover{
+  background-color: rgba(0,0,0,0.3);
+}
+/**
+ * 
+ */
+
+.debug__dialog-box {
+  z-index: 7000;
+  /*position: absolute;
+  bottom: -200px;*/
+  width: 1024px;
+  line-height: 32px;
+  height: 200px;
+
+  cursor: pointer;
+  display: block;
+  padding-top: 10px;
+  padding-left: 10px;
+  word-spacing: 10px;
+  display: block;
+  top: unset;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.debug__dialog-box__name {
+  color: wheat;
+  font-size: 22px;
+  width: 100%;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+.debug__dialog-box__reply {
+  color: wheat;
+  font-size: 22px;
+  padding-left: 10px;
+  width: 100%; 
+}
+
+.debug__dialog-box__container{
+  display: flex; 
+  height: 100%; 
+}
+.debug__dialog-box__avatar{
+  margin-top: 15px;
+  width: 150px;
+  height: 150px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.debug__dialog-box__reply-wrapper{
+  position: relative;
+}

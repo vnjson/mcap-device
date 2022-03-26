@@ -26,7 +26,6 @@ export default function (){
 
 function close (){
   open = false;
-  $tpl.empty();
   $tpl.hide();
 }
 
@@ -67,9 +66,8 @@ class FileSystem {
     }
   }
 
-  readFile (_name){
-      let name = this.files.find(file=>file===_name);
-      if(name){
+  readFile (name){
+      if(this.fileExist(name)){
           let attrs = localStorage.getItem(this.getKeys(name).attrs);
           let body_b64 = localStorage.getItem(this.getKeys(name).body);
           let body = atob(body_b64);
@@ -81,7 +79,6 @@ class FileSystem {
           }
           return body;
       }
-
   }
   fileExist (name){
     return this.files.find(file=>file===name);

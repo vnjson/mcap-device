@@ -3,11 +3,14 @@ import tree from './tree.js'
 //import log from './log.js'
 import score from './score.js'
 import asideTpl from './aside.html'
+import dialogBox from './dialog-box/index.js'
 
 export default function  (){
 	if(this.debug){	
- 	this.on('postload', _=>{
+
  	
+    this.on('postload', _=>{
+            dialogBox(); 
 			tree.call(this)
  			score.call(this)
  	
@@ -20,8 +23,7 @@ export default function  (){
 var $aside = $(asideTpl)
  $($aside).appendTo('.wrapper')
 
-//log()
-console.log('|  vnjson.js@'+this.version+ '  [ window ] development: 1400x1080 | production: 1024x768')
+
 /**
  * Что бы отображалось в консоле data
  */
@@ -32,30 +34,30 @@ this.on('player-load', name=>{
         var _obj = {...this.current.data}
         delete _obj.score
         delete _obj.player
-        console.log('<i style="background: #000000;padding: 3px 3px; color: #f4f5e9;">| data |</i> '+ JSON.stringify(_obj))
+       // console.log('<i style="background: #000000;padding: 3px 3px; color: #f4f5e9;">| data |</i> '+ JSON.stringify(_obj))
     }
 })
 this.on('preload', ()=>{
-	console.log('<i style="background: darkcyan;padding: 3px 10px; color: #f4f5e9;">preload</i>')
+	//console.log('<i style="background: darkcyan;padding: 3px 10px; color: #f4f5e9;">preload</i>')
 })
 this.on('load', asset=>{
-		console.log('  '+ JSON.stringify(asset) )
+		//console.log('  '+ JSON.stringify(asset) )
 })
 this.on('postload', ()=>{
-		console.log('<i style="background: darkcyan;padding: 3px 10px; color: #f4f5e9;">postload</i>')
+		//console.log('<i style="background: darkcyan;padding: 3px 10px; color: #f4f5e9;">postload</i>')
 })
 
 
 
 this.on('screenInit', screen=>{
-	console.log('<i style="background: #3872c9;padding: 3px 10px; color: #f4f5e9;">screen</i>  '+screen)
+	//console.log('<i style="background: #3872c9;padding: 3px 10px; color: #f4f5e9;">screen</i>  '+screen)
 })
 this.on('init', ()=>{
 	if(this.current.index!==0){
-		console.log('<i style="background: #582282;padding: 3px 10px; color: #f4f5e9">jump</i>  '+this.current.sceneName+'.'+this.current.labelName+'.'+this.current.index)
+		//console.log('<i style="background: #582282;padding: 3px 10px; color: #f4f5e9">jump</i>  '+this.current.sceneName+'.'+this.current.labelName+'.'+this.current.index)
 	}
 	else{
-		console.log('<i style="background: #582282;padding: 3px 10px; color: #f4f5e9">jump</i>  '+this.current.sceneName+'.'+this.current.labelName)
+		//console.log('<i style="background: #582282;padding: 3px 10px; color: #f4f5e9">jump</i>  '+this.current.sceneName+'.'+this.current.labelName)
 	}
 })
 
@@ -107,7 +109,7 @@ $('.vnjson__tree-color-picker').on('click', '.huebee__canvas', function (){
 /**
  * qr-code
  */
-
+/*
 const qrcode = new QRCode("debug__qrcode");
 const qrcodeText = document.getElementById("debug__qrcode--text")
 
@@ -142,7 +144,7 @@ $('#debug__clipboard-container').on("click", '#debug__copy-to-clipboard', functi
 });
 
 
-}
+}*/
 //outputImgCode()
 
 
