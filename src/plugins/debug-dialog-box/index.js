@@ -28,14 +28,16 @@ $('.game').append($tplControls);
 
 $('.game').append($tpl);
 
-
 $('.debug__btn').on('click', function (){
 
     let cid = $('#debug__character').val();
+    if(cid===''){
+      cid = '$';
+    }
     let character = $vnjs.getCharacterById(cid);
     let reply = $('#debug__reply');
     print(character, reply.val() );
-    reply.val('');
+
 });
 
 
