@@ -1,5 +1,7 @@
-
+/*debug*/
 import debug              from './plugins/debug/index.js';
+import debugDialogBox     from './plugins/debug-dialog-box/index.js';
+
 import assetsLoader       from './plugins/assets-loader/index.js';
 import screen             from './plugins/screen/index.js';
 /*screens*/
@@ -48,7 +50,12 @@ import brython            from './plugins/brython/index.js';
 
 
 export default function(){
-  this.use(debug);
+
+  if($vnjs.debug){
+    this.use(debug);
+    this.use(debugDialogBox);
+  }
+
   this.use(assetsLoader);
   /*screens*/
   this.use(screen);

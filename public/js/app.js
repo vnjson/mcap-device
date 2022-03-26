@@ -162,91 +162,9 @@
 
   var asideTpl = "<div id=\"vnjson__tree\">\n  <div class=\"vnjson__tree-header\">\n    <div class=\"vnjson__tree-header--tab debug-active\" data-id=\"vnjson__tree-root\">labels</div>\n    <div class=\"vnjson__tree-header--tab\" data-id=\"vnjson__tree-vnjson\">vn.json</div>\n  \n    <div class=\"vnjson__tree-header--tab\" data-id=\"vnjson__tree-score\">score</div>\n  <!--  \n    <div class=\"vnjson__tree-header--tab\" data-id=\"vnjson__tree-qr\">qr</div>\n  -->\n    <div class=\"vnjson__tree-color-picker\"><input class=\"debug__color-input\" value=\"#f5deb3\"></div>\n    \n  <!--  \n\n    <div class=\"vnjson__tree-coords\">\n      <span>left: <span class=\"vnjson__cursor-left\">0</span>px</span>\n      <span>top: <span class=\"vnjson__cursor-top\">0</span>px</span>\n    </div>  -->\n\n  </div>\n\n  <div id=\"debug__vnjson--show\">\n    <div id=\"vnjson__tree-root\"></div>\n    <div id=\"vnjson__tree-vnjson\">\n      <pre id=\"json-renderer\"></pre>\n    </div>\n    <div id=\"vnjson__tree-score\"></div>\n    <div id=\"vnjson__tree-qr\">\n      <input id=\"debug__qrcode--text\" type=\"text\" value=\"https://github.com/vnjson/mcap-man\" spellcheck=\"false\" placeholder=\"Введите ссылку\">\n      <button id=\"debug__qrcode--generate\">qr-code</button>\n      <div id=\"debug__qrcode\"></div>\n      <div id=\"debug__clipboard-container\"></div>\n    </div>\n   \n  </div>\n\n\n</div>\n";
 
-  var css$p = ".debug__dialog-box-controls{\n  background-color: wheat;\n  padding: 5px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n\n}\n#debug__character{\n  width: 5%;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n}\n#debug__reply{\n  width: 89%;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n}\n.debug__btn{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  cursor: pointer;\n  color: black;\n  width: 5%;\n  text-align: center;\n}\n.debug__btn:hover{\n  background-color: rgba(0,0,0,0.3);\n}\n/**\n * \n */\n\n.debug__dialog-box {\n  z-index: 7000;\n  /*position: absolute;\n  bottom: -200px;*/\n  width: 1024px;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: block;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.debug__dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.debug__dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.debug__dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.debug__dialog-box__avatar{\n  margin-top: 15px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n}\n.debug__dialog-box__reply-wrapper{\n  position: relative;\n}\n";
-  n(css$p,{});
-
-  var tpl$e = "\n<div class=\"debug__dialog-box\">\n  <div class=\"debug__dialog-box__container\">\n        <div class=\"debug__dialog-box__avatar\"></div>\n        <div class=\"debug__dialog-box__reply-wrapper\">\n          <div class=\"debug__dialog-box__name\"></div>\n          <div class=\"debug__dialog-box__reply\"></div>\n        </div>\n  </div>\n</div>";
-
-  var dialogBoxImage$1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAADICAYAAAB26ZNJAAABbmlDQ1BpY2MAACiRdZE7SwNBFIU/oxLRSIqkELFIEcUiAVGQlBJBG7VIIvhqks1LyCbLboIEW8HGQrAQbXwV/gNtBVsFQVAEESt/gK9GwnrHDSRIMsvs/Tgz5zJzBlxzBU23usZAL5bN2Gw0sLS8EnC/4cKPjwiepGYZ8/GZBG3H9wMdqt6HVa/2+1qOvnTG0qCjR3hSM8yy8JTw3EbZULwj7NfyybTwsXDIlAMK3yg95fCr4pzDn4rNRGwaXKpnINfEqSbW8qYuPCoc1AsVrX4edRNPprgYlzoocwiLGLNECZCiwjoFyoSlFiWz1r6xP98CJfFo8jeoYoojR168IVEr0jUjNSt6Rr4CVZX7/zyt7MS4090The4X2/4YBvce1HZt++fEtmun0PkMV8WGvyQ5Rb5E321owSPwbsHFdUNL7cPlNgw8GUkz+Sd1ynRls/B+Dv3L4LuD3lUnq/o6Z4+Q2JQnuoWDQxiR/d61XxVkaBT4cFhYAAAACXBIWXMAAArwAAAK8AFCrDSYAAAFAUlEQVR4Xu3YMQHAIBDAwKf+pSEKCcwld3MUZM3MHgAAAOBp3y0AAAAA/s8AAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDuHwAlzNu7SaAAAAAElFTkSuQmCC";
-
-  const $tpl$a = $(tpl$e);
-  /**
-   * controls
-   */
-
-  const tplControls = `<div class="debug__dialog-box-controls">
-                        <input  id="debug__character" type="text" value="$">
-                        <input id="debug__reply" type="text" placeholder="text">
-                        <div class="debug__btn"> -> </div>
-                     </div>`;
-  const $tplControls = $(tplControls);
-  function dialogBox$1 () {
-    $tpl$a.css('background-image', `url(${dialogBoxImage$1})`);
-    $('.game').append($tplControls);
-    /**/
-
-    $('.game').append($tpl$a);
-    $('.debug__btn').on('click', function () {
-      let cid = $('#debug__character').val();
-      let character = $vnjs.getCharacterById(cid);
-      let reply = $('#debug__reply');
-      print(character, reply.val());
-      reply.val('');
-    });
-  }
-
-  function print(character, reply) {
-    if (character.avatar) {
-      $tpl$a.find('.debug__dialog-box__reply-wrapper').css('width', '75%');
-      $tpl$a.find('.debug__dialog-box__avatar').show().css({
-        backgroundImage: `url('${$vnjs.getAssetByName(character.avatar).url}')`
-      });
-      $tpl$a.find('.debug__dialog-box__name').html(character.name).css({
-        color: character.nameColor
-      });
-      $tpl$a.find('.debug__dialog-box__reply').html(reply).css({
-        color: character.replyColor
-      });
-    } else {
-      $tpl$a.find('.debug__dialog-box__reply-wrapper').css('width', '90%');
-      $tpl$a.find('.debug__dialog-box__avatar').hide();
-      $tpl$a.find('.debug__dialog-box__name').html(character.name).css({
-        color: character.nameColor
-      });
-      $tpl$a.find('.debug__dialog-box__reply').html(reply).css({
-        color: character.replyColor
-      });
-    }
-
-    if (reply) {
-      setCharacterToReply$1.call($vnjs, reply, character.replyColor);
-    }
-  }
-
-  function setCharacterToReply$1(reply, replyColor) {
-    let characterAliaces = reply.match(/(@\w+)|(@\$.*?[\s])/gi);
-
-    if (characterAliaces) {
-      let newReply = reply;
-      characterAliaces.forEach(id => {
-        let cid = id.replace('@', '').trim();
-        let character = $vnjs.getCharacterById(cid);
-
-        if (character) {
-          newReply = newReply.replace(id, `<span class="debug__dialog-box__reply-character-name" style="color: ${character.nameColor}">${character.name}</span> `);
-          /*пробел на конце нужен из за спец символов $! которые получаю вместе с пробелом*/
-        }
-      });
-      $tpl$a.find('.debug__dialog-box__reply').html(newReply).css({
-        color: replyColor
-      });
-    }
-  }
-
   function debug () {
     if (this.debug) {
       this.on('postload', _ => {
-        dialogBox$1();
         tree.call(this);
         score.call(this);
         aside();
@@ -405,6 +323,87 @@
       }
 
       return succeed;
+    }
+  }
+
+  var css$p = ".debug__dialog-box-controls{\n  background-color: wheat;\n  padding: 5px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n\n}\n#debug__character{\n  width: 5%;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n}\n#debug__reply{\n  width: 89%;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n}\n.debug__btn{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  cursor: pointer;\n  color: black;\n  width: 5%;\n  text-align: center;\n}\n.debug__btn:hover{\n  background-color: rgba(0,0,0,0.3);\n}\n/**\n * \n */\n\n.debug__dialog-box {\n  z-index: 7000;\n  /*position: absolute;\n  bottom: -200px;*/\n  width: 1024px;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: block;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.debug__dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.debug__dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.debug__dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.debug__dialog-box__avatar{\n  margin-top: 15px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n}\n.debug__dialog-box__reply-wrapper{\n  position: relative;\n}\n";
+  n(css$p,{});
+
+  var tpl$e = "\n<div class=\"debug__dialog-box\">\n  <div class=\"debug__dialog-box__container\">\n        <div class=\"debug__dialog-box__avatar\"></div>\n        <div class=\"debug__dialog-box__reply-wrapper\">\n          <div class=\"debug__dialog-box__name\"></div>\n          <div class=\"debug__dialog-box__reply\"></div>\n        </div>\n  </div>\n</div>";
+
+  var dialogBoxImage$1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAADICAYAAAB26ZNJAAABbmlDQ1BpY2MAACiRdZE7SwNBFIU/oxLRSIqkELFIEcUiAVGQlBJBG7VIIvhqks1LyCbLboIEW8HGQrAQbXwV/gNtBVsFQVAEESt/gK9GwnrHDSRIMsvs/Tgz5zJzBlxzBU23usZAL5bN2Gw0sLS8EnC/4cKPjwiepGYZ8/GZBG3H9wMdqt6HVa/2+1qOvnTG0qCjR3hSM8yy8JTw3EbZULwj7NfyybTwsXDIlAMK3yg95fCr4pzDn4rNRGwaXKpnINfEqSbW8qYuPCoc1AsVrX4edRNPprgYlzoocwiLGLNECZCiwjoFyoSlFiWz1r6xP98CJfFo8jeoYoojR168IVEr0jUjNSt6Rr4CVZX7/zyt7MS4090The4X2/4YBvce1HZt++fEtmun0PkMV8WGvyQ5Rb5E321owSPwbsHFdUNL7cPlNgw8GUkz+Sd1ynRls/B+Dv3L4LuD3lUnq/o6Z4+Q2JQnuoWDQxiR/d61XxVkaBT4cFhYAAAACXBIWXMAAArwAAAK8AFCrDSYAAAFAUlEQVR4Xu3YMQHAIBDAwKf+pSEKCcwld3MUZM3MHgAAAOBp3y0AAAAA/s8AAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDuHwAlzNu7SaAAAAAElFTkSuQmCC";
+
+  const $tpl$a = $(tpl$e);
+  /**
+   * controls
+   */
+
+  const tplControls = `<div class="debug__dialog-box-controls">
+                        <input  id="debug__character" type="text" value="$">
+                        <input id="debug__reply" type="text" placeholder="text">
+                        <div class="debug__btn"> -> </div>
+                     </div>`;
+  const $tplControls = $(tplControls);
+  function debugDialogBox () {
+    $tpl$a.css('background-image', `url(${dialogBoxImage$1})`);
+    $('.game').append($tplControls);
+    /**/
+
+    $('.game').append($tpl$a);
+    $('.debug__btn').on('click', function () {
+      let cid = $('#debug__character').val();
+      let character = $vnjs.getCharacterById(cid);
+      let reply = $('#debug__reply');
+      print(character, reply.val());
+      reply.val('');
+    });
+  }
+
+  function print(character, reply) {
+    if (character.avatar) {
+      $tpl$a.find('.debug__dialog-box__reply-wrapper').css('width', '75%');
+      $tpl$a.find('.debug__dialog-box__avatar').show().css({
+        backgroundImage: `url('${$vnjs.getAssetByName(character.avatar).url}')`
+      });
+      $tpl$a.find('.debug__dialog-box__name').html(character.name).css({
+        color: character.nameColor
+      });
+      $tpl$a.find('.debug__dialog-box__reply').html(reply).css({
+        color: character.replyColor
+      });
+    } else {
+      $tpl$a.find('.debug__dialog-box__reply-wrapper').css('width', '90%');
+      $tpl$a.find('.debug__dialog-box__avatar').hide();
+      $tpl$a.find('.debug__dialog-box__name').html(character.name).css({
+        color: character.nameColor
+      });
+      $tpl$a.find('.debug__dialog-box__reply').html(reply).css({
+        color: character.replyColor
+      });
+    }
+
+    if (reply) {
+      setCharacterToReply$1.call($vnjs, reply, character.replyColor);
+    }
+  }
+
+  function setCharacterToReply$1(reply, replyColor) {
+    let characterAliaces = reply.match(/(@\w+)|(@\$.*?[\s])/gi);
+
+    if (characterAliaces) {
+      let newReply = reply;
+      characterAliaces.forEach(id => {
+        let cid = id.replace('@', '').trim();
+        let character = $vnjs.getCharacterById(cid);
+
+        if (character) {
+          newReply = newReply.replace(id, `<span class="debug__dialog-box__reply-character-name" style="color: ${character.nameColor}">${character.name}</span> `);
+          /*пробел на конце нужен из за спец символов $! которые получаю вместе с пробелом*/
+        }
+      });
+      $tpl$a.find('.debug__dialog-box__reply').html(newReply).css({
+        color: replyColor
+      });
     }
   }
 
@@ -2448,11 +2447,16 @@
     $tpl.show();
   }
 
+  /*debug*/
   /*zim*/
   //import zimIntro           from './plugins/zim-intro/index.js';
 
   function plugins () {
-    this.use(debug);
+    if ($vnjs.debug) {
+      this.use(debug);
+      this.use(debugDialogBox);
+    }
+
     this.use(assetsLoader);
     /*screens*/
 

@@ -3,14 +3,13 @@ import tree from './tree.js'
 //import log from './log.js'
 import score from './score.js'
 import asideTpl from './aside.html'
-import dialogBox from './dialog-box/index.js'
+
 
 export default function  (){
 	if(this.debug){	
 
  	
     this.on('postload', _=>{
-            dialogBox(); 
 			tree.call(this)
  			score.call(this)
  	

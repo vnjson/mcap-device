@@ -18,6 +18,7 @@ const $tplControls = $(tplControls);
 
 
 export default function (){
+  
 $tpl.css('background-image', `url(${dialogBoxImage})`)
 
 $('.game').append($tplControls)
