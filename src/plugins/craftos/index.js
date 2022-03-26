@@ -135,8 +135,18 @@ function fileManager(param){
   const key = Object.keys(param)[0];
   // Если существует файл с именем которое передали в param[key].body
   // То данные для вставки беруться из него
-  const dataFile = $vnjs.getDataByName(param[key]?.body);
-  const body = dataFile?.body||param[key].body;
+  let dataFile;
+  if(typeof param[key]==='object'){
+      dataFile = $vnjs.getDataByName(param[key].body);
+  }
+  let body;
+  if(dataFile){
+     body = dataFile.body;
+  }
+  else{
+     body = param[key].body;
+  }
+
 
   switch (key){
     case 'create':
