@@ -1,2 +1,4 @@
 port: 9000
 src: src
+updateDirs:
+  - src

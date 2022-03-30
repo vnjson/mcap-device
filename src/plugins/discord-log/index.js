@@ -1,13 +1,18 @@
-import { webhook, avatar_url } from './config.yaml'
+
 
 export default function (){
 
-  function sendMessage(params, url) {
-      const request = new XMLHttpRequest();
-      request.open("POST", url);
-      request.setRequestHeader('Content-type', 'application/json');
-      request.send(JSON.stringify(params));
-    }
+let webhook;
+let avatar_url;
+
+this.on('postload', ()=>{
+  if(this.TREE.$root.package){
+    let discordLogParam = this.TREE.$root.package['discord-log'];
+    if(!discordLogParam) return;
+    webhook = discordLogParam.webhook;
+    avatar_url = discordLogParam.avatar_url
+  }  
+})
 
 this.on('discord-log', msg=>{
   var content = null
@@ -27,4 +32,12 @@ this.on('discord-log', msg=>{
 })
 
 
+}
+
+
+function sendMessage(params, url) {
+    const request = new XMLHttpRequest();
+    request.open("POST", url);
+    request.setRequestHeader('Content-type', 'application/json');
+    request.send(JSON.stringify(params));
 }
