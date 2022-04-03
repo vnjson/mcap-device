@@ -1,19 +1,20 @@
-import serve            from 'rollup-plugin-serve'
-import styles           from 'rollup-plugin-styles'
-import yaml             from '@rollup/plugin-yaml'
-import { babel }        from '@rollup/plugin-babel'
-import url              from '@rollup/plugin-url'
-import copy             from 'rollup-plugin-copy'
-import files            from 'rollup-plugin-import-file'
-import scenesToJson     from 'scenes-to-json'
-import chokidar         from 'chokidar'
-import html             from 'rollup-plugin-html'
-import fs               from 'fs'
-import YAML             from 'yaml'
-
+import serve            from 'rollup-plugin-serve';
+import styles           from 'rollup-plugin-styles';
+import yaml             from '@rollup/plugin-yaml';
+import { babel }        from '@rollup/plugin-babel';
+import url              from '@rollup/plugin-url';
+import copy             from 'rollup-plugin-copy';
+import files            from 'rollup-plugin-import-file';
+import scenesToJson     from 'scenes-to-json';
+import chokidar         from 'chokidar';
+import html             from 'rollup-plugin-html';
+import fs               from 'fs';
+import YAML             from 'yaml';
+import { terser }       from "rollup-plugin-terser";
 
 const config = YAML.parse(fs.readFileSync('./config.yaml', 'utf8'))
 
+const production = false;
 
 export default {
   input: `${config.src}/main.js`,
@@ -27,13 +28,14 @@ export default {
     yaml(),
     html(),
     styles(),
+    production && terser(),
     url({
       fileName: '[hash][extname]',
       destDir: `./public/assets`
     }),
     babel({ 
       babelHelpers: 'bundled',
-      //presets: ['env'],
+      presets: ['@babel/preset-env'],
       plugins: [
             ["babel-plugin-root-import", { "rootPathSuffix": `${config.src}`}]
       ]
@@ -56,7 +58,7 @@ export default {
   ],
 
   watch: [
-  	`${config.src}/plugins`,
+    `${config.src}/plugins`,
     `${config.src}/static`,
     `${config.src}/main.js`,
     `${config.src}/plugins.js`,

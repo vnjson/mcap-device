@@ -5,27 +5,24 @@ import './theme.css'
 /**
  * Загрузка игры
  */
-fetch(`scenes/vn.json`)
+fetch(`scenes/vn.json?v=${new Date().getTime()}`)
   .then(r=>r.json())
   .then(tree=>init(tree))
   .catch(err=>console.error('Invalid script', err.message))
 
 function init (tree){
-  let debug = false
-  if(tree.$root.hasOwnProperty('package')){
-    debug = tree.$root.package.debug||false
-  }
+
   /*
     conf: {
       debug: true,
       $: {id: '$', name: 'Автор', replyColor: 'red'} //default character
     }
    */
-  window.$vnjs = new Vnjson({ debug: debug })
+  window.$vnjs = new Vnjson({ debug: tree.$root.package?.debug });
 
-  plugins.call($vnjs)
+  plugins.call($vnjs);
 
-  $vnjs.setTree(tree)
+  $vnjs.setTree(tree);
 
   $vnjs.on('postload', ()=>{
       $vnjs.exec({screen: 'stream'})
@@ -40,7 +37,6 @@ function init (tree){
       }
   });
   $vnjs.on('init', ()=>{
-    $vnjs.exec()
+    $vnjs.exec();
   })
 }
-
