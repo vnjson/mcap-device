@@ -2,6 +2,8 @@
   status-bar: true
   next: true
 
+- paint-board: paintBoardWhite
+
 - $: Мороз и <font color="magenta">солнце</font> день чудесный!
      Мороз и <font color="magenta">солнце</font> день чудесный!
      Мороз и <font color="magenta">солнце</font> день чудесный!

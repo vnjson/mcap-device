@@ -2,5 +2,5 @@ preload: true
 debug: false
 
 chess: false
-paint-board: false
+paint-board: true
 crossword: false
