@@ -82,16 +82,14 @@
       {
         "dialog-box": true,
         "status-bar": true,
+        "hands": true,
         "next": true
-      },
-      {
-        "paint-board": "paintBoardWhite"
       },
       {
         "$": "Мороз и <font color=\"magenta\">солнце</font> день чудесный! Мороз и <font color=\"magenta\">солнце</font> день чудесный! Мороз и <font color=\"magenta\">солнце</font> день чудесный! Мороз и <font color=\"magenta\">солнце</font> день чудесный!"
       },
       {
-        "$": "Еще ты дремлешь, друг прелестный"
+        "al": "Еще ты дремлешь, друг прелестный"
       },
       {
         "$": "Пора, красавица, проснись"
@@ -112,13 +110,7 @@
         "name": ". . . .",
         "nameColor": "#49de58",
         "replyColor": "#a4deaa",
-        "avatar": "img2"
-      },
-      {
-        "id": "kr",
-        "name": "Корней",
-        "nameColor": "orange",
-        "replyColor": "#a4deaa"
+        "avatar": "sceneMainMenu"
       },
       {
         "id": "al",
@@ -136,10 +128,14 @@
     },
     "package": {
       "preload": true,
-      "debug": false,
+      "debug": true,
       "chess": false,
       "paint-board": true,
-      "crossword": false
+      "crossword": false,
+      "dialog-box": {
+        "delay": 15,
+        "endPoint": true
+      }
     },
     "wiki": {
       "Абажур": "Колпак для лампы, светильника",

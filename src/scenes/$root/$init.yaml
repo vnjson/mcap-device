@@ -1,15 +1,16 @@
 - dialog-box: true
   status-bar: true
+  hands: true
   next: true
 
-- paint-board: paintBoardWhite
+
 
 - $: Мороз и <font color="magenta">солнце</font> день чудесный!
      Мороз и <font color="magenta">солнце</font> день чудесный!
      Мороз и <font color="magenta">солнце</font> день чудесный!
      Мороз и <font color="magenta">солнце</font> день чудесный!
 
-- $: Еще ты дремлешь, друг прелестный
+- al: Еще ты дремлешь, друг прелестный
 
 - $: Пора, красавица, проснись
 - $: Открой сомкнуты негой взоры

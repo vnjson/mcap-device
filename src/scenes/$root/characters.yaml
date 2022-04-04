@@ -2,12 +2,8 @@
   name: . . . .
   nameColor: '#49de58'
   replyColor: '#a4deaa'
-  avatar: img2
+  avatar: sceneMainMenu
 
-- id: kr
-  name: Корней
-  nameColor: orange
-  replyColor: '#a4deaa'
 
 - id: al
   name: Алиса

@@ -11,7 +11,9 @@ const $tpl = $(tpl);
  */
 const tplControls = `<div class="debug__dialog-box-controls">
                         <div>
+                            <span class="debug__checkbox-wrapper"><input  id="debug__hands" type="checkbox"> Кнопки </span>
                             <input  id="debug__character" type="text" value="$">
+
                             <div class="debug__btn"> -> </div>
                         </div>
                         <textarea id="debug__reply" placeholder="text"></textarea>
@@ -24,6 +26,7 @@ export default function (){
 $tpl.css('background-image', `url(${dialogBoxImage})`);
 
 $('.game').append($tplControls);
+
 /**/
 
 $('.game').append($tpl);
@@ -46,21 +49,38 @@ $('.debug__btn').on('click', function (){
 
 
 function print(character, reply){
-
-      if(character.avatar){
-          $tpl.find('.debug__dialog-box__reply-wrapper').css('width', '75%');
+      const replyWrapper = $tpl.find('.debug__dialog-box__reply-wrapper');
+      const checkedHands = $('#debug__hands').prop('checked');
+      if(character.avatar&&checkedHands){
+          replyWrapper.css('width', '75%');
           $tpl.find('.debug__dialog-box__avatar').show().css({
             backgroundImage: `url('${$vnjs.getAssetByName(character.avatar).url}')`
           });
           $tpl.find('.debug__dialog-box__name').html(character.name).css({ color: character.nameColor });
           $tpl.find('.debug__dialog-box__reply').html(reply).css({ color: character.replyColor });
       }
-      else{
-          $tpl.find('.debug__dialog-box__reply-wrapper').css('width', '90%');
+      if(!character.avatar&&!checkedHands){
+          replyWrapper.css('width', 'auto');
           $tpl.find('.debug__dialog-box__avatar').hide();
           $tpl.find('.debug__dialog-box__name').html(character.name).css({ color: character.nameColor });
           $tpl.find('.debug__dialog-box__reply').html(reply).css({ color: character.replyColor });
       }
+
+      if(character.avatar&&!checkedHands){
+          replyWrapper.css('width', 'auto');
+          $tpl.find('.debug__dialog-box__avatar').show().css({
+            backgroundImage: `url('${$vnjs.getAssetByName(character.avatar).url}')`
+          });
+          $tpl.find('.debug__dialog-box__name').html(character.name).css({ color: character.nameColor });
+          $tpl.find('.debug__dialog-box__reply').html(reply).css({ color: character.replyColor });
+      }
+      if(!character.avatar&&checkedHands){
+          replyWrapper.css('width', '90%');
+          $tpl.find('.debug__dialog-box__avatar').hide();
+          $tpl.find('.debug__dialog-box__name').html(character.name).css({ color: character.nameColor });
+          $tpl.find('.debug__dialog-box__reply').html(reply).css({ color: character.replyColor });
+      }
+
       if(reply){
         setCharacterToReply.call($vnjs, reply, character.replyColor);
       }
@@ -86,7 +106,6 @@ if(characterAliaces){
   })
   $tpl.find('.debug__dialog-box__reply').html(newReply).css({ color: replyColor });
 }
-
 
 
 

@@ -34,17 +34,54 @@
   width: 100%; 
 }
 
+.dialog-box__reply-end-point{
+
+  display: inline-block;
+
+}
+.dialog-box__reply-end-point::before{
+  content: '';
+  position: absolute;
+
+  left: 10px;
+  width: 7px;
+  height: 7px;
+  background-color: silver;
+  opacity: 0.7;
+  animation-duration: 0.7s;
+  animation-name: end-point;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes end-point {
+  from {
+    top: -10px;
+    opacity: 0.1;
+  }
+  to {
+    top: -20px;
+    opacity: 0.7;
+  }
+}
+
 .dialog-box__container{
   display: flex; 
   height: 100%; 
 }
 .dialog-box__avatar{
   margin-top: 15px;
+  min-width: 150px;
   width: 150px;
   height: 150px;
   background-repeat: no-repeat;
   background-size: contain;
+  display: none;
 }
+.dialog-box__avatar--show{
+  display: block;
+}
+
 .dialog-box__reply-wrapper{
   position: relative;
+  max-width: 99%;
 }

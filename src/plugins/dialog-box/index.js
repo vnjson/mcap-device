@@ -1,85 +1,67 @@
-
 import "./style.css";
-import tpl from "./tpl.html"
+import tpl from "./tpl.html";
+import dialogBoxImage from './assets/dialog-box.png';
+import DialogBox from './DialogBox.js';
 
-import dialogBoxImage from './assets/dialog-box.png'
-const $tpl = $(tpl)
+
 export default function (){
+  const $tpl = $(tpl);
+  $tpl.css('background-image', `url(${dialogBoxImage})`);
+  this.$store.$stream.append($tpl);
+  // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
+  $tpl.on('mousedown', e=>this.next());
 
+  const dBox = new DialogBox({
+                      $vnjs,
+                      delay: 0,
+                      alpha: 0,
+                      endPoint: false,
+                      dialogBoxSelector: '.dialog-box',
+                      characterNameOutputSelector: '.dialog-box__name',
+                      characterAvatarSelector: '.dialog-box__avatar',
+                      replyWrapperSelector: '.dialog-box__reply-wrapper',
+                      replyOutputSelector: '.dialog-box__reply',
+                      classNameLetter: 'dialog-box__letter',
+                      classNameCharacterNameInReply: 'dialog-box__reply-character-name',
+                      classNameEndPoint: 'dialog-box__reply-end-point'
+               });
 
-  $tpl.css('background-image', `url(${dialogBoxImage})`)
-
-
-  this.$store.$stream.append($tpl)
-  let disabled = false
-  $tpl.on('mousedown', e=>{
-      if(!disabled){
-          this.next()
-      }
+  this.on('postload', ()=>{
+    let conf = this.TREE.$root.package?.['dialog-box'];
+    if(conf){
+        dBox.delay = conf.delay||dBox.delay;
+        dBox.alpha = conf.alpha||dBox.alpha;
+        dBox.endPoint = conf.endPoint||dBox.endPoint;
+    }
+  })
+	this.on('character', (character, reply)=>{
+      dBox.print(character, reply);
   });
 
-	this.on('character', (character, reply)=>{
-
-      if(character.avatar){
-          $tpl.find('.dialog-box__reply-wrapper').css('width', '75%');
-          $tpl.find('.dialog-box__avatar').show().css({
-            backgroundImage: `url('${this.getAssetByName(character.avatar).url}')`
-          });
-          $tpl.find('.dialog-box__name').html(character.name).css({ color: character.nameColor });
-          $tpl.find('.dialog-box__reply').html(reply).css({ color: character.replyColor });
-      }
-      else{
-          $tpl.find('.dialog-box__reply-wrapper').css('width', '90%');
-          $tpl.find('.dialog-box__avatar').hide();
-          $tpl.find('.dialog-box__name').html(character.name).css({ color: character.nameColor });
-          $tpl.find('.dialog-box__reply').html(reply).css({ color: character.replyColor });
-      }
-      if(reply){
-        setCharacterToReply.call(this, reply, character.replyColor);
-      }
-	});
   this.on('dialog-box', param=>{
-
-    if(param==='clear'){
-       $tpl.find('.dialog-box__name').empty();
-       $tpl.find('.dialog-box__reply').empty();
-       $tpl.find('.dialog-box__avatar').css('background-image', `unset`);
-       disabled = false;
-    }
-    else if(param==='disabled'){
-        disabled = true;
-    }
-    else if(param===true){
-      disabled = false;
+    if(param===true){
+      dBox.disabled(false);
       $tpl.show();
     }
+    else if(param==='clear'){
+      dBox.disabled(false);
+      dBox.clear();
+    }
+    else if(param==='disabled'){
+      dBox.disabled(true);
+    }
     else{
-      disabled = false;
       $tpl.hide();
     }
   })
 
-}
-
-
-function setCharacterToReply(reply, replyColor){
-
-let characterAliaces = reply.match(/(@\w+)|(@\$.*?[\s])/gi);
-
-if(characterAliaces){
-  let newReply = reply;
-  characterAliaces.forEach(id=>{
-
-      let cid = id.replace('@', '').trim();
-      let character = this.getCharacterById(cid);
-      if(character){
-          newReply = newReply.replace(id, `<span class="dialog-box__reply-character-name" style="color: ${character.nameColor}">${character.name}</span> `); /*пробел на конце нужен из за спец символов $! которые получаю вместе с пробелом*/
-      }
-  })
-  $tpl.find('.dialog-box__reply').html(newReply).css({ color: replyColor });
-}
-
-
-
 
 }
+
+
+
+
+
+
+
+

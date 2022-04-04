@@ -1,6 +1,11 @@
 preload: true
-debug: false
+debug: true
 
 chess: false
 paint-board: true
 crossword: false
+
+
+dialog-box:
+  delay: 15
+  endPoint: true

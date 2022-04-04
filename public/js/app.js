@@ -29,7 +29,7 @@
     }
   }
 
-  var css$p = ".debug__dialog-box-controls{\n  background-color: wheat;\n  padding: 5px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n\n}\n.debug__dialog-box-controls >div{\n  height: 70px;\n  width: 10%;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n#debug__character{\n  width: 100%;\n  height: 46%;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  text-align: center;\n}\n\n.debug__btn{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  cursor: pointer;\n  color: black;\n  width: 100%;\n  height: 46%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n\n}\n\n\n#debug__reply{\n  width: 89.5%;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  resize: unset;\n  height: 70px;\n  border: unset;\n  outline: unset;\n  caret-color: deepskyblue;\n}\n\n.debug__btn:hover{\n  background-color: rgba(0,0,0,0.3);\n}\n/**\n * \n */\n\n.debug__dialog-box {\n  z-index: 7000;\n  /*position: absolute;\n  bottom: -200px;*/\n  width: 1024px;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: block;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.debug__dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.debug__dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.debug__dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.debug__dialog-box__avatar{\n  margin-top: 15px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n}\n.debug__dialog-box__reply-wrapper{\n  position: relative;\n}\n";
+  var css$p = ".debug__dialog-box-controls{\n  background-color: wheat;\n  padding: 5px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n\n}\n.debug__dialog-box-controls >div{\n  height: 70px;\n  width: 10%;\n  display: flex;\n  flex-direction: column;\n\n}\n.debug__checkbox-wrapper{\n  color: rgba(0,0,0,0.5);\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  font-size: 12px;\n  display: flex;\n  align-items: center;\n}\n\n#debug__character{\n  width: 100%;\n  height: 22px;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  text-align: center;\n  margin-top: 5px;\n}\n\n.debug__btn{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  cursor: pointer;\n  color: black;\n  width: 100%;\n  height: 22px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin-top: 5px;\n  font-size: 12px;\n\n}\n\n\n#debug__reply{\n  width: 89.5%;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  resize: unset;\n  height: 80px;\n  border: unset;\n  outline: unset;\n  caret-color: deepskyblue;\n}\n\n.debug__btn:hover{\n  background-color: rgba(0,0,0,0.3);\n}\n/**\n * \n */\n\n.debug__dialog-box {\n  z-index: 7000;\n  /*position: absolute;\n  bottom: -200px;*/\n  width: 1024px;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: block;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.debug__dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n.debug__dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n}\n.debug__dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.debug__dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.debug__dialog-box__avatar{\n  margin-top: 15px;\n  width: 150px;\n  height: 150px;\n  min-width: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n}\n.debug__dialog-box__reply-wrapper{\n  position: relative;\n}\n\n";
   n(css$p,{});
 
   var tpl$e = "\n<div class=\"debug__dialog-box\">\n  <div class=\"debug__dialog-box__container\">\n        <div class=\"debug__dialog-box__avatar\"></div>\n        <div class=\"debug__dialog-box__reply-wrapper\">\n          <div class=\"debug__dialog-box__name\"></div>\n          <div class=\"debug__dialog-box__reply\"></div>\n        </div>\n  </div>\n</div>";
@@ -41,7 +41,7 @@
    * controls
    */
 
-  var tplControls = "<div class=\"debug__dialog-box-controls\">\n                        <div>\n                            <input  id=\"debug__character\" type=\"text\" value=\"$\">\n                            <div class=\"debug__btn\"> -> </div>\n                        </div>\n                        <textarea id=\"debug__reply\" placeholder=\"text\"></textarea>\n                     </div>";
+  var tplControls = "<div class=\"debug__dialog-box-controls\">\n                        <div>\n                            <span class=\"debug__checkbox-wrapper\"><input  id=\"debug__hands\" type=\"checkbox\"> \u041A\u043D\u043E\u043F\u043A\u0438 </span>\n                            <input  id=\"debug__character\" type=\"text\" value=\"$\">\n\n                            <div class=\"debug__btn\"> -> </div>\n                        </div>\n                        <textarea id=\"debug__reply\" placeholder=\"text\"></textarea>\n                     </div>";
   var $tplControls = $(tplControls);
   function debugDialogBox () {
     $tpl$a.css('background-image', "url(".concat(dialogBoxImage$1, ")"));
@@ -63,8 +63,11 @@
   }
 
   function print(character, reply) {
-    if (character.avatar) {
-      $tpl$a.find('.debug__dialog-box__reply-wrapper').css('width', '75%');
+    var replyWrapper = $tpl$a.find('.debug__dialog-box__reply-wrapper');
+    var checkedHands = $('#debug__hands').prop('checked');
+
+    if (character.avatar && checkedHands) {
+      replyWrapper.css('width', '75%');
       $tpl$a.find('.debug__dialog-box__avatar').show().css({
         backgroundImage: "url('".concat($vnjs.getAssetByName(character.avatar).url, "')")
       });
@@ -74,8 +77,34 @@
       $tpl$a.find('.debug__dialog-box__reply').html(reply).css({
         color: character.replyColor
       });
-    } else {
-      $tpl$a.find('.debug__dialog-box__reply-wrapper').css('width', '90%');
+    }
+
+    if (!character.avatar && !checkedHands) {
+      replyWrapper.css('width', 'auto');
+      $tpl$a.find('.debug__dialog-box__avatar').hide();
+      $tpl$a.find('.debug__dialog-box__name').html(character.name).css({
+        color: character.nameColor
+      });
+      $tpl$a.find('.debug__dialog-box__reply').html(reply).css({
+        color: character.replyColor
+      });
+    }
+
+    if (character.avatar && !checkedHands) {
+      replyWrapper.css('width', 'auto');
+      $tpl$a.find('.debug__dialog-box__avatar').show().css({
+        backgroundImage: "url('".concat($vnjs.getAssetByName(character.avatar).url, "')")
+      });
+      $tpl$a.find('.debug__dialog-box__name').html(character.name).css({
+        color: character.nameColor
+      });
+      $tpl$a.find('.debug__dialog-box__reply').html(reply).css({
+        color: character.replyColor
+      });
+    }
+
+    if (!character.avatar && checkedHands) {
+      replyWrapper.css('width', '90%');
       $tpl$a.find('.debug__dialog-box__avatar').hide();
       $tpl$a.find('.debug__dialog-box__name').html(character.name).css({
         color: character.nameColor
@@ -86,11 +115,11 @@
     }
 
     if (reply) {
-      setCharacterToReply$1.call($vnjs, reply, character.replyColor);
+      setCharacterToReply.call($vnjs, reply, character.replyColor);
     }
   }
 
-  function setCharacterToReply$1(reply, replyColor) {
+  function setCharacterToReply(reply, replyColor) {
     var characterAliaces = reply.match(/(@\w+)|(@\$.*?[\s])/gi);
 
     if (characterAliaces) {
@@ -391,124 +420,354 @@
     $('#screen').append(tpl$b);
   }
 
-  var css$l = ".dialog-box {\n  z-index: 7000;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: none;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.dialog-box__avatar{\n  margin-top: 15px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n}\n.dialog-box__reply-wrapper{\n  position: relative;\n}\n";
+  var css$l = ".dialog-box {\n  z-index: 7000;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: none;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.dialog-box__reply-end-point{\n\n  display: inline-block;\n\n}\n.dialog-box__reply-end-point::before{\n  content: '';\n  position: absolute;\n\n  left: 10px;\n  width: 7px;\n  height: 7px;\n  background-color: silver;\n  opacity: 0.7;\n  animation-duration: 0.7s;\n  animation-name: end-point;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}\n@keyframes end-point {\n  from {\n    top: -10px;\n    opacity: 0.1;\n  }\n  to {\n    top: -20px;\n    opacity: 0.7;\n  }\n}\n\n.dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.dialog-box__avatar{\n  margin-top: 15px;\n  min-width: 150px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  display: none;\n}\n.dialog-box__avatar--show{\n  display: block;\n}\n\n.dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n}\n";
   n(css$l,{});
 
   var tpl$a = "<div class=\"dialog-box component\">\n  <div class=\"dialog-box__container\">\n        <div class=\"dialog-box__avatar\"></div>\n        <div class=\"dialog-box__reply-wrapper\">\n          <div class=\"dialog-box__name\"></div>\n          <div class=\"dialog-box__reply\"></div>\n        </div>\n  </div>\n</div>";
 
   var dialogBoxImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAADICAYAAAB26ZNJAAABbmlDQ1BpY2MAACiRdZE7SwNBFIU/oxLRSIqkELFIEcUiAVGQlBJBG7VIIvhqks1LyCbLboIEW8HGQrAQbXwV/gNtBVsFQVAEESt/gK9GwnrHDSRIMsvs/Tgz5zJzBlxzBU23usZAL5bN2Gw0sLS8EnC/4cKPjwiepGYZ8/GZBG3H9wMdqt6HVa/2+1qOvnTG0qCjR3hSM8yy8JTw3EbZULwj7NfyybTwsXDIlAMK3yg95fCr4pzDn4rNRGwaXKpnINfEqSbW8qYuPCoc1AsVrX4edRNPprgYlzoocwiLGLNECZCiwjoFyoSlFiWz1r6xP98CJfFo8jeoYoojR168IVEr0jUjNSt6Rr4CVZX7/zyt7MS4090The4X2/4YBvce1HZt++fEtmun0PkMV8WGvyQ5Rb5E321owSPwbsHFdUNL7cPlNgw8GUkz+Sd1ynRls/B+Dv3L4LuD3lUnq/o6Z4+Q2JQnuoWDQxiR/d61XxVkaBT4cFhYAAAACXBIWXMAAArwAAAK8AFCrDSYAAAFAUlEQVR4Xu3YMQHAIBDAwKf+pSEKCcwld3MUZM3MHgAAAOBp3y0AAAAA/s8AAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDuHwAlzNu7SaAAAAAElFTkSuQmCC";
 
-  var $tpl$8 = $(tpl$a);
+  var DialogBox = /*#__PURE__*/function () {
+    function DialogBox(param) {
+      _classCallCheck(this, DialogBox);
+
+      this.$vnjs = param.$vnjs;
+      /*Tags*/
+
+      this.dialogBoxTag = document.querySelector(param.dialogBoxSelector);
+      this.characterNameTag = document.querySelector(param.characterNameOutputSelector);
+      this.replyTag = document.querySelector(param.replyOutputSelector);
+      this.characterAvatarTag = document.querySelector(param.characterAvatarSelector);
+      this.replyWrapperTag = document.querySelector(param.replyWrapperSelector);
+      /**/
+
+      this.classNameEndPoint = param.classNameEndPoint;
+      this.classNameLetter = param.classNameLetter;
+      this.classNameCharacterNameInReply = param.classNameCharacterNameInReply;
+      this.delay = param.delay;
+      this.alpha = param.alpha;
+      this.endPoint = param.endPoint;
+      this.character;
+      this.reply;
+      this.index = 0;
+      this.interval; // небходимы для того, что бы не ломать html теги при разбивании на отдельные символы
+
+      this.letterInclude = true;
+      this.letterExlude = false; // текущий символ
+
+      this.letter;
+    }
+
+    _createClass(DialogBox, [{
+      key: "print",
+      value: function print(character) {
+        var reply = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+        this.reset();
+        this.character = character; //проверяем сущесвуют ли внутри реплики ссылки на персонажей
+
+        this.reply = this.replaceCharacterLink(reply); // Если скорость вывода символов равна нулю, то строка не разбивается на символы
+
+        if (this.delay > 0) {
+          this.replyOutputBySingleLetter();
+        } else {
+          this.outputToHTML();
+        }
+      }
+      /**
+       * Посимвольный вывод текста
+       */
+
+    }, {
+      key: "replyOutputBySingleLetter",
+      value: function replyOutputBySingleLetter() {
+        // Перед открывающей скобкой ставим пробел.
+        // Это помогает избежать бага когда между двумя тегами ( >< ) отсутсуют символы
+        // А так же, если реплика начинается с открывающей угловой скобки ( < )
+        this.reply = this.reply.replaceAll('<', ' <').split(''); // Убираем лишние пробелы.
+        // Из за того, что  встречается несколько пробелов вывод символов идёт рвано
+        // Так как затрачивается время на отрисовку пробелов завернутых в <span>
+        // А визуально их не видно. Так как браузер обычные пробелы съедает
+
+        this.reply = this.reply.join('').replaceAll(/ {2,}/gi, ' ')
+        /*убираем пробелы больше одного подряд*/
+        .replaceAll(' </span>', '</span>')
+        /*убираем проел в конце имени*/
+        .split(''); // пробигаемся по массиву символов методом map
+        // И соеденяем массив полученных символов завёрнутых в <span> в одну реплику 
+
+        this.reply = this.reply.map(this.parse.bind(this)).join(''); // выводим готовый реузльтат
+
+        this.outputToHTML(); // Запускаем посимвольное изменение прозрачности
+
+        this.startOutputReply();
+      }
+    }, {
+      key: "outputToHTML",
+      value: function outputToHTML() {
+        /**
+         * Определяем, есть ли у текущего персонажа аватар
+         * Если есть, то отображаем его
+         */
+        if (this.character.avatar) {
+          this.characterAvatarTag.style.backgroundImage = "url('".concat(this.$vnjs.getAssetByName(this.character.avatar).url, "')");
+          this.characterAvatarTag.classList.add('dialog-box__avatar--show');
+        } else {
+          this.characterAvatarTag.classList.remove('dialog-box__avatar--show');
+        } // output character name
+
+
+        this.characterNameTag.style.color = this.character.nameColor;
+        this.characterNameTag.innerHTML = this.character.name; // output reply
+
+        this.replyTag.style.color = this.character.replyColor;
+        this.replyTag.innerHTML = this.reply;
+      }
+      /**
+       * Заменяем ссылку на персонажа его именем
+       */
+
+    }, {
+      key: "replaceCharacterLink",
+      value: function replaceCharacterLink(reply) {
+        // проверяем есть ли ссылка на персонажа в реплике
+        var characterAliaces = reply.match(/@\w+|@\$.*?[\s]|@\$/gi);
+
+        if (characterAliaces) {
+          var len = characterAliaces.length;
+
+          for (var i = 0; i < len; i++) {
+            var id = characterAliaces[i]; // получаем id персонажа
+
+            var cid = id.replace('@', '').trim(); // получаем персонажа по id
+
+            var character = this.$vnjs.getCharacterById(cid);
+
+            if (character) {
+              // заменяем ссылку на персонажа именем персонажа
+              reply = reply.replace(id, "<span class=\"".concat(this.classNameCharacterNameInReply, "\" style=\"color: ").concat(character.nameColor, "\">").concat(character.name, "</span>"));
+            }
+          }
+        }
+
+        return reply;
+      }
+      /**
+       * Вызывается в качестве callback функции метода map
+       * при переборе разделенной на символы входящей строки.
+       * @param {String} letter текущий сивол
+       */
+
+    }, {
+      key: "parse",
+      value: function parse(letter) {
+        this.letter = letter; // проверяем есть ли html теги в реплике
+
+        this.analyzeLetter(this.letter);
+        var tpl = "<span class=\"".concat(this.classNameLetter, "\" style=\"opacity: ").concat(this.alpha, "\">").concat(this.letter, "</span>");
+
+        if (this.letterInclude) {
+          return tpl;
+        }
+
+        return this.letter;
+      }
+      /**
+       * Проверяем символ на html теги.
+       * Если таковые присутсвуют, то останавливаем посимвольный вывод текста.
+       * Что бы не нарушать целостность html разметки. 
+       * Найдя закрывающую угловую скобку, переключаем режим обратно в посимвольный вывод текста
+       * @param {String} letter текущий сивол
+       */
+
+    }, {
+      key: "analyzeLetter",
+      value: function analyzeLetter(letter) {
+        switch (letter) {
+          case '<':
+            this.letterInclude = false;
+            break;
+
+          case '>':
+            this.letterExlude = true;
+            break;
+
+          default:
+            if (this.letterExlude) {
+              this.letterInclude = true;
+              this.letterExlude = false;
+            }
+
+        }
+      }
+      /**
+       * Получаем все теги в которые были завёрнуты буквы.
+       * И меняем им прозрачность на 1. Эмулируя посимвольный вывод текста.
+       */
+
+    }, {
+      key: "startOutputReply",
+      value: function startOutputReply() {
+        var _this = this;
+
+        // получаем все теги в которые обёрныты отдельные символы
+        var letters = this.replyTag.querySelectorAll('.' + this.classNameLetter);
+        var len = letters.length; // отображаем каждый символ по отдельности
+
+        this.interval = setInterval(function () {
+          letters[_this.index++].style.opacity = 1;
+
+          if (_this.index >= len) {
+            _this.onEndOutputReply();
+          }
+        }, this.delay);
+      }
+    }, {
+      key: "onEndOutputReply",
+      value: function onEndOutputReply() {
+        if (this.endPoint) {
+          this.replyTag.innerHTML += "<span class=\"".concat(this.classNameEndPoint, "\"></span>");
+        }
+
+        this.reset();
+      }
+    }, {
+      key: "clear",
+      value: function clear() {
+        this.characterNameTag.innerHTML = '';
+        this.replyTag.innerHTML = '';
+        this.characterAvatarTag.style.backgroundImage = 'unset';
+      }
+    }, {
+      key: "disabled",
+      value: function disabled(flag) {
+        if (flag) {
+          this.dialogBoxTag.style['pointer-events'] = 'none';
+        } else {
+          this.dialogBoxTag.style['pointer-events'] = 'all';
+        }
+      }
+    }, {
+      key: "reset",
+      value: function reset() {
+        this.index = 0;
+        this.reply = '';
+        clearInterval(this.interval);
+      }
+    }]);
+
+    return DialogBox;
+  }();
+
   function dialogBox () {
     var _this = this;
 
-    $tpl$8.css('background-image', "url(".concat(dialogBoxImage, ")"));
-    this.$store.$stream.append($tpl$8);
-    var disabled = false;
-    $tpl$8.on('mousedown', function (e) {
-      if (!disabled) {
-        _this.next();
+    var $tpl = $(tpl$a);
+    $tpl.css('background-image', "url(".concat(dialogBoxImage, ")"));
+    this.$store.$stream.append($tpl); // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
+
+    $tpl.on('mousedown', function (e) {
+      return _this.next();
+    });
+    var dBox = new DialogBox({
+      $vnjs: $vnjs,
+      delay: 0,
+      alpha: 0,
+      endPoint: false,
+      dialogBoxSelector: '.dialog-box',
+      characterNameOutputSelector: '.dialog-box__name',
+      characterAvatarSelector: '.dialog-box__avatar',
+      replyWrapperSelector: '.dialog-box__reply-wrapper',
+      replyOutputSelector: '.dialog-box__reply',
+      classNameLetter: 'dialog-box__letter',
+      classNameCharacterNameInReply: 'dialog-box__reply-character-name',
+      classNameEndPoint: 'dialog-box__reply-end-point'
+    });
+    this.on('postload', function () {
+      var _this$TREE$$root$pack;
+
+      var conf = (_this$TREE$$root$pack = _this.TREE.$root["package"]) === null || _this$TREE$$root$pack === void 0 ? void 0 : _this$TREE$$root$pack['dialog-box'];
+
+      if (conf) {
+        dBox.delay = conf.delay || dBox.delay;
+        dBox.alpha = conf.alpha || dBox.alpha;
+        dBox.endPoint = conf.endPoint || dBox.endPoint;
       }
     });
     this.on('character', function (character, reply) {
-      if (character.avatar) {
-        $tpl$8.find('.dialog-box__reply-wrapper').css('width', '75%');
-        $tpl$8.find('.dialog-box__avatar').show().css({
-          backgroundImage: "url('".concat(_this.getAssetByName(character.avatar).url, "')")
-        });
-        $tpl$8.find('.dialog-box__name').html(character.name).css({
-          color: character.nameColor
-        });
-        $tpl$8.find('.dialog-box__reply').html(reply).css({
-          color: character.replyColor
-        });
-      } else {
-        $tpl$8.find('.dialog-box__reply-wrapper').css('width', '90%');
-        $tpl$8.find('.dialog-box__avatar').hide();
-        $tpl$8.find('.dialog-box__name').html(character.name).css({
-          color: character.nameColor
-        });
-        $tpl$8.find('.dialog-box__reply').html(reply).css({
-          color: character.replyColor
-        });
-      }
-
-      if (reply) {
-        setCharacterToReply.call(_this, reply, character.replyColor);
-      }
+      dBox.print(character, reply);
     });
     this.on('dialog-box', function (param) {
-      if (param === 'clear') {
-        $tpl$8.find('.dialog-box__name').empty();
-        $tpl$8.find('.dialog-box__reply').empty();
-        $tpl$8.find('.dialog-box__avatar').css('background-image', "unset");
-        disabled = false;
+      if (param === true) {
+        dBox.disabled(false);
+        $tpl.show();
+      } else if (param === 'clear') {
+        dBox.disabled(false);
+        dBox.clear();
       } else if (param === 'disabled') {
-        disabled = true;
-      } else if (param === true) {
-        disabled = false;
-        $tpl$8.show();
+        dBox.disabled(true);
       } else {
-        disabled = false;
-        $tpl$8.hide();
+        $tpl.hide();
       }
     });
   }
 
-  function setCharacterToReply(reply, replyColor) {
-    var _this2 = this;
-
-    var characterAliaces = reply.match(/(@\w+)|(@\$.*?[\s])/gi);
-
-    if (characterAliaces) {
-      var newReply = reply;
-      characterAliaces.forEach(function (id) {
-        var cid = id.replace('@', '').trim();
-
-        var character = _this2.getCharacterById(cid);
-
-        if (character) {
-          newReply = newReply.replace(id, "<span class=\"dialog-box__reply-character-name\" style=\"color: ".concat(character.nameColor, "\">").concat(character.name, "</span> "));
-          /*пробел на конце нужен из за спец символов $! которые получаю вместе с пробелом*/
-        }
-      });
-      $tpl$8.find('.dialog-box__reply').html(newReply).css({
-        color: replyColor
-      });
-    }
-  }
-
-  var css$k = ".stream__hands {\n    position: absolute;\n    z-index: 9999;\n    opacity: 0.8;\n    top: unset;\n    right: 0;\n    bottom: 10px;\n    display: none; \n    height: 185px;\n\n  }\n.stream__hands .stream__hand {\n    width: 95px;\n    height: 95px;\n    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAGZmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLWMwMDIgNzkuMTY0NDYwLCAyMDIwLzA1LzEyLTE2OjA0OjE3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIxLTExLTA1VDEyOjM5OjM0KzAzOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDIxLTExLTA1VDEyOjM5OjM0KzAzOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMS0xMS0wNVQxMjozOTozNCswMzowMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo0ZDZhODRkYi1kYWE5LTE3NDYtOWYxZS1iMjE4ODRiZDRmNTkiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDphMmY2NzgyMy03MTY2LTRhNGYtOGMyMC04N2FlNzQ5YzJmZTMiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1MmI1MTYxMC1kMjQ0LTkzNGYtYjBmNS1jMjk1ZjJlNzY5OTQiIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIGRjOmZvcm1hdD0iaW1hZ2UvcG5nIj4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iY3JlYXRlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo1MmI1MTYxMC1kMjQ0LTkzNGYtYjBmNS1jMjk1ZjJlNzY5OTQiIHN0RXZ0OndoZW49IjIwMjEtMTEtMDVUMTI6Mzk6MzQrMDM6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMS4yIChXaW5kb3dzKSIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6NGQ2YTg0ZGItZGFhOS0xNzQ2LTlmMWUtYjIxODg0YmQ0ZjU5IiBzdEV2dDp3aGVuPSIyMDIxLTExLTA1VDEyOjM5OjM0KzAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDxwaG90b3Nob3A6RG9jdW1lbnRBbmNlc3RvcnM+IDxyZGY6QmFnPiA8cmRmOmxpPmFkb2JlOmRvY2lkOnBob3Rvc2hvcDoyZWIwNzk3Mi1hMTdlLTA0NGYtYWIxYi04MDExN2JmYWYzODM8L3JkZjpsaT4gPC9yZGY6QmFnPiA8L3Bob3Rvc2hvcDpEb2N1bWVudEFuY2VzdG9ycz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6BgqWgAAAF1klEQVR4nOVb247TMBA9YzvOZcWyVYWQeOEBxHfzA7zwzCfwD0gIgQQS0E1308Q3Hrr2Ote2CFiSHqlSktpJ5oxnMh57yDmHcwZ76Bd4aJw9ASI+efPmjcvzHF++fMHV1RX8sZQSQtw35Zxju91is9mAcw4iAgAYY7BarXBxcQHnHL5//46qqsA5B2OHuT7VHKfaExGUUrDWIs9zvH//HsYYEBFev35NgwTc3t7CWou6rlvHl5eXLQKEEFBKIUmSlnDGGGRZhjzP4ZxDmqYwxoBzDs75bwvknAMR9f4P5wQQqPVfrJQkSaC1hlIqXB8kgDEGxhiIqHX89evXlgCcc1RVhZubmyC8cw7GGBhjUJYlnHMoyxK73e4o4aeI8MITUUsAay2IAGcBh+E+ngTfd5IArz0pJd6+fRu03u1krYWUEmmawjmHpmnQNE1o5x+cJEl4aF3X0FqDiFqEGGPCsb/uyfTP5pzDOQchBGQqQz+jNRhjaGqFRjUtxRljsF6vkec5rLXh3pMExMM+TVMwxiCEQJqmrU7OOUgpkSQJAKBpGtR13WPYmwcRYbfbQd+9cOwPrLXhuDua/DXGWCAgzdJAgFZqkgD/foyx000AAKSU2G63+PjxY48AIUQYIUqpoN3u/Twp3iHFgk4REJuBJ4BzDpGI0M8aAyIGrTS00YEAf48XL15gvV4HwQ+agJQyaJaIUBQFPnz4gHfv3mGOWK1WeP78OTabTU+5HqMjwDc81YH9TyAiaK3vnCUNfopbBNzc3EBrjd1uB2stjDEnf5v/Jwghwqg2xqBpmh4JLQJ+/PgBKSWur6+D04htdG5IkgRZlu0d5p1iuyO6Nya8xofsZW7wznRKia0R8OjRI6RpCqVUGP5zNoEYQggkSTJtAo8fP0ZRFKiqahEExM58jIBRE3DOwdl5ExDDK7MrT2sEbDabMBHK8gwyu4/25o6jCNhut6jrGlVVIU1TyLQ9DZ4zxghomQDnHEKIEHpiGaN/Ei0C9gwBzlk0dY26rqGUeqh3+6PwUe5BJwjsidBaQysFY/Q/ecG/jbHJ0GieaqzD0tAjYC8vdX7LwEkj4Fxw9gQs4yN/BBhjrRR+uP5A7/PPcfJX4FzQMgHPjk9FH7ui878i1vpYTnC+0v0hLJ6AQ8Fc7yvgG1trYa2ddT4gyzIURRGSO03THM4JLgmxLxvDogkwxkApBaXU6EhedCB0fX2Nb9++oSzLsDw2mRCJMZZBmROOkWE0KbqEOMCHv/GyexctE/DLYcD9XoE5J0WllOErQESDCyQHTWDuONkEloqj9gcc02FecOG3nw9wMHZGOcFjZBgcAT4r7Le+zBXeqd/vc9in/WO0CPDOwm+Umvu6QKxE54bnNYv2AXF+wzkbtsrEWHQo7CdDRAQpUwy5vIUTwMC5ABGDlBk474u7+Djg3u5d53yPnhNcSgR4Dwei/WbOeDuvxyABS4RSCnVdH7c6vET4zPBZZYXjT/kZL4xMr3CPEuAzwnOPBGObHwrqek7QR0tXV1cQQuDVq1d49uzZXcUGcGi/wH6YhbPJh8fPJSKkaRoSF3ESo7sVn4hCkYZzDhcXFyiKIrT1iY+nT5+iLEsAe4Wqu/qCUQL8yzDGQpHEer3Gy5cvAwFtQfpC/S4BjDEURdETeqjQgTGGqqpwe3sL5xxWqxUuLy+DkL59WZao6xpCiOO2yeV5DiFEYJExBqVUqAH62wTEWvdC+NR2l4DdbhcIEEK0+vn21tqw6y1JEhhjpkfAkydPQqmc1vpuFuXw8+fPAUH3oaYXYKiiq7XlLkK8DT/O03lNMcYg5b42SGsdynHie8cJ28+fP+PTp09B6O7zfNWY7ztKQFwz5Bv7ffbdgqi4AKH7UL/VTko5SEBsp3HRlM/beyJ826qqegT4oi0AYeo+Nspih350xUis1aHvZ3yt/x/gHBvs1yVvqDYoDliGAphuHWE86xuKZON79d51qaHvsTiDQGgaZ0/ALy4XCMLKcyfBAAAAAElFTkSuQmCC);\n    background-size: contain;\n    background-position: center;\n    background-repeat: no-repeat;\n    z-index: 100;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    cursor: pointer;\n}\n.stream__hands .stream__hand-left {\n    width: 60px;\n    height: 60px;\n    background-size: contain;\n    background-position: center;\n    background-repeat: no-repeat; \n}\n.stream__hands .stream__hand-right {\n    width: 60px;\n    height: 60px;\n    background-size: contain;\n    background-position: center;\n    background-repeat: no-repeat; \n}\n";
+  var css$k = ".stream__hands {\n    position: absolute;\n    z-index: 9999;\n    opacity: 0.8;\n    top: unset;\n    right: 0;\n    bottom: 10px;\n    display: none; \n    height: 185px;\n\n  }\n.stream__hands .stream__hand {\n    width: 95px;\n    height: 95px;\n    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAGZmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLWMwMDIgNzkuMTY0NDYwLCAyMDIwLzA1LzEyLTE2OjA0OjE3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIxLTExLTA1VDEyOjM5OjM0KzAzOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDIxLTExLTA1VDEyOjM5OjM0KzAzOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMS0xMS0wNVQxMjozOTozNCswMzowMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo0ZDZhODRkYi1kYWE5LTE3NDYtOWYxZS1iMjE4ODRiZDRmNTkiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDphMmY2NzgyMy03MTY2LTRhNGYtOGMyMC04N2FlNzQ5YzJmZTMiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1MmI1MTYxMC1kMjQ0LTkzNGYtYjBmNS1jMjk1ZjJlNzY5OTQiIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIGRjOmZvcm1hdD0iaW1hZ2UvcG5nIj4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iY3JlYXRlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo1MmI1MTYxMC1kMjQ0LTkzNGYtYjBmNS1jMjk1ZjJlNzY5OTQiIHN0RXZ0OndoZW49IjIwMjEtMTEtMDVUMTI6Mzk6MzQrMDM6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMS4yIChXaW5kb3dzKSIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6NGQ2YTg0ZGItZGFhOS0xNzQ2LTlmMWUtYjIxODg0YmQ0ZjU5IiBzdEV2dDp3aGVuPSIyMDIxLTExLTA1VDEyOjM5OjM0KzAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDxwaG90b3Nob3A6RG9jdW1lbnRBbmNlc3RvcnM+IDxyZGY6QmFnPiA8cmRmOmxpPmFkb2JlOmRvY2lkOnBob3Rvc2hvcDoyZWIwNzk3Mi1hMTdlLTA0NGYtYWIxYi04MDExN2JmYWYzODM8L3JkZjpsaT4gPC9yZGY6QmFnPiA8L3Bob3Rvc2hvcDpEb2N1bWVudEFuY2VzdG9ycz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6BgqWgAAAF1klEQVR4nOVb247TMBA9YzvOZcWyVYWQeOEBxHfzA7zwzCfwD0gIgQQS0E1308Q3Hrr2Ote2CFiSHqlSktpJ5oxnMh57yDmHcwZ76Bd4aJw9ASI+efPmjcvzHF++fMHV1RX8sZQSQtw35Zxju91is9mAcw4iAgAYY7BarXBxcQHnHL5//46qqsA5B2OHuT7VHKfaExGUUrDWIs9zvH//HsYYEBFev35NgwTc3t7CWou6rlvHl5eXLQKEEFBKIUmSlnDGGGRZhjzP4ZxDmqYwxoBzDs75bwvknAMR9f4P5wQQqPVfrJQkSaC1hlIqXB8kgDEGxhiIqHX89evXlgCcc1RVhZubmyC8cw7GGBhjUJYlnHMoyxK73e4o4aeI8MITUUsAay2IAGcBh+E+ngTfd5IArz0pJd6+fRu03u1krYWUEmmawjmHpmnQNE1o5x+cJEl4aF3X0FqDiFqEGGPCsb/uyfTP5pzDOQchBGQqQz+jNRhjaGqFRjUtxRljsF6vkec5rLXh3pMExMM+TVMwxiCEQJqmrU7OOUgpkSQJAKBpGtR13WPYmwcRYbfbQd+9cOwPrLXhuDua/DXGWCAgzdJAgFZqkgD/foyx000AAKSU2G63+PjxY48AIUQYIUqpoN3u/Twp3iHFgk4REJuBJ4BzDpGI0M8aAyIGrTS00YEAf48XL15gvV4HwQ+agJQyaJaIUBQFPnz4gHfv3mGOWK1WeP78OTabTU+5HqMjwDc81YH9TyAiaK3vnCUNfopbBNzc3EBrjd1uB2stjDEnf5v/Jwghwqg2xqBpmh4JLQJ+/PgBKSWur6+D04htdG5IkgRZlu0d5p1iuyO6Nya8xofsZW7wznRKia0R8OjRI6RpCqVUGP5zNoEYQggkSTJtAo8fP0ZRFKiqahEExM58jIBRE3DOwdl5ExDDK7MrT2sEbDabMBHK8gwyu4/25o6jCNhut6jrGlVVIU1TyLQ9DZ4zxghomQDnHEKIEHpiGaN/Ei0C9gwBzlk0dY26rqGUeqh3+6PwUe5BJwjsidBaQysFY/Q/ecG/jbHJ0GieaqzD0tAjYC8vdX7LwEkj4Fxw9gQs4yN/BBhjrRR+uP5A7/PPcfJX4FzQMgHPjk9FH7ui878i1vpYTnC+0v0hLJ6AQ8Fc7yvgG1trYa2ddT4gyzIURRGSO03THM4JLgmxLxvDogkwxkApBaXU6EhedCB0fX2Nb9++oSzLsDw2mRCJMZZBmROOkWE0KbqEOMCHv/GyexctE/DLYcD9XoE5J0WllOErQESDCyQHTWDuONkEloqj9gcc02FecOG3nw9wMHZGOcFjZBgcAT4r7Le+zBXeqd/vc9in/WO0CPDOwm+Umvu6QKxE54bnNYv2AXF+wzkbtsrEWHQo7CdDRAQpUwy5vIUTwMC5ABGDlBk474u7+Djg3u5d53yPnhNcSgR4Dwei/WbOeDuvxyABS4RSCnVdH7c6vET4zPBZZYXjT/kZL4xMr3CPEuAzwnOPBGObHwrqek7QR0tXV1cQQuDVq1d49uzZXcUGcGi/wH6YhbPJh8fPJSKkaRoSF3ESo7sVn4hCkYZzDhcXFyiKIrT1iY+nT5+iLEsAe4Wqu/qCUQL8yzDGQpHEer3Gy5cvAwFtQfpC/S4BjDEURdETeqjQgTGGqqpwe3sL5xxWqxUuLy+DkL59WZao6xpCiOO2yeV5DiFEYJExBqVUqAH62wTEWvdC+NR2l4DdbhcIEEK0+vn21tqw6y1JEhhjpkfAkydPQqmc1vpuFuXw8+fPAUH3oaYXYKiiq7XlLkK8DT/O03lNMcYg5b42SGsdynHie8cJ28+fP+PTp09B6O7zfNWY7ztKQFwz5Bv7ffbdgqi4AKH7UL/VTko5SEBsp3HRlM/beyJ826qqegT4oi0AYeo+Nspih350xUis1aHvZ3yt/x/gHBvs1yVvqDYoDliGAphuHWE86xuKZON79d51qaHvsTiDQGgaZ0/ALy4XCMLKcyfBAAAAAElFTkSuQmCC);\n    background-size: contain;\n    background-position: center;\n    background-repeat: no-repeat;\n    z-index: 100;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    cursor: pointer;\n}\n.stream__hands .stream__hand-left {\n    width: 60px;\n    height: 60px;\n    background-size: contain;\n    background-position: center;\n    background-repeat: no-repeat; \n}\n.stream__hands .stream__hand-right {\n    width: 60px;\n    height: 60px;\n    background-size: contain;\n    background-position: center;\n    background-repeat: no-repeat; \n}\n\n";
   n(css$k,{});
 
   var tpl$9 = "<div class=\"stream__hands component\">\n    <div class=\"stream__hand\">\n        <div class=\"stream__hand-left\"></div>\n    </div>\n    <div class=\"stream__hand\">\n        <div class=\"stream__hand-right\"></div>\n    </div>\n</div>";
 
+  var $tpl$8 = $(tpl$9);
   function hands () {
     var _this = this;
-
-    var $tpl = $(tpl$9);
-    this.$store.$stream.append($tpl);
+    this.$store.$stream.append($tpl$8);
+    var isShow = false;
     this.on('hand-left', function (id) {
       if (id) {
-        $tpl.show();
-        $tpl.find('.stream__hand-left').css('background-image', "url('".concat(_this.getAssetByName(id).url, "')"));
+        isShow = true;
+        $tpl$8.show();
+        $tpl$8.find('.stream__hand-left').css('background-image', "url('".concat(_this.getAssetByName(id).url, "')"));
       } else {
-        $tpl.find('.stream__hand-left').css('background-image', "unset");
+        $tpl$8.find('.stream__hand-left').css('background-image', "unset");
       }
     });
     this.on('hand-right', function (id) {
       if (id) {
-        $tpl.show();
-        $tpl.find('.stream__hand-right').css('background-image', "url('".concat(_this.getAssetByName(id).url, "')"));
+        isShow = true;
+        $tpl$8.show();
+        $tpl$8.find('.stream__hand-right').css('background-image', "url('".concat(_this.getAssetByName(id).url, "')"));
       } else {
-        $tpl.find('.stream__hand-right').css('background-image', "unset");
+        $tpl$8.find('.stream__hand-right').css('background-image', "unset");
       }
     });
     this.on('hands', function (data) {
       if (data) {
-        $tpl.show();
+        isShow = true;
+        $tpl$8.show();
       } else {
-        $tpl.hide();
+        isShow = false;
+        $tpl$8.hide();
+      }
+    });
+    var replyWrapper = $('.dialog-box__reply-wrapper');
+    this.on('character', function (character, reply) {
+      // если аватар есть и руки отображены
+      if (character.avatar && isShow) {
+        replyWrapper.css('width', '75%');
+      } // если нет ни аватара ни рук
+
+
+      if (!character.avatar && !isShow) {
+        replyWrapper.css('width', 'auto');
+      } // Если аватара нет, но показывает руки
+
+
+      if (!character.avatar && isShow) {
+        replyWrapper.css('width', '90%');
+      } // если есть аватар, но руки не отображаются
+
+
+      if (character.avatar && !isShow) {
+        replyWrapper.css('width', 'auto');
       }
     });
   }
@@ -2401,6 +2660,8 @@
   //import zimIntro           from './plugins/zim-intro/index.js';
 
   function plugins () {
+    var _this = this;
+
     if ($vnjs.debug) {
       //this.use(debug);
       this.use(debugDialogBox);
@@ -2453,7 +2714,11 @@
     /*zim*/
     //this.use(zimIntro);
 
-    this.on('next', this.next);
+    this.on('next', function () {
+      setTimeout(function () {
+        return _this.next();
+      }, 10);
+    });
   }
 
   /**

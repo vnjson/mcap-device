@@ -101,7 +101,9 @@ export default function(){
   /*zim*/
   //this.use(zimIntro);
 
-  this.on('next', this.next);
+  this.on('next', ()=>{
+      setTimeout(()=>this.next(), 10)
+  });
 
   
 }
