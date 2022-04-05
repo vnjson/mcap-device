@@ -1475,7 +1475,7 @@
     this.on('postload', function () {
       var _this$TREE$$root$pack;
 
-      ISBN = ((_this$TREE$$root$pack = _this.TREE.$root["package"]) === null || _this$TREE$$root$pack === void 0 ? void 0 : _this$TREE$$root$pack.ISBN) || '00000000000000';
+      ISBN = ((_this$TREE$$root$pack = _this.TREE.$root["package"]) === null || _this$TREE$$root$pack === void 0 ? void 0 : _this$TREE$$root$pack.ISBN) || '0000000000000';
 
       if (store.get(ISBN)) {
         _this.current.data = store.get(ISBN);

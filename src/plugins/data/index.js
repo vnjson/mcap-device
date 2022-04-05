@@ -4,7 +4,7 @@
 export default function (){
   let ISBN;
   this.on('postload', ()=>{
-      ISBN = this.TREE.$root.package?.ISBN||'00000000000000';
+      ISBN = this.TREE.$root.package?.ISBN||'0000000000000';
       if( store.get(ISBN) ){
           this.current.data = store.get(ISBN);
       }
