@@ -4,13 +4,12 @@
 export default function (){
   let ISBN;
   this.on('postload', ()=>{
-      ISBN = this.TREE.$root.package?.ISBN;
+      ISBN = this.TREE.$root.package?.ISBN||'00000000000000';
       if( store.get(ISBN) ){
           this.current.data = store.get(ISBN);
       }
       else{
         this.current.data = {};
-        console.log('ISBN не задан. package.yaml ISBN: 0000000000000')
       }
   })
 

@@ -1,7 +1,7 @@
 preload: true
 debug: false
+ISBN: 9781234567897
 
 chess: false
 paint-board: true
 crossword: false
-ISBN: 9781234567897

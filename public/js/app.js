@@ -1475,13 +1475,12 @@
     this.on('postload', function () {
       var _this$TREE$$root$pack;
 
-      ISBN = (_this$TREE$$root$pack = _this.TREE.$root["package"]) === null || _this$TREE$$root$pack === void 0 ? void 0 : _this$TREE$$root$pack.ISBN;
+      ISBN = ((_this$TREE$$root$pack = _this.TREE.$root["package"]) === null || _this$TREE$$root$pack === void 0 ? void 0 : _this$TREE$$root$pack.ISBN) || '00000000000000';
 
       if (store.get(ISBN)) {
         _this.current.data = store.get(ISBN);
       } else {
         _this.current.data = {};
-        console.log('ISBN не задан. package.yaml ISBN: 0000000000000');
       }
     });
     this.on('set-data', function (data) {

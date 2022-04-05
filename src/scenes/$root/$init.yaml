@@ -24,8 +24,6 @@
           dialog-box: true
     stage === 4:
           jump: _test
-
-
     default:
           dialog-box: clear
 
