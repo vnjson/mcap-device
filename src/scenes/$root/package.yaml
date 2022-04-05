@@ -1,11 +1,7 @@
 preload: true
-debug: true
+debug: false
 
 chess: false
 paint-board: true
 crossword: false
-
-
-dialog-box:
-  delay: 15
-  endPoint: true
+ISBN: 9781234567897

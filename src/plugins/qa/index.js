@@ -8,7 +8,7 @@ function clearData(){
 
   if(this.current.data.score){
       this.current.data.score = new Score();
-      store.set(this.current.data.player.name, this.current.data)
+      store.set(this.TREE.$root.package.ISBN, this.current.data)
       this.emit('setScore')
   }
 
@@ -31,7 +31,7 @@ export default function (){
           this.current.data.score[key][param] += data[key][param]
         }
     }
-     store.set(this.current.data.player.name, this.current.data)
+     store.set(this.TREE.$root.package.ISBN, this.current.data)
 
 
     this.emit('setScore')

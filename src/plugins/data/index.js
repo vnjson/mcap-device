@@ -2,23 +2,28 @@
 
 
 export default function (){
-
-  this.on('player-load', name=>{
-    if( store.get(name) ){
-        this.current.data = store.get(name)
-    }
+  let ISBN;
+  this.on('postload', ()=>{
+      ISBN = this.TREE.$root.package?.ISBN;
+      if( store.get(ISBN) ){
+          this.current.data = store.get(ISBN);
+      }
+      else{
+        this.current.data = {};
+        console.log('ISBN не задан. package.yaml ISBN: 0000000000000')
+      }
   })
+
+
   this.on('set-data', data=>{
     for(let key in data){
       this.current.data[key] = data[key]
     }
-    store.set(this.current.data.player.name, this.current.data)
+    store.set(ISBN, this.current.data)
   })
-  this.on('clear-data-all', data=>{
-    localStorage.clear()
-  })
+
   this.on('clear-data', data=>{
-    store.remove(this.current.data.player.name)
+    store.remove(ISBN)
     
     this.current.data = {
       score: this.current.data.score,
@@ -27,11 +32,22 @@ export default function (){
 
   })
   this.on('switch', data=>{
+    let defaultFlag = false;
     for(let equal in data){
-      let param = equal.split('===')
-      if(this.current.data[param[0]]===param[1]){
-        this.exec(data[equal])
+      const [ key, value ] = equal.replaceAll(' ', '').split('===');
+
+      // Если существует сохраненная переменная, но выполняем команду
+      if( String( this.current.data[key] ) === String(value) && key!=='default'){
+          defaultFlag = true;
+          this.exec(data[equal]);
       }
     }
+    // если ни одна переменная в yaml коде ранее не задавалась, то
+    // выполняем команду поумолчанию, если таковая присутсвует
+    if(!defaultFlag&&data?.default){
+        defaultFlag = false;
+        this.exec(data.default);
+    }
+
   })
 }

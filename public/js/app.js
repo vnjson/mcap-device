@@ -1471,9 +1471,17 @@
   function data () {
     var _this = this;
 
-    this.on('player-load', function (name) {
-      if (store.get(name)) {
-        _this.current.data = store.get(name);
+    var ISBN;
+    this.on('postload', function () {
+      var _this$TREE$$root$pack;
+
+      ISBN = (_this$TREE$$root$pack = _this.TREE.$root["package"]) === null || _this$TREE$$root$pack === void 0 ? void 0 : _this$TREE$$root$pack.ISBN;
+
+      if (store.get(ISBN)) {
+        _this.current.data = store.get(ISBN);
+      } else {
+        _this.current.data = {};
+        console.log('ISBN не задан. package.yaml ISBN: 0000000000000');
       }
     });
     this.on('set-data', function (data) {
@@ -1481,25 +1489,38 @@
         _this.current.data[key] = data[key];
       }
 
-      store.set(_this.current.data.player.name, _this.current.data);
-    });
-    this.on('clear-data-all', function (data) {
-      localStorage.clear();
+      store.set(ISBN, _this.current.data);
     });
     this.on('clear-data', function (data) {
-      store.remove(_this.current.data.player.name);
+      store.remove(ISBN);
       _this.current.data = {
         score: _this.current.data.score,
         player: _this.current.data.player
       };
     });
     this.on('switch', function (data) {
-      for (var equal in data) {
-        var param = equal.split('===');
+      var defaultFlag = false;
 
-        if (_this.current.data[param[0]] === param[1]) {
+      for (var equal in data) {
+        var _equal$replaceAll$spl = equal.replaceAll(' ', '').split('==='),
+            _equal$replaceAll$spl2 = _slicedToArray(_equal$replaceAll$spl, 2),
+            key = _equal$replaceAll$spl2[0],
+            value = _equal$replaceAll$spl2[1]; // Если существует сохраненная переменная, но выполняем команду
+
+
+        if (String(_this.current.data[key]) === String(value) && key !== 'default') {
+          defaultFlag = true;
+
           _this.exec(data[equal]);
         }
+      } // если ни одна переменная в yaml коде ранее не задавалась, то
+      // выполняем команду поумолчанию, если таковая присутсвует
+
+
+      if (!defaultFlag && data !== null && data !== void 0 && data["default"]) {
+        defaultFlag = false;
+
+        _this.exec(data["default"]);
       }
     });
   }
@@ -1563,7 +1584,7 @@
   function clearData() {
     if (this.current.data.score) {
       this.current.data.score = new Score();
-      store.set(this.current.data.player.name, this.current.data);
+      store.set(this.TREE.$root["package"].ISBN, this.current.data);
       this.emit('setScore');
     }
   }
@@ -1585,7 +1606,7 @@
         }
       }
 
-      store.set(_this.current.data.player.name, _this.current.data);
+      store.set(_this.TREE.$root["package"].ISBN, _this.current.data);
 
       _this.emit('setScore');
     };

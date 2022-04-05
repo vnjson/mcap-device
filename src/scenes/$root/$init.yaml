@@ -1,7 +1,8 @@
 - dialog-box: true
   status-bar: true
-  hands: true
+  hands: false
   next: true
+
 
 
 
@@ -9,11 +10,35 @@
      Мороз и <font color="magenta">солнце</font> день чудесный!
      Мороз и <font color="magenta">солнце</font> день чудесный!
      Мороз и <font color="magenta">солнце</font> день чудесный!
+  set-data:
+    stage: 5
+    age: 17
+
 
 - al: Еще ты дремлешь, друг прелестный
 
+
 - $: Пора, красавица, проснись
+  switch:
+    age === 18:
+          dialog-box: true
+    stage === 4:
+          jump: _test
+
+
+    default:
+          dialog-box: clear
+
+
 - $: Открой сомкнуты негой взоры
 
 - $: Навстречу северной Авроры 
+
+
+
+
+
+- _test: true
+  $: Проверка SWITCH
+
 - jump: $init
