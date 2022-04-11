@@ -87,37 +87,19 @@
       },
       {
         "$": "Мороз и <font color=\"magenta\">солнце</font> день чудесный! Мороз и <font color=\"magenta\">солнце</font> день чудесный! Мороз и <font color=\"magenta\">солнце</font> день чудесный! Мороз и <font color=\"magenta\">солнце</font> день чудесный!",
-        "set-data": {
-          "stage": 5,
-          "age": 17
-        }
+        "scene": "sceneTemplate"
       },
       {
-        "al": "Еще ты дремлешь, друг прелестный"
+        "a": "Еще ты дремлешь, друг прелестный"
       },
       {
-        "$": "Пора, красавица, проснись",
-        "switch": {
-          "age === 18": {
-            "dialog-box": true
-          },
-          "stage === 4": {
-            "jump": "_test"
-          },
-          "default": {
-            "dialog-box": "clear"
-          }
-        }
+        "$": "Пора, красавица, проснись"
       },
       {
         "$": "Открой сомкнуты негой взоры"
       },
       {
         "$": "Навстречу северной Авроры"
-      },
-      {
-        "_test": true,
-        "$": "Проверка SWITCH"
       },
       {
         "jump": "$init"
@@ -147,7 +129,7 @@
     },
     "package": {
       "preload": true,
-      "debug": false,
+      "debug": true,
       "ISBN": 9781234567897,
       "chess": false,
       "paint-board": true,

@@ -1,4 +1,3 @@
-import serve            from 'rollup-plugin-serve';
 import styles           from 'rollup-plugin-styles';
 import yaml             from '@rollup/plugin-yaml';
 import { babel }        from '@rollup/plugin-babel';
@@ -12,6 +11,7 @@ import fs               from 'fs';
 import YAML             from 'yaml';
 import { terser }       from "rollup-plugin-terser";
 
+
 const config = YAML.parse(fs.readFileSync('./config.yaml', 'utf8'))
 
 const production = false;
@@ -21,7 +21,7 @@ export default {
   output: {
     file: `public/js/app.js`,
     name: 'app',
-    format: 'iife',
+    format: 'umd',
     sourcemap: false
   },
   plugins: [
@@ -48,13 +48,7 @@ export default {
       output: `public/assets`,
       extensions: /\.(waw|ogg|mp3)$/,
       hash: false,
-    }),
-
-    serve({
-      contentBase:[`./public/`],
-      port: config.port||9000
-    }),
-
+    })
   ],
 
   watch: [
@@ -66,6 +60,16 @@ export default {
   ]
 };
 
+const express = require('express');
+const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const port = config.port||9000;
+
+
+/**
+ * Собираем yaml - сцены
+ */
 
 function buildScenes (){
 
@@ -79,18 +83,33 @@ function buildScenes (){
           console.dir(err.reason);
           console.log('line', err.mark.line, 'column', err.mark.column)
           console.log(err.mark.snippet);
+          io.emit('yaml-error', err);
       }
       else{
-        console.log('[ scenes building ]')
+        console.log('[ scenes building ]');
+        io.emit('yaml-error', null);
       }
   }, basePath)
 
 }
 
-buildScenes()
+buildScenes();
 
 chokidar.watch(`${config.src}/scenes`).on('change', (event, path) => {
-  buildScenes()
+  buildScenes();
+});
+
+/**
+ * Подключаем раздачу статики и сокеты
+ */
+
+app.use(express.static('public'));
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + 'public/index.html');
 });
 
 
+
+http.listen(port, () => {
+  console.log(`http://localhost:${port}/`);
+});

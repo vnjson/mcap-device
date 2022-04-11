@@ -162,10 +162,14 @@ class DialogBox {
     let len = letters.length;
     // отображаем каждый символ по отдельности
     this.interval = setInterval( ()=>{
-        letters[this.index++].style.opacity = 1;
+        if(letters.length>0){
+          letters[this.index++].style.opacity = 1;
+        }
         if(this.index>=len){
             this.onEndOutputReply();
         }
+ 
+        
     }, this.delay);
   }
 

@@ -1,5 +1,104 @@
-(function () {
-  'use strict';
+(function (factory) {
+  typeof define === 'function' && define.amd ? define(factory) :
+  factory();
+})((function () { 'use strict';
+
+  function _typeof(obj) {
+    "@babel/helpers - typeof";
+
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      _typeof = function (obj) {
+        return typeof obj;
+      };
+    } else {
+      _typeof = function (obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      };
+    }
+
+    return _typeof(obj);
+  }
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    return Constructor;
+  }
+
+  function _slicedToArray(arr, i) {
+    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+  }
+
+  function _arrayWithHoles(arr) {
+    if (Array.isArray(arr)) return arr;
+  }
+
+  function _iterableToArrayLimit(arr, i) {
+    var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+
+    if (_i == null) return;
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+
+    var _s, _e;
+
+    try {
+      for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
+        _arr.push(_s.value);
+
+        if (i && _arr.length === i) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i["return"] != null) _i["return"]();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+
+    return _arr;
+  }
+
+  function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+  }
+
+  function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+
+    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+    return arr2;
+  }
+
+  function _nonIterableRest() {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
 
   var e = [],
       t = [];
@@ -27,6 +126,183 @@
       var a = "prepend" === s ? "afterbegin" : "beforeend";
       return i.insertAdjacentElement(a, e), e;
     }
+  }
+
+  var css$q = "\r\n.debug-error{\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  padding: 20px;\r\n  font-size: 20px;\r\n  z-index: 99999;  \r\n  background-color: #334;\r\n  justify-content: center;\r\n  align-items: center;\r\n  display: none;\r\n  font-family: Consolas;\r\n}\r\n\r\n.debug-error__modal{\r\n  background-color: #181818;\r\n  border-radius: 8px;\r\n  padding: 20px;\r\n  width: 80%;\r\n  height: 60%;\r\n  box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.5);\r\n}\r\n.debug-error__modal::before{\r\n  content: '';\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 10px;\r\n  background-color: brown;\r\n  border-radius: 8px 8px 0 0;\r\n}\r\n.debug-error__msg{\r\n  color: brown;\r\n  line-height: 28px;\r\n}\r\n.debug-error__msg:first-letter{\r\n  text-transform: capitalize;\r\n}\r\n\r\n.debug-error__path{\r\n  color: #cfa4ff;\r\n}\r\n.debug-error__code{\r\n  color: #e2aa53;\r\n}\r\n";
+  n(css$q,{});
+
+  var errors = {
+    en: {
+      pluginNotFound: 'Plugin <font color="deepskyblue">{ data }</font> not found',
+      assetNotFound: 'Asset <font color="deepskyblue">{ data }</font> not found',
+      menuOrJumpLeadsNowhere: 'Plugin  <font color="deepskyblue">menu</font>  or <font color="deepskyblue">jump</font>  leads nowhere'
+    },
+    ru: {
+      pluginNotFound: 'Плагин <font color="deepskyblue">{ data }</font> не найден',
+      assetNotFound: 'Файл <font color="deepskyblue">{ data }</font> не найден',
+      menuOrJumpLeadsNowhere: 'Некоректные параметры плагина <font color="deepskyblue">menu</font>  или <font color="deepskyblue">jump</font>. Маршрут не найден.'
+    }
+  };
+
+  var modalTpl = "<div class=\"debug-error\">\n                        <div class=\"debug-error__modal\">\n                            <p class=\"debug-error__msg\"></p>\n                            <p class=\"debug-error__path\"></p>\n                            <pre class=\"debug-error__code\"></pre>\n                        </div>\n                    </div>";
+  var $modal = $(modalTpl);
+  $('#screen').append($modal);
+
+  var ErrorHandler = /*#__PURE__*/function () {
+    function ErrorHandler() {
+      _classCallCheck(this, ErrorHandler);
+
+      this.url = '/socket.io/socket.io.js';
+      this.init();
+    }
+
+    _createClass(ErrorHandler, [{
+      key: "init",
+      value: function init() {
+        this.dynamicallyLoadScript(this.url, function () {
+          var socket = io();
+          socket.on('yaml-error', function (err) {
+            if (err) {
+              var path = "line ".concat(err.mark.line, " column ").concat(err.mark.column);
+              ErrorHandler.showModal(err.reason, path, err.mark.snippet);
+              return;
+            }
+
+            ErrorHandler.hideModal(); // перезагрузка браузера при сохранении файла
+
+            location.reload();
+          });
+        });
+      }
+      /**
+       * Так как я не хочу мусорить в index.html, что бы потом не вычищать
+       * То скрипт для сокетов я подлючаю динамически
+       * Не смог настроить babel, что бы async/await работали.
+       * Необходимо поддерживать chrome 2015г.
+       */
+
+    }, {
+      key: "dynamicallyLoadScript",
+      value: function dynamicallyLoadScript(url, callback) {
+        var script = document.createElement("script");
+        script.src = url;
+        script.onload = callback;
+        document.head.appendChild(script);
+      }
+    }], [{
+      key: "hideModal",
+      value: function hideModal() {
+        $modal.find('.debug-error__msg').html('');
+        $modal.find('.debug-error__path').html('');
+        $modal.find('.debug-error__code').html('');
+        $modal.hide();
+      }
+    }, {
+      key: "showModal",
+      value: function showModal() {
+        var msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+        var path = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+        var snippet = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+        $modal.find('.debug-error__msg').html(msg);
+        $modal.find('.debug-error__path').html(path);
+        $modal.find('.debug-error__code').html(snippet);
+        $modal.css('display', 'flex');
+      }
+      /**
+       * По аналогии с yaml-снипетами от сборщика
+       * Преобразую объект контекста в yaml - подобный синтаксис
+       * @param  {Object} ctx   [Объект контекста]
+       * @return {String}       [Возвращает снипет или пустую строку]
+       */
+
+    }, {
+      key: "getSnippetFromCtx",
+      value: function getSnippetFromCtx(ctx) {
+        var snippet = '';
+        if (typeof ctx === 'string') return snippet;
+
+        for (var key in ctx) {
+          var value = ctx[key]; // Проверяем является ли репликой value
+          // Если ключ является персонажем, соответсвенно значение является репликой
+
+          value = String(value).slice(0, 60);
+
+          if (value.length === 60) {
+            value = value.concat('...');
+          } // Делаем yaml-подобную структуру
+
+
+          snippet = "".concat(snippet, "<br/>").concat(key, ": <font color=\"#999\">").concat(value, "</font>");
+        }
+
+        return snippet;
+      }
+      /**
+       * Подставляю переменную в строку описания ошибки
+       * @param  {String} local     [Локализация]
+       * @param  {String} codeError [Ключевое слово по которому я определяю сообщение ошибки]
+       * @param  {String} data      [Переменная которую подставляю в строку ошибки]
+       * @return {String}           [Сообщение о ошике]
+       */
+
+    }, {
+      key: "getMessage",
+      value: function getMessage() {
+        var local = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'en';
+        var codeError = arguments.length > 1 ? arguments[1] : undefined;
+        var data = arguments.length > 2 ? arguments[2] : undefined;
+        var message = errors[local][codeError].replace(/{.{0,}}/gi, data);
+        return message;
+      }
+    }]);
+
+    return ErrorHandler;
+  }();
+  $modal.on('mousedown', function (e) {
+    if (!$(e.target).hasClass('debug-error')) return;
+    ErrorHandler.hideModal();
+  });
+
+  var local = 'ru';
+  function debug () {
+    var _this = this;
+
+    if (!this.debug) return;
+    new ErrorHandler();
+    this.on('exec', function (ctx) {
+      /**
+       * Добавляем параметры в URI
+       */
+      // убрал сцену по умолчанию, потому что на неё постоянно прыгало
+
+      /*
+      if(this.current.sceneName!==''){
+          history.pushState(null, null, `?jump=${this.current.sceneName}.${this.current.labelName}`);
+      }
+      */
+
+      /**
+       * Проверяем существует ли плагин с таким именем
+       */
+      if (typeof ctx === 'string') return;
+      Object.keys(ctx).forEach(function (event) {
+        if (!/^_/ig.test(event) && !_this.plugins.hasOwnProperty(event)) {
+          _this.emit('error', 'pluginNotFound', event);
+        }
+      });
+    });
+    this.on('error', function (codeError, data) {
+      var message = ErrorHandler.getMessage(local, codeError, data);
+      var path = "".concat(_this.current.sceneName, ".").concat(_this.current.labelName);
+      var snippet = ErrorHandler.getSnippetFromCtx(_this.ctx);
+      ErrorHandler.showModal(message, path, snippet);
+    });
+    this.on('warn', function (codeError, data) {
+      var codes = {
+        NoWayOutOfTheLabel: "No way out of the label [ ".concat(_this.current.labelName, " ]")
+      };
+      console.log(codes[codeError]);
+    });
   }
 
   var css$p = ".debug__dialog-box-controls{\n  background-color: wheat;\n  padding: 5px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n\n}\n.debug__dialog-box-controls >div{\n  height: 70px;\n  width: 10%;\n  display: flex;\n  flex-direction: column;\n\n}\n.debug__checkbox-wrapper{\n  color: rgba(0,0,0,0.5);\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  font-size: 12px;\n  display: flex;\n  align-items: center;\n}\n\n#debug__character{\n  width: 100%;\n  height: 22px;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  text-align: center;\n  margin-top: 5px;\n}\n\n.debug__btn{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  cursor: pointer;\n  color: black;\n  width: 100%;\n  height: 22px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin-top: 5px;\n  font-size: 12px;\n\n}\n\n\n#debug__reply{\n  width: 89.5%;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  resize: unset;\n  height: 80px;\n  border: unset;\n  outline: unset;\n  caret-color: deepskyblue;\n}\n\n.debug__btn:hover{\n  background-color: rgba(0,0,0,0.3);\n}\n/**\n * \n */\n\n.debug__dialog-box {\n  z-index: 7000;\n  /*position: absolute;\n  bottom: -200px;*/\n  width: 1024px;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: block;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.debug__dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n.debug__dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n}\n.debug__dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.debug__dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.debug__dialog-box__avatar{\n  margin-top: 15px;\n  width: 150px;\n  height: 150px;\n  min-width: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n}\n.debug__dialog-box__reply-wrapper{\n  position: relative;\n}\n\n";
@@ -137,103 +413,6 @@
         color: replyColor
       });
     }
-  }
-
-  function _typeof(obj) {
-    "@babel/helpers - typeof";
-
-    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-      _typeof = function (obj) {
-        return typeof obj;
-      };
-    } else {
-      _typeof = function (obj) {
-        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-      };
-    }
-
-    return _typeof(obj);
-  }
-
-  function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
-    }
-  }
-
-  function _defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-
-  function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
-    return Constructor;
-  }
-
-  function _slicedToArray(arr, i) {
-    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
-  }
-
-  function _arrayWithHoles(arr) {
-    if (Array.isArray(arr)) return arr;
-  }
-
-  function _iterableToArrayLimit(arr, i) {
-    var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
-
-    if (_i == null) return;
-    var _arr = [];
-    var _n = true;
-    var _d = false;
-
-    var _s, _e;
-
-    try {
-      for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
-        _arr.push(_s.value);
-
-        if (i && _arr.length === i) break;
-      }
-    } catch (err) {
-      _d = true;
-      _e = err;
-    } finally {
-      try {
-        if (!_n && _i["return"] != null) _i["return"]();
-      } finally {
-        if (_d) throw _e;
-      }
-    }
-
-    return _arr;
-  }
-
-  function _unsupportedIterableToArray(o, minLen) {
-    if (!o) return;
-    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-    var n = Object.prototype.toString.call(o).slice(8, -1);
-    if (n === "Object" && o.constructor) n = o.constructor.name;
-    if (n === "Map" || n === "Set") return Array.from(o);
-    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-  }
-
-  function _arrayLikeToArray(arr, len) {
-    if (len == null || len > arr.length) len = arr.length;
-
-    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
-
-    return arr2;
-  }
-
-  function _nonIterableRest() {
-    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
   }
 
   function assetsLoader () {
@@ -614,7 +793,9 @@
         var len = letters.length; // отображаем каждый символ по отдельности
 
         this.interval = setInterval(function () {
-          letters[_this.index++].style.opacity = 1;
+          if (letters.length > 0) {
+            letters[_this.index++].style.opacity = 1;
+          }
 
           if (_this.index >= len) {
             _this.onEndOutputReply();
@@ -2676,14 +2857,11 @@
   }
 
   /*debug*/
-  /*zim*/
-  //import zimIntro           from './plugins/zim-intro/index.js';
-
   function plugins () {
     var _this = this;
 
     if ($vnjs.debug) {
-      //this.use(debug);
+      this.use(debug);
       this.use(debugDialogBox);
     }
 
@@ -2731,9 +2909,6 @@
     this.use(clipBoard);
     this.use(craftos);
     this.use(brython);
-    /*zim*/
-    //this.use(zimIntro);
-
     this.on('next', function () {
       setTimeout(function () {
         return _this.next();
@@ -2750,7 +2925,8 @@
   }).then(function (tree) {
     return init(tree);
   })["catch"](function (err) {
-    return console.error('Invalid script', err.message);
+    $('.debug-error').css('display', 'flex').find('.debug-error__msg').html('Невалидный <font color="skyblue">YAML</font> скрипт');
+    console.error('Invalid script', err.message);
   });
 
   function init(tree) {
@@ -2768,7 +2944,7 @@
     plugins.call($vnjs);
     $vnjs.setTree(tree);
     $vnjs.on('postload', function () {
-      $vnjs.exec({
+      this.exec({
         screen: 'stream'
       }); // ?jump=scene.label
       // ?jump=scene  //default $init
@@ -2776,10 +2952,14 @@
       var label = new URL(location.href).searchParams.get("jump");
 
       if (label) {
-        label.includes('.') ? $vnjs.exec({
-          jump: label
-        }) : $vnjs.exec({
-          jump: label + '.$init'
+        var _label$split = label.split('.'),
+            _label$split2 = _slicedToArray(_label$split, 3),
+            sceneName = _label$split2[0],
+            labelName = _label$split2[1];
+            _label$split2[2];
+
+        $vnjs.exec({
+          jump: "".concat(sceneName, ".").concat(labelName)
         });
       } else {
         $vnjs.exec({
@@ -2792,4 +2972,4 @@
     });
   }
 
-})();
+}));

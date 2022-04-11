@@ -1,5 +1,5 @@
 /*debug*/
-//import debug              from './plugins/debug/index.js';
+import debug              from './plugins/debug/index.js';
 import debugDialogBox     from './plugins/debug-dialog-box/index.js';
 
 import assetsLoader       from './plugins/assets-loader/index.js';
@@ -44,18 +44,14 @@ import paintBoard         from './plugins/paint-board/index.js';
 import clipBoard          from './plugins/clipboard/index.js';
 import craftos            from './plugins/craftos/index.js';
 import brython            from './plugins/brython/index.js';
-/*zim*/
-//import zimIntro           from './plugins/zim-intro/index.js';
-
 
 
 export default function(){
 
   if($vnjs.debug){
-    //this.use(debug);
+    this.use(debug);
     this.use(debugDialogBox);
   }
-
   this.use(assetsLoader);
   /*screens*/
   this.use(screen);
@@ -98,8 +94,7 @@ export default function(){
   this.use(clipBoard);
   this.use(craftos);
   this.use(brython);
-  /*zim*/
-  //this.use(zimIntro);
+
 
   this.on('next', ()=>{
       setTimeout(()=>this.next(), 10)

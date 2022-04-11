@@ -1,5 +1,5 @@
 preload: true
-debug: false
+debug: true
 ISBN: 9781234567897
 
 chess: false

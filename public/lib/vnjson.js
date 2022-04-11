@@ -11,17 +11,17 @@
   'use strict';
 
 class Vnjson {
-  version = '1.7.6';
+  version = '1.7.8';
   //current object
   ctx = {};
   //loaded scenes
   TREE = {};
 
   constructor (conf){
-    this.conf = conf
-    this.debug = conf.debug
-    this.on('jump', this.jumpHandler)
-    this.on('timeout', this.timeoutHandler)
+    this.conf = conf;
+    this.debug = conf.debug;
+    this.on('jump', this.jumpHandler);
+    this.on('timeout', this.timeoutHandler);
   }
 
   /**
@@ -36,16 +36,9 @@ class Vnjson {
    */
   current = {
     index: 0,
-    labelName: '$init',
-    sceneName: '$root',
+    labelName: '',
+    sceneName: '',
     character: null,
-    /*
-    options: {
-      typespeed: 30,
-      volume: 100,
-      zoom: 100
-    },
-    */
     data: { 
       score: null
     },
@@ -64,14 +57,14 @@ class Vnjson {
       return asset
     }
     else{
-      console.error(`Asset { ${name} } not found`);
+      this.emit('error', 'assetNotFound', name);
       return {url: name}
     }
   }
   
   getDataByName (id){
-    let scenesBody = Object.values(this.TREE)
-    var data = null
+    let scenesBody = Object.values(this.TREE);
+    let data = null;
     scenesBody.map(body=>{
 
       if(body.data){
@@ -84,16 +77,13 @@ class Vnjson {
   }
  
   getCurrentLabelBody (){
-    let labelBody = this.TREE[this.current.sceneName][this.current.labelName];
-    if(labelBody){
-      return labelBody;
+    const labelBody = this.TREE[this.current.sceneName]?.[this.current.labelName];
+    if(!labelBody){
+      this.emit('error', 'menuOrJumpLeadsNowhere');
+      return ['']
     }
-    else{
-      console.error('{ menu } or { jump } leads nowhere');
-      console.warn(`scene: ${this.current.sceneName}`);
-      console.warn(`label: ${this.current.labelName}`);
-      return [''];
-    }
+    return labelBody;
+    
   }
   getCurrentCharacter (){
 
@@ -102,16 +92,16 @@ class Vnjson {
   getCharacterById (id){
     return this.TREE.$root.characters.find(character=>character.id === id)
   }
-  getCtx (){
-    let ctx = this.getCurrentLabelBody()[this.current.index];
-    return ctx;
 
+  getCtx (){
+    return this.getCurrentLabelBody()[this.current.index];
   }
+
   setTree (tree){
     this.TREE = tree;
 
           if(!this.TREE.$root.hasOwnProperty('characters')){
-            var narrator = {
+            let narrator = {
                   id: "$",
                   name: "Narrator",
                   nameColor: "#49de58",
@@ -152,18 +142,13 @@ class Vnjson {
       if(event in this.plugins) {
           this.plugins[event].forEach(handler=>handler.call(this, ...args));
       }
-      else {
-        let exclude = ['setScore', 'screenInit'].indexOf(event);
-        if(exclude===-1){
-          console.error(`Plugin { ${event} } not found [ ${this.current.sceneName+'.'+this.current.labelName+'.'+this.current.index} ]`);
-        }
-      }
       return this;
   }
   off (event){
     delete this.plugins[event];
     return this;
   }
+  
   exec (ctx){
     //Получаем текущий объект контекста
     this.ctx = ctx||this.getCtx();
@@ -195,8 +180,9 @@ class Vnjson {
     if(this.getCurrentLabelBody().length-2<this.current.index){
   
       this.current.index = this.current.index;
-      console.warn(`No way out of the label [ ${this.current.labelName} ]`);
-    }else{
+      this.emit('warn', `NoWayOutOfTheLabel`);
+    }
+    else{
       this.current.index++;
       this.exec();
     }
@@ -209,15 +195,19 @@ class Vnjson {
   }
   /*include plugins*/
   jumpHandler (pathname){
+    /**
+     * Обработка прыжка по менткам _mark
+     */
     if(/^_/i.test(pathname) ){
-        var index = this.getCurrentLabelBody()
-                        .map( ctx=>{
-                          return ctx.hasOwnProperty(pathname)
-                        })
-                        .indexOf(true);
-                       
+        const labelBody = this.getCurrentLabelBody();
+        if(labelBody.length===0) return;
+        let index = labelBody.map( ctx=>{
+                                return ctx.hasOwnProperty(pathname)
+                              })
+                              .indexOf(true);
+              
         let label = [ this.current.sceneName, this.current.labelName, index ].join('.');
-
+        
         this.exec({jump: label});
     }
     else{
