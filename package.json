@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -cw",
-    "update": "node node_modules/vnjson-update/bin/update.js"
+    "update": "node node_modules/vnjson-update/index.js"
   },
   "author": "",
   "license": "ISC",
