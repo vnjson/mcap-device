@@ -6,7 +6,7 @@ export default function (){
 
   var $tpl = $(tpl)
 
-  this.$store.$stream.append($tpl)
+  this.$store.$screen.append($tpl)
   this.on('cloud', param=>{
     $tpl.empty()
     $tpl.css('display', 'flex')

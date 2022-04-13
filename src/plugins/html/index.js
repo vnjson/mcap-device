@@ -20,7 +20,7 @@ export function eventRegistration(event, tpl){
 
   var $tpl = $(tpl)
   $tpl.hide().addClass("component").addClass('event__'+event)
-  this.$store.$stream.append($tpl)
+  this.$store.$screen.append($tpl)
 
   this.on(event, data=>{
     if( typeof(data) === 'object' ){

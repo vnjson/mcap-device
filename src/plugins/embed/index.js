@@ -20,7 +20,7 @@ function eventRegistration(event, tpl){
 
   var $tpl = $(tpl)
   $tpl.hide().addClass("component").css('background-color', 'white')
-  this.$store.$stream.append($tpl)
+  this.$store.$screen.append($tpl)
 
   this.on(event, data=>{
     if(data){
@@ -30,7 +30,7 @@ function eventRegistration(event, tpl){
       const $src = $tpl
       $tpl.remove()
       $src.hide()
-      this.$store.$stream.append($tpl)
+      this.$store.$screen.append($tpl)
     }
   })
 

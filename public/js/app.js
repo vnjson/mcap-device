@@ -128,8 +128,8 @@
     }
   }
 
-  var css$q = "\r\n.debug-error{\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  padding: 20px;\r\n  font-size: 20px;\r\n  z-index: 99999;  \r\n  background-color: #334;\r\n  justify-content: center;\r\n  align-items: center;\r\n  display: none;\r\n  font-family: Consolas;\r\n}\r\n\r\n.debug-error__modal{\r\n  background-color: #181818;\r\n  border-radius: 8px;\r\n  padding: 20px;\r\n  width: 80%;\r\n  height: 60%;\r\n  box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.5);\r\n}\r\n.debug-error__modal::before{\r\n  content: '';\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 10px;\r\n  background-color: brown;\r\n  border-radius: 8px 8px 0 0;\r\n}\r\n.debug-error__msg{\r\n  color: brown;\r\n  line-height: 28px;\r\n}\r\n.debug-error__msg:first-letter{\r\n  text-transform: capitalize;\r\n}\r\n\r\n.debug-error__path{\r\n  color: #cfa4ff;\r\n}\r\n.debug-error__code{\r\n  color: #e2aa53;\r\n}\r\n";
-  n(css$q,{});
+  var css$p = "\r\n.debug-error{\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  padding: 20px;\r\n  font-size: 20px;\r\n  z-index: 99999;  \r\n  background-color: #334;\r\n  justify-content: center;\r\n  align-items: center;\r\n  display: none;\r\n  font-family: Consolas;\r\n}\r\n\r\n.debug-error__modal{\r\n  background-color: #181818;\r\n  border-radius: 8px;\r\n  padding: 20px;\r\n  width: 80%;\r\n  height: 60%;\r\n  box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.5);\r\n}\r\n.debug-error__modal::before{\r\n  content: '';\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 10px;\r\n  background-color: brown;\r\n  border-radius: 8px 8px 0 0;\r\n}\r\n.debug-error__msg{\r\n  color: brown;\r\n  line-height: 28px;\r\n}\r\n.debug-error__msg:first-letter{\r\n  text-transform: capitalize;\r\n}\r\n\r\n.debug-error__path{\r\n  color: #cfa4ff;\r\n}\r\n.debug-error__code{\r\n  color: #e2aa53;\r\n}\r\n";
+  n(css$p,{});
 
   var errors = {
     en: {
@@ -305,14 +305,14 @@
     });
   }
 
-  var css$p = ".debug__dialog-box-controls{\n  background-color: wheat;\n  padding: 5px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n\n}\n.debug__dialog-box-controls >div{\n  height: 70px;\n  width: 10%;\n  display: flex;\n  flex-direction: column;\n\n}\n.debug__checkbox-wrapper{\n  color: rgba(0,0,0,0.5);\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  font-size: 12px;\n  display: flex;\n  align-items: center;\n}\n\n#debug__character{\n  width: 100%;\n  height: 22px;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  text-align: center;\n  margin-top: 5px;\n}\n\n.debug__btn{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  cursor: pointer;\n  color: black;\n  width: 100%;\n  height: 22px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin-top: 5px;\n  font-size: 12px;\n\n}\n\n\n#debug__reply{\n  width: 89.5%;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  resize: unset;\n  height: 80px;\n  border: unset;\n  outline: unset;\n  caret-color: deepskyblue;\n}\n\n.debug__btn:hover{\n  background-color: rgba(0,0,0,0.3);\n}\n/**\n * \n */\n\n.debug__dialog-box {\n  z-index: 7000;\n  /*position: absolute;\n  bottom: -200px;*/\n  width: 1024px;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: block;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.debug__dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n.debug__dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n}\n.debug__dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.debug__dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.debug__dialog-box__avatar{\n  margin-top: 15px;\n  width: 150px;\n  height: 150px;\n  min-width: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n}\n.debug__dialog-box__reply-wrapper{\n  position: relative;\n}\n\n";
-  n(css$p,{});
+  var css$o = ".debug__dialog-box-controls{\n  background-color: wheat;\n  padding: 5px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n\n}\n.debug__dialog-box-controls >div{\n  height: 70px;\n  width: 10%;\n  display: flex;\n  flex-direction: column;\n\n}\n.debug__checkbox-wrapper{\n  color: rgba(0,0,0,0.5);\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  font-size: 12px;\n  display: flex;\n  align-items: center;\n}\n\n#debug__character{\n  width: 100%;\n  height: 22px;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  text-align: center;\n  margin-top: 5px;\n}\n\n.debug__btn{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  cursor: pointer;\n  color: black;\n  width: 100%;\n  height: 22px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin-top: 5px;\n  font-size: 12px;\n\n}\n\n\n#debug__reply{\n  width: 89.5%;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  resize: unset;\n  height: 80px;\n  border: unset;\n  outline: unset;\n  caret-color: deepskyblue;\n}\n\n.debug__btn:hover{\n  background-color: rgba(0,0,0,0.3);\n}\n/**\n * \n */\n\n.debug__dialog-box {\n  z-index: 7000;\n  /*position: absolute;\n  bottom: -200px;*/\n  width: 1024px;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: block;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.debug__dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n.debug__dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n}\n.debug__dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.debug__dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.debug__dialog-box__avatar{\n  margin-top: 15px;\n  width: 150px;\n  height: 150px;\n  min-width: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n}\n.debug__dialog-box__reply-wrapper{\n  position: relative;\n}\n\n";
+  n(css$o,{});
 
-  var tpl$e = "\n<div class=\"debug__dialog-box\">\n  <div class=\"debug__dialog-box__container\">\n        <div class=\"debug__dialog-box__avatar\"></div>\n        <div class=\"debug__dialog-box__reply-wrapper\">\n          <div class=\"debug__dialog-box__name\"></div>\n          <div class=\"debug__dialog-box__reply\"></div>\n        </div>\n  </div>\n</div>";
+  var tpl$c = "\n<div class=\"debug__dialog-box\">\n  <div class=\"debug__dialog-box__container\">\n        <div class=\"debug__dialog-box__avatar\"></div>\n        <div class=\"debug__dialog-box__reply-wrapper\">\n          <div class=\"debug__dialog-box__name\"></div>\n          <div class=\"debug__dialog-box__reply\"></div>\n        </div>\n  </div>\n</div>";
 
   var dialogBoxImage$1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAADICAYAAAB26ZNJAAABbmlDQ1BpY2MAACiRdZE7SwNBFIU/oxLRSIqkELFIEcUiAVGQlBJBG7VIIvhqks1LyCbLboIEW8HGQrAQbXwV/gNtBVsFQVAEESt/gK9GwnrHDSRIMsvs/Tgz5zJzBlxzBU23usZAL5bN2Gw0sLS8EnC/4cKPjwiepGYZ8/GZBG3H9wMdqt6HVa/2+1qOvnTG0qCjR3hSM8yy8JTw3EbZULwj7NfyybTwsXDIlAMK3yg95fCr4pzDn4rNRGwaXKpnINfEqSbW8qYuPCoc1AsVrX4edRNPprgYlzoocwiLGLNECZCiwjoFyoSlFiWz1r6xP98CJfFo8jeoYoojR168IVEr0jUjNSt6Rr4CVZX7/zyt7MS4090The4X2/4YBvce1HZt++fEtmun0PkMV8WGvyQ5Rb5E321owSPwbsHFdUNL7cPlNgw8GUkz+Sd1ynRls/B+Dv3L4LuD3lUnq/o6Z4+Q2JQnuoWDQxiR/d61XxVkaBT4cFhYAAAACXBIWXMAAArwAAAK8AFCrDSYAAAFAUlEQVR4Xu3YMQHAIBDAwKf+pSEKCcwld3MUZM3MHgAAAOBp3y0AAAAA/s8AAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDuHwAlzNu7SaAAAAAElFTkSuQmCC";
 
-  var $tpl$a = $(tpl$e);
+  var $tpl$a = $(tpl$c);
   /**
    * controls
    */
@@ -415,8 +415,16 @@
     }
   }
 
+  var css$n = "#loader {\n  background: black;\n  z-index: 9999;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  color: white;\n  display: none;\n  align-items: center;\n  justify-content: center;\n}\n\n.loader {\n  color: wheat;\n  font-family: Consolas, Menlo, Monaco, monospace;\n  font-weight: bold;\n  font-size: 100px;\n  opacity: 0.8;\n}\n.loader span {\n  display: inline-block;\n  animation: pulse 0.4s alternate infinite ease-in-out;\n}\n.loader span:nth-child(2) {\n  animation-delay: 0.4s;\n}\n\n@keyframes pulse {\n  to {\n    transform: scale(0.8);\n    opacity: 0.5; \n  } \n}\n";
+  n(css$n,{});
+
+  var tpl$b = "<div id=\"loader\">\n    <div class=\"loader\"><span>{</span><span>}</span></div>\n</div>";
+
+  var $tpl$9 = $(tpl$b);
   function assetsLoader () {
     var _this = this;
+
+    $('#screen').append($tpl$9);
 
     var getAssets = function getAssets(_) {
       _this.emit('preload');
@@ -445,8 +453,12 @@
             console.error("File not found [ ".concat(asset.name, " ]"));
           });
         } else if (/\.png|\.jpg|\.jpeg|\.webp|\.gif/i.test(asset.url)) {
-          if (_this.TREE.$root.hasOwnProperty('package')) {
-            if (_this.TREE.$root["package"].hasOwnProperty('preload')) {
+          var _this$TREE$$root;
+
+          if ((_this$TREE$$root = _this.TREE.$root) !== null && _this$TREE$$root !== void 0 && _this$TREE$$root["package"]) {
+            var _this$TREE$$root$pack;
+
+            if ((_this$TREE$$root$pack = _this.TREE.$root["package"]) !== null && _this$TREE$$root$pack !== void 0 && _this$TREE$$root$pack.preload) {
               if (_this.current.assets.length - 1 >= ++i) {
                 if (_this.TREE.$root["package"].preload) {
                   var img = new Image();
@@ -495,10 +507,20 @@
 
         _this.current.assets = _this.current.assets.concat(body.assets);
       }
+      /**
+       * Загрузка ресурсов происходит только тогда, когда есть ресурсы
+       */
 
       if (_this.current.assets.length > 0) {
         getAssets();
-      } else {
+      }
+      /**
+       * Если ресурсов нет, то эмулируем событыия, будто ресурсы есть
+       * [ postlaod ] - Является важным событием, так как первый прыжок совершается
+       * после этого события. Так же для коректной работы некоторых плагинов.
+       * Которым требуются загруженные ресурсы.
+       */
+      else {
         setTimeout(function () {
           _this.emit('preload');
 
@@ -508,72 +530,16 @@
         }, 0);
       }
     };
-    /*
-    this.on('preload', scene=>{
-    
-      var assets = this.TREE[this.current.sceneName].assets;
-      this.current.assets = this.current.assets.concat(assets);
-    
-      this.emit('setAssets');
-    })
-    
-    */
+    /**
+     * Получили vn.json
+     */
 
 
-    this.on('setTree', function (_) {
-      setAllAssets();
-    });
-  }
+    this.on('setTree', setAllAssets);
+    /**
+     * Отображаем прелоэдер
+     */
 
-  var css$o = "#screen {\n  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVR4AWM8ZsOAF1BNAasXA8PvbSASjUYo+L0NXS9EnJAVhE0gqGCEuIFgXAAA5aUvR45cttUAAAAASUVORK5CYII=);\n  position: relative;\n  overflow: hidden;\n}\n\n.screen {\n  display: none;\n  width: 100%;\n  height: 100%;\n  /*transition: background-image 0.5s;*/\n  background-repeat: no-repeat;\n}\n";
-  n(css$o,{});
-
-  var click$1 = false;
-  function screen () {
-    var _this = this;
-
-    var prevScreen = null;
-    this.on('screen', function (id) {
-      if (id.onClick === true) {
-        /**
-         * При повторном вызове плагина с параметром onClick почему то dialog-box
-         * не успевает скрыться. Срабатывает слушатель click
-         */
-        setTimeout(function () {
-          click$1 = true;
-        }, 300);
-      } else if (prevScreen && prevScreen !== id) {
-        $('#' + prevScreen).fadeOut();
-        prevScreen = id;
-        $('#' + id).fadeIn();
-      } else {
-        prevScreen = id;
-        $('#' + id).fadeIn();
-      }
-
-      if (typeof id === 'string') {
-        _this.$store.$screen = $('#' + id);
-      } //this.emit('screenInit', id);
-
-    });
-  }
-  $('#screen').on('click', function () {
-    if (click$1) {
-      click$1 = false;
-      $vnjs.exec({
-        next: true
-      });
-    }
-  });
-
-  var css$n = "#loader {\n  background: black;\n  z-index: 9999;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  color: white;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.loader {\n  color: wheat;\n  font-family: Consolas, Menlo, Monaco, monospace;\n  font-weight: bold;\n  font-size: 100px;\n  opacity: 0.8;\n}\n.loader span {\n  display: inline-block;\n  animation: pulse 0.4s alternate infinite ease-in-out;\n}\n.loader span:nth-child(2) {\n  animation-delay: 0.4s;\n}\n\n@keyframes pulse {\n  to {\n    transform: scale(0.8);\n    opacity: 0.5; \n  } \n}\n";
-  n(css$n,{});
-
-  var tpl$d = "<div id=\"loader\">\n    <div class=\"loader\"><span>{</span><span>}</span></div>\n</div>";
-
-  var $tpl$9 = $(tpl$d);
-  $('#screen').append($tpl$9);
-  function loaderScreen () {
     this.on('preload', function () {
       $tpl$9.css('display', 'flex');
     });
@@ -583,20 +549,34 @@
     });
   }
 
-  var tpl$c = "<div id=\"stream\" class=\"screen\">\n  \n</div>";
-
-  function streamScreen () {
-    $('#screen').append(tpl$c);
-    this.$store.$stream = $('#stream');
-  }
-
-  var css$m = ".component canvas{\n  width: 1024px !important;\n  height: 768px !important;\n}";
+  var css$m = "#screen {\n  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVR4AWM8ZsOAF1BNAasXA8PvbSASjUYo+L0NXS9EnJAVhE0gqGCEuIFgXAAA5aUvR45cttUAAAAASUVORK5CYII=);\n  position: relative;\n  overflow: hidden;\n}\n";
   n(css$m,{});
 
-  var tpl$b = "<div id=\"zim\" class=\"screen\">\n\n</div>";
+  function screen () {
+    var _this = this;
 
-  function zimScreen () {
-    $('#screen').append(tpl$b);
+    var click = false;
+    this.$store.$screen = $('#screen');
+    this.on('screen', function (id) {
+      if (id.onClick === true) {
+        /**
+         * При повторном вызове плагина с параметром onClick почему то dialog-box
+         * не успевает скрыться. Срабатывает слушатель click
+         */
+        setTimeout(function () {
+          click = true;
+        }, 300);
+      }
+    });
+    this.$store.$screen.on('click', function () {
+      if (click) {
+        click = false;
+
+        _this.exec({
+          next: true
+        });
+      }
+    });
   }
 
   var css$l = ".dialog-box {\n  z-index: 7000;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: none;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.dialog-box__reply-end-point{\n\n  display: inline-block;\n\n}\n.dialog-box__reply-end-point::before{\n  content: '';\n  position: absolute;\n\n  left: 10px;\n  width: 7px;\n  height: 7px;\n  background-color: silver;\n  opacity: 0.7;\n  animation-duration: 0.7s;\n  animation-name: end-point;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}\n@keyframes end-point {\n  from {\n    top: -10px;\n    opacity: 0.1;\n  }\n  to {\n    top: -20px;\n    opacity: 0.7;\n  }\n}\n\n.dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.dialog-box__avatar{\n  margin-top: 15px;\n  min-width: 150px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  display: none;\n}\n.dialog-box__avatar--show{\n  display: block;\n}\n\n.dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n}\n";
@@ -844,7 +824,7 @@
 
     var $tpl = $(tpl$a);
     $tpl.css('background-image', "url(".concat(dialogBoxImage, ")"));
-    this.$store.$stream.append($tpl); // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
+    this.$store.$screen.append($tpl); // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
 
     $tpl.on('mousedown', function (e) {
       return _this.next();
@@ -900,7 +880,7 @@
   var $tpl$8 = $(tpl$9);
   function hands () {
     var _this = this;
-    this.$store.$stream.append($tpl$8);
+    this.$store.$screen.append($tpl$8);
     var isShow = false;
     this.on('hand-left', function (id) {
       if (id) {
@@ -962,7 +942,7 @@
     var _this = this;
 
     var $tpl = $(tpl$8);
-    this.$store.$stream.append($tpl);
+    this.$store.$screen.append($tpl);
     this.on('cloud', function (param) {
       $tpl.empty();
       $tpl.css('display', 'flex');
@@ -1049,7 +1029,7 @@
     var _this = this;
 
     var $frame = $(tpl$7);
-    this.$store.$stream.append($frame);
+    this.$store.$screen.append($frame);
     this.on('frame', function (param) {
       if (param) {
         $frame.html('');
@@ -1079,7 +1059,7 @@
   function menu$1 () {
     var _this = this;
 
-    this.$store.$stream.append($tpl$7);
+    this.$store.$screen.append($tpl$7);
     var prevObj = null;
     this.on('menu', function (obj) {
       if (obj === true) {
@@ -1202,7 +1182,7 @@
   function mainMenu () {
     var _this = this;
 
-    this.$store.$stream.append($tpl$6);
+    this.$store.$screen.append($tpl$6);
     var prevObj = null;
     this.on('main-menu', function (obj) {
       if (obj === true) {
@@ -1340,7 +1320,7 @@
     var _this = this;
 
     var $tpl = $(tpl$4);
-    this.$store.$stream.append($tpl);
+    this.$store.$screen.append($tpl);
     this.on('term', function (param) {
       if (param === true) {
         $tpl.fadeIn();
@@ -1406,9 +1386,9 @@
     var $right = $('<div class="stream__show-right component"></div>');
     var $center = $('<div class="stream__show-center component"></div>');
     var $show = $('<div class="stream__show-show component"></div>');
-    this.$store.$stream.append($left);
-    this.$store.$stream.append($right);
-    this.$store.$stream.append($center);
+    this.$store.$screen.append($left);
+    this.$store.$screen.append($right);
+    this.$store.$screen.append($center);
     /*
     
     .stream__show-show.component
@@ -1456,9 +1436,9 @@
     var $left = $('<img alt="" src="" class="stream__show-auto-left component"/>');
     var $center = $('<img alt="" src="" class="stream__show-auto-center component"/>');
     var $right = $('<img alt="" src="" class="stream__show-auto-right component"/>');
-    this.$store.$stream.append($left);
-    this.$store.$stream.append($center);
-    this.$store.$stream.append($right);
+    this.$store.$screen.append($left);
+    this.$store.$screen.append($center);
+    this.$store.$screen.append($right);
     /*
     
     
@@ -1564,7 +1544,7 @@
     var _this = this;
 
     var $table = $('<div class="stream__table component"></div>');
-    this.$store.$stream.append($table);
+    this.$store.$screen.append($table);
     $table.on('click', '.table__cell', function () {
       var label = $(this).data('jump');
 
@@ -1777,7 +1757,7 @@
     }
 
     var $tpl = $(tpl$3);
-    this.$store.$stream.append($tpl);
+    this.$store.$screen.append($tpl);
 
     var setScore = function setScore(data) {
       for (var key in data) {
@@ -1863,7 +1843,7 @@
     var chessInit = function chessInit() {
       var $tpl = $('<iframe id="chess__vnjson" src="data/chess/index.html" width="500" height="500"></iframe>');
 
-      _this.$store.$stream.append($tpl);
+      _this.$store.$screen.append($tpl);
 
       _this.on('chess', function (fen) {
         if (fen) {
@@ -1888,7 +1868,7 @@
     var _this = this;
 
     var $tpl = $(tpl$2);
-    this.$store.$stream.append($tpl);
+    this.$store.$screen.append($tpl);
     var cid = null;
     this.on('set-name', function (id) {
       if (id) {
@@ -1924,7 +1904,7 @@
   function wiki () {
     var _this = this;
 
-    this.$store.$stream.append($tpl$5);
+    this.$store.$screen.append($tpl$5);
     this.on('wiki', function (data) {
       if (data) {
         $tpl$5.html('');
@@ -1983,7 +1963,7 @@
         if (data) {
           $tpl = $('<iframe id="crossword" src="data/crossword/index.html" width="975" height="500"></iframe>');
 
-          _this.$store.$stream.append($tpl);
+          _this.$store.$screen.append($tpl);
 
           setTimeout(function () {
             $tpl.show();
@@ -2013,7 +1993,7 @@
     var _this = this;
 
     $vnjs.current.data.tests = {};
-    this.$store.$stream.append($tpl$4);
+    this.$store.$screen.append($tpl$4);
     this.on('test', function (data) {
       if (data) {
         $tpl$4.show();
@@ -2115,7 +2095,7 @@
   function slide () {
     var _this = this;
 
-    this.$store.$stream.append($tpl$3);
+    this.$store.$screen.append($tpl$3);
     this.on('slide', function (id) {
       $tpl$3.attr('src', null);
 
@@ -2156,7 +2136,7 @@
   function content () {
     var _this = this;
 
-    this.$store.$stream.append($tpl$2);
+    this.$store.$screen.append($tpl$2);
     this.on('content', function (data) {
       if (typeof data === 'string') {
         console.log('hide: ', data);
@@ -2313,7 +2293,7 @@
 
     var $tpl = $(tpl);
     $tpl.hide().addClass("component").css('background-color', 'white');
-    this.$store.$stream.append($tpl);
+    this.$store.$screen.append($tpl);
     this.on(event, function (data) {
       if (data) {
         $tpl.fadeIn();
@@ -2322,7 +2302,7 @@
         $tpl.remove();
         $src.hide();
 
-        _this2.$store.$stream.append($tpl);
+        _this2.$store.$screen.append($tpl);
       }
     });
   }
@@ -2343,7 +2323,7 @@
   function eventRegistration(event, tpl) {
     var $tpl = $(tpl);
     $tpl.hide().addClass("component").addClass('event__' + event);
-    this.$store.$stream.append($tpl);
+    this.$store.$screen.append($tpl);
     this.on(event, function (data) {
       if (_typeof(data) === 'object') {
         $tpl.css(data.css);
@@ -2411,7 +2391,7 @@
     var $tpl = $(tpl);
     var ready = false;
     var help = false;
-    this.$store.$stream.append($tpl);
+    this.$store.$screen.append($tpl);
     this.on('status-bar', function (param) {
       if (param) {
         $tpl.css('display', 'flex');
@@ -2542,7 +2522,7 @@
     var init = function init() {
       var $tpl = $('<iframe id="paint-board__vnjson" src="data/paint-board/index.html" width="800" height="500"></iframe>');
 
-      _this.$store.$stream.append($tpl);
+      _this.$store.$screen.append($tpl);
 
       _this.on('paint-board', function (imgID) {
         if (imgID) {
@@ -2567,7 +2547,7 @@
     var _this = this;
 
     var $tpl = $('<textarea class="stream__clipboard" style="position: absolute; left:-99999px;top:0;"></textarea>');
-    this.$store.$stream.append($tpl);
+    this.$store.$screen.append($tpl);
     var flag = false;
     this.on('clipboard', function (data) {
       flag = true; // получаем файл
@@ -2642,7 +2622,7 @@
   var $tpl$1 = $('<div class="stream__craftos component"></div>');
   var open = false;
   function craftos () {
-    this.$store.$stream.append($tpl$1);
+    this.$store.$screen.append($tpl$1);
     this.on('craftos', function (data) {
       if (_typeof(data) === 'object') {
         if (!open) {
@@ -2839,7 +2819,7 @@
 
   var $tpl = $('<div class="stream__brython component"></div>');
   function brython () {
-    this.$store.$stream.append($tpl);
+    this.$store.$screen.append($tpl);
     this.on('python', function (param) {
       if (param) {
         showTerminal();
@@ -2856,7 +2836,7 @@
     $tpl.show();
   }
 
-  /*debug*/
+  /* native [jump] [next] [timeout] */
   function plugins () {
     var _this = this;
 
@@ -2866,12 +2846,7 @@
     }
 
     this.use(assetsLoader);
-    /*screens*/
-
     this.use(screen);
-    this.use(streamScreen);
-    this.use(loaderScreen);
-    this.use(zimScreen);
     /*components*/
 
     this.use(scene);
@@ -2944,11 +2919,8 @@
     plugins.call($vnjs);
     $vnjs.setTree(tree);
     $vnjs.on('postload', function () {
-      this.exec({
-        screen: 'stream'
-      }); // ?jump=scene.label
+      // ?jump=scene.label
       // ?jump=scene  //default $init
-
       var label = new URL(location.href).searchParams.get("jump");
 
       if (label) {

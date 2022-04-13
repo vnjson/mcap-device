@@ -8,9 +8,9 @@ export default function (){
   let $show = $('<div class="stream__show-show component"></div>')
 
 
-  this.$store.$stream.append($left)
-  this.$store.$stream.append($right)
-  this.$store.$stream.append($center)
+  this.$store.$screen.append($left)
+  this.$store.$screen.append($right)
+  this.$store.$screen.append($center)
 /*
 
 .stream__show-show.component

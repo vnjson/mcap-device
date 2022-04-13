@@ -3,7 +3,7 @@ import "./style.css";
 
 export default function (){
   let $table = $('<div class="stream__table component"></div>')
-  this.$store.$stream.append($table)
+  this.$store.$screen.append($table)
   $table.on('click', '.table__cell', function(){
       let label = $(this).data('jump')
       if(label){

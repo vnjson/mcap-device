@@ -4,7 +4,7 @@ import icoContent from './assets/icoContent.jpg'
 const $tpl = $(`<ul class="stream__stage component"></ul>`)
 export default function (){
 
-  this.$store.$stream.append($tpl)
+  this.$store.$screen.append($tpl)
 
   this.on('content', data=>{
     if( typeof(data)==='string' ){

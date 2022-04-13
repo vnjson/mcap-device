@@ -7,7 +7,7 @@ import DialogBox from './DialogBox.js';
 export default function (){
   const $tpl = $(tpl);
   $tpl.css('background-image', `url(${dialogBoxImage})`);
-  this.$store.$stream.append($tpl);
+  this.$store.$screen.append($tpl);
   // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
   $tpl.on('mousedown', e=>this.next());
 

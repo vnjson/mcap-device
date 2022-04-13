@@ -4,7 +4,7 @@ let $tpl = $('<ul class="stream__wiki component"></ul>')
 
 
 export default function (){
-  this.$store.$stream.append($tpl)
+  this.$store.$screen.append($tpl)
   this.on('wiki', data=>{
       if(data){
             $tpl.html('');

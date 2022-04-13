@@ -7,7 +7,7 @@ const tpl  = `<div class="stream__show-frame component">
              </div>`
 export default function (){
   let $frame = $(tpl)
-  this.$store.$stream.append($frame)
+  this.$store.$screen.append($frame)
   this.on('frame', param=>{
       if(param){
           $frame.html('')

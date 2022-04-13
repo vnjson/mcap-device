@@ -6,7 +6,7 @@ const $tpl = $(tpl);
 export default function (){
 
   const $vnjs = this;
-  this.$store.$stream.append($tpl)
+  this.$store.$screen.append($tpl)
   let isShow = false;
   this.on('hand-left', id=>{
     if(id){

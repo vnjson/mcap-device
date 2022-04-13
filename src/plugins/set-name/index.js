@@ -3,7 +3,7 @@ import './style.css';
 
 export default function (){
   const $tpl = $(tpl);
-  this.$store.$stream.append($tpl);
+  this.$store.$screen.append($tpl);
   let cid = null
   this.on('set-name', id=>{
       if(id){

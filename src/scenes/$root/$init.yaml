@@ -8,10 +8,11 @@
      Мороз и <font color="magenta">солнце</font> день чудесный!
      Мороз и <font color="magenta">солнце</font> день чудесный!
      Мороз и <font color="magenta">солнце</font> день чудесный!
-  scene: sceneTemplate
+- scene: sceneTemplate
 
 
-- a: Еще ты дремлешь, друг прелестный
+
+- al: Еще ты дремлешь, друг прелестный
 
 
 - $: Пора, красавица, проснись

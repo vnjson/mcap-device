@@ -11,7 +11,7 @@ let _falseAnswer = 0;
 
 export default function (){
   $vnjs.current.data.tests = {};
-  this.$store.$stream.append($tpl)
+  this.$store.$screen.append($tpl)
 
   this.on('test', data=>{
 

@@ -1,5 +1,11 @@
+import './style.css'
+import tpl from './tpl.html'
+const $tpl = $(tpl);
+
+
 export default function (){
 
+$('#screen').append($tpl);
 
 
 
@@ -11,24 +17,24 @@ var load = _=>{
   var asset = this.current.assets[i];
   
   if(/\.mp3|\.wav|\.ogg/i.test(asset.url)){
-    var sound = new Howl({src: asset.url})
+    var sound = new Howl({src: asset.url});
         sound.on('load', _=>{
           this.$store[asset.name] = sound;
           if( this.current.assets.length-1>=++i){
-            this.emit('load', asset)
+            this.emit('load', asset);
             load()
             
           }else{
-            this.emit('postload') 
+            this.emit('postload');
           }             
         })
         sound.on('loaderror', ()=>{
-          console.error(`File not found [ ${asset.name} ]`)
+          console.error(`File not found [ ${asset.name} ]`);
         })
   }
   else if(/\.png|\.jpg|\.jpeg|\.webp|\.gif/i.test(asset.url)){
-      if(this.TREE.$root.hasOwnProperty('package')){
-          if(this.TREE.$root.package.hasOwnProperty('preload') ){
+      if(this.TREE.$root?.package){
+          if(this.TREE.$root.package?.preload ){
             
             if(this.current.assets.length-1>=++i){
               if(this.TREE.$root.package.preload){
@@ -37,33 +43,29 @@ var load = _=>{
 
                     img.onerror = ()=>{
                      
-                      this.$store[asset.name] = img
-                      this.emit('load', asset)
-                      console.error('Image not found')
-                      load()
+                      this.$store[asset.name] = img;
+                      this.emit('load', asset);
+                      console.error('Image not found');
+                      load();
                     };
                     img.onload = ()=>{
-                      this.$store[asset.name] = img
-                      this.emit('load', asset)
-                      load()
+                      this.$store[asset.name] = img;
+                      this.emit('load', asset);
+                      load();
                     }
 
               }
               else{
-                this.$store[asset.name] = asset.url
-                load()
+                this.$store[asset.name] = asset.url;
+                load();
               }
 
             }else{
-                  this.emit('postload')
+                  this.emit('postload');
             };
 
           }
       }
-
-
-  
-
   }
   else{
     ++i
@@ -77,44 +79,46 @@ load();
 
 };
 
-var setAllAssets = ()=>{
-
+const setAllAssets = ()=>{
     for(let [scene, body] of Object.entries(this.TREE)){
         this.current.assets = this.current.assets.concat(body.assets);
     };
+    /**
+     * Загрузка ресурсов происходит только тогда, когда есть ресурсы
+     */
     if(this.current.assets.length>0){
-
           getAssets();
-       
     }
+    /**
+     * Если ресурсов нет, то эмулируем событыия, будто ресурсы есть
+     * [ postlaod ] - Является важным событием, так как первый прыжок совершается
+     * после этого события. Так же для коректной работы некоторых плагинов.
+     * Которым требуются загруженные ресурсы.
+     */
     else{
- 
       setTimeout(()=>{
-        this.emit('preload')
-        this.emit('load')
-        this.emit('postload')
+        this.emit('preload');
+        this.emit('load');
+        this.emit('postload');
       },0)
-
     }
-
 }
 
-/*
-this.on('preload', scene=>{
+  /**
+   * Получили vn.json
+   */
+  this.on('setTree', setAllAssets);
+  /**
+   * Отображаем прелоэдер
+   */
+  this.on('preload', ()=>{
+      $tpl.css('display', 'flex');
+  });
+  this.on('load', ()=>{
 
-  var assets = this.TREE[this.current.sceneName].assets;
-  this.current.assets = this.current.assets.concat(assets);
-
-  this.emit('setAssets');
-})
-
-*/
-
-this.on('setTree', _=>{
-  setAllAssets();
-
-
-});
-
-
+  })
+  this.on('postload', ()=>{
+      $tpl.fadeOut();
+  });
 }
+

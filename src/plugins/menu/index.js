@@ -11,7 +11,7 @@ let menuObj = null;
 export default function (){
 
 
-  this.$store.$stream.append($tpl)
+  this.$store.$screen.append($tpl)
   let prevObj = null;
   this.on('menu', obj=>{
       if(obj===true){

@@ -10,7 +10,7 @@ export default function (){
 
   const $tpl = $(tpl);
 
-  this.$store.$stream.append($tpl);
+  this.$store.$screen.append($tpl);
 
   this.on('term', param=>{
 

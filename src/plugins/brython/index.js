@@ -2,7 +2,7 @@ import "./style.css";
 const $tpl = $('<div class="stream__brython component"></div>');
 
 export default function (){
-  this.$store.$stream.append($tpl);
+  this.$store.$screen.append($tpl);
   this.on('python', param=>{
       if(param){
         showTerminal();

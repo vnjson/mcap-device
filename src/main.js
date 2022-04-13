@@ -23,15 +23,15 @@ function init (tree){
       $: {id: '$', name: 'Автор', replyColor: 'red'} //default character
     }
    */
+
   window.$vnjs = new Vnjson({ debug: tree.$root.package?.debug });
 
   plugins.call($vnjs);
-
   $vnjs.setTree(tree);
+
   
   $vnjs.on('postload', function (){
-      
-      this.exec({screen: 'stream'})
+
       // ?jump=scene.label
       // ?jump=scene  //default $init
       const label = new URL( location.href ).searchParams.get("jump")

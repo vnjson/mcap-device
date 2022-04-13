@@ -9,7 +9,7 @@ let menuObj = null;
 
 export default function (){
 
-  this.$store.$stream.append($tpl);
+  this.$store.$screen.append($tpl);
 
   let prevObj = null;
   this.on('main-menu', obj=>{

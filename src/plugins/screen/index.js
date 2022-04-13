@@ -1,10 +1,9 @@
 import './style.css'
 
-let click = false;
-export default function (){
-  
-  var prevScreen = null
 
+export default function (){
+  let click = false;
+  this.$store.$screen = $('#screen'); 
   this.on('screen', id=>{
     if(id.onClick===true){
          /**
@@ -16,28 +15,18 @@ export default function (){
           }, 300);
 
     }
-    else if(prevScreen&&prevScreen!==id){
-      $('#'+prevScreen).fadeOut()
-      prevScreen = id;
-      
-      $('#'+id).fadeIn()
-    }
-    else{
-      prevScreen = id
-      $('#'+id).fadeIn()
-    }
-    if(typeof id==='string'){
-      this.$store.$screen = $('#'+id);
-    }
-    //this.emit('screenInit', id);
-  })
+  });
+
+
+  this.$store.$screen.on('click', ()=>{
+      if(click){
+        click = false;
+        this.exec({ next: true });
+      }
+  });
+
 
 }
 
 
-$('#screen').on('click', function (){
-    if(click){
-      click = false;
-      $vnjs.exec({ next: true });
-    }
-});
+

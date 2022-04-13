@@ -7,9 +7,9 @@ export default function (){
   let $right = $('<img alt="" src="" class="stream__show-auto-right component"/>')
 
 
-  this.$store.$stream.append($left)
-  this.$store.$stream.append($center)
-  this.$store.$stream.append($right)
+  this.$store.$screen.append($left)
+  this.$store.$screen.append($center)
+  this.$store.$screen.append($right)
 /*
 
 

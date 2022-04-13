@@ -5,7 +5,7 @@ let open = false;
 
 export default function (){
 
-  this.$store.$stream.append($tpl);
+  this.$store.$screen.append($tpl);
   this.on('craftos', data=>{
       if(typeof data==='object'){
           if(!open){

@@ -9,7 +9,7 @@ export default function (){
   const $tpl = $(tpl);
   let ready = false;
   let help = false;
-  this.$store.$stream.append($tpl);
+  this.$store.$screen.append($tpl);
   this.on('status-bar', param=>{
     if(param){
       $tpl.css('display', 'flex');
