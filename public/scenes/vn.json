@@ -2,6 +2,10 @@
   "$root": {
     "assets": [
       {
+        "name": "abc",
+        "url": "./scenes/assets/abc.webm"
+      },
+      {
         "name": "paintBoard",
         "url": "./scenes/assets/paintBoard.jpg"
       },
@@ -83,22 +87,42 @@
         "dialog-box": true,
         "status-bar": true,
         "hands": false,
+        "audio": false,
         "next": true
       },
       {
-        "$": "Мороз и <font color=\"magenta\">солнце</font> день чудесный! Мороз и <font color=\"magenta\">солнце</font> день чудесный! Мороз и <font color=\"magenta\">солнце</font> день чудесный! Мороз и <font color=\"magenta\">солнце</font> день чудесный!"
+        "$": "Мороз и <font color=\"magenta\">солнце</font> день чудесный!",
+        "video": "abc"
       },
       {
-        "scene": "sceneTemplate"
+        "al": "Еще ты дремлешь, друг прелестный",
+        "audio": {
+          "name": "sysMetronome",
+          "action": "play",
+          "speed": 3,
+          "volume": 1,
+          "loop": true,
+          "onEnd": {
+            "dialog-box": "clear"
+          }
+        }
       },
       {
-        "al": "Еще ты дремлешь, друг прелестный"
+        "$": "Пора, красавица, проснись",
+        "scene": "sceneMainMenu"
       },
       {
-        "$": "Пора, красавица, проснись"
-      },
-      {
-        "$": "Открой сомкнуты негой взоры"
+        "$": "Открой сомкнуты негой взоры",
+        "audio": {
+          "name": "sysFlipPages",
+          "action": "play",
+          "speed": 2,
+          "volume": 1,
+          "loop": false,
+          "onEnd": {
+            "next": true
+          }
+        }
       },
       {
         "$": "Навстречу северной Авроры"

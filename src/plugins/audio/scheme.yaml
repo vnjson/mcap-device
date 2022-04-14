@@ -6,6 +6,16 @@
     volume: 0.01
     loop: true
 
+      
+- audio:
+    name: sysMetronome
+    action: play
+    speed: 2
+    volume: 1
+    loop: true # onEnd срабатывает при каждом цикле воспроизведения.
+    onEnd:
+      next: true
+
 - audio: false
 
 

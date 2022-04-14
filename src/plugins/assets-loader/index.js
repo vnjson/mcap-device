@@ -18,6 +18,7 @@ var load = _=>{
   
   if(/\.mp3|\.wav|\.ogg/i.test(asset.url)){
     var sound = new Howl({src: asset.url});
+        sound.on('end', ()=>this.emit('audioEnd', asset.name))
         sound.on('load', _=>{
           this.$store[asset.name] = sound;
           if( this.current.assets.length-1>=++i){

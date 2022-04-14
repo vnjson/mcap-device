@@ -1,4 +1,5 @@
 import "./style.css";
+import "./hl.css";
 import tpl from "./tpl.html";
 import map from './map.js';
 

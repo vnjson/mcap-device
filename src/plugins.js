@@ -43,7 +43,7 @@ import paintBoard         from './plugins/paint-board/index.js';
 import clipBoard          from './plugins/clipboard/index.js';
 import craftos            from './plugins/craftos/index.js';
 import brython            from './plugins/brython/index.js';
-
+import video              from './plugins/video/index.js';
 
 export default function(){
 
@@ -90,7 +90,7 @@ export default function(){
   this.use(clipBoard);
   this.use(craftos);
   this.use(brython);
-
+  this.use(video);
 
   this.on('next', ()=>{
       setTimeout(()=>this.next(), 10)

@@ -34,7 +34,7 @@ export default function  (){
 
         let message = ErrorHandler.getMessage(local, codeError, data);
 
-        const path = `${this.current.sceneName}.${this.current.labelName}`
+        const path = `${this.current.sceneName}.${this.current.labelName}`;
         
         const snippet = ErrorHandler.getSnippetFromCtx(this.ctx);
         ErrorHandler.showModal(message, path, snippet);

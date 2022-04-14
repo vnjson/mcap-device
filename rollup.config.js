@@ -9,7 +9,7 @@ import chokidar         from 'chokidar';
 import html             from 'rollup-plugin-html';
 import fs               from 'fs';
 import YAML             from 'yaml';
-import { terser }       from "rollup-plugin-terser";
+
 
 
 const config = YAML.parse(fs.readFileSync('./config.yaml', 'utf8'))
@@ -24,11 +24,11 @@ export default {
     format: 'umd',
     sourcemap: false
   },
+
   plugins: [
     yaml(),
     html(),
     styles(),
-    production && terser(),
     url({
       fileName: '[hash][extname]',
       destDir: `./public/assets`

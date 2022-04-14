@@ -1,24 +1,34 @@
 - dialog-box: true
   status-bar: true
   hands: false
+  audio: false
   next: true
 
 
 - $: Мороз и <font color="magenta">солнце</font> день чудесный!
-     Мороз и <font color="magenta">солнце</font> день чудесный!
-     Мороз и <font color="magenta">солнце</font> день чудесный!
-     Мороз и <font color="magenta">солнце</font> день чудесный!
-- scene: sceneTemplate
-
-
+  video: abc  
 
 - al: Еще ты дремлешь, друг прелестный
-
+  audio:
+    name: sysMetronome
+    action: play
+    speed: 3
+    volume: 1
+    loop: true
+    onEnd:
+      dialog-box: clear
 
 - $: Пора, красавица, проснись
-
+  scene: sceneMainMenu
 - $: Открой сомкнуты негой взоры
-
+  audio:
+    name: sysFlipPages
+    action: play
+    speed: 2
+    volume: 1
+    loop: false
+    onEnd:
+      next: true
 - $: Навстречу северной Авроры 
 
 
