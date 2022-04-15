@@ -113,7 +113,8 @@
           "name": "abc",
           "volume": 0.5,
           "onEnd": {
-            "scene": "paintBoard"
+            "scene": "paintBoard",
+            "dialog-box": false
           },
           "css": {
             "top": "50px",

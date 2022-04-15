@@ -2879,6 +2879,8 @@
     });
     var onEndObj;
     player.on('ended', function () {
+      $tpl.fadeOut();
+
       _this.exec(onEndObj);
     });
     this.on('video', function (param) {

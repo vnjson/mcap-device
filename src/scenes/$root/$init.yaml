@@ -5,17 +5,20 @@
   next: true
 
 
+
 - $: Мороз и <font color="magenta">солнце</font> день чудесный!
 - $: test
   video: serg
 - video: pause
 - video: play
+
 - $: test 2
   video:
     name: abc
     volume: 0.5
     onEnd:
       scene: paintBoard
+      dialog-box: false
     css:
       top: 50px
       left: 40px

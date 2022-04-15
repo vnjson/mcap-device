@@ -22,9 +22,9 @@ export default function (){
   });
   let onEndObj;
   player.on('ended', ()=>{
+    $tpl.fadeOut();
     this.exec(onEndObj);
   });
-
 
   this.on('video', param=>{
     if(typeof param==='object'){
