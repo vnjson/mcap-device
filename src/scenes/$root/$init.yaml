@@ -6,7 +6,21 @@
 
 
 - $: Мороз и <font color="magenta">солнце</font> день чудесный!
-  video: abc  
+- $: test
+  video: serg
+- video: pause
+- video: play
+- $: test 2
+  video:
+    name: abc
+    volume: 0.5
+    onEnd:
+      scene: paintBoard
+    css:
+      top: 50px
+      left: 40px
+      width: 500px
+      height: 300px
 
 - al: Еще ты дремлешь, друг прелестный
   audio:
@@ -14,7 +28,7 @@
     action: play
     speed: 3
     volume: 1
-    loop: true
+    loop: false
     onEnd:
       dialog-box: clear
 

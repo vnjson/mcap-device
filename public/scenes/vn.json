@@ -26,6 +26,10 @@
         "url": "./scenes/assets/sceneTemplate.jpg"
       },
       {
+        "name": "serg",
+        "url": "./scenes/assets/serg.webm"
+      },
+      {
         "name": "sys4SecAlarm",
         "url": "./scenes/assets/sys4SecAlarm.mp3"
       },
@@ -91,8 +95,33 @@
         "next": true
       },
       {
-        "$": "Мороз и <font color=\"magenta\">солнце</font> день чудесный!",
-        "video": "abc"
+        "$": "Мороз и <font color=\"magenta\">солнце</font> день чудесный!"
+      },
+      {
+        "$": "test",
+        "video": "serg"
+      },
+      {
+        "video": "pause"
+      },
+      {
+        "video": "play"
+      },
+      {
+        "$": "test 2",
+        "video": {
+          "name": "abc",
+          "volume": 0.5,
+          "onEnd": {
+            "scene": "paintBoard"
+          },
+          "css": {
+            "top": "50px",
+            "left": "40px",
+            "width": "500px",
+            "height": "300px"
+          }
+        }
       },
       {
         "al": "Еще ты дремлешь, друг прелестный",
@@ -101,7 +130,7 @@
           "action": "play",
           "speed": 3,
           "volume": 1,
-          "loop": true,
+          "loop": false,
           "onEnd": {
             "dialog-box": "clear"
           }

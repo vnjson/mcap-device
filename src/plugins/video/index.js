@@ -1,62 +1,74 @@
 import './video.css';
-
+import './style.css';
 import tpl from './tpl.html';
 
 export default function (){
 
-const $tpl = $(tpl);
-this.$store.$screen.append($tpl);
+  const $tpl = $(tpl);
+  this.$store.$screen.append($tpl);
 
-const options = {
-  /*
-  responsive: true,
-  controls: true,
-  autoplay: false,
-  preload: 'auto'
-  */
-};
+  const options = {
+    responsive: true,
+    controls: false,
+    autoplay: false,
+    preload: 'auto'
+  };
 
 
 
-var player = videojs('vnjson__video', options, function onPlayerReady() {
-
-
-  // In this context, `this` is the player that was created by Video.js.
-  player.play();
-
-  // How about an event listener?
-  this.on('ended', function() {
-    videojs.log('Awww...over so soon?!');
+  const player = videojs('vnjson__video', options);
+  player.on('error', function(err) {
+    videojs.log(err);
   });
-});
-
-/*
-
-player.on('error', function(err) {
-  console.error(err)
-});*/
-
-/*
- this.on('ended', function() {
-    videojs.log('Awww...over so soon?!');
+  let onEndObj;
+  player.on('ended', ()=>{
+    this.exec(onEndObj);
   });
-*/
 
 
-  this.on('video', data=>{
-
-    if(data){
-        const asset = this.getAssetByName(data)
-        console.log(asset)
-        //player.src('scenes/assets/abc.webm')
-        // player.src('scenes/assets/abc.webm')
-        //player.play()
-        $tpl.show();
+  this.on('video', param=>{
+    if(typeof param==='object'){
+        const asset = this.getAssetByName(param.name);
+        player.src(asset.url);
+        if(param.css){
+          $tpl.find('.video-js').css(param.css);
+        }
+        if(param.volume){
+          player.ready( ()=>{
+              player.volume(param.volume);
+              player.play();
+          });
+        }
+        if(param.onEnd){
+          onEndObj = param.onEnd;
+        }
+        $tpl.fadeIn(500);
+    }
+    else if(typeof param==='string'){
+        switch (param){
+          case 'pause':
+                player.pause();
+            break;
+          case 'play':
+                player.play();
+            break;
+          default:
+              const asset = this.getAssetByName(param);
+              player.src(asset.url);
+              player.ready( ()=>{
+                 player.play();
+              });
+              
+              $tpl.fadeIn(500);
+        }
     } 
     else{
-      $tpl.hide();
+      player.pause();
+      $tpl.fadeOut();
 
     }
   })
+
+
 
 }
