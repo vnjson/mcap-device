@@ -1,0 +1,17 @@
+# require ./static/data/ide/index.html
+
+############
+# В файле package.yaml необходимо дописать параметр ide: true
+############
+ 
+# показать
+ide: true
+
+# показать и передать файл из data
+ide: turtle.py
+
+# очистить
+ide: clear 
+
+# скрыть
+ide: false

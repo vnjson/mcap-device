@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Serpens Playground</title>
+        <style type="text/css">
+            *{
+                box-sizing: border-box;
+            }
+            html, body {
+                font: 14px Consolas, Arial, sans-serif;
+                padding: 0;
+                margin: 0;
+                background-color: #1e1e1e;
+            }
+            .button {
+                /*padding: 5px;
+                border-radius: 6px;
+                color: #ffffff;
+                background: #1e1e1e;
+                font-size: 14px;*/
+                text-decoration: none;
+                cursor: pointer;
+            }
+            .button{
+                width: 30px;
+                height: 30px;
+                margin-left: 10px;
+            }
+            .button:hover {
+                filter: brightness(150%);
+                text-decoration: none;
+            }
+            #page {
+                width: 600px;
+                background-color: #1e1e1e;
+            }
+            #content {
+                position: relative;
+            }
+            #input {
+                width: 100%; height: 320px;
+                overflow: hidden;
+            }
+            #canvas {
+                margin: 0 0 0 0; border: none;
+                display: none;
+            }
+            #output {
+                outline: none;
+                width: 100%; height: 320px;
+                resize: none;
+                border: none;
+                color: wheat;
+                background-color: #1e1e1e;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+            }
+            a:link, a:visited { color: #69c; text-decoration: none; }
+            .output-data{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: none;
+            }
+            .buttons{
+                display: flex;
+                justify-content: space-between;
+                padding: 5px 10px 5px 0;
+                align-items: center;
+
+            }
+            .buttons__group{
+                display: flex;
+                align-items: center;
+            }
+            #controls{
+                background-color: #1e1e1e;
+                border-top: 1px solid rgba(250,200, 200,0.1);
+
+            }
+        </style>
+    </head>
+    <body>
+        <div id="page">
+            <div id="content">
+                <div id="input"></div>
+                <div class="output-data">
+                    <div id="canvas"></div>
+                    <textarea readonly id="output" rows="8"></textarea>
+                </div>
+            </div>
+            <div id="controls">
+                <div class="buttons">
+                    <img src="icons/run.svg" id="run" type="button" class="button" onclick="doEval();">
+                    <div class="buttons__group">
+                        <img src="icons/console.svg" type="button" class="button" onclick="showConsole(true);">
+                        <img src="icons/canvas.svg" type="button" class="button" onclick="showConsole(false);">
+                        <img src="icons/clear.svg" id="clear" type="button" class="button" onclick="doClear();">
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <script type="text/javascript" src="skulpt.min.js"></script>
+        <script type="text/javascript" src="skulpt-stdlib.js"></script>
+        <script type="text/javascript" src="monaco/min/vs/loader.js"></script>
+        <script type="text/javascript">
+            var showOutput = false;
+            var outputDataContainter = document.querySelector('.output-data');
+            function hideConsoleScreen (){
+                outputDataContainter.style.display = 'none';
+                showOutput = false;
+
+            }
+            function showConsoleScreen (mode){
+                    if(mode){
+                        document.querySelector('#canvas').style.display = 'none';
+                    }
+                    else{
+                        document.querySelector('#canvas').style.display = 'block';
+                    }
+                    outputDataContainter.style.display = 'block';
+                    showOutput = true;
+            }
+            function showConsole (mode){
+                
+                if(showOutput){
+                    hideConsoleScreen();
+                }
+                else{
+                    showConsoleScreen (mode)
+                }
+            }
+            // Prepares the environment.
+            var input = document.getElementById('input');
+            var canvas = document.getElementById('canvas');
+            var output = document.getElementById('output');
+            Sk.python3 = true;
+            Sk.configure(
+                {
+                    output: function (text) {
+                        output.innerHTML += text;
+                        output.scrollTop = output.scrollHeight;
+                    },
+                    read: function (x) {
+                        if (Sk.builtinFiles === undefined || Sk.builtinFiles['files'][x] === undefined)
+                                throw 'File not found: "' + x + '"';
+
+                        return Sk.builtinFiles['files'][x];
+                    },
+                    debugout: console.log
+                }
+            );
+            Sk.TurtleGraphics = {
+                target: 'canvas',
+                width: 640,
+                height: 340
+            };
+
+            // Exposes some objects for test.
+            var CustomObject = function () {
+                if (!(this instanceof CustomObject)) {
+                    return new CustomObject();
+                }
+                this.v = 42;
+                this.__class__ = CustomObject;
+                this['v'] = this.v;
+
+                return this;
+            };
+            Sk.builtin.CustomObject = CustomObject;
+            Sk.abstr.setUpInheritance('CustomObject', Sk.builtin.CustomObject, Sk.builtin.object);
+            Sk.builtin.CustomObject.prototype['$r'] = function () {
+                return new Sk.builtin.str('(' + 'CustomObject' + ')');
+            };
+            Sk.builtin.CustomObject.prototype.memberFunction = new Sk.builtin.func(
+                function (self) {
+                    console.log('memberFunction', self);
+                }
+            );
+            Sk.builtins.CustomObject = Sk.builtin.CustomObject;
+
+            Sk.builtin.customFunction = new Sk.builtin.func(
+                function (a, b) {
+                    console.log('customFunction', a, b, a.v / b.v);
+
+                    return a.v / b.v;
+                }
+            );
+            Sk.builtins.customFunction = Sk.builtin.customFunction;
+
+            Sk.builtin.customInstance = {
+                v: 42,
+                __class__: Sk.builtin.object
+            };
+            Sk.builtin.customInstance['v'] = Sk.builtin.customInstance.v
+            Sk.abstr.setUpInheritance('customInstance', Sk.builtin.customInstance, Sk.builtin.object);
+            Sk.builtin.customInstance.prototype.customFunction = new Sk.builtin.func(
+                function () {
+                    console.log('customInstance.customFunction');
+                }
+            );
+            Sk.builtins.customInstance = Sk.builtin.customInstance;
+
+            Sk.externalLibraries = {
+                CustomModule : {
+                    path: './__init__.js'
+                }
+            };
+
+            // Loads the code editor.
+            var editor = null;
+            require.config({ paths: { vs: 'monaco/min/vs' } });
+            require(
+                ['vs/editor/editor.main'],
+                function () {
+                    editor = monaco.editor.create(
+                        input,
+                        {
+                            language: 'python',
+                            lineNumbers: 'on',
+                            roundedSelection: true,
+                            scrollBeyondLastLine: false,
+                            readOnly: false,
+                            theme: 'vs-dark',
+                            minimap: { enabled: false },
+                            automaticLayout: false
+                        }
+                    );
+
+                    /*
+                    var codeFib =
+                        'print("Fibonacci sequence")\n' +
+                        'def fib(n):\n' +
+                        '    if n <= 1:\n' +
+                        '        return n\n' +
+                        '    else:\n' +
+                        '        return fib(n - 1) + fib(n - 2)\n' +
+                        'n = 10\n' +
+                        'for i in range(n):\n' +
+                        '    print(fib(i))\n';*//*
+                       
+                    var codeTurtle =
+                        'print("Turtle graphics")\n' +
+                        'print("See the canvas above")\n' +
+                        'import turtle\n' +
+                        'wn = turtle.Screen()\n' +
+                        'wn.bgcolor("lightgreen")\n' +
+                        'tess = turtle.Turtle()\n' +
+                        'tess.color("hotpink")\n' +
+                        'tess.pensize(5)\n' +
+                        'alex = turtle.Turtle()\n' +
+                        'tess.forward(80)\n' +
+                        'tess.left(120)\n' +
+                        'tess.forward(80)\n' +
+                        'tess.left(120)\n' +
+                        'tess.forward(80)\n' +
+                        'tess.left(120)\n' +
+                        'tess.right(180)\n' +
+                        'tess.forward(80)\n' +
+                        'alex.forward(50)\n' +
+                        'alex.left(90)\n' +
+                        'alex.forward(50)\n' +
+                        'alex.left(90)\n' +
+                        'alex.forward(50)\n' +
+                        'alex.left(90)\n' +
+                        'alex.forward(50)\n' +
+                        'alex.left(90)\n' +
+                        'wn.exitonclick()\n';*//*
+                    var codeCustom =
+                        'print("Custom values")\n' +
+                        'co = CustomObject()\n' +
+                        'co.memberFunction()\n' +
+                        'customFunction(22, 7)\n' +
+                        'customInstance.customFunction()\n' +
+                        '\n' +
+                        'print("Custom module")\n' +
+                        'from CustomModule import *\n' +
+                        'moduleFunction(22, 7)\n' +
+                        'obj = ModuleObject(1, 2)\n' +
+                        'obj.a = 22\n' +
+                        'obj.b = 7\n' +
+                        'tmp = obj.__add__(ModuleObject(355, 113))\n' +
+                        'print(obj.a / obj.b)\n' +
+                        'print(len(obj), str(obj))\n';*/
+                    //var codeFib = '';
+                    //var codeTurtle = '';    
+                    var code = [ ''/*, codeTurtle*/ ].join('\n');
+                    editor.setValue(code);
+                }
+            );
+
+            // The evaluation and clearing procedure.
+            function doEval () {
+
+                if (!editor) {
+                    output.innerHTML += 'Not ready yet\n';
+
+                    return;
+                }
+
+                Sk.misceval.asyncToPromise(
+                    function () {
+                        doRelayout(true);
+
+                        return Sk.importMainWithBody("<stdin>", true, editor.getValue(), true);
+                    }
+                ).then(
+                    function (mod) {
+                        console.log('Success');
+                    },
+                    function (err) {
+                        console.log(err.toString(), err);
+                        output.innerHTML += err.toString() + '\n';
+                        output.scrollTop = output.scrollHeight;
+                    }
+                );
+            }
+
+            function doClear () {
+                output.innerHTML = '';
+                doRelayout(false);
+            }
+
+            var layoutProc = null;
+            function doRelayout (init) {
+                if (layoutProc) {
+                    clearInterval(layoutProc);
+                    layoutProc = null;
+                    if (canvas.hasChildNodes()) {
+                        var nodes = canvas.childNodes;
+                        for (var i = nodes.length - 1; i >= 0; --i) {
+                            var node = nodes[i];
+                            canvas.removeChild(node);
+                        }
+                    }
+                    canvas.style.display = 'none';
+                }
+                if (init) {
+                    canvas.style.display = 'block';
+                    layoutProc = setInterval(
+                        function () {
+                            if (canvas.hasChildNodes()) {
+                                var nodes = canvas.childNodes;
+                                var height = (-canvas.offsetWidth / Sk.TurtleGraphics.width * Sk.TurtleGraphics.height).toString() + 'px';
+                                for (var i = 0; i < nodes.length; ++i) {
+                                    var node = nodes[i];
+                                    node.style.setProperty('width', 'calc(100%)');
+                                    if (i > 0)
+                                        node.style.setProperty('margin-top', height);
+                                }
+                            }
+                        },
+                        10
+                    );
+                }
+            }
+    /**
+     * IFRAME EVENT
+     */
+    window.addEventListener("message", event=>{
+        const file = event.data.file
+        editor.setValue(file)
+    })
+        </script>
+    </body>
+</html>

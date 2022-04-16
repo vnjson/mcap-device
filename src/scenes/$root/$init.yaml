@@ -3,11 +3,14 @@
   hands: false
   audio: false
   next: true
+ 
 
-
-
+- ide: while.py
 - $: Мороз и <font color="magenta">солнце</font> день чудесный!
+  ide: turtle.py
 - $: test
+  ide: clear #false
+
   video: serg
 - video: pause
 - video: play

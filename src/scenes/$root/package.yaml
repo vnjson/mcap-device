@@ -2,6 +2,8 @@ preload: true
 debug: true
 ISBN: 9781234567897
 
+# iframe modules
 chess: false
 paint-board: true
 crossword: false
+ide: true
