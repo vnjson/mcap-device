@@ -3,30 +3,46 @@
   hands: false
   audio: false
   next: true
- 
 
+- ide: true
+- $: test
 - ide: while.py
+
 - $: Мороз и <font color="magenta">солнце</font> день чудесный!
   ide: turtle.py
 - $: test
-  ide: clear #false
+  ide: false #false
 
-  video: serg
-- video: pause
-- video: play
+- ide: turtle.py
 
-- $: test 2
-  video:
-    name: abc
-    volume: 0.5
-    onEnd:
-      scene: paintBoard
-      dialog-box: false
-    css:
-      top: 50px
-      left: 40px
-      width: 500px
-      height: 300px
+
+- $: test
+  typewrite:
+    task:
+      - У лукоморья дуб зеленый
+      - Златая цепь на дубе том
+    #local: ru
+    #activeColor: magenta
+    #activeKeys: абвгд
+
+- $: 1=1=1=1
+
+- typewrite: 
+      activeColor: magenta
+      activeKeys: абвгд
+      task:
+        - И днём и ночью кот учёный
+
+- $: 999+1
+
+- typewrite: 
+      task:
+        - test [ test ] test { test1 }
+      local: en
+  
+ 
+
+
 
 - al: Еще ты дремлешь, друг прелестный
   audio:

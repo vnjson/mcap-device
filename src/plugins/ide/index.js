@@ -10,30 +10,33 @@ export default function (){
 
 
 }
-var firstLoad = true;
+
 function init (){
     const $iframe = $('<iframe id="mcap__ide" src="data/ide/index.html" width="600" height="361"></iframe>')
     this.$store.$screen.append($tpl);
     $tpl.append($iframe);
+    let load = false;
+    $('#mcap__ide').on("load", () => {
+       load = true;
+    });
     this.on('ide', data=>{
         if(data){
               $tpl.show();
               const file = this.getDataByName(data);
-
               const win = document.querySelector("iframe#mcap__ide").contentWindow;
               const url = location.origin+"/data/ide/index.html";
-              if(firstLoad){
-                setTimeout(()=>{
-                  win.postMessage({ file: file?.body||'' }, url);
-                }, 1000);
-                firstLoad = false;
+              if(load){
+                    win.postMessage({ file: file?.body||'' }, url);
+             
               }
               else{
-                win.postMessage({ file: file?.body||'' }, url);
+                setTimeout(()=>{
+
+                  win.postMessage({ file: file?.body||'' }, url);
+                }, 2000)
               }
               
-
-
+              
         }
         else{
             $tpl.hide();
@@ -42,3 +45,4 @@ function init (){
     });
 
 }
+

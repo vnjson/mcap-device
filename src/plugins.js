@@ -45,6 +45,7 @@ import craftos            from './plugins/craftos/index.js';
 import brython            from './plugins/brython/index.js';
 import video              from './plugins/video/index.js';
 import ide                from './plugins/ide/index.js';
+import typewrite          from './plugins/typewrite/index.js';
 
 export default function(){
 
@@ -93,6 +94,7 @@ export default function(){
   this.use(brython);
   this.use(video);
   this.use(ide);
+  this.use(typewrite);
   this.on('next', ()=>{
       setTimeout(()=>this.next(), 10)
   });

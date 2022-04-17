@@ -21,7 +21,7 @@ export default {
   output: {
     file: `public/js/app.js`,
     name: 'app',
-    format: 'umd',
+    format: 'iife',
     sourcemap: false
   },
 

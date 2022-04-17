@@ -11,7 +11,7 @@ ide: true
 ide: turtle.py
 
 # очистить
-ide: clear 
+ide: clear
 
 # скрыть
 ide: false

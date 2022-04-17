@@ -38,6 +38,7 @@
             }
             #content {
                 position: relative;
+                overflow: hidden;
             }
             #input {
                 width: 100%; height: 320px;
@@ -64,8 +65,10 @@
                 top: 0;
                 left: 0;
                 width: 100%;
-                height: 100%;
+                height: 97%;
                 display: none;
+                padding-top: 3%;
+                background-color: #1e1e1e;
             }
             .buttons{
                 display: flex;
@@ -83,6 +86,9 @@
                 border-top: 1px solid rgba(250,200, 200,0.1);
 
             }
+            .decorationsOverviewRuler{
+                display: none;
+            }
         </style>
     </head>
     <body>
@@ -90,8 +96,10 @@
             <div id="content">
                 <div id="input"></div>
                 <div class="output-data">
-                    <div id="canvas"></div>
-                    <textarea readonly id="output" rows="8"></textarea>
+                    <div style="position: relative;">
+                        <div id="canvas"></div>
+                        <textarea readonly id="output" rows="8"></textarea>
+                    </div>
                 </div>
             </div>
             <div id="controls">
@@ -291,8 +299,19 @@
                         'print(len(obj), str(obj))\n';*/
                     //var codeFib = '';
                     //var codeTurtle = '';    
-                    var code = [ ''/*, codeTurtle*/ ].join('\n');
-                    editor.setValue(code);
+                    //var code = [ ''/*, codeTurtle*/ ].join('\n');
+                    //editor.setValue('');
+                        /**
+                         * IFRAME EVENT
+                         */
+                        
+                        window.addEventListener("message", event=>{
+                            const file = event.data.file
+                           
+                            //console.log(file)
+                            //editor.setValue('');
+                            editor.setValue(file)
+                        })
                 }
             );
 
@@ -361,13 +380,7 @@
                     );
                 }
             }
-    /**
-     * IFRAME EVENT
-     */
-    window.addEventListener("message", event=>{
-        const file = event.data.file
-        editor.setValue(file)
-    })
+
         </script>
     </body>
 </html>

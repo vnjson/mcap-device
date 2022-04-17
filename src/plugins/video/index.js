@@ -1,7 +1,6 @@
 import './video.css';
 import './style.css';
 import tpl from './tpl.html';
-
 export default function (){
 
   const $tpl = $(tpl);
@@ -23,10 +22,14 @@ export default function (){
   let onEndObj;
   player.on('ended', ()=>{
     $tpl.fadeOut();
-    this.exec(onEndObj);
+    if(onEndObj){
+      
+      this.exec(onEndObj);
+    }
   });
 
   this.on('video', param=>{
+    onEndObj = null;
     if(typeof param==='object'){
         const asset = this.getAssetByName(param.name);
         player.src(asset.url);
@@ -42,7 +45,7 @@ export default function (){
         if(param.onEnd){
           onEndObj = param.onEnd;
         }
-        $tpl.fadeIn(500);
+        $tpl.fadeIn();
     }
     else if(typeof param==='string'){
         switch (param){
@@ -57,15 +60,13 @@ export default function (){
               player.src(asset.url);
               player.ready( ()=>{
                  player.play();
-              });
-              
-              $tpl.fadeIn(500);
+              });    
+              $tpl.fadeIn();
         }
     } 
     else{
       player.pause();
       $tpl.fadeOut();
-
     }
   })
 
