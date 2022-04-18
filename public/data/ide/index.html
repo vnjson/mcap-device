@@ -14,13 +14,14 @@
                 padding: 0;
                 margin: 0;
                 background-color: #1e1e1e;
+                overflow: hidden;
             }
             #page 
             #content 
             .vs-dark 
             .lines-content 
             .view-lines{
-                font-family: Minecraft !important;
+                /*font-family: Minecraft !important;*/
             }
             .button {
                 /*padding: 5px;
@@ -66,9 +67,9 @@
                 position: absolute;
                 top: 0px;
                 left: 0px;
-                font-family: Minecraft;
-                font-size: 14px;
-                line-height: 15px !important;
+                font-family: Consolas;
+                font-size: 18px;
+                line-height: 22px !important;
             }
             a:link, a:visited { color: #69c; text-decoration: none; }
             .output-data{
@@ -249,7 +250,7 @@
                             language: 'python',
                             lineNumbers: 'on',
                             fontSize: "18px",
-                            roundedSelection: true,
+                            roundedSelection: false,
                             scrollBeyondLastLine: false,
                             readOnly: false,
                             theme: 'vs-dark',
@@ -322,11 +323,9 @@
                          */
                         
                         window.addEventListener("message", event=>{
-                            const file = event.data.file
-
-                
-                            editor.setValue(file)
-                            editor.setValue(editor.getValue())
+                            const file = event.data.file;
+                            editor.setValue(file);
+                            editor.setValue(editor.getValue());
                         })
                 }
             );
