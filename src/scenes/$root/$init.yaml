@@ -6,7 +6,7 @@
 
 # - ide: true
 #- $: test
-- ide: while.py
+#- ide: while.py
 
 - $: Мороз и <font color="magenta">солнце</font> день чудесный!
   #ide: turtle.py
