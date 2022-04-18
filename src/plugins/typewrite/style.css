@@ -112,7 +112,15 @@
 
 
 .keyboard__keys_2{
-  font-size: 10px;
+ /* font-size: 10px;*/
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.keyboard__keys_2 +span{
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
 }
 /**
  * keys

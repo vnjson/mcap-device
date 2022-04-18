@@ -4,25 +4,25 @@
   audio: false
   next: true
 
-- ide: true
-- $: test
-- ide: while.py
+# - ide: true
+#- $: test
+#- ide: while.py
 
 - $: Мороз и <font color="magenta">солнце</font> день чудесный!
-  ide: turtle.py
+  #ide: turtle.py
 - $: test
-  ide: false #false
 
-- ide: turtle.py
 
 
 - $: test
   typewrite:
     task:
+      - аа а о ао оа ао оа оал лаоа ов
       - У лукоморья дуб зеленый
       - Златая цепь на дубе том
+
     #local: ru
-    #activeColor: magenta
+    activeColor: magenta
     #activeKeys: абвгд
 
 - $: 1=1=1=1

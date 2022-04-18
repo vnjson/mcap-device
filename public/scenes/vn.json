@@ -95,32 +95,20 @@
         "next": true
       },
       {
-        "ide": true
+        "$": "Мороз и <font color=\"magenta\">солнце</font> день чудесный!"
       },
       {
         "$": "test"
       },
       {
-        "ide": "while.py"
-      },
-      {
-        "$": "Мороз и <font color=\"magenta\">солнце</font> день чудесный!",
-        "ide": "turtle.py"
-      },
-      {
-        "$": "test",
-        "ide": false
-      },
-      {
-        "ide": "turtle.py"
-      },
-      {
         "$": "test",
         "typewrite": {
           "task": [
+            "аа а о ао оа ао оа оал лаоа ов",
             "У лукоморья дуб зеленый",
             "Златая цепь на дубе том"
-          ]
+          ],
+          "activeColor": "magenta"
         }
       },
       {

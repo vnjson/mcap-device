@@ -9,10 +9,18 @@
                 box-sizing: border-box;
             }
             html, body {
-                font: 14px Consolas, Arial, sans-serif;
+                font-size: 14px;
+                font-family: Minecraft;
                 padding: 0;
                 margin: 0;
                 background-color: #1e1e1e;
+            }
+            #page 
+            #content 
+            .vs-dark 
+            .lines-content 
+            .view-lines{
+                font-family: Minecraft !important;
             }
             .button {
                 /*padding: 5px;
@@ -58,6 +66,8 @@
                 position: absolute;
                 top: 0px;
                 left: 0px;
+                font-family: Minecraft;
+                line-height: 20px !important;
             }
             a:link, a:visited { color: #69c; text-decoration: none; }
             .output-data{
@@ -88,6 +98,10 @@
             }
             .decorationsOverviewRuler{
                 display: none;
+            }
+            @font-face {
+                font-family: Minecraft;
+                src: url(fonts/Minecraft.ttf); 
             }
         </style>
     </head>
@@ -307,10 +321,10 @@
                         
                         window.addEventListener("message", event=>{
                             const file = event.data.file
-                           
-                            //console.log(file)
-                            //editor.setValue('');
+
+                
                             editor.setValue(file)
+                            editor.setValue(editor.getValue())
                         })
                 }
             );
