@@ -4,6 +4,6 @@ ISBN: 9781234567897
 
 # iframe modules
 chess: false
-paint-board: true
+paint-board: false
 crossword: false
-ide: true
+ide: false

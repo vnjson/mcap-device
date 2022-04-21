@@ -7,7 +7,7 @@ const local = 'ru';
 export default function  (){
 	if(!this.debug) return;
             
-    new ErrorHandler();  
+    new ErrorHandler(local);  
   
     this.on('exec', ctx=>{
         /**
@@ -25,14 +25,14 @@ export default function  (){
         if(typeof ctx==='string') return;
         Object.keys(ctx).forEach(event=>{
             if(!/^_/ig.test(event)&&!this.plugins.hasOwnProperty(event)){
-                this.emit('error', 'pluginNotFound', event)
+                this.emit('error', 'pluginNotFound', event);
             }
         });
     });
 
     this.on('error', (codeError, data)=>{
 
-        let message = ErrorHandler.getMessage(local, codeError, data);
+        const message = ErrorHandler.getMessage(local, codeError, data);
 
         const path = `${this.current.sceneName}.${this.current.labelName}`;
         

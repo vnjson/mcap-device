@@ -44,6 +44,9 @@
 .debug-error__path{
   color: #cfa4ff;
 }
+.debug-error__pos{
+  color: skyblue;
+}
 .debug-error__code{
   color: #e2aa53;
 }

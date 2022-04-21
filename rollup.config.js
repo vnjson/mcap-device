@@ -73,28 +73,30 @@ const port = config.port||9000;
 
 function buildScenes (){
 
-  let src = `${config.src}/scenes`
-  let dist = `./public/scenes`
-  let basePath = `./scenes`
+  const src = `${config.src}/scenes`;
+  const dist = `./public/scenes`;
 
-  scenesToJson(src, dist, (err, data)=>{
-      console.clear()
+  scenesToJson(src, dist, (err, sceneName, labelName)=>{
+      console.clear();
       if(err){
-          console.dir(err.reason);
-          console.log('line', err.mark.line, 'column', err.mark.column)
-          console.log(err.mark.snippet);
-          io.emit('yaml-error', err);
+          console.log("\x1b[2m"+err.reason+"\x1b[33m");
+          console.log("\x1b[31m"+sceneName+'/'+ labelName+"\x1b[0m");
+          console.log('\x1b[36mline', err.mark.line, 'column', err.mark.column+"\x1b[0m");
+          console.log("\x1b[33m"+err.mark.snippet + "\x1b[0m");
+          io.emit('yaml-error', err, sceneName, labelName);
       }
       else{
-        console.log('[ scenes building ]');
+        console.log('\x1b[35m[\x1b[36m scenes build\x1b[35m ] \x1b[0m')
         io.emit('yaml-error', null);
       }
-  }, basePath)
+  })
 
 }
 
 buildScenes();
-
+/**
+ * Наблюдаю за изменениями в каталоге /scenes
+ */
 chokidar.watch(`${config.src}/scenes`).on('change', (event, path) => {
   buildScenes();
 });

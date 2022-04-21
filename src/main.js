@@ -12,6 +12,7 @@ fetch(`scenes/vn.json?v=${new Date().getTime()}`)
     $('.debug-error').css('display', 'flex')
                      .find('.debug-error__msg')
                      .html('Невалидный <font color="skyblue">YAML</font> скрипт');
+
     console.error('Invalid script', err.message);
   });
 
@@ -28,8 +29,7 @@ function init (tree){
 
   plugins.call($vnjs);
   $vnjs.setTree(tree);
-
-  
+ 
   $vnjs.on('postload', function (){
 
       // ?jump=scene.label

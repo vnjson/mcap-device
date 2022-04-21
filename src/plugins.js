@@ -42,7 +42,7 @@ import mcPlayer           from './plugins/mc-player/index.js';
 import paintBoard         from './plugins/paint-board/index.js';
 import clipBoard          from './plugins/clipboard/index.js';
 import craftos            from './plugins/craftos/index.js';
-import brython            from './plugins/brython/index.js';
+//import brython            from './plugins/brython/index.js';
 import video              from './plugins/video/index.js';
 import ide                from './plugins/ide/index.js';
 import typewrite          from './plugins/typewrite/index.js';
@@ -91,7 +91,7 @@ export default function(){
   this.use(paintBoard);
   this.use(clipBoard);
   this.use(craftos);
-  this.use(brython);
+ // this.use(brython);
   this.use(video);
   this.use(ide);
   this.use(typewrite);

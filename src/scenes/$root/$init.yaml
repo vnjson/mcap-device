@@ -10,9 +10,10 @@
 
 - $: Мороз и <font color="magenta">солнце</font> день чудесный!
   #ide: turtle.py
-- $: test
+- al: 4444
+#  term: app.lua
 
-
+- jump: '55'
 
 - $: test
   typewrite:

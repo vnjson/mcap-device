@@ -11,7 +11,7 @@
   'use strict';
 
 class Vnjson {
-  version = '1.7.8';
+  version = '1.8.0';
   //current object
   ctx = {};
   //loaded scenes
@@ -50,7 +50,7 @@ class Vnjson {
   $store = {};
 
   getAssetByName (name){
-    let asset = this.current.assets.filter(asset=>{
+    const asset = this.current.assets.filter(asset=>{
                       return asset.name===name;
                 })[0];
     if(asset){ 
@@ -63,13 +63,13 @@ class Vnjson {
   }
   
   getDataByName (id){
-    let scenesBody = Object.values(this.TREE);
+    const scenesBody = Object.values(this.TREE);
     let data = null;
     scenesBody.map(body=>{
 
       if(body.data){
         if(body.data.hasOwnProperty(id)){
-          data = { id, body:JSON.parse(body.data[id]) }
+          data = { id, body: decodeURI(atob(body.data[id])) }
         }
       }
     })
@@ -103,7 +103,7 @@ class Vnjson {
           if(!this.TREE.$root.hasOwnProperty('characters')){
             let narrator = {
                   id: "$",
-                  name: "Narrator",
+                  name: ". . . .",
                   nameColor: "#49de58",
                   replyColor: "#a4deaa"
              }
@@ -120,9 +120,8 @@ class Vnjson {
              * 
              */
             this.on(character.id, (reply)=>{
-
               this.current.character = character;
-              this.emit('character', character, reply);
+              this.emit('character', character, String(reply) );
             })
 
           });
@@ -155,7 +154,7 @@ class Vnjson {
     if(typeof this.ctx === 'string'){
           this.emit('$', this.ctx);
     }
-    else{
+    else if(typeof this.ctx === 'object'){
       /**
        * Преобразуем объект контекста [this.ctx] в массив 
        * [ ['key', 'value'], ['key2','value2']]
@@ -170,7 +169,10 @@ class Vnjson {
             this.emit(event, data);
         }
       }
-    }/*else*/
+    }
+    else{
+        this.emit('$', String(this.ctx) );
+    }
     this.emit('exec', this.ctx);
     return this;
   }
@@ -194,24 +196,25 @@ class Vnjson {
         return this;
   }
   /*include plugins*/
-  jumpHandler (pathname){
+  jumpHandler (_pathname){
+    let pathname = String(_pathname);
     /**
      * Обработка прыжка по менткам _mark
      */
     if(/^_/i.test(pathname) ){
         const labelBody = this.getCurrentLabelBody();
         if(labelBody.length===0) return;
-        let index = labelBody.map( ctx=>{
+        const index = labelBody.map( ctx=>{
                                 return ctx.hasOwnProperty(pathname)
                               })
                               .indexOf(true);
               
-        let label = [ this.current.sceneName, this.current.labelName, index ].join('.');
+        const label = [ this.current.sceneName, this.current.labelName, index ].join('.');
         
         this.exec({jump: label});
     }
     else{
-        let path = pathname.split('.');
+        const path = pathname.split('.');
         this.current.index = path[2]||0;
         //label
         if(!/\./i.test(pathname)){    

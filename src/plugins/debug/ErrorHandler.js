@@ -4,6 +4,7 @@ const modalTpl = `<div class="debug-error">
                         <div class="debug-error__modal">
                             <p class="debug-error__msg"></p>
                             <p class="debug-error__path"></p>
+                            <p class="debug-error__pos"></p>
                             <pre class="debug-error__code"></pre>
                         </div>
                     </div>`
@@ -14,23 +15,27 @@ $('#screen').append($modal);
 
 class ErrorHandler {
   
-  constructor (){
+  constructor (local='en'){
+    this.local = local
     this.url = '/socket.io/socket.io.js';
     this.init();
   }
   init (){
     this.dynamicallyLoadScript(this.url, ()=>{
         const socket = io();
-        socket.on('yaml-error', err=>{
+        socket.on('yaml-error', (err, sceneName, labelName)=>{
              if(err){
-                const path = `line ${err.mark.line} column ${err.mark.column}`
-                ErrorHandler.showModal(err.reason, path, err.mark.snippet );
+                const path = `${sceneName}.${labelName.replace(/.ya?ml/i, '')}`;
+                const pos = `line ${err.mark.line} column ${err.mark.column}`;
+                const msg = ErrorHandler.getMessage(this.local, err.reason)
+                ErrorHandler.showModal(msg, path, err.mark.snippet, pos );
                 return;
              } 
              ErrorHandler.hideModal();
              // перезагрузка браузера при сохранении файла
              location.reload();
         });
+        //socket.on("disconnect", () => {})
     });
   }
   /**
@@ -48,13 +53,15 @@ class ErrorHandler {
   static hideModal (){
       $modal.find('.debug-error__msg').html('');
       $modal.find('.debug-error__path').html('');
+      $modal.find('.debug-error__pos').html('');
       $modal.find('.debug-error__code').html('');
       $modal.hide();
   }
-  static showModal (msg='', path='', snippet=''){
+  static showModal (msg='', path='', snippet='', pos=''){
 
       $modal.find('.debug-error__msg').html(msg);
       $modal.find('.debug-error__path').html(path);
+      $modal.find('.debug-error__pos').html(pos);
       $modal.find('.debug-error__code').html(snippet);
       $modal.css('display', 'flex');
   }
@@ -89,8 +96,11 @@ class ErrorHandler {
    * @return {String}           [Сообщение о ошике]
    */
   static getMessage (local='en', codeError, data){
-    const message =  errors[local][codeError].replace(/{.{0,}}/gi, data);
-    return message;
+    if(errors[local].hasOwnProperty(codeError)){
+          const message =  errors[local][codeError].replace(/{.{0,}}/gi, data);
+          return message;
+    }
+    return codeError;
   }
 }
 

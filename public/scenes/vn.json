@@ -3,87 +3,87 @@
     "assets": [
       {
         "name": "abc",
-        "url": "./scenes/assets/abc.webm"
+        "url": "scenes/assets/abc.webm"
       },
       {
         "name": "paintBoard",
-        "url": "./scenes/assets/paintBoard.jpg"
+        "url": "scenes/assets/paintBoard.jpg"
       },
       {
         "name": "paintBoardBlack",
-        "url": "./scenes/assets/paintBoardBlack.jpg"
+        "url": "scenes/assets/paintBoardBlack.jpg"
       },
       {
         "name": "paintBoardWhite",
-        "url": "./scenes/assets/paintBoardWhite.jpg"
+        "url": "scenes/assets/paintBoardWhite.jpg"
       },
       {
         "name": "sceneMainMenu",
-        "url": "./scenes/assets/sceneMainMenu.jpg"
+        "url": "scenes/assets/sceneMainMenu.jpg"
       },
       {
         "name": "sceneTemplate",
-        "url": "./scenes/assets/sceneTemplate.jpg"
+        "url": "scenes/assets/sceneTemplate.jpg"
       },
       {
         "name": "serg",
-        "url": "./scenes/assets/serg.webm"
+        "url": "scenes/assets/serg.webm"
       },
       {
         "name": "sys4SecAlarm",
-        "url": "./scenes/assets/sys4SecAlarm.mp3"
+        "url": "scenes/assets/sys4SecAlarm.mp3"
       },
       {
         "name": "sys4SecTempo",
-        "url": "./scenes/assets/sys4SecTempo.mp3"
+        "url": "scenes/assets/sys4SecTempo.mp3"
       },
       {
         "name": "sys4SecTrans",
-        "url": "./scenes/assets/sys4SecTrans.mp3"
+        "url": "scenes/assets/sys4SecTrans.mp3"
       },
       {
         "name": "sysAttention",
-        "url": "./scenes/assets/sysAttention.mp3"
+        "url": "scenes/assets/sysAttention.mp3"
       },
       {
         "name": "sysErrorFast",
-        "url": "./scenes/assets/sysErrorFast.mp3"
+        "url": "scenes/assets/sysErrorFast.mp3"
       },
       {
         "name": "sysErrorLong",
-        "url": "./scenes/assets/sysErrorLong.mp3"
+        "url": "scenes/assets/sysErrorLong.mp3"
       },
       {
         "name": "sysFlipPages",
-        "url": "./scenes/assets/sysFlipPages.mp3"
+        "url": "scenes/assets/sysFlipPages.mp3"
       },
       {
         "name": "sysHeardBeat",
-        "url": "./scenes/assets/sysHeardBeat.mp3"
+        "url": "scenes/assets/sysHeardBeat.mp3"
       },
       {
         "name": "sysMetronome",
-        "url": "./scenes/assets/sysMetronome.mp3"
+        "url": "scenes/assets/sysMetronome.mp3"
       },
       {
         "name": "sysOkMystery",
-        "url": "./scenes/assets/sysOkMystery.mp3"
+        "url": "scenes/assets/sysOkMystery.mp3"
       },
       {
         "name": "sysOkRinging",
-        "url": "./scenes/assets/sysOkRinging.mp3"
+        "url": "scenes/assets/sysOkRinging.mp3"
       },
       {
         "name": "sysOpenStory",
-        "url": "./scenes/assets/sysOpenStory.mp3"
+        "url": "scenes/assets/sysOpenStory.mp3"
       },
       {
         "name": "sysRecharges",
-        "url": "./scenes/assets/sysRecharges.mp3"
+        "url": "scenes/assets/sysRecharges.mp3"
       },
       {
         "name": "sysTypeWrite",
-        "url": "./scenes/assets/sysTypeWrite.mp3"
+        "url": "scenes/assets/sysTypeWrite.mp3"
       }
     ],
     "$init": [
@@ -98,7 +98,10 @@
         "$": "Мороз и <font color=\"magenta\">солнце</font> день чудесный!"
       },
       {
-        "$": "test"
+        "al": 4444
+      },
+      {
+        "jump": "55"
       },
       {
         "$": "test",
@@ -187,20 +190,20 @@
       }
     ],
     "data": {
-      "app.lua": "\"\\r\\n    local function getAdapter(mData, changeColor, getItemCountFunc, getTouchHelperFunc)\\r\\n        return LuaRecyclerAdapter(luajava.createProxy('androlua.adapter.LuaRecyclerAdapter$AdapterCreator', {\\r\\n            getItemCount = getItemCountFunc,\\r\\n            getItemViewType = function(position) return 0 end,\\r\\n            onCreateViewHolder = function(parent, viewType)\\r\\n                local views = {}\\r\\n                local holder = LuaRecyclerHolder(loadlayout(item_view, views, RecyclerView))\\r\\n                holder.itemView.setTag(views)\\r\\n                holder.itemView.getLayoutParams().width = ids.recyclerView.getWidth() / 5 - 1\\r\\n                holder.itemView.setOnTouchListener(luajava.createProxy('android.view.View$OnTouchListener', {\\r\\n                    onTouch = function(v, event)\\r\\n                        if isDragging and MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN then\\r\\n                            getTouchHelperFunc().startDrag(holder)\\r\\n                        end\\r\\n                        return false\\r\\n                    end\\r\\n                }))\\r\\n                holder.itemView.setOnLongClickListener(luajava.createProxy('android.view.View$OnLongClickListener', {\\r\\n                    onLongClick = function(v)\\r\\n                        isDragging = true\\r\\n                        adapter.notifyDataSetChanged()\\r\\n                        return true\\r\\n                    end\\r\\n                }))\\r\\n                holder.itemView.onClick = function()\\r\\n                    local p = holder.getAdapterPosition() + 1\\r\\n                    local item = mData[p]\\r\\n                    newActivity(item.launchPage)\\r\\n                end\\r\\n                views.ic_del.onClick = function()\\r\\n                    local p = holder.getAdapterPosition()\\r\\n                    local id\\r\\n                    if p + 1 <= #data then\\r\\n                        id = data[p + 1].id\\r\\n                        table.remove(data, p + 1)\\r\\n                        adapter.notifyItemRemoved(p)\\r\\n                    end\\r\\n                    if id then FileUtils.removePlugin(id) end\\r\\n                end\\r\\n                return holder\\r\\n            end,\\r\\n            onBindViewHolder = function(holder, position)\\r\\n                position = position + 1\\r\\n                local views = holder.itemView.getTag()\\r\\n                local item = mData[position]\\r\\n                if views == nil or item == nil then return end\\r\\n                if isDragging then\\r\\n                    views.ic_del.setScaleX(0)\\r\\n                    views.ic_del.setScaleY(0)\\r\\n                    views.ic_del.setVisibility(0)\\r\\n                    views.ic_del.animate().scaleX(1).scaleY(1).start()\\r\\n                else\\r\\n                    views.ic_del.setVisibility(8)\\r\\n                end\\r\\n\\r\\n                local icon = item.icon\\r\\n                local radius = tonumber(config.home_icon_radius or '40')\\r\\n                LuaImageLoader.loadWithRadius(views.icon, radius, icon)\\r\\n                views.text.setText(item.text)\\r\\n                local alpha = tonumber(config.home_bg_alpha or 9)\\r\\n                if changeColor and alpha <= 5 then\\r\\n                    views.text.setTextColor(0xFFFFFFFF)\\r\\n                else\\r\\n                    views.text.setTextColor(0xFF444444)\\r\\n                end\\r\\n            end,\\r\\n        }))\\r\\n    end\\r\\n\\r\\n    local function getTouchHelperCallback(mData, mAdapter)\\r\\n        return DragTouchHelper(luajava.createProxy('pub.hanks.sample.adapter.DragTouchHelper$Creator', {\\r\\n            onMove = function(rec, holder, target)\\r\\n                local fromPosition = holder.getAdapterPosition() + 1\\r\\n                local toPosition = target.getAdapterPosition() + 1\\r\\n                local tmp = mData[fromPosition]\\r\\n                table.remove(mData, fromPosition)\\r\\n                table.insert(mData, toPosition, tmp)\\r\\n                mAdapter.notifyItemMoved(fromPosition - 1, toPosition - 1)\\r\\n            end,\\r\\n            isLongPressDragEnabled = function() return false end,\\r\\n            clearView = function(rec, holder)\\r\\n                local sortApps = {}\\r\\n                for i = 1, #mData do\\r\\n                    sortApps[#sortApps + 1] = mData[i].id\\r\\n                end\\r\\n                config.sortApps = sortApps\\r\\n                saveConfig(config)\\r\\n            end,\\r\\n            getDragFlags = function() return 0xF end,\\r\\n            getSwipeFlags = function() return 0 end,\\r\\n        }))\\r\\n    end\\r\\n\"",
-      "style.css": "\".status-bar{\\r\\n  position: absolute;\\r\\n  top: 0;\\r\\n  left: 0;\\r\\n  background: rgba(0,0,0,0.7);\\r\\n  color: gray;\\r\\n  width: 100%;\\r\\n  height: 4%;\\r\\n  z-index: 9999;\\r\\n  align-items: center;\\r\\n  justify-content: space-between;\\r\\n  padding: 5px 15px;\\r\\n  display: none;\\r\\n}\\r\\n.status-bar__status--ready,\\r\\n.status-bar__status--help{\\r\\n  display: inline-flex;\\r\\n  align-items: center;\\r\\n  cursor: pointer;\\r\\n  margin-right: 10px;\\r\\n}\\r\\n.status-bar__status--ready span{\\r\\n  width: 15px;\\r\\n  height: 15px;\\r\\n  border-radius: 50%;\\r\\n  background-color: gray;\\r\\n  display: inline-block;\\r\\n  margin-right: 10px;\\r\\n}\\r\\n\\r\\n.status-bar__status--help span{\\r\\n  width: 15px;\\r\\n  height: 15px;\\r\\n  border-radius: 50%;\\r\\n  background-color: gray;\\r\\n  display: i gray;\\r\\n  margin-right: 10px;\\r\\n}\\r\\n\\r\\n.status-bar__status--ready.status-active span{\\r\\n    background-color: lightgreen;\\r\\n}\\r\\n.status-bar__status--ready.status-active {\\r\\n   color: white;\\r\\n}\\r\\n.status-bar__status--help.status-active span{\\r\\n    background-color: red;\\r\\n}\\r\\n.status-bar__status--help.status-active{\\r\\n  color: white;\\r\\n}\\r\\n/*\\r\\n.status-bar__item:hover{\\r\\n  color: white;\\r\\n}\\r\\n.status-bar__status--ready:hover span{\\r\\n    background-color: lightgreen;\\r\\n}\\r\\n.status-bar__status--help:hover span{\\r\\n    background-color: red;\\r\\n}\\r\\n*/\\r\\n\\r\\n.status-bar__image-containter{\\r\\n  position: absolute;\\r\\n  background-repeat: no-repeat;\\r\\n  background-size: contain;\\r\\n  top: 40px;\\r\\n  right: 0;\\r\\n  width: 100px;\\r\\n  height: 100px;\\r\\n}\\r\\n.status-bar__player-name{\\r\\n  padding-left: 10px;\\r\\n}\\r\\n.status-bar__player{\\r\\n  display: flex;\\r\\n  align-items: center;\\r\\n}\"",
-      "test.js": "\"\\r\\nvar express = require('express');\\r\\nvar app = express();\\r\\n\\r\\nvar requestTime = function (req, res, next) {\\r\\n  req.requestTime = Date.now();\\r\\n  next();\\r\\n};\\r\\n\\r\\napp.use(requestTime);\\r\\n\\r\\napp.get('/', function (req, res) {\\r\\n  var responseText = 'Hello World!';\\r\\n  responseText += 'Requested at: ' + req.requestTime + '';\\r\\n  res.send(responseText);\\r\\n});\\r\\n\\r\\napp.listen(3000);\\r\\n\\r\\n\"",
-      "turtle.py": "\"import turtle\\r\\nwn = turtle.Screen()\\r\\nwn.bgcolor(\\\"lightgreen\\\")\\r\\ntess = turtle.Turtle()\\r\\ntess.color(\\\"hotpink\\\")\\r\\ntess.pensize(5)\\r\\nalex = turtle.Turtle()\\r\\ntess.forward(80)\\r\\ntess.left(120)\\r\\ntess.forward(80)\\r\\ntess.left(120)\\r\\ntess.forward(80)\\r\\ntess.left(120)\\r\\ntess.right(180)\\r\\ntess.forward(80)\\r\\nalex.forward(50)\\r\\nalex.left(90)\\r\\nalex.forward(50)\\r\\nalex.left(90)\\r\\nalex.forward(50)\\r\\nalex.left(90)\\r\\nalex.forward(50)\\r\\nalex.left(90)\\r\\n\"",
-      "while.py": "\"i = 0\\r\\nwhile i < 15:\\r\\n  print(i)\\r\\n  i+=1\""
+      "app.lua": "JTBEJTBBJTIwJTIwJTIwJTIwbG9jYWwlMjBmdW5jdGlvbiUyMGdldEFkYXB0ZXIobURhdGEsJTIwY2hhbmdlQ29sb3IsJTIwZ2V0SXRlbUNvdW50RnVuYywlMjBnZXRUb3VjaEhlbHBlckZ1bmMpJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwcmV0dXJuJTIwTHVhUmVjeWNsZXJBZGFwdGVyKGx1YWphdmEuY3JlYXRlUHJveHkoJ2FuZHJvbHVhLmFkYXB0ZXIuTHVhUmVjeWNsZXJBZGFwdGVyJEFkYXB0ZXJDcmVhdG9yJywlMjAlN0IlMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBnZXRJdGVtQ291bnQlMjA9JTIwZ2V0SXRlbUNvdW50RnVuYywlMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBnZXRJdGVtVmlld1R5cGUlMjA9JTIwZnVuY3Rpb24ocG9zaXRpb24pJTIwcmV0dXJuJTIwMCUyMGVuZCwlMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBvbkNyZWF0ZVZpZXdIb2xkZXIlMjA9JTIwZnVuY3Rpb24ocGFyZW50LCUyMHZpZXdUeXBlKSUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGxvY2FsJTIwdmlld3MlMjA9JTIwJTdCJTdEJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwbG9jYWwlMjBob2xkZXIlMjA9JTIwTHVhUmVjeWNsZXJIb2xkZXIobG9hZGxheW91dChpdGVtX3ZpZXcsJTIwdmlld3MsJTIwUmVjeWNsZXJWaWV3KSklMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBob2xkZXIuaXRlbVZpZXcuc2V0VGFnKHZpZXdzKSUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGhvbGRlci5pdGVtVmlldy5nZXRMYXlvdXRQYXJhbXMoKS53aWR0aCUyMD0lMjBpZHMucmVjeWNsZXJWaWV3LmdldFdpZHRoKCklMjAvJTIwNSUyMC0lMjAxJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwaG9sZGVyLml0ZW1WaWV3LnNldE9uVG91Y2hMaXN0ZW5lcihsdWFqYXZhLmNyZWF0ZVByb3h5KCdhbmRyb2lkLnZpZXcuVmlldyRPblRvdWNoTGlzdGVuZXInLCUyMCU3QiUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMG9uVG91Y2glMjA9JTIwZnVuY3Rpb24odiwlMjBldmVudCklMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBpZiUyMGlzRHJhZ2dpbmclMjBhbmQlMjBNb3Rpb25FdmVudENvbXBhdC5nZXRBY3Rpb25NYXNrZWQoZXZlbnQpJTIwPT0lMjBNb3Rpb25FdmVudC5BQ1RJT05fRE9XTiUyMHRoZW4lMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBnZXRUb3VjaEhlbHBlckZ1bmMoKS5zdGFydERyYWcoaG9sZGVyKSUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGVuZCUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMHJldHVybiUyMGZhbHNlJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwZW5kJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTdEKSklMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBob2xkZXIuaXRlbVZpZXcuc2V0T25Mb25nQ2xpY2tMaXN0ZW5lcihsdWFqYXZhLmNyZWF0ZVByb3h5KCdhbmRyb2lkLnZpZXcuVmlldyRPbkxvbmdDbGlja0xpc3RlbmVyJywlMjAlN0IlMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBvbkxvbmdDbGljayUyMD0lMjBmdW5jdGlvbih2KSUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGlzRHJhZ2dpbmclMjA9JTIwdHJ1ZSUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGFkYXB0ZXIubm90aWZ5RGF0YVNldENoYW5nZWQoKSUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMHJldHVybiUyMHRydWUlMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBlbmQlMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlN0QpKSUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGhvbGRlci5pdGVtVmlldy5vbkNsaWNrJTIwPSUyMGZ1bmN0aW9uKCklMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBsb2NhbCUyMHAlMjA9JTIwaG9sZGVyLmdldEFkYXB0ZXJQb3NpdGlvbigpJTIwKyUyMDElMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBsb2NhbCUyMGl0ZW0lMjA9JTIwbURhdGElNUJwJTVEJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwbmV3QWN0aXZpdHkoaXRlbS5sYXVuY2hQYWdlKSUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGVuZCUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMHZpZXdzLmljX2RlbC5vbkNsaWNrJTIwPSUyMGZ1bmN0aW9uKCklMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBsb2NhbCUyMHAlMjA9JTIwaG9sZGVyLmdldEFkYXB0ZXJQb3NpdGlvbigpJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwbG9jYWwlMjBpZCUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGlmJTIwcCUyMCslMjAxJTIwJTNDPSUyMCNkYXRhJTIwdGhlbiUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGlkJTIwPSUyMGRhdGElNUJwJTIwKyUyMDElNUQuaWQlMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjB0YWJsZS5yZW1vdmUoZGF0YSwlMjBwJTIwKyUyMDEpJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwYWRhcHRlci5ub3RpZnlJdGVtUmVtb3ZlZChwKSUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGVuZCUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGlmJTIwaWQlMjB0aGVuJTIwRmlsZVV0aWxzLnJlbW92ZVBsdWdpbihpZCklMjBlbmQlMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBlbmQlMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjByZXR1cm4lMjBob2xkZXIlMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBlbmQsJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwb25CaW5kVmlld0hvbGRlciUyMD0lMjBmdW5jdGlvbihob2xkZXIsJTIwcG9zaXRpb24pJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwcG9zaXRpb24lMjA9JTIwcG9zaXRpb24lMjArJTIwMSUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGxvY2FsJTIwdmlld3MlMjA9JTIwaG9sZGVyLml0ZW1WaWV3LmdldFRhZygpJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwbG9jYWwlMjBpdGVtJTIwPSUyMG1EYXRhJTVCcG9zaXRpb24lNUQlMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBpZiUyMHZpZXdzJTIwPT0lMjBuaWwlMjBvciUyMGl0ZW0lMjA9PSUyMG5pbCUyMHRoZW4lMjByZXR1cm4lMjBlbmQlMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBpZiUyMGlzRHJhZ2dpbmclMjB0aGVuJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwdmlld3MuaWNfZGVsLnNldFNjYWxlWCgwKSUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMHZpZXdzLmljX2RlbC5zZXRTY2FsZVkoMCklMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjB2aWV3cy5pY19kZWwuc2V0VmlzaWJpbGl0eSgwKSUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMHZpZXdzLmljX2RlbC5hbmltYXRlKCkuc2NhbGVYKDEpLnNjYWxlWSgxKS5zdGFydCgpJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwZWxzZSUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMHZpZXdzLmljX2RlbC5zZXRWaXNpYmlsaXR5KDgpJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwZW5kJTBEJTBBJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwbG9jYWwlMjBpY29uJTIwPSUyMGl0ZW0uaWNvbiUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGxvY2FsJTIwcmFkaXVzJTIwPSUyMHRvbnVtYmVyKGNvbmZpZy5ob21lX2ljb25fcmFkaXVzJTIwb3IlMjAnNDAnKSUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMEx1YUltYWdlTG9hZGVyLmxvYWRXaXRoUmFkaXVzKHZpZXdzLmljb24sJTIwcmFkaXVzLCUyMGljb24pJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwdmlld3MudGV4dC5zZXRUZXh0KGl0ZW0udGV4dCklMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBsb2NhbCUyMGFscGhhJTIwPSUyMHRvbnVtYmVyKGNvbmZpZy5ob21lX2JnX2FscGhhJTIwb3IlMjA5KSUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGlmJTIwY2hhbmdlQ29sb3IlMjBhbmQlMjBhbHBoYSUyMCUzQz0lMjA1JTIwdGhlbiUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMHZpZXdzLnRleHQuc2V0VGV4dENvbG9yKDB4RkZGRkZGRkYpJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwZWxzZSUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMHZpZXdzLnRleHQuc2V0VGV4dENvbG9yKDB4RkY0NDQ0NDQpJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwZW5kJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwZW5kLCUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCU3RCkpJTBEJTBBJTIwJTIwJTIwJTIwZW5kJTBEJTBBJTBEJTBBJTIwJTIwJTIwJTIwbG9jYWwlMjBmdW5jdGlvbiUyMGdldFRvdWNoSGVscGVyQ2FsbGJhY2sobURhdGEsJTIwbUFkYXB0ZXIpJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwcmV0dXJuJTIwRHJhZ1RvdWNoSGVscGVyKGx1YWphdmEuY3JlYXRlUHJveHkoJ3B1Yi5oYW5rcy5zYW1wbGUuYWRhcHRlci5EcmFnVG91Y2hIZWxwZXIkQ3JlYXRvcicsJTIwJTdCJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwb25Nb3ZlJTIwPSUyMGZ1bmN0aW9uKHJlYywlMjBob2xkZXIsJTIwdGFyZ2V0KSUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGxvY2FsJTIwZnJvbVBvc2l0aW9uJTIwPSUyMGhvbGRlci5nZXRBZGFwdGVyUG9zaXRpb24oKSUyMCslMjAxJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwbG9jYWwlMjB0b1Bvc2l0aW9uJTIwPSUyMHRhcmdldC5nZXRBZGFwdGVyUG9zaXRpb24oKSUyMCslMjAxJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwbG9jYWwlMjB0bXAlMjA9JTIwbURhdGElNUJmcm9tUG9zaXRpb24lNUQlMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjB0YWJsZS5yZW1vdmUobURhdGEsJTIwZnJvbVBvc2l0aW9uKSUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMHRhYmxlLmluc2VydChtRGF0YSwlMjB0b1Bvc2l0aW9uLCUyMHRtcCklMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBtQWRhcHRlci5ub3RpZnlJdGVtTW92ZWQoZnJvbVBvc2l0aW9uJTIwLSUyMDEsJTIwdG9Qb3NpdGlvbiUyMC0lMjAxKSUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGVuZCwlMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBpc0xvbmdQcmVzc0RyYWdFbmFibGVkJTIwPSUyMGZ1bmN0aW9uKCklMjByZXR1cm4lMjBmYWxzZSUyMGVuZCwlMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBjbGVhclZpZXclMjA9JTIwZnVuY3Rpb24ocmVjLCUyMGhvbGRlciklMEQlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBsb2NhbCUyMHNvcnRBcHBzJTIwPSUyMCU3QiU3RCUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGZvciUyMGklMjA9JTIwMSwlMjAjbURhdGElMjBkbyUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMHNvcnRBcHBzJTVCI3NvcnRBcHBzJTIwKyUyMDElNUQlMjA9JTIwbURhdGElNUJpJTVELmlkJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwZW5kJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwY29uZmlnLnNvcnRBcHBzJTIwPSUyMHNvcnRBcHBzJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwc2F2ZUNvbmZpZyhjb25maWcpJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwZW5kLCUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGdldERyYWdGbGFncyUyMD0lMjBmdW5jdGlvbigpJTIwcmV0dXJuJTIwMHhGJTIwZW5kLCUwRCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGdldFN3aXBlRmxhZ3MlMjA9JTIwZnVuY3Rpb24oKSUyMHJldHVybiUyMDAlMjBlbmQsJTBEJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTdEKSklMEQlMEElMjAlMjAlMjAlMjBlbmQlMEQlMEE=",
+      "style.css": "LnN0YXR1cy1iYXIlN0IlMEQlMEElMjAlMjBwb3NpdGlvbjolMjBhYnNvbHV0ZTslMEQlMEElMjAlMjB0b3A6JTIwMDslMEQlMEElMjAlMjBsZWZ0OiUyMDA7JTBEJTBBJTIwJTIwYmFja2dyb3VuZDolMjByZ2JhKDAsMCwwLDAuNyk7JTBEJTBBJTIwJTIwY29sb3I6JTIwZ3JheTslMEQlMEElMjAlMjB3aWR0aDolMjAxMDAlMjU7JTBEJTBBJTIwJTIwaGVpZ2h0OiUyMDQlMjU7JTBEJTBBJTIwJTIwei1pbmRleDolMjA5OTk5OyUwRCUwQSUyMCUyMGFsaWduLWl0ZW1zOiUyMGNlbnRlcjslMEQlMEElMjAlMjBqdXN0aWZ5LWNvbnRlbnQ6JTIwc3BhY2UtYmV0d2VlbjslMEQlMEElMjAlMjBwYWRkaW5nOiUyMDVweCUyMDE1cHg7JTBEJTBBJTIwJTIwZGlzcGxheTolMjBub25lOyUwRCUwQSU3RCUwRCUwQS5zdGF0dXMtYmFyX19zdGF0dXMtLXJlYWR5LCUwRCUwQS5zdGF0dXMtYmFyX19zdGF0dXMtLWhlbHAlN0IlMEQlMEElMjAlMjBkaXNwbGF5OiUyMGlubGluZS1mbGV4OyUwRCUwQSUyMCUyMGFsaWduLWl0ZW1zOiUyMGNlbnRlcjslMEQlMEElMjAlMjBjdXJzb3I6JTIwcG9pbnRlcjslMEQlMEElMjAlMjBtYXJnaW4tcmlnaHQ6JTIwMTBweDslMEQlMEElN0QlMEQlMEEuc3RhdHVzLWJhcl9fc3RhdHVzLS1yZWFkeSUyMHNwYW4lN0IlMEQlMEElMjAlMjB3aWR0aDolMjAxNXB4OyUwRCUwQSUyMCUyMGhlaWdodDolMjAxNXB4OyUwRCUwQSUyMCUyMGJvcmRlci1yYWRpdXM6JTIwNTAlMjU7JTBEJTBBJTIwJTIwYmFja2dyb3VuZC1jb2xvcjolMjBncmF5OyUwRCUwQSUyMCUyMGRpc3BsYXk6JTIwaW5saW5lLWJsb2NrOyUwRCUwQSUyMCUyMG1hcmdpbi1yaWdodDolMjAxMHB4OyUwRCUwQSU3RCUwRCUwQSUwRCUwQS5zdGF0dXMtYmFyX19zdGF0dXMtLWhlbHAlMjBzcGFuJTdCJTBEJTBBJTIwJTIwd2lkdGg6JTIwMTVweDslMEQlMEElMjAlMjBoZWlnaHQ6JTIwMTVweDslMEQlMEElMjAlMjBib3JkZXItcmFkaXVzOiUyMDUwJTI1OyUwRCUwQSUyMCUyMGJhY2tncm91bmQtY29sb3I6JTIwZ3JheTslMEQlMEElMjAlMjBkaXNwbGF5OiUyMGklMjBncmF5OyUwRCUwQSUyMCUyMG1hcmdpbi1yaWdodDolMjAxMHB4OyUwRCUwQSU3RCUwRCUwQSUwRCUwQS5zdGF0dXMtYmFyX19zdGF0dXMtLXJlYWR5LnN0YXR1cy1hY3RpdmUlMjBzcGFuJTdCJTBEJTBBJTIwJTIwJTIwJTIwYmFja2dyb3VuZC1jb2xvcjolMjBsaWdodGdyZWVuOyUwRCUwQSU3RCUwRCUwQS5zdGF0dXMtYmFyX19zdGF0dXMtLXJlYWR5LnN0YXR1cy1hY3RpdmUlMjAlN0IlMEQlMEElMjAlMjAlMjBjb2xvcjolMjB3aGl0ZTslMEQlMEElN0QlMEQlMEEuc3RhdHVzLWJhcl9fc3RhdHVzLS1oZWxwLnN0YXR1cy1hY3RpdmUlMjBzcGFuJTdCJTBEJTBBJTIwJTIwJTIwJTIwYmFja2dyb3VuZC1jb2xvcjolMjByZWQ7JTBEJTBBJTdEJTBEJTBBLnN0YXR1cy1iYXJfX3N0YXR1cy0taGVscC5zdGF0dXMtYWN0aXZlJTdCJTBEJTBBJTIwJTIwY29sb3I6JTIwd2hpdGU7JTBEJTBBJTdEJTBEJTBBLyolMEQlMEEuc3RhdHVzLWJhcl9faXRlbTpob3ZlciU3QiUwRCUwQSUyMCUyMGNvbG9yOiUyMHdoaXRlOyUwRCUwQSU3RCUwRCUwQS5zdGF0dXMtYmFyX19zdGF0dXMtLXJlYWR5OmhvdmVyJTIwc3BhbiU3QiUwRCUwQSUyMCUyMCUyMCUyMGJhY2tncm91bmQtY29sb3I6JTIwbGlnaHRncmVlbjslMEQlMEElN0QlMEQlMEEuc3RhdHVzLWJhcl9fc3RhdHVzLS1oZWxwOmhvdmVyJTIwc3BhbiU3QiUwRCUwQSUyMCUyMCUyMCUyMGJhY2tncm91bmQtY29sb3I6JTIwcmVkOyUwRCUwQSU3RCUwRCUwQSovJTBEJTBBJTBEJTBBLnN0YXR1cy1iYXJfX2ltYWdlLWNvbnRhaW50ZXIlN0IlMEQlMEElMjAlMjBwb3NpdGlvbjolMjBhYnNvbHV0ZTslMEQlMEElMjAlMjBiYWNrZ3JvdW5kLXJlcGVhdDolMjBuby1yZXBlYXQ7JTBEJTBBJTIwJTIwYmFja2dyb3VuZC1zaXplOiUyMGNvbnRhaW47JTBEJTBBJTIwJTIwdG9wOiUyMDQwcHg7JTBEJTBBJTIwJTIwcmlnaHQ6JTIwMDslMEQlMEElMjAlMjB3aWR0aDolMjAxMDBweDslMEQlMEElMjAlMjBoZWlnaHQ6JTIwMTAwcHg7JTBEJTBBJTdEJTBEJTBBLnN0YXR1cy1iYXJfX3BsYXllci1uYW1lJTdCJTBEJTBBJTIwJTIwcGFkZGluZy1sZWZ0OiUyMDEwcHg7JTBEJTBBJTdEJTBEJTBBLnN0YXR1cy1iYXJfX3BsYXllciU3QiUwRCUwQSUyMCUyMGRpc3BsYXk6JTIwZmxleDslMEQlMEElMjAlMjBhbGlnbi1pdGVtczolMjBjZW50ZXI7JTBEJTBBJTdE",
+      "test.js": "JTBEJTBBdmFyJTIwZXhwcmVzcyUyMD0lMjByZXF1aXJlKCdleHByZXNzJyk7JTBEJTBBdmFyJTIwYXBwJTIwPSUyMGV4cHJlc3MoKTslMEQlMEElMEQlMEF2YXIlMjByZXF1ZXN0VGltZSUyMD0lMjBmdW5jdGlvbiUyMChyZXEsJTIwcmVzLCUyMG5leHQpJTIwJTdCJTBEJTBBJTIwJTIwcmVxLnJlcXVlc3RUaW1lJTIwPSUyMERhdGUubm93KCk7JTBEJTBBJTIwJTIwbmV4dCgpOyUwRCUwQSU3RDslMEQlMEElMEQlMEFhcHAudXNlKHJlcXVlc3RUaW1lKTslMEQlMEElMEQlMEFhcHAuZ2V0KCcvJywlMjBmdW5jdGlvbiUyMChyZXEsJTIwcmVzKSUyMCU3QiUwRCUwQSUyMCUyMHZhciUyMHJlc3BvbnNlVGV4dCUyMD0lMjAnSGVsbG8lMjBXb3JsZCEnOyUwRCUwQSUyMCUyMHJlc3BvbnNlVGV4dCUyMCs9JTIwJ1JlcXVlc3RlZCUyMGF0OiUyMCclMjArJTIwcmVxLnJlcXVlc3RUaW1lJTIwKyUyMCcnOyUwRCUwQSUyMCUyMHJlcy5zZW5kKHJlc3BvbnNlVGV4dCk7JTBEJTBBJTdEKTslMEQlMEElMEQlMEFhcHAubGlzdGVuKDMwMDApOyUwRCUwQSUwRCUwQQ==",
+      "turtle.py": "aW1wb3J0JTIwdHVydGxlJTBEJTBBd24lMjA9JTIwdHVydGxlLlNjcmVlbigpJTBEJTBBd24uYmdjb2xvciglMjJsaWdodGdyZWVuJTIyKSUwRCUwQXRlc3MlMjA9JTIwdHVydGxlLlR1cnRsZSgpJTBEJTBBdGVzcy5jb2xvciglMjJob3RwaW5rJTIyKSUwRCUwQXRlc3MucGVuc2l6ZSg1KSUwRCUwQWFsZXglMjA9JTIwdHVydGxlLlR1cnRsZSgpJTBEJTBBdGVzcy5mb3J3YXJkKDgwKSUwRCUwQXRlc3MubGVmdCgxMjApJTBEJTBBdGVzcy5mb3J3YXJkKDgwKSUwRCUwQXRlc3MubGVmdCgxMjApJTBEJTBBdGVzcy5mb3J3YXJkKDgwKSUwRCUwQXRlc3MubGVmdCgxMjApJTBEJTBBdGVzcy5yaWdodCgxODApJTBEJTBBdGVzcy5mb3J3YXJkKDgwKSUwRCUwQWFsZXguZm9yd2FyZCg1MCklMEQlMEFhbGV4LmxlZnQoOTApJTBEJTBBYWxleC5mb3J3YXJkKDUwKSUwRCUwQWFsZXgubGVmdCg5MCklMEQlMEFhbGV4LmZvcndhcmQoNTApJTBEJTBBYWxleC5sZWZ0KDkwKSUwRCUwQWFsZXguZm9yd2FyZCg1MCklMEQlMEFhbGV4LmxlZnQoOTApJTBEJTBB",
+      "while.py": "aSUyMD0lMjAwJTBEJTBBd2hpbGUlMjBpJTIwJTNDJTIwMTU6JTBEJTBBJTIwJTIwcHJpbnQoaSklMEQlMEElMjAlMjBpKz0x"
     },
     "package": {
       "preload": true,
       "debug": true,
       "ISBN": 9781234567897,
       "chess": false,
-      "paint-board": true,
+      "paint-board": false,
       "crossword": false,
-      "ide": true
+      "ide": false
     },
     "wiki": {
       "Абажур": "Колпак для лампы, светильника",
