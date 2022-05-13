@@ -41,7 +41,7 @@ this.on('$voice', data=>{
 })
 
 this.on('exec', ctx=>{
-  if(!this.ctx.$voice&&prev){
+  if(!this.ctx?.$voice&&prev){
     this.$store[prev].stop();
     this.emit('hand-left', false)
     prev=null

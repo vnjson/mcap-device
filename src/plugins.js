@@ -7,7 +7,6 @@ import assetsLoader       from './plugins/assets-loader/index.js';
 import screen             from './plugins/screen/index.js';
 
 
-
 import dialogBox          from './plugins/dialog-box/index.js';
 import hands              from './plugins/hands/index.js';
 import cloud              from './plugins/cloud/index.js';
@@ -30,7 +29,6 @@ import setName            from './plugins/set-name/index.js';
 import wiki               from './plugins/wiki/index.js';
 import crossWord          from './plugins/crossword/index.js';
 import test               from './plugins/test/index.js';
-//import loadScene          from './plugins/load-scene/index.js';
 import slide              from './plugins/slide/index.js';
 import content            from './plugins/content/index.js';
 import voice              from './plugins/voice/index.js';
@@ -42,10 +40,11 @@ import mcPlayer           from './plugins/mc-player/index.js';
 import paintBoard         from './plugins/paint-board/index.js';
 import clipBoard          from './plugins/clipboard/index.js';
 import craftos            from './plugins/craftos/index.js';
-//import brython            from './plugins/brython/index.js';
 import video              from './plugins/video/index.js';
 import ide                from './plugins/ide/index.js';
 import typewrite          from './plugins/typewrite/index.js';
+import area               from './plugins/area/index.js';
+
 
 export default function(){
 
@@ -79,7 +78,6 @@ export default function(){
   this.use(wiki);
   this.use(crossWord);
   this.use(test);
-  //this.use(loadScene)
   this.use(slide);  
   this.use(content);
   this.use(voice);
@@ -91,10 +89,10 @@ export default function(){
   this.use(paintBoard);
   this.use(clipBoard);
   this.use(craftos);
- // this.use(brython);
   this.use(video);
   this.use(ide);
   this.use(typewrite);
+  this.use(area);
   this.on('next', ()=>{
       setTimeout(()=>this.next(), 10)
   });

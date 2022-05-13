@@ -21,13 +21,17 @@ export default function  (){
         */
         /**
          * Проверяем существует ли плагин с таким именем
+         * Исключая выражения - null | -false | - Hello world!
          */
-        if(typeof ctx==='string') return;
-        Object.keys(ctx).forEach(event=>{
-            if(!/^_/ig.test(event)&&!this.plugins.hasOwnProperty(event)){
-                this.emit('error', 'pluginNotFound', event);
-            }
-        });
+        if(!ctx) return;
+        if(typeof ctx==='object'){
+                Object.keys(ctx).forEach(event=>{
+                    if(!/^_/ig.test(event)&&!this.plugins.hasOwnProperty(event)){
+                        this.emit('error', 'pluginNotFound', event);
+                    }
+                });
+        }
+
     });
 
     this.on('error', (codeError, data)=>{

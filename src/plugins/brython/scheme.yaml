@@ -1,5 +1,0 @@
-# require ./static/data/brython/index.html
-
-- python: true
-
-- python: false

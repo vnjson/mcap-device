@@ -153,27 +153,33 @@ class Vnjson {
     this.ctx = ctx||this.getCtx();
     if(typeof this.ctx === 'string'){
           this.emit('$', this.ctx);
+          this.emit('exec', this.ctx);
+    }
+    // $: null | $: false
+    else if(!this.ctx){
+          this.emit('$', String(this.ctx) );
+          this.emit('exec', String(this.ctx) );
     }
     else if(typeof this.ctx === 'object'){
-      /**
-       * Преобразуем объект контекста [this.ctx] в массив 
-       * [ ['key', 'value'], ['key2','value2']]
-       * Пробегаемся по этому массиву, и записываем 
-       * ключ-значение в переменные [ event, data ]
-       */
-      for(let [event, data] of Object.entries(this.ctx)){
-      /**
-       * Вызываем плагины с соответсвующими именами ключей
-       */
-        if(!/^_/i.test(event)){
-            this.emit(event, data);
-        }
-      }
+          /**
+           * Преобразуем объект контекста [this.ctx] в массив 
+           * [ ['key', 'value'], ['key2','value2']]
+           * Пробегаемся по этому массиву, и записываем 
+           * ключ-значение в переменные [ event, data ]
+           */
+          for(let [event, data] of Object.entries(this.ctx)){
+          /**
+           * Вызываем плагины с соответсвующими именами ключей
+           */
+            if(!/^_/i.test(event)){
+                this.emit(event, data);
+            }
+          }
     }
     else{
         this.emit('$', String(this.ctx) );
+        this.emit('exec', String(this.ctx) );
     }
-    this.emit('exec', this.ctx);
     return this;
   }
 

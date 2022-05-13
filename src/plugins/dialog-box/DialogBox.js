@@ -122,7 +122,7 @@ class DialogBox {
     // проверяем есть ли html теги в реплике
     this.analyzeLetter(this.letter);
 
-    let tpl = `<span class="${this.classNameLetter}" style="opacity: ${this.alpha}">${this.letter}</span>`
+    const tpl = `<span class="${this.classNameLetter}" style="opacity: ${this.alpha}">${this.letter}</span>`
 
     if(this.letterInclude){  
         return tpl; 
@@ -168,8 +168,6 @@ class DialogBox {
         if(this.index>=len){
             this.onEndOutputReply();
         }
- 
-        
     }, this.delay);
   }
 

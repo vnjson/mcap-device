@@ -43,7 +43,7 @@ function menu (param){
       let character = this.getCharacterById(label)
 
       if(character){
-        let str = null
+        let str = null;
         if(label==='$'){
             character.name = '';
         }

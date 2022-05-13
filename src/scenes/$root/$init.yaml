@@ -4,44 +4,69 @@
   audio: false
   next: true
 
+- scene: ground
+  next: true
+
+- area:
+    - left: 10
+      top: 250
+      width: 100
+      height: 100
+      #show: true
+      exec: 
+        wiki:
+          - Абажур
+          - Вагонетка
+          - Жабры
+    - left: 260
+      top: 60
+      width: 100
+      height: 100
+      show: true
+      exec: 
+        wiki:
+          list:
+            - Юань
+            - Хакасы
+            - Явка
+            - Баба-яга
+          css:
+             left: 700px
+             top: 50px
+    - left: 580
+      top: 105
+      width: 100
+      height: 100
+      show: true
+      exec:
+        jump: $root.$init.7
+    - left: 780
+      top: 400
+      width: 100
+      height: 100
+      #show: true
+      exec:
+        next: true
+- test
+- area:
+    - left: 10
+      top: 250
+      width: 100
+      height: 100
+      show: true
+      exec: 
+        wiki:
+          - Абажур
+          - Вагонетка
+          - Жабры
 # - ide: true
 #- $: test
 #- ide: while.py
-
+- null
+- false
+- $: 3333
 - $: Мороз и <font color="magenta">солнце</font> день чудесный!
-  #ide: turtle.py
-- al: 4444
-#  term: app.lua
 
-- jump: '55'
-
-- $: test
-  typewrite:
-    task:
-      - аа а о ао оа ао оа оал лаоа ов
-      - У лукоморья дуб зеленый
-      - Златая цепь на дубе том
-
-    #local: ru
-    activeColor: magenta
-    #activeKeys: абвгд
-
-- $: 1=1=1=1
-
-- typewrite: 
-      activeColor: magenta
-      activeKeys: абвгд
-      task:
-        - И днём и ночью кот учёный
-
-- $: 999+1
-
-- typewrite: 
-      task:
-        - test [ test ] test { test1 }
-      local: en
-  
- 
 
 
 
@@ -66,6 +91,7 @@
     loop: false
     onEnd:
       next: true
+
 - $: Навстречу северной Авроры 
 
 

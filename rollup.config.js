@@ -94,16 +94,11 @@ function buildScenes (){
 }
 
 buildScenes();
-/**
- * Наблюдаю за изменениями в каталоге /scenes
- */
+
 chokidar.watch(`${config.src}/scenes`).on('change', (event, path) => {
   buildScenes();
 });
 
-/**
- * Подключаем раздачу статики и сокеты
- */
 
 app.use(express.static('public'));
 app.get('/', (req, res) => {
