@@ -87,122 +87,22 @@
         "next": true
       },
       {
-        "scene": "ground",
-        "next": true
+        "scene": "ground"
       },
       {
-        "area": [
-          {
-            "left": 10,
-            "top": 250,
-            "width": 100,
-            "height": 100,
-            "exec": {
-              "wiki": [
-                "Абажур",
-                "Вагонетка",
-                "Жабры"
-              ]
-            }
-          },
-          {
-            "left": 260,
-            "top": 60,
-            "width": 100,
-            "height": 100,
-            "show": true,
-            "exec": {
-              "wiki": {
-                "list": [
-                  "Юань",
-                  "Хакасы",
-                  "Явка",
-                  "Баба-яга"
-                ],
-                "css": {
-                  "left": "700px",
-                  "top": "50px"
-                }
-              }
-            }
-          },
-          {
-            "left": 580,
-            "top": 105,
-            "width": 100,
-            "height": 100,
-            "show": true,
-            "exec": {
-              "jump": "$root.$init.7"
-            }
-          },
-          {
-            "left": 780,
-            "top": 400,
-            "width": 100,
-            "height": 100,
-            "exec": {
-              "next": true
-            }
-          }
-        ]
-      },
-      "test",
-      {
-        "area": [
-          {
-            "left": 10,
-            "top": 250,
-            "width": 100,
-            "height": 100,
-            "show": true,
-            "exec": {
-              "wiki": [
-                "Абажур",
-                "Вагонетка",
-                "Жабры"
-              ]
-            }
-          }
-        ]
-      },
-      null,
-      false,
-      {
-        "$": 3333
+        "scene": "Blue Angel 69"
       },
       {
-        "$": "Мороз и <font color=\"magenta\">солнце</font> день чудесный!"
+        "scene": "Patterns"
       },
       {
-        "al": "Еще ты дремлешь, друг прелестный",
-        "audio": {
-          "name": "sysMetronome",
-          "action": "play",
-          "speed": 3,
-          "volume": 1,
-          "loop": false,
-          "onEnd": {
-            "dialog-box": "clear"
-          }
-        }
+        "scene": "86ee0739"
       },
       {
-        "$": "Пора, красавица, проснись",
-        "scene": "sceneMainMenu"
+        "scene": "6bcad4a"
       },
       {
-        "$": "Открой сомкнуты негой взоры",
-        "audio": {
-          "name": "sysFlipPages",
-          "action": "play",
-          "speed": 2,
-          "volume": 1,
-          "loop": false,
-          "onEnd": {
-            "next": true
-          }
-        }
+        "scene": "1638847059127571069"
       },
       {
         "$": "Навстречу северной Авроры"
@@ -262,8 +162,28 @@
   "test": {
     "assets": [
       {
+        "name": "1638847059127571069",
+        "url": "scenes/assets/1638847059127571069.webp"
+      },
+      {
+        "name": "6bcad4a",
+        "url": "scenes/assets/6bcad4a.jpg"
+      },
+      {
+        "name": "86ee0739",
+        "url": "scenes/assets/86ee0739.jpg"
+      },
+      {
+        "name": "Blue Angel 69",
+        "url": "scenes/assets/Blue Angel 69.png"
+      },
+      {
         "name": "ground",
         "url": "scenes/assets/ground.jpg"
+      },
+      {
+        "name": "Patterns",
+        "url": "scenes/assets/Patterns.jpg"
       }
     ]
   }
