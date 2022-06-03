@@ -6,7 +6,8 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -cw",
-    "update": "node node_modules/vnjson-update/index.js"
+    "update": "node node_modules/vnjson-update/index.js",
+    "publish": "node node_modules/vnjson-publish/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -29,7 +30,8 @@
     "rollup-plugin-terser": "^7.0.2",
     "scenes-to-json": "^0.8.5",
     "socket.io": "^4.4.1",
-    "vnjson-update": "^1.1.3"
+    "vnjson-update": "^1.1.3",
+    "vnjson-publish": "^0.9.1"
   },
   "dependencies": {},
   "keywords": [

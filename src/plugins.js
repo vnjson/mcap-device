@@ -3,7 +3,7 @@
 import debug              from './plugins/debug/index.js';
 import debugDialogBox     from './plugins/debug-dialog-box/index.js';
 /* basic */
-import preloader          from './plugins/preloader/index.js';
+import assetsLoader       from './plugins/assets-loader/index.js';
 import screen             from './plugins/screen/index.js';
 
 
@@ -52,7 +52,7 @@ export default function(){
     this.use(debug);
     this.use(debugDialogBox);
   }
-  this.use(preloader);
+  this.use(assetsLoader);
   this.use(screen);
 
   /*components*/

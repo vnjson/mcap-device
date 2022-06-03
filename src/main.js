@@ -26,7 +26,7 @@ function init (tree){
    */
 
   window.$vnjs = new Vnjson({ debug: tree.$root.package?.debug });
-
+  
   plugins.call($vnjs);
   $vnjs.setTree(tree);
  

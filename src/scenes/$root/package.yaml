@@ -1,6 +1,6 @@
 preload: true
-debug: true
-ISBN: 9781234567897
+debug: false
+ISBN: 9785550567897
 
 # iframe modules
 chess: false

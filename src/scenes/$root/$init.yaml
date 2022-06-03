@@ -5,14 +5,11 @@
   next: true
 
 - scene: ground
+  $: test publish 3
 - scene: Blue Angel 69
 - scene: Patterns
 - scene: 86ee0739
 - scene: 6bcad4a
 - scene: '1638847059127571069'
-
-- $: Навстречу северной Авроры 
-
-
 
 - jump: $init

@@ -87,7 +87,8 @@
         "next": true
       },
       {
-        "scene": "ground"
+        "scene": "ground",
+        "$": "test publish 3"
       },
       {
         "scene": "Blue Angel 69"
@@ -103,9 +104,6 @@
       },
       {
         "scene": "1638847059127571069"
-      },
-      {
-        "$": "Навстречу северной Авроры"
       },
       {
         "jump": "$init"
@@ -135,8 +133,8 @@
     },
     "package": {
       "preload": true,
-      "debug": true,
-      "ISBN": 9781234567897,
+      "debug": false,
+      "ISBN": 9785550567897,
       "chess": false,
       "paint-board": false,
       "crossword": false,

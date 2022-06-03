@@ -17,21 +17,24 @@ var load = _=>{
   var asset = this.current.assets[i];
   
   if(/\.mp3|\.wav|\.ogg/i.test(asset.url)){
-    var sound = new Howl({src: asset.url});
-        sound.on('end', ()=>this.emit('audioEnd', asset.name))
-        sound.on('load', _=>{
-          this.$store[asset.name] = sound;
           if( this.current.assets.length-1>=++i){
-            this.emit('load', asset);
-            load()
-            
-          }else{
-            this.emit('postload');
-          }             
-        })
-        sound.on('loaderror', ()=>{
-          console.error(`File not found [ ${asset.name} ]`);
-        })
+              var sound = new Howl({src: asset.url});
+
+                  sound.on('end', ()=>this.emit('audioEnd', asset.name))
+                  sound.on('load', _=>{
+                      this.$store[asset.name] = sound;
+                      this.emit('load', asset);
+                      load();
+                  });
+                  sound.on('loaderror', ()=>{
+                      console.error(`File not found [ ${asset.name} ]`);
+                      this.emit('load', asset);
+                      load();
+                  });
+          }
+          else{
+              this.emit('postload');
+          }
   }
   else if(/\.png|\.jpg|\.jpeg|\.webp|\.gif/i.test(asset.url)){
       if(this.TREE.$root?.package){
@@ -61,7 +64,8 @@ var load = _=>{
                 load();
               }
 
-            }else{
+            }
+            else{
                   this.emit('postload');
             };
 

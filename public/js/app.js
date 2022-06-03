@@ -468,26 +468,30 @@
         var asset = _this.current.assets[i];
 
         if (/\.mp3|\.wav|\.ogg/i.test(asset.url)) {
-          var sound = new Howl({
-            src: asset.url
-          });
-          sound.on('end', function () {
-            return _this.emit('audioEnd', asset.name);
-          });
-          sound.on('load', function (_) {
-            _this.$store[asset.name] = sound;
+          if (_this.current.assets.length - 1 >= ++i) {
+            var sound = new Howl({
+              src: asset.url
+            });
+            sound.on('end', function () {
+              return _this.emit('audioEnd', asset.name);
+            });
+            sound.on('load', function (_) {
+              _this.$store[asset.name] = sound;
 
-            if (_this.current.assets.length - 1 >= ++i) {
               _this.emit('load', asset);
 
               load();
-            } else {
-              _this.emit('postload');
-            }
-          });
-          sound.on('loaderror', function () {
-            console.error("File not found [ ".concat(asset.name, " ]"));
-          });
+            });
+            sound.on('loaderror', function () {
+              console.error("File not found [ ".concat(asset.name, " ]"));
+
+              _this.emit('load', asset);
+
+              load();
+            });
+          } else {
+            _this.emit('postload');
+          }
         } else if (/\.png|\.jpg|\.jpeg|\.webp|\.gif/i.test(asset.url)) {
           var _this$TREE$$root;
 
