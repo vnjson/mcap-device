@@ -88,7 +88,7 @@
       },
       {
         "scene": "ground",
-        "$": "test publish 3"
+        "$": "test publish 7777"
       },
       {
         "scene": "Blue Angel 69"
@@ -134,7 +134,7 @@
     "package": {
       "preload": true,
       "debug": false,
-      "ISBN": 9785550567897,
+      "ISBN": 3333550567897,
       "chess": false,
       "paint-board": false,
       "crossword": false,
