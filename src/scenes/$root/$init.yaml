@@ -4,7 +4,7 @@
   audio: false
   next: true
 
-
+#- chess: nnnnnnnn/8/8/8/8/8/8/8 w - - 0 1
 - scene: 86ee0739
   $: test publish 7777
   select-word:

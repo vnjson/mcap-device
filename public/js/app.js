@@ -589,7 +589,7 @@
     });
   }
 
-  var css$s = "#screen {\n  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVR4AWM8ZsOAF1BNAasXA8PvbSASjUYo+L0NXS9EnJAVhE0gqGCEuIFgXAAA5aUvR45cttUAAAAASUVORK5CYII=);\n  position: relative;\n  overflow: hidden;\n  background-repeat: no-repeat;\n  background-size: cover;\n}\n";
+  var css$s = ".game{\n  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVR4AWM8ZsOAF1BNAasXA8PvbSASjUYo+L0NXS9EnJAVhE0gqGCEuIFgXAAA5aUvR45cttUAAAAASUVORK5CYII=);\n  position: relative;\n}\n\n#screen {\n  position: relative;\n  overflow: hidden;\n  background-repeat: no-repeat;\n  background-size: cover;\n}\n";
   n(css$s,{});
 
   function screen () {
@@ -1883,7 +1883,7 @@
     });
   }
 
-  var css$f = "#chess__vnjson{\n  display: none;\n  top: 50px;\n  left: 50%;\n  transform: translateX(-50%);\n  box-shadow: 3px 3px 5px rgba(0,0,0,0.3);\n}";
+  var css$f = ".chess__vnjson{\n\n  top: 50px;\n  left: 50%;\n  transform: translateX(-50%);\n\n}";
   n(css$f,{});
 
   function chess () {
@@ -1896,14 +1896,14 @@
     });
 
     var chessInit = function chessInit() {
-      var $tpl = $('<iframe id="chess__vnjson" src="data/chess/index.html" width="500" height="500"></iframe>');
+      var $tpl = $('<iframe class="chess__vnjson component" src="data/chess/index.html" width="500" height="500"></iframe>');
 
       _this.$store.$screen.append($tpl);
 
       _this.on('chess', function (fen) {
         if (fen) {
           $tpl.show();
-          var win = document.querySelector("iframe#chess__vnjson").contentWindow;
+          var win = document.querySelector("iframe.chess__vnjson").contentWindow;
           win.postMessage({
             fen: fen
           }, location.origin + "/data/chess/index.html");
