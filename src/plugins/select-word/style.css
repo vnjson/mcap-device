@@ -1,0 +1,77 @@
+.select-word{
+  width: 100%;
+  height: 100%;
+}
+
+.select-word__quetion{
+  display: flex;
+  background-color: #334;
+  padding: 20px;
+  border-radius: 8px;
+  position: absolute;
+  top: 100px;
+  left: 30px;
+  display: flex;
+  align-items: center;
+}
+.select-word__text{
+  color: lightgreen;
+  font-size: 26px;
+
+}
+.select-word__dropzone{
+  background-color: #445;
+  border-radius: 8px;
+  min-width: 170px;
+  height: 40px;
+  color: magenta;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.select-word__dropzone .select-word__item{
+  height: 40px;
+}
+.select-word__dropzone--active{
+  background-color: #556;
+}
+.select-word__dropzone--disable{
+  pointer-events: none;
+  border: unset;
+}
+.select-word__variants{
+  background-color: #334;
+  position: absolute;
+  top: 270px;
+  left: 700px;
+  padding: 20px;
+  border-radius: 8px;
+}
+/*
+.select-word__variants--disable{
+  pointer-events: none;
+}
+*/
+.select-word__item{
+  color: skyblue;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: #223;
+  margin-bottom: 10px;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.select-word__item::last-child{
+  margin-bottom: 0;
+}
+.select-word__item:hover{
+  color: deepskyblue;
+  background-color: #112;
+  cursor: pointer;
+}
+
+.select-word__item--active{
+  background-color: #112;
+  color: deepskyblue;
+}

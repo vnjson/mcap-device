@@ -81,17 +81,42 @@
     "$init": [
       {
         "dialog-box": true,
-        "status-bar": true,
+        "status-bar": false,
         "hands": false,
         "audio": false,
         "next": true
       },
       {
-        "scene": "ground",
-        "$": "test publish 7777"
-      },
-      {
-        "scene": "Blue Angel 69"
+        "scene": "86ee0739",
+        "$": "test publish 7777",
+        "select-word": {
+          "quetion": {
+            "text": "Корова говорит",
+            "css": {
+              "top": "20px",
+              "left": "20px"
+            }
+          },
+          "answers": {
+            "correct": 3,
+            "variants": [
+              "test1",
+              "test2",
+              "Му!",
+              "test4"
+            ],
+            "css": {
+              "top": "250px",
+              "left": "650px"
+            }
+          },
+          "onSuccess": {
+            "scene": "1638847059127571069"
+          },
+          "onFailure": {
+            "next": true
+          }
+        }
       },
       {
         "scene": "Patterns"
@@ -132,12 +157,12 @@
       "while.py": "aSUyMD0lMjAwJTBEJTBBd2hpbGUlMjBpJTIwJTNDJTIwMTU6JTBEJTBBJTIwJTIwcHJpbnQoaSklMEQlMEElMjAlMjBpKz0x"
     },
     "package": {
-      "preload": true,
-      "debug": false,
+      "debug": true,
       "ISBN": 3333550567897,
-      "chess": false,
-      "paint-board": false,
-      "crossword": false,
+      "preload": true,
+      "chess": true,
+      "paint-board": true,
+      "crossword": true,
       "ide": false
     },
     "wiki": {

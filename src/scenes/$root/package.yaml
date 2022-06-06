@@ -1,9 +1,9 @@
-preload: true
-debug: false
+debug: true
 ISBN: 3333550567897
+preload: true
 
 # iframe modules
-chess: false
-paint-board: false
-crossword: false
+chess: true
+paint-board: true
+crossword: true
 ide: false

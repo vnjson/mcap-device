@@ -1,0 +1,29 @@
+- select-word:
+    quetion:
+      text: Корова говорит
+ #    css:
+ #      top: 20px
+ #      left: 20px
+    answers: 
+      correct: 3   # номер правильного ответа. Начальное число 1
+      variants:
+        - test1
+        - test2
+        - Му!
+        - test4
+  #   css:              # css - не обязательное свойство
+  #     top: 250px      # css - не обязательное свойство
+  #     left: 650px     # css - не обязательное свойство
+    onSuccess:
+      scene: '1638847059127571069'
+    onFailure:
+      next: true
+
+# onSuccess, onFailure - принимают объект контекста для выполнения
+# методом vnjs.exec({ ...ctx })
+# 
+# onSuccess:
+#      scene: '1638847059127571069'
+#      dialog-box: true
+#      sound: s1
+# 
