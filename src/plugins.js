@@ -45,6 +45,7 @@ import ide                from './plugins/ide/index.js'
 import typewrite          from './plugins/typewrite/index.js'
 import area               from './plugins/area/index.js'
 import selectWord         from './plugins/select-word/index.js'
+import dragItems          from './plugins/drag-items/index.js'
 
 export default function(){
 
@@ -94,6 +95,7 @@ export default function(){
   this.use(typewrite)
   this.use(area)
   this.use(selectWord)
+  this.use(dragItems)
   this.on('next', ()=>{
       setTimeout(()=>this.next(), 10)
   })
