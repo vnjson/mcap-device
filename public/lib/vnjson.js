@@ -77,7 +77,7 @@ class Vnjson {
   }
  
   getCurrentLabelBody (){
-    const labelBody = this.TREE[this.current.sceneName]?.[this.current.labelName];
+    const labelBody = this.TREE[this.current.sceneName][this.current.labelName];
     if(!labelBody){
       this.emit('error', 'menuOrJumpLeadsNowhere');
       return ['']

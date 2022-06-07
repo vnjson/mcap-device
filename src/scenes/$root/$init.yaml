@@ -10,25 +10,18 @@
   select-word:
     quetion:
       text: Корова говорит
-      css:
-        top: 20px
-        left: 20px
     answers: 
       correct: 3   
       variants:
         - test1
         - test2
         - Му!
-        - test4
-      css:
-        top: 250px
-        left: 650px
-
+        - test433333
     onSuccess:
       scene: '1638847059127571069'
+      dialog-box: false
     onFailure:
       next: true
-
 
 - scene: Patterns
 - scene: 86ee0739
