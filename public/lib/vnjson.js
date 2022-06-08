@@ -11,7 +11,7 @@
   'use strict';
 
 class Vnjson {
-  version = '1.8.0';
+  version = '1.8.1';
   //current object
   ctx = {};
   //loaded scenes
@@ -178,8 +178,8 @@ class Vnjson {
     }
     else{
         this.emit('$', String(this.ctx) );
-        this.emit('exec', String(this.ctx) );
     }
+    this.emit('exec', this.ctx );
     return this;
   }
 

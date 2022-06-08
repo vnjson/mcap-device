@@ -3967,6 +3967,18 @@
     });
   }
 
+  function checkMC () {
+    var _this = this;
+
+    this.on('check-mc', function (data) {
+      if (window.mcefQuery) {
+        _this.exec(data["true"]);
+      } else {
+        _this.exec(data["false"]);
+      }
+    });
+  }
+
   /* native [jump] [next] [timeout] */
   function plugins () {
     var _this = this;
@@ -4019,6 +4031,7 @@
     this.use(area);
     this.use(selectWord);
     this.use(dragItems);
+    this.use(checkMC);
     this.on('next', function () {
       setTimeout(function () {
         return _this.next();

@@ -4,35 +4,18 @@
   audio: false
   next: true
 
+
+
 #- chess: nnnnnnnn/8/8/8/8/8/8/8 w - - 0 1
 #- paint-board: 6bcad4a
 - scene: 86ee0739
-  drag-items:
-    items:
-      - test 1
-      - test 2
-      - test 3
-      - test 4 4 4 4
-    top:
-      300
-    left:
-      750
-
-- drag-items: false
-- scene: Patterns
-- scene: 86ee0739
-  drag-items:
-    items:
-      - test 1
-      - test 2 3 3 3 333
-      - test 3
-      - test 4 4 4 4
-    top:
-      300
-    left:
-      750
-
+  
 - scene: 6bcad4a
+  check-mc: 
+    true:
+      $: true 122222
+    false: 
+      $: false 122222
+      
 - scene: '1638847059127571069'
-
 - jump: $init
