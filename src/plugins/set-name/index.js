@@ -14,8 +14,8 @@ export default function (){
         $tpl.hide();
       }
   })
-  $('.stream__set-name-wrapper .stream__set-name-btn').on('click', ()=>{
-        let input = $('.stream__set-name-wrapper input')
+  $('.vnjson__set-name-wrapper .vnjson__set-name-btn').on('click', ()=>{
+        let input = $('.vnjson__set-name-wrapper input')
      
             $tpl.fadeOut();
             let char = this.TREE.$root.characters.find(character=>character.id===cid)

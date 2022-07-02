@@ -1,4 +1,4 @@
-.stream__term-board {
+.vnjson__term-board {
   width: 808px;
   height: 480px;
   padding: 25px;
@@ -11,12 +11,12 @@
   left: 50%;
   transform: translateX(-50%);
   display: none; }
-  .stream__term-board pre {
+  .vnjson__term-board pre {
     height: 100%;
     width: 100%;
     position: relative;
     margin: 0; }
-    .stream__term-board pre code {
+    .vnjson__term-board pre code {
       padding: 25px;
       font-size: 24px;
       height: 100%;
@@ -25,14 +25,14 @@
       top: 0;
       overflow-x: auto;
       font-family: Minecraft; }
-      .stream__term-board pre code img {
+      .vnjson__term-board pre code img {
         height: 100%; }
 
 
 
 /* term theme */
 
-.stream__term-board pre code{
+.vnjson__term-board pre code{
   font-size: 18px;
   line-height: 24px;
 }

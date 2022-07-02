@@ -9,13 +9,13 @@
 #- chess: nnnnnnnn/8/8/8/8/8/8/8 w - - 0 1
 #- paint-board: 6bcad4a
 - scene: 86ee0739
-  
+  $: test 11111111111111111111111111111
 - scene: 6bcad4a
-  check-mc: 
-    true:
-      $: true 122222
-    false: 
-      $: false 122222
-      
+  console: true
+
+  $: '000000000000'   
 - scene: '1638847059127571069'
+  console: false
+
+
 - jump: $init

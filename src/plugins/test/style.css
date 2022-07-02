@@ -1,5 +1,5 @@
 
-.stream__test{
+.vnjson__test{
   width: 600px;
   min-height: 250px;
   top: 50px;
@@ -12,7 +12,7 @@
 
 }
 
-.stream__test-name{
+.vnjson__test-name{
 
   border-bottom: 2px solid gray;
   padding: 5px;
@@ -21,18 +21,18 @@
   color: brown;
 }
 
-.stream__test-quetions-wrapper{
+.vnjson__test-quetions-wrapper{
   position: relative;
 }
 
 
-.stream__test-quetion{
+.vnjson__test-quetion{
 
   padding: 15px 0;
   color: black;
 }
 
-.stream__variants-item{
+.vnjson__variants-item{
   padding: 10px;
   margin-top: 5px;
   background-color: darkslateblue;
@@ -42,18 +42,18 @@
   border-radius: 4px;
 }
 
-.stream__variants-item_success{
+.vnjson__variants-item_success{
   background-color: darkcyan;
   color: white;
 }
 
-.stream__variants-item_fail{
+.vnjson__variants-item_fail{
   background-color: crimson;
   color: white;
 }
-.stream__variants-item:hover,
-.stream__variants-item_success:hover,
-.stream__variants-item_fail:hover{
+.vnjson__variants-item:hover,
+.vnjson__variants-item_success:hover,
+.vnjson__variants-item_fail:hover{
 
   filter: brightness(110%);
 }
@@ -61,7 +61,7 @@
 /**
  * RESULT
  */
-.stream__test-result{
+.vnjson__test-result{
   width: 100%;
   height: 100%;
   top: 0;
@@ -72,26 +72,26 @@
   background-color: wheat;
   padding: 20px 0;
 }
-.stream__test-result-data{
+.vnjson__test-result-data{
   height: 110px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.stream__test-result-item{
+.vnjson__test-result-item{
   color: black;
   padding: 10px 0;
   display: flex;
   justify-content: space-between;
   width: 250px;
 }
-.stream__test-result-item:first-child span:last-child{
+.vnjson__test-result-item:first-child span:last-child{
   color: darkcyan;
 }
-.stream__test-result-item:last-child span:last-child{
+.vnjson__test-result-item:last-child span:last-child{
   color: crimson;
 }
-.stream__test-next-btn{
+.vnjson__test-next-btn{
   background-color: burlywood;
   color: black;
   border-radius: 4px;
@@ -103,7 +103,7 @@
   box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
   /*border: 2px solid magenta;*/
 }
-.stream__test-next-btn:hover{
+.vnjson__test-next-btn:hover{
   background-color:  darkslateblue;
   color: white;
 }

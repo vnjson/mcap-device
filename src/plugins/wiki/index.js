@@ -1,6 +1,6 @@
 import "./style.css";
 
-let $tpl = $('<ul class="stream__wiki component"></ul>')
+let $tpl = $('<ul class="vnjson__wiki component"></ul>')
 
 
 export default function (){
@@ -35,10 +35,10 @@ function appendElements (list){
   list.forEach(key=>{
       let str;
       if(typeof wikiStore[key]==='object'){
-          str = `<li><span class="stream__wiki-key" style="color: ${wikiStore[key].color}">${key}</span> <span class="stream__wiki-dash">-</span> <span class="stream__wiki-value">${wikiStore[key].text}</span></li>`
+          str = `<li><span class="vnjson__wiki-key" style="color: ${wikiStore[key].color}">${key}</span> <span class="vnjson__wiki-dash">-</span> <span class="vnjson__wiki-value">${wikiStore[key].text}</span></li>`
       }
       else{
-          str = `<li><span class="stream__wiki-key">${key}</span> <span class="stream__wiki-dash">-</span> <span class="stream__wiki-value">${wikiStore[key]}</span></li>`
+          str = `<li><span class="vnjson__wiki-key">${key}</span> <span class="vnjson__wiki-dash">-</span> <span class="vnjson__wiki-value">${wikiStore[key]}</span></li>`
       }
       
       $tpl.append(str);

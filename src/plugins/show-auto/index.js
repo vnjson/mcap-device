@@ -2,9 +2,9 @@ import "./style.css";
 
 export default function (){
 
-  let $left = $('<img alt="" src="" class="stream__show-auto-left component"/>')
-  let $center = $('<img alt="" src="" class="stream__show-auto-center component"/>')
-  let $right = $('<img alt="" src="" class="stream__show-auto-right component"/>')
+  let $left = $('<img alt="" src="" class="vnjson__show-auto-left component"/>')
+  let $center = $('<img alt="" src="" class="vnjson__show-auto-center component"/>')
+  let $right = $('<img alt="" src="" class="vnjson__show-auto-right component"/>')
 
 
   this.$store.$screen.append($left)

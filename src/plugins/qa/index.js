@@ -56,15 +56,15 @@ export default function (){
       var character = this.getCharacterById(label)
       if(character){
         str = `
-          <div class="stream__qa--item stream__qa--quetion">
-              <span class="stream__qa--name" style="color: ${character.nameColor};">${ character.name }</span>
-              <span class="stream__qa--reply" style="color: ${character.replyColor};">${ menuItem }</span>
+          <div class="vnjson__qa--item vnjson__qa--quetion">
+              <span class="vnjson__qa--name" style="color: ${character.nameColor};">${ character.name }</span>
+              <span class="vnjson__qa--reply" style="color: ${character.replyColor};">${ menuItem }</span>
           </div>`;
-        $('.stream__qa').append(str)
+        $('.vnjson__qa').append(str)
       }
       else{
-        str = `<div class="stream__qa--item" data-score=${JSON.stringify(menuItem)}><span class="sound-hover">${ label }</span></div>`;
-        $('.stream__qa').append(str) 
+        str = `<div class="vnjson__qa--item" data-score=${JSON.stringify(menuItem)}><span class="sound-hover">${ label }</span></div>`;
+        $('.vnjson__qa').append(str) 
       }
     }
     $tpl.css('display', 'flex'); 
@@ -75,12 +75,12 @@ export default function (){
 
       setScore(data)
 
-      $('.stream__qa').off( "click", clickHundler)
-      $('.stream__qa').hide();
+      $('.vnjson__qa').off( "click", clickHundler)
+      $('.vnjson__qa').hide();
       $vnjs.exec({ next: true })
   }
 
-  $(".stream__qa").on("click", ".stream__qa--item", clickHundler);
+  $(".vnjson__qa").on("click", ".vnjson__qa--item", clickHundler);
 
   }
   this.on('qa', data=>{
@@ -93,7 +93,7 @@ export default function (){
       qaHandler(data)
     }
     else{
-      $(".stream__qa").hide()
+      $(".vnjson__qa").hide()
     }
   })
 

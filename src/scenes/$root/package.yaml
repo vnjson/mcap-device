@@ -1,9 +1,9 @@
 debug: true
-ISBN: 7777550567897
 preload: true
 
+# console-port: 8082
 # iframe modules
-chess: true
-paint-board: true
-crossword: true
-ide: false
+# chess: false
+# paint-board: false
+# crossword: false
+# ide: false

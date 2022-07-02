@@ -1,6 +1,6 @@
 
 import "./style.css";
-const $tpl = $('<div class="stream__craftos component"></div>');
+const $tpl = $('<div class="vnjson__craftos component"></div>');
 let open = false;
 
 export default function (){

@@ -1,4 +1,4 @@
-.stream__set-name{
+.vnjson__set-name{
   width: 470px;
   height: 120px;
   background-color: rgba(0, 0, 0, 0.7);
@@ -12,12 +12,12 @@
   align-items: center;
   display: none;
 }
-.stream__set-name-wrapper{
+.vnjson__set-name-wrapper{
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.stream__set-name-wrapper input{
+.vnjson__set-name-wrapper input{
   caret-color: skyblue;
   height: 47px;
   border-radius: 4px;
@@ -28,17 +28,17 @@
   color: skyblue;
 }
 
-.stream__set-name-wrapper .stream__set-name-btn{
+.vnjson__set-name-wrapper .vnjson__set-name-btn{
   width: 60px;
   height: 60px;
   cursor: pointer;
 }
-.stream__set-name-wrapper .stream__set-name-btn svg path{
+.vnjson__set-name-wrapper .vnjson__set-name-btn svg path{
   fill: silver;
   transition: 0.3s;
 
 }
 
-.stream__set-name-wrapper .stream__set-name-btn:hover svg path{
+.vnjson__set-name-wrapper .vnjson__set-name-btn:hover svg path{
   fill: skyblue;
 }

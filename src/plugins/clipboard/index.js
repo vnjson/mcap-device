@@ -1,6 +1,6 @@
 export default function (){
 
-  const $tpl = $('<textarea class="stream__clipboard" style="position: absolute; left:-99999px;top:0;"></textarea>')
+  const $tpl = $('<textarea class="vnjson__clipboard" style="position: absolute; left:-99999px;top:0;"></textarea>')
   this.$store.$screen.append($tpl);
   let flag = false;
   this.on('clipboard', data=>{
@@ -17,7 +17,7 @@ export default function (){
   })
   $('.dialog-box').on("click", function() {
       if(flag){
-        copyToClipboard(document.querySelector('.stream__clipboard'));
+        copyToClipboard(document.querySelector('.vnjson__clipboard'));
         flag = false;
       }
   });

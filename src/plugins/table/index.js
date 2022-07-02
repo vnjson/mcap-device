@@ -2,7 +2,7 @@ import "./style.css";
 
 
 export default function (){
-  let $table = $('<div class="stream__table component"></div>')
+  let $table = $('<div class="vnjson__table component"></div>')
   this.$store.$screen.append($table)
   $table.on('click', '.table__cell', function(){
       let label = $(this).data('jump')

@@ -1,7 +1,7 @@
 import './style.css'
 
 
-const $tpl = $(`<img class="screen-stream__slide component"/>`)
+const $tpl = $(`<img class="screen-vnjson__slide component"/>`)
 export default function (){
   this.$store.$screen.append($tpl)
   this.on('slide', id=>{

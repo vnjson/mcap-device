@@ -87,21 +87,17 @@
         "next": true
       },
       {
-        "scene": "86ee0739"
+        "scene": "86ee0739",
+        "$": "test 11111111111111111111111111111"
       },
       {
         "scene": "6bcad4a",
-        "check-mc": {
-          "true": {
-            "$": "true 122222"
-          },
-          "false": {
-            "$": "false 122222"
-          }
-        }
+        "console": true,
+        "$": "000000000000"
       },
       {
-        "scene": "1638847059127571069"
+        "scene": "1638847059127571069",
+        "console": false
       },
       {
         "jump": "$init"
@@ -124,12 +120,7 @@
     ],
     "package": {
       "debug": true,
-      "ISBN": 7777550567897,
-      "preload": true,
-      "chess": true,
-      "paint-board": true,
-      "crossword": true,
-      "ide": false
+      "preload": true
     },
     "wiki": {
       "Абажур": "Колпак для лампы, светильника",

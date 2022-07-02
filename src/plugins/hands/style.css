@@ -1,4 +1,4 @@
-.stream__hands {
+.vnjson__hands {
     position: absolute;
     z-index: 9999;
     opacity: 0.8;
@@ -9,7 +9,7 @@
     height: 185px;
 
   }
-.stream__hands .stream__hand {
+.vnjson__hands .vnjson__hand {
     width: 95px;
     height: 95px;
     background-image: url(./assets/slot.png);
@@ -22,14 +22,14 @@
     align-items: center;
     cursor: pointer;
 }
-.stream__hands .stream__hand-left {
+.vnjson__hands .vnjson__hand-left {
     width: 60px;
     height: 60px;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat; 
 }
-.stream__hands .stream__hand-right {
+.vnjson__hands .vnjson__hand-right {
     width: 60px;
     height: 60px;
     background-size: contain;

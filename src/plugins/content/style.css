@@ -1,4 +1,4 @@
-.stream__stage{
+.vnjson__stage{
   margin: 1% 0;
   left: 50%;
   transform: translateX(-50%);
@@ -9,13 +9,13 @@
   top: 30px;
   overflow: auto;
 }
-.stream__stage li{
+.vnjson__stage li{
   list-style-type: none;
   cursor: pointer;
   font-size: 18px;
   display: block;
 }
-.stream__stage li:last-child{
+.vnjson__stage li:last-child{
   margin-bottom: 0px;
 }
 .stage-children li:not(.stage-child){

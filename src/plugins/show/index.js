@@ -2,10 +2,10 @@ import "./style.css";
 
 export default function (){
 
-  let $left = $('<div class="stream__show-left component"></div>')
-  let $right = $('<div class="stream__show-right component"></div>')
-  let $center = $('<div class="stream__show-center component"></div>')
-  let $show = $('<div class="stream__show-show component"></div>')
+  let $left = $('<div class="vnjson__show-left component"></div>')
+  let $right = $('<div class="vnjson__show-right component"></div>')
+  let $center = $('<div class="vnjson__show-center component"></div>')
+  let $show = $('<div class="vnjson__show-show component"></div>')
 
 
   this.$store.$screen.append($left)
@@ -13,7 +13,7 @@ export default function (){
   this.$store.$screen.append($center)
 /*
 
-.stream__show-show.component
+.vnjson__show-show.component
  */
   this.on('left', id=>{
     

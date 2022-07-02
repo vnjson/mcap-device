@@ -25,7 +25,7 @@ this.on('voicePlay', data=>{
 this.on('$voice', data=>{
 
   if(data){
-    $('.stream__hand-left').css('background-image', `url(${icoPlay})`)
+    $('.vnjson__hand-left').css('background-image', `url(${icoPlay})`)
 
   }
   else{
@@ -50,13 +50,13 @@ this.on('exec', ctx=>{
 
 
 
-  $('.stream__hands').on('mouseover', '.stream__hand-left', function (){
+  $('.vnjson__hands').on('mouseover', '.vnjson__hand-left', function (){
     $(this).css('opacity', 0.5)
   })
-  $('.stream__hands').on('mouseout', '.stream__hand-left', function (){
+  $('.vnjson__hands').on('mouseout', '.vnjson__hand-left', function (){
     $(this).css('opacity', 1)
   })
-  $('.stream__hands').on('click', '.stream__hand-left', e=>{
+  $('.vnjson__hands').on('click', '.vnjson__hand-left', e=>{
      if(this.ctx.$voice){
         this.emit('voicePlay', this.ctx.$voice )
      }

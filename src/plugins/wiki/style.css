@@ -1,4 +1,4 @@
-.stream__wiki {
+.vnjson__wiki {
   left: 10px;
   top: 40px;
   width: 300px;
@@ -10,19 +10,19 @@
   z-index: 7100;
   font-size: 14px;
 }
-.stream__wiki li{
+.vnjson__wiki li{
   padding: 5px 0;
 
   line-height: 18px;
     
 }
-.stream__wiki-key{
+.vnjson__wiki-key{
   color: wheat;
 }
-.stream__wiki-dash{
+.vnjson__wiki-dash{
   padding: 0 5px;
   color: silver;
 }
-.stream__wiki-value{
+.vnjson__wiki-value{
   color: darkgray;
 }

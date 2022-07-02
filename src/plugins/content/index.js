@@ -1,7 +1,7 @@
 import './style.css'
 import icoContent from './assets/icoContent.jpg'
 
-const $tpl = $(`<ul class="stream__stage component"></ul>`)
+const $tpl = $(`<ul class="vnjson__stage component"></ul>`)
 export default function (){
 
   this.$store.$screen.append($tpl)
@@ -19,16 +19,16 @@ export default function (){
   })
 
 
-  $('.stream__hands').on('mouseover', '.stream__hand-right', function (){
+  $('.vnjson__hands').on('mouseover', '.vnjson__hand-right', function (){
     $(this).css('opacity', 0.5)
   })
-  $('.stream__hands').on('mouseout', '.stream__hand-right', function (){
+  $('.vnjson__hands').on('mouseout', '.vnjson__hand-right', function (){
     $(this).css('opacity', 1)
   })
 
 
-  $('.stream__hand-right').css('background-image', `url(${icoContent})`)
-  $('.stream__hands').on('click', '.stream__hand-right', e=>{
+  $('.vnjson__hand-right').css('background-image', `url(${icoContent})`)
+  $('.vnjson__hands').on('click', '.vnjson__hand-right', e=>{
           if(this.TREE[this.current.sceneName].content){
               this.exec({ jump: `${this.current.sceneName}.content` })
           }

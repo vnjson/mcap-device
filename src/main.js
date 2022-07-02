@@ -11,7 +11,7 @@ fetch(`scenes/vn.json?v=${new Date().getTime()}`)
   .catch(err=>{
     $('.debug-error').css('display', 'flex')
                      .find('.debug-error__msg')
-                     .html('Невалидный <font color="skyblue">YAML</font> скрипт');
+                     .html('Невалидный скрипт');
 
     console.error('Invalid script', err.message);
   });

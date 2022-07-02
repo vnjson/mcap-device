@@ -1,4 +1,4 @@
-.stream__show-auto-left {
+.vnjson__show-auto-left {
   position: absolute;
   left: 50px;
   bottom: 210px;
@@ -6,7 +6,7 @@
   z-index: 7000;
 }
 
-.stream__show-auto-center {
+.vnjson__show-auto-center {
   position: absolute;
   bottom: 210px;
   top: unset;
@@ -16,7 +16,7 @@
 
 }
 
-.stream__show-auto-right {
+.vnjson__show-auto-right {
   position: absolute;
   right: 50px;
   bottom: 210px;

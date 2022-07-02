@@ -3,7 +3,7 @@ import "./style.css";
 import tpl from "./tpl.html";
 
 const $tpl = $(tpl);
-$tpl.on("click", ".stream__menu-item", clickHundler);
+$tpl.on("click", ".vnjson__menu-item", clickHundler);
 
 let onClickObj = null;
 let menuObj = null;
@@ -48,28 +48,28 @@ function menu (param){
             character.name = '';
         }
         if(character.name!==''){
-            str = `<div class="stream__menu-quetion">
+            str = `<div class="vnjson__menu-quetion">
                           <span style='color:${character.nameColor}; padding-right: 20px;'>${ character.name }:</span>
                           <span style='color:${character.replyColor}; '>${ menuItem }</span>
                     </div>`;
         }
         else{
-            str = `<div class="stream__menu-quetion">
+            str = `<div class="vnjson__menu-quetion">
                           <span style='color:${character.replyColor};'>${ menuItem }</span>
                     </div>`;
         }
-        $('.stream__menu-menu').append(str)
+        $('.vnjson__menu-menu').append(str)
       }
       else{
         let str = null
         if(/disabled/i.test(label) ){
                    // c исконками
                     if(typeof menuItem==='object'){
-                              str = `<div data-label="${ label }" class="stream__menu-item disabled"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${ menuItem.text }</span></div>`;
+                              str = `<div data-label="${ label }" class="vnjson__menu-item disabled"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${ menuItem.text }</span></div>`;
                     }
                     // без иконок
                     else{
-                              str = `<div data-label="${ label }" class="stream__menu-item disabled"><span class="sound-click">${ menuItem }</span></div>`;
+                              str = `<div data-label="${ label }" class="vnjson__menu-item disabled"><span class="sound-click">${ menuItem }</span></div>`;
                     }
         }
         else if(label==='onClick'){
@@ -81,15 +81,15 @@ function menu (param){
         else{
                     // c исконками
                     if(typeof menuItem==='object'){
-                              str = `<div data-label="${ label }" class="stream__menu-item"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${ menuItem.text }</span></div>`;
+                              str = `<div data-label="${ label }" class="vnjson__menu-item"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${ menuItem.text }</span></div>`;
                     }
                     // без иконок
                     else{
-                              str = `<div data-label="${ label }" class="stream__menu-item"><span class="sound-click">${ menuItem }</span></div>`;
+                              str = `<div data-label="${ label }" class="vnjson__menu-item"><span class="sound-click">${ menuItem }</span></div>`;
                     }
         }
         
-        $('.stream__menu-menu').append($(str))
+        $('.vnjson__menu-menu').append($(str))
       }
     }
 

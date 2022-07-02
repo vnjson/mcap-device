@@ -12,10 +12,10 @@ export default function (){
     if(id){
       isShow = true;
       $tpl.show();
-      $tpl.find('.stream__hand-left').css('background-image', `url('${this.getAssetByName(id).url}')` )
+      $tpl.find('.vnjson__hand-left').css('background-image', `url('${this.getAssetByName(id).url}')` )
     }
     else{
-      $tpl.find('.stream__hand-left').css('background-image', "unset" ); 
+      $tpl.find('.vnjson__hand-left').css('background-image', "unset" ); 
     }
   })
 
@@ -23,10 +23,10 @@ export default function (){
     if(id){
       isShow = true;
       $tpl.show();
-      $tpl.find('.stream__hand-right').css('background-image', `url('${this.getAssetByName(id).url}')` )
+      $tpl.find('.vnjson__hand-right').css('background-image', `url('${this.getAssetByName(id).url}')` )
     }
     else{
-      $tpl.find('.stream__hand-right').css('background-image', "unset" ); 
+      $tpl.find('.vnjson__hand-right').css('background-image', "unset" ); 
     }
   })
   this.on('hands', data=>{
