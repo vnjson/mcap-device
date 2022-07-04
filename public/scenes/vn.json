@@ -119,7 +119,7 @@
       }
     ],
     "package": {
-      "debug": true,
+      "debug": false,
       "preload": true
     },
     "wiki": {

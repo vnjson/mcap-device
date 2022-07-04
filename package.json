@@ -1,6 +1,6 @@
 {
   "name": "vnjson",
-  "version": "1.3.2",
+  "version": "1.3.4",
   "description": "",
   "main": "rollup.config.js",
   "scripts": {
@@ -31,7 +31,7 @@
     "scenes-to-json": "^0.8.5",
     "socket.io": "^4.4.1",
     "vnjson-update": "^1.1.3",
-    "vnjson-publish": "^1.0.1"
+    "vnjson-publish": "^1.0.4"
   },
   "dependencies": {},
   "keywords": [
