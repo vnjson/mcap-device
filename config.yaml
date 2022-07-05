@@ -2,5 +2,3 @@ port: 9000
 src: src
 updateDirs:
   - src
-
-token: 46dd3876f902e130efdd2a352b58846c
