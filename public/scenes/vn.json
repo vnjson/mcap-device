@@ -164,11 +164,39 @@
             "animation": {
               "type": "moveTo",
               "duration": 3000,
+              "left": "+=750px",
               "top": "-=400px",
               "onEnd": {
                 "sound": "sysFlipPages",
                 "$": "Конец воспроизведения анимации <font color=\"red\">moveTo</font>"
               }
+            }
+          },
+          {
+            "image": "map",
+            "timeout": 4000,
+            "width": "100px",
+            "height": "100px",
+            "top": "120px",
+            "left": "120px",
+            "animation": {
+              "type": "moveTo",
+              "duration": 3000,
+              "top": "400px"
+            }
+          },
+          {
+            "image": "superball",
+            "timeout": 4000,
+            "width": "100px",
+            "height": "100px",
+            "top": "300px",
+            "left": "900px",
+            "animation": {
+              "type": "moveTo",
+              "duration": 2000,
+              "left": "170px",
+              "top": "50px"
             }
           }
         ]
@@ -256,12 +284,20 @@
         "url": "scenes/assets/index.jpg3.jpg"
       },
       {
+        "name": "map",
+        "url": "scenes/assets/map.png"
+      },
+      {
         "name": "Patterns",
         "url": "scenes/assets/Patterns.jpg"
       },
       {
         "name": "pokeball",
         "url": "scenes/assets/pokeball.png"
+      },
+      {
+        "name": "superball",
+        "url": "scenes/assets/superball.png"
       }
     ]
   }
