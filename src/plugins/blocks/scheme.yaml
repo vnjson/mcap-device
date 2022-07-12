@@ -86,3 +86,38 @@
           duration: 2000
           left: 150px
           top: 50px
+
+
+- blocks: 
+      - image: Patterns
+        timeout: 0
+        width: 130px
+        height: 180px
+        top: 100px
+        left: 400px
+        animation: 
+          type: zoom
+          duration: 3000
+          value: 0.2 # размер стандарного изображения = 1
+          onEnd:
+            $: test test
+
+      - image: index.jpg3
+        timeout: 0
+        width: 100px
+        height: 100px
+        top: 50px
+        left: 50px
+        animation: 
+          type: fadeIn
+          duration: 1000
+
+      - image: map
+        timeout: 2000
+        width: 100px
+        height: 100px
+        top: 200px
+        left: 50px
+        animation: 
+          type: fadeOut
+          duration: 3000

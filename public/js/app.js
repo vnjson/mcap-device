@@ -4131,6 +4131,58 @@
                   }
                 });
                 break;
+
+              case 'zoom':
+                $img.css({
+                  display: 'block',
+                  opacity: 1
+                });
+                var animationData2 = {
+                  transform: "scale(".concat(item.animation.value, ")"),
+                  transition: "".concat(item.animation.duration / 1000, "s")
+                };
+                $imgWrapper.css(animationData2);
+
+                if (item.animation.onEnd) {
+                  setTimeout(function () {
+                    _this.exec(item.animation.onEnd);
+                  }, item.animation.duration);
+                }
+
+                break;
+
+              case 'fadeIn':
+                $img.css({
+                  display: 'block'
+                });
+                $img.animate({
+                  opacity: 1
+                }, item.animation.duration, function () {
+                  if (item.animation.onEnd) {
+                    _this.exec(item.animation.onEnd);
+                  }
+                });
+                break;
+
+              case 'fadeOut':
+                $img.css({
+                  opacity: 1,
+                  display: 'block'
+                });
+                $img.animate({
+                  opacity: 0
+                }, item.animation.duration, function () {
+                  if (item.animation.onEnd) {
+                    _this.exec(item.animation.onEnd);
+                  }
+                });
+                break;
+
+              default:
+                _this.exec({
+                  '$': "<font color=\"red\">\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0442\u0438\u043F \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 ".concat(JSON.stringify(item.animation.type), "</font>")
+                });
+
             }
           }, item.timeout + 500);
         });

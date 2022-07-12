@@ -80,6 +80,40 @@ export default  function () {
                               }
                           } )
                           break
+                      case 'zoom':
+                          $img.css({ display: 'block', opacity: 1})
+
+                          const animationData2 = {
+                                  transform: `scale(${item.animation.value})`,
+                                  transition: `${item.animation.duration/1000}s`
+                          }
+
+                          $imgWrapper.css(animationData2)
+                          if(item.animation.onEnd){
+                              setTimeout(()=>{
+                                this.exec(item.animation.onEnd)
+                              }, item.animation.duration)
+                          }
+                          break
+                      case 'fadeIn':
+                          $img.css({ display: 'block'})
+                          $img.animate({  opacity: 1 }, item.animation.duration, ()=>{
+                              if(item.animation.onEnd){
+                                  this.exec(item.animation.onEnd)
+                              }
+                          } )
+                          break
+                      case 'fadeOut':
+                          $img.css({  opacity: 1, display: 'block'})
+                          $img.animate({  opacity: 0 }, item.animation.duration, ()=>{
+                              if(item.animation.onEnd){
+                                  this.exec(item.animation.onEnd)
+                              }
+                          } )
+                          break
+                      default:
+                          this.exec({'$': `<font color="red">Неверный тип анимации ${JSON.stringify( item.animation.type )}</font>`})
+
                   }
 
               }, item.timeout + 500)
