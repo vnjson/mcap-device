@@ -6,16 +6,82 @@
 
 
 
-#- chess: nnnnnnnn/8/8/8/8/8/8/8 w - - 0 1
-#- paint-board: 6bcad4a
+- scene: 6bcad4a
+  $: '000000000000'  
+
 - scene: 86ee0739
   $: test 11111111111111111111111111111
-- scene: 6bcad4a
-  console: true
+  blocks: 
+      - image: Patterns
+        timeout: 0
+        width: 130px
+        height: 180px
+        top: 100px
+        left: 400px
+        animation: 
+          type: slideUp
+          duration: 500
+          onEnd:
+            $: Конец воспроизведения анимации <font color="orange">slideUp</font>
 
-  $: '000000000000'   
+      - image: ab12-53
+        timeout: 1000
+        width: 80px
+        height: 100px
+        top: 200px
+        left: 600px
+        animation: 
+          type: slideDown
+          duration: 800
+          onEnd:
+            $: Конец воспроизведения анимации <font color="magenta">slideDown</font>
+
+      - image: index.jpg3
+        timeout: 2000
+        width: 100px
+        height: 100px
+        top: 50px
+        left: 50px
+        animation: 
+          type: slideRight
+          duration: 1000
+          onEnd:
+            $: Конец воспроизведения анимации <font color="deepskyblue">slideRight</font>
+
+
+
+      - image: '153613243915957922'
+        timeout: 3000
+        width: 80px
+        height: 130px
+        top: 300px
+        left: 800px
+        animation: 
+          type: slideLeft
+          duration: 1000
+          onEnd:
+            $: Конец воспроизведения анимации <font color="lightgreen">slideLeft</font>
+
+      - image: pokeball
+        timeout: 4000
+        width: 100px
+        height: 100px
+        top: 450px
+        left: 100px
+        animation: 
+          type: moveTo
+          duration: 3000
+          #left: +=750px
+          top: -=400px
+          onEnd:
+            sound: sysFlipPages
+            $: Конец воспроизведения анимации <font color="red">moveTo</font>
+
+
+ 
 - scene: '1638847059127571069'
-  console: false
+  blocks: false
+
 
 
 - jump: $init

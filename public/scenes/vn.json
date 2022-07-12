@@ -87,17 +87,95 @@
         "next": true
       },
       {
-        "scene": "86ee0739",
-        "$": "test 11111111111111111111111111111"
-      },
-      {
         "scene": "6bcad4a",
-        "console": true,
         "$": "000000000000"
       },
       {
+        "scene": "86ee0739",
+        "$": "test 11111111111111111111111111111",
+        "blocks": [
+          {
+            "image": "Patterns",
+            "timeout": 0,
+            "width": "130px",
+            "height": "180px",
+            "top": "100px",
+            "left": "400px",
+            "animation": {
+              "type": "slideUp",
+              "duration": 500,
+              "onEnd": {
+                "$": "Конец воспроизведения анимации <font color=\"orange\">slideUp</font>"
+              }
+            }
+          },
+          {
+            "image": "ab12-53",
+            "timeout": 1000,
+            "width": "80px",
+            "height": "100px",
+            "top": "200px",
+            "left": "600px",
+            "animation": {
+              "type": "slideDown",
+              "duration": 800,
+              "onEnd": {
+                "$": "Конец воспроизведения анимации <font color=\"magenta\">slideDown</font>"
+              }
+            }
+          },
+          {
+            "image": "index.jpg3",
+            "timeout": 2000,
+            "width": "100px",
+            "height": "100px",
+            "top": "50px",
+            "left": "50px",
+            "animation": {
+              "type": "slideRight",
+              "duration": 1000,
+              "onEnd": {
+                "$": "Конец воспроизведения анимации <font color=\"deepskyblue\">slideRight</font>"
+              }
+            }
+          },
+          {
+            "image": "153613243915957922",
+            "timeout": 3000,
+            "width": "80px",
+            "height": "130px",
+            "top": "300px",
+            "left": "800px",
+            "animation": {
+              "type": "slideLeft",
+              "duration": 1000,
+              "onEnd": {
+                "$": "Конец воспроизведения анимации <font color=\"lightgreen\">slideLeft</font>"
+              }
+            }
+          },
+          {
+            "image": "pokeball",
+            "timeout": 4000,
+            "width": "100px",
+            "height": "100px",
+            "top": "450px",
+            "left": "100px",
+            "animation": {
+              "type": "moveTo",
+              "duration": 3000,
+              "top": "-=400px",
+              "onEnd": {
+                "sound": "sysFlipPages",
+                "$": "Конец воспроизведения анимации <font color=\"red\">moveTo</font>"
+              }
+            }
+          }
+        ]
+      },
+      {
         "scene": "1638847059127571069",
-        "console": false
+        "blocks": false
       },
       {
         "jump": "$init"
@@ -120,7 +198,11 @@
     ],
     "package": {
       "debug": false,
-      "preload": true
+      "preload": true,
+      "publish": {
+        "host": "http://vnjson.mcap.fun",
+        "token": "b38ed838f352f6ad7f842bf497800feb"
+      }
     },
     "wiki": {
       "Абажур": "Колпак для лампы, светильника",
@@ -142,6 +224,10 @@
   "test": {
     "assets": [
       {
+        "name": "153613243915957922",
+        "url": "scenes/assets/153613243915957922.jpg"
+      },
+      {
         "name": "1638847059127571069",
         "url": "scenes/assets/1638847059127571069.webp"
       },
@@ -154,6 +240,10 @@
         "url": "scenes/assets/86ee0739.jpg"
       },
       {
+        "name": "ab12-53",
+        "url": "scenes/assets/ab12-53.jpg"
+      },
+      {
         "name": "Blue Angel 69",
         "url": "scenes/assets/Blue Angel 69.png"
       },
@@ -162,8 +252,16 @@
         "url": "scenes/assets/ground.jpg"
       },
       {
+        "name": "index.jpg3",
+        "url": "scenes/assets/index.jpg3.jpg"
+      },
+      {
         "name": "Patterns",
         "url": "scenes/assets/Patterns.jpg"
+      },
+      {
+        "name": "pokeball",
+        "url": "scenes/assets/pokeball.png"
       }
     ]
   }

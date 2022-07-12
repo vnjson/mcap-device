@@ -7,10 +7,10 @@
 export default function (){
 
   this.on('animate', data=>{
-    let { selector, duration, css } = data
-    console.log(data)
-    $(selector).animate(css, duration)
-     $(selector).css('color', 'red')
+      let { selector, duration, css } = data
+      console.log(data)
+      $(selector).animate(css, duration)
+      $(selector).css('color', 'red')
   })
   
 }

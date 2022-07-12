@@ -1,0 +1,65 @@
+  blocks: 
+      - image: Patterns # Изображение отоброжаемое в на экране
+        timeout: 0 # Задержка начала воспроизведения анимации
+        width: 130px
+        height: 180px
+        top: 100px
+        left: 400px
+        animation: 
+          type: slideUp # Тип анимации
+          duration: 500 # Длительность анимации
+          onEnd: # vnjs.exec(ctx) Данная функция вызовется по оканчанию воспроизведения анимации 
+            $: Конец воспроизведения анимации slideUp
+
+      - image: ab12-53
+        timeout: 1000
+        width: 80px
+        height: 100px
+        top: 200px
+        left: 600px
+        animation: 
+          type: slideDown
+          duration: 800
+          onEnd:
+            $: Конец воспроизведения анимации slideDown
+
+      - image: index.jpg3
+        timeout: 2000
+        width: 100px
+        height: 100px
+        top: 50px
+        left: 50px
+        animation: 
+          type: slideRight
+          duration: 1000
+          onEnd:
+            $: Конец воспроизведения анимации slideRight
+
+
+
+      - image: '153613243915957922'
+        timeout: 3000 
+        width: 80px
+        height: 130px
+        top: 300px
+        left: 800px
+        animation: 
+          type: slideLeft
+          duration: 1000
+          #onEnd:
+          #  $: Конец воспроизведения анимации slideLeft
+
+      - image: pokeball
+        timeout: 4000
+        width: 100px
+        height: 100px
+        top: 450px
+        left: 100px
+        animation: 
+          type: moveTo
+          duration: 3000
+          left: +=750px # можно указать один параметр, если нужна анимация по одной оси
+          top: -=400px # можно указать один параметр, если нужна анимация по одной оси
+          onEnd:
+            sound: sysFlipPages
+            $: Конец воспроизведения анимации moveTo

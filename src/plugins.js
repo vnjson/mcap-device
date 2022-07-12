@@ -48,6 +48,7 @@ import selectWord         from './plugins/select-word/index.js'
 import dragItems          from './plugins/drag-items/index.js'
 import checkMC            from './plugins/check-mc/index.js'
 import consoleVnjson      from './plugins/console/index.js'
+import blocks             from './plugins/blocks/index.js'
 
 export default function(){
 
@@ -100,6 +101,7 @@ export default function(){
   this.use(dragItems)
   this.use(checkMC)
   this.use(consoleVnjson)
+  this.use(blocks)
   this.on('next', ()=>{
       setTimeout(()=>this.next(), 10)
   })
