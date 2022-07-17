@@ -88,57 +88,19 @@
       },
       {
         "scene": "6bcad4a",
-        "$": "000000000000"
+        "$": "000000000000",
+        "test3": true
       },
       {
         "scene": "86ee0739",
-        "$": "test 11111111111111111111111111111",
-        "blocks": [
-          {
-            "image": "Patterns",
-            "timeout": 0,
-            "width": "130px",
-            "height": "180px",
-            "top": "100px",
-            "left": "400px",
-            "animation": {
-              "type": "zoom",
-              "duration": 3000,
-              "value": 0.2,
-              "onEnd": {
-                "$": "test test"
-              }
-            }
-          },
-          {
-            "image": "index.jpg3",
-            "timeout": 0,
-            "width": "100px",
-            "height": "100px",
-            "top": "50px",
-            "left": "50px",
-            "animation": {
-              "type": "fadeIn",
-              "duration": 1000
-            }
-          },
-          {
-            "image": "map",
-            "timeout": 2000,
-            "width": "100px",
-            "height": "100px",
-            "top": "200px",
-            "left": "50px",
-            "animation": {
-              "type": "fadeOut",
-              "duration": 3000
-            }
-          }
-        ]
+        "$": "test 11111111111111111111111111111"
+      },
+      {
+        "test3": false
       },
       {
         "scene": "1638847059127571069",
-        "blocks": false
+        "zm3": true
       },
       {
         "jump": "$init"
@@ -160,7 +122,7 @@
       }
     ],
     "package": {
-      "debug": false,
+      "debug": true,
       "preload": true,
       "publish": {
         "host": "http://vnjson.mcap.fun",

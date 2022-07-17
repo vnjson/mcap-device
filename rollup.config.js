@@ -1,18 +1,17 @@
+import color            from 'ansi-colors';
 import styles           from 'rollup-plugin-styles';
 import yaml             from '@rollup/plugin-yaml';
 import { babel }        from '@rollup/plugin-babel';
 import url              from '@rollup/plugin-url';
-import copy             from 'rollup-plugin-copy';
 import files            from 'rollup-plugin-import-file';
 import scenesToJson     from 'scenes-to-json';
 import chokidar         from 'chokidar';
 import html             from 'rollup-plugin-html';
-import fs               from 'fs';
+import fse              from 'fs-extra';
 import YAML             from 'yaml';
+import watch            from "rollup-plugin-watch";
 
-
-
-const config = YAML.parse(fs.readFileSync('./config.yaml', 'utf8'))
+const config = YAML.parse(fse.readFileSync('./config.yaml', 'utf8'))
 
 const production = false;
 
@@ -40,26 +39,33 @@ export default {
             ["babel-plugin-root-import", { "rootPathSuffix": `${config.src}`}]
       ]
     }),
+  /*
     copy({
       targets: [{ src: `${config.src}/static/*`, dest: `public/` }]
     }),
-
+*/
     files({
       output: `public/assets`,
       extensions: /\.(waw|ogg|mp3)$/,
       hash: false,
-    })
+    }),
+    // watch
+    watch({ dir: `${config.src}/plugins` }),
+
+
   ],
 
   watch: [
-    `${config.src}/plugins`,
-    `${config.src}/static`,
+    //`${config.src}/plugins`,
     `${config.src}/main.js`,
     `${config.src}/plugins.js`,
-    `${config.src}/plugins/**/*.html`
   ]
 };
 
+
+/**
+ * socket
+ */
 const express = require('express');
 const app = express();
 const http = require('http').Server(app);
@@ -70,8 +76,7 @@ const port = config.port||9000;
 /**
  * Собираем yaml - сцены
  */
-
-function buildScenes (){
+const  buildScenes = () => {
 
   const src = `${config.src}/scenes`;
   const dist = `./public/scenes`;
@@ -79,34 +84,52 @@ function buildScenes (){
   scenesToJson(src, dist, (err, sceneName, labelName)=>{
       console.clear();
       if(err){
-          console.log("\x1b[2m"+err.reason+"\x1b[33m");
-          console.log("\x1b[31m"+sceneName+'/'+ labelName+"\x1b[0m");
-          console.log('\x1b[36mline', err.mark.line, 'column', err.mark.column+"\x1b[0m");
-          console.log("\x1b[33m"+err.mark.snippet + "\x1b[0m");
+          console.log( color.red(err.reason) );
+          console.log( color.cyan(sceneName+'/'+ labelName) );
+          console.log( color.magenta(`line ${ err.mark.line} column ${err.mark.column}`) );
+          console.log( color.gray( err.mark.snippet) );
           io.emit('yaml-error', err, sceneName, labelName);
       }
       else{
-        console.log('\x1b[35m[\x1b[36m scenes build\x1b[35m ] \x1b[0m')
+        console.log( color.green( '[ Scenes has build ]' ) )
         io.emit('yaml-error', null);
       }
   })
 
 }
 
-buildScenes();
 
 chokidar.watch(`${config.src}/scenes`).on('change', (event, path) => {
   buildScenes();
-});
+})
 
+buildScenes()
 
+/**
+ * copyStatic
+ */
+const copyStatic = () => {
+   fse.copy(`${config.src}/static`, 'public')
+   console.log( color.green( '[ Static has copy ]' ) )
+}
+copyStatic()
+chokidar.watch(`${config.src}/static`).on('change', (event, path) => {
+  copyStatic()
+
+  io.emit('yaml-error', null)
+})
+
+/**
+ * http-server
+ */
 app.use(express.static('public'));
+
 app.get('/', (req, res) => {
   res.sendFile(__dirname + 'public/index.html');
-});
-
-
+})
 
 http.listen(port, () => {
   console.log(`http://localhost:${port}/`);
 });
+
+

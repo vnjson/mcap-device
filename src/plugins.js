@@ -49,6 +49,7 @@ import dragItems          from './plugins/drag-items/index.js'
 import checkMC            from './plugins/check-mc/index.js'
 import consoleVnjson      from './plugins/console/index.js'
 import blocks             from './plugins/blocks/index.js'
+import staticApp          from './plugins/static-app/index.js'
 
 export default function(){
 
@@ -102,6 +103,7 @@ export default function(){
   this.use(checkMC)
   this.use(consoleVnjson)
   this.use(blocks)
+  this.use(staticApp)
   this.on('next', ()=>{
       setTimeout(()=>this.next(), 10)
   })
