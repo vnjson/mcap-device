@@ -8,9 +8,9 @@
 
 - scene: 6bcad4a
   $: '000000000000'  
-  #zm0: true
+  zm0: true
   #ppp: true
-  zmzm: true
+  #zmzm: true
 - scene: 86ee0739
 
 
