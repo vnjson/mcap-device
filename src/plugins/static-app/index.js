@@ -1,23 +1,15 @@
 import './style.css'
 
 export default function (){
-
-
-
    fetch('apps/modules.json')
     .then(r=>r.json())
     .then(res => {
-    
-
           if(res){
             for(let event in res){
               eventRegistration.call(this, event, res[event])
             }
           }
-
     })
-
-
 }
 
 function eventRegistration (event) {

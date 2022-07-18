@@ -8,16 +8,18 @@
 
 - scene: 6bcad4a
   $: '000000000000'  
-  test3: true
+  #zm0: true
+  #ppp: true
+  zmzm: true
 - scene: 86ee0739
 
-  #krab: true
+
   $: test 11111111111111111111111111111
 
-- test3: false
+
 
 - scene: '1638847059127571069'
-  zm3: true
+  #zm3: true
 
 
 
