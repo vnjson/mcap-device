@@ -1,4 +1,4 @@
-- check-mc: 
+- mc-check: 
     true:
       $: true 122222
 

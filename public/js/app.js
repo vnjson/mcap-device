@@ -3971,7 +3971,7 @@
   function checkMC () {
     var _this = this;
 
-    this.on('check-mc', function (data) {
+    this.on('mc-check', function (data) {
       if (window.mcefQuery) {
         _this.exec(data["true"]);
       } else {

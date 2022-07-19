@@ -10,20 +10,15 @@
   $: '000000000000'  
 
   hud: true
-- $: test
-- $: et
+
 - hud-inv:
     slot: 1
     icon: pokeball
 
-- mc-exec:
-    action: executeCMD
-    data: say TEST # give @p dirt 1
-    type: player
-
 - hud-inv:
     slot: 2
     icon: map
+    
 - hud-inv:
     slot: 3
     icon: pokeball
@@ -56,7 +51,10 @@
 - hud-right: 40%
 - hud-right: 90%
 - hud: false
-
+- mc-exec:
+    action: executeCMD
+    data: say TEST TEST TEST # give @p dirt 1
+    type: player
 
 
   $: test 11111111111111111111111111111

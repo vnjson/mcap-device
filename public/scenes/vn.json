@@ -92,22 +92,9 @@
         "hud": true
       },
       {
-        "$": "test"
-      },
-      {
-        "$": "et"
-      },
-      {
         "hud-inv": {
           "slot": 1,
           "icon": "pokeball"
-        }
-      },
-      {
-        "mc-exec": {
-          "action": "executeCMD",
-          "data": "say TEST",
-          "type": "player"
         }
       },
       {
@@ -171,7 +158,14 @@
         "hud-right": "90%"
       },
       {
-        "hud": false,
+        "hud": false
+      },
+      {
+        "mc-exec": {
+          "action": "executeCMD",
+          "data": "say TEST TEST TEST",
+          "type": "player"
+        },
         "$": "test 11111111111111111111111111111"
       },
       {

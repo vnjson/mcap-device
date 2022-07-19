@@ -1,6 +1,6 @@
 export default function (){
 
-  this.on('check-mc', (data)=>{
+  this.on('mc-check', (data)=>{
      if(window.mcefQuery){
         this.exec(data.true)
      }

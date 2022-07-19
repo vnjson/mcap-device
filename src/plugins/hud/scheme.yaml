@@ -1,6 +1,6 @@
 # show
 - hud: true
-
+- hud: false
 
 # status bars
 - hud-left: 17%
