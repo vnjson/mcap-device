@@ -18,7 +18,7 @@
 
 # onClick - execute the code after the jump
 # 
-# 
+
 - menu:
     zim-label: Как подключить zim
     label_1_tree__fs: Файловая структура
@@ -36,7 +36,7 @@
       top: 50px
       right: 20px
 
-      
+
 # Добавление иконок
 - dialog-box: disabled
   menu:

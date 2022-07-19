@@ -82,21 +82,96 @@
       {
         "dialog-box": true,
         "status-bar": false,
-        "hands": false,
+        "hands": true,
         "audio": false,
         "next": true
       },
       {
-        "scene": "6bcad4a",
+        "scene": "paintBoardWhite",
         "$": "000000000000",
-        "zm0": true
+        "hud": true
       },
       {
-        "scene": "86ee0739",
+        "$": "test"
+      },
+      {
+        "$": "et"
+      },
+      {
+        "hud-inv": {
+          "slot": 1,
+          "icon": "pokeball"
+        }
+      },
+      {
+        "mc-exec": {
+          "action": "executeCMD",
+          "data": "say TEST"
+        }
+      },
+      {
+        "hud-inv": {
+          "slot": 2,
+          "icon": "map"
+        }
+      },
+      {
+        "hud-inv": {
+          "slot": 3,
+          "icon": "pokeball"
+        }
+      },
+      {
+        "hud-inv": {
+          "slot": 4,
+          "icon": "map"
+        }
+      },
+      {
+        "hud-inv": {
+          "slot": 1,
+          "icon": false
+        }
+      },
+      {
+        "hud-inv": {
+          "slot": 2,
+          "icon": false
+        }
+      },
+      {
+        "hud-inv": {
+          "slot": 3,
+          "icon": false
+        }
+      },
+      {
+        "hud-inv": {
+          "slot": 4,
+          "icon": false
+        }
+      },
+      {
+        "hud-left": "17%"
+      },
+      {
+        "hud-left": "70%"
+      },
+      {
+        "hud-left": "40%"
+      },
+      {
+        "hud-right": "20%"
+      },
+      {
+        "hud-right": "40%"
+      },
+      {
+        "hud-right": "90%"
+      },
+      {
+        "hud": false,
         "$": "test 11111111111111111111111111111"
-      },
-      {
-        "scene": "1638847059127571069"
       },
       {
         "jump": "$init"
@@ -145,14 +220,6 @@
   "test": {
     "assets": [
       {
-        "name": "153613243915957922",
-        "url": "scenes/assets/153613243915957922.jpg"
-      },
-      {
-        "name": "1638847059127571069",
-        "url": "scenes/assets/1638847059127571069.webp"
-      },
-      {
         "name": "6bcad4a",
         "url": "scenes/assets/6bcad4a.jpg"
       },
@@ -161,36 +228,12 @@
         "url": "scenes/assets/86ee0739.jpg"
       },
       {
-        "name": "ab12-53",
-        "url": "scenes/assets/ab12-53.jpg"
-      },
-      {
-        "name": "Blue Angel 69",
-        "url": "scenes/assets/Blue Angel 69.png"
-      },
-      {
-        "name": "ground",
-        "url": "scenes/assets/ground.jpg"
-      },
-      {
-        "name": "index.jpg3",
-        "url": "scenes/assets/index.jpg3.jpg"
-      },
-      {
         "name": "map",
         "url": "scenes/assets/map.png"
       },
       {
-        "name": "Patterns",
-        "url": "scenes/assets/Patterns.jpg"
-      },
-      {
         "name": "pokeball",
         "url": "scenes/assets/pokeball.png"
-      },
-      {
-        "name": "superball",
-        "url": "scenes/assets/superball.png"
       }
     ]
   }

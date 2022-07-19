@@ -50,6 +50,9 @@ import checkMC            from './plugins/check-mc/index.js'
 import consoleVnjson      from './plugins/console/index.js'
 import blocks             from './plugins/blocks/index.js'
 import staticApp          from './plugins/static-app/index.js'
+import HUD                from './plugins/hud/index.js'
+import mcExec             from './plugins/mc-exec/index.js'
+
 
 export default function(){
 
@@ -104,6 +107,9 @@ export default function(){
   this.use(consoleVnjson)
   this.use(blocks)
   this.use(staticApp)
+  this.use(HUD)
+  this.use(mcExec)
+  
   this.on('next', ()=>{
       setTimeout(()=>this.next(), 10)
   })

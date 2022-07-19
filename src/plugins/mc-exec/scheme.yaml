@@ -1,0 +1,3 @@
+- mc-exec:
+    action: executeCMD
+    data: give @p diamond_sword 1
