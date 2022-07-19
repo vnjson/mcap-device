@@ -30,7 +30,7 @@ export default function (){
         "data": param.data,
         "action": param.action,
         "uuid": "",
-        "type": "server",
+        "type": param.type,
         "dts": getTime(),
         "ars": true,
         "player": ""

@@ -1,3 +1,4 @@
 - mc-exec:
     action: executeCMD
-    data: give @p diamond_sword 1
+    data: say TEST # give @p dirt 1
+    type: player # server

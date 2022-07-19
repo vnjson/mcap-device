@@ -106,7 +106,8 @@
       {
         "mc-exec": {
           "action": "executeCMD",
-          "data": "say TEST"
+          "data": "say TEST",
+          "type": "player"
         }
       },
       {
