@@ -4,7 +4,9 @@
   audio: false
   next: true
 
-
+# В планшете выключить контекстное меню при отключенном debug
+# oncontextmenu="return false;
+#
 
 - scene: paintBoardWhite
   $: '000000000000'  

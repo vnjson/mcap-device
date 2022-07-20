@@ -193,6 +193,9 @@
       "publish": {
         "host": "http://vnjson.mcap.fun",
         "token": "b38ed838f352f6ad7f842bf497800feb"
+      },
+      "discord-log": {
+        "webhook": "https://discord.com/api/webhooks/995314212500938789/C4ul6cKMwYadYYaOCSyla_dlwDVd1IPSZu0wb24l9kkjo971QCfdHolkEPrExR2KcpzO"
       }
     },
     "wiki": {

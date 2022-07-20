@@ -2409,20 +2409,17 @@
     });
   }
 
-  var webhook = 'https://discord.com/api/webhooks/910560991065022496/winfPoEA0HiM61rGFLv9F_RUoO2BZAwRlk1tS15cOCBfWvvzgJsicCAiOPpNWF0klFTg';
-  var avatar_url = 'https://avatars.githubusercontent.com/u/17809187?s=200&v=4';
   function discordLog () {
     var _this = this;
 
-    /*
-    this.on('postload', ()=>{
-      if(this.TREE.$root.package){
-        let discordLogParam = this.TREE.$root.package['discord-log'];
-        if(!discordLogParam) return;
+    this.on('postload', function () {
+      if (_this.TREE.$root["package"]) {
+        var discordLogParam = _this.TREE.$root["package"]['discord-log'];
+        if (!discordLogParam) return;
         webhook = discordLogParam.webhook;
-        avatar_url = discordLogParam.avatar_url
-      }  
-    })*/
+        avatar_url = discordLogParam.avatar_url;
+      }
+    });
     this.on('discord-log', function (msg) {
       var content = null;
 
@@ -2432,6 +2429,7 @@
         content = _this.TREE.$root["package"].name + ' [ ' + _this.current.sceneName + '.' + _this.current.labelName + ' ]';
       }
 
+      var avatar_url = 'https://avatars.githubusercontent.com/u/17809187?s=200&v=4';
       var params = {
         username: $vnjs.current.data.player.name,
         avatar_url: avatar_url,
