@@ -1,112 +1,20 @@
-
 import "./style.css";
 import tpl from "./tpl.html"
-
-import dialogBoxImage from './assets/dialog-box.png'
-const $tpl = $(tpl);
-
-
-/**
- * controls
- */
-const tplControls = `<div class="debug__dialog-box-controls">
-                        <div>
-                            <span class="debug__checkbox-wrapper"><input  id="debug__hands" type="checkbox"> Кнопки </span>
-                            <input  id="debug__character" type="text" value="$">
-
-                            <div class="debug__btn"> -> </div>
-                        </div>
-                        <textarea id="debug__reply" placeholder="text"></textarea>
-                     </div>`;
-const $tplControls = $(tplControls);
 
 
 export default function (){
   
-$tpl.css('background-image', `url(${dialogBoxImage})`);
+  const $tpl = $(tpl)
+  $('.game').append($tpl)
 
-$('.game').append($tplControls);
+  $('.debug__btn').on('click', () => {
+      const cid = $('#debug__character').val()
+      const reply = $('#debug__reply').val()
+      if(cid==='') cid = '$';
 
-/**/
+      this.exec({ [cid]: reply })
 
-$('.game').append($tpl);
-
-$('.debug__btn').on('click', function (){
-
-    let cid = $('#debug__character').val();
-    if(cid===''){
-      cid = '$';
-    }
-    let character = $vnjs.getCharacterById(cid);
-    let reply = $('#debug__reply');
-    print(character, reply.val() );
-
-});
-
-
-};
-
-
-
-function print(character, reply){
-      const replyWrapper = $tpl.find('.debug__dialog-box__reply-wrapper');
-      const checkedHands = $('#debug__hands').prop('checked');
-      if(character.avatar&&checkedHands){
-          replyWrapper.css('width', '75%');
-          $tpl.find('.debug__dialog-box__avatar').show().css({
-            backgroundImage: `url('${$vnjs.getAssetByName(character.avatar).url}')`
-          });
-          $tpl.find('.debug__dialog-box__name').html(character.name).css({ color: character.nameColor });
-          $tpl.find('.debug__dialog-box__reply').html(reply).css({ color: character.replyColor });
-      }
-      if(!character.avatar&&!checkedHands){
-          replyWrapper.css('width', 'auto');
-          $tpl.find('.debug__dialog-box__avatar').hide();
-          $tpl.find('.debug__dialog-box__name').html(character.name).css({ color: character.nameColor });
-          $tpl.find('.debug__dialog-box__reply').html(reply).css({ color: character.replyColor });
-      }
-
-      if(character.avatar&&!checkedHands){
-          replyWrapper.css('width', 'auto');
-          $tpl.find('.debug__dialog-box__avatar').show().css({
-            backgroundImage: `url('${$vnjs.getAssetByName(character.avatar).url}')`
-          });
-          $tpl.find('.debug__dialog-box__name').html(character.name).css({ color: character.nameColor });
-          $tpl.find('.debug__dialog-box__reply').html(reply).css({ color: character.replyColor });
-      }
-      if(!character.avatar&&checkedHands){
-          replyWrapper.css('width', '90%');
-          $tpl.find('.debug__dialog-box__avatar').hide();
-          $tpl.find('.debug__dialog-box__name').html(character.name).css({ color: character.nameColor });
-          $tpl.find('.debug__dialog-box__reply').html(reply).css({ color: character.replyColor });
-      }
-
-      if(reply){
-        setCharacterToReply.call($vnjs, reply, character.replyColor);
-      }
-};
-
-
-
-
-
-function setCharacterToReply(reply, replyColor){
-
-let characterAliaces = reply.match(/(@\w+)|(@\$.*?[\s])/gi);
-
-if(characterAliaces){
-  let newReply = reply;
-  characterAliaces.forEach(id=>{
-
-      let cid = id.replace('@', '').trim();
-      let character = $vnjs.getCharacterById(cid);
-      if(character){
-          newReply = newReply.replace(id, `<span class="debug__dialog-box__reply-character-name" style="color: ${character.nameColor}">${character.name}</span> `); /*пробел на конце нужен из за спец символов $! которые получаю вместе с пробелом*/
-      }
   })
-  $tpl.find('.debug__dialog-box__reply').html(newReply).css({ color: replyColor });
-}
-
 
 
 }

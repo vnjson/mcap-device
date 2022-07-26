@@ -1,12 +1,14 @@
 
 export default function (){
+let webhook;
+const avatar_url = 'https://avatars.githubusercontent.com/u/17809187?s=200&v=4'
 
 this.on('postload', ()=>{
   if(this.TREE.$root.package){
     let discordLogParam = this.TREE.$root.package['discord-log'];
     if(!discordLogParam) return;
     webhook = discordLogParam.webhook;
-    avatar_url = discordLogParam.avatar_url
+    //avatar_url = discordLogParam.avatar_url
   }
 })
 
@@ -19,7 +21,6 @@ this.on('discord-log', msg=>{
   else{
     content = this.TREE.$root.package.name+' [ '+this.current.sceneName+'.'+this.current.labelName+' ]'
   }
-  const avatar_url = 'https://avatars.githubusercontent.com/u/17809187?s=200&v=4'
 
       const params = {
         username: $vnjs.current.data.player.name,

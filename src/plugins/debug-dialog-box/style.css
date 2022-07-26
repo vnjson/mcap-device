@@ -4,34 +4,41 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 120px;
 
 }
+
+
 .debug__dialog-box-controls >div{
-  height: 70px;
-  width: 10%;
   display: flex;
   flex-direction: column;
+  border-radius: 4px;
+  height: 100%;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+
+.debug__controls-left{
+  width: 60%;
 
 }
-.debug__checkbox-wrapper{
-  color: rgba(0,0,0,0.5);
-  background-color: burlywood;
-  border-radius: 4px;
-  padding: 3px 5px;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
+.debug__controls-right{
+  width: 39%;
 }
+.debug__controls-btns{
+  display: flex;
+  justify-content: space-between;
+
+}
+
 
 #debug__character{
-  width: 100%;
-  height: 22px;
+  width: 50%;
   color: black;
   background-color: burlywood;
   border-radius: 4px;
   padding: 3px 5px;
   text-align: center;
-  margin-top: 5px;
 }
 
 .debug__btn{
@@ -40,89 +47,28 @@
   padding: 3px 5px;
   cursor: pointer;
   color: black;
-  width: 100%;
-  height: 22px;
+  width: 49%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 5px;
   font-size: 12px;
-
 }
 
 
 #debug__reply{
-  width: 89.5%;
+  width: 100%;
+  flex: 1 0 auto;
   color: black;
   background-color: burlywood;
   border-radius: 4px;
   padding: 3px 5px;
   resize: unset;
-  height: 80px;
   border: unset;
   outline: unset;
   caret-color: deepskyblue;
+  margin-top: 5px;
 }
 
 .debug__btn:hover{
   background-color: rgba(0,0,0,0.3);
 }
-/**
- * 
- */
-
-.debug__dialog-box {
-  z-index: 7000;
-  /*position: absolute;
-  bottom: -200px;*/
-  width: 1024px;
-  line-height: 32px;
-  height: 200px;
-
-  cursor: pointer;
-  display: block;
-  padding-top: 10px;
-  padding-left: 10px;
-  word-spacing: 10px;
-  display: block;
-  top: unset;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.debug__dialog-box__name {
-  color: wheat;
-  font-size: 22px;
-  width: 100%;
-  font-weight: bold;
-  padding-left: 10px;
-  padding-bottom: 10px;
-}
-.debug__dialog-box__reply-wrapper{
-  position: relative;
-  max-width: 99%;
-}
-.debug__dialog-box__reply {
-  color: wheat;
-  font-size: 22px;
-  padding-left: 10px;
-  width: 100%; 
-}
-
-.debug__dialog-box__container{
-  display: flex; 
-  height: 100%; 
-}
-.debug__dialog-box__avatar{
-  margin-top: 15px;
-  width: 150px;
-  height: 150px;
-  min-width: 150px;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-.debug__dialog-box__reply-wrapper{
-  position: relative;
-}
-

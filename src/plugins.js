@@ -39,9 +39,8 @@ import statusBar          from './plugins/status-bar/index.js'
 import mcPlayer           from './plugins/mc-player/index.js'
 import paintBoard         from './plugins/paint-board/index.js'
 import clipBoard          from './plugins/clipboard/index.js'
-import craftos            from './plugins/craftos/index.js'
 import video              from './plugins/video/index.js'
-import ide                from './plugins/ide/index.js'
+
 import typewrite          from './plugins/typewrite/index.js'
 import area               from './plugins/area/index.js'
 import selectWord         from './plugins/select-word/index.js'
@@ -96,9 +95,7 @@ export default function(){
   this.use(mcPlayer)
   this.use(paintBoard)
   this.use(clipBoard)
-  this.use(craftos)
   this.use(video)
-  this.use(ide)
   this.use(typewrite)
   this.use(area)
   this.use(selectWord)
