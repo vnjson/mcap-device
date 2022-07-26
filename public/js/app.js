@@ -373,23 +373,49 @@
     });
   }
 
-  var css$w = ".debug__dialog-box-controls{\n  background-color: wheat;\n  padding: 5px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  height: 120px;\n\n}\n\n\n.debug__dialog-box-controls >div{\n  display: flex;\n  flex-direction: column;\n  border-radius: 4px;\n  height: 100%;\n  border: 1px solid #ccc;\n  padding: 5px;\n}\n\n.debug__controls-left{\n  width: 60%;\n\n}\n.debug__controls-right{\n  width: 39%;\n}\n.debug__controls-btns{\n  display: flex;\n  justify-content: space-between;\n\n}\n\n\n#debug__character{\n  width: 50%;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  text-align: center;\n}\n\n.debug__btn{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  cursor: pointer;\n  color: black;\n  width: 49%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 12px;\n}\n\n\n#debug__reply{\n  width: 100%;\n  flex: 1 0 auto;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  resize: unset;\n  border: unset;\n  outline: unset;\n  caret-color: deepskyblue;\n  margin-top: 5px;\n}\n\n.debug__btn:hover{\n  background-color: rgba(0,0,0,0.3);\n}";
+  var css$w = ".debug__dialog-box-controls{\n  background-color: wheat;\n  padding: 5px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  height: 120px;\n  font-size: 14px;\n}\n\n\n.debug__dialog-box-controls >div{\n  display: flex;\n  flex-direction: column;\n  border-radius: 4px;\n  height: 100%;\n  border: 1px solid #ccc;\n  padding: 5px;\n}\n\n.debug__controls-left{\n  width: 49.75%;\n\n}\n.debug__controls-right{\n  width: 49.75%;\n}\n.debug__controls-btns{\n  display: flex;\n  justify-content: space-between;\n  height: 30px;\n\n}\n\n\n.debug__dialog-box-controls .debug__input-text{\n  flex: 1 0 auto;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  text-align: center;\n  font-size: 16px;\n}\n.debug__mc-exec{\n\n}\n\n.debug__btn{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  cursor: pointer;\n  color: black;\n  flex: 1 0 auto;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin-left: 5px;\n}\n\n.debug__btn:hover{\n  background-color: rgba(0,0,0,0.3);\n}\n\n.debug__textarea{\n  width: 100%;\n  flex: 1 0 auto;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  resize: unset;\n  border: unset;\n  outline: unset;\n  caret-color: deepskyblue;\n  margin-top: 5px;\n\n}\n\n.debug__checkbox-wrapper{\n  display: flex;\n  align-items: center;\n  width: 150px;\n  background-color: burlywood;\n  border-radius: 4px;\n  margin-left: 5px;\n  padding: 5px;\n  justify-content: center;\n}\n.debug__mcexec-type{\n  margin-top: 5px;\n  margin-right: 5px;\n}";
   n(css$w,{});
 
-  var tpl$g = "<div class=\"debug__dialog-box-controls\">\r\n  <!--left-->\r\n  <div class=\"debug__controls-left\">\r\n      <div class=\"debug__controls-btns\">\r\n          <!--<span class=\"debug__checkbox-wrapper\"><input  id=\"debug__hands\" type=\"checkbox\"> Кнопки </span>-->\r\n          <input id=\"debug__character\" type=\"text\" value=\"$\">\r\n          <div class=\"debug__btn\"> Показать </div>\r\n      </div>\r\n      <textarea id=\"debug__reply\" placeholder=\"text\"></textarea>\r\n  </div>\r\n  <!--right-->\r\n  <div class=\"debug__controls-right\"></div>\r\n</div>\r\n\r\n\r\n\r\n";
+  var tpl$g = "<div class=\"debug__dialog-box-controls\">\r\n  <!--left-->\r\n  <div class=\"debug__controls-left\">\r\n      <div class=\"debug__controls-btns\">\r\n          <input class=\"debug__input-text debug__character\" type=\"text\" value=\"$\">\r\n          <div class=\"debug__btn debug__inner-reply\"> Показать </div>\r\n      </div>\r\n      <textarea class=\"debug__textarea debug__reply\" placeholder=\"text\"></textarea>\r\n  </div>\r\n  <!--right-->\r\n  <div class=\"debug__controls-right\">\r\n      <div class=\"debug__controls-btns\">\r\n          <input class=\"debug__input-text debug__mc-exec\" type=\"text\" value=\"executeCMD\">\r\n          <span class=\"debug__checkbox-wrapper\"><input class=\"debug__mcexec-type\" type=\"checkbox\" checked=\"checked\">server</span>\r\n          <div class=\"debug__btn debug__mcexec\"> Выполнить </div>\r\n      </div>\r\n      <textarea class=\"debug__textarea debug__mcexec-data\" placeholder=\"data\"></textarea>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n";
 
   function debugDialogBox () {
     var _this = this;
 
     var $tpl = $(tpl$g);
     $('.game').append($tpl);
-    $('.debug__btn').on('click', function () {
-      var cid = $('#debug__character').val();
-      var reply = $('#debug__reply').val();
+    $('.debug__inner-reply').on('click', function () {
+      var cid = $('.debug__character').val();
+      var reply = $('.debug__reply').val();
       if (cid === '') _readOnlyError("cid");
 
       _this.exec(_defineProperty({}, cid, reply));
     });
+    $('.debug__mcexec').on('click', function () {
+      var action = $('.debug__mc-exec').val();
+      var data = $('.debug__mcexec-data').val();
+      var checkBoxType = $('.debug__mcexec-type:checked').val();
+      var type = 'player';
+
+      if (checkBoxType === 'on') {
+        type = 'server';
+      }
+
+      var plugins = {
+        'mc-exec': {
+          action: action,
+          data: data,
+          type: type
+        }
+      };
+
+      _this.exec(plugins);
+    });
+    /**
+    - mc-exec:
+        action: executeCMD
+        data: say TEST TEST TEST # give @p dirt 1
+        type: player
+     */
   }
 
   var css$v = "#loader {\n  background: black;\n  z-index: 9999;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  color: white;\n  display: none;\n  align-items: center;\n  justify-content: center;\n}\n\n.loader {\n  color: wheat;\n  font-family: Consolas, Menlo, Monaco, monospace;\n  font-weight: bold;\n  font-size: 100px;\n  opacity: 0.8;\n}\n.loader span {\n  display: inline-block;\n  animation: pulse 0.4s alternate infinite ease-in-out;\n}\n.loader span:nth-child(2) {\n  animation-delay: 0.4s;\n}\n\n@keyframes pulse {\n  to {\n    transform: scale(0.8);\n    opacity: 0.5; \n  } \n}\n";

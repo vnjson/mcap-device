@@ -1,6 +1,4 @@
-#################################
 debug: true
-#################################
 preload: true
 
 publish:
@@ -10,8 +8,7 @@ publish:
 discord-log:
   webhook: https://discord.com/api/webhooks/995314212500938789/C4ul6cKMwYadYYaOCSyla_dlwDVd1IPSZu0wb24l9kkjo971QCfdHolkEPrExR2KcpzO
 # console-port: 8082
-# iframe modules
+
 # chess: false
 # paint-board: false
 # crossword: false
-# ide: false
