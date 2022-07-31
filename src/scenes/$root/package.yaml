@@ -1,6 +1,11 @@
 debug: true
 preload: true
 
+dialog-box:
+  delay: 25
+  #alpha: 0.3
+  endPoint: true
+
 publish:
   host: http://vnjson.mcap.fun
   token: b38ed838f352f6ad7f842bf497800feb

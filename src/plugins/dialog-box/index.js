@@ -1,15 +1,15 @@
-import "./style.css";
-import tpl from "./tpl.html";
-import dialogBoxImage from './assets/dialog-box.png';
-import DialogBox from './DialogBox.js';
+import "./style.css"
+import tpl from "./tpl.html"
+import dialogBoxImage from './assets/dialog-box.png'
+import DialogBox from './DialogBox.js'
 
 
 export default function (){
   const $tpl = $(tpl);
-  $tpl.css('background-image', `url(${dialogBoxImage})`);
+  $tpl.css('background-image', `url(${dialogBoxImage})`)
   this.$store.$screen.append($tpl);
   // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
-  $tpl.on('mousedown', e=>this.next());
+  $tpl.on('mousedown', e => this.next())
 
   const dBox = new DialogBox({
                       $vnjs,
@@ -25,7 +25,7 @@ export default function (){
                       classNameCharacterNameInReply: 'dialog-box__reply-character-name',
                       classNameEndPoint: 'dialog-box__reply-end-point'
                });
-
+  this.$store['dialog-box'] = dBox      
   this.on('postload', ()=>{
     let conf = this.TREE.$root.package?.['dialog-box'];
     if(conf){

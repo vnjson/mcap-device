@@ -39,7 +39,7 @@ export default function (){
 
       query(str)
         .then(res => console.log( JSON.stringify(res) ))
-        .catch(err => console.log( JSON.stringify(err) ))
+        .catch(err => console.error( JSON.stringify(err) ))
   })
 }
 

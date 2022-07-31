@@ -20,7 +20,6 @@
 
 .debug__controls-left{
   width: 49.75%;
-
 }
 .debug__controls-right{
   width: 49.75%;
@@ -39,11 +38,29 @@
   background-color: burlywood;
   border-radius: 4px;
   padding: 3px 5px;
-  text-align: center;
+  text-align: left;
   font-size: 16px;
 }
-.debug__mc-exec{
+/*delay*/
+.debug__delay-wrapper{
+  display: flex;
+  align-items: center;
+  background-color: burlywood;
+  border-radius: 4px;
+  margin-left: 5px;
+  padding-left: 5px;
+}
+.debug__delay-img{
+  width: 20px;
+  height: 20px;
+  background-image: url(./assets/timer.svg);
+  background-position: center;
 
+}
+.debug__dialog-box-controls .debug__delay{
+  width: 40px;
+  text-align: center;
+  flex: 0 0 auto;
 }
 
 .debug__btn{
@@ -91,4 +108,23 @@
 .debug__mcexec-type{
   margin-top: 5px;
   margin-right: 5px;
+}
+/*
+ * color picker  
+ */
+.vnjson__debug-color-picker{
+  border-radius: 4px;
+  overflow: hidden;
+  margin-left: 5px;
+
+}
+#debug__color-picker{
+  background-color: burlywood;
+  padding: 5px;
+  width: 70px;
+
+  outline: none;
+  border: 0;
+  height: 100%;
+
 }

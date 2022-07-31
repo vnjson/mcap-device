@@ -22,3 +22,19 @@ dialog-box:
   delay: 10
   alpha: 0.1
   endPoint: true
+
+
+# API
+#
+# EVENTS
+#
+#    this.on('dialog-box:startOutputReply', () => {
+
+#    })
+
+#    this.on('dialog-box:character', letter => {
+#        console.log(ch)
+#    })
+#
+#    this.on('dialog-box:disabled', flag)
+#    this.on('dialog-box:endOutputReply')

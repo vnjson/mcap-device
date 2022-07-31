@@ -82,21 +82,16 @@
       {
         "dialog-box": true,
         "status-bar": false,
-        "hands": true,
+        "hands": false,
         "audio": false,
         "next": true
       },
       {
         "scene": "paintBoardWhite",
-        "$": "000000000000"
+        "$": "Планшете выключить контекстное меню при отключенном debug"
       },
       {
-        "mc-exec": {
-          "action": "executeCMD",
-          "data": "say TEST TEST TEST",
-          "type": "player"
-        },
-        "$": "test 11111111111111111111111111111"
+        "al": "Test 1111111 1111111 11111111 1111111        333"
       },
       {
         "jump": "$init"
@@ -113,13 +108,17 @@
       {
         "id": "al",
         "name": "Алиса",
-        "nameColor": "magenta",
-        "replyColor": "crimson"
+        "nameColor": "#f1c232",
+        "replyColor": "#ee068e"
       }
     ],
     "package": {
       "debug": true,
       "preload": true,
+      "dialog-box": {
+        "delay": 25,
+        "endPoint": true
+      },
       "publish": {
         "host": "http://vnjson.mcap.fun",
         "token": "b38ed838f352f6ad7f842bf497800feb"

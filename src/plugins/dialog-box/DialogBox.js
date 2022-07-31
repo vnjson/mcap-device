@@ -1,5 +1,6 @@
 
 class DialogBox {
+  #reply = ''
   constructor (param){
       this.$vnjs = param.$vnjs;
       /*Tags*/
@@ -26,12 +27,15 @@ class DialogBox {
       this.letter;
 
   }
-
+  update (){
+    this.print(this.character, this.#reply)
+  }
   print (character, reply=''){
     this.reset();
     this.character = character;
+    this.#reply = reply
     //проверяем сущесвуют ли внутри реплики ссылки на персонажей
-    this.reply = this.replaceCharacterLink (reply);
+    this.reply = this.replaceCharacterLink(this.#reply);
     // Если скорость вывода символов равна нулю, то строка не разбивается на символы
     if(this.delay>0){
       this.replyOutputBySingleLetter();
@@ -39,7 +43,7 @@ class DialogBox {
     else{
       this.outputToHTML();
     }
-    
+    this.$vnjs.emit('dialog-box:print')
   }
   /**
    * Посимвольный вывод текста
@@ -157,18 +161,21 @@ class DialogBox {
    * И меняем им прозрачность на 1. Эмулируя посимвольный вывод текста.
    */
   startOutputReply (){
+    this.$vnjs.emit('dialog-box:startOutputReply')
     // получаем все теги в которые обёрныты отдельные символы
     let letters = this.replyTag.querySelectorAll('.'+this.classNameLetter );
     let len = letters.length;
     // отображаем каждый символ по отдельности
     this.interval = setInterval( ()=>{
         if(letters.length>0){
+          this.$vnjs.emit('dialog-box:character', letters[this.index].innerText)
           letters[this.index++].style.opacity = 1;
         }
         if(this.index>=len){
             this.onEndOutputReply();
         }
     }, this.delay);
+
   }
 
   onEndOutputReply(){
@@ -176,6 +183,7 @@ class DialogBox {
         this.replyTag.innerHTML+= `<span class="${this.classNameEndPoint}"></span>`
     }
     this.reset();
+    this.$vnjs.emit('dialog-box:endOutputReply')
   }
   clear (){
       this.characterNameTag.innerHTML = '';
@@ -188,7 +196,9 @@ class DialogBox {
     }
     else{
       this.dialogBoxTag.style['pointer-events'] = 'all';
+
     }
+    this.$vnjs.emit('dialog-box:disabled', !flag)
   }
   reset (){
       this.index = 0;

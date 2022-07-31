@@ -2,7 +2,14 @@
   <!--left-->
   <div class="debug__controls-left">
       <div class="debug__controls-btns">
-          <input class="debug__input-text debug__character" type="text" value="$">
+          <input class="debug__input-text debug__character" type="text" value="$" title="character">
+          <div class="debug__delay-wrapper">
+                <div class="debug__delay-img" title="dialog-box delay"></div>
+                <input class="debug__input-text debug__delay" type="text">
+          </div>
+          <div class="vnjson__debug-color-picker">
+                <input id="debug__color-picker"  />
+          </div>
           <div class="debug__btn debug__inner-reply"> Показать </div>
       </div>
       <textarea class="debug__textarea debug__reply" placeholder="text"></textarea>
@@ -17,6 +24,3 @@
       <textarea class="debug__textarea debug__mcexec-data" placeholder="data"></textarea>
   </div>
 </div>
-
-
-

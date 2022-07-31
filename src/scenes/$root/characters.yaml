@@ -7,5 +7,5 @@
 
 - id: al
   name: Алиса
-  nameColor: magenta
-  replyColor: crimson
+  nameColor: '#f1c232'
+  replyColor: '#ee068e'

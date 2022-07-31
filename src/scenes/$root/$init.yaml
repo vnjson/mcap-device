@@ -1,6 +1,6 @@
 - dialog-box: true
   status-bar: false
-  hands: true
+  hands: false
   audio: false
   next: true
 
@@ -9,14 +9,10 @@
 #
 
 - scene: paintBoardWhite
-  $: '000000000000'  
+  $: Планшете выключить контекстное меню при отключенном debug  
 
-- mc-exec:
-    action: executeCMD
-    data: say TEST TEST TEST # give @p dirt 1
-    type: player
 
-  $: test 11111111111111111111111111111
+- al: Test 1111111 1111111 11111111 1111111        333
 
 
 

@@ -133,6 +133,60 @@
     throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
   }
 
+  function _classPrivateFieldGet(receiver, privateMap) {
+    var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "get");
+
+    return _classApplyDescriptorGet(receiver, descriptor);
+  }
+
+  function _classPrivateFieldSet(receiver, privateMap, value) {
+    var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "set");
+
+    _classApplyDescriptorSet(receiver, descriptor, value);
+
+    return value;
+  }
+
+  function _classExtractFieldDescriptor(receiver, privateMap, action) {
+    if (!privateMap.has(receiver)) {
+      throw new TypeError("attempted to " + action + " private field on non-instance");
+    }
+
+    return privateMap.get(receiver);
+  }
+
+  function _classApplyDescriptorGet(receiver, descriptor) {
+    if (descriptor.get) {
+      return descriptor.get.call(receiver);
+    }
+
+    return descriptor.value;
+  }
+
+  function _classApplyDescriptorSet(receiver, descriptor, value) {
+    if (descriptor.set) {
+      descriptor.set.call(receiver, value);
+    } else {
+      if (!descriptor.writable) {
+        throw new TypeError("attempted to set read only private field");
+      }
+
+      descriptor.value = value;
+    }
+  }
+
+  function _checkPrivateRedeclaration(obj, privateCollection) {
+    if (privateCollection.has(obj)) {
+      throw new TypeError("Cannot initialize the same private elements twice on an object");
+    }
+  }
+
+  function _classPrivateFieldInitSpec(obj, privateMap, value) {
+    _checkPrivateRedeclaration(obj, privateMap);
+
+    privateMap.set(obj, value);
+  }
+
   var e = [],
       t = [];
 
@@ -161,8 +215,8 @@
     }
   }
 
-  var css$x = "\n.debug-error{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  font-size: 20px;\n  z-index: 99999;  \n  background-color: #334;\n  justify-content: center;\n  align-items: center;\n  display: none;\n  font-family: Consolas;\n}\n\n.debug-error__modal{\n  background-color: #181818;\n  border-radius: 8px;\n  padding: 20px;\n  width: 80%;\n  height: 60%;\n  box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.5);\n}\n.debug-error__modal::before{\n  content: '';\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 10px;\n  background-color: brown;\n  border-radius: 8px 8px 0 0;\n}\n.debug-error__msg{\n  color: brown;\n  line-height: 28px;\n}\n.debug-error__msg:first-letter{\n  text-transform: capitalize;\n}\n\n.debug-error__path{\n  color: #cfa4ff;\n}\n.debug-error__pos{\n  color: skyblue;\n}\n.debug-error__code{\n  color: #e2aa53;\n}\n";
-  n(css$x,{});
+  var css$y = "\n.debug-error{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  font-size: 20px;\n  z-index: 99999;  \n  background-color: #334;\n  justify-content: center;\n  align-items: center;\n  display: none;\n  font-family: Consolas;\n}\n\n.debug-error__modal{\n  background-color: #181818;\n  border-radius: 8px;\n  padding: 20px;\n  width: 80%;\n  height: 60%;\n  box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.5);\n}\n.debug-error__modal::before{\n  content: '';\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 10px;\n  background-color: brown;\n  border-radius: 8px 8px 0 0;\n}\n.debug-error__msg{\n  color: brown;\n  line-height: 28px;\n}\n.debug-error__msg:first-letter{\n  text-transform: capitalize;\n}\n\n.debug-error__path{\n  color: #cfa4ff;\n}\n.debug-error__pos{\n  color: skyblue;\n}\n.debug-error__code{\n  color: #e2aa53;\n}\n";
+  n(css$y,{});
 
   var errors = {
     en: {
@@ -373,13 +427,1514 @@
     });
   }
 
-  var css$w = ".debug__dialog-box-controls{\n  background-color: wheat;\n  padding: 5px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  height: 120px;\n  font-size: 14px;\n}\n\n\n.debug__dialog-box-controls >div{\n  display: flex;\n  flex-direction: column;\n  border-radius: 4px;\n  height: 100%;\n  border: 1px solid #ccc;\n  padding: 5px;\n}\n\n.debug__controls-left{\n  width: 49.75%;\n\n}\n.debug__controls-right{\n  width: 49.75%;\n}\n.debug__controls-btns{\n  display: flex;\n  justify-content: space-between;\n  height: 30px;\n\n}\n\n\n.debug__dialog-box-controls .debug__input-text{\n  flex: 1 0 auto;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  text-align: center;\n  font-size: 16px;\n}\n.debug__mc-exec{\n\n}\n\n.debug__btn{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  cursor: pointer;\n  color: black;\n  flex: 1 0 auto;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin-left: 5px;\n}\n\n.debug__btn:hover{\n  background-color: rgba(0,0,0,0.3);\n}\n\n.debug__textarea{\n  width: 100%;\n  flex: 1 0 auto;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  resize: unset;\n  border: unset;\n  outline: unset;\n  caret-color: deepskyblue;\n  margin-top: 5px;\n\n}\n\n.debug__checkbox-wrapper{\n  display: flex;\n  align-items: center;\n  width: 150px;\n  background-color: burlywood;\n  border-radius: 4px;\n  margin-left: 5px;\n  padding: 5px;\n  justify-content: center;\n}\n.debug__mcexec-type{\n  margin-top: 5px;\n  margin-right: 5px;\n}";
+  var css$x = ".debug__dialog-box-controls{\n  background-color: wheat;\n  padding: 5px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  height: 120px;\n  font-size: 14px;\n}\n\n\n.debug__dialog-box-controls >div{\n  display: flex;\n  flex-direction: column;\n  border-radius: 4px;\n  height: 100%;\n  border: 1px solid #ccc;\n  padding: 5px;\n}\n\n.debug__controls-left{\n  width: 49.75%;\n}\n.debug__controls-right{\n  width: 49.75%;\n}\n.debug__controls-btns{\n  display: flex;\n  justify-content: space-between;\n  height: 30px;\n\n}\n\n\n.debug__dialog-box-controls .debug__input-text{\n  flex: 1 0 auto;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  text-align: left;\n  font-size: 16px;\n}\n/*delay*/\n.debug__delay-wrapper{\n  display: flex;\n  align-items: center;\n  background-color: burlywood;\n  border-radius: 4px;\n  margin-left: 5px;\n  padding-left: 5px;\n}\n.debug__delay-img{\n  width: 20px;\n  height: 20px;\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNMTIsMjBBOCw4IDAgMCwwIDIwLDEyQTgsOCAwIDAsMCAxMiw0QTgsOCAwIDAsMCA0LDEyQTgsOCAwIDAsMCAxMiwyME0xMiwyQTEwLDEwIDAgMCwxIDIyLDEyQTEwLDEwIDAgMCwxIDEyLDIyQzYuNDcsMjIgMiwxNy41IDIsMTJBMTAsMTAgMCAwLDEgMTIsMk0xMi41LDdWMTIuMjVMMTcsMTQuOTJMMTYuMjUsMTYuMTVMMTEsMTNWN0gxMi41WiIgLz4NCjwvc3ZnPg==);\n  background-position: center;\n\n}\n.debug__dialog-box-controls .debug__delay{\n  width: 40px;\n  text-align: center;\n  flex: 0 0 auto;\n}\n\n.debug__btn{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  cursor: pointer;\n  color: black;\n  flex: 1 0 auto;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin-left: 5px;\n}\n\n.debug__btn:hover{\n  background-color: rgba(0,0,0,0.3);\n}\n\n.debug__textarea{\n  width: 100%;\n  flex: 1 0 auto;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  resize: unset;\n  border: unset;\n  outline: unset;\n  caret-color: deepskyblue;\n  margin-top: 5px;\n\n}\n\n.debug__checkbox-wrapper{\n  display: flex;\n  align-items: center;\n  width: 150px;\n  background-color: burlywood;\n  border-radius: 4px;\n  margin-left: 5px;\n  padding: 5px;\n  justify-content: center;\n}\n.debug__mcexec-type{\n  margin-top: 5px;\n  margin-right: 5px;\n}\n/*\n * color picker  \n */\n.vnjson__debug-color-picker{\n  border-radius: 4px;\n  overflow: hidden;\n  margin-left: 5px;\n\n}\n#debug__color-picker{\n  background-color: burlywood;\n  padding: 5px;\n  width: 70px;\n\n  outline: none;\n  border: 0;\n  height: 100%;\n\n}\n";
+  n(css$x,{});
+
+  var tpl$g = "<div class=\"debug__dialog-box-controls\">\r\n  <!--left-->\r\n  <div class=\"debug__controls-left\">\r\n      <div class=\"debug__controls-btns\">\r\n          <input class=\"debug__input-text debug__character\" type=\"text\" value=\"$\" title=\"character\">\r\n          <div class=\"debug__delay-wrapper\">\r\n                <div class=\"debug__delay-img\" title=\"dialog-box delay\"></div>\r\n                <input class=\"debug__input-text debug__delay\" type=\"text\">\r\n          </div>\r\n          <div class=\"vnjson__debug-color-picker\">\r\n                <input id=\"debug__color-picker\">\r\n          </div>\r\n          <div class=\"debug__btn debug__inner-reply\"> Показать </div>\r\n      </div>\r\n      <textarea class=\"debug__textarea debug__reply\" placeholder=\"text\"></textarea>\r\n  </div>\r\n  <!--right-->\r\n  <div class=\"debug__controls-right\">\r\n      <div class=\"debug__controls-btns\">\r\n          <input class=\"debug__input-text debug__mc-exec\" type=\"text\" value=\"executeCMD\">\r\n          <span class=\"debug__checkbox-wrapper\"><input class=\"debug__mcexec-type\" type=\"checkbox\" checked=\"checked\">server</span>\r\n          <div class=\"debug__btn debug__mcexec\"> Выполнить </div>\r\n      </div>\r\n      <textarea class=\"debug__textarea debug__mcexec-data\" placeholder=\"data\"></textarea>\r\n  </div>\r\n</div>\r\n";
+
+  var css$w = ".sp-container{position:absolute;top:0;left:0;display:inline-block;z-index:9999994;overflow:hidden}.sp-original-input-container{position:relative;display:inline-flex}.sp-original-input-container input{margin:0!important}.sp-original-input-container .sp-add-on{width:40px;border-top-right-radius:0!important;border-bottom-right-radius:0!important}input.spectrum.with-add-on{border-top-left-radius:0;border-bottom-left-radius:0;border-left:0}.sp-original-input-container .sp-add-on .sp-colorize{height:100%;width:100%;border-radius:inherit}.sp-colorize-container{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='%23ccc' fill-opacity='1'%3E%3Crect x='0' y='0' width='6' height='6' /%3E%3Crect x='6' y='6' width='6' height='6' /%3E%3C/svg%3E\")}.sp-container.sp-flat{position:relative}.sp-container,.sp-container *{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}.sp-top{position:relative;width:100%;display:inline-block}.sp-top-inner{position:absolute;top:0;left:0;bottom:0;right:0}.sp-color{position:absolute;top:0;left:0;bottom:0;right:20px!important}.sp-hue{position:absolute;top:0;right:0;bottom:0;width:12px;height:100%;left:initial!important}.sp-clear-enabled .sp-hue{top:15%;height:85%}.sp-fill{padding-top:80%}.sp-sat,.sp-val{position:absolute;top:0;left:0;right:0;bottom:0}.sp-alpha-enabled .sp-top{margin-bottom:28px!important}.sp-alpha-enabled .sp-alpha{display:block}.sp-alpha-handle{position:absolute;top:-3px;cursor:pointer;height:16px;border-radius:50%;width:16px;margin-right:5px;left:-2px;right:0;background:#f9f9f9;box-shadow:0 0 2px 0 #3a3a3a}.sp-alpha{display:none;position:absolute;bottom:-18px;right:0;left:0;height:10px}.sp-alpha-inner{border-radius:4px}.sp-clear{display:none}.sp-clear.sp-clear-display{background-position:center}.sp-clear-enabled .sp-clear{display:block;position:absolute;top:3px;right:0;bottom:0;cursor:pointer;left:initial;height:14px;width:14px}.sp-alpha,.sp-alpha-handle,.sp-clear,.sp-container,.sp-container button,.sp-container.sp-dragging .sp-input,.sp-dragger,.sp-preview,.sp-replacer,.sp-slider{-webkit-user-select:none;-moz-user-select:-moz-none;-o-user-select:none;user-select:none}.sp-container.sp-input-disabled .sp-input-container{display:none}.sp-container.sp-buttons-disabled .sp-button-container{display:none}.sp-container.sp-palette-buttons-disabled .sp-palette-button-container{display:none}.sp-palette-only .sp-picker-container{display:none}.sp-palette-disabled .sp-palette-container{display:none}.sp-initial-disabled .sp-initial{display:none}.sp-sat{background-image:-webkit-gradient(linear,0 0,100% 0,from(#fff),to(rgba(204,154,129,0)));background-image:-webkit-linear-gradient(left,#fff,rgba(204,154,129,0));background-image:-moz-linear-gradient(left,#fff,rgba(204,154,129,0));background-image:-o-linear-gradient(left,#fff,rgba(204,154,129,0));background-image:-ms-linear-gradient(left,#fff,rgba(204,154,129,0));background-image:linear-gradient(to right,#fff,rgba(204,154,129,0))}.sp-val{border-radius:4px;background-image:-webkit-gradient(linear,0 100%,0 0,from(#000),to(rgba(204,154,129,0)));background-image:-webkit-linear-gradient(bottom,#000,rgba(204,154,129,0));background-image:-moz-linear-gradient(bottom,#000,rgba(204,154,129,0));background-image:-o-linear-gradient(bottom,#000,rgba(204,154,129,0));background-image:-ms-linear-gradient(bottom,#000,rgba(204,154,129,0));background-image:linear-gradient(to top,#000,rgba(204,154,129,0))}.sp-hue{background:-moz-linear-gradient(top,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%);background:-ms-linear-gradient(top,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%);background:-o-linear-gradient(top,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%);background:-webkit-gradient(linear,left top,left bottom,from(red),color-stop(.17,#ff0),color-stop(.33,#0f0),color-stop(.5,#0ff),color-stop(.67,#00f),color-stop(.83,#f0f),to(red));background:-webkit-linear-gradient(top,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%);background:linear-gradient(to bottom,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%)}.sp-1{height:17%}.sp-2{height:16%}.sp-3{height:17%}.sp-4{height:17%}.sp-5{height:16%}.sp-6{height:17%}.sp-hidden{display:none!important}.sp-cf:after,.sp-cf:before{content:\"\";display:table}.sp-cf:after{clear:both}@media (max-device-width:480px){.sp-color{right:40%}.sp-hue{left:63%}.sp-fill{padding-top:60%}}.sp-dragger{border-radius:5px;height:10px;width:10px;border:1px solid #fff;cursor:pointer;position:absolute;top:0;left:0;margin-left:3px;margin-top:3px;box-shadow:0 0 2px 1px rgba(0,0,0,.2)}.sp-slider{position:absolute;top:0;cursor:pointer;height:16px;border-radius:50%;width:16px;left:-2px;background:#f9f9f9;box-shadow:0 0 2px 0 #3a3a3a;margin-top:8px}.sp-container{display:inline-flex;border-radius:0;background-color:#fff;padding:0;border-radius:4px;color:#000;box-shadow:0 0 0 1px rgba(99,114,130,.16),0 8px 16px rgba(27,39,51,.08)}.sp-clear,.sp-color,.sp-container,.sp-container button,.sp-container input,.sp-hue{font-size:12px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box}.sp-top{margin-bottom:10px}.sp-clear,.sp-color,.sp-hue,.sp-sat,.sp-val{border-radius:3px}.sp-input-container{margin-top:-5px}.sp-button-container.sp-cf,.sp-initial.sp-thumb.sp-cf,.sp-input-container.sp-cf{height:25px}.sp-picker-container .sp-cf{margin-bottom:10px}.sp-palette-row-initial>span:first-child{cursor:pointer}.sp-initial-disabled .sp-input-container{width:100%}.sp-input{padding:0 5px!important;margin:0;width:100%;box-shadow:none!important;height:100%!important;background:0 0;color:#3a3a3a;border-radius:2px!important;border:1px solid #e0e0e0!important;text-align:center;font-family:monospace;font-size:inherit!important}.sp-input:focus{border:1px solid orange}.sp-input.sp-validation-error{border:1px solid red;background:#fdd}.sp-palette-container,.sp-picker-container{position:relative;padding:10px}.sp-picker-container{width:200px;padding-bottom:0}.sp-palette-container{border-right:solid 1px #ccc}.sp-palette-only .sp-palette-container{border:0}.sp-palette .sp-thumb-el{display:block;position:relative;float:left;width:24px;height:15px;margin:3px;cursor:pointer;border:solid 2px transparent}.sp-palette .sp-thumb-el.sp-thumb-active,.sp-palette .sp-thumb-el:hover{border-color:orange}.sp-thumb-el{position:relative}.sp-initial{float:left}.sp-initial span{width:30px;height:25px;border:none;display:block;float:left;margin:0}.sp-initial .spe-thumb-el.sp-thumb-active{border-radius:0 5px 5px 0}.sp-initial .spe-thumb-el{border-radius:5px 0 0 5px}.sp-initial .sp-clear-display{background-position:center}.sp-button-container{float:right}.sp-palette-button-container{margin-top:10px}.sp-replacer{position:relative;overflow:hidden;cursor:pointer;display:inline-block;border-radius:3px;border:1px solid #aaa;color:#666;transition:border-color .3s;vertical-align:middle;width:3rem;height:1.5rem}.sp-replacer.sp-active,.sp-replacer:hover{border:1px solid #666;color:#000}.sp-replacer.sp-disabled{cursor:default;border-color:silver;color:silver}.sp-dd{position:absolute;font-size:10px;right:0;top:0;bottom:0;padding:0 2px;line-height:1.6rem;background-color:#fff}.sp-preview{position:relative;width:100%;height:100%;float:left;z-index:0}.sp-preview-inner{transition:background-color .2s}.sp-preview-inner.sp-clear-display{display:none}.sp-palette .sp-thumb-el{width:16px;height:16px;margin:3px;border:none;border-radius:3px}.sp-container button{border-radius:3px;border:none;background:0 0;line-height:1;padding:0 8px;height:25px;text-transform:capitalize;text-align:center;vertical-align:middle;cursor:pointer;color:#606c72;font-weight:700}.sp-container button.sp-choose{background-color:#3cab3b;color:#fff;margin-left:5px}.sp-container button:hover{opacity:.8}.sp-container button.sp-palette-toggle{width:100%;background-color:#f3f3f3;margin:0}.sp-palette span.sp-thumb-active,.sp-palette span:hover{border-color:#000}.sp-alpha,.sp-preview,.sp-thumb-el{position:relative;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='%23ccc' fill-opacity='1'%3E%3Crect x='0' y='0' width='6' height='6' /%3E%3Crect x='6' y='6' width='6' height='6' /%3E%3C/svg%3E\")}.sp-alpha-inner,.sp-preview-inner,.sp-thumb-inner{display:block;position:absolute;top:0;left:0;bottom:0;right:0}.sp-palette .sp-thumb-inner{border-radius:3px;background-position:50% 50%;background-repeat:no-repeat}.sp-palette .sp-thumb-light.sp-thumb-active .sp-thumb-inner{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIVJREFUeNpiYBhsgJFMffxAXABlN5JruT4Q3wfi/0DsT64h8UD8HmpIPCWG/KemIfOJCUB+Aoacx6EGBZyHBqI+WsDCwuQ9mhxeg2A210Ntfo8klk9sOMijaURm7yc1UP2RNCMbKE9ODK1HM6iegYLkfx8pligC9lCD7KmRof0ZhjQACDAAceovrtpVBRkAAAAASUVORK5CYII=);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='18' height='18'%3E%3Cpath d='M9 16.172l10.594-10.594 1.406 1.406-12 12-5.578-5.578 1.406-1.406z' fill='%23000'%3E%3C/path%3E%3C/svg%3E\")}.sp-palette .sp-thumb-dark.sp-thumb-active .sp-thumb-inner{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAAMdJREFUOE+tkgsNwzAMRMugEAahEAahEAZhEAqlEAZhEAohEAYh81X2dIm8fKpEspLGvudPOsUYpxE2BIJCroJmEW9qJ+MKaBFhEMNabSy9oIcIPwrB+afvAUFoK4H0tMaQ3XtlrggDhOVVMuT4E5MMG0FBbCEYzjYT7OxLEvIHQLY2zWwQ3D+9luyOQTfKDiFD3iUIfPk8VqrKjgAiSfGFPecrg6HN6m/iBcwiDAo7WiBeawa+Kwh7tZoSCGLMqwlSAzVDhoK+6vH4G0P5wdkAAAAASUVORK5CYII=);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='18' height='18'%3E%3Cpath d='M9 16.172l10.594-10.594 1.406 1.406-12 12-5.578-5.578 1.406-1.406z' fill='%23fff'%3E%3C/path%3E%3C/svg%3E\")}.sp-clear-display{background-repeat:no-repeat;background-position:center;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAABe0lEQVQokYXSsUtcQRTF4d8Jj+VhHSxkEQuLsEUKK0nhTBFTmLSSUhBCMCAWsmgIwWrBLk0akfwLCaSQKBJmtrIIISwpRFKIhViETScphGMzysMtvOVwvpm5d0bGNCuGWAOPgYdl6S8wSDn9b+bUhDHEKWAdeAFMANg+l/TV9ofcz6cjMIbYBvaBMds7QCqZ58CmpBNgPuV0DvAAIMyFGugWtJr7eTv38xEwkPRPErY7QDeG2LqFkjrAgu0dSd/KDVqSNmxvAZ8lfbS9AHRuYemnLWkv5XRVBrQMbAI/gTXgEzAJtJuwBVS2L2OIle03QA/4Lmkl5XQBXEqqbFcAVYFDYChpFngiqWf7l6TXKaezMt2Zkhk24THwG+jZriX9AFZvUAyxLbRke2D75O5zPAO+ADXwEtizjaRHwDvbTyUtppwOmicCHAJvbXcl9YA1SQDjtseA97YPRz7ATcUQp2y/kjRdevsjaTfldNrMjcDGBjXA3T96L7yvrgFzP69+0Ao/HAAAAABJRU5ErkJggg==);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='14' height='14'%3E%3Cpath d='M12 20.016q3.281 0 5.648-2.367t2.367-5.648q0-2.672-1.734-4.922l-11.203 11.203q2.25 1.734 4.922 1.734zM3.984 12q0 2.672 1.734 4.922l11.203-11.203q-2.25-1.734-4.922-1.734-3.281 0-5.648 2.367t-2.367 5.648zM12 2.016q4.125 0 7.055 2.93t2.93 7.055-2.93 7.055-7.055 2.93-7.055-2.93-2.93-7.055 2.93-7.055 7.055-2.93z' fill='%23000'%3E%3C/path%3E%3C/svg%3E\")}\r\n\r\n\r\n.sp-original-input-container{\r\n    height: 100%;\r\n}\r\n\r\n.sp-colorize{\r\n    border-radius: 4px 0 0 4px !important;\r\n}";
   n(css$w,{});
 
-  var tpl$g = "<div class=\"debug__dialog-box-controls\">\r\n  <!--left-->\r\n  <div class=\"debug__controls-left\">\r\n      <div class=\"debug__controls-btns\">\r\n          <input class=\"debug__input-text debug__character\" type=\"text\" value=\"$\">\r\n          <div class=\"debug__btn debug__inner-reply\"> Показать </div>\r\n      </div>\r\n      <textarea class=\"debug__textarea debug__reply\" placeholder=\"text\"></textarea>\r\n  </div>\r\n  <!--right-->\r\n  <div class=\"debug__controls-right\">\r\n      <div class=\"debug__controls-btns\">\r\n          <input class=\"debug__input-text debug__mc-exec\" type=\"text\" value=\"executeCMD\">\r\n          <span class=\"debug__checkbox-wrapper\"><input class=\"debug__mcexec-type\" type=\"checkbox\" checked=\"checked\">server</span>\r\n          <div class=\"debug__btn debug__mcexec\"> Выполнить </div>\r\n      </div>\r\n      <textarea class=\"debug__textarea debug__mcexec-data\" placeholder=\"data\"></textarea>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n";
+  !function (e) {
+
+    "function" == typeof define && define.amd ? define(["jquery"], e) : "object" == (typeof exports === "undefined" ? "undefined" : _typeof(exports)) && "object" == (typeof module === "undefined" ? "undefined" : _typeof(module)) ? module.exports = e(require("jquery")) : e(jQuery);
+  }(function (Ne, De) {
+
+    var e,
+        qe = {
+      beforeShow: a,
+      move: a,
+      change: a,
+      show: a,
+      hide: a,
+      color: !1,
+      flat: !1,
+      type: "",
+      showInput: !1,
+      allowEmpty: !0,
+      showButtons: !0,
+      clickoutFiresChange: !0,
+      showInitial: !1,
+      showPalette: !0,
+      showPaletteOnly: !1,
+      hideAfterPaletteSelect: !1,
+      togglePaletteOnly: !1,
+      showSelectionPalette: !0,
+      localStorageKey: !1,
+      appendTo: "body",
+      maxSelectionSize: 8,
+      locale: "en",
+      cancelText: "cancel",
+      chooseText: "choose",
+      togglePaletteMoreText: "more",
+      togglePaletteLessText: "less",
+      clearText: "Clear Color Selection",
+      noColorSelectedText: "No Color Selected",
+      preferredFormat: "name",
+      className: "",
+      containerClassName: "",
+      replacerClassName: "",
+      showAlpha: !0,
+      theme: "sp-light",
+      palette: [["#000000", "#444444", "#5b5b5b", "#999999", "#bcbcbc", "#eeeeee", "#f3f6f4", "#ffffff"], ["#f44336", "#744700", "#ce7e00", "#8fce00", "#2986cc", "#16537e", "#6a329f", "#c90076"], ["#f4cccc", "#fce5cd", "#fff2cc", "#d9ead3", "#d0e0e3", "#cfe2f3", "#d9d2e9", "#ead1dc"], ["#ea9999", "#f9cb9c", "#ffe599", "#b6d7a8", "#a2c4c9", "#9fc5e8", "#b4a7d6", "#d5a6bd"], ["#e06666", "#f6b26b", "#ffd966", "#93c47d", "#76a5af", "#6fa8dc", "#8e7cc3", "#c27ba0"], ["#cc0000", "#e69138", "#f1c232", "#6aa84f", "#45818e", "#3d85c6", "#674ea7", "#a64d79"], ["#990000", "#b45f06", "#bf9000", "#38761d", "#134f5c", "#0b5394", "#351c75", "#741b47"], ["#660000", "#783f04", "#7f6000", "#274e13", "#0c343d", "#073763", "#20124d", "#4c1130"]],
+      selectionPalette: [],
+      disabled: !1,
+      offset: null
+    },
+        Ie = [],
+        Ve = !!/msie/i.exec(window.navigator.userAgent),
+        We = ((e = document.createElement("div").style).cssText = "background-color:rgba(0,0,0,.5)", t(e.backgroundColor, "rgba") || t(e.backgroundColor, "hsla")),
+        Be = ["<div class='sp-replacer'>", "<div class='sp-preview'><div class='sp-preview-inner'></div></div>", "<div class='sp-dd'>&#9660;</div>", "</div>"].join(""),
+        Ke = function () {
+      var e = "";
+      if (Ve) for (var t = 1; t <= 6; t++) {
+        e += "<div class='sp-" + t + "'></div>";
+      }
+      return ["<div class='sp-container sp-hidden'>", "<div class='sp-palette-container'>", "<div class='sp-palette sp-thumb sp-cf'></div>", "<div class='sp-palette-button-container sp-cf'>", "<button type='button' class='sp-palette-toggle'></button>", "</div>", "</div>", "<div class='sp-picker-container'>", "<div class='sp-top sp-cf'>", "<div class='sp-fill'></div>", "<div class='sp-top-inner'>", "<div class='sp-color'>", "<div class='sp-sat'>", "<div class='sp-val'>", "<div class='sp-dragger'></div>", "</div>", "</div>", "</div>", "<div class='sp-clear sp-clear-display'>", "</div>", "<div class='sp-hue'>", "<div class='sp-slider'></div>", e, "</div>", "</div>", "<div class='sp-alpha'><div class='sp-alpha-inner'><div class='sp-alpha-handle'></div></div></div>", "</div>", "<div class='sp-input-container sp-cf'>", "<input class='sp-input' type='text' spellcheck='false'  />", "</div>", "<div class='sp-initial sp-thumb sp-cf'></div>", "<div class='sp-button-container sp-cf'>", "<button class='sp-cancel' href='#'></button>", "<button type='button' class='sp-choose'></button>", "</div>", "</div>", "</div>"].join("");
+    }();
+
+    function t(e, t) {
+      return !!~("" + e).indexOf(t);
+    }
+
+    function $e(e, t, a, o) {
+      for (var r = [], n = 0; n < e.length; n++) {
+        var s = e[n];
+
+        if (s) {
+          var i = tinycolor(s),
+              l = i.toHsl().l < .5 ? "sp-thumb-el sp-thumb-dark" : "sp-thumb-el sp-thumb-light";
+          l += tinycolor.equals(t, s) ? " sp-thumb-active" : "";
+          var c = i.toString(o.preferredFormat || "rgb"),
+              u = We ? "background-color:" + i.toRgbString() : "filter:" + i.toFilter();
+          r.push('<span title="' + c + '" data-color="' + i.toRgbString() + '" class="' + l + '"><span class="sp-thumb-inner" style="' + u + ';"></span></span>');
+        } else r.push('<span class="sp-thumb-el sp-clear-display" ><span class="sp-clear-palette-only" style="background-color: transparent;"></span></span>');
+      }
+
+      return "<div class='sp-cf " + a + "'>" + r.join("") + "</div>";
+    }
+
+    function n(e, t) {
+      var a,
+          o,
+          n,
+          h = function (e, t) {
+        e.locale = e.locale || window.navigator.language, e.locale && (e.locale = e.locale.split("-")[0].toLowerCase()), "en" != e.locale && Ne.spectrum.localization[e.locale] && (e = Ne.extend({}, Ne.spectrum.localization[e.locale], e));
+        var a = Ne.extend({}, qe, e);
+        return a.callbacks = {
+          move: Ye(a.move, t),
+          change: Ye(a.change, t),
+          show: Ye(a.show, t),
+          hide: Ye(a.hide, t),
+          beforeShow: Ye(a.beforeShow, t)
+        }, a;
+      }(t, e),
+          s = h.type,
+          d = "flat" == s,
+          i = h.showSelectionPalette,
+          l = h.localStorageKey,
+          c = h.theme,
+          u = h.callbacks,
+          f = (a = Oe, function () {
+        var e = this,
+            t = arguments;
+        n || (n = setTimeout(function () {
+          n = null, a.apply(e, t);
+        }, o));
+      }),
+          p = !(o = 10),
+          g = !1,
+          b = 0,
+          m = 0,
+          v = 0,
+          x = 0,
+          y = 0,
+          T = 0,
+          w = 0,
+          _ = 0,
+          k = 0,
+          P = 0,
+          C = 1,
+          S = [],
+          M = [],
+          z = {},
+          j = h.selectionPalette.slice(0),
+          A = h.maxSelectionSize,
+          R = "sp-dragging",
+          F = !1,
+          H = null,
+          L = e.ownerDocument,
+          O = (L.body, Ne(e)),
+          Q = !1,
+          E = Ne(Ke, L).addClass(c),
+          N = E.find(".sp-picker-container"),
+          D = E.find(".sp-color"),
+          q = E.find(".sp-dragger"),
+          I = E.find(".sp-hue"),
+          V = E.find(".sp-slider"),
+          W = E.find(".sp-alpha-inner"),
+          B = E.find(".sp-alpha"),
+          K = E.find(".sp-alpha-handle"),
+          $ = E.find(".sp-input"),
+          X = E.find(".sp-palette"),
+          Y = E.find(".sp-initial"),
+          G = E.find(".sp-cancel"),
+          U = E.find(".sp-clear"),
+          J = E.find(".sp-choose"),
+          Z = E.find(".sp-palette-toggle"),
+          ee = O.is("input"),
+          te = (ee && "color" === O.attr("type") && Ue(), ee && "color" == s),
+          ae = te ? Ne(Be).addClass(c).addClass(h.className).addClass(h.replacerClassName) : Ne([]),
+          oe = te ? ae : O,
+          re = ae.find(".sp-preview-inner"),
+          ne = h.color || ee && O.val(),
+          se = !1,
+          ie = h.preferredFormat,
+          le = !h.showButtons || h.clickoutFiresChange,
+          ce = !ne,
+          ue = h.allowEmpty,
+          fe = null,
+          he = null,
+          de = null,
+          pe = null,
+          ge = O.attr("id");
+
+      if (ge !== De && 0 < ge.length) {
+        var be = Ne('label[for="' + ge + '"]');
+        be.length && be.on("click", function (e) {
+          return e.preventDefault(), O.spectrum("show"), !1;
+        });
+      }
+
+      function me() {
+        if (h.showPaletteOnly && (h.showPalette = !0), Z.text(h.showPaletteOnly ? h.togglePaletteMoreText : h.togglePaletteLessText), h.palette) {
+          S = h.palette.slice(0), M = Array.isArray(S[0]) ? S : [S], z = {};
+
+          for (var e = 0; e < M.length; e++) {
+            for (var t = 0; t < M[e].length; t++) {
+              var a = tinycolor(M[e][t]).toRgbString();
+              z[a] = !0;
+            }
+          }
+
+          h.showPaletteOnly && !ne && (ne = "" === S[0][0] ? S[0][0] : Object.keys(z)[0]);
+        }
+
+        E.toggleClass("sp-flat", d), E.toggleClass("sp-input-disabled", !h.showInput), E.toggleClass("sp-alpha-enabled", h.showAlpha), E.toggleClass("sp-clear-enabled", ue), E.toggleClass("sp-buttons-disabled", !h.showButtons), E.toggleClass("sp-palette-buttons-disabled", !h.togglePaletteOnly), E.toggleClass("sp-palette-disabled", !h.showPalette), E.toggleClass("sp-palette-only", h.showPaletteOnly), E.toggleClass("sp-initial-disabled", !h.showInitial), E.addClass(h.className).addClass(h.containerClassName), Oe();
+      }
+
+      function ve() {
+        if (l) {
+          try {
+            var e = window.localStorage,
+                t = e[l].split(",#");
+            1 < t.length && (delete e[l], Ne.each(t, function (e, t) {
+              xe(t);
+            }));
+          } catch (e) {}
+
+          try {
+            j = window.localStorage[l].split(";");
+          } catch (e) {}
+        }
+      }
+
+      function xe(e) {
+        if (i) {
+          var t = tinycolor(e).toRgbString();
+          if (!z[t] && -1 === Ne.inArray(t, j)) for (j.push(t); j.length > A;) {
+            j.shift();
+          }
+          if (l) try {
+            window.localStorage[l] = j.join(";");
+          } catch (e) {}
+        }
+      }
+
+      function ye() {
+        var a = Ae(),
+            e = Ne.map(M, function (e, t) {
+          return $e(e, a, "sp-palette-row sp-palette-row-" + t, h);
+        });
+        ve(), j && e.push($e(function () {
+          var e = [];
+          if (h.showPalette) for (var t = 0; t < j.length; t++) {
+            var a = tinycolor(j[t]).toRgbString();
+            z[a] || e.push(j[t]);
+          }
+          return e.reverse().slice(0, h.maxSelectionSize);
+        }(), a, "sp-palette-row sp-palette-row-selection", h)), X.html(e.join(""));
+      }
+
+      function Te() {
+        if (h.showInitial) {
+          var e = se,
+              t = Ae();
+          Y.html($e([e, t], t, "sp-palette-row-initial", h));
+        }
+      }
+
+      function we() {
+        (m <= 0 || b <= 0 || x <= 0) && Oe(), g = !0, E.addClass(R), H = null, O.trigger("dragstart.spectrum", [Ae()]);
+      }
+
+      function _e() {
+        g = !1, E.removeClass(R), O.trigger("dragstop.spectrum", [Ae()]);
+      }
+
+      function ke(e) {
+        if (F) F = !1;else if (null !== e && "" !== e || !ue) {
+          var t = tinycolor(e);
+          t.isValid() ? (je(t), Re(), Le()) : $.addClass("sp-validation-error");
+        } else je(null), Re(), Le();
+      }
+
+      function Pe() {
+        var e = Ne.Event("beforeShow.spectrum");
+        p ? Oe() : (O.trigger(e, [Ae()]), !1 === u.beforeShow(Ae()) || e.isDefaultPrevented() || (function () {
+          for (var e = 0; e < Ie.length; e++) {
+            Ie[e] && Ie[e].hide();
+          }
+        }(), p = !0, Ne(L).on("keydown.spectrum", Ce), Ne(L).on("click.spectrum", Se), Ne(window).on("resize.spectrum", f), ae.addClass("sp-active"), E.removeClass("sp-hidden"), Oe(), Fe(), se = Ae(), Te(), u.show(se), O.trigger("show.spectrum", [se])));
+      }
+
+      function Ce(e) {
+        27 === e.keyCode && Me();
+      }
+
+      function Se(e) {
+        2 != e.button && (g || (le ? Le(!0) : ze(), Me()));
+      }
+
+      function Me() {
+        p && !d && (p = !1, Ne(L).off("keydown.spectrum", Ce), Ne(L).off("click.spectrum", Se), Ne(window).off("resize.spectrum", f), ae.removeClass("sp-active"), E.addClass("sp-hidden"), u.hide(Ae()), O.trigger("hide.spectrum", [Ae()]));
+      }
+
+      function ze() {
+        je(se, !0), Le(!0);
+      }
+
+      function je(e, t) {
+        var a, o;
+        tinycolor.equals(e, Ae()) ? Fe() : (e && e !== De || !ue ? (ce = !1, o = (a = tinycolor(e)).toHsv(), _ = o.h % 360 / 360, k = o.s, P = o.v, C = o.a) : ce = !0, Fe(), a && a.isValid() && !t && (ie = h.preferredFormat || a.getFormat()));
+      }
+
+      function Ae(e) {
+        return e = e || {}, ue && ce ? null : tinycolor.fromRatio({
+          h: _,
+          s: k,
+          v: P,
+          a: Math.round(1e3 * C) / 1e3
+        }, {
+          format: e.format || ie
+        });
+      }
+
+      function Re() {
+        Fe(), u.move(Ae()), O.trigger("move.spectrum", [Ae()]);
+      }
+
+      function Fe() {
+        $.removeClass("sp-validation-error"), He();
+        var e = tinycolor.fromRatio({
+          h: _,
+          s: 1,
+          v: 1
+        });
+        D.css("background-color", e.toHexString());
+        var t = ie;
+        C < 1 && (0 !== C || "name" !== t) && ("hex" !== t && "hex3" !== t && "hex6" !== t && "name" !== t || (t = "rgb"));
+        var a = Ae({
+          format: t
+        }),
+            o = "";
+        if (re.removeClass("sp-clear-display"), re.css("background-color", "transparent"), !a && ue) re.addClass("sp-clear-display");else {
+          var r = a.toHexString(),
+              n = a.toRgbString();
+
+          if (We || 1 === a.alpha ? re.css("background-color", n) : (re.css("background-color", "transparent"), re.css("filter", a.toFilter())), h.showAlpha) {
+            var s = a.toRgb();
+            s.a = 0;
+            var i = tinycolor(s).toRgbString(),
+                l = "linear-gradient(left, " + i + ", " + r + ")";
+            Ve ? W.css("filter", tinycolor(i).toFilter({
+              gradientType: 1
+            }, r)) : (W.css("background", "-webkit-" + l), W.css("background", "-moz-" + l), W.css("background", "-ms-" + l), W.css("background", "linear-gradient(to right, " + i + ", " + r + ")"));
+          }
+
+          o = a.toString(t);
+        }
+
+        if (h.showInput && $.val(o), O.val(o), "text" == h.type || "component" == h.type) {
+          var c = a;
+
+          if (c && he) {
+            var u = c.isLight() || c.getAlpha() < .4 ? "black" : "white";
+            he.css("background-color", c.toRgbString()).css("color", u);
+          } else he.css("background-color", pe).css("color", de);
+        }
+
+        h.showPalette && ye(), Te();
+      }
+
+      function He() {
+        var e = k,
+            t = P;
+        if (ue && ce) K.hide(), V.hide(), q.hide();else {
+          K.show(), V.show(), q.show();
+          var a = e * b,
+              o = m - t * m;
+          a = Math.max(-v, Math.min(b - v, a - v)), o = Math.max(-v, Math.min(m - v, o - v)), q.css({
+            top: o + "px",
+            left: a + "px"
+          });
+          var r = C * y;
+          K.css({
+            left: r - T / 2 + "px"
+          });
+          var n = _ * x;
+          V.css({
+            top: n - w + "px"
+          });
+        }
+      }
+
+      function Le(e) {
+        var t = Ae(),
+            a = !tinycolor.equals(t, se);
+        t && (t.toString(ie), xe(t)), e && a && (u.change(t), F = !0, O.trigger("change", [t]));
+      }
+
+      function Oe() {
+        var e, t, a, o, r, n, s, i, l, c, u, f;
+        p && (b = D.width(), m = D.height(), v = q.height(), I.width(), x = I.height(), w = V.height(), y = B.width(), T = K.width(), d || (E.css("position", "absolute"), h.offset ? E.offset(h.offset) : E.offset((t = oe, a = (e = E).outerWidth(), o = e.outerHeight(), r = t.outerHeight(), n = e[0].ownerDocument, s = n.documentElement, i = s.clientWidth + Ne(n).scrollLeft(), l = s.clientHeight + Ne(n).scrollTop(), c = t.offset(), u = c.left, f = c.top, f += r, u -= Math.min(u, i < u + a && a < i ? Math.abs(u + a - i) : 0), {
+          top: f -= Math.min(f, l < f + o && o < l ? Math.abs(+(o + r)) : 0),
+          bottom: c.bottom,
+          left: u,
+          right: c.right,
+          width: c.width,
+          height: c.height
+        }))), He(), h.showPalette && ye(), O.trigger("reflow.spectrum"));
+      }
+
+      function Qe() {
+        Me(), Q = !0, O.attr("disabled", !0), oe.addClass("sp-disabled");
+      }
+
+      !function () {
+        if (Ve && E.find("*:not(input)").attr("unselectable", "on"), me(), fe = Ne('<span class="sp-original-input-container"></span>'), ["margin"].forEach(function (e) {
+          fe.css(e, O.css(e));
+        }), "block" == O.css("display") && fe.css("display", "flex"), te) O.after(ae).hide();else if ("text" == s) fe.addClass("sp-colorize-container"), O.addClass("spectrum sp-colorize").wrap(fe);else if ("component" == s) {
+          O.addClass("spectrum").wrap(fe);
+          var e = Ne(["<div class='sp-colorize-container sp-add-on'>", "<div class='sp-colorize'></div> ", "</div>"].join(""));
+          e.width(O.outerHeight() + "px").css("border-radius", O.css("border-radius")).css("border", O.css("border")), O.addClass("with-add-on").before(e);
+        }
+        if (he = O.parent().find(".sp-colorize"), de = he.css("color"), pe = he.css("background-color"), ue || U.hide(), d) O.after(E).hide();else {
+          var t = "parent" === h.appendTo ? O.parent() : Ne(h.appendTo);
+          1 !== t.length && (t = Ne("body")), t.append(E);
+        }
+
+        function a(e) {
+          return e.data && e.data.ignore ? (je(Ne(e.target).closest(".sp-thumb-el").data("color")), Re()) : (je(Ne(e.target).closest(".sp-thumb-el").data("color")), Re(), h.hideAfterPaletteSelect ? (Le(!0), Me()) : Le()), !1;
+        }
+
+        ve(), oe.on("click.spectrum touchstart.spectrum", function (e) {
+          Q || Pe(), e.stopPropagation(), Ne(e.target).is("input") || e.preventDefault();
+        }), !O.is(":disabled") && !0 !== h.disabled || Qe(), E.on("click", Xe), [$, O].forEach(function (t) {
+          t.on("change", function () {
+            ke(t.val());
+          }), t.on("paste", function () {
+            setTimeout(function () {
+              ke(t.val());
+            }, 1);
+          }), t.on("keydown", function (e) {
+            13 == e.keyCode && (ke(Ne(t).val()), t == O && Me());
+          });
+        }), G.text(h.cancelText), G.on("click.spectrum", function (e) {
+          e.stopPropagation(), e.preventDefault(), ze(), Me();
+        }), U.attr("title", h.clearText), U.on("click.spectrum", function (e) {
+          e.stopPropagation(), e.preventDefault(), ce = !0, Re(), d && Le(!0);
+        }), J.text(h.chooseText), J.on("click.spectrum", function (e) {
+          e.stopPropagation(), e.preventDefault(), Ve && $.is(":focus") && $.trigger("change"), $.hasClass("sp-validation-error") || (Le(!0), Me());
+        }), Z.text(h.showPaletteOnly ? h.togglePaletteMoreText : h.togglePaletteLessText), Z.on("click.spectrum", function (e) {
+          e.stopPropagation(), e.preventDefault(), h.showPaletteOnly = !h.showPaletteOnly, h.showPaletteOnly || d || E.css("left", "-=" + (N.outerWidth(!0) + 5)), me();
+        }), Ge(B, function (e, t, a) {
+          C = e / y, ce = !1, a.shiftKey && (C = Math.round(10 * C) / 10), Re();
+        }, we, _e), Ge(I, function (e, t) {
+          _ = parseFloat(t / x), ce = !1, h.showAlpha || (C = 1), Re();
+        }, we, _e), Ge(D, function (e, t, a) {
+          if (a.shiftKey) {
+            if (!H) {
+              var o = k * b,
+                  r = m - P * m,
+                  n = Math.abs(e - o) > Math.abs(t - r);
+              H = n ? "x" : "y";
+            }
+          } else H = null;
+
+          var s = !H || "y" === H;
+          H && "x" !== H || (k = parseFloat(e / b)), s && (P = parseFloat((m - t) / m)), ce = !1, h.showAlpha || (C = 1), Re();
+        }, we, _e), ne ? (je(ne), Fe(), ie = tinycolor(ne).format || h.preferredFormat, xe(ne)) : ("" === ne && je(ne), Fe()), d && Pe();
+        var o = Ve ? "mousedown.spectrum" : "click.spectrum touchstart.spectrum";
+        X.on(o, ".sp-thumb-el", a), Y.on(o, ".sp-thumb-el:nth-child(1)", {
+          ignore: !0
+        }, a);
+      }();
+      var Ee = {
+        show: Pe,
+        hide: Me,
+        toggle: function toggle() {
+          (p ? Me : Pe)();
+        },
+        reflow: Oe,
+        option: function option(e, t) {
+          return e === De ? Ne.extend({}, h) : t === De ? h[e] : (h[e] = t, "preferredFormat" === e && (ie = h.preferredFormat), void me());
+        },
+        enable: function enable() {
+          Q = !1, O.attr("disabled", !1), oe.removeClass("sp-disabled");
+        },
+        disable: Qe,
+        offset: function offset(e) {
+          h.offset = e, Oe();
+        },
+        set: function set(e) {
+          je(e), Le();
+        },
+        get: Ae,
+        destroy: function destroy() {
+          O.show().removeClass("spectrum with-add-on sp-colorize"), oe.off("click.spectrum touchstart.spectrum"), E.remove(), ae.remove(), he && he.css("background-color", pe).css("color", de);
+          var e = O.closest(".sp-original-input-container");
+          0 < e.length && e.after(O).remove(), Ie[Ee.id] = null;
+        },
+        container: E
+      };
+      return Ee.id = Ie.push(Ee) - 1, Ee;
+    }
+
+    function a() {}
+
+    function Xe(e) {
+      e.stopPropagation();
+    }
+
+    function Ye(e, t) {
+      var a = Array.prototype.slice,
+          o = a.call(arguments, 2);
+      return function () {
+        return e.apply(t, o.concat(a.call(arguments)));
+      };
+    }
+
+    function Ge(s, i, t, e) {
+      i = i || function () {}, t = t || function () {}, e = e || function () {};
+      var l = document,
+          c = !1,
+          u = {},
+          f = 0,
+          h = 0,
+          d = ("ontouchstart" in window),
+          a = {};
+
+      function p(e) {
+        e.stopPropagation && e.stopPropagation(), e.preventDefault && e.preventDefault(), e.returnValue = !1;
+      }
+
+      function o(e) {
+        if (c) {
+          if (Ve && l.documentMode < 9 && !e.button) return g();
+          var t = e.originalEvent && e.originalEvent.touches && e.originalEvent.touches[0],
+              a = t && t.pageX || e.pageX,
+              o = t && t.pageY || e.pageY,
+              r = Math.max(0, Math.min(a - u.left, h)),
+              n = Math.max(0, Math.min(o - u.top, f));
+          d && p(e), i.apply(s, [r, n, e]);
+        }
+      }
+
+      function g() {
+        c && (Ne(l).off(a), Ne(l.body).removeClass("sp-dragging"), setTimeout(function () {
+          e.apply(s, arguments);
+        }, 0)), c = !1;
+      }
+
+      a.selectstart = p, a.dragstart = p, a["touchmove mousemove"] = o, a["touchend mouseup"] = g, Ne(s).on("touchstart mousedown", function (e) {
+        (e.which ? 3 == e.which : 2 == e.button) || c || !1 !== t.apply(s, arguments) && (c = !0, f = Ne(s).height(), h = Ne(s).width(), u = Ne(s).offset(), Ne(l).on(a), Ne(l.body).addClass("sp-dragging"), o(e), p(e));
+      });
+    }
+
+    function Ue() {
+      return Ne.fn.spectrum.inputTypeColorSupport();
+    }
+
+    var s = "spectrum.id";
+    Ne.fn.spectrum = function (a, e) {
+      if ("string" != typeof a) return this.spectrum("destroy").each(function () {
+        var e = Ne.extend({}, Ne(this).data(), a);
+        Ne(this).is("input") ? e.flat || "flat" == e.type ? e.type = "flat" : "color" == Ne(this).attr("type") ? e.type = "color" : e.type = e.type || "component" : e.type = "noInput";
+        var t = n(this, e);
+        Ne(this).data(s, t.id);
+      });
+      var o = this,
+          r = Array.prototype.slice.call(arguments, 1);
+      return this.each(function () {
+        var e = Ie[Ne(this).data(s)];
+
+        if (e) {
+          var t = e[a];
+          if (!t) throw new Error("Spectrum: no such method: '" + a + "'");
+          "get" == a ? o = e.get() : "container" == a ? o = e.container : "option" == a ? o = e.option.apply(e, r) : "destroy" == a ? (e.destroy(), Ne(this).removeData(s)) : t.apply(e, r);
+        }
+      }), o;
+    }, Ne.fn.spectrum.load = !0, Ne.fn.spectrum.loadOpts = {}, Ne.fn.spectrum.draggable = Ge, Ne.fn.spectrum.defaults = qe, Ne.fn.spectrum.inputTypeColorSupport = function e() {
+      if (void 0 === e._cachedResult) {
+        var t = Ne("<input type='color'/>")[0];
+        e._cachedResult = "color" === t.type && "" !== t.value;
+      }
+
+      return e._cachedResult;
+    }, Ne.spectrum = {}, Ne.spectrum.localization = {}, Ne.spectrum.palettes = {}, Ne.fn.spectrum.processNativeColorInputs = function () {
+      var e = Ne("input[type=color]");
+      e.length && !Ue() && e.spectrum({
+        preferredFormat: "hex6"
+      });
+    }, function () {
+      var n = /^[\s,#]+/,
+          s = /\s+$/,
+          o = 0,
+          c = Math,
+          i = c.round,
+          u = c.min,
+          f = c.max,
+          e = c.random,
+          h = function h(e, t) {
+        if (t = t || {}, (e = e || "") instanceof h) return e;
+        if (!(this instanceof h)) return new h(e, t);
+
+        var a = function (e) {
+          var t = {
+            r: 0,
+            g: 0,
+            b: 0
+          },
+              a = 1,
+              o = !1,
+              r = !1;
+          "string" == typeof e && (e = function (e) {
+            e = e.replace(n, "").replace(s, "").toLowerCase();
+            var t,
+                a = !1;
+            if (C[e]) e = C[e], a = !0;else if ("transparent" == e) return {
+              r: 0,
+              g: 0,
+              b: 0,
+              a: 0,
+              format: "name"
+            };
+            if (t = Q.rgb.exec(e)) return {
+              r: t[1],
+              g: t[2],
+              b: t[3]
+            };
+            if (t = Q.rgba.exec(e)) return {
+              r: t[1],
+              g: t[2],
+              b: t[3],
+              a: t[4]
+            };
+            if (t = Q.hsl.exec(e)) return {
+              h: t[1],
+              s: t[2],
+              l: t[3]
+            };
+            if (t = Q.hsla.exec(e)) return {
+              h: t[1],
+              s: t[2],
+              l: t[3],
+              a: t[4]
+            };
+            if (t = Q.hsv.exec(e)) return {
+              h: t[1],
+              s: t[2],
+              v: t[3]
+            };
+            if (t = Q.hsva.exec(e)) return {
+              h: t[1],
+              s: t[2],
+              v: t[3],
+              a: t[4]
+            };
+            if (t = Q.hex8.exec(e)) return {
+              a: function (e) {
+                return A(e) / 255;
+              }(t[1]),
+              r: A(t[2]),
+              g: A(t[3]),
+              b: A(t[4]),
+              format: a ? "name" : "hex8"
+            };
+            if (t = Q.hex6.exec(e)) return {
+              r: A(t[1]),
+              g: A(t[2]),
+              b: A(t[3]),
+              format: a ? "name" : "hex"
+            };
+            if (t = Q.hex3.exec(e)) return {
+              r: A(t[1] + "" + t[1]),
+              g: A(t[2] + "" + t[2]),
+              b: A(t[3] + "" + t[3]),
+              format: a ? "name" : "hex"
+            };
+            return !1;
+          }(e));
+          "object" == _typeof(e) && (e.hasOwnProperty("r") && e.hasOwnProperty("g") && e.hasOwnProperty("b") ? (t = function (e, t, a) {
+            return {
+              r: 255 * z(e, 255),
+              g: 255 * z(t, 255),
+              b: 255 * z(a, 255)
+            };
+          }(e.r, e.g, e.b), o = !0, r = "%" === String(e.r).substr(-1) ? "prgb" : "rgb") : e.hasOwnProperty("h") && e.hasOwnProperty("s") && e.hasOwnProperty("v") ? (e.s = F(e.s), e.v = F(e.v), t = function (e, t, a) {
+            e = 6 * z(e, 360), t = z(t, 100), a = z(a, 100);
+            var o = c.floor(e),
+                r = e - o,
+                n = a * (1 - t),
+                s = a * (1 - r * t),
+                i = a * (1 - (1 - r) * t),
+                l = o % 6;
+            return {
+              r: 255 * [a, s, n, n, i, a][l],
+              g: 255 * [i, a, a, s, n, n][l],
+              b: 255 * [n, n, i, a, a, s][l]
+            };
+          }(e.h, e.s, e.v), o = !0, r = "hsv") : e.hasOwnProperty("h") && e.hasOwnProperty("s") && e.hasOwnProperty("l") && (e.s = F(e.s), e.l = F(e.l), t = function (e, t, a) {
+            var o, r, n;
+
+            function s(e, t, a) {
+              return a < 0 && (a += 1), 1 < a && --a, a < 1 / 6 ? e + 6 * (t - e) * a : a < .5 ? t : a < 2 / 3 ? e + (t - e) * (2 / 3 - a) * 6 : e;
+            }
+
+            if (e = z(e, 360), t = z(t, 100), a = z(a, 100), 0 === t) o = r = n = a;else {
+              var i = a < .5 ? a * (1 + t) : a + t - a * t,
+                  l = 2 * a - i;
+              o = s(l, i, e + 1 / 3), r = s(l, i, e), n = s(l, i, e - 1 / 3);
+            }
+            return {
+              r: 255 * o,
+              g: 255 * r,
+              b: 255 * n
+            };
+          }(e.h, e.s, e.l), o = !0, r = "hsl"), e.hasOwnProperty("a") && (a = e.a));
+          return a = M(a), {
+            ok: o,
+            format: e.format || r,
+            r: u(255, f(t.r, 0)),
+            g: u(255, f(t.g, 0)),
+            b: u(255, f(t.b, 0)),
+            a: a
+          };
+        }(e);
+
+        this._originalInput = e, this._r = a.r, this._g = a.g, this._b = a.b, this._a = a.a, this._roundA = i(1e3 * this._a) / 1e3, this._format = t.format || a.format, this._gradientType = t.gradientType, this._r < 1 && (this._r = i(this._r)), this._g < 1 && (this._g = i(this._g)), this._b < 1 && (this._b = i(this._b)), this._ok = a.ok, this._tc_id = o++;
+      };
+
+      function r(e, t, a) {
+        e = z(e, 255), t = z(t, 255), a = z(a, 255);
+        var o,
+            r,
+            n = f(e, t, a),
+            s = u(e, t, a),
+            i = (n + s) / 2;
+        if (n == s) o = r = 0;else {
+          var l = n - s;
+
+          switch (r = .5 < i ? l / (2 - n - s) : l / (n + s), n) {
+            case e:
+              o = (t - a) / l + (t < a ? 6 : 0);
+              break;
+
+            case t:
+              o = (a - e) / l + 2;
+              break;
+
+            case a:
+              o = (e - t) / l + 4;
+          }
+
+          o /= 6;
+        }
+        return {
+          h: o,
+          s: r,
+          l: i
+        };
+      }
+
+      function l(e, t, a) {
+        e = z(e, 255), t = z(t, 255), a = z(a, 255);
+        var o,
+            r,
+            n = f(e, t, a),
+            s = u(e, t, a),
+            i = n,
+            l = n - s;
+        if (r = 0 === n ? 0 : l / n, n == s) o = 0;else {
+          switch (n) {
+            case e:
+              o = (t - a) / l + (t < a ? 6 : 0);
+              break;
+
+            case t:
+              o = (a - e) / l + 2;
+              break;
+
+            case a:
+              o = (e - t) / l + 4;
+          }
+
+          o /= 6;
+        }
+        return {
+          h: o,
+          s: r,
+          v: i
+        };
+      }
+
+      function t(e, t, a, o) {
+        var r = [R(i(e).toString(16)), R(i(t).toString(16)), R(i(a).toString(16))];
+        return o && r[0].charAt(0) == r[0].charAt(1) && r[1].charAt(0) == r[1].charAt(1) && r[2].charAt(0) == r[2].charAt(1) ? r[0].charAt(0) + r[1].charAt(0) + r[2].charAt(0) : r.join("");
+      }
+
+      function d(e, t, a, o) {
+        var r;
+        return [R((r = o, Math.round(255 * parseFloat(r)).toString(16))), R(i(e).toString(16)), R(i(t).toString(16)), R(i(a).toString(16))].join("");
+      }
+
+      function a(e, t) {
+        t = 0 === t ? 0 : t || 10;
+        var a = h(e).toHsl();
+        return a.s -= t / 100, a.s = j(a.s), h(a);
+      }
+
+      function p(e, t) {
+        t = 0 === t ? 0 : t || 10;
+        var a = h(e).toHsl();
+        return a.s += t / 100, a.s = j(a.s), h(a);
+      }
+
+      function g(e) {
+        return h(e).desaturate(100);
+      }
+
+      function b(e, t) {
+        t = 0 === t ? 0 : t || 10;
+        var a = h(e).toHsl();
+        return a.l += t / 100, a.l = j(a.l), h(a);
+      }
+
+      function m(e, t) {
+        t = 0 === t ? 0 : t || 10;
+        var a = h(e).toRgb();
+        return a.r = f(0, u(255, a.r - i(-t / 100 * 255))), a.g = f(0, u(255, a.g - i(-t / 100 * 255))), a.b = f(0, u(255, a.b - i(-t / 100 * 255))), h(a);
+      }
+
+      function v(e, t) {
+        t = 0 === t ? 0 : t || 10;
+        var a = h(e).toHsl();
+        return a.l -= t / 100, a.l = j(a.l), h(a);
+      }
+
+      function x(e, t) {
+        var a = h(e).toHsl(),
+            o = (i(a.h) + t) % 360;
+        return a.h = o < 0 ? 360 + o : o, h(a);
+      }
+
+      function y(e) {
+        var t = h(e).toHsl();
+        return t.h = (t.h + 180) % 360, h(t);
+      }
+
+      function T(e) {
+        var t = h(e).toHsl(),
+            a = t.h;
+        return [h(e), h({
+          h: (a + 120) % 360,
+          s: t.s,
+          l: t.l
+        }), h({
+          h: (a + 240) % 360,
+          s: t.s,
+          l: t.l
+        })];
+      }
+
+      function w(e) {
+        var t = h(e).toHsl(),
+            a = t.h;
+        return [h(e), h({
+          h: (a + 90) % 360,
+          s: t.s,
+          l: t.l
+        }), h({
+          h: (a + 180) % 360,
+          s: t.s,
+          l: t.l
+        }), h({
+          h: (a + 270) % 360,
+          s: t.s,
+          l: t.l
+        })];
+      }
+
+      function _(e) {
+        var t = h(e).toHsl(),
+            a = t.h;
+        return [h(e), h({
+          h: (a + 72) % 360,
+          s: t.s,
+          l: t.l
+        }), h({
+          h: (a + 216) % 360,
+          s: t.s,
+          l: t.l
+        })];
+      }
+
+      function k(e, t, a) {
+        t = t || 6, a = a || 30;
+        var o = h(e).toHsl(),
+            r = 360 / a,
+            n = [h(e)];
+
+        for (o.h = (o.h - (r * t >> 1) + 720) % 360; --t;) {
+          o.h = (o.h + r) % 360, n.push(h(o));
+        }
+
+        return n;
+      }
+
+      function P(e, t) {
+        t = t || 6;
+
+        for (var a = h(e).toHsv(), o = a.h, r = a.s, n = a.v, s = [], i = 1 / t; t--;) {
+          s.push(h({
+            h: o,
+            s: r,
+            v: n
+          })), n = (n + i) % 1;
+        }
+
+        return s;
+      }
+
+      h.prototype = {
+        isDark: function isDark() {
+          return this.getBrightness() < 128;
+        },
+        isLight: function isLight() {
+          return !this.isDark();
+        },
+        isValid: function isValid() {
+          return this._ok;
+        },
+        getOriginalInput: function getOriginalInput() {
+          return this._originalInput;
+        },
+        getFormat: function getFormat() {
+          return this._format;
+        },
+        getAlpha: function getAlpha() {
+          return this._a;
+        },
+        getBrightness: function getBrightness() {
+          var e = this.toRgb();
+          return (299 * e.r + 587 * e.g + 114 * e.b) / 1e3;
+        },
+        setAlpha: function setAlpha(e) {
+          return this._a = M(e), this._roundA = i(1e3 * this._a) / 1e3, this;
+        },
+        toHsv: function toHsv() {
+          var e = l(this._r, this._g, this._b);
+          return {
+            h: 360 * e.h,
+            s: e.s,
+            v: e.v,
+            a: this._a
+          };
+        },
+        toHsvString: function toHsvString() {
+          var e = l(this._r, this._g, this._b),
+              t = i(360 * e.h),
+              a = i(100 * e.s),
+              o = i(100 * e.v);
+          return 1 == this._a ? "hsv(" + t + ", " + a + "%, " + o + "%)" : "hsva(" + t + ", " + a + "%, " + o + "%, " + this._roundA + ")";
+        },
+        toHsl: function toHsl() {
+          var e = r(this._r, this._g, this._b);
+          return {
+            h: 360 * e.h,
+            s: e.s,
+            l: e.l,
+            a: this._a
+          };
+        },
+        toHslString: function toHslString() {
+          var e = r(this._r, this._g, this._b),
+              t = i(360 * e.h),
+              a = i(100 * e.s),
+              o = i(100 * e.l);
+          return 1 == this._a ? "hsl(" + t + ", " + a + "%, " + o + "%)" : "hsla(" + t + ", " + a + "%, " + o + "%, " + this._roundA + ")";
+        },
+        toHex: function toHex(e) {
+          return t(this._r, this._g, this._b, e);
+        },
+        toHexString: function toHexString(e) {
+          return "#" + this.toHex(e);
+        },
+        toHex8: function toHex8() {
+          return d(this._r, this._g, this._b, this._a);
+        },
+        toHex8String: function toHex8String() {
+          return "#" + this.toHex8();
+        },
+        toRgb: function toRgb() {
+          return {
+            r: i(this._r),
+            g: i(this._g),
+            b: i(this._b),
+            a: this._a
+          };
+        },
+        toRgbString: function toRgbString() {
+          return 1 == this._a ? "rgb(" + i(this._r) + ", " + i(this._g) + ", " + i(this._b) + ")" : "rgba(" + i(this._r) + ", " + i(this._g) + ", " + i(this._b) + ", " + this._roundA + ")";
+        },
+        toPercentageRgb: function toPercentageRgb() {
+          return {
+            r: i(100 * z(this._r, 255)) + "%",
+            g: i(100 * z(this._g, 255)) + "%",
+            b: i(100 * z(this._b, 255)) + "%",
+            a: this._a
+          };
+        },
+        toPercentageRgbString: function toPercentageRgbString() {
+          return 1 == this._a ? "rgb(" + i(100 * z(this._r, 255)) + "%, " + i(100 * z(this._g, 255)) + "%, " + i(100 * z(this._b, 255)) + "%)" : "rgba(" + i(100 * z(this._r, 255)) + "%, " + i(100 * z(this._g, 255)) + "%, " + i(100 * z(this._b, 255)) + "%, " + this._roundA + ")";
+        },
+        toName: function toName() {
+          return 0 === this._a ? "transparent" : !(this._a < 1) && (S[t(this._r, this._g, this._b, !0)] || !1);
+        },
+        toFilter: function toFilter(e) {
+          var t = "#" + d(this._r, this._g, this._b, this._a),
+              a = t,
+              o = this._gradientType ? "GradientType = 1, " : "";
+          e && (a = h(e).toHex8String());
+          return "progid:DXImageTransform.Microsoft.gradient(" + o + "startColorstr=" + t + ",endColorstr=" + a + ")";
+        },
+        toString: function toString(e) {
+          var t = !!e;
+          e = e || this._format;
+          var a = !1,
+              o = this._a < 1 && 0 <= this._a;
+          return t || !o || "hex" !== e && "hex6" !== e && "hex3" !== e && "name" !== e ? ("rgb" === e && (a = this.toRgbString()), "prgb" === e && (a = this.toPercentageRgbString()), "hex" !== e && "hex6" !== e || (a = this.toHexString()), "hex3" === e && (a = this.toHexString(!0)), "hex8" === e && (a = this.toHex8String()), "name" === e && (a = this.toName()), "hsl" === e && (a = this.toHslString()), "hsv" === e && (a = this.toHsvString()), a || this.toHexString()) : "name" === e && 0 === this._a ? this.toName() : this.toRgbString();
+        },
+        _applyModification: function _applyModification(e, t) {
+          var a = e.apply(null, [this].concat([].slice.call(t)));
+          return this._r = a._r, this._g = a._g, this._b = a._b, this.setAlpha(a._a), this;
+        },
+        lighten: function lighten() {
+          return this._applyModification(b, arguments);
+        },
+        brighten: function brighten() {
+          return this._applyModification(m, arguments);
+        },
+        darken: function darken() {
+          return this._applyModification(v, arguments);
+        },
+        desaturate: function desaturate() {
+          return this._applyModification(a, arguments);
+        },
+        saturate: function saturate() {
+          return this._applyModification(p, arguments);
+        },
+        greyscale: function greyscale() {
+          return this._applyModification(g, arguments);
+        },
+        spin: function spin() {
+          return this._applyModification(x, arguments);
+        },
+        _applyCombination: function _applyCombination(e, t) {
+          return e.apply(null, [this].concat([].slice.call(t)));
+        },
+        analogous: function analogous() {
+          return this._applyCombination(k, arguments);
+        },
+        complement: function complement() {
+          return this._applyCombination(y, arguments);
+        },
+        monochromatic: function monochromatic() {
+          return this._applyCombination(P, arguments);
+        },
+        splitcomplement: function splitcomplement() {
+          return this._applyCombination(_, arguments);
+        },
+        triad: function triad() {
+          return this._applyCombination(T, arguments);
+        },
+        tetrad: function tetrad() {
+          return this._applyCombination(w, arguments);
+        }
+      }, h.fromRatio = function (e, t) {
+        if ("object" == _typeof(e)) {
+          var a = {};
+
+          for (var o in e) {
+            e.hasOwnProperty(o) && (a[o] = "a" === o ? e[o] : F(e[o]));
+          }
+
+          e = a;
+        }
+
+        return h(e, t);
+      }, h.equals = function (e, t) {
+        return !(!e || !t) && h(e).toRgbString() == h(t).toRgbString();
+      }, h.random = function () {
+        return h.fromRatio({
+          r: e(),
+          g: e(),
+          b: e()
+        });
+      }, h.mix = function (e, t, a) {
+        a = 0 === a ? 0 : a || 50;
+        var o,
+            r = h(e).toRgb(),
+            n = h(t).toRgb(),
+            s = a / 100,
+            i = 2 * s - 1,
+            l = n.a - r.a,
+            c = 1 - (o = ((o = i * l == -1 ? i : (i + l) / (1 + i * l)) + 1) / 2),
+            u = {
+          r: n.r * o + r.r * c,
+          g: n.g * o + r.g * c,
+          b: n.b * o + r.b * c,
+          a: n.a * s + r.a * (1 - s)
+        };
+        return h(u);
+      }, h.readability = function (e, t) {
+        var a = h(e),
+            o = h(t),
+            r = a.toRgb(),
+            n = o.toRgb(),
+            s = a.getBrightness(),
+            i = o.getBrightness(),
+            l = Math.max(r.r, n.r) - Math.min(r.r, n.r) + Math.max(r.g, n.g) - Math.min(r.g, n.g) + Math.max(r.b, n.b) - Math.min(r.b, n.b);
+        return {
+          brightness: Math.abs(s - i),
+          color: l
+        };
+      }, h.isReadable = function (e, t) {
+        var a = h.readability(e, t);
+        return 125 < a.brightness && 500 < a.color;
+      }, h.mostReadable = function (e, t) {
+        for (var a = null, o = 0, r = !1, n = 0; n < t.length; n++) {
+          var s = h.readability(e, t[n]),
+              i = 125 < s.brightness && 500 < s.color,
+              l = s.brightness / 125 * 3 + s.color / 500;
+          (i && !r || i && r && o < l || !i && !r && o < l) && (r = i, o = l, a = h(t[n]));
+        }
+
+        return a;
+      };
+
+      var C = h.names = {
+        aliceblue: "f0f8ff",
+        antiquewhite: "faebd7",
+        aqua: "0ff",
+        aquamarine: "7fffd4",
+        azure: "f0ffff",
+        beige: "f5f5dc",
+        bisque: "ffe4c4",
+        black: "000",
+        blanchedalmond: "ffebcd",
+        blue: "00f",
+        blueviolet: "8a2be2",
+        brown: "a52a2a",
+        burlywood: "deb887",
+        burntsienna: "ea7e5d",
+        cadetblue: "5f9ea0",
+        chartreuse: "7fff00",
+        chocolate: "d2691e",
+        coral: "ff7f50",
+        cornflowerblue: "6495ed",
+        cornsilk: "fff8dc",
+        crimson: "dc143c",
+        cyan: "0ff",
+        darkblue: "00008b",
+        darkcyan: "008b8b",
+        darkgoldenrod: "b8860b",
+        darkgray: "a9a9a9",
+        darkgreen: "006400",
+        darkgrey: "a9a9a9",
+        darkkhaki: "bdb76b",
+        darkmagenta: "8b008b",
+        darkolivegreen: "556b2f",
+        darkorange: "ff8c00",
+        darkorchid: "9932cc",
+        darkred: "8b0000",
+        darksalmon: "e9967a",
+        darkseagreen: "8fbc8f",
+        darkslateblue: "483d8b",
+        darkslategray: "2f4f4f",
+        darkslategrey: "2f4f4f",
+        darkturquoise: "00ced1",
+        darkviolet: "9400d3",
+        deeppink: "ff1493",
+        deepskyblue: "00bfff",
+        dimgray: "696969",
+        dimgrey: "696969",
+        dodgerblue: "1e90ff",
+        firebrick: "b22222",
+        floralwhite: "fffaf0",
+        forestgreen: "228b22",
+        fuchsia: "f0f",
+        gainsboro: "dcdcdc",
+        ghostwhite: "f8f8ff",
+        gold: "ffd700",
+        goldenrod: "daa520",
+        gray: "808080",
+        green: "008000",
+        greenyellow: "adff2f",
+        grey: "808080",
+        honeydew: "f0fff0",
+        hotpink: "ff69b4",
+        indianred: "cd5c5c",
+        indigo: "4b0082",
+        ivory: "fffff0",
+        khaki: "f0e68c",
+        lavender: "e6e6fa",
+        lavenderblush: "fff0f5",
+        lawngreen: "7cfc00",
+        lemonchiffon: "fffacd",
+        lightblue: "add8e6",
+        lightcoral: "f08080",
+        lightcyan: "e0ffff",
+        lightgoldenrodyellow: "fafad2",
+        lightgray: "d3d3d3",
+        lightgreen: "90ee90",
+        lightgrey: "d3d3d3",
+        lightpink: "ffb6c1",
+        lightsalmon: "ffa07a",
+        lightseagreen: "20b2aa",
+        lightskyblue: "87cefa",
+        lightslategray: "789",
+        lightslategrey: "789",
+        lightsteelblue: "b0c4de",
+        lightyellow: "ffffe0",
+        lime: "0f0",
+        limegreen: "32cd32",
+        linen: "faf0e6",
+        magenta: "f0f",
+        maroon: "800000",
+        mediumaquamarine: "66cdaa",
+        mediumblue: "0000cd",
+        mediumorchid: "ba55d3",
+        mediumpurple: "9370db",
+        mediumseagreen: "3cb371",
+        mediumslateblue: "7b68ee",
+        mediumspringgreen: "00fa9a",
+        mediumturquoise: "48d1cc",
+        mediumvioletred: "c71585",
+        midnightblue: "191970",
+        mintcream: "f5fffa",
+        mistyrose: "ffe4e1",
+        moccasin: "ffe4b5",
+        navajowhite: "ffdead",
+        navy: "000080",
+        oldlace: "fdf5e6",
+        olive: "808000",
+        olivedrab: "6b8e23",
+        orange: "ffa500",
+        orangered: "ff4500",
+        orchid: "da70d6",
+        palegoldenrod: "eee8aa",
+        palegreen: "98fb98",
+        paleturquoise: "afeeee",
+        palevioletred: "db7093",
+        papayawhip: "ffefd5",
+        peachpuff: "ffdab9",
+        peru: "cd853f",
+        pink: "ffc0cb",
+        plum: "dda0dd",
+        powderblue: "b0e0e6",
+        purple: "800080",
+        rebeccapurple: "663399",
+        red: "f00",
+        rosybrown: "bc8f8f",
+        royalblue: "4169e1",
+        saddlebrown: "8b4513",
+        salmon: "fa8072",
+        sandybrown: "f4a460",
+        seagreen: "2e8b57",
+        seashell: "fff5ee",
+        sienna: "a0522d",
+        silver: "c0c0c0",
+        skyblue: "87ceeb",
+        slateblue: "6a5acd",
+        slategray: "708090",
+        slategrey: "708090",
+        snow: "fffafa",
+        springgreen: "00ff7f",
+        steelblue: "4682b4",
+        tan: "d2b48c",
+        teal: "008080",
+        thistle: "d8bfd8",
+        tomato: "ff6347",
+        turquoise: "40e0d0",
+        violet: "ee82ee",
+        wheat: "f5deb3",
+        white: "fff",
+        whitesmoke: "f5f5f5",
+        yellow: "ff0",
+        yellowgreen: "9acd32"
+      },
+          S = h.hexNames = function (e) {
+        var t = {};
+
+        for (var a in e) {
+          e.hasOwnProperty(a) && (t[e[a]] = a);
+        }
+
+        return t;
+      }(C);
+
+      function M(e) {
+        return e = parseFloat(e), (isNaN(e) || e < 0 || 1 < e) && (e = 1), e;
+      }
+
+      function z(e, t) {
+        var a;
+        "string" == typeof (a = e) && -1 != a.indexOf(".") && 1 === parseFloat(a) && (e = "100%");
+        var o,
+            r = "string" == typeof (o = e) && -1 != o.indexOf("%");
+        return e = u(t, f(0, parseFloat(e))), r && (e = parseInt(e * t, 10) / 100), c.abs(e - t) < 1e-6 ? 1 : e % t / parseFloat(t);
+      }
+
+      function j(e) {
+        return u(1, f(0, e));
+      }
+
+      function A(e) {
+        return parseInt(e, 16);
+      }
+
+      function R(e) {
+        return 1 == e.length ? "0" + e : "" + e;
+      }
+
+      function F(e) {
+        return e <= 1 && (e = 100 * e + "%"), e;
+      }
+
+      var H,
+          L,
+          O,
+          Q = (L = "[\\s|\\(]+(" + (H = "(?:[-\\+]?\\d*\\.\\d+%?)|(?:[-\\+]?\\d+%?)") + ")[,|\\s]+(" + H + ")[,|\\s]+(" + H + ")\\s*\\)?", O = "[\\s|\\(]+(" + H + ")[,|\\s]+(" + H + ")[,|\\s]+(" + H + ")[,|\\s]+(" + H + ")\\s*\\)?", {
+        rgb: new RegExp("rgb" + L),
+        rgba: new RegExp("rgba" + O),
+        hsl: new RegExp("hsl" + L),
+        hsla: new RegExp("hsla" + O),
+        hsv: new RegExp("hsv" + L),
+        hsva: new RegExp("hsva" + O),
+        hex3: /^([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/,
+        hex6: /^([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/,
+        hex8: /^([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/
+      });
+      window.tinycolor = h;
+    }(), Ne(function () {
+      Ne.fn.spectrum.load && Ne.fn.spectrum.processNativeColorInputs();
+    });
+  }), jQuery.spectrum.localization.ar = {
+    cancelText: "إلغاء",
+    chooseText: "إختار",
+    clearText: "إرجاع الألوان على ما كانت",
+    noColorSelectedText: "لم تختار أي لون",
+    togglePaletteMoreText: "أكثر",
+    togglePaletteLessText: "أقل"
+  }, jQuery.spectrum.localization.ca = {
+    cancelText: "Cancel·lar",
+    chooseText: "Escollir",
+    clearText: "Esborrar color seleccionat",
+    noColorSelectedText: "Cap color seleccionat",
+    togglePaletteMoreText: "Més",
+    togglePaletteLessText: "Menys"
+  }, jQuery.spectrum.localization.cs = {
+    cancelText: "zrušit",
+    chooseText: "vybrat",
+    clearText: "Resetovat výběr barev",
+    noColorSelectedText: "Žádná barva nebyla vybrána",
+    togglePaletteMoreText: "více",
+    togglePaletteLessText: "méně"
+  }, jQuery.spectrum.localization.de = {
+    cancelText: "Abbrechen",
+    chooseText: "Wählen",
+    clearText: "Farbauswahl zurücksetzen",
+    noColorSelectedText: "Keine Farbe ausgewählt",
+    togglePaletteMoreText: "Mehr",
+    togglePaletteLessText: "Weniger"
+  }, jQuery.spectrum.localization.dk = {
+    cancelText: "annuller",
+    chooseText: "Vælg"
+  }, jQuery.spectrum.localization.es = {
+    cancelText: "Cancelar",
+    chooseText: "Elegir",
+    clearText: "Borrar color seleccionado",
+    noColorSelectedText: "Ningún color seleccionado",
+    togglePaletteMoreText: "Más",
+    togglePaletteLessText: "Menos"
+  }, jQuery.spectrum.localization.et = {
+    cancelText: "Katkesta",
+    chooseText: "Vali",
+    clearText: "Tühista värvivalik",
+    noColorSelectedText: "Ühtki värvi pole valitud",
+    togglePaletteMoreText: "Rohkem",
+    togglePaletteLessText: "Vähem"
+  }, jQuery.spectrum.localization.fa = {
+    cancelText: "لغو",
+    chooseText: "انتخاب",
+    clearText: "تنظیم مجدد رنگ",
+    noColorSelectedText: "هیچ رنگی انتخاب نشده است!",
+    togglePaletteMoreText: "بیشتر",
+    togglePaletteLessText: "کمتر"
+  }, jQuery.spectrum.localization.fi = {
+    cancelText: "Kumoa",
+    chooseText: "Valitse"
+  }, jQuery.spectrum.localization.fr = {
+    cancelText: "Annuler",
+    chooseText: "Valider",
+    clearText: "Effacer couleur sélectionnée",
+    noColorSelectedText: "Aucune couleur sélectionnée",
+    togglePaletteMoreText: "Plus",
+    togglePaletteLessText: "Moins"
+  }, jQuery.spectrum.localization.gr = {
+    cancelText: "Ακύρωση",
+    chooseText: "Επιλογή",
+    clearText: "Καθαρισμός επιλεγμένου χρώματος",
+    noColorSelectedText: "Δεν έχει επιλεχθεί κάποιο χρώμα",
+    togglePaletteMoreText: "Περισσότερα",
+    togglePaletteLessText: "Λιγότερα"
+  }, jQuery.spectrum.localization.he = {
+    cancelText: "בטל בחירה",
+    chooseText: "בחר צבע",
+    clearText: "אפס בחירה",
+    noColorSelectedText: "לא נבחר צבע",
+    togglePaletteMoreText: "עוד צבעים",
+    togglePaletteLessText: "פחות צבעים"
+  }, jQuery.spectrum.localization.hr = {
+    cancelText: "Odustani",
+    chooseText: "Odaberi",
+    clearText: "Poništi odabir",
+    noColorSelectedText: "Niti jedna boja nije odabrana",
+    togglePaletteMoreText: "Više",
+    togglePaletteLessText: "Manje"
+  }, jQuery.spectrum.localization.hu = {
+    cancelText: "Mégsem",
+    chooseText: "Mentés",
+    clearText: "A színválasztás visszaállítása",
+    noColorSelectedText: "Nincs szín kijelölve",
+    togglePaletteMoreText: "Több",
+    togglePaletteLessText: "Kevesebb"
+  }, jQuery.spectrum.localization.id = {
+    cancelText: "Batal",
+    chooseText: "Pilih",
+    clearText: "Hapus Pilihan Warna",
+    noColorSelectedText: "Warna Tidak Dipilih",
+    togglePaletteMoreText: "tambah",
+    togglePaletteLessText: "kurangi"
+  }, jQuery.spectrum.localization.it = {
+    cancelText: "annulla",
+    chooseText: "scegli",
+    clearText: "Annulla selezione colore",
+    noColorSelectedText: "Nessun colore selezionato"
+  }, jQuery.spectrum.localization.ja = {
+    cancelText: "中止",
+    chooseText: "選択"
+  }, jQuery.spectrum.localization.ko = {
+    cancelText: "취소",
+    chooseText: "선택",
+    clearText: "선택 초기화",
+    noColorSelectedText: "선택된 색상 없음",
+    togglePaletteMoreText: "더보기",
+    togglePaletteLessText: "줄이기"
+  }, jQuery.spectrum.localization.lt = {
+    cancelText: "Atšaukti",
+    chooseText: "Pasirinkti",
+    clearText: "Išvalyti pasirinkimą",
+    noColorSelectedText: "Spalva nepasirinkta",
+    togglePaletteMoreText: "Daugiau",
+    togglePaletteLessText: "Mažiau"
+  }, jQuery.spectrum.localization["nb-no"] = {
+    cancelText: "Avbryte",
+    chooseText: "Velg",
+    clearText: "Tilbakestill",
+    noColorSelectedText: "Farge er ikke valgt",
+    togglePaletteMoreText: "Mer",
+    togglePaletteLessText: "Mindre"
+  }, jQuery.spectrum.localization["nl-nl"] = {
+    cancelText: "Annuleer",
+    chooseText: "Kies",
+    clearText: "Wis kleur selectie",
+    togglePaletteMoreText: "Meer",
+    togglePaletteLessText: "Minder"
+  }, jQuery.spectrum.localization.pl = {
+    cancelText: "Anuluj",
+    chooseText: "Wybierz",
+    clearText: "Usuń wybór koloru",
+    noColorSelectedText: "Nie wybrano koloru",
+    togglePaletteMoreText: "Więcej",
+    togglePaletteLessText: "Mniej"
+  }, jQuery.spectrum.localization["pt-br"] = {
+    cancelText: "Cancelar",
+    chooseText: "Escolher",
+    clearText: "Limpar cor selecionada",
+    noColorSelectedText: "Nenhuma cor selecionada",
+    togglePaletteMoreText: "Mais",
+    togglePaletteLessText: "Menos"
+  }, jQuery.spectrum.localization["pt-pt"] = {
+    cancelText: "Cancelar",
+    chooseText: "Escolher",
+    clearText: "Limpar cor seleccionada",
+    noColorSelectedText: "Nenhuma cor seleccionada",
+    togglePaletteMoreText: "Mais",
+    togglePaletteLessText: "Menos"
+  }, jQuery.spectrum.localization.ru = {
+    cancelText: "Отмена",
+    chooseText: "Выбрать",
+    clearText: "Сбросить",
+    noColorSelectedText: "Цвет не выбран",
+    togglePaletteMoreText: "Ещё",
+    togglePaletteLessText: "Скрыть"
+  }, jQuery.spectrum.localization.sv = {
+    cancelText: "Avbryt",
+    chooseText: "Välj"
+  }, jQuery.spectrum.localization.tr = {
+    cancelText: "iptal",
+    chooseText: "tamam"
+  }, jQuery.spectrum.localization["zh-cn"] = {
+    cancelText: "取消",
+    chooseText: "选择",
+    clearText: "清除",
+    togglePaletteMoreText: "更多选项",
+    togglePaletteLessText: "隐藏",
+    noColorSelectedText: "尚未选择任何颜色"
+  }, jQuery.spectrum.localization["zh-tw"] = {
+    cancelText: "取消",
+    chooseText: "選擇",
+    clearText: "清除",
+    togglePaletteMoreText: "更多選項",
+    togglePaletteLessText: "隱藏",
+    noColorSelectedText: "尚未選擇任何顏色"
+  };
 
   function debugDialogBox () {
-    var _this = this;
+    var _this2 = this;
 
     var $tpl = $(tpl$g);
     $('.game').append($tpl);
@@ -388,7 +1943,7 @@
       var reply = $('.debug__reply').val();
       if (cid === '') _readOnlyError("cid");
 
-      _this.exec(_defineProperty({}, cid, reply));
+      _this2.exec(_defineProperty({}, cid, reply));
     });
     $('.debug__mcexec').on('click', function () {
       var action = $('.debug__mc-exec').val();
@@ -408,7 +1963,7 @@
         }
       };
 
-      _this.exec(plugins);
+      _this2.exec(plugins);
     });
     /**
     - mc-exec:
@@ -416,6 +1971,83 @@
         data: say TEST TEST TEST # give @p dirt 1
         type: player
      */
+
+    /*
+     * delay
+     */
+
+    var _this = this;
+
+    this.on('postload', function () {
+      var _this2$TREE$$root$pac;
+
+      var delay = (_this2$TREE$$root$pac = _this2.TREE.$root["package"]) === null || _this2$TREE$$root$pac === void 0 ? void 0 : _this2$TREE$$root$pac['dialog-box'].delay;
+      $('.debug__delay').val(delay || 0);
+      /**
+       * init color picker
+       */
+
+      setTimeout(function () {
+        $('#debug__color-picker').spectrum({
+          color: _this2.getCurrentCharacter().replyColor
+        });
+      }, 100);
+    }); // _this.TREE.$root.characters[0]
+
+    $('.debug__delay').on('change', function () {
+      _this.$store['dialog-box'].delay = $(this).val();
+    });
+    $('#debug__color-picker').on('change', function () {
+      var value = $(this).val();
+      _this.$store['dialog-box'].character.replyColor = value;
+
+      _this.$store['dialog-box'].update();
+
+      copyTextToClipboard(value);
+    });
+    this.on('dialog-box:startOutputReply', function () {
+      $('#debug__color-picker').spectrum({
+        color: _this2.getCurrentCharacter().replyColor
+      });
+    });
+  }
+  /**
+   * clipboard
+   */
+
+  function fallbackCopyTextToClipboard(text) {
+    var textArea = document.createElement("textarea");
+    textArea.value = text; // Avoid scrolling to bottom
+
+    textArea.style.top = "0";
+    textArea.style.left = "0";
+    textArea.style.position = "fixed";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+      var successful = document.execCommand('copy');
+      var msg = successful ? 'successful' : 'unsuccessful';
+      console.log('Fallback: Copying text command was ' + msg);
+    } catch (err) {
+      console.error('Fallback: Oops, unable to copy', err);
+    }
+
+    document.body.removeChild(textArea);
+  }
+
+  function copyTextToClipboard(text) {
+    if (!navigator.clipboard) {
+      fallbackCopyTextToClipboard(text);
+      return;
+    }
+
+    navigator.clipboard.writeText(text).then(function () {
+      console.log('Async: Copying to clipboard was successful!');
+    }, function (err) {
+      console.error('Async: Could not copy text: ', err);
+    });
   }
 
   var css$v = "#loader {\n  background: black;\n  z-index: 9999;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  color: white;\n  display: none;\n  align-items: center;\n  justify-content: center;\n}\n\n.loader {\n  color: wheat;\n  font-family: Consolas, Menlo, Monaco, monospace;\n  font-weight: bold;\n  font-size: 100px;\n  opacity: 0.8;\n}\n.loader span {\n  display: inline-block;\n  animation: pulse 0.4s alternate infinite ease-in-out;\n}\n.loader span:nth-child(2) {\n  animation-delay: 0.4s;\n}\n\n@keyframes pulse {\n  to {\n    transform: scale(0.8);\n    opacity: 0.5; \n  } \n}\n";
@@ -589,16 +2221,23 @@
     });
   }
 
-  var css$t = ".dialog-box {\n  z-index: 7000;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: none;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.dialog-box__reply-end-point{\n\n  display: inline-block;\n\n}\n.dialog-box__reply-end-point::before{\n  content: '';\n  position: absolute;\n\n  left: 10px;\n  width: 7px;\n  height: 7px;\n  background-color: silver;\n  opacity: 0.7;\n  animation-duration: 0.7s;\n  animation-name: end-point;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}\n@keyframes end-point {\n  from {\n    top: -10px;\n    opacity: 0.1;\n  }\n  to {\n    top: -20px;\n    opacity: 0.7;\n  }\n}\n\n.dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.dialog-box__avatar{\n  margin-top: 15px;\n  min-width: 150px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  display: none;\n}\n.dialog-box__avatar--show{\n  display: block;\n}\n\n.dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n}\n";
+  var css$t = ".dialog-box {\n  z-index: 7000;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: none;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.dialog-box__reply-end-point{\n\n  display: inline-block;\n\n}\n.dialog-box__reply-end-point::before{\n  content: '';\n  position: absolute;\n\n  left: 10px;\n  width: 7px;\n  height: 7px;\n  background-color: silver;\n  opacity: 0.7;\n  animation-duration: 0.7s;\n  animation-name: end-point;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}\n@keyframes end-point {\n  from {\n    top: -10px;\n    opacity: 0.1;\n  }\n  to {\n    top: -20px;\n    opacity: 0.7;\n  }\n}\n\n.dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.dialog-box__avatar{\n  margin-top: 15px;\n  min-width: 150px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  display: none;\n}\n.dialog-box__avatar--show{\n  display: block;\n}\n\n.dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n}\n\n\n";
   n(css$t,{});
 
   var tpl$e = "<div class=\"dialog-box component\">\n  <div class=\"dialog-box__container\">\n        <div class=\"dialog-box__avatar\"></div>\n        <div class=\"dialog-box__reply-wrapper\">\n          <div class=\"dialog-box__name\"></div>\n          <div class=\"dialog-box__reply\"></div>\n        </div>\n  </div>\n</div>";
 
   var dialogBoxImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAADICAYAAAB26ZNJAAABbmlDQ1BpY2MAACiRdZE7SwNBFIU/oxLRSIqkELFIEcUiAVGQlBJBG7VIIvhqks1LyCbLboIEW8HGQrAQbXwV/gNtBVsFQVAEESt/gK9GwnrHDSRIMsvs/Tgz5zJzBlxzBU23usZAL5bN2Gw0sLS8EnC/4cKPjwiepGYZ8/GZBG3H9wMdqt6HVa/2+1qOvnTG0qCjR3hSM8yy8JTw3EbZULwj7NfyybTwsXDIlAMK3yg95fCr4pzDn4rNRGwaXKpnINfEqSbW8qYuPCoc1AsVrX4edRNPprgYlzoocwiLGLNECZCiwjoFyoSlFiWz1r6xP98CJfFo8jeoYoojR168IVEr0jUjNSt6Rr4CVZX7/zyt7MS4090The4X2/4YBvce1HZt++fEtmun0PkMV8WGvyQ5Rb5E321owSPwbsHFdUNL7cPlNgw8GUkz+Sd1ynRls/B+Dv3L4LuD3lUnq/o6Z4+Q2JQnuoWDQxiR/d61XxVkaBT4cFhYAAAACXBIWXMAAArwAAAK8AFCrDSYAAAFAUlEQVR4Xu3YMQHAIBDAwKf+pSEKCcwld3MUZM3MHgAAAOBp3y0AAAAA/s8AAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDuHwAlzNu7SaAAAAAElFTkSuQmCC";
 
+  var _reply = /*#__PURE__*/new WeakMap();
+
   var DialogBox = /*#__PURE__*/function () {
     function DialogBox(param) {
       _classCallCheck(this, DialogBox);
+
+      _classPrivateFieldInitSpec(this, _reply, {
+        writable: true,
+        value: ''
+      });
 
       this.$vnjs = param.$vnjs;
       /*Tags*/
@@ -628,19 +2267,29 @@
     }
 
     _createClass(DialogBox, [{
+      key: "update",
+      value: function update() {
+        this.print(this.character, _classPrivateFieldGet(this, _reply));
+      }
+    }, {
       key: "print",
       value: function print(character) {
         var reply = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
         this.reset();
-        this.character = character; //проверяем сущесвуют ли внутри реплики ссылки на персонажей
+        this.character = character;
 
-        this.reply = this.replaceCharacterLink(reply); // Если скорость вывода символов равна нулю, то строка не разбивается на символы
+        _classPrivateFieldSet(this, _reply, reply); //проверяем сущесвуют ли внутри реплики ссылки на персонажей
+
+
+        this.reply = this.replaceCharacterLink(_classPrivateFieldGet(this, _reply)); // Если скорость вывода символов равна нулю, то строка не разбивается на символы
 
         if (this.delay > 0) {
           this.replyOutputBySingleLetter();
         } else {
           this.outputToHTML();
         }
+
+        this.$vnjs.emit('dialog-box:print');
       }
       /**
        * Посимвольный вывод текста
@@ -778,12 +2427,15 @@
       value: function startOutputReply() {
         var _this = this;
 
-        // получаем все теги в которые обёрныты отдельные символы
+        this.$vnjs.emit('dialog-box:startOutputReply'); // получаем все теги в которые обёрныты отдельные символы
+
         var letters = this.replyTag.querySelectorAll('.' + this.classNameLetter);
         var len = letters.length; // отображаем каждый символ по отдельности
 
         this.interval = setInterval(function () {
           if (letters.length > 0) {
+            _this.$vnjs.emit('dialog-box:character', letters[_this.index].innerText);
+
             letters[_this.index++].style.opacity = 1;
           }
 
@@ -800,6 +2452,7 @@
         }
 
         this.reset();
+        this.$vnjs.emit('dialog-box:endOutputReply');
       }
     }, {
       key: "clear",
@@ -816,6 +2469,8 @@
         } else {
           this.dialogBoxTag.style['pointer-events'] = 'all';
         }
+
+        this.$vnjs.emit('dialog-box:disabled', !flag);
       }
     }, {
       key: "reset",
@@ -853,6 +2508,7 @@
       classNameCharacterNameInReply: 'dialog-box__reply-character-name',
       classNameEndPoint: 'dialog-box__reply-end-point'
     });
+    this.$store['dialog-box'] = dBox;
     this.on('postload', function () {
       var _this$TREE$$root$pack;
 
@@ -4018,7 +5674,7 @@
       query(str).then(function (res) {
         return console.log(JSON.stringify(res));
       })["catch"](function (err) {
-        return console.log(JSON.stringify(err));
+        return console.error(JSON.stringify(err));
       });
     });
   }
