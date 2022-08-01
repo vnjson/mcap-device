@@ -381,7 +381,6 @@
     ErrorHandler.hideModal();
   });
 
-  var local = 'ru';
   function debug () {
     var _this = this;
 
@@ -390,7 +389,8 @@
       return;
     }
 
-    new ErrorHandler(local);
+    this.current.data.local = 'ru';
+    new ErrorHandler(this.current.data.local);
     this.on('exec', function (ctx) {
       /**
        * Добавляем параметры в URI
@@ -418,7 +418,7 @@
       }
     });
     this.on('error', function (codeError, data) {
-      var message = ErrorHandler.getMessage(local, codeError, data);
+      var message = ErrorHandler.getMessage(_this.current.data.local, codeError, data);
       var path = "".concat(_this.current.sceneName, ".").concat(_this.current.labelName);
       var snippet = ErrorHandler.getSnippetFromCtx(_this.ctx);
       ErrorHandler.showModal(message, path, snippet);

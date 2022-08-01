@@ -8,7 +8,7 @@
   }
 })(typeof global !== "undefined" ? global : this.window || this.global, function (root) {
 
-  'use strict';
+'use strict';
 
 class Vnjson {
   version = '1.8.1';

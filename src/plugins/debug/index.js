@@ -2,15 +2,15 @@ import './style.css'
 
 import ErrorHandler from './ErrorHandler.js';
 
-const local = 'ru';
+
 
 export default function  (){
 	if(!this.debug) {
         $('body').attr('oncontextmenu', 'return false;')
         return
     }
-            
-    new ErrorHandler(local);  
+    this.current.data.local = 'ru';        
+    new ErrorHandler(this.current.data.local);  
   
     this.on('exec', ctx=>{
         /**
@@ -39,7 +39,7 @@ export default function  (){
 
     this.on('error', (codeError, data)=>{
 
-        const message = ErrorHandler.getMessage(local, codeError, data);
+        const message = ErrorHandler.getMessage(this.current.data.local, codeError, data);
 
         const path = `${this.current.sceneName}.${this.current.labelName}`;
         
