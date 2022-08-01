@@ -5,7 +5,10 @@ import ErrorHandler from './ErrorHandler.js';
 const local = 'ru';
 
 export default function  (){
-	if(!this.debug) return;
+	if(!this.debug) {
+        $('body').attr('oncontextmenu', 'return false;')
+        return
+    }
             
     new ErrorHandler(local);  
   
@@ -50,4 +53,7 @@ export default function  (){
      
         console.log(codes[codeError]);
     })
+
+
+    
 }

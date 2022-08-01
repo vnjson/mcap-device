@@ -116,7 +116,7 @@
       "debug": true,
       "preload": true,
       "dialog-box": {
-        "delay": 25,
+        "delay": 0,
         "endPoint": true
       },
       "publish": {

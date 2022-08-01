@@ -52,17 +52,9 @@ export default function (){
      */
     const _this = this 
     this.on('postload', () => {
-        const delay = this.TREE.$root.package?.['dialog-box'].delay
-        $('.debug__delay').val(delay||0)
-        /**
-         * init color picker
-         */
+        const dBox = this.TREE.$root.package?.['dialog-box']
+        $('.debug__delay').val(dBox?.delay||0)
 
-        setTimeout(()=>{
-            $('#debug__color-picker').spectrum({
-                color: this.getCurrentCharacter().replyColor
-            })
-        }, 100)
     }) 
    // _this.TREE.$root.characters[0]
     $('.debug__delay').on('change', function() {
@@ -70,16 +62,13 @@ export default function (){
     })
     $('#debug__color-picker').on('change', function() {
         const value = $(this).val()
-        _this.$store['dialog-box'].character.replyColor = value
-        _this.$store['dialog-box'].update()
+
         copyTextToClipboard(value);
     })
 
-    this.on('dialog-box:startOutputReply', () => {
-
-        $('#debug__color-picker').spectrum({
-            color: this.getCurrentCharacter().replyColor
-        })
+    $('#debug__color-picker').spectrum({
+      color: '#d8dfe3',
+      type: 'text'
     })
 
 }
