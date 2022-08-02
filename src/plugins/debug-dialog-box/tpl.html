@@ -20,26 +20,30 @@
   <!--img-->
   <div class="debug__controls-center">
         <!--left-->
-        <div class="debug-plugin__topbar">
- 
-                    <select class="debug-plugin__select">
-                        <option value="scene">scene</option>
-                        <option value="left">left</option>
-                        <option value="center">center</option>
-                        <option value="right">right</option>
-                        <option value="leftimg">leftimg</option>
-                        <option value="centerimg">centerimg</option>
-                        <option value="rightimg">rightimg</option>
-                      </select>
-                    <input class="debug__input-text debug-plugin__value" type="text" placeholder="value">
-                    <div class="debug__btn debug-btn--css">css</div>
-                    <div class="debug__btn debug__show-asset"> 
-                        <div class="debug__btn-img"></div>
-                    </div>
-        </div>
-    
-        <textarea class="debug__textarea debug__plugin--css" placeholder="css"></textarea>
+        <div class="debug-plugin__select">
+                <div class="debug-plugin__name debug-plugin__name--active">scene</div>
+                <div class="debug-plugin__name">left</div>
+                <div class="debug-plugin__name">center</div>
+                <div class="debug-plugin__name">right</div>
+                <div class="debug-plugin__name">leftimg</div>
+                <div class="debug-plugin__name">centerimg</div>
+                <div class="debug-plugin__name">rightimg</div>
+         </div>
 
+        <!--right-->
+        <div class="debug-plugin__right">
+            <div class="debug-plugin__topbar">
+
+                <input class="debug__input-text debug-plugin__value" type="text" placeholder="value">
+                <div class="debug__btn debug-btn--css">css</div>
+                <div class="debug__btn debug__show-asset"> 
+                    <div class="debug__btn-img"></div>
+                </div>
+            </div>
+
+            <textarea class="debug__textarea debug__plugin--css" placeholder="css"></textarea>
+
+        </div>
 
   </div>
   <!--right-->

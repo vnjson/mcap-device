@@ -75,28 +75,84 @@ export default function (){
       type: 'text'
     })
     /**
-     * SCENE ASSETS
+     * EXEC PLUGIN
      */
 
     const CSS = `width: 0px
 height: 0px
 left: 0px
 right: 0px`
+    // reset
     const assetsReset = () => {
       $pluginValue.val('')
+    }
+    // formatCSS
+    const formatCSS = (data) => {
+      const splittedData = data.split('\n')
+      const styleParam = {}
+      splittedData.forEach(item=>{
+          const [ key, val ] = item.replaceAll(' ', '').split(':')
+          styleParam[key] = val
+      })
+      return styleParam
     }
     const $css = $('.debug__plugin--css')
     const $pluginName = $('.debug-plugin__select')
     const $pluginValue = $('.debug-plugin__value')
-    
+    /**
+     * кликаем по кнопке css
+     */
     $('.debug-btn--css').on('click', function (){
         $css.text(CSS)
     })
-    $('.debug__show-asset').on('click', function (){
-
-      _this.exec({
-        [ $pluginName.val() ]: $pluginValue.val()
+    /**
+     * выбираем название плагина
+     */
+    let pluginName = 'scene'
+    const resetActivePluginName = () => {
+      $('.debug-plugin__select .debug-plugin__name').each(function (node){
+        $(this).removeClass('debug-plugin__name--active')
       })
+    }
+    $('.debug-plugin__select').on('click', '.debug-plugin__name', function (){
+        resetActivePluginName()
+        $(this).addClass('debug-plugin__name--active')
+        pluginName = $(this).text()
+    })
+    
+
+    $('.debug__show-asset').on('click', function (){
+      
+      let pluginValue =  $pluginValue.val().trim()
+      const cssData = $css.val().trim()
+
+      /**
+       * преобразуем булевые значения
+       */
+     
+      if(pluginValue==='true'){
+          pluginValue = true
+      }
+      if(pluginValue==='false'){
+          pluginValue = false
+      }
+      /**
+       * Выполняем полученные данные
+       */
+      /*
+      ['rightimg', 'leftimg', плагины где есть css]
+      if(cssData!==''){
+        const styleObj = formatCSS (cssData)
+      }
+      else{
+
+      }*/
+      _this.exec({
+        [ pluginName ]: pluginValue
+      })
+      /**
+       * сбрасываем форму ввода
+       */
       assetsReset()
     })
 
