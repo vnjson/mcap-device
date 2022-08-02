@@ -2,6 +2,10 @@
   "$root": {
     "assets": [
       {
+        "name": "ch",
+        "url": "scenes/assets/ch.png"
+      },
+      {
         "name": "paintBoard",
         "url": "scenes/assets/paintBoard.jpg"
       },

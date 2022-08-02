@@ -3,24 +3,53 @@
   <div class="debug__controls-left">
       <div class="debug__controls-btns">
           <input class="debug__input-text debug__character" type="text" value="$" title="character">
-          <div class="debug__delay-wrapper">
-                <div class="debug__delay-img" title="dialog-box delay"></div>
+          <div class="debug__delay-wrapper" title="dialog-box delay">
+                <div class="debug__delay-img" ></div>
                 <input class="debug__input-text debug__delay" type="text">
           </div>
-          <div class="debug__btn debug__inner-reply"> Показать </div>
+          <div class="debug__btn debug__inner-reply" title="Показать "> 
+                <div class="debug__btn-img"></div>
+          </div>
           <div class="vnjson__debug-color-picker">
                 <input id="debug__color-picker" readonly="1"  />
           </div>
 
       </div>
-      <textarea class="debug__textarea debug__reply" placeholder="text"></textarea>
+      <textarea class="debug__textarea debug__reply" placeholder="text" title="Реплика"></textarea>
+  </div>
+  <!--img-->
+  <div class="debug__controls-center">
+        <!--left-->
+        <div class="debug-plugin__topbar">
+ 
+                    <select class="debug-plugin__select">
+                        <option value="scene">scene</option>
+                        <option value="left">left</option>
+                        <option value="center">center</option>
+                        <option value="right">right</option>
+                        <option value="leftimg">leftimg</option>
+                        <option value="centerimg">centerimg</option>
+                        <option value="rightimg">rightimg</option>
+                      </select>
+                    <input class="debug__input-text debug-plugin__value" type="text" placeholder="value">
+                    <div class="debug__btn debug-btn--css">css</div>
+                    <div class="debug__btn debug__show-asset"> 
+                        <div class="debug__btn-img"></div>
+                    </div>
+        </div>
+    
+        <textarea class="debug__textarea debug__plugin--css" placeholder="css"></textarea>
+
+
   </div>
   <!--right-->
   <div class="debug__controls-right">
       <div class="debug__controls-btns">
           <input class="debug__input-text debug__mc-exec" type="text" value="executeCMD">
           <span class="debug__checkbox-wrapper"><input class="debug__mcexec-type" type="checkbox" checked/>server</span>
-          <div class="debug__btn debug__mcexec"> Выполнить </div>
+          <div class="debug__btn  debug__mcexec" title="Выполнить"> 
+                <div class="debug__btn-img"></div> 
+          </div>
       </div>
       <textarea class="debug__textarea debug__mcexec-data" placeholder="data"></textarea>
   </div>

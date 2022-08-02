@@ -3,8 +3,12 @@ import tpl from "./tpl.html"
 /** 
  * color picker
  */
-import './color-picker/color.css'
-import './color-picker/color.js'
+import './lib/color-picker/color.css'
+import './lib/color-picker/color.js'
+import copyTextToClipboard from './clipboard.js'
+
+
+
 let cid = '$'
 export default function (){
   
@@ -12,7 +16,7 @@ export default function (){
   $('.game').append($tpl)
 
   $('.debug__inner-reply').on('click', () => {
-      const cid = $('.debug__character').val()
+      cid = $('.debug__character').val()
       const reply = $('.debug__reply').val()
       if(cid==='') cid = '$';
 
@@ -70,47 +74,34 @@ export default function (){
       color: '#d8dfe3',
       type: 'text'
     })
+    /**
+     * SCENE ASSETS
+     */
 
+    const CSS = `width: 0px
+height: 0px
+left: 0px
+right: 0px`
+    const assetsReset = () => {
+      $pluginValue.val('')
+    }
+    const $css = $('.debug__plugin--css')
+    const $pluginName = $('.debug-plugin__select')
+    const $pluginValue = $('.debug-plugin__value')
+    
+    $('.debug-btn--css').on('click', function (){
+        $css.text(CSS)
+    })
+    $('.debug__show-asset').on('click', function (){
+
+      _this.exec({
+        [ $pluginName.val() ]: $pluginValue.val()
+      })
+      assetsReset()
+    })
+
+    
 }
 
-/**
- * clipboard
- */
-
-    function fallbackCopyTextToClipboard(text) {
-        var textArea = document.createElement("textarea");
-        textArea.value = text;
-        
-        // Avoid scrolling to bottom
-        textArea.style.top = "0";
-        textArea.style.left = "0";
-        textArea.style.position = "fixed";
-      
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-      
-        try {
-          var successful = document.execCommand('copy');
-          var msg = successful ? 'successful' : 'unsuccessful';
-          console.log('Fallback: Copying text command was ' + msg);
-        } catch (err) {
-          console.error('Fallback: Oops, unable to copy', err);
-        }
-      
-        document.body.removeChild(textArea);
-      }
-      function copyTextToClipboard(text) {
-        if (!navigator.clipboard) {
-          fallbackCopyTextToClipboard(text);
-          return;
-        }
-        navigator.clipboard.writeText(text).then(function() {
-          console.log('Async: Copying to clipboard was successful!');
-        }, function(err) {
-          console.error('Async: Could not copy text: ', err);
-        });
-      }
-      
 
     
