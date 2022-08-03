@@ -2,7 +2,7 @@ import "./style.css"
 import tpl from "./tpl.html"
 import dialogBoxImage from './assets/dialog-box.png'
 import DialogBox from './DialogBox.js'
-import Info from './Info.js'
+
 
 export default function (){
   const $tpl = $(tpl);
@@ -10,19 +10,7 @@ export default function (){
   this.$store.$screen.append($tpl);
   // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
   $tpl.find('.dialog-box__reply-wrapper').on('mousedown', e => this.next())
-  /**
-   * INFO
-   */
-  const info = new Info( $tpl.find('.dialog-box__info') )
-  this.on('dialog-box:print', () => info.close() )    
-  $tpl.find('.dialog-box__avatar').on('mousedown', () => {
-      if(info.openModal){
-        info.close()
-      }
-      else{
-        info.open()
-      }
-  })
+
   /**
    * DialogBox
    */
@@ -64,21 +52,15 @@ export default function (){
         if(param.nameColor) character.nameColor = param.nameColor
         if(param.replyColor) character.replyColor = param.replyColor
         if(param.avatar) character.avatar = param.avatar
-        if(param.info) {
-          character.info = param.info 
-          info.print(param.info)
-        }
-        if(param.borderColor){
-          //3px solid red
-        }
+ 
         dBox.print(character, String(param.reply))
       }
       else{
         dBox.print(character, String(param))
       }
-      //info.print(param.info)
+
       
-  });
+  })
   /**
    * SHOW HIDE DIALOG-BOX
    */

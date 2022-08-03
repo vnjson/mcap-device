@@ -6,25 +6,35 @@
 
 
 - scene: paintBoardWhite
-  $: Планшете выключить контекстное меню при отключенном debug  
-  
+  $: Планшете выключить контекстное меню 
+
+
 - $:
     reply: test
-    info: test test test tset test
+    info: 1111111111 1111111111111
     avatar: ch
     nameColor: '#c90076'
     replyColor: '#ff0497'
     borderColor: red
 
+- $:
+    reply: 4444
+    info: 4444
+    borderColor: '#17fa58'
+    
 - al: 
     reply: Test 1111111 1111111 11111111 1111111        333
-    info: TEXT TEXT INFO INFO
+    info: 9999999999 99999999999999
 
 - al: 
     reply: text text text
     nameColor: '#7cf732'
     replyColor: '#33f732' 
     avatar: p1
+    info: 88888888 88888888888888 88888888 88888888888888 88888888 88888888888888
+          88888888 88888888888 88888888888 888888888 8888888888888 88888888
+          888888 88888888 88888888888888
+
   hands: true
 
 - al: 
@@ -32,5 +42,7 @@
     nameColor: brown
     replyColor: silver
     avatar: ev
+    borderColor: 'cyan'
+    info: 77777 7777777777 77777777777
 
 - jump: $init

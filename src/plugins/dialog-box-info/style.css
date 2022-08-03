@@ -1,0 +1,42 @@
+
+
+.dialog-box__avatar{
+    border: 3px solid transparent;
+    border-radius: 4px;
+/*
+    animation-name: movingBox;
+
+    animation-duration: 2000ms;
+
+    animation-iteration-count: infinite;
+*/
+}
+
+.dialog-box__info{
+    position: absolute;
+    bottom: 205px;
+    left: 5px;
+    min-width: 200px;
+    max-width: 400px;
+ 
+    border-radius: 6px;
+    background-color: rgba(0,0,0,0.8);
+    color: gray;
+    display: none;
+    border: 4px solid gray;
+    padding: 5px;
+
+
+  }
+  /*
+  @keyframes movingBox {
+    0% {
+      border-color: yellow;
+    }
+    50% {
+        border-color: green;
+    }
+    100% {
+      border-color: yellow;
+    }
+  }*/

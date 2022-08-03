@@ -51,7 +51,7 @@ import blocks             from './plugins/blocks/index.js'
 import staticApp          from './plugins/static-app/index.js'
 import HUD                from './plugins/hud/index.js'
 import mcExec             from './plugins/mc-exec/index.js'
-
+import dialogBoxInfo      from './plugins/dialog-box-info/index.js'
 
 export default function(){
 
@@ -106,7 +106,7 @@ export default function(){
   this.use(staticApp)
   this.use(HUD)
   this.use(mcExec)
-  
+  this.use(dialogBoxInfo)
   this.on('next', ()=>{
       setTimeout(()=>this.next(), 10)
   })
