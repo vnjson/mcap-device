@@ -7,10 +7,30 @@
 
 - scene: paintBoardWhite
   $: Планшете выключить контекстное меню при отключенном debug  
+  
+- $:
+    reply: test
+    info: test test test tset test
+    avatar: ch
+    nameColor: '#c90076'
+    replyColor: '#ff0497'
+    borderColor: red
 
+- al: 
+    reply: Test 1111111 1111111 11111111 1111111        333
+    info: TEXT TEXT INFO INFO
 
-- al: Test 1111111 1111111 11111111 1111111        333
+- al: 
+    reply: text text text
+    nameColor: '#7cf732'
+    replyColor: '#33f732' 
+    avatar: p1
+  hands: true
 
-
+- al: 
+    reply: ---------- - ------
+    nameColor: brown
+    replyColor: silver
+    avatar: ev
 
 - jump: $init

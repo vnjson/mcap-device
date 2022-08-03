@@ -2280,10 +2280,10 @@
     });
   }
 
-  var css$t = ".dialog-box {\n  z-index: 7000;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: none;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.dialog-box__reply-end-point{\n\n  display: inline-block;\n\n}\n.dialog-box__reply-end-point::before{\n  content: '';\n  position: absolute;\n\n  left: 10px;\n  width: 7px;\n  height: 7px;\n  background-color: silver;\n  opacity: 0.7;\n  animation-duration: 0.7s;\n  animation-name: end-point;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}\n@keyframes end-point {\n  from {\n    top: -10px;\n    opacity: 0.1;\n  }\n  to {\n    top: -20px;\n    opacity: 0.7;\n  }\n}\n\n.dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.dialog-box__avatar{\n  margin-top: 15px;\n  min-width: 150px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  display: none;\n}\n.dialog-box__avatar--show{\n  display: block;\n}\n\n.dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n}\n\n\n";
+  var css$t = ".dialog-box {\n  z-index: 7000;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: none;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.dialog-box__reply-end-point{\n\n  display: inline-block;\n\n}\n.dialog-box__reply-end-point::before{\n  content: '';\n  position: absolute;\n\n  left: 10px;\n  width: 7px;\n  height: 7px;\n  background-color: silver;\n  opacity: 0.7;\n  animation-duration: 0.7s;\n  animation-name: end-point;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}\n@keyframes end-point {\n  from {\n    top: -10px;\n    opacity: 0.1;\n  }\n  to {\n    top: -20px;\n    opacity: 0.7;\n  }\n}\n\n.dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.dialog-box__avatar{\n  margin-top: 15px;\n  min-width: 150px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  display: none;\n}\n.dialog-box__avatar--show{\n  display: block;\n}\n.dialog-box__info{\n  position: absolute;\n  top: -75px;\n  left: 5px;\n  min-width: 200px;\n  max-width: 400px;\n  height: 70px;;\n  border-radius: 6px;\n  background-color: rgba(0,0,0,0.8);\n  color: gray;\n  display: none;\n  border: 4px solid gray;\n  padding: 5px;\n}\n\n\n.dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n  min-width: 75%;\n}\n\n\n";
   n(css$t,{});
 
-  var tpl$e = "<div class=\"dialog-box component\">\n  <div class=\"dialog-box__container\">\n        <div class=\"dialog-box__avatar\"></div>\n        <div class=\"dialog-box__reply-wrapper\">\n          <div class=\"dialog-box__name\"></div>\n          <div class=\"dialog-box__reply\"></div>\n        </div>\n  </div>\n</div>";
+  var tpl$e = "<div class=\"dialog-box component\">\n  <div class=\"dialog-box__info\"></div>\n  <div class=\"dialog-box__container\">\n        <div class=\"dialog-box__avatar\"></div>\n        <div class=\"dialog-box__reply-wrapper\">\n          <div class=\"dialog-box__name\"></div>\n          <div class=\"dialog-box__reply\"></div>\n        </div>\n  </div>\n</div>";
 
   var dialogBoxImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAADICAYAAAB26ZNJAAABbmlDQ1BpY2MAACiRdZE7SwNBFIU/oxLRSIqkELFIEcUiAVGQlBJBG7VIIvhqks1LyCbLboIEW8HGQrAQbXwV/gNtBVsFQVAEESt/gK9GwnrHDSRIMsvs/Tgz5zJzBlxzBU23usZAL5bN2Gw0sLS8EnC/4cKPjwiepGYZ8/GZBG3H9wMdqt6HVa/2+1qOvnTG0qCjR3hSM8yy8JTw3EbZULwj7NfyybTwsXDIlAMK3yg95fCr4pzDn4rNRGwaXKpnINfEqSbW8qYuPCoc1AsVrX4edRNPprgYlzoocwiLGLNECZCiwjoFyoSlFiWz1r6xP98CJfFo8jeoYoojR168IVEr0jUjNSt6Rr4CVZX7/zyt7MS4090The4X2/4YBvce1HZt++fEtmun0PkMV8WGvyQ5Rb5E321owSPwbsHFdUNL7cPlNgw8GUkz+Sd1ynRls/B+Dv3L4LuD3lUnq/o6Z4+Q2JQnuoWDQxiR/d61XxVkaBT4cFhYAAAACXBIWXMAAArwAAAK8AFCrDSYAAAFAUlEQVR4Xu3YMQHAIBDAwKf+pSEKCcwld3MUZM3MHgAAAOBp3y0AAAAA/s8AAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDuHwAlzNu7SaAAAAAElFTkSuQmCC";
 
@@ -2334,6 +2334,7 @@
       key: "print",
       value: function print(character) {
         var reply = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+        this.$vnjs.emit('dialog-box:print');
         this.reset();
         this.character = character;
 
@@ -2347,8 +2348,6 @@
         } else {
           this.outputToHTML();
         }
-
-        this.$vnjs.emit('dialog-box:print');
       }
       /**
        * Посимвольный вывод текста
@@ -2486,8 +2485,7 @@
       value: function startOutputReply() {
         var _this = this;
 
-        this.$vnjs.emit('dialog-box:startOutputReply'); // получаем все теги в которые обёрныты отдельные символы
-
+        // получаем все теги в которые обёрныты отдельные символы
         var letters = this.replyTag.querySelectorAll('.' + this.classNameLetter);
         var len = letters.length; // отображаем каждый символ по отдельности
 
@@ -2543,6 +2541,49 @@
     return DialogBox;
   }();
 
+  // character.info
+  var Info = /*#__PURE__*/function () {
+    function Info($node) {
+      _classCallCheck(this, Info);
+
+      _defineProperty(this, "openModal", false);
+
+      this.$node = $node;
+      this.mount();
+    }
+
+    _createClass(Info, [{
+      key: "mount",
+      value: function mount() {
+        var _this = this;
+
+        this.$node.on('mousedown', function () {
+          return _this.close();
+        });
+      }
+    }, {
+      key: "open",
+      value: function open() {
+        if (this.$node.text() === '') return;
+        this.$node.fadeIn(200);
+        this.openModal = true;
+      }
+    }, {
+      key: "close",
+      value: function close() {
+        this.$node.fadeOut(200);
+        this.openModal = false;
+      }
+    }, {
+      key: "print",
+      value: function print(data) {
+        this.$node.html(data);
+      }
+    }]);
+
+    return Info;
+  }();
+
   function dialogBox () {
     var _this = this;
 
@@ -2550,9 +2591,28 @@
     $tpl.css('background-image', "url(".concat(dialogBoxImage, ")"));
     this.$store.$screen.append($tpl); // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
 
-    $tpl.on('mousedown', function (e) {
+    $tpl.find('.dialog-box__reply-wrapper').on('mousedown', function (e) {
       return _this.next();
     });
+    /**
+     * INFO
+     */
+
+    var info = new Info($tpl.find('.dialog-box__info'));
+    this.on('dialog-box:print', function () {
+      return info.close();
+    });
+    $tpl.find('.dialog-box__avatar').on('mousedown', function () {
+      if (info.openModal) {
+        info.close();
+      } else {
+        info.open();
+      }
+    });
+    /**
+     * DialogBox
+     */
+
     var dBox = new DialogBox({
       $vnjs: $vnjs,
       delay: 0,
@@ -2568,6 +2628,10 @@
       classNameEndPoint: 'dialog-box__reply-end-point'
     });
     this.$store['dialog-box'] = dBox;
+    /**
+     * DELAY 
+     */
+
     this.on('postload', function () {
       var _this$TREE$$root$pack;
 
@@ -2579,9 +2643,33 @@
         dBox.endPoint = conf.endPoint || dBox.endPoint;
       }
     });
-    this.on('character', function (character, reply) {
-      dBox.print(character, reply);
+    /**
+     * CHARACTER native event
+     */
+
+    this.on('character', function (character, param) {
+      if (_typeof(param) === 'object') {
+        if (param.nameColor) character.nameColor = param.nameColor;
+        if (param.replyColor) character.replyColor = param.replyColor;
+        if (param.avatar) character.avatar = param.avatar;
+
+        if (param.info) {
+          character.info = param.info;
+          info.print(param.info);
+        }
+
+        if (param.borderColor) ;
+
+        dBox.print(character, String(param.reply));
+      } else {
+        dBox.print(character, String(param));
+      } //info.print(param.info)
+
     });
+    /**
+     * SHOW HIDE DIALOG-BOX
+     */
+
     this.on('dialog-box', function (param) {
       if (param === true) {
         dBox.disabled(false);

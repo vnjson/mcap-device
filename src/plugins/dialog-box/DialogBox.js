@@ -31,6 +31,7 @@ class DialogBox {
     this.print(this.character, this.#reply)
   }
   print (character, reply=''){
+    this.$vnjs.emit('dialog-box:print')
     this.reset();
     this.character = character;
     this.#reply = reply
@@ -43,7 +44,7 @@ class DialogBox {
     else{
       this.outputToHTML();
     }
-    this.$vnjs.emit('dialog-box:print')
+
   }
   /**
    * Посимвольный вывод текста
@@ -161,7 +162,8 @@ class DialogBox {
    * И меняем им прозрачность на 1. Эмулируя посимвольный вывод текста.
    */
   startOutputReply (){
-    this.$vnjs.emit('dialog-box:startOutputReply')
+
+
     // получаем все теги в которые обёрныты отдельные символы
     let letters = this.replyTag.querySelectorAll('.'+this.classNameLetter );
     let len = letters.length;

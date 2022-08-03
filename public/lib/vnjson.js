@@ -114,14 +114,14 @@ class Vnjson {
 
           }
 
-          this.TREE.$root.characters.map(character=>{
+          this.TREE.$root.characters.map(character => {
             /**
              * Навешиваем слушатель на id персонажа
              * 
              */
-            this.on(character.id, (reply)=>{
+            this.on(character.id, (reply) => {
               this.current.character = character;
-              this.emit('character', character, String(reply) );
+              this.emit('character', character, reply );
             })
 
           });
