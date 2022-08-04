@@ -2256,23 +2256,21 @@
   function screen () {
     var _this = this;
 
-    var click = false;
     this.$store.$screen = $('#screen');
-    this.on('screen', function (id) {
-      if (id.onClick === true) {
-        /**
-         * При повторном вызове плагина с параметром onClick почему то dialog-box
-         * не успевает скрыться. Срабатывает слушатель click
-         */
-        setTimeout(function () {
-          click = true;
-        }, 300);
+    var click = false;
+    this.on('screen', function (flag) {
+      _this.emit('screen:click', flag);
+
+      click = flag;
+
+      if (click) {
+        _this.$store.$screen.css('cursor', 'pointer');
+      } else {
+        _this.$store.$screen.css('cursor', 'unset');
       }
     });
     this.$store.$screen.on('click', function () {
       if (click) {
-        click = false;
-
         _this.exec({
           next: true
         });
@@ -2604,7 +2602,13 @@
      */
 
     this.on('dialog-box', function (param) {
-      if (param === true) {
+      if (_typeof(param) === 'object') {
+        for (var key in param) {
+          dBox[key] = param[key];
+        }
+
+        $tpl.show();
+      } else if (param === true) {
         dBox.disabled(false);
         $tpl.show();
       } else if (param === 'clear') {
@@ -2615,6 +2619,15 @@
       } else {
         $tpl.hide();
       }
+    });
+    /**
+     * Когда screen: true, то dialog-box нужно скрыть
+     */
+
+    this.on('screen:click', function (flag) {
+      _this.exec({
+        'dialog-box': !flag
+      });
     });
   }
 
@@ -3211,7 +3224,10 @@
 
         if (_typeof(id) === 'object') {
           $left.attr('src', _this.getAssetByName(id.name).url);
-          $left.css(id.css);
+
+          if (id.css) {
+            $left.css(id.css);
+          }
         } else {
           $left.attr('src', _this.getAssetByName(id).url);
         }
@@ -3227,7 +3243,10 @@
 
         if (_typeof(id) === 'object') {
           $center.attr('src', _this.getAssetByName(id.name).url);
-          $center.css(id.css);
+
+          if (id.css) {
+            $center.css(id.css);
+          }
         } else {
           $center.attr('src', _this.getAssetByName(id).url);
         }
@@ -3243,7 +3262,10 @@
 
         if (_typeof(id) === 'object') {
           $right.attr('src', _this.getAssetByName(id.name).url);
-          $right.css(id.css);
+
+          if (id.css) {
+            $right.css(id.css);
+          }
         } else {
           $right.attr('src', _this.getAssetByName(id).url);
         }

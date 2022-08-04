@@ -1,6 +1,7 @@
 
 class DialogBox {
   #reply = ''
+
   constructor (param){
       this.$vnjs = param.$vnjs;
       /*Tags*/
@@ -25,8 +26,8 @@ class DialogBox {
       this.letterExlude = false;
       // текущий символ
       this.letter;
-
   }
+
   update (){
     this.print(this.character, this.#reply)
   }

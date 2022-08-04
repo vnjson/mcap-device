@@ -4,30 +4,39 @@
   audio: false
   next: true
 
-
-- scene: paintBoardWhite
+- screen: true
+  scene: paintBoardWhite
   $: Планшете выключить контекстное меню 
 
+- scene: 6b3abcbf393
 
-- $:
-    reply: test
-    info: 1111111111 1111111111111
-    avatar: ch
-    nameColor: '#c90076'
-    replyColor: '#ff0497'
-    borderColor: red
+- scene: 1337adf11d70
 
-- $:
-    reply: 4444
+- scene: c71c347ae
+
+
+- dialog-box:
+    delay: 40
+    alpha: 0.1
+    endPoint: true
+  $:
+    reply: 4444 4 4 4 4 4 4
     info: 4444
     borderColor: '#17fa58'
-    
+  screen: false
+  
 - al: 
-    reply: Test 1111111 1111111 11111111 1111111        333
+    reply: mark1 mark1
     info: 9999999999 99999999999999
 
-- al: 
-    reply: text text text
+-  tes test test tes  3 3 3 33333 8 8 8 8 8 8  44 4 4 4 4 4 444 jk jk ljl kl kjj d
+
+
+
+- dialog-box:
+    delay: 0
+  al: 
+    reply:   0 0 0 0 0 0 00 0 0 0 0 0 4 4 4 4 4 4 4 4 4 4
     nameColor: '#7cf732'
     replyColor: '#33f732' 
     avatar: p1
@@ -35,7 +44,11 @@
           88888888 88888888888 88888888888 888888888 8888888888888 88888888
           888888 88888888 88888888888888
 
-  hands: true
+
+
+
+- $: прышжок на mark  
+
 
 - al: 
     reply: ---------- - ------

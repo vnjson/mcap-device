@@ -19,7 +19,9 @@ export default function (){
         $left.hide()
         if(typeof id==='object'){
           $left.attr('src', this.getAssetByName(id.name).url)
-          $left.css(id.css)
+          if(id.css){
+            $left.css(id.css)
+          }
         }
         else{
           $left.attr('src', this.getAssetByName(id).url)
@@ -36,7 +38,10 @@ export default function (){
         $center.hide()
         if(typeof id==='object'){
           $center.attr('src', this.getAssetByName(id.name).url)
-          $center.css(id.css)
+          if(id.css){
+            $center.css(id.css)
+          }
+
         }
         else{
           $center.attr('src', this.getAssetByName(id).url)
@@ -52,7 +57,10 @@ export default function (){
         $right.hide()
         if(typeof id==='object'){
           $right.attr('src', this.getAssetByName(id.name).url)
-          $right.css(id.css)
+          if(id.css){
+            $right.css(id.css)
+          }
+
         }
         else{
           $right.attr('src', this.getAssetByName(id).url)

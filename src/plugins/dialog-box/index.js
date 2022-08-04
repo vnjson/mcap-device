@@ -65,21 +65,36 @@ export default function (){
    * SHOW HIDE DIALOG-BOX
    */
   this.on('dialog-box', param=>{
-    if(param===true){
-      dBox.disabled(false);
-      $tpl.show();
+    if(typeof param==='object'){
+        for(let key in param){
+          dBox[key] = param[key]
+        }
+        $tpl.show()
+    }
+    else if(param===true){
+      dBox.disabled(false)
+      $tpl.show()
     }
     else if(param==='clear'){
-      dBox.disabled(false);
-      dBox.clear();
+      dBox.disabled(false)
+      dBox.clear()
     }
     else if(param==='disabled'){
-      dBox.disabled(true);
+      dBox.disabled(true)
     }
     else{
-      $tpl.hide();
+      $tpl.hide()
     }
   })
+  
+  /**
+   * Когда screen: true, то dialog-box нужно скрыть
+   */
+  this.on('screen:click', flag => {
+      this.exec({ 'dialog-box': !flag })
+  })
+    
+ 
 
 
 }
