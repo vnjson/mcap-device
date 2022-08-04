@@ -2625,9 +2625,11 @@
      */
 
     this.on('screen:click', function (flag) {
-      _this.exec({
-        'dialog-box': !flag
-      });
+      if (flag === true) {
+        _this.exec({
+          'dialog-box': false
+        });
+      }
     });
   }
 

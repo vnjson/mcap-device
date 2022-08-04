@@ -91,7 +91,10 @@ export default function (){
    * Когда screen: true, то dialog-box нужно скрыть
    */
   this.on('screen:click', flag => {
-      this.exec({ 'dialog-box': !flag })
+      
+      if(flag===true){
+        this.exec({ 'dialog-box': false })
+      }
   })
     
  
