@@ -2695,9 +2695,11 @@
     */
 
     this.on('screen:click', function (flag) {
-      _this.exec({
-        'hands': !flag
-      });
+      if (flag === true) {
+        _this.exec({
+          'hands': false
+        });
+      }
     });
   }
 
@@ -2775,10 +2777,10 @@
     this.on('sound', function (data) {
       _this.$store[data].play();
     });
-    this.on('audioEnd', function (sName) {
-      if (soundData.onEnd) {
-        console.log(11);
+    this.on('audioEnd', function () {
+      var _soundData;
 
+      if ((_soundData = soundData) !== null && _soundData !== void 0 && _soundData.onEnd) {
         _this.exec(soundData.onEnd);
       }
     });
@@ -4023,11 +4025,13 @@
         _this.$store[data].play();
       } else {
         _this.$store[data].stop();
+
+        prev = null;
       }
     });
     this.on('$voice', function (data) {
       if (data) {
-        $('.vnjson__hand-left').css('background-image', "url(".concat(icoPlay, ")"));
+        $('.vnjson__hand-left').css('background-image', "url(".concat(icoPlay, ")")); //this.$store.$voice = data
       } else {
         _this.emit('hand-left', false);
 
@@ -4044,7 +4048,7 @@
 
       prev = data;
     });
-    this.on('exec', function (ctx) {
+    this.on('character', function (ctx) {
       var _this$ctx;
 
       if (!((_this$ctx = _this.ctx) !== null && _this$ctx !== void 0 && _this$ctx.$voice) && prev) {

@@ -41,10 +41,10 @@ const audio = data=>{
 	});
 
 
-  this.on('audioEnd', (sName)=>{
+  this.on('audioEnd', () => {
+   
+    if(soundData?.onEnd){
 
-    if(soundData.onEnd){
-        console.log(11)
         this.exec(soundData.onEnd);
     }
     
