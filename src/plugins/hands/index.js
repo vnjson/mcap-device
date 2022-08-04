@@ -60,6 +60,13 @@ export default function (){
             }
 
   })
+    /**
+   * Когда screen: true, то dialog-box нужно скрыть
+   */
+     this.on('screen:click', flag => {
+        this.exec({ 'hands': !flag })
+    })
+    
 
 }
 

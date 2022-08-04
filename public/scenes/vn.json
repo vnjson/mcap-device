@@ -82,12 +82,17 @@
       {
         "dialog-box": true,
         "status-bar": false,
-        "hands": false,
+        "hands": true,
         "audio": false,
         "next": true
       },
       {
-        "screen": true,
+        "$": 44
+      },
+      {
+        "screen": true
+      },
+      {
         "scene": "paintBoardWhite",
         "$": "Планшете выключить контекстное меню"
       },

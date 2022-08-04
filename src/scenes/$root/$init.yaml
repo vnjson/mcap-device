@@ -1,11 +1,15 @@
 - dialog-box: true
   status-bar: false
-  hands: false
+  hands: true
   audio: false
   next: true
-
+- $: 44
 - screen: true
-  scene: paintBoardWhite
+
+
+
+
+- scene: paintBoardWhite
   $: Планшете выключить контекстное меню 
 
 - scene: 6b3abcbf393
@@ -24,7 +28,7 @@
     info: 4444
     borderColor: '#17fa58'
   screen: false
-  
+
 - al: 
     reply: mark1 mark1
     info: 9999999999 99999999999999
