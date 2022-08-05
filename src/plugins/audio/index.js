@@ -1,3 +1,4 @@
+import AudioControl from './AudioControl.js'
 
 function stopAll(){
 
@@ -8,47 +9,29 @@ function stopAll(){
   })
 }
 
+
+
+
 export default function (){
 
 
 
 stopAll.call(this)
-let soundData;
-const audio = data=>{
 
-	if(typeof data==='string'){
-	
-		this.$store[data].play();
 
-	}
-	else if(typeof data==='object'){
-    soundData = data;
-    this.$store[data.name]['stop']();
-		this.$store[data.name].rate(data.speed||1);
-    this.$store[data.name].loop(data.loop||false);
-		this.$store[data.name].volume(data.volume||1)
-		this.$store[data.name][data.action]();
-	}
-  else{
-    stopAll.call(this);
-  }
-}
+  const audioControl = new AudioControl()
+  const soundControl = new AudioControl()
 
-	this.on('audio', audio);
-  
-	this.on('sound', data=>{
-    this.$store[data].play();
-	});
-
+  this.on('audio', data => audioControl.handler(data))
+  this.on('sound', data => soundControl.handler(data))
 
   this.on('audioEnd', () => {
-   
-    if(soundData?.onEnd){
-
-        this.exec(soundData.onEnd);
+      if(audioControl.soundData?.onEnd){
+          this.exec(audioControl.soundData.onEnd);
+      }
+      if(soundControl.soundData?.onEnd){
+        this.exec(soundControl.soundData.onEnd);
     }
-    
-      
   })
 
 };

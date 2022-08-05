@@ -87,23 +87,29 @@
         "next": true
       },
       {
-        "screen": true,
-        "scene": "ch"
+        "$": "click"
       },
       {
-        "scene": "ev"
+        "audio": {
+          "name": "sysErrorFast",
+          "action": "play",
+          "speed": 0.3,
+          "volume": 1,
+          "loop": true
+        },
+        "$": "AUDIO"
       },
       {
-        "scene": "ch"
+        "sound": "sys4SecTrans",
+        "$": "PLAY"
       },
       {
-        "scene": "ev"
-      },
-      {
-        "screen": false
+        "sound": "stop",
+        "$": "STOP"
       },
       {
         "$": "Только девченки нам сейчас и не хватало. Подумал кролик, вспоминая сколько раз Нюша ломала ему и Ежику все планы.",
+        "audio": "stop",
         "timeout": {
           "exec": {
             "leftimg": false

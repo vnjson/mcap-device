@@ -1,4 +1,6 @@
 
+- audio: theme1
+
 - audio:
     name: audio1
     action: play
@@ -16,7 +18,22 @@
     onEnd:
       next: true
 
+# остановить воспроизведение звука
+- audio: stop
 - audio: false
 
 
 - sound: audio1
+
+# остановить воспроизведение звука
+- sound: stop
+- sound: false
+
+- sound:
+    name: sysMetronome
+    action: play
+    speed: 2
+    volume: 1
+    loop: true # onEnd срабатывает при каждом цикле воспроизведения.
+    onEnd:
+      next: true

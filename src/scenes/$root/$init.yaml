@@ -4,16 +4,22 @@
   audio: false
   next: true
 
+- $: click
+- audio:
+    name: sysErrorFast
+    action: play
+    speed: 0.3
+    volume: 1
+    loop: true
+  $: AUDIO
+
+- sound: sys4SecTrans
+  $: PLAY
+
+- sound: stop # false
+  $: STOP
 
 
-- screen: true
-  scene: ch
-
-- scene: ev
-- scene: ch
-- scene: ev
-
-- screen: false
 
 # Выводим реплику Кроша c дополнительным контентом
 # В качестве дополнительного контента используем изображение,
@@ -24,7 +30,7 @@
   # leftimg: imKrosh1
   # rightimg: imKrosh1
   # centerimg: imKrosh1
-
+  audio: stop
   timeout:
     exec: 
       leftimg: false

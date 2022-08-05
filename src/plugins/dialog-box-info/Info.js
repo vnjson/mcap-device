@@ -13,6 +13,7 @@ class Info {
     }
     open (){
       if(this.$info.text()==='') return
+      if(this.$info.text()==='undefined') return
       this.$info.fadeIn(200)
       this.openModal = true
       this.hideBorder()

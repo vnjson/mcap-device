@@ -2749,41 +2749,104 @@
     });
   }
 
+  var AudioControl = /*#__PURE__*/function () {
+    function AudioControl() {
+      _classCallCheck(this, AudioControl);
+
+      _defineProperty(this, "prevSound", null);
+
+      _defineProperty(this, "soundData", null);
+    }
+
+    _createClass(AudioControl, [{
+      key: "isAudioExist",
+      value: function isAudioExist(name) {
+        if (!$vnjs.$store[name]) {
+          console.error('Некоректный индификатор аудио файла', name);
+          return false;
+        }
+
+        return true;
+      }
+    }, {
+      key: "handler",
+      value: function handler(data) {
+        /**
+         * BOOLEAN
+         */
+        if (typeof data === 'boolean') {
+          if (!this.prevSound) return;
+          $vnjs.$store[this.prevSound].stop();
+          this.prevSound = null;
+        }
+        /**
+         * STRING
+         */
+        else if (data === 'stop') {
+          if (!this.prevSound) return;
+          $vnjs.$store[this.prevSound].stop();
+          this.prevSound = null;
+        } else if (typeof data === 'string') {
+          if (!this.isAudioExist(data)) return;
+
+          if (this.prevSound) {
+            $vnjs.$store[this.prevSound].stop();
+          }
+
+          $vnjs.$store[data].play();
+          this.prevSound = data;
+        }
+        /**
+         * OBJECT
+         */
+        else if (_typeof(data) === 'object') {
+          if (!this.isAudioExist(data.name)) return;
+
+          if (this.prevSound) {
+            $vnjs.$store[prevSound].stop();
+          } //this.$store[data.name]['stop']()
+
+
+          $vnjs.$store[data.name].rate(data.speed || 1);
+          $vnjs.$store[data.name].loop(data.loop || false);
+          $vnjs.$store[data.name].volume(data.volume || 1);
+          $vnjs.$store[data.name][data.action]();
+          this.prevSound = data.name;
+          this.soundData = data;
+        }
+        /*
+        else{
+          stopAll.call(this)
+        }*/
+
+      }
+    }]);
+
+    return AudioControl;
+  }();
+
   function audio () {
     var _this = this;
 
     stopAll.call(this);
-    var soundData;
 
-    var audio = function audio(data) {
-      if (typeof data === 'string') {
-        _this.$store[data].play();
-      } else if (_typeof(data) === 'object') {
-        soundData = data;
-
-        _this.$store[data.name]['stop']();
-
-        _this.$store[data.name].rate(data.speed || 1);
-
-        _this.$store[data.name].loop(data.loop || false);
-
-        _this.$store[data.name].volume(data.volume || 1);
-
-        _this.$store[data.name][data.action]();
-      } else {
-        stopAll.call(_this);
-      }
-    };
-
-    this.on('audio', audio);
+    var audioControl = new AudioControl();
+    var soundControl = new AudioControl();
+    this.on('audio', function (data) {
+      return audioControl.handler(data);
+    });
     this.on('sound', function (data) {
-      _this.$store[data].play();
+      return soundControl.handler(data);
     });
     this.on('audioEnd', function () {
-      var _soundData;
+      var _audioControl$soundDa, _soundControl$soundDa;
 
-      if ((_soundData = soundData) !== null && _soundData !== void 0 && _soundData.onEnd) {
-        _this.exec(soundData.onEnd);
+      if ((_audioControl$soundDa = audioControl.soundData) !== null && _audioControl$soundDa !== void 0 && _audioControl$soundDa.onEnd) {
+        _this.exec(audioControl.soundData.onEnd);
+      }
+
+      if ((_soundControl$soundDa = soundControl.soundData) !== null && _soundControl$soundDa !== void 0 && _soundControl$soundDa.onEnd) {
+        _this.exec(soundControl.soundData.onEnd);
       }
     });
   }
@@ -5821,6 +5884,7 @@
       key: "open",
       value: function open() {
         if (this.$info.text() === '') return;
+        if (this.$info.text() === 'undefined') return;
         this.$info.fadeIn(200);
         this.openModal = true;
         this.hideBorder();
