@@ -34,4 +34,5 @@ stopAll.call(this)
     }
   })
 
-};
+}
+

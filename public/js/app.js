@@ -2741,14 +2741,6 @@
     });
   }
 
-  function stopAll() {
-    Object.values(this.$store).map(function (asset) {
-      if (asset.hasOwnProperty("_muted")) {
-        asset.stop();
-      }
-    });
-  }
-
   var AudioControl = /*#__PURE__*/function () {
     function AudioControl() {
       _classCallCheck(this, AudioControl);
@@ -2809,7 +2801,8 @@
 
           $vnjs.$store[data.name].rate(data.speed || 1);
           $vnjs.$store[data.name].loop(data.loop || false);
-          $vnjs.$store[data.name].volume(data.volume || 1);
+          $vnjs.$store[data.name].volume(data.volume || 1); //$vnjs.$store[data.name].fade(0, 1, 1000)
+
           $vnjs.$store[data.name][data.action]();
           this.prevSound = data.name;
           this.soundData = data;
@@ -2825,11 +2818,18 @@
     return AudioControl;
   }();
 
+  function stopAll() {
+    Object.values(this.$store).map(function (asset) {
+      if (asset.hasOwnProperty("_muted")) {
+        asset.stop();
+      }
+    });
+  }
+
   function audio () {
     var _this = this;
 
     stopAll.call(this);
-
     var audioControl = new AudioControl();
     var soundControl = new AudioControl();
     this.on('audio', function (data) {

@@ -66,3 +66,5 @@ class AudioControl {
   
   
   }
+
+export default AudioControl
