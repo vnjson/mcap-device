@@ -46,13 +46,13 @@ export default function (){
   /**
    * CHARACTER native event
    */
-	this.on('character', (character, param)=>{
-      
+	this.on('character', (_character, param)=>{
+      const character = {..._character}
       if(typeof param === 'object' ){
         if(param.nameColor) character.nameColor = param.nameColor
         if(param.replyColor) character.replyColor = param.replyColor
         if(param.avatar) character.avatar = param.avatar
- 
+        
         dBox.print(character, String(param.reply))
       }
       else{
@@ -70,20 +70,25 @@ export default function (){
           dBox[key] = param[key]
         }
         $tpl.show()
+        this.emit('dialog-box:show')
     }
     else if(param===true){
       dBox.disabled(false)
       $tpl.show()
+      this.emit('dialog-box:show')
     }
     else if(param==='clear'){
       dBox.disabled(false)
       dBox.clear()
+      this.emit('dialog-box:clear')
     }
     else if(param==='disabled'){
       dBox.disabled(true)
+    
     }
     else{
       $tpl.hide()
+      this.emit('dialog-box:hide')
     }
   })
   

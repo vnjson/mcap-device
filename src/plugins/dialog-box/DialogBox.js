@@ -171,7 +171,7 @@ class DialogBox {
     // отображаем каждый символ по отдельности
     this.interval = setInterval( ()=>{
         if(letters.length>0){
-          this.$vnjs.emit('dialog-box:character', letters[this.index].innerText)
+          this.$vnjs.emit('dialog-box:letter', letters[this.index].innerText)
           letters[this.index++].style.opacity = 1;
         }
         if(this.index>=len){

@@ -1,6 +1,44 @@
 (function () {
   'use strict';
 
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+
+      if (enumerableOnly) {
+        symbols = symbols.filter(function (sym) {
+          return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+        });
+      }
+
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread2(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys(Object(source), true).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+      }
+    }
+
+    return target;
+  }
+
   function _typeof(obj) {
     "@babel/helpers - typeof";
 
@@ -2489,7 +2527,7 @@
 
         this.interval = setInterval(function () {
           if (letters.length > 0) {
-            _this.$vnjs.emit('dialog-box:character', letters[_this.index].innerText);
+            _this.$vnjs.emit('dialog-box:letter', letters[_this.index].innerText);
 
             letters[_this.index++].style.opacity = 1;
           }
@@ -2587,7 +2625,9 @@
      * CHARACTER native event
      */
 
-    this.on('character', function (character, param) {
+    this.on('character', function (_character, param) {
+      var character = _objectSpread2({}, _character);
+
       if (_typeof(param) === 'object') {
         if (param.nameColor) character.nameColor = param.nameColor;
         if (param.replyColor) character.replyColor = param.replyColor;
@@ -2608,16 +2648,24 @@
         }
 
         $tpl.show();
+
+        _this.emit('dialog-box:show');
       } else if (param === true) {
         dBox.disabled(false);
         $tpl.show();
+
+        _this.emit('dialog-box:show');
       } else if (param === 'clear') {
         dBox.disabled(false);
         dBox.clear();
+
+        _this.emit('dialog-box:clear');
       } else if (param === 'disabled') {
         dBox.disabled(true);
       } else {
         $tpl.hide();
+
+        _this.emit('dialog-box:hide');
       }
     });
     /**
@@ -2696,12 +2744,10 @@
     * Когда screen: true, то dialog-box нужно скрыть
     */
 
-    this.on('screen:click', function (flag) {
-      if (flag === true) {
-        _this.exec({
-          'hands': false
-        });
-      }
+    this.on('dialog-box:hide', function () {
+      _this.exec({
+        'hands': false
+      });
     });
   }
 
@@ -4048,21 +4094,6 @@
     var _this = this;
 
     var prev = null;
-    this.on('voicePlay', function (data) {
-      if (data) {
-        if (prev) {
-          _this.$store[prev].stop();
-        }
-
-        prev = data;
-
-        _this.$store[data].play();
-      } else {
-        _this.$store[data].stop();
-
-        prev = null;
-      }
-    });
     this.on('$voice', function (data) {
       if (data) {
         $('.vnjson__hand-left').css('background-image', "url(".concat(icoPlay, ")")); //this.$store.$voice = data
@@ -4087,6 +4118,21 @@
         _this.$store[prev].stop();
 
         _this.emit('hand-left', false);
+
+        prev = null;
+      }
+    });
+    this.on('voicePlay', function (data) {
+      if (data) {
+        if (prev) {
+          _this.$store[prev].stop();
+        }
+
+        prev = data;
+
+        _this.$store[data].play();
+      } else {
+        _this.$store[data].stop();
 
         prev = null;
       }

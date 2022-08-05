@@ -4,32 +4,21 @@
   audio: false
   next: true
 
-- test test test
-- $: "Привет, я бараш. А что вы тут делаете?"
-  hands: true
-  $voice: sys4SecTempo
+- al: test test test
+- al: 
+    reply: text text text
+    nameColor: 'cyan'
+    replyColor: 'cyan' 
+    avatar: p1
 
-- $: 
-    reply: test
-    info: click click
-    borderColor: cyan
-
-- $: "Привет, я бараш. А что вы тут делаете?"
-  hands: true
-  $voice: sysErrorFast
-
-- $: 
-    reply: test2
-    info: click2 click2
-    borderColor: red
-    
-- audio:
-    name: sysErrorFast
-    action: play
-    speed: 0.3
-    volume: 1
-    loop: true
-  $: AUDIO
+- al: test1
+- al: test2
+- al: 
+    reply: ---------- - ------
+    nameColor: brown
+    replyColor: silver
+    avatar: ev
+- al: test 3
 
 - $: PLAY
 

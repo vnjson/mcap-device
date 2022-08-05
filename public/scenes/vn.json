@@ -86,40 +86,33 @@
         "audio": false,
         "next": true
       },
-      "test test test",
       {
-        "$": "Привет, я бараш. А что вы тут делаете?",
-        "hands": true,
-        "$voice": "sys4SecTempo"
+        "al": "test test test"
       },
       {
-        "$": {
-          "reply": "test",
-          "info": "click click",
-          "borderColor": "cyan"
+        "al": {
+          "reply": "text text text",
+          "nameColor": "cyan",
+          "replyColor": "cyan",
+          "avatar": "p1"
         }
       },
       {
-        "$": "Привет, я бараш. А что вы тут делаете?",
-        "hands": true,
-        "$voice": "sysErrorFast"
+        "al": "test1"
       },
       {
-        "$": {
-          "reply": "test2",
-          "info": "click2 click2",
-          "borderColor": "red"
+        "al": "test2"
+      },
+      {
+        "al": {
+          "reply": "---------- - ------",
+          "nameColor": "brown",
+          "replyColor": "silver",
+          "avatar": "ev"
         }
       },
       {
-        "audio": {
-          "name": "sysErrorFast",
-          "action": "play",
-          "speed": 0.3,
-          "volume": 1,
-          "loop": true
-        },
-        "$": "AUDIO"
+        "al": "test 3"
       },
       {
         "$": "PLAY"
@@ -174,8 +167,8 @@
       {
         "id": "al",
         "name": "Алиса",
-        "nameColor": "#f1c232",
-        "replyColor": "#ee068e"
+        "nameColor": "yellow",
+        "replyColor": "yellow"
       }
     ],
     "package": {

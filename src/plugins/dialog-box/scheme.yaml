@@ -94,3 +94,5 @@ dialog-box:
 #        console.log(ch)
 #    })
 #    this.on('dialog-box:endOutputReply')
+#    this.on('dialog-box:hide')
+#    this.emit('dialog-box:clear')

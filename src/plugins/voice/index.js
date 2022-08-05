@@ -8,20 +8,6 @@ export default function (){
 
 let prev = null
 
-this.on('voicePlay', data => {
-    
-    if(data){
-        if(prev){
-            this.$store[prev].stop();
-        }
-        prev = data  
-        this.$store[data].play(); 
-    }
-    else{
-      this.$store[data].stop()
-      prev = null
-    }
-})
 
 this.on('$voice', data => {
 
@@ -50,6 +36,20 @@ this.on('character', ctx => {
   }
 })
 
+this.on('voicePlay', data => {
+    
+  if(data){
+      if(prev){
+          this.$store[prev].stop();
+      }
+      prev = data  
+      this.$store[data].play(); 
+  }
+  else{
+    this.$store[data].stop()
+    prev = null
+  }
+})
 
 
   $('.vnjson__hands').on('mouseover', '.vnjson__hand-left', function (){
@@ -58,6 +58,9 @@ this.on('character', ctx => {
   $('.vnjson__hands').on('mouseout', '.vnjson__hand-left', function (){
       $(this).css('opacity', 1)
   })
+
+
+  
   $('.vnjson__hands').on('click', '.vnjson__hand-left', e => {
      if(this.ctx.$voice){
         this.emit('voicePlay', this.ctx.$voice )

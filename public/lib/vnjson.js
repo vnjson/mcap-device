@@ -238,10 +238,7 @@ class Vnjson {
   }
 
   timeoutHandler (param){
-    setTimeout(()=>{
-      for(let event in param.exec)
-      this.exec({ [event]: param.exec[event] })
-    }, param.timer)
+    setTimeout(() => this.exec(param.exec), param.timer)
   }
 };
 
