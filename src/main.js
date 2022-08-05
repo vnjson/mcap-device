@@ -2,6 +2,7 @@
 import plugins from './plugins.js'
 import './theme.css'
 
+
 /**
  * Загрузка игры
  */

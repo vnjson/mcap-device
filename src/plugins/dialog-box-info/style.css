@@ -3,13 +3,7 @@
 .dialog-box__avatar{
     border: 3px solid transparent;
     border-radius: 4px;
-/*
-    animation-name: movingBox;
 
-    animation-duration: 2000ms;
-
-    animation-iteration-count: infinite;
-*/
 }
 
 .dialog-box__info{

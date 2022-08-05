@@ -28,21 +28,7 @@ export default function (){
           }
           if(param.borderColor){
             $avatar.css('border-color', param.borderColor)
-                /*  
-            const timing = {
-                duration: 3000,
-                iterations: Infinity
-            }
-        
-            $avatar.get(0).animate([
-                {borderColor: param.borderColor},
-                {borderColor: 'transparent'},
-                {borderColor: param.borderColor},
-                {borderColor: 'transparent'},
-                {borderColor: param.borderColor},
-
-             ], timing);
-             */
+            $tpl.css('border-color', param.borderColor)
           }
         }
         info.print( String(character.info) )

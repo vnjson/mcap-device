@@ -4,7 +4,25 @@
   audio: false
   next: true
 
-- $: click
+- test test test
+- $: "Привет, я бараш. А что вы тут делаете?"
+  hands: true
+  $voice: sys4SecTempo
+
+- $: 
+    reply: test
+    info: click click
+    borderColor: cyan
+
+- $: "Привет, я бараш. А что вы тут делаете?"
+  hands: true
+  $voice: sysErrorFast
+
+- $: 
+    reply: test2
+    info: click2 click2
+    borderColor: red
+    
 - audio:
     name: sysErrorFast
     action: play
@@ -13,28 +31,31 @@
     loop: true
   $: AUDIO
 
-- sound: sys4SecTrans
-  $: PLAY
+- $: PLAY
 
-- sound: stop # false
+- audio:
+    name: sys4SecTempo
+    action: play
+    loop: true  
+
+- audio:
+    name: sysErrorFast
+    action: stop
+
   $: STOP
 
+- audio:
+    name: sys4SecTempo
+    action: stop
 
-
-# Выводим реплику Кроша c дополнительным контентом
-# В качестве дополнительного контента используем изображение,
+- $: Выводим реплику Кроша c дополнительным контентом
+- al: В качестве дополнительного контента используем изображение,
 # которое появляется на сцене и через 3 секунды само пропадает
 - $: "Только девченки нам сейчас и не хватало.
   Подумал кролик, вспоминая сколько раз Нюша ломала ему и Ежику
   все планы."
-  # leftimg: imKrosh1
-  # rightimg: imKrosh1
-  # centerimg: imKrosh1
-  audio: stop
-  timeout:
-    exec: 
-      leftimg: false
-    timer: 2000
+
+
 
 - $: "Привет, я бараш. А что вы тут делаете?"
   $voice: sys4SecTempo

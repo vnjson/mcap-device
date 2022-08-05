@@ -2742,12 +2742,14 @@
   }
 
   var AudioControl = /*#__PURE__*/function () {
+    //prevSound = null
     function AudioControl() {
       _classCallCheck(this, AudioControl);
 
-      _defineProperty(this, "prevSound", null);
-
       _defineProperty(this, "soundData", null);
+
+      // не помню зачем это, но вроде раньше от чего то помогало
+      this.stopAll();
     }
 
     _createClass(AudioControl, [{
@@ -2767,86 +2769,53 @@
          * BOOLEAN
          */
         if (typeof data === 'boolean') {
-          if (!this.prevSound) return;
-          $vnjs.$store[this.prevSound].stop();
-          this.prevSound = null;
+          this.stopAll();
         }
         /**
          * STRING
          */
-        else if (data === 'stop') {
-          if (!this.prevSound) return;
-          $vnjs.$store[this.prevSound].stop();
-          this.prevSound = null;
-        } else if (typeof data === 'string') {
+        else if (typeof data === 'string') {
           if (!this.isAudioExist(data)) return;
-
-          if (this.prevSound) {
-            $vnjs.$store[this.prevSound].stop();
-          }
-
           $vnjs.$store[data].play();
-          this.prevSound = data;
         }
         /**
          * OBJECT
          */
         else if (_typeof(data) === 'object') {
           if (!this.isAudioExist(data.name)) return;
-
-          if (this.prevSound) {
-            $vnjs.$store[prevSound].stop();
-          } //this.$store[data.name]['stop']()
-
-
           $vnjs.$store[data.name].rate(data.speed || 1);
           $vnjs.$store[data.name].loop(data.loop || false);
-          $vnjs.$store[data.name].volume(data.volume || 1); //$vnjs.$store[data.name].fade(0, 1, 1000)
-
+          $vnjs.$store[data.name].volume(data.volume || 1);
           $vnjs.$store[data.name][data.action]();
-          this.prevSound = data.name;
           this.soundData = data;
         }
-        /*
-        else{
-          stopAll.call(this)
-        }*/
-
+      }
+    }, {
+      key: "stopAll",
+      value: function stopAll() {
+        Object.values($vnjs.$store).map(function (asset) {
+          if (asset.hasOwnProperty("_muted")) {
+            asset.stop();
+          }
+        });
       }
     }]);
 
     return AudioControl;
   }();
 
-  function stopAll() {
-    Object.values(this.$store).map(function (asset) {
-      if (asset.hasOwnProperty("_muted")) {
-        asset.stop();
-      }
-    });
-  }
-
   function audio () {
     var _this = this;
 
-    stopAll.call(this);
     var audioControl = new AudioControl();
-    var soundControl = new AudioControl();
     this.on('audio', function (data) {
       return audioControl.handler(data);
     });
-    this.on('sound', function (data) {
-      return soundControl.handler(data);
-    });
     this.on('audioEnd', function () {
-      var _audioControl$soundDa, _soundControl$soundDa;
+      var _audioControl$soundDa;
 
       if ((_audioControl$soundDa = audioControl.soundData) !== null && _audioControl$soundDa !== void 0 && _audioControl$soundDa.onEnd) {
         _this.exec(audioControl.soundData.onEnd);
-      }
-
-      if ((_soundControl$soundDa = soundControl.soundData) !== null && _soundControl$soundDa !== void 0 && _soundControl$soundDa.onEnd) {
-        _this.exec(soundControl.soundData.onEnd);
       }
     });
   }
@@ -4114,9 +4083,7 @@
       prev = data;
     });
     this.on('character', function (ctx) {
-      var _this$ctx;
-
-      if (!((_this$ctx = _this.ctx) !== null && _this$ctx !== void 0 && _this$ctx.$voice) && prev) {
+      if (_this.$store[prev]) {
         _this.$store[prev].stop();
 
         _this.emit('hand-left', false);
@@ -5919,7 +5886,7 @@
     return Info;
   }();
 
-  var css = "\r\n\r\n.dialog-box__avatar{\r\n    border: 3px solid transparent;\r\n    border-radius: 4px;\r\n/*\r\n    animation-name: movingBox;\r\n\r\n    animation-duration: 2000ms;\r\n\r\n    animation-iteration-count: infinite;\r\n*/\r\n}\r\n\r\n.dialog-box__info{\r\n    position: absolute;\r\n    bottom: 205px;\r\n    left: 5px;\r\n    min-width: 200px;\r\n    max-width: 400px;\r\n \r\n    border-radius: 6px;\r\n    background-color: rgba(0,0,0,0.8);\r\n    color: gray;\r\n    display: none;\r\n    border: 4px solid gray;\r\n    padding: 5px;\r\n\r\n\r\n  }\r\n  /*\r\n  @keyframes movingBox {\r\n    0% {\r\n      border-color: yellow;\r\n    }\r\n    50% {\r\n        border-color: green;\r\n    }\r\n    100% {\r\n      border-color: yellow;\r\n    }\r\n  }*/";
+  var css = "\r\n\r\n.dialog-box__avatar{\r\n    border: 3px solid transparent;\r\n    border-radius: 4px;\r\n\r\n}\r\n\r\n.dialog-box__info{\r\n    position: absolute;\r\n    bottom: 205px;\r\n    left: 5px;\r\n    min-width: 200px;\r\n    max-width: 400px;\r\n \r\n    border-radius: 6px;\r\n    background-color: rgba(0,0,0,0.8);\r\n    color: gray;\r\n    display: none;\r\n    border: 4px solid gray;\r\n    padding: 5px;\r\n\r\n\r\n  }\r\n  /*\r\n  @keyframes movingBox {\r\n    0% {\r\n      border-color: yellow;\r\n    }\r\n    50% {\r\n        border-color: green;\r\n    }\r\n    100% {\r\n      border-color: yellow;\r\n    }\r\n  }*/";
   n(css,{});
 
   function dialogBoxInfo () {
@@ -5946,19 +5913,7 @@
 
         if (param.borderColor) {
           $avatar.css('border-color', param.borderColor);
-          /*  
-          const timing = {
-          duration: 3000,
-          iterations: Infinity
-          }
-                $avatar.get(0).animate([
-          {borderColor: param.borderColor},
-          {borderColor: 'transparent'},
-          {borderColor: param.borderColor},
-          {borderColor: 'transparent'},
-          {borderColor: param.borderColor},
-          ], timing);
-          */
+          $tpl.css('border-color', param.borderColor);
         }
       }
 

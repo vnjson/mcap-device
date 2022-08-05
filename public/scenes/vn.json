@@ -86,8 +86,30 @@
         "audio": false,
         "next": true
       },
+      "test test test",
       {
-        "$": "click"
+        "$": "Привет, я бараш. А что вы тут делаете?",
+        "hands": true,
+        "$voice": "sys4SecTempo"
+      },
+      {
+        "$": {
+          "reply": "test",
+          "info": "click click",
+          "borderColor": "cyan"
+        }
+      },
+      {
+        "$": "Привет, я бараш. А что вы тут делаете?",
+        "hands": true,
+        "$voice": "sysErrorFast"
+      },
+      {
+        "$": {
+          "reply": "test2",
+          "info": "click2 click2",
+          "borderColor": "red"
+        }
       },
       {
         "audio": {
@@ -100,22 +122,36 @@
         "$": "AUDIO"
       },
       {
-        "sound": "sys4SecTrans",
         "$": "PLAY"
       },
       {
-        "sound": "stop",
+        "audio": {
+          "name": "sys4SecTempo",
+          "action": "play",
+          "loop": true
+        }
+      },
+      {
+        "audio": {
+          "name": "sysErrorFast",
+          "action": "stop"
+        },
         "$": "STOP"
       },
       {
-        "$": "Только девченки нам сейчас и не хватало. Подумал кролик, вспоминая сколько раз Нюша ломала ему и Ежику все планы.",
-        "audio": "stop",
-        "timeout": {
-          "exec": {
-            "leftimg": false
-          },
-          "timer": 2000
+        "audio": {
+          "name": "sys4SecTempo",
+          "action": "stop"
         }
+      },
+      {
+        "$": "Выводим реплику Кроша c дополнительным контентом"
+      },
+      {
+        "al": "В качестве дополнительного контента используем изображение,"
+      },
+      {
+        "$": "Только девченки нам сейчас и не хватало. Подумал кролик, вспоминая сколько раз Нюша ломала ему и Ежику все планы."
       },
       {
         "$": "Привет, я бараш. А что вы тут делаете?",

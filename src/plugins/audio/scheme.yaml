@@ -7,7 +7,10 @@
     speed: 0.3
     volume: 0.01
     loop: true
-
+# stop
+- audio:
+    name: audio1
+    action: stop
       
 - audio:
     name: sysMetronome
@@ -17,23 +20,18 @@
     loop: true # onEnd срабатывает при каждом цикле воспроизведения.
     onEnd:
       next: true
+# pause
+- audio:
+    name: sysMetronome
+    action: pause
 
-# остановить воспроизведение звука
-- audio: stop
+
+
+# заглучить все звуки
 - audio: false
 
 
-- sound: audio1
 
-# остановить воспроизведение звука
-- sound: stop
-- sound: false
 
-- sound:
-    name: sysMetronome
-    action: play
-    speed: 2
-    volume: 1
-    loop: true # onEnd срабатывает при каждом цикле воспроизведения.
-    onEnd:
-      next: true
+
+

@@ -10,7 +10,6 @@ import html             from 'rollup-plugin-html';
 import fse              from 'fs-extra';
 import YAML             from 'yaml';
 import watch            from "rollup-plugin-watch";
-
 const config = YAML.parse(fse.readFileSync('./config.yaml', 'utf8'))
 
 const production = false;

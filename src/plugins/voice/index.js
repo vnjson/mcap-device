@@ -43,7 +43,7 @@ this.on('$voice', data => {
 })
 
 this.on('character', ctx => {
-  if(!this.ctx?.$voice&&prev){ 
+  if( this.$store[prev] ){ 
     this.$store[prev].stop();
     this.emit('hand-left', false)
     prev = null
@@ -53,15 +53,13 @@ this.on('character', ctx => {
 
 
   $('.vnjson__hands').on('mouseover', '.vnjson__hand-left', function (){
-    $(this).css('opacity', 0.5)
+      $(this).css('opacity', 0.5)
   })
   $('.vnjson__hands').on('mouseout', '.vnjson__hand-left', function (){
-    $(this).css('opacity', 1)
+      $(this).css('opacity', 1)
   })
   $('.vnjson__hands').on('click', '.vnjson__hand-left', e => {
-  
      if(this.ctx.$voice){
-
         this.emit('voicePlay', this.ctx.$voice )
      }
   })
