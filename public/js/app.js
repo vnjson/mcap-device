@@ -5948,22 +5948,30 @@
     this.on('dialog-box:print', function () {
       return info.close();
     });
-    $avatar.on('mousedown', function () {
-      return info.toggle();
-    });
+    var _param = null;
     this.on('character', function (character, param) {
       if (_typeof(param) === 'object') {
         if (param.info) {
-          character.info = param.info;
-        }
+          info.print(String(param.info));
 
-        if (param.borderColor) {
-          $avatar.css('border-color', param.borderColor);
-          $tpl.css('border-color', param.borderColor);
+          if (param.borderColor) {
+            $avatar.css('border-color', param.borderColor);
+            $tpl.css('border-color', param.borderColor);
+          }
+
+          _param = true;
+          return;
+        } else {
+          info.$info.text('');
         }
       }
 
-      info.print(String(character.info));
+      _param = false;
+    });
+    $avatar.on('mousedown', function () {
+      if (_param) {
+        info.toggle();
+      }
     });
   }
 

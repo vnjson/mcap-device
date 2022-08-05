@@ -15,23 +15,39 @@ export default function (){
    
     this.on('dialog-box:print', () => info.close() )    
  
-    $avatar.on('mousedown', () => info.toggle() )
+  
 
-
+  let _param = null
 	this.on('character', (character, param) => {
-      
-        if(typeof param === 'object' ){
+    
+          if(typeof param === 'object' ){
 
-          if(param.info) {
-            character.info = param.info 
-            
-          }
-          if(param.borderColor){
-            $avatar.css('border-color', param.borderColor)
-            $tpl.css('border-color', param.borderColor)
-          }
+              if(param.info) {
+                info.print( String(param.info ) )
+                
+                if(param.borderColor){
+                  $avatar.css('border-color', param.borderColor)
+                  $tpl.css('border-color', param.borderColor)
+                }
+                _param = true
+                return 
+              }
+              else{
+
+                info.$info.text('')
+              }
+
+
         }
-        info.print( String(character.info) )
+        _param = false
+      
+        
     })
+    $avatar.on('mousedown', () => {
+      if(_param){
 
+        info.toggle()
+      }
+      
+    } )
 }

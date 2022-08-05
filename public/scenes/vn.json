@@ -92,9 +92,9 @@
       {
         "al": {
           "reply": "text text text",
-          "nameColor": "cyan",
-          "replyColor": "cyan",
-          "avatar": "p1"
+          "info": "tet ttttt tt ",
+          "borderColor": "red",
+          "avatar": "ev"
         }
       },
       {
@@ -113,6 +113,14 @@
       },
       {
         "al": "test 3"
+      },
+      {
+        "al": {
+          "reply": "22 222",
+          "info": "4444",
+          "borderColor": "yellow",
+          "avatar": "ev"
+        }
       },
       {
         "$": "PLAY"
@@ -167,8 +175,8 @@
       {
         "id": "al",
         "name": "Алиса",
-        "nameColor": "yellow",
-        "replyColor": "yellow"
+        "nameColor": "#f1c232",
+        "replyColor": "#ee068e"
       }
     ],
     "package": {
