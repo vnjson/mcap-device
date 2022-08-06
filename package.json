@@ -5,6 +5,7 @@
   "main": "rollup.config.js",
   "scripts": {
     "build": "rollup -c",
+    "kill": "taskkill -F -IM node.exe",
     "dev": "rollup -cw",
     "update": "node node_modules/vnjson-update/index.js",
     "publish": "node node_modules/vnjson-publish/index.js",

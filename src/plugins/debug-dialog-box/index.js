@@ -6,7 +6,7 @@ import tpl from "./tpl.html"
 import './lib/color-picker/color.css'
 import './lib/color-picker/color.js'
 import copyTextToClipboard from './clipboard.js'
-
+import pluginsSnipet from './plugins-snipet.js'
 
 
 let cid = '$'
@@ -74,37 +74,16 @@ export default function (){
       color: '#d8dfe3',
       type: 'text'
     })
-    /**
-     * EXEC PLUGIN
-     */
 
-    const CSS = `width: 0px
-height: 0px
-left: 0px
-right: 0px`
-    // reset
+    
+
+ 
+    const $pluginValue = $('.debug__plugin--value')
+   // reset
     const assetsReset = () => {
-      $pluginValue.val('')
+       $pluginValue.val('')
     }
-    // formatCSS
-    const formatCSS = (data) => {
-      const splittedData = data.split('\n')
-      const styleParam = {}
-      splittedData.forEach(item=>{
-          const [ key, val ] = item.replaceAll(' ', '').split(':')
-          styleParam[key] = val
-      })
-      return styleParam
-    }
-    const $css = $('.debug__plugin--css')
-    const $pluginName = $('.debug-plugin__select')
-    const $pluginValue = $('.debug-plugin__value')
-    /**
-     * кликаем по кнопке css
-     */
-    $('.debug-btn--css').on('click', function (){
-        $css.text(CSS)
-    })
+
     /**
      * выбираем название плагина
      */
@@ -120,33 +99,17 @@ right: 0px`
         pluginName = $(this).text()
     })
     
-
+    /**
+     * кликаем по кнопке css
+     */
+    $('.debug-btn--value').on('click', function (){
+        const name = pluginsSnipet[pluginName]
+        $pluginValue.val(name)
+    })
+    //
     $('.debug__show-asset').on('click', function (){
-      
-      let pluginValue =  $pluginValue.val().trim()
-      const cssData = $css.val().trim()
 
-      /**
-       * преобразуем булевые значения
-       */
-     
-      if(pluginValue==='true'){
-          pluginValue = true
-      }
-      if(pluginValue==='false'){
-          pluginValue = false
-      }
-      /**
-       * Выполняем полученные данные
-       */
-      /*
-      ['rightimg', 'leftimg', плагины где есть css]
-      if(cssData!==''){
-        const styleObj = formatCSS (cssData)
-      }
-      else{
-
-      }*/
+      let pluginValue = jsyaml.load( $pluginValue.val().trim() )
       _this.exec({
         [ pluginName ]: pluginValue
       })
