@@ -90,12 +90,8 @@
         "al": "test test test"
       },
       {
-        "al": {
-          "reply": "text text text",
-          "info": "tet ttttt tt ",
-          "borderColor": "red",
-          "avatar": "ev"
-        }
+        "al": "123 123 123",
+        "$voice": "sysErrorFast"
       },
       {
         "al": "test1"
@@ -104,46 +100,11 @@
         "al": "test2"
       },
       {
-        "al": {
-          "reply": "---------- - ------",
-          "nameColor": "brown",
-          "replyColor": "silver",
-          "avatar": "ev"
-        }
-      },
-      {
-        "al": "test 3"
-      },
-      {
-        "al": {
-          "reply": "22 222",
-          "info": "4444",
-          "borderColor": "yellow",
-          "avatar": "ev"
-        }
+        "al": "test 3",
+        "$voice": "sys4SecTempo"
       },
       {
         "$": "PLAY"
-      },
-      {
-        "audio": {
-          "name": "sys4SecTempo",
-          "action": "play",
-          "loop": true
-        }
-      },
-      {
-        "audio": {
-          "name": "sysErrorFast",
-          "action": "stop"
-        },
-        "$": "STOP"
-      },
-      {
-        "audio": {
-          "name": "sys4SecTempo",
-          "action": "stop"
-        }
       },
       {
         "$": "Выводим реплику Кроша c дополнительным контентом"

@@ -8,12 +8,14 @@ export default function (){
 
 let prev = null
 
-
+let INDEX = null
 this.on('$voice', data => {
 
   if(data){
     $('.vnjson__hand-left').css('background-image', `url(${icoPlay})`)
-   //this.$store.$voice = data
+    this.$store.$voice = data
+    INDEX = this.current.index
+    prev = data
   }
   else{
     this.emit('hand-left', false)
@@ -24,29 +26,33 @@ this.on('$voice', data => {
       this.$store[prev].stop()
       prev = null
   }
-  prev = data
+
 
 })
 
 this.on('character', ctx => {
-  if( this.$store[prev] ){ 
-    this.$store[prev].stop();
+  if( INDEX ){ 
+    const name = this.getCurrentLabelBody()[INDEX].$voice
+    this.$store[name].stop();
     this.emit('hand-left', false)
     prev = null
+    INDEX = null
   }
 })
 
 this.on('voicePlay', data => {
     
-  if(data){
+  if(INDEX){
       if(prev){
-          this.$store[prev].stop();
-      }
-      prev = data  
-      this.$store[data].play(); 
+          this.$store[prev].stop()
+          
+      } 
+      const name = this.getCurrentLabelBody()[INDEX].$voice
+      this.$store[name].play()
   }
   else{
-    this.$store[data].stop()
+    //const name = this.getCurrentLabelBody()[INDEX].$voice
+    //this.$store[name].stop()
     prev = null
   }
 })
@@ -62,8 +68,9 @@ this.on('voicePlay', data => {
 
   
   $('.vnjson__hands').on('click', '.vnjson__hand-left', e => {
-     if(this.ctx.$voice){
-        this.emit('voicePlay', this.ctx.$voice )
+    console.log(INDEX, this.current.index)
+     if(INDEX===this.current.index){
+        this.emit('voicePlay')
      }
   })
 };

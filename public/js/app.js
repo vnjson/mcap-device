@@ -4076,9 +4076,13 @@
     var _this = this;
 
     var prev = null;
+    var INDEX = null;
     this.on('$voice', function (data) {
       if (data) {
-        $('.vnjson__hand-left').css('background-image', "url(".concat(icoPlay, ")")); //this.$store.$voice = data
+        $('.vnjson__hand-left').css('background-image', "url(".concat(icoPlay, ")"));
+        _this.$store.$voice = data;
+        INDEX = _this.current.index;
+        prev = data;
       } else {
         _this.emit('hand-left', false);
 
@@ -4092,30 +4096,31 @@
 
         prev = null;
       }
-
-      prev = data;
     });
     this.on('character', function (ctx) {
-      if (_this.$store[prev]) {
-        _this.$store[prev].stop();
+      if (INDEX) {
+        var name = _this.getCurrentLabelBody()[INDEX].$voice;
+
+        _this.$store[name].stop();
 
         _this.emit('hand-left', false);
 
         prev = null;
+        INDEX = null;
       }
     });
     this.on('voicePlay', function (data) {
-      if (data) {
+      if (INDEX) {
         if (prev) {
           _this.$store[prev].stop();
         }
 
-        prev = data;
+        var name = _this.getCurrentLabelBody()[INDEX].$voice;
 
-        _this.$store[data].play();
+        _this.$store[name].play();
       } else {
-        _this.$store[data].stop();
-
+        //const name = this.getCurrentLabelBody()[INDEX].$voice
+        //this.$store[name].stop()
         prev = null;
       }
     });
@@ -4126,8 +4131,10 @@
       $(this).css('opacity', 1);
     });
     $('.vnjson__hands').on('click', '.vnjson__hand-left', function (e) {
-      if (_this.ctx.$voice) {
-        _this.emit('voicePlay', _this.ctx.$voice);
+      console.log(INDEX, _this.current.index);
+
+      if (INDEX === _this.current.index) {
+        _this.emit('voicePlay');
       }
     });
   }
