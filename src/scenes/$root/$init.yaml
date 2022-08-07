@@ -6,14 +6,93 @@
 
 - al: test test test
 - al: 123 123 123
-  $voice: sysErrorFast
-- al: test1
-- al: test2
+
+- blocks: 
+      - image: ev # Изображение отоброжаемое в на экране
+        id: test1
+        timeout: 0 # Задержка начала воспроизведения анимации
+        width: 100px
+        height: 100px
+        top: 100px
+        left: 400px
+        animation: 
+          type: slideUp # Тип анимации
+          duration: 500 # Длительность анимации
+          onEnd: # vnjs.exec(ctx) Данная функция вызовется по оканчанию воспроизведения анимации 
+            $: Конец воспроизведения анимации slideUp
+
+      - image: ch
+        id: test2
+        timeout: 1000
+        width: 100px
+        height: 100px
+        top: 200px
+        left: 600px
+        animation: 
+          type: slideDown
+          duration: 800
+          onEnd:
+            $: Конец воспроизведения анимации slideDown
 
 
+- blocks-step:
+        id: test1
+        image: ev
+        animation: 
+          type: moveTo
+          duration: 2000
+          left: 150px
+          top: 50px
+  al: STEP 1
+
+- blocks-step:
+        id: test1
+        image: ch
+        animation: 
+          type: moveTo
+          duration: 1000
+          left: +=100px
+
+  al: STEP 2
+
+
+- blocks-step:
+        id: test1
+        image: ev
+        animation: 
+          type: moveTo
+          duration: 1000
+          left: -=100px
+  al: STEP 3
+
+- blocks-step:
+        id: test2
+        image: ch
+        animation: 
+          type: zoom
+          duration: 1000
+          value: 0.5
+
+
+  al: STEP 4
+
+
+- blocks-step:
+        id: test2
+        image: p1
+        animation: 
+          type: slideLeft
+          duration: 1000
+  
+
+
+  al: STEP 4
+          
 - al: test 3
   $voice: sys4SecTempo
-    
+
+- $: "Привет, я бараш. А что вы тут делаете?"
+  $voice: sys4SecTempo  
 - $: PLAY
 
 
@@ -26,8 +105,6 @@
 
 
 
-- $: "Привет, я бараш. А что вы тут делаете?"
-  $voice: sys4SecTempo
 
 - $: 4344
 - dd 

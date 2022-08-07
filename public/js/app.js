@@ -2134,11 +2134,11 @@
 
   var tpl$f = "<div id=\"loader\">\n    <div class=\"loader\"><span>{</span><span>}</span></div>\n</div>";
 
-  var $tpl$b = $(tpl$f);
+  var $tpl$c = $(tpl$f);
   function assetsLoader () {
     var _this = this;
 
-    $('#screen').append($tpl$b);
+    $('#screen').append($tpl$c);
 
     var getAssets = function getAssets(_) {
       _this.emit('preload');
@@ -2262,11 +2262,11 @@
      */
 
     this.on('preload', function () {
-      $tpl$b.css('display', 'flex');
+      $tpl$c.css('display', 'flex');
     });
     this.on('load', function () {});
     this.on('postload', function () {
-      $tpl$b.fadeOut();
+      $tpl$c.fadeOut();
     });
   }
 
@@ -2668,36 +2668,36 @@
 
   var tpl$d = "<div class=\"vnjson__hands component\">\n    <div class=\"vnjson__hand\">\n        <div class=\"vnjson__hand-left\"></div>\n    </div>\n    <div class=\"vnjson__hand\">\n        <div class=\"vnjson__hand-right\"></div>\n    </div>\n</div>";
 
-  var $tpl$a = $(tpl$d);
+  var $tpl$b = $(tpl$d);
   function hands () {
     var _this = this;
-    this.$store.$screen.append($tpl$a);
+    this.$store.$screen.append($tpl$b);
     var isShow = false;
     this.on('hand-left', function (id) {
       if (id) {
         isShow = true;
-        $tpl$a.show();
-        $tpl$a.find('.vnjson__hand-left').css('background-image', "url('".concat(_this.getAssetByName(id).url, "')"));
+        $tpl$b.show();
+        $tpl$b.find('.vnjson__hand-left').css('background-image', "url('".concat(_this.getAssetByName(id).url, "')"));
       } else {
-        $tpl$a.find('.vnjson__hand-left').css('background-image', "unset");
+        $tpl$b.find('.vnjson__hand-left').css('background-image', "unset");
       }
     });
     this.on('hand-right', function (id) {
       if (id) {
         isShow = true;
-        $tpl$a.show();
-        $tpl$a.find('.vnjson__hand-right').css('background-image', "url('".concat(_this.getAssetByName(id).url, "')"));
+        $tpl$b.show();
+        $tpl$b.find('.vnjson__hand-right').css('background-image', "url('".concat(_this.getAssetByName(id).url, "')"));
       } else {
-        $tpl$a.find('.vnjson__hand-right').css('background-image', "unset");
+        $tpl$b.find('.vnjson__hand-right').css('background-image', "unset");
       }
     });
     this.on('hands', function (data) {
       if (data) {
         isShow = true;
-        $tpl$a.show();
+        $tpl$b.show();
       } else {
         isShow = false;
-        $tpl$a.hide();
+        $tpl$b.hide();
       }
     });
     var replyWrapper = $('.dialog-box__reply-wrapper');
@@ -2896,14 +2896,14 @@
 
   var tpl$a = "<div class=\"vnjson__menu-menu component\"></div>";
 
-  var $tpl$9 = $(tpl$a);
-  $tpl$9.on("click", ".vnjson__menu-item", clickHundler$1);
+  var $tpl$a = $(tpl$a);
+  $tpl$a.on("click", ".vnjson__menu-item", clickHundler$1);
   var onClickObj$1 = null;
   var menuObj$1 = null;
   function menu$1 () {
     var _this = this;
 
-    this.$store.$screen.append($tpl$9);
+    this.$store.$screen.append($tpl$a);
     var prevObj = null;
     this.on('menu', function (obj) {
       if (obj === true) {
@@ -2912,7 +2912,7 @@
         prevObj = obj;
         menu$2.call(_this, obj);
       } else {
-        $tpl$9.hide();
+        $tpl$a.hide();
       }
     });
   }
@@ -2922,7 +2922,7 @@
 
   function menu$2(param) {
     menuObj$1 = param;
-    $tpl$9.html('');
+    $tpl$a.html('');
 
     for (var _i = 0, _Object$entries = Object.entries(menuObj$1); _i < _Object$entries.length; _i++) {
       var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
@@ -2959,7 +2959,7 @@
         } else if (label === 'onClick') {
           onClickObj$1 = menuItem;
         } else if (label === 'css') {
-          $tpl$9.css(menuItem);
+          $tpl$a.css(menuItem);
         } else {
           // c исконками
           if (_typeof(menuItem) === 'object') {
@@ -2974,7 +2974,7 @@
       }
     }
 
-    $tpl$9.css({
+    $tpl$a.css({
       display: 'flex'
     });
   }
@@ -3012,7 +3012,7 @@
       }, 0);
     }
 
-    $tpl$9.hide(); //$tpl.off( "click", clickHundler)
+    $tpl$a.hide(); //$tpl.off( "click", clickHundler)
   }
 
   var css$p = ".main-menu {\n  width: 50%;\n  padding: 10px;\n  background-color: transparent;\n  left: 50%;\n  transform: translateX(-50%);\n  flex-direction: column;\n  display: none;\n  /*box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);*/\n  overflow: auto;\n  max-height: 95%;\n  top: 200px;\n  color: #34d1a2;\n}\n  .main-menu__item--quetion {\n    background: rgba(70, 70, 70, 0.7);\n    width: 100%;\n    min-height: 50px;\n    font-size: 26px;\n    display: flex;\n    align-items: center;\n    padding: 10px 20px;\n    color: white;\n    transition: 0.1s;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    margin-bottom: 10px;\n    box-shadow: 3px 3px 10px rgba(0,0,0,0.5);\n  }\n  .main-menu__item {\n    margin-bottom: 20px;\n    background-color: #333;\n    width: 100%;\n    min-height: 50px;\n    font-size: 26px;\n    display: flex;\n    align-items: center;\n    transition: 0.1s;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    box-shadow: 3px 3px 10px rgba(0,0,0,0.7);\n\n  }\n    .main-menu__item span {\n      padding: 20px 20px;\n      padding-left: 50px;\n      display: flex;\n      flex: 1;\n      /*display: flex;\n      justify-content: center;*/\n    }\n    .main-menu__item:hover {\n      cursor: pointer;\n      color: darkcyan;\n      background: rgba(0, 0, 0, 0.7); }\n    .main-menu__item span {\n      white-space: nowrap;\n      overflow: hidden;\n      text-overflow: ellipsis; }\n.main-menu__item:last-child{\n  margin-bottom: 0;\n}\n\n.main-menu__item.disabled{\n  opacity: 0.6;\n}\n\n.main-menu .menu-item__icon{\n  width: 50px;\n  height: 50px;\n  margin-left: 15px;\n}\n.main-menu .menu-item__icon+span{\n  padding-left: 20px;\n}";
@@ -3020,13 +3020,13 @@
 
   var tpl$9 = "<div class=\"main-menu component\"></div>";
 
-  var $tpl$8 = $(tpl$9);
+  var $tpl$9 = $(tpl$9);
   var onClickObj = null;
   var menuObj = null;
   function mainMenu () {
     var _this = this;
 
-    this.$store.$screen.append($tpl$8);
+    this.$store.$screen.append($tpl$9);
     var prevObj = null;
     this.on('main-menu', function (obj) {
       if (obj === true) {
@@ -3035,7 +3035,7 @@
         prevObj = obj;
         menu.call(_this, obj);
       } else {
-        $tpl$8.hide();
+        $tpl$9.hide();
       }
     });
   }
@@ -3045,7 +3045,7 @@
 
   function menu(param) {
     menuObj = param;
-    $tpl$8.html('');
+    $tpl$9.html('');
 
     for (var _i = 0, _Object$entries = Object.entries(menuObj); _i < _Object$entries.length; _i++) {
       var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
@@ -3082,7 +3082,7 @@
         } else if (label === 'onClick') {
           onClickObj = menuItem;
         } else if (label === 'css') {
-          $tpl$8.css(menuItem);
+          $tpl$9.css(menuItem);
         }
         /**
          * Вывод обычного пункта меню
@@ -3100,7 +3100,7 @@
       }
     }
 
-    $tpl$8.css({
+    $tpl$9.css({
       display: 'flex'
     });
   }
@@ -3109,7 +3109,7 @@
    */
 
 
-  $tpl$8.on("click", ".main-menu__item", clickHundler);
+  $tpl$9.on("click", ".main-menu__item", clickHundler);
 
   function clickHundler() {
     var label = $(this).data('label');
@@ -3130,7 +3130,7 @@
       }, 0);
     }
 
-    $tpl$8.hide(); //$tpl.off( "click", clickHundler)
+    $tpl$9.hide(); //$tpl.off( "click", clickHundler)
   }
   /**
    *  onClick:
@@ -3756,27 +3756,27 @@
   var css$g = ".vnjson__wiki {\n  left: 10px;\n  top: 40px;\n  width: 300px;\n  display: none;\n  height: auto;\n  padding: 10px;\n  border-radius: 4px;\n  background-color: rgba(0,0,0,0.5);\n  z-index: 7100;\n  font-size: 14px;\n}\n.vnjson__wiki li{\n  padding: 5px 0;\n\n  line-height: 18px;\n    \n}\n.vnjson__wiki-key{\n  color: wheat;\n}\n.vnjson__wiki-dash{\n  padding: 0 5px;\n  color: silver;\n}\n.vnjson__wiki-value{\n  color: darkgray;\n}";
   n(css$g,{});
 
-  var $tpl$7 = $('<ul class="vnjson__wiki component"></ul>');
+  var $tpl$8 = $('<ul class="vnjson__wiki component"></ul>');
   function wiki () {
     var _this = this;
 
-    this.$store.$screen.append($tpl$7);
+    this.$store.$screen.append($tpl$8);
     this.on('wiki', function (data) {
       if (data) {
-        $tpl$7.html('');
-        $tpl$7.fadeIn();
+        $tpl$8.html('');
+        $tpl$8.fadeIn();
         var list;
 
         if (Array.isArray(data)) {
           list = data;
         } else {
           list = data.list;
-          $tpl$7.css(data.css);
+          $tpl$8.css(data.css);
         }
 
         appendElements.call(_this, list);
       } else {
-        $tpl$7.fadeOut();
+        $tpl$8.fadeOut();
       }
     });
   }
@@ -3792,7 +3792,7 @@
         str = "<li><span class=\"vnjson__wiki-key\">".concat(key, "</span> <span class=\"vnjson__wiki-dash\">-</span> <span class=\"vnjson__wiki-value\">").concat(wikiStore[key], "</span></li>");
       }
 
-      $tpl$7.append(str);
+      $tpl$8.append(str);
     });
   }
 
@@ -3839,7 +3839,7 @@
 
   var tpl$5 = "<div class=\"vnjson__test component\">\n    <div class=\"vnjson__test-name\"></div>\n    <div class=\"vnjson__test-quetions-wrapper\">\n        <div class=\"vnjson__test-quetion\"></div>\n        <div class=\"vnjson__test-variants\"></div>\n        <!--result-->\n        <div class=\"vnjson__test-result\">\n            <div class=\"vnjson__test-result-data\">\n                <div class=\"vnjson__test-result-item\">\n                      <span>Правильно</span>\n                      <span class=\"vnjson__test-result-item_true\">0</span>\n                </div>\n               <div class=\"vnjson__test-result-item\">\n                      <span>Не правильно</span>\n                      <span class=\"vnjson__test-result-item_false\">0</span>\n                </div>\n            </div>\n            <div class=\"vnjson__test-next-btn\">Продолжить</div>\n        </div>\n    </div>\n</div>";
 
-  var $tpl$6 = $(tpl$5);
+  var $tpl$7 = $(tpl$5);
   var TEST = null;
   var answers = [];
   var qIndex = 0;
@@ -3849,10 +3849,10 @@
     var _this = this;
 
     $vnjs.current.data.tests = {};
-    this.$store.$screen.append($tpl$6);
+    this.$store.$screen.append($tpl$7);
     this.on('test', function (data) {
       if (data) {
-        $tpl$6.show();
+        $tpl$7.show();
         TEST = data;
         qIndex = 0;
         answers = [];
@@ -3861,7 +3861,7 @@
         $('.vnjson__test-name').html(TEST.name);
         renderQuetion.call(_this);
       } else {
-        $tpl$6.hide();
+        $tpl$7.hide();
       }
     });
   }
@@ -3883,7 +3883,7 @@
 
 
   var click = true;
-  $tpl$6.find('.vnjson__test-variants').on('click', '.vnjson__variants-item', function () {
+  $tpl$7.find('.vnjson__test-variants').on('click', '.vnjson__variants-item', function () {
     var index = $(this).data('index');
 
     if (click) {
@@ -3936,7 +3936,7 @@
     }, 800);
   }
 
-  $tpl$6.find('.vnjson__test-next-btn').on('click', function () {
+  $tpl$7.find('.vnjson__test-next-btn').on('click', function () {
     $vnjs.exec({
       next: true,
       test: false
@@ -3947,16 +3947,16 @@
   var css$d = ".screen-vnjson__slide{\n  position: absolute;\n  display: none;\n  top: 5%;\n  left: 50%;\n  transform: translateX(-50%);\n  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5);\n  z-index: 2000;\n}";
   n(css$d,{});
 
-  var $tpl$5 = $("<img class=\"screen-vnjson__slide component\"/>");
+  var $tpl$6 = $("<img class=\"screen-vnjson__slide component\"/>");
   function slide () {
     var _this = this;
 
-    this.$store.$screen.append($tpl$5);
+    this.$store.$screen.append($tpl$6);
     this.on('slide', function (id) {
-      $tpl$5.attr('src', null);
+      $tpl$6.attr('src', null);
 
       if (typeof id === 'string') {
-        $tpl$5.attr('src', _this.getAssetByName(id).url).show();
+        $tpl$6.attr('src', _this.getAssetByName(id).url).show();
       } else if (_typeof(id) === 'object') {
         /*
          * id.name
@@ -3964,21 +3964,21 @@
          * id.url
          */
         if (id.hasOwnProperty('css')) {
-          $tpl$5.css(id.css);
-          $tpl$5.attr('src', id.name).show();
+          $tpl$6.css(id.css);
+          $tpl$6.attr('src', id.name).show();
         }
 
         if (id.hasOwnProperty('url')) {
-          $tpl$5.attr('src', id.url).fadeIn();
+          $tpl$6.attr('src', id.url).fadeIn();
         } else {
-          $tpl$5.attr('src', _this.getAssetByName(id.name).url).show();
+          $tpl$6.attr('src', _this.getAssetByName(id.name).url).show();
         }
         /*
         .css(id.css)
          */
 
       } else {
-        $tpl$5.attr('src', null).hide();
+        $tpl$6.attr('src', null).hide();
       }
     });
   }
@@ -3988,18 +3988,18 @@
 
   var icoContent = "data:image/jpeg;base64,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bmcAAAAAADhCSU0D7QAAAAAAEABIAAAAAQACAEgAAAABAAI4QklNBCYAAAAAAA4AAAAAAAAAAAAAP4AAADhCSU0EDQAAAAAABAAAAFo4QklNBBkAAAAAAAQAAAAeOEJJTQPzAAAAAAAJAAAAAAAAAAABADhCSU0nEAAAAAAACgABAAAAAAAAAAI4QklNA/UAAAAAAEgAL2ZmAAEAbGZmAAYAAAAAAAEAL2ZmAAEAoZmaAAYAAAAAAAEAMgAAAAEAWgAAAAYAAAAAAAEANQAAAAEALQAAAAYAAAAAAAE4QklNA/gAAAAAAHAAAP////////////////////////////8D6AAAAAD/////////////////////////////A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D6AAAOEJJTQQAAAAAAAACAAE4QklNBAIAAAAAAAQAAAAAOEJJTQQwAAAAAAACAQE4QklNBC0AAAAAAAYAAQAAAAI4QklNBAgAAAAAABAAAAABAAACQAAAAkAAAAAAOEJJTQQeAAAAAAAEAAAAADhCSU0EGgAAAAADSwAAAAYAAAAAAAAAAAAAADwAAAA8AAAACwQRBDUENwAgBDgEPAQ1BD0EOAAtADEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAADwAAAA8AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAEAAAAAAABudWxsAAAAAgAAAAZib3VuZHNPYmpjAAAAAQAAAAAAAFJjdDEAAAAEAAAAAFRvcCBsb25nAAAAAAAAAABMZWZ0bG9uZwAAAAAAAAAAQnRvbWxvbmcAAAA8AAAAAFJnaHRsb25nAAAAPAAAAAZzbGljZXNWbExzAAAAAU9iamMAAAABAAAAAAAFc2xpY2UAAAASAAAAB3NsaWNlSURsb25nAAAAAAAAAAdncm91cElEbG9uZwAAAAAAAAAGb3JpZ2luZW51bQAAAAxFU2xpY2VPcmlnaW4AAAANYXV0b0dlbmVyYXRlZAAAAABUeXBlZW51bQAAAApFU2xpY2VUeXBlAAAAAEltZyAAAAAGYm91bmRzT2JqYwAAAAEAAAAAAABSY3QxAAAABAAAAABUb3AgbG9uZwAAAAAAAAAATGVmdGxvbmcAAAAAAAAAAEJ0b21sb25nAAAAPAAAAABSZ2h0bG9uZwAAADwAAAADdXJsVEVYVAAAAAEAAAAAAABudWxsVEVYVAAAAAEAAAAAAABNc2dlVEVYVAAAAAEAAAAAAAZhbHRUYWdURVhUAAAAAQAAAAAADmNlbGxUZXh0SXNIVE1MYm9vbAEAAAAIY2VsbFRleHRURVhUAAAAAQAAAAAACWhvcnpBbGlnbmVudW0AAAAPRVNsaWNlSG9yekFsaWduAAAAB2RlZmF1bHQAAAAJdmVydEFsaWduZW51bQAAAA9FU2xpY2VWZXJ0QWxpZ24AAAAHZGVmYXVsdAAAAAtiZ0NvbG9yVHlwZWVudW0AAAARRVNsaWNlQkdDb2xvclR5cGUAAAAATm9uZQAAAAl0b3BPdXRzZXRsb25nAAAAAAAAAApsZWZ0T3V0c2V0bG9uZwAAAAAAAAAMYm90dG9tT3V0c2V0bG9uZwAAAAAAAAALcmlnaHRPdXRzZXRsb25nAAAAAAA4QklNBCgAAAAAAAwAAAACP/AAAAAAAAA4QklNBBEAAAAAAAEBADhCSU0EFAAAAAAABAAAAAI4QklNBAwAAAAABgUAAAABAAAAPAAAADwAAAC0AAAqMAAABekAGAAB/9j/7QAMQWRvYmVfQ00AAv/uAA5BZG9iZQBkgAAAAAH/2wCEAAwICAgJCAwJCQwRCwoLERUPDAwPFRgTExUTExgRDAwMDAwMEQwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwBDQsLDQ4NEA4OEBQODg4UFA4ODg4UEQwMDAwMEREMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDP/AABEIADwAPAMBIgACEQEDEQH/3QAEAAT/xAE/AAABBQEBAQEBAQAAAAAAAAADAAECBAUGBwgJCgsBAAEFAQEBAQEBAAAAAAAAAAEAAgMEBQYHCAkKCxAAAQQBAwIEAgUHBggFAwwzAQACEQMEIRIxBUFRYRMicYEyBhSRobFCIyQVUsFiMzRygtFDByWSU/Dh8WNzNRaisoMmRJNUZEXCo3Q2F9JV4mXys4TD03Xj80YnlKSFtJXE1OT0pbXF1eX1VmZ2hpamtsbW5vY3R1dnd4eXp7fH1+f3EQACAgECBAQDBAUGBwcGBTUBAAIRAyExEgRBUWFxIhMFMoGRFKGxQiPBUtHwMyRi4XKCkkNTFWNzNPElBhaisoMHJjXC0kSTVKMXZEVVNnRl4vKzhMPTdePzRpSkhbSVxNTk9KW1xdXl9VZmdoaWprbG1ub2JzdHV2d3h5ent8f/2gAMAwEAAhEDEQA/AOKSSW06npXS8XFOXjHOycusXODnljWsMfQ2z79U4BgzZxj4RwynOZqEIVcuH1S+bhi4qXHPK2cjo2PZm4Iw3OZjdRG5jXGSyNbG7v6qWRldBxbn41fTTeKXFnquuc1ziPpEta17UaYhzsZcPt455JSjxmMeGJxx4vb9fuSh+m4qdav7U6L/AOVA/wC33f8ApNGxbeh9QyGYR6e7FdedldrLS4hx+iXNc1qVeKpc3OIMpcvljGIuUrxS4YjrUcjiJImTQcfItx3HcanuZu8dvtQ0Gzxx4OO/TXFf9X5rf//Q4qVqY/W6xjV4udiV5raBFLnuLHNHZvtDvaso6AnwE/cugvyG9GwcIYmPVYcmv1bMi1m/c4/4Jv7qeGnzhgfbgcfuTnI+36vZ4TGPFKXu/o+lzcrq+Vk5dWUIpOPAoYwe1gb+a37vcrT+t9PvcbcnplVlztbHtscwOP7+1rXKzldPw8jqXTC5gxxngOvpGgH9n+Wh5nXb8PKtxasWiiul5Yyt9YLoaYDtzkWqDiyjHHDgPFGBOmT7vwQ4+CUfcx/zn6yKH9qdH/8AKln/AG8//wAgnZ13Cxz6mF06ui/8y0vc7aTpuDXNTf8AObM/0WP/ANtBWendXt6lmV4eTi0203nY8Mr2lo/f3fyfpJKnhlCEpZMEjCIMpj71kn6R83ol8zgve973PeSXvJc4nuT3TIuXUynKupYdzK3ua0+QOiEm9XS44+3xfocPFt+jw9n/0eKWx0jK6+Mc1YNZyMdh0DmB7Wn+S56xzwfhoukvq6lldMwD0UuNDKg2yulwaW2/nuskhPDR5+cRGEJRxkTl8+f+ax8MeL1f1pfouJm5GfbmG3Mc/wC0tI5EFsfRDGwtunL+tT6mu+ytuBH85ZU3cfvc1LPsoZ1Xpbc9zbMipo+2ukEbv8Hv/lNcodRwfrPZmXPrN1lbnE1OrsAYWH6GxocxFqTywyxwxljwYhwGUZZx+r0lwcOD5P76X1/rV/3Aq/7ab/5NCycv6010vc/GGOyPc+utoIH9ZrlW/Zv1q/cyP+3P/UiudKw/rFRm12ZZtqxWmbza8OZsj3Dbud9JJjlHDCJnfJT4RxcEfmnw/ox9c/U83M6zPn4zyki5bqX5Vz6BFLrHmsDiJQk3q7PF+r4+E/LxcH6Xy8XC/wD/0uKlSrtuqJNVjq552Etn7lFJOWyqvVXD/W+VRMySA4nmdfy/SRG5WUwBrLrGtGgaHuA/AoaSOq2XBQ4uGunFt/zk323M/wBPb/nu/vUX5OTYNtlr3NPILiQUNJLVaPYvT278OFSSSSDK/wD/2QA4QklNBCEAAAAAAFcAAAABAQAAAA8AQQBkAG8AYgBlACAAUABoAG8AdABvAHMAaABvAHAAAAAUAEEAZABvAGIAZQAgAFAAaABvAHQAbwBzAGgAbwBwACAAMgAwADIAMAAAAAEAOEJJTQQGAAAAAAAHAAYAAAABAQD/4Q5WaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA2LjAtYzAwMiA3OS4xNjQ0NjAsIDIwMjAvMDUvMTItMTY6MDQ6MTcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0RXZ0PSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VFdmVudCMiIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyMS4yIChXaW5kb3dzKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjEtMTEtMDVUMTk6NTE6MzErMDM6MDAiIHhtcDpNZXRhZGF0YURhdGU9IjIwMjEtMTEtMDVUMTk6NTE6MzErMDM6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDIxLTExLTA1VDE5OjUxOjMxKzAzOjAwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOmMxMzJjNDExLWMwYTUtMjg0MS1iYjgxLTRjZDA2ZmZlMDU2MSIgeG1wTU06RG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOjIyZTVhYzcxLTdiYzgtMDc0YS1hMTNkLWM2MWZiMWUzYTk5NSIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjFiYzdhZjBhLTUwNjktYmQ0Ni05ZmU0LWRjNmMzNDFhZDEwYyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgZGM6Zm9ybWF0PSJpbWFnZS9qcGVnIj4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iY3JlYXRlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDoxYmM3YWYwYS01MDY5LWJkNDYtOWZlNC1kYzZjMzQxYWQxMGMiIHN0RXZ0OndoZW49IjIwMjEtMTEtMDVUMTk6NTE6MzErMDM6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMS4yIChXaW5kb3dzKSIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6YzEzMmM0MTEtYzBhNS0yODQxLWJiODEtNGNkMDZmZmUwNTYxIiBzdEV2dDp3aGVuPSIyMDIxLTExLTA1VDE5OjUxOjMxKzAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDxwaG90b3Nob3A6RG9jdW1lbnRBbmNlc3RvcnM+IDxyZGY6QmFnPiA8cmRmOmxpPkFCOEEzMTkwMjI5NTE4Q0E5RjI4MURCNjA3RTYwRkUxPC9yZGY6bGk+IDwvcmRmOkJhZz4gPC9waG90b3Nob3A6RG9jdW1lbnRBbmNlc3RvcnM+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDw/eHBhY2tldCBlbmQ9InciPz7/7gAOQWRvYmUAZEAAAAAB/9sAhAACAgICAgICAgICAwICAgMEAwICAwQFBAQEBAQFBgUFBQUFBQYGBwcIBwcGCQkKCgkJDAwMDAwMDAwMDAwMDAwMAQMDAwUEBQkGBgkNCgkKDQ8ODg4ODw8MDAwMDA8PDAwMDAwMDwwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAA8ADwDAREAAhEBAxEB/90ABAAI/8QBogAAAAcBAQEBAQAAAAAAAAAABAUDAgYBAAcICQoLAQACAgMBAQEBAQAAAAAAAAABAAIDBAUGBwgJCgsQAAIBAwMCBAIGBwMEAgYCcwECAxEEAAUhEjFBUQYTYSJxgRQykaEHFbFCI8FS0eEzFmLwJHKC8SVDNFOSorJjc8I1RCeTo7M2F1RkdMPS4ggmgwkKGBmElEVGpLRW01UoGvLj88TU5PRldYWVpbXF1eX1ZnaGlqa2xtbm9jdHV2d3h5ent8fX5/c4SFhoeIiYqLjI2Oj4KTlJWWl5iZmpucnZ6fkqOkpaanqKmqq6ytrq+hEAAgIBAgMFBQQFBgQIAwNtAQACEQMEIRIxQQVRE2EiBnGBkTKhsfAUwdHhI0IVUmJy8TMkNEOCFpJTJaJjssIHc9I14kSDF1STCAkK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";
 
-  var $tpl$4 = $("<ul class=\"vnjson__stage component\"></ul>");
+  var $tpl$5 = $("<ul class=\"vnjson__stage component\"></ul>");
   function content () {
     var _this = this;
 
-    this.$store.$screen.append($tpl$4);
+    this.$store.$screen.append($tpl$5);
     this.on('content', function (data) {
       if (typeof data === 'string') {
         console.log('hide: ', data);
       } else if (_typeof(data) === 'object') {
         renderTree.call(_this, data);
       } else {
-        $tpl$4.hide();
+        $tpl$5.hide();
       }
     });
     $('.vnjson__hands').on('mouseover', '.vnjson__hand-right', function () {
@@ -4026,8 +4026,8 @@
 
   function renderTree(data) {
     var $vnjs = this;
-    $tpl$4.empty();
-    $tpl$4.fadeIn();
+    $tpl$5.empty();
+    $tpl$5.fadeIn();
     data.map(function (item) {
       var $parent = $("<li class=\"stage-parent\"><div class=\"stage-vol stage-item sound-hover\"></div><ul class=\"stage-children\"></ul></li>");
       Object.keys(item).map(function (key, i) {
@@ -4047,12 +4047,12 @@
           $parent.find('ul').append($str);
         }
       });
-      $tpl$4.append($parent);
+      $tpl$5.append($parent);
     });
 
     function clickHandler() {
       var label = $(this).data('label');
-      $tpl$4.hide();
+      $tpl$5.hide();
 
       if (label === 'next') {
         $vnjs.exec({
@@ -4064,10 +4064,10 @@
         });
       }
 
-      $tpl$4.off('click', clickHandler);
+      $tpl$5.off('click', clickHandler);
     }
 
-    $tpl$4.on('click', '.stage-item', clickHandler);
+    $tpl$5.on('click', '.stage-item', clickHandler);
   }
 
   var icoPlay = "data:image/jpeg;base64,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AABDcHRuYm9vbAAAAAAAQ2xicmJvb2wAAAAAAFJnc01ib29sAAAAAABDcm5DYm9vbAAAAAAAQ250Q2Jvb2wAAAAAAExibHNib29sAAAAAABOZ3R2Ym9vbAAAAAAARW1sRGJvb2wAAAAAAEludHJib29sAAAAAABCY2tnT2JqYwAAAAEAAAAAAABSR0JDAAAAAwAAAABSZCAgZG91YkBv4AAAAAAAAAAAAEdybiBkb3ViQG/gAAAAAAAAAAAAQmwgIGRvdWJAb+AAAAAAAAAAAABCcmRUVW50RiNSbHQAAAAAAAAAAAAAAABCbGQgVW50RiNSbHQAAAAAAAAAAAAAAABSc2x0VW50RiNQeGxAUgAAAAAAAAAAAAp2ZWN0b3JEYXRhYm9vbAEAAAAAUGdQc2VudW0AAAAAUGdQcwAAAABQZ1BDAAAAAExlZnRVbnRGI1JsdAAAAAAAAAAAAAAAAFRvcCBVbnRGI1JsdAAAAAAAAAAAAAAAAFNjbCBVbnRGI1ByY0BZAAAAAAAAAAAAEGNyb3BXaGVuUHJpbnRpbmdib29sAAAAAA5jcm9wUmVjdEJvdHRvbWxvbmcAAAAAAAAADGNyb3BSZWN0TGVmdGxvbmcAAAAAAAAADWNyb3BSZWN0UmlnaHRsb25nAAAAAAAAAAtjcm9wUmVjdFRvcGxvbmcAAAAAADhCSU0D7QAAAAAAEABIAAAAAQACAEgAAAABAAI4QklNBCYAAAAAAA4AAAAAAAAAAAAAP4AAADhCSU0EDQAAAAAABAAAAFo4QklNBBkAAAAAAAQAAAAeOEJJTQPzAAAAAAAJAAAAAAAAAAABADhCSU0nEAAAAAAACgABAAAAAAAAAAI4QklNA/UAAAAAAEgAL2ZmAAEAbGZmAAYAAAAAAAEAL2ZmAAEAoZmaAAYAAAAAAAEAMgAAAAEAWgAAAAYAAAAAAAEANQAAAAEALQAAAAYAAAAAAAE4QklNA/gAAAAAAHAAAP////////////////////////////8D6AAAAAD/////////////////////////////A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D6AAAOEJJTQQIAAAAAAAQAAAAAQAAAkAAAAJAAAAAADhCSU0EHgAAAAAABAAAAAA4QklNBBoAAAAAA0sAAAAGAAAAAAAAAAAAAAA8AAAAPAAAAAsEEQQ1BDcAIAQ4BDwENQQ9BDgALQAxAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA8AAAAPAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAbnVsbAAAAAIAAAAGYm91bmRzT2JqYwAAAAEAAAAAAABSY3QxAAAABAAAAABUb3AgbG9uZwAAAAAAAAAATGVmdGxvbmcAAAAAAAAAAEJ0b21sb25nAAAAPAAAAABSZ2h0bG9uZwAAADwAAAAGc2xpY2VzVmxMcwAAAAFPYmpjAAAAAQAAAAAABXNsaWNlAAAAEgAAAAdzbGljZUlEbG9uZwAAAAAAAAAHZ3JvdXBJRGxvbmcAAAAAAAAABm9yaWdpbmVudW0AAAAMRVNsaWNlT3JpZ2luAAAADWF1dG9HZW5lcmF0ZWQAAAAAVHlwZWVudW0AAAAKRVNsaWNlVHlwZQAAAABJbWcgAAAABmJvdW5kc09iamMAAAABAAAAAAAAUmN0MQAAAAQAAAAAVG9wIGxvbmcAAAAAAAAAAExlZnRsb25nAAAAAAAAAABCdG9tbG9uZwAAADwAAAAAUmdodGxvbmcAAAA8AAAAA3VybFRFWFQAAAABAAAAAAAAbnVsbFRFWFQAAAABAAAAAAAATXNnZVRFWFQAAAABAAAAAAAGYWx0VGFnVEVYVAAAAAEAAAAAAA5jZWxsVGV4dElzSFRNTGJvb2wBAAAACGNlbGxUZXh0VEVYVAAAAAEAAAAAAAlob3J6QWxpZ25lbnVtAAAAD0VTbGljZUhvcnpBbGlnbgAAAAdkZWZhdWx0AAAACXZlcnRBbGlnbmVudW0AAAAPRVNsaWNlVmVydEFsaWduAAAAB2RlZmF1bHQAAAALYmdDb2xvclR5cGVlbnVtAAAAEUVTbGljZUJHQ29sb3JUeXBlAAAAAE5vbmUAAAAJdG9wT3V0c2V0bG9uZwAAAAAAAAAKbGVmdE91dHNldGxvbmcAAAAAAAAADGJvdHRvbU91dHNldGxvbmcAAAAAAAAAC3JpZ2h0T3V0c2V0bG9uZwAAAAAAOEJJTQQoAAAAAAAMAAAAAj/wAAAAAAAAOEJJTQQRAAAAAAABAQA4QklNBBQAAAAAAAQAAAACOEJJTQQMAAAAAASCAAAAAQAAADwAAAA8AAAAtAAAKjAAAARmABgAAf/Y/+0ADEFkb2JlX0NNAAL/7gAOQWRvYmUAZIAAAAAB/9sAhAAMCAgICQgMCQkMEQsKCxEVDwwMDxUYExMVExMYEQwMDAwMDBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMAQ0LCw0ODRAODhAUDg4OFBQODg4OFBEMDAwMDBERDAwMDAwMEQwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAA8ADwDASIAAhEBAxEB/90ABAAE/8QBPwAAAQUBAQEBAQEAAAAAAAAAAwABAgQFBgcICQoLAQABBQEBAQEBAQAAAAAAAAABAAIDBAUGBwgJCgsQAAEEAQMCBAIFBwYIBQMMMwEAAhEDBCESMQVBUWETInGBMgYUkaGxQiMkFVLBYjM0coLRQwclklPw4fFjczUWorKDJkSTVGRFwqN0NhfSVeJl8rOEw9N14/NGJ5SkhbSVxNTk9KW1xdXl9VZmdoaWprbG1ub2N0dXZ3eHl6e3x9fn9xEAAgIBAgQEAwQFBgcHBgU1AQACEQMhMRIEQVFhcSITBTKBkRShsUIjwVLR8DMkYuFygpJDUxVjczTxJQYWorKDByY1wtJEk1SjF2RFVTZ0ZeLys4TD03Xj80aUpIW0lcTU5PSltcXV5fVWZnaGlqa2xtbm9ic3R1dnd4eXp7fH/9oADAMBAAIRAxEAPwDikklOms23V1AwbHNbP9YhqctJABJ2Athr4JLey2fVyjJf027HfUKoYctpJO6JlzP3VR6h0bIxGi+sjJxHatvr1Ef8J+4jTWxc7jmYiQli4xxY/cHCMkTtwy+X/Bc9JJJBtKSSSSU//9DikfA/p2P/AMbX/wBU1AR8D+nY/wDxtf8A1bU5jy/zc/7svyT9d/5ZzO36T+AUOn9UzOnvLqHj03fTqfrW4fy2onXf+WMz/jP4KhKJ3YcEI5OVxRnESiccLEtf0HbOH0zq8vwCMPOOrsR5hjz/AMC9ZOTjX4tppyGOrsH5rhCENCCO2oI7fct7pWdb1R7OlZ9f2qt0hl0TZVAnc6z9xJjn7vKxMgfdwR1lGZ/XYof1J/5SP9SbgpKd1YrusrDt4rc5od4gGAVBBt8Q4eLpXF/g/M//0eKR8H+nY3/HV/8AVtQEXDcG5lDjoG2sJPwcCnMeX+bn/dl+Ta67/wAsZn/GfwVZmLa6n7Q4bKAQDY7vJ/wbf8ItfO6bnX/WDINWN6rS8WNdYIq2kfTc791SyMrA6dYbLHDqfU26NJ/mKj+7Uxvs9qcQ0cfNVhwY8Q9yZxw9MDcvl/S/Rx/38jUxOhuNX2vPf9kwxqHO0seP+Dr/AJSlkdarqpdidJq+zUO0faf51/j7vzVQzc7JzrjblPNjuwPA8mN/Nagf6n4oX2Zo8tLIRPmZcZGscUf5iB8v8rL+tNXZJJJBtv8A/9Likkkk5Dbf1fqb8cYz8qw1ARtnsPNVOEkkmLD7NH2eCr9Xt8Pzf1uFSSSSTKpJJJJT/9k4QklNBCEAAAAAAFcAAAABAQAAAA8AQQBkAG8AYgBlACAAUABoAG8AdABvAHMAaABvAHAAAAAUAEEAZABvAGIAZQAgAFAAaABvAHQAbwBzAGgAbwBwACAAMgAwADIAMAAAAAEAOEJJTQQGAAAAAAAHAAQAAAABAQD/4Q17aHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA2LjAtYzAwMiA3OS4xNjQ0NjAsIDIwMjAvMDUvMTItMTY6MDQ6MTcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyMS4yIChXaW5kb3dzKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjEtMTEtMDZUMTA6NDA6MzUrMDM6MDAiIHhtcDpNZXRhZGF0YURhdGU9IjIwMjEtMTEtMDZUMTA6NDA6MzUrMDM6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDIxLTExLTA2VDEwOjQwOjM1KzAzOjAwIiBwaG90b3Nob3A6Q29sb3JNb2RlPSIzIiBkYzpmb3JtYXQ9ImltYWdlL2pwZWciIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ZDMxMzVjMGYtMWYyMi05ZDQ5LTgzYTAtMDFjZjMzY2YzZTUxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOmQzMTM1YzBmLTFmMjItOWQ0OS04M2EwLTAxY2YzM2NmM2U1MSIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOmQzMTM1YzBmLTFmMjItOWQ0OS04M2EwLTAxY2YzM2NmM2U1MSI+IDxwaG90b3Nob3A6RG9jdW1lbnRBbmNlc3RvcnM+IDxyZGY6QmFnPiA8cmRmOmxpPkFCOEEzMTkwMjI5NTE4Q0E5RjI4MURCNjA3RTYwRkUxPC9yZGY6bGk+IDwvcmRmOkJhZz4gPC9waG90b3Nob3A6RG9jdW1lbnRBbmNlc3RvcnM+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNyZWF0ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6ZDMxMzVjMGYtMWYyMi05ZDQ5LTgzYTAtMDFjZjMzY2YzZTUxIiBzdEV2dDp3aGVuPSIyMDIxLTExLTA2VDEwOjQwOjM1KzAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg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";
@@ -5275,25 +5275,25 @@
     return TypeWrite;
   }();
 
-  var $tpl$3 = $(tpl$2);
+  var $tpl$4 = $(tpl$2);
   function typewrite () {
     var _this = this;
 
-    this.$store.$screen.append($tpl$3);
+    this.$store.$screen.append($tpl$4);
     var tw = new TypeWrite();
     this.on('typewrite', function (param) {
       if (typeof param === 'string') {
-        $tpl$3.show();
+        $tpl$4.show();
         tw.setTask(param);
         tw.onEnd(function () {
-          $tpl$3.hide();
+          $tpl$4.hide();
 
           _this.exec({
             next: true
           });
         });
       } else if (_typeof(param) === 'object') {
-        $tpl$3.show();
+        $tpl$4.show();
         tw.kb.setLocal(param.local);
 
         if (param.activeKeys) {
@@ -5310,14 +5310,14 @@
         }
 
         tw.onEnd(function () {
-          $tpl$3.hide();
+          $tpl$4.hide();
 
           _this.exec({
             next: true
           });
         });
       } else {
-        $tpl$3.hide();
+        $tpl$4.hide();
       }
     });
   }
@@ -5325,13 +5325,13 @@
   var css$6 = "\n\n.vnjson__area{\n  width: 100%;\n  height: 100%;\n  z-index: 5000;\n}\n.vnjson__area-item:hover{\n  cursor: pointer;\n  background-color: rgba(0,0,0,0.1);\n}";
   n(css$6,{});
 
-  var $tpl$2 = $('<div class="vnjson__area component"></div>');
+  var $tpl$3 = $('<div class="vnjson__area component"></div>');
   function area () {
     var _this = this;
 
-    this.$store.$screen.append($tpl$2);
+    this.$store.$screen.append($tpl$3);
     this.on('area', handler$1.bind(this));
-    $tpl$2.on('click', function (e) {
+    $tpl$3.on('click', function (e) {
       if (!e.target.className.includes('vnjson__area-item')) return;
       var execData = JSON.parse(e.target.dataset.exec);
 
@@ -5349,11 +5349,11 @@
 
   function handler$1(regions) {
     if (!regions) {
-      $tpl$2.hide();
+      $tpl$3.hide();
       return;
     }
-    $tpl$2.empty();
-    $tpl$2.show();
+    $tpl$3.empty();
+    $tpl$3.show();
     regions.forEach(function (reg) {
       var style = "position:absolute;\n                    top:".concat(reg.top, "px;\n                    left:").concat(reg.left, "px;\n                    width:").concat(reg.width, "px;\n                    height:").concat(reg.height, "px;");
 
@@ -5362,7 +5362,7 @@
       }
 
       var regTpl = "<div style=\"".concat(style, "\" class=\"vnjson__area-item\" data-exec=").concat(JSON.stringify(reg.exec), "></div>");
-      $tpl$2.append(regTpl);
+      $tpl$3.append(regTpl);
     });
   }
 
@@ -5371,14 +5371,14 @@
 
   var tpl$1 = "<div class=\"select-word component\">\n  <div class=\"select-word__quetion\">\n    <div class=\"select-word__text\"></div>\n    <div class=\"select-word__dropzone\"></div>\n  </div>\n\n  <div class=\"select-word__variants\"></div>\n\n</div>";
 
-  var $tpl$1 = $(tpl$1);
+  var $tpl$2 = $(tpl$1);
   var correct = null;
   var _scriptData = false;
   function selectWord () {
     var _this = this;
 
-    this.$store.$screen.append($tpl$1);
-    var $dropZone = $tpl$1.find('.select-word__dropzone');
+    this.$store.$screen.append($tpl$2);
+    var $dropZone = $tpl$2.find('.select-word__dropzone');
     var indexItem = 0;
     this.on('select-word', function (data) {
       _scriptData = data;
@@ -5386,7 +5386,7 @@
       $dropZone.empty();
       handler(data);
     });
-    $tpl$1.find('.select-word__variants').on('click', '.select-word__item', function (e) {
+    $tpl$2.find('.select-word__variants').on('click', '.select-word__item', function (e) {
       correct = _scriptData.answers.correct - 1; // удаляю активный класс
 
       $(this).parent().find('.select-word__item').toArray().forEach(function (node) {
@@ -5427,27 +5427,27 @@
 
   function handler(scriptData) {
     if (scriptData) {
-      $tpl$1.show();
+      $tpl$2.show();
       var quetion = scriptData.quetion,
           answers = scriptData.answers;
 
       if (quetion !== null && quetion !== void 0 && quetion.css) {
-        $tpl$1.find('.select-word__quetion').css(quetion.css);
+        $tpl$2.find('.select-word__quetion').css(quetion.css);
       }
 
       if (answers !== null && answers !== void 0 && answers.css) {
-        $tpl$1.find('.select-word__variants').css(answers.css);
+        $tpl$2.find('.select-word__variants').css(answers.css);
       }
 
-      $tpl$1.find('.select-word__text').html(quetion.text);
-      $tpl$1.find('.select-word__variants').empty(); //$tpl.find('.select-word__variants').removeClass('select-word__variants--disable')
+      $tpl$2.find('.select-word__text').html(quetion.text);
+      $tpl$2.find('.select-word__variants').empty(); //$tpl.find('.select-word__variants').removeClass('select-word__variants--disable')
 
       answers.variants.forEach(function (item, index) {
         var str = $("<div class=\"select-word__item\" data-index=\"".concat(index, "\">").concat(item, "</div>"));
-        $tpl$1.find('.select-word__variants').append(str);
+        $tpl$2.find('.select-word__variants').append(str);
       });
     } else {
-      $tpl$1.hide();
+      $tpl$2.hide();
       correct = null;
     }
   }
@@ -5455,21 +5455,21 @@
   var css$4 = "\n.drag-items{\n  width: 100%;\n  height: 570px;\n\n\n}\n\n.drag-items__item{\n  color: skyblue;\n  padding: 7px 15px;\n  font-size: 25px;\n  border-radius: 8px;\n  background-color: rgba(0,0,0,0.85);\n  margin-bottom: 10px;\n  position: relative;\n  cursor: pointer;\n  position: absolute;\n\n}\n.drag-items__item::before{\n  content: \"\";\n  position: absolute;\n  top: 3px;\n  width: 5px;\n  height: 5px;\n  left: 3px;\n  border-radius: 50%;\n  background-color: darkslategray;\n}\n.drag-items__item:hover{\n  color: deepskyblue;\n}";
   n(css$4,{});
 
-  var $tpl = $('<div class="drag-items component"></div>');
+  var $tpl$1 = $('<div class="drag-items component"></div>');
   var selectedElement = null;
   function dragItems () {
     var _this = this;
 
-    this.$store.$screen.append($tpl);
+    this.$store.$screen.append($tpl$1);
     this.on('drag-items', function (data) {
       if (data) {
-        $tpl.show();
+        $tpl$1.show();
         renderItems.call(_this, data);
       } else {
-        $tpl.hide();
+        $tpl$1.hide();
       }
     });
-    $tpl.on('mousedown', function (e) {
+    $tpl$1.on('mousedown', function (e) {
       if (selectedElement === null) return;
       var rect = e.target.getBoundingClientRect();
       var x = e.clientX - rect.left;
@@ -5483,7 +5483,7 @@
   }
 
   function renderItems(data) {
-    $tpl.empty();
+    $tpl$1.empty();
     var top = data.top;
     var left = data.left;
     var nodeHeight = 50;
@@ -5506,7 +5506,7 @@
       str.on('click', function (e) {
         selectedElement = this;
       });
-      $tpl.append(str);
+      $tpl$1.append(str);
     });
   }
 
@@ -5561,178 +5561,203 @@
   var css$3 = ".vnjson__blocks{\n\n}\n.vnjson__blocks-item{\n  overflow: hidden;\n  /*border: 3px solid green;*/\n}";
   n(css$3,{});
 
+  var $tpl = $('<div class="vnjson__blocks component"></div>');
+  var stepsArray = [];
   function blocks () {
     var _this = this;
 
-    var $tpl = $('<div class="vnjson__blocks component"></div>');
     this.$store.$screen.append($tpl);
     this.on('blocks', function (param) {
-      if (param) {
-        $tpl.show();
-        param.forEach(function (item) {
-          var imageURL = _this.getAssetByName(item.image).url;
-
-          var $imgWrapper = $("<div class=\"vnjson__blocks-item component\"><img alt=\"\"  src=\"".concat(imageURL, "\"></div>"));
-          $imgWrapper.css({
-            width: item.width,
-            height: item.height,
-            left: item.left,
-            top: item.top,
-            display: 'block'
-          });
-          var $img = $imgWrapper.find('img');
-          $img.css({
-            display: 'none',
-            width: item.width,
-            height: item.height,
-            left: 0,
-            top: 0,
-            opacity: 0
-          });
-          $tpl.append($imgWrapper);
-          setTimeout(function () {
-            switch (item.animation.type) {
-              case 'slideUp':
-                $img.css({
-                  top: '100%',
-                  display: 'block'
-                });
-                $img.animate({
-                  top: "0%",
-                  opacity: 1
-                }, item.animation.duration, function () {
-                  if (item.animation.onEnd) {
-                    _this.exec(item.animation.onEnd);
-                  }
-                });
-                break;
-
-              case 'slideDown':
-                $img.css({
-                  top: '-100%',
-                  display: 'block'
-                });
-                $img.animate({
-                  top: "0%",
-                  opacity: 1
-                }, item.animation.duration, function () {
-                  if (item.animation.onEnd) {
-                    _this.exec(item.animation.onEnd);
-                  }
-                });
-                break;
-
-              case 'slideLeft':
-                $img.css({
-                  left: '-100%',
-                  display: 'block'
-                });
-                $img.animate({
-                  left: "0%",
-                  opacity: 1
-                }, item.animation.duration, function () {
-                  if (item.animation.onEnd) {
-                    _this.exec(item.animation.onEnd);
-                  }
-                });
-                break;
-
-              case 'slideRight':
-                $img.css({
-                  left: '100%',
-                  display: 'block'
-                });
-                $img.animate({
-                  left: "0%",
-                  opacity: 1
-                }, item.animation.duration, function () {
-                  if (item.animation.onEnd) {
-                    _this.exec(item.animation.onEnd);
-                  }
-                });
-                break;
-
-              case 'moveTo':
-                $img.css({
-                  display: 'block',
-                  opacity: 1
-                });
-                var animationData = {};
-
-                if (item.animation.left) {
-                  animationData.left = item.animation.left;
-                }
-
-                if (item.animation.top) {
-                  animationData.top = item.animation.top;
-                }
-
-                $imgWrapper.animate(animationData, item.animation.duration, function () {
-                  if (item.animation.onEnd) {
-                    _this.exec(item.animation.onEnd);
-                  }
-                });
-                break;
-
-              case 'zoom':
-                $img.css({
-                  display: 'block',
-                  opacity: 1
-                });
-                var animationData2 = {
-                  transform: "scale(".concat(item.animation.value, ")"),
-                  transition: "".concat(item.animation.duration / 1000, "s")
-                };
-                $imgWrapper.css(animationData2);
-
-                if (item.animation.onEnd) {
-                  setTimeout(function () {
-                    _this.exec(item.animation.onEnd);
-                  }, item.animation.duration);
-                }
-
-                break;
-
-              case 'fadeIn':
-                $img.css({
-                  display: 'block'
-                });
-                $img.animate({
-                  opacity: 1
-                }, item.animation.duration, function () {
-                  if (item.animation.onEnd) {
-                    _this.exec(item.animation.onEnd);
-                  }
-                });
-                break;
-
-              case 'fadeOut':
-                $img.css({
-                  opacity: 1,
-                  display: 'block'
-                });
-                $img.animate({
-                  opacity: 0
-                }, item.animation.duration, function () {
-                  if (item.animation.onEnd) {
-                    _this.exec(item.animation.onEnd);
-                  }
-                });
-                break;
-
-              default:
-                _this.exec({
-                  '$': "<font color=\"red\">\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0442\u0438\u043F \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 ".concat(JSON.stringify(item.animation.type), "</font>")
-                });
-
-            }
-          }, item.timeout + 500);
-        });
-      } else {
-        $tpl.hide();
-        $tpl.empty();
-      }
+      stepsArray = param;
+      blocksHandler.call(_this, stepsArray);
     });
+    this.on('blocks-step', blocksStepHandler);
+  }
+
+  function blocksHandler(param) {
+    var _this2 = this;
+
+    if (param) {
+      $tpl.show();
+      param.forEach(function (item) {
+        var imageURL = _this2.getAssetByName(item.image).url;
+
+        var $imgWrapper = $("<div class=\"vnjson__blocks-item component vnjson__blocks--".concat(item.id, "\" ><img alt=\"\"  src=\"").concat(imageURL, "\"></div>"));
+        $imgWrapper.css({
+          width: item.width,
+          height: item.height,
+          left: item.left,
+          top: item.top,
+          display: 'block'
+        });
+        var $img = $imgWrapper.find('img');
+        $img.css({
+          display: 'none',
+          width: item.width,
+          height: item.height,
+          left: 0,
+          top: 0,
+          opacity: 0
+        });
+        $tpl.append($imgWrapper);
+        setTimeout(function () {
+          animationType.call(_this2, $imgWrapper, $img, item);
+        }, item.timeout + 100);
+      });
+    } else {
+      $tpl.hide();
+      $tpl.empty();
+    }
+  }
+
+  function animationType($imgWrapper, $img, item) {
+    var _this3 = this;
+
+    switch (item.animation.type) {
+      case 'slideUp':
+        $img.css({
+          top: '100%',
+          display: 'block'
+        });
+        $img.animate({
+          top: "0%",
+          opacity: 1
+        }, item.animation.duration, function () {
+          if (item.animation.onEnd) {
+            _this3.exec(item.animation.onEnd);
+          }
+        });
+        break;
+
+      case 'slideDown':
+        $img.css({
+          top: '-100%',
+          display: 'block'
+        });
+        $img.animate({
+          top: "0%",
+          opacity: 1
+        }, item.animation.duration, function () {
+          if (item.animation.onEnd) {
+            _this3.exec(item.animation.onEnd);
+          }
+        });
+        break;
+
+      case 'slideLeft':
+        $img.css({
+          left: '-100%',
+          display: 'block'
+        });
+        $img.animate({
+          left: "0%",
+          opacity: 1
+        }, item.animation.duration, function () {
+          if (item.animation.onEnd) {
+            _this3.exec(item.animation.onEnd);
+          }
+        });
+        break;
+
+      case 'slideRight':
+        $img.css({
+          left: '100%',
+          display: 'block'
+        });
+        $img.animate({
+          left: "0%",
+          opacity: 1
+        }, item.animation.duration, function () {
+          if (item.animation.onEnd) {
+            _this3.exec(item.animation.onEnd);
+          }
+        });
+        break;
+
+      case 'moveTo':
+        $img.css({
+          display: 'block',
+          opacity: 1
+        });
+        var animationData = {};
+
+        if (item.animation.left) {
+          animationData.left = item.animation.left;
+        }
+
+        if (item.animation.top) {
+          animationData.top = item.animation.top;
+        }
+
+        $imgWrapper.animate(animationData, item.animation.duration, function () {
+          if (item.animation.onEnd) {
+            _this3.exec(item.animation.onEnd);
+          }
+        });
+        break;
+
+      case 'zoom':
+        $img.css({
+          display: 'block',
+          opacity: 1
+        });
+        var animationData2 = {
+          transform: "scale(".concat(item.animation.value, ")"),
+          transition: "".concat(item.animation.duration / 1000, "s")
+        };
+        $imgWrapper.css(animationData2);
+
+        if (item.animation.onEnd) {
+          setTimeout(function () {
+            _this3.exec(item.animation.onEnd);
+          }, item.animation.duration);
+        }
+
+        break;
+
+      case 'fadeIn':
+        $img.css({
+          display: 'block'
+        });
+        $img.animate({
+          opacity: 1
+        }, item.animation.duration, function () {
+          if (item.animation.onEnd) {
+            _this3.exec(item.animation.onEnd);
+          }
+        });
+        break;
+
+      case 'fadeOut':
+        $img.css({
+          opacity: 1,
+          display: 'block'
+        });
+        $img.animate({
+          opacity: 0
+        }, item.animation.duration, function () {
+          if (item.animation.onEnd) {
+            _this3.exec(item.animation.onEnd);
+          }
+        });
+        break;
+
+      default:
+        this.exec({
+          '$': "<font color=\"red\">\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0442\u0438\u043F \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 ".concat(JSON.stringify(item.animation.type), "</font>")
+        });
+    }
+  }
+
+  function blocksStepHandler(item) {
+    var $imgWrapper = $(".vnjson__blocks--".concat(item.id));
+    var $img = $imgWrapper.find('img');
+
+    if (item.image) {
+      $img.attr('src', this.getAssetByName(item.image).url);
+    }
+
+    animationType($imgWrapper, $img, item);
   }
 
   var css$2 = ".vnjson__static-app{\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  top: 50px;\r\n  width: 750px;\r\n  height: 500px;\r\n\r\n}";

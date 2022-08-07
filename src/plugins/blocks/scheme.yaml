@@ -1,5 +1,6 @@
   blocks: 
       - image: Patterns # Изображение отоброжаемое в на экране
+        id: test1 # Индификатор для управления через blocks-step
         timeout: 0 # Задержка начала воспроизведения анимации
         width: 130px
         height: 180px
@@ -12,6 +13,7 @@
             $: Конец воспроизведения анимации slideUp
 
       - image: ab12-53
+        id: test1
         timeout: 1000
         width: 80px
         height: 100px
@@ -24,6 +26,7 @@
             $: Конец воспроизведения анимации slideDown
 
       - image: index.jpg3
+        #id: test1
         timeout: 2000
         width: 100px
         height: 100px
@@ -38,6 +41,7 @@
 
 
       - image: '153613243915957922'
+        id: test1
         timeout: 3000 
         width: 80px
         height: 130px
@@ -50,6 +54,7 @@
           #  $: Конец воспроизведения анимации slideLeft
 
       - image: pokeball
+        id: test1
         timeout: 4000
         width: 100px
         height: 100px
@@ -65,6 +70,7 @@
             $: Конец воспроизведения анимации moveTo
 
       - image: map
+        id: test1
         timeout: 4000
         width: 100px
         height: 100px
@@ -76,6 +82,7 @@
           top: 400px
 
       - image: superball
+        id: test1
         timeout: 4000
         width: 100px
         height: 100px
@@ -90,6 +97,7 @@
 
 - blocks: 
       - image: Patterns
+        id: test1
         timeout: 0
         width: 130px
         height: 180px
@@ -103,6 +111,7 @@
             $: test test
 
       - image: index.jpg3
+        id: test1
         timeout: 0
         width: 100px
         height: 100px
@@ -113,6 +122,7 @@
           duration: 1000
 
       - image: map
+        id: test1
         timeout: 2000
         width: 100px
         height: 100px
@@ -121,3 +131,54 @@
         animation: 
           type: fadeOut
           duration: 3000
+
+################################
+# STEP
+- blocks-step:
+        id: test1
+        image: ev
+        animation: 
+          type: moveTo
+          duration: 2000
+          left: 150px
+          top: 50px
+  al: STEP 1
+
+- blocks-step:
+        id: test1
+        image: ch
+        animation: 
+          type: moveTo
+          duration: 1000
+          left: +=100px
+
+  al: STEP 2
+
+
+- blocks-step:
+        id: test1
+        #image: ev
+        animation: 
+          type: moveTo
+          duration: 1000
+          left: -=100px
+  al: STEP 3
+
+- blocks-step:
+        id: test2
+        image: ch
+        animation: 
+          type: zoom
+          duration: 1000
+          value: 0.5
+
+
+  al: STEP 4
+
+
+- blocks-step:
+        id: test2
+        image: p1
+        animation: 
+          type: slideLeft
+          duration: 1000
