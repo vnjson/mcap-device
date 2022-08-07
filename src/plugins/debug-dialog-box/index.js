@@ -118,8 +118,20 @@ export default function (){
        */
       assetsReset()
     })
-
-    
+    let flagDB = false
+    const dbhNode = $('.debug__btn-img--dbh')
+    $('.debug__show-dbh').on('click', function (){
+        if(flagDB){
+          _this.exec({'dialog-box': true})
+          dbhNode.removeClass('debug__btn-img--dbs')
+          flagDB = false
+        }
+        else{
+          _this.exec({'dialog-box': false})
+          dbhNode.addClass('debug__btn-img--dbs')
+          flagDB = true
+        }
+    })
 }
 
 

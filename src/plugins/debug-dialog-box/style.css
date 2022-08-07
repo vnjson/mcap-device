@@ -103,6 +103,18 @@
   background-repeat: no-repeat;
   margin-left: 5px;
 }
+.debug__show-dbh{
+  margin-top: 5px;
+
+}
+.debug__btn-img--dbh{
+  background-image: url(./assets/dbh-h.svg);
+  margin-left: 0;
+}
+.debug__btn-img--dbs{
+  background-image: url(./assets/dbh-s.svg);
+}
+
 .debug__btn:hover{
   background-color: rgba(0,0,0,0.3);
 }

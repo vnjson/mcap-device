@@ -139,12 +139,24 @@
             "top": "50px"
           }
         },
-        "al": "STEP 1"
+        "al": "STEP 1",
+        "next": true
+      },
+      {
+        "blocks-step": {
+          "id": "test2",
+          "animation": {
+            "type": "moveTo",
+            "duration": 2000,
+            "left": "150px",
+            "top": "50px"
+          }
+        },
+        "next": true
       },
       {
         "blocks-step": {
           "id": "test1",
-          "image": "ch",
           "animation": {
             "type": "moveTo",
             "duration": 1000,
