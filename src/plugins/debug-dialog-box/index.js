@@ -79,10 +79,7 @@ export default function (){
 
  
     const $pluginValue = $('.debug__plugin--value')
-   // reset
-    const assetsReset = () => {
-       $pluginValue.val('')
-    }
+
 
     /**
      * выбираем название плагина
@@ -113,10 +110,7 @@ export default function (){
       _this.exec({
         [ pluginName ]: pluginValue
       })
-      /**
-       * сбрасываем форму ввода
-       */
-      assetsReset()
+
     })
     let flagDB = false
     const dbhNode = $('.debug__btn-img--dbh')
