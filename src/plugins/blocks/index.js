@@ -30,9 +30,7 @@ function blocksHandler (param){
                 top: item.top,
                 display: 'block'
               })
-              if(item['z-index']){
-                $imgWrapper.css('z-index', item['z-index'])
-              }
+
               const $img = $imgWrapper.find('img')
               const $imgBox = $imgWrapper.find(`.vnjson__blocks-wrapper--${item.id}`)
               $img.css({
@@ -48,6 +46,9 @@ function blocksHandler (param){
                * item.animation
                */
                 setTimeout( ()=>{
+                    if(item['z-index']){
+                        $imgWrapper.css('z-index', item['z-index'])
+                    }
                     if(item.animation){
                         animationType.call(this, $imgWrapper, $img, $imgBox, item)
                     }
@@ -221,16 +222,19 @@ function blocksStepHandler (item){
     const $imgWrapper = $(`.vnjson__blocks--${item.id}`)
     const $img = $imgWrapper.find('img')
     const $imgBox = $imgWrapper.find(`.vnjson__blocks-wrapper--${item.id}`)
-    if(item.image){
-        $img.attr('src',   this.getAssetByName(item.image).url )
-    }
-    
-    if(item['z-index']){
-        $imgWrapper.css('z-index', item['z-index'])
-    }
 
+    if(!item.timeout){
+        item.timeout = 0
+    }
 
     setTimeout( ()=>{
+        if(item.image){
+            $img.attr('src',   this.getAssetByName(item.image).url )
+        }
+        
+        if(item['z-index']){
+            $imgWrapper.css('z-index', item['z-index'])
+        }
         if(item.animation){
             animationType ($imgWrapper, $img, $imgBox, item)
         }

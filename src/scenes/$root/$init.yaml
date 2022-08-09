@@ -79,7 +79,7 @@
           duration: 2000
 
       - image: ch
-        id: test1
+        id: test5
         z-index: 3
         timeout: 0
         width: 150px
@@ -91,7 +91,7 @@
           duration: 2000
           
       - image: ch
-        id: test1
+        id: test55
         z-index: 3
         timeout: 0
         width: 150px
@@ -102,6 +102,12 @@
           type: slideRight
           duration: 2000
 
+
+- blocks-step:
+        id: test55
+        image: p1
+        timeout: 2000
+  $: STEP
 
 
 - al: te <span></span>

@@ -5628,11 +5628,6 @@
           top: item.top,
           display: 'block'
         });
-
-        if (item['z-index']) {
-          $imgWrapper.css('z-index', item['z-index']);
-        }
-
         var $img = $imgWrapper.find('img');
         var $imgBox = $imgWrapper.find(".vnjson__blocks-wrapper--".concat(item.id));
         $img.css({
@@ -5649,6 +5644,10 @@
          */
 
         setTimeout(function () {
+          if (item['z-index']) {
+            $imgWrapper.css('z-index', item['z-index']);
+          }
+
           if (item.animation) {
             animationType.call(_this2, $imgWrapper, $img, $imgBox, item);
           } else {
@@ -5920,19 +5919,25 @@
   }
 
   function blocksStepHandler(item) {
+    var _this4 = this;
+
     var $imgWrapper = $(".vnjson__blocks--".concat(item.id));
     var $img = $imgWrapper.find('img');
     var $imgBox = $imgWrapper.find(".vnjson__blocks-wrapper--".concat(item.id));
 
-    if (item.image) {
-      $img.attr('src', this.getAssetByName(item.image).url);
-    }
-
-    if (item['z-index']) {
-      $imgWrapper.css('z-index', item['z-index']);
+    if (!item.timeout) {
+      item.timeout = 0;
     }
 
     setTimeout(function () {
+      if (item.image) {
+        $img.attr('src', _this4.getAssetByName(item.image).url);
+      }
+
+      if (item['z-index']) {
+        $imgWrapper.css('z-index', item['z-index']);
+      }
+
       if (item.animation) {
         animationType($imgWrapper, $img, $imgBox, item);
       } else {
