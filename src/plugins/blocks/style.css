@@ -4,5 +4,16 @@
 .vnjson__blocks-item{
   overflow: hidden;
   z-index: 0;
-  /*border: 3px solid green;*/
+  border: 1px solid brown;
+}
+
+.vnjson__blocks-wrapper-item{
+  position: absolute;
+  overflow: hidden;
+  border: 1px solid goldenrod;
+  display: flex;
+
+}
+.vnjson__blocks-wrapper-item img{
+  position: relative;
 }

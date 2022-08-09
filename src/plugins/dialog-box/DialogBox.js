@@ -123,7 +123,6 @@ class DialogBox {
    * @param {String} letter текущий сивол
    */
   parse (letter){
-
     this.letter = letter;
     // проверяем есть ли html теги в реплике
     this.analyzeLetter(this.letter);

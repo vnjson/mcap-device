@@ -6,46 +6,104 @@
 
 
 - blocks: 
-      - image: ch # Изображение отоброжаемое в на экране
+      - image: ev # Изображение отоброжаемое в на экране
         id: test0 # Индификатор для управления через blocks-step
-        z-index: 2
+        z-index: 0
         timeout: 0 # Задержка начала воспроизведения анимации
-        width: 130px
-        height: 180px
-        top: 100px
-        left: 100px
-        #animation: 
-        #  type: slideUp # Тип анимации
-        #  duration: 500 # Длительность анимации
-        #  onEnd: # vnjs.exec(ctx) Данная функция вызовется по оканчанию воспроизведения анимации 
-        #    $: Конец воспроизведения анимации slideUp
+        width: 150px
+        height: 150px
+        top: 10px
+        left: 10px
+        animation: 
+          type: showUp # Тип анимации
+          duration: 2000 # Длительность анимации
 
       - image: ev
         id: test1
-        z-index: 5
-        timeout: 1000
-        width: 80px
-        height: 100px
-        top: 100px
-        left: 100px
-        #animation: 
-        #  type: slideDown
-        #  duration: 800
-        #  onEnd:
-        #    $: Конец воспроизведения анимации slideDown
-
-# STEP
-- blocks-step:
-        id: test1
-        z-index: 1
-
+        z-index: 3
+        timeout: 0
+        width: 150px
+        height: 150px
+        top: 10px
+        left: 180px
         animation: 
-          type: moveTo
+          type: showDown
           duration: 2000
-          left: 150px
-          top: 50px
+
+      - image: ev
+        id: test1
+        z-index: 3
+        timeout: 0
+        width: 150px
+        height: 150px
+        top: 180px
+        left: 10px
+        animation: 
+          type: showLeft
+          duration: 2000
+
+      - image: ev
+        id: test1
+        z-index: 3
+        timeout: 0
+        width: 150px
+        height: 150px
+        top: 180px
+        left: 180px
+        animation: 
+          type: showRight
+          duration: 2000
+##########
+      - image: ch # Изображение отоброжаемое в на экране
+        id: test0 # Индификатор для управления через blocks-step
+        z-index: 0
+        timeout: 0 # Задержка начала воспроизведения анимации
+        width: 150px
+        height: 150px
+        top: 10px
+        left: 360px
+        animation: 
+          type: slideUp # Тип анимации
+          duration: 2000 # Длительность анимации
+
+      - image: ch
+        id: test1
+        z-index: 3
+        timeout: 0
+        width: 150px
+        height: 150px
+        top: 10px
+        left: 540px
+        animation: 
+          type: slideDown
+          duration: 2000
+
+      - image: ch
+        id: test1
+        z-index: 3
+        timeout: 0
+        width: 150px
+        height: 150px
+        top: 180px
+        left: 360px
+        animation: 
+          type: slideLeft
+          duration: 2000
           
-  al: STEP 1
+      - image: ch
+        id: test1
+        z-index: 3
+        timeout: 0
+        width: 150px
+        height: 150px
+        top: 180px
+        left: 540px
+        animation: 
+          type: slideRight
+          duration: 2000
+
+
+
 - al: te <span></span>
 - al: 123 123 123
 - al: test test test

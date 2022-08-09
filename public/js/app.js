@@ -5596,7 +5596,7 @@
     });
   }
 
-  var css$3 = ".vnjson__blocks{\n\n}\n.vnjson__blocks-item{\n  overflow: hidden;\n  z-index: 0;\n  /*border: 3px solid green;*/\n}";
+  var css$3 = ".vnjson__blocks{\n\n}\n.vnjson__blocks-item{\n  overflow: hidden;\n  z-index: 0;\n  border: 1px solid brown;\n}\n\n.vnjson__blocks-wrapper-item{\n  position: absolute;\n  overflow: hidden;\n  border: 1px solid goldenrod;\n  display: flex;\n\n}\n.vnjson__blocks-wrapper-item img{\n  position: relative;\n}";
   n(css$3,{});
 
   var $tpl = $('<div class="vnjson__blocks component"></div>');
@@ -5620,7 +5620,7 @@
       param.forEach(function (item) {
         var imageURL = _this2.getAssetByName(item.image).url;
 
-        var $imgWrapper = $("<div class=\"vnjson__blocks-item component vnjson__blocks--".concat(item.id, "\" ><img alt=\"\"  src=\"").concat(imageURL, "\"></div>"));
+        var $imgWrapper = $("\n                        <div class=\"vnjson__blocks-item component vnjson__blocks--".concat(item.id, "\" >\n                                <div class=\"vnjson__blocks-wrapper-item vnjson__blocks-wrapper--").concat(item.id, "\">\n                                    <img alt=\"\"  src=\"").concat(imageURL, "\">\n                                </div>\n                        </div>"));
         $imgWrapper.css({
           width: item.width,
           height: item.height,
@@ -5634,6 +5634,7 @@
         }
 
         var $img = $imgWrapper.find('img');
+        var $imgBox = $imgWrapper.find(".vnjson__blocks-wrapper--".concat(item.id));
         $img.css({
           display: 'none',
           width: item.width,
@@ -5647,16 +5648,16 @@
          * item.animation
          */
 
-        if (item.animation) {
-          setTimeout(function () {
-            animationType.call(_this2, $imgWrapper, $img, item);
-          }, item.timeout + 100);
-        } else {
-          $img.css({
-            opacity: '1',
-            display: 'block'
-          });
-        }
+        setTimeout(function () {
+          if (item.animation) {
+            animationType.call(_this2, $imgWrapper, $img, $imgBox, item);
+          } else {
+            $img.css({
+              opacity: '1',
+              display: 'block'
+            });
+          }
+        }, item.timeout + 100);
       });
     } else {
       $tpl.hide();
@@ -5664,18 +5665,25 @@
     }
   }
 
-  function animationType($imgWrapper, $img, item) {
+  function animationType($imgWrapper, $img, $imgBox, item) {
     var _this3 = this;
 
     switch (item.animation.type) {
+      /**
+       * slide
+       */
       case 'slideUp':
         $img.css({
-          top: '100%',
           display: 'block'
         });
+        $imgBox.css({
+          top: '-100%'
+        });
         $img.animate({
-          top: "0%",
           opacity: 1
+        }, item.animation.duration);
+        $imgBox.animate({
+          top: "0%"
         }, item.animation.duration, function () {
           if (item.animation.onEnd) {
             _this3.exec(item.animation.onEnd);
@@ -5685,12 +5693,16 @@
 
       case 'slideDown':
         $img.css({
-          top: '-100%',
           display: 'block'
         });
+        $imgBox.css({
+          top: '100%'
+        });
         $img.animate({
-          top: "0%",
           opacity: 1
+        }, item.animation.duration);
+        $imgBox.animate({
+          top: "0%"
         }, item.animation.duration, function () {
           if (item.animation.onEnd) {
             _this3.exec(item.animation.onEnd);
@@ -5700,12 +5712,16 @@
 
       case 'slideLeft':
         $img.css({
-          left: '-100%',
           display: 'block'
         });
+        $imgBox.css({
+          left: '-100%'
+        });
         $img.animate({
-          left: "0%",
           opacity: 1
+        }, item.animation.duration);
+        $imgBox.animate({
+          left: "0%"
         }, item.animation.duration, function () {
           if (item.animation.onEnd) {
             _this3.exec(item.animation.onEnd);
@@ -5715,18 +5731,110 @@
 
       case 'slideRight':
         $img.css({
-          left: '100%',
           display: 'block'
         });
+        $imgBox.css({
+          left: '100%'
+        });
         $img.animate({
-          left: "0%",
           opacity: 1
+        }, item.animation.duration);
+        $imgBox.animate({
+          left: "0%"
         }, item.animation.duration, function () {
           if (item.animation.onEnd) {
             _this3.exec(item.animation.onEnd);
           }
         });
         break;
+
+      /**
+       * show
+       */
+
+      case 'showUp':
+        $img.css({
+          opacity: 1,
+          display: 'block'
+        });
+        $imgBox.css({
+          height: '0px',
+          top: '0px',
+          bottom: 'unset',
+          'align-items': 'flex-start'
+        });
+        $imgBox.animate({
+          height: item.height
+        }, item.animation.duration, function () {
+          if (item.animation.onEnd) {
+            _this3.exec(item.animation.onEnd);
+          }
+        });
+        break;
+
+      case 'showDown':
+        $img.css({
+          opacity: 1,
+          display: 'block'
+        });
+        $imgBox.css({
+          height: '0px',
+          top: 'unset',
+          bottom: '0px',
+          'align-items': 'flex-end'
+        });
+        $imgBox.animate({
+          height: item.height
+        }, item.animation.duration, function () {
+          if (item.animation.onEnd) {
+            _this3.exec(item.animation.onEnd);
+          }
+        });
+        break;
+
+      case 'showLeft':
+        $img.css({
+          opacity: 1,
+          display: 'block'
+        });
+        $imgBox.css({
+          width: '0px',
+          left: '0px',
+          right: 'unset',
+          'justify-content': 'flex-start'
+        });
+        $imgBox.animate({
+          width: item.width
+        }, item.animation.duration, function () {
+          if (item.animation.onEnd) {
+            _this3.exec(item.animation.onEnd);
+          }
+        });
+        break;
+
+      case 'showRight':
+        $img.css({
+          opacity: 1,
+          display: 'block'
+        });
+        $imgBox.css({
+          width: '0px',
+          right: '0px',
+          left: 'unset',
+          'justify-content': 'flex-end'
+        });
+        $imgBox.animate({
+          width: item.width
+        }, item.animation.duration, function () {
+          if (item.animation.onEnd) {
+            _this3.exec(item.animation.onEnd);
+          }
+        });
+        break;
+
+      /**
+       * move
+       */
 
       case 'moveTo':
         $img.css({
@@ -5750,6 +5858,10 @@
         });
         break;
 
+      /**
+       * zoom
+       */
+
       case 'zoom':
         $img.css({
           display: 'block',
@@ -5768,6 +5880,10 @@
         }
 
         break;
+
+      /**
+       * fade
+       */
 
       case 'fadeIn':
         $img.css({
@@ -5806,6 +5922,7 @@
   function blocksStepHandler(item) {
     var $imgWrapper = $(".vnjson__blocks--".concat(item.id));
     var $img = $imgWrapper.find('img');
+    var $imgBox = $imgWrapper.find(".vnjson__blocks-wrapper--".concat(item.id));
 
     if (item.image) {
       $img.attr('src', this.getAssetByName(item.image).url);
@@ -5815,14 +5932,16 @@
       $imgWrapper.css('z-index', item['z-index']);
     }
 
-    if (item.animation) {
-      animationType($imgWrapper, $img, item);
-    } else {
-      $img.css({
-        opacity: '1',
-        display: 'block'
-      });
-    }
+    setTimeout(function () {
+      if (item.animation) {
+        animationType($imgWrapper, $img, $imgBox, item);
+      } else {
+        $img.css({
+          opacity: '1',
+          display: 'block'
+        });
+      }
+    }, item.timeout + 100);
   }
 
   var css$2 = ".vnjson__static-app{\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  top: 50px;\r\n  width: 750px;\r\n  height: 500px;\r\n\r\n}";
