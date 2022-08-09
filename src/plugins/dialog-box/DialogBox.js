@@ -107,7 +107,7 @@ class DialogBox {
           // получаем id персонажа
           let cid = id.replace('@', '').trim();
           // получаем персонажа по id
-          let character = this.$vnjs.getCharacterById(cid);
+          let character = this.$vnjs.getCharacterById(cid)
           if(character){
               // заменяем ссылку на персонажа именем персонажа
               reply = reply.replace(id, `<span class="${this.classNameCharacterNameInReply}" style="color: ${character.nameColor}">${character.name}</span>`); 
@@ -163,8 +163,6 @@ class DialogBox {
    * И меняем им прозрачность на 1. Эмулируя посимвольный вывод текста.
    */
   startOutputReply (){
-
-
     // получаем все теги в которые обёрныты отдельные символы
     let letters = this.replyTag.querySelectorAll('.'+this.classNameLetter );
     let len = letters.length;

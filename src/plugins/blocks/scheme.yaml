@@ -1,6 +1,7 @@
   blocks: 
       - image: Patterns # Изображение отоброжаемое в на экране
         id: test1 # Индификатор для управления через blocks-step
+        z-index: 0
         timeout: 0 # Задержка начала воспроизведения анимации
         width: 130px
         height: 180px
@@ -14,6 +15,7 @@
 
       - image: ab12-53
         id: test1
+        z-index: 3
         timeout: 1000
         width: 80px
         height: 100px
@@ -27,6 +29,7 @@
 
       - image: index.jpg3
         #id: test1
+        #z-index: 3
         timeout: 2000
         width: 100px
         height: 100px
@@ -147,6 +150,7 @@
 - blocks-step:
         id: test1
         image: ch
+        z-index: 5
         animation: 
           type: moveTo
           duration: 1000
@@ -158,6 +162,7 @@
 - blocks-step:
         id: test1
         #image: ev
+        #z-index: 1
         animation: 
           type: moveTo
           duration: 1000

@@ -1,136 +1,47 @@
-
+import Menu from './Menu.js'
 import "./style.css";
 import tpl from "./tpl.html";
 
 const $tpl = $(tpl);
-$tpl.on("click", ".vnjson__menu-item", clickHundler);
 
-let onClickObj = null;
-let menuObj = null;
 
 export default function (){
-
-
-  this.$store.$screen.append($tpl)
-  let prevObj = null;
-  this.on('menu', obj=>{
-      if(obj===true){
-         menu.call(this, prevObj);
-      }
-      else if(obj){
-        prevObj = obj;
-        menu.call(this, obj);
-      }
-      else{
-        $tpl.hide();
-      }  
-  });
-
-
-
-}
-
-
-/**
- * menu
- */
-function menu (param){
-    menuObj = param;
-    $tpl.html('');
-
-
-    for(let [label, menuItem ] of Object.entries(menuObj)){
-      let character = this.getCharacterById(label)
-
-      if(character){
-        let str = null;
-        if(label==='$'){
-            character.name = '';
+    const config = {
+        itemQuetionClassName: 'vnjson__menu-quetion',
+        itemClassName: 'vnjson__menu-item'
+    }
+    const menu = new Menu($tpl, this, config)
+    /**
+     * Навешиваем click на пункты меню
+     */
+    $tpl.on("click", ".vnjson__menu-item", function (){
+        let label = $(this).data('label')
+        menu.clickItemHundler(label)
+    })
+    this.$store.$screen.append($tpl)
+    /**
+     * Храним предыдущее значение меню. Это нужно для того,
+     * если пользователь захочет скрыть меню menu: false 
+     * А после снова отобразить, то же меню menu: true
+     */
+    let prevParam = null
+    /**
+     * @event
+     */
+    this.on('menu', (param) => {
+        if(param===true){
+            menu.setData(prevParam)
+            menu.show()
         }
-        if(character.name!==''){
-            str = `<div class="vnjson__menu-quetion">
-                          <span style='color:${character.nameColor}; padding-right: 20px;'>${ character.name }:</span>
-                          <span style='color:${character.replyColor}; '>${ menuItem }</span>
-                    </div>`;
+        else if(param){
+            prevParam = param
+            menu.setData(param)
+            menu.show()
         }
         else{
-            str = `<div class="vnjson__menu-quetion">
-                          <span style='color:${character.replyColor};'>${ menuItem }</span>
-                    </div>`;
+            menu.hide()
         }
-        $('.vnjson__menu-menu').append(str)
-      }
-      else{
-        let str = null
-        if(/disabled/i.test(label) ){
-                   // c исконками
-                    if(typeof menuItem==='object'){
-                              str = `<div data-label="${ label }" class="vnjson__menu-item disabled"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${ menuItem.text }</span></div>`;
-                    }
-                    // без иконок
-                    else{
-                              str = `<div data-label="${ label }" class="vnjson__menu-item disabled"><span class="sound-click">${ menuItem }</span></div>`;
-                    }
-        }
-        else if(label==='onClick'){
-          onClickObj = menuItem
-        }
-        else if(label==='css'){
-          $tpl.css(menuItem)
-        }
-        else{
-                    // c исконками
-                    if(typeof menuItem==='object'){
-                              str = `<div data-label="${ label }" class="vnjson__menu-item"><img alt="" class="menu-item__icon" src="${this.getAssetByName(menuItem.icon).url}"/><span class="sound-click">${ menuItem.text }</span></div>`;
-                    }
-                    // без иконок
-                    else{
-                              str = `<div data-label="${ label }" class="vnjson__menu-item"><span class="sound-click">${ menuItem }</span></div>`;
-                    }
-        }
-        
-        $('.vnjson__menu-menu').append($(str))
-      }
-    }
 
+    })
 
-$tpl.css({display: 'flex'});
-
-
-}
-
-/**
- * 
- */
-
-function onClickMenuHandler(label){
-  if(menuObj.hasOwnProperty('onClick') ){
-      $vnjs.exec(onClickObj)
-  }
-}
-/**
- * 
- */
-
-function clickHundler(){
-
-    let label = $(this).data('label')
-
-    if(label==='next'){
-        onClickMenuHandler(label)
-        setTimeout(()=>{
-
-          $vnjs.exec({ next: true })
-        },0)
-    }
-
-    else{
-     onClickMenuHandler(label)
-     setTimeout(()=>{
-        $vnjs.exec({ jump: label })
-
-     },0)
-    }
-    $tpl.hide();
-    //$tpl.off( "click", clickHundler)
 }

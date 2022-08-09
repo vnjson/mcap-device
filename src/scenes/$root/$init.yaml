@@ -4,120 +4,77 @@
   audio: false
   next: true
 
-- al: test test test
-- al: 123 123 123
 
 - blocks: 
-      - image: ev # Изображение отоброжаемое в на экране
-        id: test1
+      - image: ch # Изображение отоброжаемое в на экране
+        id: test0 # Индификатор для управления через blocks-step
+        z-index: 2
         timeout: 0 # Задержка начала воспроизведения анимации
-        width: 100px
+        width: 130px
+        height: 180px
+        top: 100px
+        left: 100px
+        #animation: 
+        #  type: slideUp # Тип анимации
+        #  duration: 500 # Длительность анимации
+        #  onEnd: # vnjs.exec(ctx) Данная функция вызовется по оканчанию воспроизведения анимации 
+        #    $: Конец воспроизведения анимации slideUp
+
+      - image: ev
+        id: test1
+        z-index: 5
+        timeout: 1000
+        width: 80px
         height: 100px
         top: 100px
-        left: 400px
-        animation: 
-          type: slideUp # Тип анимации
-          duration: 500 # Длительность анимации
-          onEnd: # vnjs.exec(ctx) Данная функция вызовется по оканчанию воспроизведения анимации 
-            $: Конец воспроизведения анимации slideUp
+        left: 100px
+        #animation: 
+        #  type: slideDown
+        #  duration: 800
+        #  onEnd:
+        #    $: Конец воспроизведения анимации slideDown
 
-      - image: ch
-        id: test2
-        timeout: 1000
-        width: 100px
-        height: 100px
-        top: 200px
-        left: 600px
-        animation: 
-          type: slideDown
-          duration: 800
-          onEnd:
-            $: Конец воспроизведения анимации slideDown
-
-
+# STEP
 - blocks-step:
         id: test1
-        image: ev
+        z-index: 1
+
         animation: 
           type: moveTo
           duration: 2000
           left: 150px
           top: 50px
+          
   al: STEP 1
+- al: te <span></span>
+- al: 123 123 123
+- al: test test test
 
-  next: true
-
-- blocks-step:
-        id: test2
-        animation: 
-          type: moveTo
-          duration: 2000
-          left: 150px
-          top: 50px
-  next: true
-
-- blocks-step:
-        id: test1
-        #image: ch
-        animation: 
-          type: moveTo
-          duration: 1000
-          left: +=100px
-
-  al: STEP 2
-
-
-- blocks-step:
-        id: test1
-        image: ev
-        animation: 
-          type: moveTo
-          duration: 1000
-          left: -=100px
-          
-  al: STEP 3
-
-- blocks-step:
-        id: test2
-        image: ch
-        animation: 
-          type: zoom
-          duration: 1000
-          value: 0.5
-
-
-  al: STEP 4
-
-
-- blocks-step:
-        id: test2
-        image: p1
-        animation: 
-          type: slideLeft
-          duration: 1000
-  
-
-
-  al: STEP 4
-          
-- al: test 3
-  $voice: sys4SecTempo
-
-- $: "Привет, я бараш. А что вы тут делаете?"
-  $voice: sys4SecTempo  
-- $: PLAY
-
-
-- $: Выводим реплику Кроша c дополнительным контентом
-- al: В качестве дополнительного контента используем изображение,
-# которое появляется на сцене и через 3 секунды само пропадает
-- $: "Только девченки нам сейчас и не хватало.
-  Подумал кролик, вспоминая сколько раз Нюша ломала ему и Ежику
-  все планы."
+- set-name: $
+- al: t t t @$
+- $: 0 3 4
 
 
 
+- menu:
+    - $: test
+    - label_11: Как подключить 1
+      icon: ev
+    - label_11: Как подключить 2
 
-- $: 4344
-- dd 
-- dsf
+    - tree__fs: Файловая структура
+      icon: test
+    - yaml-scripts: YAML скрипты
+    - plug: Список плагинов
+      icon: test
+      disabled: true
+    - $root.$init: Вернуться в начало
+    - onClick:
+        hands: true
+        dialog-box: true
+    - css:
+        transform: unset
+        left: unset
+        width: 300px
+        top: 50px
+        right: 20px

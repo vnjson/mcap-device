@@ -2084,15 +2084,10 @@
       color: '#d8dfe3',
       type: 'text'
     });
-    var $pluginValue = $('.debug__plugin--value'); // reset
-
-    var assetsReset = function assetsReset() {
-      $pluginValue.val('');
-    };
+    var $pluginValue = $('.debug__plugin--value');
     /**
      * выбираем название плагина
      */
-
 
     var pluginName = 'scene';
 
@@ -2120,12 +2115,6 @@
       var pluginValue = jsyaml.load($pluginValue.val().trim());
 
       _this.exec(_defineProperty({}, pluginName, pluginValue));
-      /**
-       * сбрасываем форму ввода
-       */
-
-
-      assetsReset();
     });
     var flagDB = false;
     var dbhNode = $('.debug__btn-img--dbh');
@@ -2317,7 +2306,7 @@
     });
   }
 
-  var css$u = ".dialog-box {\n  z-index: 7000;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: none;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.dialog-box__reply-end-point{\n\n  display: inline-block;\n\n}\n.dialog-box__reply-end-point::before{\n  content: '';\n  position: absolute;\n\n  left: 10px;\n  width: 7px;\n  height: 7px;\n  background-color: silver;\n  opacity: 0.7;\n  animation-duration: 0.7s;\n  animation-name: end-point;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}\n@keyframes end-point {\n  from {\n    top: -10px;\n    opacity: 0.1;\n  }\n  to {\n    top: -20px;\n    opacity: 0.7;\n  }\n}\n\n.dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.dialog-box__avatar{\n  margin-top: 15px;\n  min-width: 150px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  display: none;\n}\n.dialog-box__avatar--show{\n  display: block;\n}\n\n\n.dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n  min-width: 75%;\n}\n\n\n";
+  var css$u = ".dialog-box {\n  z-index: 7000;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: none;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n  height: 42px;\n}\n\n.dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.dialog-box__reply-end-point{\n\n  display: inline-block;\n\n}\n.dialog-box__reply-end-point::before{\n  content: '';\n  position: absolute;\n\n  left: 10px;\n  width: 7px;\n  height: 7px;\n  background-color: silver;\n  opacity: 0.7;\n  animation-duration: 0.7s;\n  animation-name: end-point;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}\n@keyframes end-point {\n  from {\n    top: -10px;\n    opacity: 0.1;\n  }\n  to {\n    top: -20px;\n    opacity: 0.7;\n  }\n}\n\n.dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.dialog-box__avatar{\n  margin-top: 15px;\n  min-width: 150px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  display: none;\n}\n.dialog-box__avatar--show{\n  display: block;\n}\n\n\n.dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n  min-width: 75%;\n}\n\n\n";
   n(css$u,{});
 
   var tpl$e = "<div class=\"dialog-box component\">\n  <div class=\"dialog-box__container\">\n        <div class=\"dialog-box__avatar\"></div>\n        <div class=\"dialog-box__reply-wrapper\">\n          <div class=\"dialog-box__name\"></div>\n          <div class=\"dialog-box__reply\"></div>\n        </div>\n  </div>\n</div>";
@@ -2910,128 +2899,158 @@
     });
   }
 
+  var Menu = /*#__PURE__*/function () {
+    function Menu($view, vnjs, config) {
+      _classCallCheck(this, Menu);
+
+      _defineProperty(this, "items", []);
+
+      _defineProperty(this, "onClickObj", null);
+
+      this.$view = $view;
+      this.__vnjs = vnjs;
+      this.itemQuetionClassName = config.itemQuetionClassName;
+      this.itemClassName = config.itemClassName;
+    }
+
+    _createClass(Menu, [{
+      key: "setData",
+      value: function setData(param) {
+        var _this = this;
+
+        this.$view.empty();
+        this.items = param;
+        this.items.forEach(function (menuItem) {
+          return _this.createMenuItem(menuItem);
+        });
+      }
+    }, {
+      key: "show",
+      value: function show() {
+        this.$view.show();
+      }
+    }, {
+      key: "hide",
+      value: function hide() {
+        this.$view.hide();
+      }
+    }, {
+      key: "createMenuItem",
+      value: function createMenuItem(menuItem) {
+        for (var _key in menuItem) {
+          var key = _key;
+          /**
+           * Определяем есть ли среди параметров меню ID персонажа
+           * Если есть, то вопрос от имени персонажа встраиваем в меню
+           */
+
+          var character = this.__vnjs.getCharacterById(_key);
+
+          if (character) {
+            key = 'character';
+          }
+
+          var value = menuItem[_key];
+
+          switch (key) {
+            case 'disabled':
+              //
+              break;
+
+            case 'character':
+              this.addMenuItemCharacter(character, value);
+              break;
+
+            case 'onClick':
+              //
+              break;
+
+            case 'icon':
+              //
+              break;
+
+            case 'css':
+              //
+              break;
+
+            /**
+             * PATH 
+             */
+
+            default:
+              this.addMenuItemPath(key, value);
+          }
+        }
+      }
+    }, {
+      key: "addMenuItemCharacter",
+      value: function addMenuItemCharacter(character, itemText) {
+        var tpl = "<div class=\"".concat(this.itemQuetionClassName, "\">\n                            <span style='color:").concat(character.nameColor, "; padding-right: 20px;'>").concat(character.name, ":</span>\n                            <span style='color:").concat(character.replyColor, "; '>").concat(itemText, "</span>\n                    </div>");
+        this.$view.append(tpl);
+      }
+    }, {
+      key: "addMenuItemPath",
+      value: function addMenuItemPath(label, itemText) {
+        var tpl = "<div data-label=\"".concat(label, "\" class=\"").concat(this.itemClassName, "\">\n                            <span class=\"sound-click\">").concat(itemText, "</span>\n                    </div>");
+        this.$view.append(tpl);
+      }
+    }, {
+      key: "disabled",
+      value: function disabled() {}
+    }, {
+      key: "clickItemHundler",
+      value: function clickItemHundler(label) {
+        alert(label);
+      }
+    }]);
+
+    return Menu;
+  }();
+
   var css$q = ".vnjson__menu-menu {\n  width: 80%;\n  padding: 10px;\n  background: black;\n  flex-direction: column;\n  left: 50%;\n  transform: translateX(-50%);\n  top: 200px;\n  display: none;\n  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);\n  overflow: auto;\n  max-height: 95%;\n  color: wheat;\n}\n  .vnjson__menu-menu .vnjson__menu-quetion {\n    background: rgba(70, 70, 70, 0.7);\n    width: 100%;\n    min-height: 40px;\n    font-size: 16px;\n    display: flex;\n    align-items: center;\n    padding: 10px 20px;\n    transition: 0.1s;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    margin-bottom: 10px;\n  }\n  .vnjson__menu-menu .vnjson__menu-item {\n    margin-bottom: 10px;\n    background: rgba(120, 120, 120, 0.7);\n    width: 100%;\n    min-height: 40px;\n    font-size: 16px;\n    display: flex;\n    align-items: center;\n    transition: 0.1s;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis; }\n    .vnjson__menu-menu .vnjson__menu-item span {\n      padding: 10px 20px;\n      display: flex;\n      flex: 1; }\n    .vnjson__menu-menu .vnjson__menu-item:hover {\n      cursor: pointer;\n      background: rgba(200, 100, 100, 0.8); }\n    .vnjson__menu-menu .vnjson__menu-item span {\n      white-space: nowrap;\n      overflow: hidden;\n      text-overflow: ellipsis; }\n.vnjson__menu-menu .vnjson__menu-item:last-child{\n  margin-bottom: 0;\n}\n\n\n.vnjson__menu-menu .menu-item__icon{\n  width: 32px;\n  height: 32px;\n  margin-left: 15px;\n}\n.vnjson__menu-menu .menu-item__icon+span{\n  /*padding-left: 20px;*/\n}";
   n(css$q,{});
 
   var tpl$a = "<div class=\"vnjson__menu-menu component\"></div>";
 
   var $tpl$a = $(tpl$a);
-  $tpl$a.on("click", ".vnjson__menu-item", clickHundler$1);
-  var onClickObj$1 = null;
-  var menuObj$1 = null;
   function menu$1 () {
-    var _this = this;
+    var config = {
+      itemQuetionClassName: 'vnjson__menu-quetion',
+      itemClassName: 'vnjson__menu-item'
+    };
+    var menu = new Menu($tpl$a, this, config);
+    /**
+     * Навешиваем click на пункты меню
+     */
 
+    $tpl$a.on("click", ".vnjson__menu-item", function () {
+      var label = $(this).data('label');
+      menu.clickItemHundler(label);
+    });
     this.$store.$screen.append($tpl$a);
-    var prevObj = null;
-    this.on('menu', function (obj) {
-      if (obj === true) {
-        menu$2.call(_this, prevObj);
-      } else if (obj) {
-        prevObj = obj;
-        menu$2.call(_this, obj);
+    /**
+     * Храним предыдущее значение меню. Это нужно для того,
+     * если пользователь захочет скрыть меню menu: false 
+     * А после снова отобразить, то же меню menu: true
+     */
+
+    var prevParam = null;
+    /**
+     * @event
+     */
+
+    this.on('menu', function (param) {
+      if (param === true) {
+        menu.setData(prevParam);
+        menu.show();
+      } else if (param) {
+        prevParam = param;
+        menu.setData(param);
+        menu.show();
       } else {
-        $tpl$a.hide();
+        menu.hide();
       }
     });
-  }
-  /**
-   * menu
-   */
-
-  function menu$2(param) {
-    menuObj$1 = param;
-    $tpl$a.html('');
-
-    for (var _i = 0, _Object$entries = Object.entries(menuObj$1); _i < _Object$entries.length; _i++) {
-      var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
-          label = _Object$entries$_i[0],
-          menuItem = _Object$entries$_i[1];
-
-      var character = this.getCharacterById(label);
-
-      if (character) {
-        var str = null;
-
-        if (label === '$') {
-          character.name = '';
-        }
-
-        if (character.name !== '') {
-          str = "<div class=\"vnjson__menu-quetion\">\n                          <span style='color:".concat(character.nameColor, "; padding-right: 20px;'>").concat(character.name, ":</span>\n                          <span style='color:").concat(character.replyColor, "; '>").concat(menuItem, "</span>\n                    </div>");
-        } else {
-          str = "<div class=\"vnjson__menu-quetion\">\n                          <span style='color:".concat(character.replyColor, ";'>").concat(menuItem, "</span>\n                    </div>");
-        }
-
-        $('.vnjson__menu-menu').append(str);
-      } else {
-        var _str = null;
-
-        if (/disabled/i.test(label)) {
-          // c исконками
-          if (_typeof(menuItem) === 'object') {
-            _str = "<div data-label=\"".concat(label, "\" class=\"vnjson__menu-item disabled\"><img alt=\"\" class=\"menu-item__icon\" src=\"").concat(this.getAssetByName(menuItem.icon).url, "\"/><span class=\"sound-click\">").concat(menuItem.text, "</span></div>");
-          } // без иконок
-          else {
-            _str = "<div data-label=\"".concat(label, "\" class=\"vnjson__menu-item disabled\"><span class=\"sound-click\">").concat(menuItem, "</span></div>");
-          }
-        } else if (label === 'onClick') {
-          onClickObj$1 = menuItem;
-        } else if (label === 'css') {
-          $tpl$a.css(menuItem);
-        } else {
-          // c исконками
-          if (_typeof(menuItem) === 'object') {
-            _str = "<div data-label=\"".concat(label, "\" class=\"vnjson__menu-item\"><img alt=\"\" class=\"menu-item__icon\" src=\"").concat(this.getAssetByName(menuItem.icon).url, "\"/><span class=\"sound-click\">").concat(menuItem.text, "</span></div>");
-          } // без иконок
-          else {
-            _str = "<div data-label=\"".concat(label, "\" class=\"vnjson__menu-item\"><span class=\"sound-click\">").concat(menuItem, "</span></div>");
-          }
-        }
-
-        $('.vnjson__menu-menu').append($(_str));
-      }
-    }
-
-    $tpl$a.css({
-      display: 'flex'
-    });
-  }
-  /**
-   * 
-   */
-
-
-  function onClickMenuHandler$1(label) {
-    if (menuObj$1.hasOwnProperty('onClick')) {
-      $vnjs.exec(onClickObj$1);
-    }
-  }
-  /**
-   * 
-   */
-
-
-  function clickHundler$1() {
-    var label = $(this).data('label');
-
-    if (label === 'next') {
-      onClickMenuHandler$1();
-      setTimeout(function () {
-        $vnjs.exec({
-          next: true
-        });
-      }, 0);
-    } else {
-      onClickMenuHandler$1();
-      setTimeout(function () {
-        $vnjs.exec({
-          jump: label
-        });
-      }, 0);
-    }
-
-    $tpl$a.hide(); //$tpl.off( "click", clickHundler)
   }
 
   var css$p = ".main-menu {\n  width: 50%;\n  padding: 10px;\n  background-color: transparent;\n  left: 50%;\n  transform: translateX(-50%);\n  flex-direction: column;\n  display: none;\n  /*box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);*/\n  overflow: auto;\n  max-height: 95%;\n  top: 200px;\n  color: #34d1a2;\n}\n  .main-menu__item--quetion {\n    background: rgba(70, 70, 70, 0.7);\n    width: 100%;\n    min-height: 50px;\n    font-size: 26px;\n    display: flex;\n    align-items: center;\n    padding: 10px 20px;\n    color: white;\n    transition: 0.1s;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    margin-bottom: 10px;\n    box-shadow: 3px 3px 10px rgba(0,0,0,0.5);\n  }\n  .main-menu__item {\n    margin-bottom: 20px;\n    background-color: #333;\n    width: 100%;\n    min-height: 50px;\n    font-size: 26px;\n    display: flex;\n    align-items: center;\n    transition: 0.1s;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    box-shadow: 3px 3px 10px rgba(0,0,0,0.7);\n\n  }\n    .main-menu__item span {\n      padding: 20px 20px;\n      padding-left: 50px;\n      display: flex;\n      flex: 1;\n      /*display: flex;\n      justify-content: center;*/\n    }\n    .main-menu__item:hover {\n      cursor: pointer;\n      color: darkcyan;\n      background: rgba(0, 0, 0, 0.7); }\n    .main-menu__item span {\n      white-space: nowrap;\n      overflow: hidden;\n      text-overflow: ellipsis; }\n.main-menu__item:last-child{\n  margin-bottom: 0;\n}\n\n.main-menu__item.disabled{\n  opacity: 0.6;\n}\n\n.main-menu .menu-item__icon{\n  width: 50px;\n  height: 50px;\n  margin-left: 15px;\n}\n.main-menu .menu-item__icon+span{\n  padding-left: 20px;\n}";
@@ -5577,7 +5596,7 @@
     });
   }
 
-  var css$3 = ".vnjson__blocks{\n\n}\n.vnjson__blocks-item{\n  overflow: hidden;\n  /*border: 3px solid green;*/\n}";
+  var css$3 = ".vnjson__blocks{\n\n}\n.vnjson__blocks-item{\n  overflow: hidden;\n  z-index: 0;\n  /*border: 3px solid green;*/\n}";
   n(css$3,{});
 
   var $tpl = $('<div class="vnjson__blocks component"></div>');
@@ -5609,6 +5628,11 @@
           top: item.top,
           display: 'block'
         });
+
+        if (item['z-index']) {
+          $imgWrapper.css('z-index', item['z-index']);
+        }
+
         var $img = $imgWrapper.find('img');
         $img.css({
           display: 'none',
@@ -5619,9 +5643,20 @@
           opacity: 0
         });
         $tpl.append($imgWrapper);
-        setTimeout(function () {
-          animationType.call(_this2, $imgWrapper, $img, item);
-        }, item.timeout + 100);
+        /**
+         * item.animation
+         */
+
+        if (item.animation) {
+          setTimeout(function () {
+            animationType.call(_this2, $imgWrapper, $img, item);
+          }, item.timeout + 100);
+        } else {
+          $img.css({
+            opacity: '1',
+            display: 'block'
+          });
+        }
       });
     } else {
       $tpl.hide();
@@ -5776,7 +5811,18 @@
       $img.attr('src', this.getAssetByName(item.image).url);
     }
 
-    animationType($imgWrapper, $img, item);
+    if (item['z-index']) {
+      $imgWrapper.css('z-index', item['z-index']);
+    }
+
+    if (item.animation) {
+      animationType($imgWrapper, $img, item);
+    } else {
+      $img.css({
+        opacity: '1',
+        display: 'block'
+      });
+    }
   }
 
   var css$2 = ".vnjson__static-app{\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  top: 50px;\r\n  width: 750px;\r\n  height: 500px;\r\n\r\n}";

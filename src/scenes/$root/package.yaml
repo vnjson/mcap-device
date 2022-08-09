@@ -2,7 +2,7 @@ debug: true
 preload: true
 
 dialog-box:
-  delay: 0
+  delay: 40
   #alpha: 0.3
   endPoint: true
 

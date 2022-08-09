@@ -3,5 +3,6 @@
 }
 .vnjson__blocks-item{
   overflow: hidden;
+  z-index: 0;
   /*border: 3px solid green;*/
 }

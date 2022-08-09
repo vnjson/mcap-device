@@ -25,7 +25,9 @@ function blocksHandler (param){
                 top: item.top,
                 display: 'block'
               })
-              
+              if(item['z-index']){
+                $imgWrapper.css('z-index', item['z-index'])
+              }
               const $img = $imgWrapper.find('img')
               $img.css({
                   display: 'none',
@@ -36,11 +38,19 @@ function blocksHandler (param){
                   opacity: 0
               })
               $tpl.append($imgWrapper)
+              /**
+               * item.animation
+               */
+              if(item.animation){
+                    setTimeout( ()=>{
+                        animationType.call(this, $imgWrapper, $img, item)
+                    }, item.timeout + 100)
+              }
+              else{
+               
+                $img.css({ opacity: '1', display: 'block'})
+              }
 
-              setTimeout( ()=>{
-                    animationType.call(this, $imgWrapper, $img, item)
-
-              }, item.timeout + 100)
           })
     }
     else{
@@ -55,15 +65,15 @@ function animationType ($imgWrapper, $img, item){
     switch (item.animation.type){
         case 'slideUp':
             $img.css({top: '100%', display: 'block'})
-            $img.animate({ top: "0%", opacity: 1 }, item.animation.duration, ()=>{
+            $img.animate({ top: "0%", opacity: 1 }, item.animation.duration, () => {
                 if(item.animation.onEnd){
                     this.exec(item.animation.onEnd)
                 }
-            } )
+            })
             break
         case 'slideDown':
             $img.css({top: '-100%', display: 'block'})
-            $img.animate({ top: "0%", opacity: 1 }, item.animation.duration, ()=>{
+            $img.animate({ top: "0%", opacity: 1 }, item.animation.duration, () => {
                 if(item.animation.onEnd){
                     this.exec(item.animation.onEnd)
                 }
@@ -145,6 +155,15 @@ function blocksStepHandler (item){
     if(item.image){
         $img.attr('src',   this.getAssetByName(item.image).url )
     }
-    animationType ($imgWrapper, $img, item)
+    
+    if(item['z-index']){
+        $imgWrapper.css('z-index', item['z-index'])
+    }
+    if(item.animation){
+        animationType ($imgWrapper, $img, item)
+    }
+    else{
+        $img.css({ opacity: '1', display: 'block'})
+    }
 
 }
