@@ -5596,7 +5596,7 @@
     });
   }
 
-  var css$3 = ".vnjson__blocks{\n\n}\n.vnjson__blocks-item{\n  overflow: hidden;\n  z-index: 0;\n  border: 1px solid brown;\n}\n\n.vnjson__blocks-wrapper-item{\n  position: absolute;\n  overflow: hidden;\n  border: 1px solid goldenrod;\n  display: flex;\n\n}\n.vnjson__blocks-wrapper-item img{\n  position: relative;\n}";
+  var css$3 = ".vnjson__blocks{\n\n}\n.vnjson__blocks-item{\n  overflow: hidden;\n  z-index: 0;\n}\n\n.vnjson__blocks-wrapper-item{\n  position: absolute;\n  overflow: hidden;\n  display: flex;\n\n}\n.vnjson__blocks-wrapper-item img{\n  position: relative;\n}";
   n(css$3,{});
 
   var $tpl = $('<div class="vnjson__blocks component"></div>');
