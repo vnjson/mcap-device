@@ -190,6 +190,7 @@
 .debug__plugin--value{
   margin-top: 0;
   flex: unset;
+  white-space: nowrap;
 }
 .debug-plugin__params{
   display: flex;
