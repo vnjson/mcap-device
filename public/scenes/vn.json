@@ -87,130 +87,13 @@
         "next": true
       },
       {
-        "blocks": [
-          {
-            "id": "test69",
-            "z-index": 0,
-            "timeout": 0,
-            "width": "150px",
-            "height": "150px",
-            "top": "10px",
-            "left": "10px",
-            "animation": {
-              "type": "showUp",
-              "duration": 2000
-            }
-          },
-          {
-            "image": "ev",
-            "id": "test1",
-            "z-index": 3,
-            "timeout": 0,
-            "width": "150px",
-            "height": "150px",
-            "top": "10px",
-            "left": "180px",
-            "animation": {
-              "type": "showDown",
-              "duration": 2000
-            }
-          },
-          {
-            "image": "ev",
-            "id": "test1",
-            "z-index": 3,
-            "timeout": 0,
-            "width": "150px",
-            "height": "150px",
-            "top": "180px",
-            "left": "10px",
-            "animation": {
-              "type": "showLeft",
-              "duration": 2000
-            }
-          },
-          {
-            "image": "ev",
-            "id": "test1",
-            "z-index": 3,
-            "timeout": 0,
-            "width": "150px",
-            "height": "150px",
-            "top": "180px",
-            "left": "180px",
-            "animation": {
-              "type": "showRight",
-              "duration": 2000
-            }
-          },
-          {
-            "image": "ch",
-            "id": "test0",
-            "z-index": 0,
-            "timeout": 0,
-            "width": "150px",
-            "height": "150px",
-            "top": "10px",
-            "left": "360px",
-            "animation": {
-              "type": "slideUp",
-              "duration": 2000
-            }
-          },
-          {
-            "image": "ch",
-            "id": "test1",
-            "z-index": 3,
-            "timeout": 0,
-            "width": "150px",
-            "height": "150px",
-            "top": "10px",
-            "left": "540px",
-            "animation": {
-              "type": "slideDown",
-              "duration": 2000
-            }
-          },
-          {
-            "image": "ch",
-            "id": "test5",
-            "z-index": 3,
-            "timeout": 0,
-            "width": "150px",
-            "height": "150px",
-            "top": "180px",
-            "left": "360px",
-            "animation": {
-              "type": "slideLeft",
-              "duration": 2000
-            }
-          },
-          {
-            "image": "ch",
-            "id": "test55",
-            "z-index": 3,
-            "timeout": 0,
-            "width": "150px",
-            "height": "150px",
-            "top": "180px",
-            "left": "540px",
-            "animation": {
-              "type": "slideRight",
-              "duration": 2000
-            }
-          }
-        ]
+        "al": "te <span style=\"color: cyan\"></span><span style=\"color: cyan\"></span> 55<span style=\"color: cyan\"></span><span style=\"color: cyan\"></span>"
       },
       {
-        "blocks-step": {
-          "id": "test69",
-          "image": "p1",
-          "timeout": 0
-        },
-        "$": "STEP"
+        "$": "test <span></span> test"
       },
       {
-        "al": "te <span></span>"
+        "al": "<span></span>test2 <span></span> <span style=\"color: cyan\">555</span> test2 <span style=\"color: orange\">8 8</span> <span style=\"color: cyan\"></span> <span style=\"color: cyan\">+++</span>"
       },
       {
         "al": "123 123 123"
@@ -291,7 +174,7 @@
       "debug": true,
       "preload": true,
       "dialog-box": {
-        "delay": 40,
+        "delay": 60,
         "endPoint": true
       },
       "publish": {

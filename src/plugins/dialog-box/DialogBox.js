@@ -132,6 +132,7 @@ class DialogBox {
     if(this.letterInclude){  
         return tpl; 
     }
+    
     return this.letter;
 
   }
@@ -143,19 +144,21 @@ class DialogBox {
    * @param {String} letter текущий сивол
    */
   analyzeLetter (letter){
-    switch (letter){
-      case '<':
-        this.letterInclude = false;
-        break;
-      case '>':
-        this.letterExlude = true;
-        break;
-      default:
+  
+   // this.letterExlude = false
+    if(letter==='<'){
+        this.letterInclude = false
+    }
+    else if(letter==='>'){
+        this.letterExlude = true
+    }
+    else{
         if(this.letterExlude){
-          this.letterInclude = true;
+          this.letterInclude = true
           this.letterExlude = false
         }
     }
+
   }
   /**
    * Получаем все теги в которые были завёрнуты буквы.

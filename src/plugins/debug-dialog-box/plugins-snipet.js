@@ -25,6 +25,27 @@ css:
 action: play
 speed: 1
 volume: 1
-loop: true`
+loop: true`,
+'blocks': `- image: null
+  id: null
+  z-index: 0
+  timeout: 0
+  width: 100px
+  height: 100px
+  top: 100px
+  left: 100px
+  animation: 
+    type: showLeft
+    duration: 1000`,
+  'blocks-step': `id: undefined
+image: ev
+animation: 
+  type: moveTo
+  duration: 2000
+  left: 300px
+  top: 300px`,
 
 }
+
+
+
