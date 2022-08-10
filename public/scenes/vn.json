@@ -89,8 +89,7 @@
       {
         "blocks": [
           {
-            "image": "ev",
-            "id": "test0",
+            "id": "test69",
             "z-index": 0,
             "timeout": 0,
             "width": "150px",
@@ -204,9 +203,9 @@
       },
       {
         "blocks-step": {
-          "id": "test55",
+          "id": "test69",
           "image": "p1",
-          "timeout": 2000
+          "timeout": 0
         },
         "$": "STEP"
       },

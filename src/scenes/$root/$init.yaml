@@ -4,10 +4,9 @@
   audio: false
   next: true
 
-
 - blocks: 
-      - image: ev # Изображение отоброжаемое в на экране
-        id: test0 # Индификатор для управления через blocks-step
+      - #image: ev # Изображение отоброжаемое в на экране
+        id: test69 # Индификатор для управления через blocks-step
         z-index: 0
         timeout: 0 # Задержка начала воспроизведения анимации
         width: 150px
@@ -104,9 +103,9 @@
 
 
 - blocks-step:
-        id: test55
+        id: test69
         image: p1
-        timeout: 2000
+        timeout: 0
   $: STEP
 
 

@@ -5599,6 +5599,8 @@
   var css$3 = ".vnjson__blocks{\n\n}\n.vnjson__blocks-item{\n  overflow: hidden;\n  z-index: 0;\n}\n\n.vnjson__blocks-wrapper-item{\n  position: absolute;\n  overflow: hidden;\n  display: flex;\n\n}\n.vnjson__blocks-wrapper-item img{\n  position: relative;\n}";
   n(css$3,{});
 
+  var bgIMG = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABbmlDQ1BpY2MAACiRdZE7SwNBFIW/JIohRlNoIWKRIoqFgiiIpUQwjVokEYzaZDcvIRuX3Q0SbAUbC8FCtPFV+A+0FWwVBEERRKz8Ab4akfWOK0TEzDJ7P87MucycAf9UWTfspiEwKo6VTMSjc5n5aMsTQUK0EyCc1W1zOjWZpuF4v8Gn6vWg6tV437+jNZe3dfAFhUd103KEx4WnVhxT8YZwp17K5oT3hQcsOaDwhdI1jx8VFz1+VWylkxPgVz2jxV+s/WK9ZBnC/cIxo1zVf86jbhLOV2ZTUrtl9mCTJEGcKBpVlijjMCi1Ipn97xv69s2wLB5d/iY1LHEUKYl3QNSqdM1LLYiel69MTeX+N0+7MDLsdQ/HofnBdV96oWULPjdd9+PAdT8PIXAPZ5W6f1lyGnsTfbOuxfYgsgYn53VN24bTdei6M7NW9lsKyPQXCvB8DG0Z6LiC0IKX1c86R7eQXpUnuoSdXeiT/ZHFL47dZ9Y0nzKJAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAC0lEQVQIW2NgAAIAAAUAAR4f7BQAAAAASUVORK5CYII=";
+
   var $tpl = $('<div class="vnjson__blocks component"></div>');
   var stepsArray = [];
   function blocks () {
@@ -5618,7 +5620,11 @@
     if (param) {
       $tpl.show();
       param.forEach(function (item) {
-        var imageURL = _this2.getAssetByName(item.image).url;
+        var imageURL = bgIMG;
+
+        if (item.image) {
+          imageURL = _this2.getAssetByName(item.image).url;
+        }
 
         var $imgWrapper = $("\n                        <div class=\"vnjson__blocks-item component vnjson__blocks--".concat(item.id, "\" >\n                                <div class=\"vnjson__blocks-wrapper-item vnjson__blocks-wrapper--").concat(item.id, "\">\n                                    <img alt=\"\"  src=\"").concat(imageURL, "\">\n                                </div>\n                        </div>"));
         $imgWrapper.css({

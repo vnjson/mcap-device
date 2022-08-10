@@ -1,4 +1,5 @@
 import './style.css'
+import bgIMG from './assets/bg.png'
 const $tpl = $('<div class="vnjson__blocks component"></div>')
 let stepsArray = []
 export default  function () {
@@ -15,7 +16,10 @@ function blocksHandler (param){
     if(param){
           $tpl.show()
           param.forEach( item => {
-              const imageURL = this.getAssetByName(item.image).url
+              let imageURL = bgIMG
+              if(item.image){
+                imageURL = this.getAssetByName(item.image).url
+              }
               const $imgWrapper = $(`
                         <div class="vnjson__blocks-item component vnjson__blocks--${item.id}" >
                                 <div class="vnjson__blocks-wrapper-item vnjson__blocks-wrapper--${item.id}">
