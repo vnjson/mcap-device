@@ -3,27 +3,29 @@
   hands: true
   audio: false
   next: true
-- al: test
+
 ############################
 # Чё та не хочет заканчиваться по времени
 # audio:
 #   name: tes
 #   action: false
 ############################
-- audio-sprite:
-    src: test22
+- al: test
+  audio-sprite:
+    name: test22
+    volume: 1
     sprite:
-        test-krab:
-          - 1:08
-          - 1:09
-        aaa: 
+        sound_1: # произвольный индификатор
+          - 1:08 # начало воспроизведения [ минуты:секунды ]
+          - 0:06 # длительность от начала
+        sound_2: 
           - 2:05
-          - 2:10
-          
-- $: ddd
-- audio: test-krab
-- audio: false
-- audio: aaa
+          - 0:03
+
+
+- audio: sound_1
+
+- audio: sound_2
 - $:
     reply: ttt
     info: ooo

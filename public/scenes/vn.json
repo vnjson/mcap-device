@@ -91,34 +91,27 @@
         "next": true
       },
       {
-        "al": "test"
-      },
-      {
+        "al": "test",
         "audio-sprite": {
-          "src": "test22",
+          "name": "test22",
+          "volume": 1,
           "sprite": {
-            "test-krab": [
+            "sound_1": [
               "1:08",
-              "1:09"
+              "0:06"
             ],
-            "aaa": [
+            "sound_2": [
               "2:05",
-              "2:10"
+              "0:03"
             ]
           }
         }
       },
       {
-        "$": "ddd"
+        "audio": "sound_1"
       },
       {
-        "audio": "test-krab"
-      },
-      {
-        "audio": false
-      },
-      {
-        "audio": "aaa"
+        "audio": "sound_2"
       },
       {
         "$": {

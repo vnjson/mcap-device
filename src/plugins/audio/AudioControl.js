@@ -82,15 +82,17 @@ class AudioControl {
      
       return (hrs*60*60+min*60+sec)*1000
     }
+
     regSprites (data){
- 
+  
       for(let spriteID in data.sprite){
         const startTime = this.formatTime( data.sprite[spriteID][0] )
         const endTime = this.formatTime( data.sprite[spriteID][1] )
         const timeRange = [ startTime, endTime ]
-        console.log(timeRange)
-        $vnjs.$store.sprites[spriteID] = data.src
-        $vnjs.$store[data.src]._sprite[spriteID] = timeRange
+      
+        $vnjs.$store.sprites[spriteID] = data.name
+        $vnjs.$store[data.name]._sprite[spriteID] = timeRange
+        $vnjs.$store[data.name].volume(data.volume||1)
       }
 
   

@@ -45,6 +45,15 @@ animation:
   duration: 2000
   left: 300px
   top: 300px`,
+  'audio-sprite': `name: null
+volume: 1
+sprite:
+  sound_1:
+    - 1:08
+    - 0:06
+  sound_2: 
+    - 2:05
+    - 0:03`
 
 }
 
