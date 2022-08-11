@@ -178,12 +178,12 @@
 }
 
 .debug-plugin__select{
-  width: 29%;
+  width: 35%;
   overflow: auto;
 }
 
 .debug-plugin__right{
-  width: 70%;
+  width: 64%;
   display: flex;
   margin-left: 2px;
 }

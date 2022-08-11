@@ -3,31 +3,31 @@ export default{
     'left': false,
     'center': false,
     'right': false,
-    'leftimg': `name: undefined
+    'leftimg': `name: null
 css:
   width: 200px
   height: 200px
   top: 0px
   left: 0px`,
-    'centerimg': `name: undefined
+    'centerimg': `name: null
 css:
   width: 200px
   height: 200px
   top: 0px
   left: 0px`,
-    'rightimg': `name: undefined
+    'rightimg': `name: null
 css:
   width: 200px
   height: 200px
   top: 0px
   left: 0px`,
-    'audio': `name: undefined
+    'audio': `name: null
 action: play
 speed: 1
 volume: 1
 loop: true`,
-'blocks': `- image: null
-  id: null
+'blocks': `- id: null
+  image: null
   z-index: 0
   timeout: 0
   width: 100px
@@ -37,8 +37,9 @@ loop: true`,
   animation: 
     type: showLeft
     duration: 1000`,
-  'blocks-step': `id: undefined
-image: ev
+  'blocks-step': `id: null
+image: null
+z-index: 0
 animation: 
   type: moveTo
   duration: 2000

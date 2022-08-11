@@ -26,8 +26,7 @@ export default function (){
                 info.print( String(param.info ) )
                 
                 if(param.borderColor){
-                  $avatar.css('border-color', param.borderColor)
-                  $tpl.css('border-color', param.borderColor)
+                   info.addBorder(param.borderColor)
                 }
                 _param = true
                 return 
@@ -48,6 +47,8 @@ export default function (){
 
         info.toggle()
       }
-      
+      this.emit('dialog-box:avatar-click')
     } )
+ 
+    this.on('dialog-box:click', () => info.removeBorder() )
 }

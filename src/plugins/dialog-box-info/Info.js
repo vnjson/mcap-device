@@ -36,6 +36,14 @@ class Info {
     print (data){
       this.$info.html(data)
     }
+    addBorder (borderColor){
+      this.$avatar.css('border-color', borderColor)
+      this.$info.css('border-color', borderColor)
+    }
+    removeBorder (){
+      this.$avatar.css('border-color', 'transparent')
+      this.$info.css('border-color', 'transparent')
+    }
 }
 
 export default Info

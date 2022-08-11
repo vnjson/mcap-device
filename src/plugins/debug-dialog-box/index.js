@@ -17,10 +17,11 @@ export default function (){
 
   $('.debug__inner-reply').on('click', () => {
       cid = $('.debug__character').val()
-      const reply = $('.debug__reply').val()
+      const reply = $('.debug__reply').val().trim()
+      const objReply = jsyaml.load( reply )
       if(cid==='') cid = '$';
 
-      this.exec({ [cid]: reply })
+      this.exec({ [cid]: objReply })
 
   })
 

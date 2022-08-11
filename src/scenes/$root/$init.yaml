@@ -4,7 +4,16 @@
   audio: false
   next: true
 
-
+- $:
+    reply: ttt
+    info: ooo
+    borderColor: red
+- $: ddddddddddddddd
+- $:
+    reply: 3333
+    info: ooo333
+    borderColor: yellow
+- $: tes
 
 - al: 'te <span style="color: cyan"></span><span style="color: cyan"></span> 55<span style="color: cyan"></span><span style="color: cyan"></span>'
 - $: test <span></span> test
@@ -27,9 +36,11 @@
     - tree__fs: Файловая структура
       icon: test
     - yaml-scripts: YAML скрипты
+    
     - plug: Список плагинов
       icon: test
       disabled: true
+      
     - $root.$init: Вернуться в начало
     - onClick:
         hands: true

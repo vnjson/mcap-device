@@ -12,7 +12,7 @@ export default function  (){
     this.current.data.local = 'ru';        
     new ErrorHandler(this.current.data.local);  
   
-    this.on('exec', ctx=>{
+    this.on('vnjson:exec', ctx => {
         /**
          * Добавляем параметры в URI
          */

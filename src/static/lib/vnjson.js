@@ -11,7 +11,7 @@
 'use strict';
 
 class Vnjson {
-  version = '1.8.1';
+  version = '1.8.2';
   //current object
   ctx = {};
   //loaded scenes
@@ -92,7 +92,9 @@ class Vnjson {
   getCharacterById (id){
     return this.TREE.$root.characters.find(character=>character.id === id)
   }
-
+  getCharacters (){
+    return this.TREE.$root.characters
+  }
   getCtx (){
     return this.getCurrentLabelBody()[this.current.index];
   }
@@ -179,7 +181,7 @@ class Vnjson {
     else{
         this.emit('$', String(this.ctx) );
     }
-    this.emit('exec', this.ctx );
+    this.emit('vnjson:exec', this.ctx)
     return this;
   }
 
@@ -193,7 +195,9 @@ class Vnjson {
     else{
       this.current.index++;
       this.exec();
+      this.emit('vnjson:next')
     }
+    
     return this;
   };
 

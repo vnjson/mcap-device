@@ -2,8 +2,9 @@ import './style.css'
 import bgIMG from './assets/bg.png'
 const $tpl = $('<div class="vnjson__blocks component"></div>')
 let stepsArray = []
+let vnjs = null
 export default  function () {
-
+  vnjs = this
   this.$store.$screen.append($tpl)
   this.on('blocks', (param) => {
     stepsArray = param
@@ -11,19 +12,21 @@ export default  function () {
   })
   this.on('blocks-step', blocksStepHandler)
 }
-
+function getImage (item){
+    if(item.image){
+        return vnjs.getAssetByName(item.image).url
+    }
+    return bgIMG
+}
 function blocksHandler (param){
     if(param){
           $tpl.show()
           param.forEach( item => {
-              let imageURL = bgIMG
-              if(item.image){
-                imageURL = this.getAssetByName(item.image).url
-              }
+
               const $imgWrapper = $(`
                         <div class="vnjson__blocks-item component vnjson__blocks--${item.id}" >
                                 <div class="vnjson__blocks-wrapper-item vnjson__blocks-wrapper--${item.id}">
-                                    <img alt=""  src="${imageURL}">
+                                    <img alt=""  src="${ getImage(item) }">
                                 </div>
                         </div>`)
               
@@ -166,10 +169,10 @@ function animationType ($imgWrapper, $img, $imgBox, item){
             $img.css({ display: 'block', opacity: 1})
             const animationData = {}
             if(item.animation.left){
-              animationData.left = item.animation.left
+              animationData.left = item.animation.left.replaceAll(' ', '')
             }
             if(item.animation.top){
-              animationData.top = item.animation.top
+              animationData.top = item.animation.top.replaceAll(' ', '')
             }
             $imgWrapper.animate(animationData, item.animation.duration, ()=>{
                 if(item.animation.onEnd){
@@ -232,9 +235,7 @@ function blocksStepHandler (item){
     }
 
     setTimeout( ()=>{
-        if(item.image){
-            $img.attr('src',   this.getAssetByName(item.image).url )
-        }
+        $img.attr('src',   getImage(item) )
         
         if(item['z-index']){
             $imgWrapper.css('z-index', item['z-index'])

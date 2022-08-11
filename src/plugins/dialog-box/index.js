@@ -9,7 +9,10 @@ export default function (){
   $tpl.css('background-image', `url(${dialogBoxImage})`)
   this.$store.$screen.append($tpl);
   // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
-  $tpl.find('.dialog-box__reply-wrapper').on('mousedown', e => this.next())
+  $tpl.find('.dialog-box__reply-wrapper').on('mousedown', e => {
+      this.emit('dialog-box:click')
+      this.next() 
+  })
 
   /**
    * DialogBox

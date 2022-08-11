@@ -89,10 +89,12 @@ dialog-box:
 #    this.on('dialog-box:disabled', flag)
 
 ################ delay > 0 ###############
-#
+
 #    this.on('dialog-box:character', letter => {
 #        console.log(ch)
 #    })
 #    this.on('dialog-box:endOutputReply')
 #    this.on('dialog-box:hide')
-#    this.emit('dialog-box:clear')
+#    this.on('dialog-box:clear')
+#    this.on('dialog-box:click' )
+#    this.on('dialog-box:avatar-click')
