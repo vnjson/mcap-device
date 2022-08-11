@@ -53,8 +53,12 @@ sprite:
     - 0:06
   sound_2: 
     - 2:05
-    - 0:03`
-
+    - 0:03`,
+    /** character */
+  'character': `reply: null
+avatar: null
+info: null
+borderColor: "#57f704"`,
 }
 
 

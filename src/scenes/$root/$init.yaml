@@ -33,7 +33,7 @@
 - al: test
   audio-sprite:
     name: test22
-    volume: 1
+    #volume: 1
     sprite:
         sound_1: # произвольный индификатор
           - 1:08 # начало воспроизведения [ минуты:секунды ]
@@ -41,6 +41,9 @@
         sound_2: 
           - 2:05
           - 0:30
+        theme2:
+          - 1:11
+          - 0:03
 
 
 - audio: 

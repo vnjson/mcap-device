@@ -25,33 +25,7 @@ export default function (){
 
   })
 
-  $('.debug__mcexec').on('click', () => {
-      const action = $('.debug__mc-exec').val()
-      const data = $('.debug__mcexec-data').val()
-      const checkBoxType = $('.debug__mcexec-type:checked').val()
-      let type = 'player'
-      if(checkBoxType==='on'){
-         type = 'server'
-      }
-      const plugins = { 
-                'mc-exec': {
-                    action,
-                    data,
-                    type
-                } 
-      }
 
-      this.exec(plugins)
-    
-  })
-
-
-/**
-- mc-exec:
-    action: executeCMD
-    data: say TEST TEST TEST # give @p dirt 1
-    type: player
- */
     /*
      * delay
      */
@@ -75,8 +49,13 @@ export default function (){
       color: '#d8dfe3',
       type: 'text'
     })
-
-    
+    /**
+     * Клик по снипету в реплике
+     */
+    $('.debug-btn--character-snipet').on('click', function (){
+        const val = pluginsSnipet['character']
+        $('.debug__reply').val(val)
+    })
 
  
     const $pluginValue = $('.debug__plugin--value')
@@ -104,6 +83,7 @@ export default function (){
         const name = pluginsSnipet[pluginName]
         $pluginValue.val(name)
     })
+    
     //
     $('.debug__show-asset').on('click', function (){
 
@@ -132,6 +112,34 @@ export default function (){
      * get original image size plugin
      */
     this.on('img-size', getImageSize )
+
+
+    /**
+    - mc-exec:
+        action: executeCMD
+        data: say TEST TEST TEST # give @p dirt 1
+        type: player
+    */
+
+    $('.debug__mcexec').on('click', () => {
+      const action = $('.debug__mc-exec').val()
+      const data = $('.debug__mcexec-data').val()
+      const checkBoxType = $('.debug__mcexec-type:checked').val()
+      let type = 'player'
+      if(checkBoxType==='on'){
+         type = 'server'
+      }
+      const plugins = { 
+                'mc-exec': {
+                    action,
+                    data,
+                    type
+                } 
+      }
+
+      this.exec(plugins)
+    
+  })
 
 
 }

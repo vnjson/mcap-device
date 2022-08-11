@@ -4,16 +4,11 @@ export default function (asset) {
     if(asset) {
         const img = new Image()
         img.onload = function () {
-          _vnjs.exec({
-            [ char.id ]: `<font color="orange">${this.width}</font> x <font color="orange">${this.height}</font>`
-          })
+          $('.debug__plugin--value').val(`${asset}\nwidth: ${this.width}px\nheight: ${this.height}px`)
+
         }
         img.src = this.getAssetByName(asset).url
     }
-    else{
-        _vnjs.exec({
-          [ char.id ]: `<font color="brown">Трубуется индификатор изображения</font>`
-        })
-    }
+
 
 }
