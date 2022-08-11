@@ -39,6 +39,7 @@ function blocksHandler (param){
               })
 
               const $img = $imgWrapper.find('img')
+              
               const $imgBox = $imgWrapper.find(`.vnjson__blocks-wrapper--${item.id}`)
               $img.css({
                   display: 'none',

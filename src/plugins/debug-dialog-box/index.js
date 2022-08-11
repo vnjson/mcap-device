@@ -7,7 +7,7 @@ import './lib/color-picker/color.css'
 import './lib/color-picker/color.js'
 import copyTextToClipboard from './clipboard.js'
 import pluginsSnipet from './plugins-snipet.js'
-
+import getImageSize from './img-size.js'
 
 let cid = '$'
 export default function (){
@@ -55,15 +55,15 @@ export default function (){
     /*
      * delay
      */
-    const _this = this 
+    const _vnjs = this 
     this.on('postload', () => {
         const dBox = this.TREE.$root.package?.['dialog-box']
         $('.debug__delay').val(dBox?.delay||0)
 
     }) 
-   // _this.TREE.$root.characters[0]
+   // _vnjs.TREE.$root.characters[0]
     $('.debug__delay').on('change', function() {
-        _this.$store['dialog-box'].delay = $(this).val()
+        _vnjs.$store['dialog-box'].delay = $(this).val()
     })
     $('#debug__color-picker').on('change', function() {
         const value = $(this).val()
@@ -108,7 +108,7 @@ export default function (){
     $('.debug__show-asset').on('click', function (){
 
       let pluginValue = jsyaml.load( $pluginValue.val().trim() )
-      _this.exec({
+      _vnjs.exec({
         [ pluginName ]: pluginValue
       })
 
@@ -117,16 +117,22 @@ export default function (){
     const dbhNode = $('.debug__btn-img--dbh')
     $('.debug__show-dbh').on('click', function (){
         if(flagDB){
-          _this.exec({'dialog-box': true})
+          _vnjs.exec({'dialog-box': true})
           dbhNode.removeClass('debug__btn-img--dbs')
           flagDB = false
         }
         else{
-          _this.exec({'dialog-box': false})
+          _vnjs.exec({'dialog-box': false})
           dbhNode.addClass('debug__btn-img--dbs')
           flagDB = true
         }
     })
+
+    /**
+     * get original image size plugin
+     */
+    this.on('img-size', getImageSize )
+    
 }
 
 

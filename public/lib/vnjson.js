@@ -95,6 +95,7 @@ class Vnjson {
   getCharacters (){
     return this.TREE.$root.characters
   }
+
   getCtx (){
     return this.getCurrentLabelBody()[this.current.index];
   }

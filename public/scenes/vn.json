@@ -94,7 +94,25 @@
         }
       },
       {
-        "$": "ddddddddddddddd"
+        "blocks": [
+          {
+            "image": "ev",
+            "id": "test0",
+            "z-index": 0,
+            "timeout": 0,
+            "width": "130px",
+            "height": "180px",
+            "top": "100px",
+            "left": "400px",
+            "animation": {
+              "type": "slideUp",
+              "duration": 500,
+              "onEnd": {
+                "$": "Конец воспроизведения анимации slideUp"
+              }
+            }
+          }
+        ]
       },
       {
         "$": {

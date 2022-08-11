@@ -8,7 +8,20 @@
     reply: ttt
     info: ooo
     borderColor: red
-- $: ddddddddddddddd
+- blocks: 
+      - image: ev
+        id: test0 # Индификатор для управления через blocks-step
+        z-index: 0
+        timeout: 0 # Задержка начала воспроизведения анимации
+        width: 130px
+        height: 180px
+        top: 100px
+        left: 400px
+        animation: 
+          type: slideUp # Тип анимации
+          duration: 500 # Длительность анимации
+          onEnd: # vnjs.exec(ctx) Данная функция вызовется по оканчанию воспроизведения анимации 
+            $: Конец воспроизведения анимации slideUp
 - $:
     reply: 3333
     info: ooo333
