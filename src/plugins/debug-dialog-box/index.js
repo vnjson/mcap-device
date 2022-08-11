@@ -132,7 +132,8 @@ export default function (){
      * get original image size plugin
      */
     this.on('img-size', getImageSize )
-    
+
+
 }
 
 

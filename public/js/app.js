@@ -2814,8 +2814,8 @@
     _createClass(AudioControl, [{
       key: "isAudioExist",
       value: function isAudioExist(name) {
-        if (!$vnjs.$store[name]) {
-          console.error('Некоректный индификатор аудио файла', name);
+        if (!$vnjs.$store[name] && !$vnjs.$store.sprites[name]) {
+          $vnjs.emit('error', 'assetNotFound', name);
           return false;
         }
 
@@ -2835,7 +2835,13 @@
          */
         else if (typeof data === 'string') {
           if (!this.isAudioExist(data)) return;
-          $vnjs.$store[data].play();
+          var soundName = $vnjs.$store.sprites[data];
+
+          if (soundName) {
+            $vnjs.$store[soundName].play(data);
+          } else {
+            $vnjs.$store[data].play();
+          }
         }
         /**
          * OBJECT
@@ -2858,6 +2864,44 @@
           }
         });
       }
+      /**
+      * 
+      * @param {String} time [ 2:53 ] 
+      */
+
+    }, {
+      key: "formatTime",
+      value: function formatTime(time) {
+        var t = time.split(':');
+        var hrs = 0;
+        var min = 0;
+        var sec = 0;
+
+        if (t.length === 2) {
+          min = Number(t[0]);
+          sec = Number(t[1]);
+        } else if (t.length === 3) {
+          hrs = Number(t[0]);
+          min = Number(t[1]);
+          sec = Number(t[2]);
+        } else {
+          return;
+        }
+
+        return (hrs * 60 * 60 + min * 60 + sec) * 1000;
+      }
+    }, {
+      key: "regSprites",
+      value: function regSprites(data) {
+        for (var spriteID in data.sprite) {
+          var startTime = this.formatTime(data.sprite[spriteID][0]);
+          var endTime = this.formatTime(data.sprite[spriteID][1]);
+          var timeRange = [startTime, endTime];
+          console.log(timeRange);
+          $vnjs.$store.sprites[spriteID] = data.src;
+          $vnjs.$store[data.src]._sprite[spriteID] = timeRange;
+        }
+      }
     }]);
 
     return AudioControl;
@@ -2866,9 +2910,13 @@
   function audio () {
     var _this = this;
 
+    $vnjs.$store.sprites = {};
     var audioControl = new AudioControl();
     this.on('audio', function (data) {
       return audioControl.handler(data);
+    });
+    this.on('audio-sprite', function (data) {
+      return audioControl.regSprites(data);
     });
     this.on('audioEnd', function () {
       var _audioControl$soundDa;

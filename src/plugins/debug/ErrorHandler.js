@@ -97,7 +97,7 @@ class ErrorHandler {
    */
   static getMessage (local='en', codeError, data){
     if(errors[local].hasOwnProperty(codeError)){
-          const message =  errors[local][codeError].replace(/{.{0,}}/gi, data);
+          const message =  errors[local][codeError].replace(/{.{0,}}/gi,  data );
           return message;
     }
     return codeError;

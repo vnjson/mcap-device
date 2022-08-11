@@ -76,6 +76,10 @@
       {
         "name": "sysTypeWrite",
         "url": "scenes/assets/sysTypeWrite.mp3"
+      },
+      {
+        "name": "test22",
+        "url": "scenes/assets/test22.mp3"
       }
     ],
     "$init": [
@@ -85,6 +89,36 @@
         "hands": true,
         "audio": false,
         "next": true
+      },
+      {
+        "al": "test"
+      },
+      {
+        "audio-sprite": {
+          "src": "test22",
+          "sprite": {
+            "test-krab": [
+              "1:08",
+              "1:09"
+            ],
+            "aaa": [
+              "2:05",
+              "2:10"
+            ]
+          }
+        }
+      },
+      {
+        "$": "ddd"
+      },
+      {
+        "audio": "test-krab"
+      },
+      {
+        "audio": false
+      },
+      {
+        "audio": "aaa"
       },
       {
         "$": {

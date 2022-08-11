@@ -17,6 +17,7 @@ var load = _=>{
   var asset = this.current.assets[i];
   
   if(/\.mp3|\.wav|\.ogg/i.test(asset.url)){
+         
           if( this.current.assets.length-1>=++i){
               var sound = new Howl({src: asset.url});
 
@@ -31,6 +32,7 @@ var load = _=>{
                       this.emit('load', asset);
                       load();
                   });
+               
           }
           else{
               this.emit('postload');

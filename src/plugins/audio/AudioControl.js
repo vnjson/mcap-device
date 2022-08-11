@@ -1,3 +1,5 @@
+
+
 class AudioControl {
     //prevSound = null
     soundData = null
@@ -6,8 +8,9 @@ class AudioControl {
       this.stopAll()
     }
     isAudioExist (name) {
-      if(!$vnjs.$store[name]){
-        console.error('Некоректный индификатор аудио файла', name)
+      if(!$vnjs.$store[name]&&!$vnjs.$store.sprites[name]){
+        $vnjs.emit('error', 'assetNotFound', name)
+
         return false
       }
       return true
@@ -24,7 +27,16 @@ class AudioControl {
        */
       else if(typeof data==='string'){
           if( !this.isAudioExist(data) ) return
-          $vnjs.$store[data].play()
+          const soundName = $vnjs.$store.sprites[data]
+      
+          if(soundName){
+              $vnjs.$store[soundName].play(data)
+  
+          }
+          else{
+              $vnjs.$store[data].play()
+          }
+          
       }
       /**
        * OBJECT
@@ -35,6 +47,7 @@ class AudioControl {
         $vnjs.$store[data.name].loop(data.loop||false)
         $vnjs.$store[data.name].volume(data.volume||1)
         $vnjs.$store[data.name][data.action]()
+
         this.soundData = data
       }
     }
@@ -44,8 +57,44 @@ class AudioControl {
               asset.stop()
             }
       })
+    }/**
+     * 
+     * @param {String} time [ 2:53 ] 
+     */
+    formatTime (time) {
+      const t = time.split(':')
+    
+      let hrs = 0
+      let min = 0
+      let sec = 0
+      if(t.length===2){
+        min = Number(t[0])
+        sec = Number(t[1])
+      }
+      else if(t.length===3){
+        hrs = Number(t[0])
+        min = Number(t[1])
+        sec = Number(t[2])
+      }
+      else{
+        return
+      }
+     
+      return (hrs*60*60+min*60+sec)*1000
     }
+    regSprites (data){
+ 
+      for(let spriteID in data.sprite){
+        const startTime = this.formatTime( data.sprite[spriteID][0] )
+        const endTime = this.formatTime( data.sprite[spriteID][1] )
+        const timeRange = [ startTime, endTime ]
+        console.log(timeRange)
+        $vnjs.$store.sprites[spriteID] = data.src
+        $vnjs.$store[data.src]._sprite[spriteID] = timeRange
+      }
+
   
+    }
   }
 
 export default AudioControl

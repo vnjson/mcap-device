@@ -3,11 +3,35 @@
   hands: true
   audio: false
   next: true
-
+- al: test
+############################
+# Чё та не хочет заканчиваться по времени
+# audio:
+#   name: tes
+#   action: false
+############################
+- audio-sprite:
+    src: test22
+    sprite:
+        test-krab:
+          - 1:08
+          - 1:09
+        aaa: 
+          - 2:05
+          - 2:10
+          
+- $: ddd
+- audio: test-krab
+- audio: false
+- audio: aaa
 - $:
     reply: ttt
     info: ooo
     borderColor: red
+
+
+   
+
 - blocks: 
       - image: ev
         id: test0 # Индификатор для управления через blocks-step
