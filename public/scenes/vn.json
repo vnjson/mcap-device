@@ -91,101 +91,16 @@
         "next": true
       },
       {
-        "al": "test",
-        "audio-sprite": {
-          "name": "test22",
-          "volume": 1,
-          "sprite": {
-            "sound_1": [
-              "1:08",
-              "0:06"
-            ],
-            "sound_2": [
-              "2:05",
-              "0:03"
-            ]
-          }
-        }
-      },
-      {
-        "audio": "sound_1"
-      },
-      {
-        "audio": "sound_2"
-      },
-      {
-        "$": {
-          "reply": "ttt",
-          "info": "ooo",
-          "borderColor": "red"
-        }
-      },
-      {
-        "blocks": [
-          {
-            "image": "ev",
-            "id": "test0",
-            "z-index": 0,
-            "timeout": 0,
-            "width": "130px",
-            "height": "180px",
-            "top": "100px",
-            "left": "400px",
-            "animation": {
-              "type": "slideUp",
-              "duration": 500,
-              "onEnd": {
-                "$": "Конец воспроизведения анимации slideUp"
-              }
-            }
-          }
-        ]
-      },
-      {
-        "$": {
-          "reply": 3333,
-          "info": "ooo333",
-          "borderColor": "yellow"
-        }
-      },
-      {
-        "$": "tes"
-      },
-      {
-        "al": "te <span style=\"color: cyan\"></span><span style=\"color: cyan\"></span> 55<span style=\"color: cyan\"></span><span style=\"color: cyan\"></span>"
-      },
-      {
-        "$": "test <span></span> test"
-      },
-      {
-        "al": "<span></span>test2 <span></span> <span style=\"color: cyan\">555</span> test2 <span style=\"color: orange\">8 8</span> <span style=\"color: cyan\"></span> <span style=\"color: cyan\">+++</span>"
-      },
-      {
-        "al": "123 123 123"
-      },
-      {
-        "al": "test test test"
-      },
-      {
-        "set-name": "$"
-      },
-      {
-        "al": "t t t @$"
-      },
-      {
-        "$": "0 3 4"
-      },
-      {
         "menu": [
           {
             "$": "test"
           },
           {
-            "label_11": "Как подключить 1",
+            "testdata.$init": "Как подключить 1",
             "icon": "ev"
           },
           {
-            "label_11": "Как подключить 2"
+            "testdata.$init": "Как подключить 2"
           },
           {
             "tree__fs": "Файловая структура",
@@ -218,6 +133,70 @@
             }
           }
         ]
+      },
+      {
+        "al": "test",
+        "audio-sprite": {
+          "name": "test22",
+          "volume": 1,
+          "sprite": {
+            "sound_1": [
+              "1:08",
+              "0:06"
+            ],
+            "sound_2": [
+              "2:05",
+              "0:30"
+            ]
+          }
+        }
+      },
+      {
+        "audio": {
+          "name": "sound_2",
+          "action": "play"
+        }
+      },
+      {
+        "audio": "sound_2"
+      },
+      {
+        "$": {
+          "reply": "ttt",
+          "info": "ooo",
+          "borderColor": "red"
+        }
+      },
+      {
+        "$": {
+          "reply": 3333,
+          "info": "ooo333",
+          "borderColor": "yellow"
+        }
+      },
+      {
+        "al": "te <span style=\"color: cyan\"></span><span style=\"color: cyan\"></span> 55<span style=\"color: cyan\"></span><span style=\"color: cyan\"></span>"
+      },
+      {
+        "$": "test <span></span> test"
+      },
+      {
+        "al": "<span></span>test2 <span></span> <span style=\"color: cyan\">555</span> test2 <span style=\"color: orange\">8 8</span> <span style=\"color: cyan\"></span> <span style=\"color: cyan\">+++</span>"
+      },
+      {
+        "al": "123 123 123"
+      },
+      {
+        "al": "test test test"
+      },
+      {
+        "set-name": "$"
+      },
+      {
+        "al": "t t t @$"
+      },
+      {
+        "$": "0 3 4"
       }
     ],
     "characters": [
@@ -293,6 +272,9 @@
         "name": "p1",
         "url": "scenes/assets/p1.png"
       }
+    ],
+    "$init": [
+      "CHAPTER 2"
     ]
   }
 }

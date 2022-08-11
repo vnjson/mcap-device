@@ -2849,10 +2849,19 @@
          */
         else if (_typeof(data) === 'object') {
           if (!this.isAudioExist(data.name)) return;
-          $vnjs.$store[data.name].rate(data.speed || 1);
-          $vnjs.$store[data.name].loop(data.loop || false);
-          $vnjs.$store[data.name].volume(data.volume || 1);
-          $vnjs.$store[data.name][data.action]();
+          var _soundName = $vnjs.$store.sprites[data.name];
+          var sound = null;
+
+          if (_soundName) {
+            sound = $vnjs.$store[_soundName];
+          } else {
+            sound = $vnjs.$store[data.name];
+          }
+
+          sound.rate(data.speed || 1);
+          sound.loop(data.loop || false);
+          sound.volume(data.volume || 1);
+          sound[data.action](data.name);
           this.soundData = data;
         }
       }

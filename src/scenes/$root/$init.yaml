@@ -4,73 +4,12 @@
   audio: false
   next: true
 
-############################
-# Чё та не хочет заканчиваться по времени
-# audio:
-#   name: tes
-#   action: false
-############################
-- al: test
-  audio-sprite:
-    name: test22
-    volume: 1
-    sprite:
-        sound_1: # произвольный индификатор
-          - 1:08 # начало воспроизведения [ минуты:секунды ]
-          - 0:06 # длительность от начала
-        sound_2: 
-          - 2:05
-          - 0:03
-
-
-- audio: sound_1
-
-- audio: sound_2
-- $:
-    reply: ttt
-    info: ooo
-    borderColor: red
-
-
-   
-
-- blocks: 
-      - image: ev
-        id: test0 # Индификатор для управления через blocks-step
-        z-index: 0
-        timeout: 0 # Задержка начала воспроизведения анимации
-        width: 130px
-        height: 180px
-        top: 100px
-        left: 400px
-        animation: 
-          type: slideUp # Тип анимации
-          duration: 500 # Длительность анимации
-          onEnd: # vnjs.exec(ctx) Данная функция вызовется по оканчанию воспроизведения анимации 
-            $: Конец воспроизведения анимации slideUp
-- $:
-    reply: 3333
-    info: ooo333
-    borderColor: yellow
-- $: tes
-
-- al: 'te <span style="color: cyan"></span><span style="color: cyan"></span> 55<span style="color: cyan"></span><span style="color: cyan"></span>'
-- $: test <span></span> test
-- al: '<span></span>test2 <span></span> <span style="color: cyan">555</span> test2 <span style="color: orange">8 8</span> <span style="color: cyan"></span> <span style="color: cyan">+++</span>'
-- al: 123 123 123
-- al: test test test
-
-- set-name: $
-- al: t t t @$
-- $: 0 3 4
-
-
 
 - menu:
     - $: test
-    - label_11: Как подключить 1
+    - testdata.$init: Как подключить 1
       icon: ev
-    - label_11: Как подключить 2
+    - testdata.$init: Как подключить 2
 
     - tree__fs: Файловая структура
       icon: test
@@ -90,3 +29,47 @@
         width: 300px
         top: 50px
         right: 20px
+
+- al: test
+  audio-sprite:
+    name: test22
+    volume: 1
+    sprite:
+        sound_1: # произвольный индификатор
+          - 1:08 # начало воспроизведения [ минуты:секунды ]
+          - 0:06 # длительность от начала
+        sound_2: 
+          - 2:05
+          - 0:30
+
+
+- audio: 
+    name: sound_2
+    action: play
+    #loop: true
+
+- audio: sound_2
+- $:
+    reply: ttt
+    info: ooo
+    borderColor: red
+
+
+ 
+- $:
+    reply: 3333
+    info: ooo333
+    borderColor: yellow
+
+
+- al: 'te <span style="color: cyan"></span><span style="color: cyan"></span> 55<span style="color: cyan"></span><span style="color: cyan"></span>'
+- $: test <span></span> test
+- al: '<span></span>test2 <span></span> <span style="color: cyan">555</span> test2 <span style="color: orange">8 8</span> <span style="color: cyan"></span> <span style="color: cyan">+++</span>'
+- al: 123 123 123
+- al: test test test
+
+- set-name: $
+- al: t t t @$
+- $: 0 3 4
+
+

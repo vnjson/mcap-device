@@ -43,11 +43,19 @@ class AudioControl {
        */
       else if(typeof data==='object'){
         if( !this.isAudioExist(data.name) ) return
-        $vnjs.$store[data.name].rate(data.speed||1)
-        $vnjs.$store[data.name].loop(data.loop||false)
-        $vnjs.$store[data.name].volume(data.volume||1)
-        $vnjs.$store[data.name][data.action]()
 
+        const soundName = $vnjs.$store.sprites[data.name]
+        let sound = null
+        if(soundName){
+            sound = $vnjs.$store[soundName]
+        }
+        else{
+          sound = $vnjs.$store[data.name]
+        }
+        sound.rate(data.speed||1)
+        sound.loop(data.loop||false)
+        sound.volume(data.volume||1)
+        sound[data.action](data.name)
         this.soundData = data
       }
     }
