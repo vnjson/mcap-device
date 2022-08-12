@@ -1,3 +1,21 @@
+- dialog-box: true
+  status-bar: false
+  hands: true
+  audio: false
+  next: true
+
+- al: 'te <span style="color: cyan"></span><span style="color: cyan"></span> 55<span style="color: cyan"></span><span style="color: cyan"></span>'
+- $: test <span></span> test
+- al: '<span></span>test2 <span></span> <span style="color: cyan">555</span> test2 <span style="color: orange">8 8</span> <span style="color: cyan"></span> <span style="color: cyan">+++</span>'
+- al: 123 123 123
+- al: test test test
+
+- set-name: $
+- al: t t t @$
+- $: 0 3 4
+
+
+
 - main-menu:
   - $root.$init: Начать игру
     icon: ev
@@ -15,11 +33,6 @@
       width: 400px
       
 
-- dialog-box: true
-  status-bar: false
-  hands: true
-  audio: false
-  next: true
 
 
 
@@ -62,7 +75,6 @@
           - 1:11
           - 0:03
 
-
 - audio: 
     name: sound_2
     action: play
@@ -81,15 +93,5 @@
     info: ooo333
     borderColor: yellow
 
-
-- al: 'te <span style="color: cyan"></span><span style="color: cyan"></span> 55<span style="color: cyan"></span><span style="color: cyan"></span>'
-- $: test <span></span> test
-- al: '<span></span>test2 <span></span> <span style="color: cyan">555</span> test2 <span style="color: orange">8 8</span> <span style="color: cyan"></span> <span style="color: cyan">+++</span>'
-- al: 123 123 123
-- al: test test test
-
-- set-name: $
-- al: t t t @$
-- $: 0 3 4
 
 
