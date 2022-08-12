@@ -55,13 +55,16 @@ export default function (){
           case 'play':
                 player.play();
             break;
+          case 'stop':
+                player.pause();
+            break;
           default:
               const asset = this.getAssetByName(param);
               player.src(asset.url);
-              player.ready( ()=>{
-                 player.play();
+              player.ready( () => {
+                 player.play()
               });    
-              $tpl.fadeIn();
+              $tpl.fadeIn()
         }
     } 
     else{

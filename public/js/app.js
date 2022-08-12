@@ -2031,6 +2031,10 @@
      * MENU
      */
     'menu': "- $init: \u041D\u0430\u0447\u0430\u043B\u043E\n  icon: p1\n- $root.$init: \u041D\u0430\u0447\u0430\u043B\u043E 2\n- next: \u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C",
+
+    /**
+     * VIDEO
+     */
     'video': "name: null\nvolume: 0.7\ncss:\n  top: 50px\n  left: 50px\n  width: 500px\n  height: 300px"
   };
 
@@ -4872,6 +4876,10 @@
 
           case 'play':
             player.play();
+            break;
+
+          case 'stop':
+            player.pause();
             break;
 
           default:

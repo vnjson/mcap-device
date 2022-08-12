@@ -68,6 +68,9 @@ borderColor: "#57f704"`,
   icon: p1
 - $root.$init: Начало 2
 - next: Продолжить`,
+/**
+ * VIDEO
+ */
   'video': `name: null
 volume: 0.7
 css:
