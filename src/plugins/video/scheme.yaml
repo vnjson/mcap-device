@@ -22,3 +22,14 @@
 - video: pause
 - video: play
 - video: false
+
+- video:
+    name: assetName
+    volume: 0.7
+    onEnd:
+      dialog-box: true
+    css:
+      top: 50px
+      left: 40px
+      width: 500px
+      height: 300px

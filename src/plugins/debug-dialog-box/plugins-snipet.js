@@ -67,7 +67,14 @@ borderColor: "#57f704"`,
   'menu': `- $init: Начало
   icon: p1
 - $root.$init: Начало 2
-- next: Продолжить`
+- next: Продолжить`,
+  'video': `name: null
+volume: 0.7
+css:
+  top: 50px
+  left: 50px
+  width: 500px
+  height: 300px`
 }
 
 
