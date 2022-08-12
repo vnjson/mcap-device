@@ -54,11 +54,20 @@ sprite:
   sound_2: 
     - 2:05
     - 0:03`,
-    /** character */
+    /**
+     * CHARACTER
+     */
   'character': `reply: null
 avatar: null
 info: null
 borderColor: "#57f704"`,
+  /**
+   * MENU
+   */
+  'menu': `- $init: Начало
+  icon: p1
+- $root.$init: Начало 2
+- next: Продолжить`
 }
 
 

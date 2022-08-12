@@ -4,37 +4,11 @@
   audio: false
   next: true
 
-- $: tes
-- video:
-    name: videoTest
-    volume: 0.3
 
-- menu:
-    - $: test
-    - testdata.$init: Как подключить 1
-      icon: ev
-    - testdata.$init: Как подключить 2
 
-    - tree__fs: Файловая структура
-      icon: test
-    - yaml-scripts: YAML скрипты
-    
-    - plug: Список плагинов
-      icon: test
-      disabled: true
-      
-    - $root.$init: Вернуться в начало
-    - onClick:
-        hands: true
-        dialog-box: true
-    - css:
-        transform: unset
-        left: unset
-        width: 300px
-        top: 50px
-        right: 20px
+- test
 
-- al: test
+- al: NEXT
   audio-sprite:
     name: test22
     #volume: 1

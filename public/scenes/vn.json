@@ -90,52 +90,9 @@
         "audio": false,
         "next": true
       },
+      "test",
       {
-        "menu": [
-          {
-            "$": "test"
-          },
-          {
-            "testdata.$init": "Как подключить 1",
-            "icon": "ev"
-          },
-          {
-            "testdata.$init": "Как подключить 2"
-          },
-          {
-            "tree__fs": "Файловая структура",
-            "icon": "test"
-          },
-          {
-            "yaml-scripts": "YAML скрипты"
-          },
-          {
-            "plug": "Список плагинов",
-            "icon": "test",
-            "disabled": true
-          },
-          {
-            "$root.$init": "Вернуться в начало"
-          },
-          {
-            "onClick": {
-              "hands": true,
-              "dialog-box": true
-            }
-          },
-          {
-            "css": {
-              "transform": "unset",
-              "left": "unset",
-              "width": "300px",
-              "top": "50px",
-              "right": "20px"
-            }
-          }
-        ]
-      },
-      {
-        "al": "test",
+        "al": "NEXT",
         "audio-sprite": {
           "name": "test22",
           "sprite": {
@@ -274,6 +231,10 @@
       {
         "name": "p1",
         "url": "scenes/assets/p1.png"
+      },
+      {
+        "name": "videoTest",
+        "url": "scenes/assets/videoTest.mp4"
       }
     ],
     "$init": [

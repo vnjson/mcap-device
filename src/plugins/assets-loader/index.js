@@ -11,27 +11,32 @@ $('#screen').append($tpl);
 
 var getAssets = _=>{
   this.emit('preload')
+
 var i = 0;
 
-var load = _=>{
+var load = () => {
   var asset = this.current.assets[i];
-  
+
+  if(!asset) {
+    this.emit('postload');
+    return
+  }
   if(/\.mp3|\.wav|\.ogg/i.test(asset.url)){
          
           if( this.current.assets.length-1>=++i){
               var sound = new Howl({src: asset.url});
 
-                  sound.on('end', ()=>this.emit('audioEnd', asset.name))
+                  sound.on('end', () => this.emit('audioEnd', asset.name))
                   sound.on('load', _=>{
                       this.$store[asset.name] = sound;
                       this.emit('load', asset);
                       load();
                   });
-                  sound.on('loaderror', ()=>{
+                  sound.on('loaderror', () => {
                       console.error(`File not found [ ${asset.name} ]`);
                       this.emit('load', asset);
-                      load();
-                  });
+                      load()
+                  })
                
           }
           else{
@@ -47,14 +52,14 @@ var load = _=>{
                     let img = new Image();
                     img.src =  asset.url; 
 
-                    img.onerror = ()=>{
+                    img.onerror = () => {
                      
                       this.$store[asset.name] = img;
                       this.emit('load', asset);
                       console.error('Image not found');
                       load();
                     };
-                    img.onload = ()=>{
+                    img.onload = () => {
                       this.$store[asset.name] = img;
                       this.emit('load', asset);
                       load();
@@ -77,8 +82,9 @@ var load = _=>{
   else{
     ++i
     load();
-    console.warn(asset.url +' Format not supported')
+    console.warn(asset.url +'Resource does not support preload')
   }
+
 };
 
 load();

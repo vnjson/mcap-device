@@ -1,63 +1,53 @@
 - menu:
-    _mark1: В начало
-    disabled: Общая концепция
-    $root.$init: Отправиться в начало
-    next: Список плагинов
+    # label - перемещение внутри текущей сцены
+    - $init: Как подключить 1
+      icon: p1
+    # scene2.label - перемещение в другую сцену
+    - testdata.$init: Как подключить 2
+    - tree__fs: Файловая структура
+      icon: ch
+    # next
+    - next: YAML скрипты
+    # mark
+    - _mark: Прыжок на метку
+
+    - plug: Список плагинов
+      icon: ev # asset
+      disabled: true # деактивировать элемент списка
+      
+    - $root.$init: Вернуться в начало
+    # onClick - Выполняет плагины после клика по любому пункту меню
+    - onClick:
+        hands: false
+        dialog-box: true
+    # css - стилизация меню
+    - css:
+        transform: unset
+        left: unset
+        width: 300px
+        top: 50px
+        right: 20px
 
 
-- menu:
-    zim-label: Как подключить zim
-    label_1_tree__fs: Файловая структура
-    yaml-scripts: YAML скрипты
-    plug: Список плагинов
-    disabled: ---
-    $root.$init: Вернуться в начало
-    onClick:
-      hands: true
-      dialog-box: true
 
-# onClick - execute the code after the jump
-# 
-
-- menu:
-    zim-label: Как подключить zim
-    label_1_tree__fs: Файловая структура
-    yaml-scripts: YAML скрипты
-    plug: Список плагинов
-    disabled: ---
-    $root.$init: Вернуться в начало
-    onClick:
-      hands: true
-      dialog-box: true
-    css:
-      transform: unset
-      left: unset
-      width: 300px
-      top: 50px
-      right: 20px
-
-
-# Добавление иконок
-- dialog-box: disabled
-  menu:
-    disabled_1: 
-        text: Как подключить zim
-        icon: bullbasaur
-    lab: 
-        text: Файловая структура
-        icon: charmander
-    next_1: YAML скрипты
-    test_1:
-        text: Тестовый пунк меню
-        icon: snorlax
-    next:
-        text: 32px 32px
-        icon: zubat
-    css:
-      top: 50px
-    onClick:
-      dialog-box: true
+# меню автоматически скрывается после сделанного выбора
 
 
 - menu: false # hide menu
 - menu: true # показать готовое меню. но которое было скрыто
+
+
+- menu:
+    - $init: Начало
+      icon: p1
+    - scene2.$init: Начало 2
+    - next: Продолжить
+  # - onClick:
+  #     hands: false
+  #     dialog-box: true
+  # - css:
+  #     transform: unset
+  #     left: unset
+  #     width: 300px
+  #     top: 50px
+  #     right: 20px

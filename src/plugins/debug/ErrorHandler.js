@@ -95,7 +95,7 @@ class ErrorHandler {
    * @param  {String} data      [Переменная которую подставляю в строку ошибки]
    * @return {String}           [Сообщение о ошике]
    */
-  static getMessage (local='en', codeError, data){
+  static getMessage (local='ru', codeError, data){
     if(errors[local].hasOwnProperty(codeError)){
           const message =  errors[local][codeError].replace(/{.{0,}}/gi,  data );
           return message;

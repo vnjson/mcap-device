@@ -84,15 +84,20 @@ export default function (){
         $pluginValue.val(name)
     })
     
-    //
+    /**
+     * Кликаем по кнопке [ выполнить плагин ]
+     */
     $('.debug__show-asset').on('click', function (){
 
-      let pluginValue = jsyaml.load( $pluginValue.val().trim() )
-      _vnjs.exec({
-        [ pluginName ]: pluginValue
-      })
+        let pluginValue = jsyaml.load( $pluginValue.val().trim() )
+        _vnjs.exec({
+          [ pluginName ]: pluginValue
+        })
 
     })
+    /**
+     * Показываем и скрываем [ dialog-box ]
+     */
     let flagDB = false
     const dbhNode = $('.debug__btn-img--dbh')
     $('.debug__show-dbh').on('click', function (){
