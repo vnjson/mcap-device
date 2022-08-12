@@ -84,13 +84,82 @@
     ],
     "$init": [
       {
+        "main-menu": [
+          {
+            "$root.$init": "Начать игру",
+            "icon": "ev"
+          },
+          {
+            "next": "Продолжить",
+            "icon": "ch"
+          },
+          {
+            "info": "Информация",
+            "icon": "p1"
+          },
+          {
+            "settings": "Настройки",
+            "disabled": true
+          },
+          {
+            "css": {
+              "transform": "unset",
+              "top": "50px",
+              "left": "unset",
+              "right": "50px",
+              "width": "400px"
+            }
+          }
+        ]
+      },
+      {
         "dialog-box": true,
         "status-bar": false,
         "hands": true,
         "audio": false,
         "next": true
       },
-      "test",
+      {
+        "menu": [
+          {
+            "testdata.$init": "Как подключить 1",
+            "icon": "p1"
+          },
+          {
+            "testdata.$init": "Как подключить 2"
+          },
+          {
+            "tree__fs": "Файловая структура",
+            "icon": "ch"
+          },
+          {
+            "next": "YAML скрипты"
+          },
+          {
+            "plug": "Список плагинов",
+            "icon": "ev",
+            "disabled": true
+          },
+          {
+            "$root.$init": "Вернуться в начало"
+          },
+          {
+            "onClick": {
+              "hands": false,
+              "dialog-box": true
+            }
+          },
+          {
+            "css": {
+              "transform": "unset",
+              "left": "unset",
+              "width": "300px",
+              "top": "50px",
+              "right": "20px"
+            }
+          }
+        ]
+      },
       {
         "al": "NEXT",
         "audio-sprite": {
@@ -184,6 +253,10 @@
       "publish": {
         "host": "http://vnjson.mcap.fun",
         "token": "b38ed838f352f6ad7f842bf497800feb"
+      },
+      "menu": {
+        "audio": "sysFlipPages",
+        "volume": 0.1
       },
       "discord-log": {
         "webhook": "https://discord.com/api/webhooks/995314212500938789/C4ul6cKMwYadYYaOCSyla_dlwDVd1IPSZu0wb24l9kkjo971QCfdHolkEPrExR2KcpzO"

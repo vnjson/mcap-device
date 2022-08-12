@@ -1,3 +1,20 @@
+- main-menu:
+  - $root.$init: Начать игру
+    icon: ev
+  - next: Продолжить
+    icon: ch
+  - info: Информация
+    icon: p1
+  - settings: Настройки
+    disabled: true
+  - css:
+      transform: unset # убирает центрирование [ transform: translateX(-50%) ]
+      top: 50px
+      left: unset
+      right: 50px
+      width: 400px
+      
+
 - dialog-box: true
   status-bar: false
   hands: true
@@ -6,7 +23,29 @@
 
 
 
-- test
+- menu:
+    - testdata.$init: Как подключить 1
+      icon: p1
+    - testdata.$init: Как подключить 2
+
+    - tree__fs: Файловая структура
+      icon: ch
+    - next: YAML скрипты
+    
+    - plug: Список плагинов
+      icon: ev
+      disabled: true
+      
+    - $root.$init: Вернуться в начало
+    - onClick:
+        hands: false
+        dialog-box: true
+    - css:
+        transform: unset
+        left: unset
+        width: 300px
+        top: 50px
+        right: 20px
 
 - al: NEXT
   audio-sprite:

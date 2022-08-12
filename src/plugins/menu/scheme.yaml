@@ -36,18 +36,10 @@
 - menu: false # hide menu
 - menu: true # показать готовое меню. но которое было скрыто
 
-
-- menu:
-    - $init: Начало
-      icon: p1
-    - scene2.$init: Начало 2
-    - next: Продолжить
-  # - onClick:
-  #     hands: false
-  #     dialog-box: true
-  # - css:
-  #     transform: unset
-  #     left: unset
-  #     width: 300px
-  #     top: 50px
-  #     right: 20px
+#################
+# При клике на пункт меню, можно воспроизвести аудио
+# для этого необходимо написать дополнительные параметры
+# в файле $root/package.yaml
+menu:
+  audio: sysFlipPages
+  volume: 0.1 # не обязательный параметр

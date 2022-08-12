@@ -3008,13 +3008,15 @@
     });
   }
 
-  var Menu = /*#__PURE__*/function () {
+  var Menu$1 = /*#__PURE__*/function () {
     function Menu($view, vnjs, config) {
       _classCallCheck(this, Menu);
 
       _defineProperty(this, "items", []);
 
       _defineProperty(this, "itemClickParam", null);
+
+      _defineProperty(this, "audio", null);
 
       this.$view = $view;
       this.__vnjs = vnjs;
@@ -3113,7 +3115,6 @@
     }, {
       key: "createMenuItem",
       value: function createMenuItem(item) {
-        console.log(item);
         var tpl = null;
 
         if (item.character) {
@@ -3124,7 +3125,7 @@
         }
 
         if (item.route) {
-          tpl = "<div data-label=\"".concat(item.route.path, "\" class=\"").concat(this.itemClassName, " ").concat(item.disabled ? 'disabled' : '', "\">\n                            ").concat(item.icon ? this.getIconTpl(item.icon) : '', "\n                            <span class=\"sound-click\">").concat(item.route.value, "</span>\n                      </div>");
+          tpl = "<div data-label=\"".concat(item.route.path, "\" class=\"").concat(this.itemClassName, " ").concat(item.disabled ? 'disabled' : '', "\">\n                            ").concat(item.icon ? this.getIconTpl(item.icon) : '', "\n                            <span>").concat(item.route.value, "</span>\n                      </div>");
         }
 
         if (item.css) {
@@ -3159,6 +3160,10 @@
             });
           }, 0);
         }
+
+        if (this.audio) {
+          this.audio.play();
+        }
       }
     }, {
       key: "reset",
@@ -3177,12 +3182,14 @@
   var tpl$a = "<div class=\"vnjson__menu-menu component\"></div>";
 
   var $tpl$a = $(tpl$a);
-  function menu$1 () {
+  function menu () {
+    var _this = this;
+
     var config = {
       itemQuetionClassName: 'vnjson__menu-quetion',
       itemClassName: 'vnjson__menu-item'
     };
-    var menu = new Menu($tpl$a, this, config);
+    var menu = new Menu$1($tpl$a, this, config);
     /**
      * Навешиваем click на пункты меню
      */
@@ -3192,6 +3199,22 @@
       menu.clickItemHundler(label);
     });
     this.$store.$screen.append($tpl$a);
+    /**
+     * аудио
+     */
+
+    this.on('postload', function () {
+      var menuConf = _this.TREE.$root["package"].menu;
+
+      if (menuConf) {
+        var audioUrl = _this.getAssetByName(menuConf.audio).url;
+
+        menu.audio = new Howl({
+          src: audioUrl,
+          volume: menuConf.volume || 1
+        });
+      }
+    });
     /**
      * Храним предыдущее значение меню. Это нужно для того,
      * если пользователь захочет скрыть меню menu: false 
@@ -3217,133 +3240,236 @@
     });
   }
 
+  var Menu = /*#__PURE__*/function () {
+    function Menu($view, vnjs, config) {
+      _classCallCheck(this, Menu);
+
+      _defineProperty(this, "items", []);
+
+      _defineProperty(this, "itemClickParam", null);
+
+      _defineProperty(this, "audio", null);
+
+      this.$view = $view;
+      this.__vnjs = vnjs;
+      this.itemQuetionClassName = config.itemQuetionClassName;
+      this.itemClassName = config.itemClassName;
+    }
+
+    _createClass(Menu, [{
+      key: "setData",
+      value: function setData(param) {
+        var _this = this;
+
+        this.reset();
+        this.items = param;
+        this.items.forEach(function (menuItem) {
+          var item = _this.prepareMenuItem(menuItem);
+
+          _this.createMenuItem(item);
+        });
+      }
+    }, {
+      key: "show",
+      value: function show() {
+        this.$view.show();
+      }
+    }, {
+      key: "hide",
+      value: function hide() {
+        this.$view.hide();
+      }
+    }, {
+      key: "prepareMenuItem",
+      value: function prepareMenuItem(menuItem) {
+        var objData = {};
+
+        for (var _key in menuItem) {
+          var key = _key;
+          /**
+           * Определяем есть ли среди параметров меню ID персонажа
+           * Если есть, то вопрос от имени персонажа встраиваем в меню
+           */
+
+          var character = this.__vnjs.getCharacterById(_key);
+
+          if (character) {
+            key = 'character';
+          }
+
+          var value = menuItem[_key];
+
+          switch (key) {
+            case 'disabled':
+              objData.disabled = value;
+              break;
+
+            case 'character':
+              objData.character = {
+                character: character,
+                value: value
+              };
+              break;
+
+            case 'onClick':
+              objData.onClick = value;
+              break;
+
+            case 'icon':
+              objData.icon = value;
+              break;
+
+            case 'css':
+              objData.css = value;
+              break;
+
+            /**
+             * ROUTE
+             */
+
+            default:
+              objData.route = {
+                path: key,
+                value: value
+              };
+          }
+        }
+
+        return objData;
+      }
+    }, {
+      key: "getIconTpl",
+      value: function getIconTpl(value) {
+        var icon = this.__vnjs.getAssetByName(value).url;
+
+        return "<img alt=\"\" class=\"menu-item__icon\" src=\"".concat(icon, "\"/>");
+      }
+    }, {
+      key: "createMenuItem",
+      value: function createMenuItem(item) {
+        var tpl = null;
+
+        if (item.character) {
+          var _item$character = item.character,
+              character = _item$character.character,
+              value = _item$character.value;
+          tpl = "<div class=\"".concat(this.itemQuetionClassName, "\">\n                        <span style='color:").concat(character.nameColor, "; padding-right: 20px;'>").concat(character.name, ":</span>\n                        <span style='color:").concat(character.replyColor, "; '>").concat(value, "</span>\n                   </div>");
+        }
+
+        if (item.route) {
+          tpl = "<div data-label=\"".concat(item.route.path, "\" class=\"").concat(this.itemClassName, " ").concat(item.disabled ? 'disabled' : '', "\">\n                            ").concat(item.icon ? this.getIconTpl(item.icon) : '', "\n                            <span>").concat(item.route.value, "</span>\n                      </div>");
+        }
+
+        if (item.css) {
+          this.$view.css(item.css);
+        }
+
+        if (item.onClick) {
+          this.itemClickParam = item.onClick;
+        }
+
+        this.$view.append(tpl);
+      }
+    }, {
+      key: "clickItemHundler",
+      value: function clickItemHundler(label) {
+        this.hide();
+
+        if (label === 'next') {
+          setTimeout(function () {
+            $vnjs.exec({
+              next: true
+            });
+          }, 0);
+        } else {
+          if (this.itemClickParam) {
+            $vnjs.exec(this.itemClickParam);
+          }
+
+          setTimeout(function () {
+            $vnjs.exec({
+              jump: label
+            });
+          }, 0);
+        }
+
+        if (this.audio) {
+          this.audio.play();
+        }
+      }
+    }, {
+      key: "reset",
+      value: function reset() {
+        this.$view.empty();
+        this.itemClickParam = false;
+      }
+    }]);
+
+    return Menu;
+  }();
+
   var css$p = ".main-menu {\n  width: 50%;\n  padding: 10px;\n  background-color: transparent;\n  left: 50%;\n  transform: translateX(-50%);\n  flex-direction: column;\n  display: none;\n  /*box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);*/\n  overflow: auto;\n  max-height: 95%;\n  top: 200px;\n  color: #34d1a2;\n}\n  .main-menu__item--quetion {\n    background: rgba(70, 70, 70, 0.7);\n    width: 100%;\n    min-height: 50px;\n    font-size: 26px;\n    display: flex;\n    align-items: center;\n    padding: 10px 20px;\n    color: white;\n    transition: 0.1s;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    margin-bottom: 10px;\n    box-shadow: 3px 3px 10px rgba(0,0,0,0.5);\n  }\n  .main-menu__item {\n    margin-bottom: 20px;\n    background-color: #333;\n    width: 100%;\n    min-height: 50px;\n    font-size: 26px;\n    display: flex;\n    align-items: center;\n    transition: 0.1s;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    box-shadow: 3px 3px 10px rgba(0,0,0,0.7);\n\n  }\n    .main-menu__item span {\n      padding: 20px 20px;\n      padding-left: 50px;\n      display: flex;\n      flex: 1;\n      /*display: flex;\n      justify-content: center;*/\n    }\n    .main-menu__item:hover {\n      cursor: pointer;\n      color: darkcyan;\n      background: rgba(0, 0, 0, 0.7); }\n    .main-menu__item span {\n      white-space: nowrap;\n      overflow: hidden;\n      text-overflow: ellipsis; }\n.main-menu__item:last-child{\n  margin-bottom: 0;\n}\n\n.main-menu__item.disabled{\n  opacity: 0.6;\n}\n\n.main-menu .menu-item__icon{\n  width: 50px;\n  height: 50px;\n  margin-left: 15px;\n}\n.main-menu .menu-item__icon+span{\n  padding-left: 20px;\n}";
   n(css$p,{});
 
   var tpl$9 = "<div class=\"main-menu component\"></div>";
 
   var $tpl$9 = $(tpl$9);
-  var onClickObj = null;
-  var menuObj = null;
   function mainMenu () {
     var _this = this;
 
+    var config = {
+      itemQuetionClassName: 'main-menu__item--quetion',
+      itemClassName: 'main-menu__item'
+    };
+    var menu = new Menu($tpl$9, this, config);
+    /**
+     * Навешиваем click на пункты меню
+     */
+
+    $tpl$9.on("click", ".main-menu__item", function () {
+      var label = $(this).data('label');
+      menu.clickItemHundler(label);
+    });
     this.$store.$screen.append($tpl$9);
-    var prevObj = null;
-    this.on('main-menu', function (obj) {
-      if (obj === true) {
-        menu.call(_this, prevObj);
-      } else if (obj) {
-        prevObj = obj;
-        menu.call(_this, obj);
-      } else {
-        $tpl$9.hide();
+    /**
+     * аудио
+     */
+
+    this.on('postload', function () {
+      var menuConf = _this.TREE.$root["package"].menu;
+
+      if (menuConf) {
+        var audioUrl = _this.getAssetByName(menuConf.audio).url;
+
+        menu.audio = new Howl({
+          src: audioUrl,
+          volume: menuConf.volume || 1
+        });
       }
     });
-  }
-  /**
-   * menu
-   */
+    /**
+     * Храним предыдущее значение меню. Это нужно для того,
+     * если пользователь захочет скрыть меню menu: false 
+     * А после снова отобразить, то же меню menu: true
+     */
 
-  function menu(param) {
-    menuObj = param;
-    $tpl$9.html('');
+    var prevParam = null;
+    /**
+     * @event
+     */
 
-    for (var _i = 0, _Object$entries = Object.entries(menuObj); _i < _Object$entries.length; _i++) {
-      var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
-          label = _Object$entries$_i[0],
-          menuItem = _Object$entries$_i[1];
-
-      var character = this.getCharacterById(label);
-
-      if (character) {
-        var str = null;
-
-        if (label === '$') {
-          character.name = '';
-        }
-
-        if (character.name !== '') {
-          str = "<div class=\"main-menu__item--quetion\">\n                          <span style='color:".concat(character.nameColor, "; padding-right: 20px;'>").concat(character.name, ":</span>\n                          <span style='color:").concat(character.replyColor, "; '>").concat(menuItem, "</span>\n                    </div>");
-        } else {
-          str = "<div class=\"main-menu__item--quetion\">\n                          <span style='color:".concat(character.replyColor, ";'>").concat(menuItem, "</span>\n                    </div>");
-        }
-
-        $('.main-menu').append(str);
+    this.on('main-menu', function (param) {
+      if (param === true) {
+        menu.setData(prevParam);
+        menu.show();
+      } else if (param) {
+        prevParam = param;
+        menu.setData(param);
+        menu.show();
       } else {
-        var _str = null;
-
-        if (/disabled/i.test(label)) {
-          // c исконками
-          if (_typeof(menuItem) === 'object') {
-            _str = "<div data-label=\"".concat(label, "\" class=\"main-menu__item disabled\"><img alt=\"\" class=\"menu-item__icon\" src=\"").concat(this.getAssetByName(menuItem.icon).url, "\"/><span class=\"sound-click\">").concat(menuItem.text, "</span></div>");
-          } // без иконок
-          else {
-            _str = "<div data-label=\"".concat(label, "\" class=\"main-menu__item disabled\"><span class=\"sound-click\">").concat(menuItem, "</span></div>");
-          }
-        } else if (label === 'onClick') {
-          onClickObj = menuItem;
-        } else if (label === 'css') {
-          $tpl$9.css(menuItem);
-        }
-        /**
-         * Вывод обычного пункта меню
-         */
-        else {
-          // c исконками
-          if (_typeof(menuItem) === 'object') {
-            _str = "<div data-label=\"".concat(label, "\" class=\"main-menu__item\"><img alt=\"\" class=\"menu-item__icon\" src=\"").concat(this.getAssetByName(menuItem.icon).url, "\"/><span class=\"sound-click\">").concat(menuItem.text, "</span></div>");
-          } else {
-            _str = "<div data-label=\"".concat(label, "\" class=\"main-menu__item\"><span class=\"sound-click\">").concat(menuItem, "</span></div>");
-          }
-        }
-
-        $('.main-menu').append($(_str));
+        menu.hide();
       }
-    }
-
-    $tpl$9.css({
-      display: 'flex'
     });
-  }
-  /**
-   * click handler
-   */
-
-
-  $tpl$9.on("click", ".main-menu__item", clickHundler);
-
-  function clickHundler() {
-    var label = $(this).data('label');
-
-    if (label === 'next') {
-      onClickMenuHandler();
-      setTimeout(function () {
-        $vnjs.exec({
-          next: true
-        });
-      }, 0);
-    } else {
-      onClickMenuHandler();
-      setTimeout(function () {
-        $vnjs.exec({
-          jump: label
-        });
-      }, 0);
-    }
-
-    $tpl$9.hide(); //$tpl.off( "click", clickHundler)
-  }
-  /**
-   *  onClick:
-   *    dialog-box: true
-   */
-
-
-  function onClickMenuHandler(label) {
-    if (menuObj.hasOwnProperty('onClick')) {
-      $vnjs.exec(onClickObj);
-    }
   }
 
   var css$o = ".vnjson__term-board {\n  width: 808px;\n  height: 480px;\n  padding: 25px;\n  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAygAAAHgCAYAAABO0EkBAAAACXBIWXMAAAsTAAALEwEAmpwYAAAHM2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLWMwMDIgNzkuMTY0NDYwLCAyMDIwLzA1LzEyLTE2OjA0OjE3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIxLTEwLTE0VDE2OjI1OjM3KzAzOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMi0wMy0yMVQyMToyNToxMSswMzowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMi0wMy0yMVQyMToyNToxMSswMzowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6YjU3NzllYTEtMDk0Zi1hNTQxLWJiZmYtZTY3YTFkZWVjNzdjIiB4bXBNTTpEb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6NmRlYTlhYzAtYWQ5Mi03ZjQzLTk2YWItMGUyZTFkODQ2NWViIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6YTBkYTUwNjItZGM4NC0yMzRkLWExOWYtMDExMmMzOWM3N2FhIj4gPHBob3Rvc2hvcDpEb2N1bWVudEFuY2VzdG9ycz4gPHJkZjpCYWc+IDxyZGY6bGk+YWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOjZkZWE5YWMwLWFkOTItN2Y0My05NmFiLTBlMmUxZDg0NjVlYjwvcmRmOmxpPiA8L3JkZjpCYWc+IDwvcGhvdG9zaG9wOkRvY3VtZW50QW5jZXN0b3JzPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOmEwZGE1MDYyLWRjODQtMjM0ZC1hMTlmLTAxMTJjMzljNzdhYSIgc3RFdnQ6d2hlbj0iMjAyMS0xMC0xNFQxNjoyNTozNyswMzowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIxLjIgKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDphZjBkMjdiMy1jOGJkLTVlNGEtOWRiOC0yMzAyY2E2OTYxZmQiIHN0RXZ0OndoZW49IjIwMjEtMTAtMTRUMTc6NDA6MjMrMDM6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMS4yIChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6YjU3NzllYTEtMDk0Zi1hNTQxLWJiZmYtZTY3YTFkZWVjNzdjIiBzdEV2dDp3aGVuPSIyMDIyLTAzLTIxVDIxOjI1OjExKzAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Hu0bEAAADtNJREFUeJzt3U+LZFcdx+Hfubeq/zmJcaIGoiBRslDI23DhxpVkJQgufQO+B/cuBHHjSiQq0a2CO4ngwj+IYqJBBTUjk5me7q6uvve4mKRN0lEwzq35duZ5VrdvVd1zelcfzrm32pc+/9n+za9+uX75h1erquqDN47q9eOTAgAA2KWvfO2bNbzz5MU0PYy5AAAAj7CXfvLDqqoa7t69U1VVHzjYr9ZaHZ9sHua8AACA97nee63G8fLv73//hcvj1XZ7USebTZ2en1fvvVq7/FhVG6qN693OFgAAeH+7OL/cufXWOKmqWt28ebM2m/Oa53558vxvv7887tvTqt7rLeUCAADwnh2sxnrl1km98trplddWh4cHNc/zv8/0+6Fy9pdfV1XVuH+jqk9VbbzyYQAAgP/Z/li3//56/e7l2/XUk4/X0fr+rfE3j/ZqNU1TtbesjrRxdXm8uvHk/QMrKAAAwIOyGmu9f1g3bmyrqupkO9dqM9X5NF99ildbH1we94s3bpgXJwAAwA5cCZTqvdq4qmHvqNpq/yFMCQAAeFRdDRQAAICHRKAAAAAxBAoAABBDoAAAADEECgAAEEOgAAAAMQQKAAAQQ6AAAAAxBAoAABBDoAAAADEECgAAEGO1xEV7r1qPrdbjUL36EkMAAAAPQatW22mu7dSrtQd//UUC5XBvqD/846Reee2kDtfjEkMAAAAPwel2qmc+fFSf+shRnW3nB379RQJlNbZ6/fSi/vjaaX3waFVH66FalbUUAAC4hlpr1XuvW3eO69bdTT2299H69NOPXZ9AeXOL12MHqxqHVn+6valeVQusAAEAAAvrvVdrrZ775DP17Hq/njrc1mZzXkt8w18kUN60v2p1vJ3rxd/+s6bea2ytmkwBAIBro1ev7Xaq9XqsLz7/hXru2U/Vq7/5Wd155Re1OrjxwMdbNFB6rxpa1Y298TJQAACA62U7VK1XY23OTuvO3bu13W5rGJZ5IPCigfJW4zDWyb3j2mw2i/0zAADAgzPPc+3v79f+4eHOxtxZoFRVTdO0aG0BAAAPzjzPtVrtNBl2GyittRqGQaAAAMA10XZ8m4ZSAAAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYqx2Odg8zzVNU/XedzksAADwHszzXPM873TMnQXK3Oc6PDys9XpdrbVdDQsAALxHvfdarVbV51417uY7/KKB0lqrufe6fXxSF73X3jhWa0OVBRQAALgGWm23U51tzmpvPdbc++KLDYsGyjTNtR7H+swnnq65eg1l5QQAAK6bi2mq1TjWehxrmpbd8rVooByfndXHnvpwff35z9U4DDXteP8aAADw/2t1fxPUNM11fLZZdKxFAqW1qu3U697mojYXvYbVQbVxqGHh2gIAABbQqlqv6sNcbX1YbVxVLfTgq0UC5fR8rk/cPKwnnnu6Dvb36vjll6q15uldAABwzbVhrHlzr9r6YJHrLxIoF1OvJ45W9dHH92uapjq9/dfqVe5AAQCAa673Xm1cV1utF1lFWXSL13a6uP/3+kCcAADA+8Dl9/qFdkf5JXkAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAABgZ9bjUAfrocahVe9XXxcoAADAztw521ZV1dl2qvFdakSgAAAAixtaq6qqjz9xcHnucG+88r7VO0/0zb3aa3ON++tq66sfAAAA+F+NrdXUe51s5//6viuB0vY/UJs+1E9/9ec6fPxDi00QAAB4lLSq6nXr3ra203y5ovJOVwKlquq7P/55VR1U3TpdcIIAAMCj5mA9Xt4g3+v+PSdHb2z1Wo/D1UB54Tvffte9YAAAAA/Cm0/vGlvVxfz2R3m9LVB+8IMX6j+stAAAADxQe2Ork+1cJ9upHtu/v0hyGSg/evF7tRrUCQAAsBvj0Gr9RoPc3UxV9UagfONb33p4swIAAB5J51Ovg/Xbf/mk9Xf7+UYAAICH4F/no41w/cIydwAAAABJRU5ErkJggg==);\n  background-size: contain;\n  background-repeat: no-repeat;\n  background-position: center;\n  position: absolute;\n  top: 5%;\n  left: 50%;\n  transform: translateX(-50%);\n  display: none; }\n  .vnjson__term-board pre {\n    height: 100%;\n    width: 100%;\n    position: relative;\n    margin: 0; }\n    .vnjson__term-board pre code {\n      padding: 25px;\n      font-size: 24px;\n      height: 100%;\n      width: 100%;\n      position: absolute;\n      top: 0;\n      overflow-x: auto;\n      font-family: Minecraft; }\n      .vnjson__term-board pre code img {\n        height: 100%; }\n\n\n\n/* term theme */\n\n.vnjson__term-board pre code{\n  font-size: 18px;\n  line-height: 24px;\n}\n";
@@ -6385,7 +6511,7 @@
     this.use(audio);
     this.use(frame);
     this.use(animate);
-    this.use(menu$1);
+    this.use(menu);
     this.use(mainMenu);
     this.use(term);
     this.use(cloud);

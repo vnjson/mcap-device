@@ -20,6 +20,18 @@ export default function (){
     })
     this.$store.$screen.append($tpl)
     /**
+     * аудио
+     */
+    this.on('postload', () => {
+        const menuConf = this.TREE.$root.package.menu
+        if(menuConf){
+            const audioUrl = this.getAssetByName(menuConf.audio).url
+            menu.audio = new Howl({src: audioUrl, volume: menuConf.volume||1})
+
+        }
+        
+    })
+    /**
      * Храним предыдущее значение меню. Это нужно для того,
      * если пользователь захочет скрыть меню menu: false 
      * А после снова отобразить, то же меню menu: true
