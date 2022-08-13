@@ -1,7 +1,7 @@
 
 
 class AudioControl {
-    //prevSound = null
+    timeOutId = null
     soundData = null
     constructor (){
       // не помню зачем это, но вроде раньше от чего то помогало
@@ -21,6 +21,7 @@ class AudioControl {
        */
       if(typeof data==='boolean'){
         this.stopAll()
+        clearTimeout(this.timeOutId)
       }
       /**
        * STRING
@@ -60,16 +61,46 @@ class AudioControl {
           sound = $vnjs.$store[data.name]
         }
         sound.stop()
+        sound.off('play')
         sound.rate(data.speed||1)
         sound.loop(data.loop||false)
         sound.volume(data.volume||1)
+        /**
+         * fadeIn
+         */
+        if(data.fadeIn){
+          sound.fade(0, 1, data.fadeIn);
+        }
+        sound.on('play', () => {
+          if(data.fadeOut&&soundName){
+
+              const delay =  ((sound.duration() - sound.seek())  * 1000 ) - data.fadeOut
+              this.timeOutId = setTimeout(() => {
+
+                    sound.fade(1, 0, data.fadeOut);
+              }, delay)
+ 
+            }
+            if(data.fadeOut&&!soundName){
+              /*
+              const delay =  ((sound.duration() - sound.seek())  * 1000 ) - data.fadeOut
+              this.timeOutId = setTimeout(() => {
+
+                    sound.fade(1, 0, data.fadeOut);
+              }, delay)
+              */
+            }
+        })
+
         if(soundName){
           sound[data.action](data.name)
         }
         else{
           sound[data.action]()
         }
-        //console.log(data , soundName )
+
+
+
         this.soundData = data
       }
     }
@@ -84,25 +115,24 @@ class AudioControl {
      * @param {String} time [ 2:53 ] 
      */
     formatTime (time) {
-      const t = time.split(':')
-    
-      let hrs = 0
+      const t = String(time).split(':')
+      if(!String(time).includes(':')){
+        $vnjs.emit('error', 'audioSpriteInvalidTime', time)
+        return 0
+      }
+   
       let min = 0
       let sec = 0
       if(t.length===2){
         min = Number(t[0])
         sec = Number(t[1])
       }
-      else if(t.length===3){
-        hrs = Number(t[0])
-        min = Number(t[1])
-        sec = Number(t[2])
-      }
       else{
-        return
+        $vnjs.emit('error', 'audioSpriteInvalidTime', time)
+        return 0
       }
      
-      return (hrs*60*60+min*60+sec)*1000
+      return (0*60+min*60+sec)*1000
     }
 
     regSprites (data){

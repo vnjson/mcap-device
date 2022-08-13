@@ -3,8 +3,7 @@
   hands: true
   audio: false
   next: true
-
-- t
+- test
 
 
 
@@ -16,14 +15,18 @@
           - 1:08 # начало воспроизведения [ минуты:секунды ]
           - 0:06 # длительность от начала
         sound_2: 
-          - 2:05
-          - 0:03
+          - 2:05 
+          - 0:07
 
 - audio: 
     name: sound_2
     action: play
-    volume: 0.3
+    volume: 0.5
+    #fadeIn: 2000
+    #fadeOut: 2000
 
+  al: test
+- END
 - audio: false
 
 - audio: test22

@@ -90,7 +90,7 @@
         "audio": false,
         "next": true
       },
-      "t",
+      "test",
       {
         "audio-sprite": {
           "name": "test22",
@@ -102,7 +102,7 @@
             ],
             "sound_2": [
               "2:05",
-              "0:03"
+              "0:07"
             ]
           }
         }
@@ -111,9 +111,11 @@
         "audio": {
           "name": "sound_2",
           "action": "play",
-          "volume": 0.3
-        }
+          "volume": 0.5
+        },
+        "al": "test"
       },
+      "END",
       {
         "audio": false
       },

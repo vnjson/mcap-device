@@ -264,7 +264,8 @@
       'bad indentation of a sequence entry': 'bad indentation of a sequence entry',
       'can not read a block mapping entry; a multiline key may not be an implicit key': 'can not read a block mapping entry; a multiline key may not be an implicit key',
       'duplicated mapping key': 'duplicated mapping key',
-      'can not read an implicit mapping pair; a colon is missed': 'can not read an implicit mapping pair; a colon is missed'
+      'can not read an implicit mapping pair; a colon is missed': 'can not read an implicit mapping pair; a colon is missed',
+      audioSpriteInvalidTime: 'Invalid time <font color="deepskyblue">{ data }</fon>'
     },
     ru: {
       pluginNotFound: 'Плагин <font color="deepskyblue">{ data }</font> не найден',
@@ -277,7 +278,8 @@
       'bad indentation of a sequence entry': 'Неправильный отступ записи последовательности',
       'can not read a block mapping entry; a multiline key may not be an implicit key': 'Не читается запись сопоставления блоков; многострочный ключ не может быть неявным ключом',
       'duplicated mapping key': 'Дублированный ключ сопоставления',
-      'can not read an implicit mapping pair; a colon is missed': 'Пропущено двоеточие'
+      'can not read an implicit mapping pair; a colon is missed': 'Пропущено двоеточие',
+      audioSpriteInvalidTime: 'Некоректный параметр времени <font color="deepskyblue">{ data }</fon>'
     }
   };
 
@@ -2281,7 +2283,7 @@
         } else {
           ++i;
           load();
-          console.warn(asset.url + 'Resource does not support preload');
+          console.warn(asset.url + ' Resource does not support preload');
         }
       };
 
@@ -2835,9 +2837,10 @@
   }
 
   var AudioControl = /*#__PURE__*/function () {
-    //prevSound = null
     function AudioControl() {
       _classCallCheck(this, AudioControl);
+
+      _defineProperty(this, "timeOutId", null);
 
       _defineProperty(this, "soundData", null);
 
@@ -2858,11 +2861,14 @@
     }, {
       key: "handler",
       value: function handler(data) {
+        var _this = this;
+
         /**
          * BOOLEAN
          */
         if (typeof data === 'boolean') {
           this.stopAll();
+          clearTimeout(this.timeOutId);
         }
         /**
          * STRING
@@ -2900,16 +2906,34 @@
           }
 
           sound.stop();
+          sound.off('play');
           sound.rate(data.speed || 1);
           sound.loop(data.loop || false);
           sound.volume(data.volume || 1);
+          /**
+           * fadeIn
+           */
+
+          if (data.fadeIn) {
+            sound.fade(0, 1, data.fadeIn);
+          }
+
+          sound.on('play', function () {
+            if (data.fadeOut && _soundName) {
+              var delay = (sound.duration() - sound.seek()) * 1000 - data.fadeOut;
+              _this.timeOutId = setTimeout(function () {
+                sound.fade(1, 0, data.fadeOut);
+              }, delay);
+            }
+
+            if (data.fadeOut && !_soundName) ;
+          });
 
           if (_soundName) {
             sound[data.action](data.name);
           } else {
             sound[data.action]();
-          } //console.log(data , soundName )
-
+          }
 
           this.soundData = data;
         }
@@ -2931,23 +2955,25 @@
     }, {
       key: "formatTime",
       value: function formatTime(time) {
-        var t = time.split(':');
-        var hrs = 0;
+        var t = String(time).split(':');
+
+        if (!String(time).includes(':')) {
+          $vnjs.emit('error', 'audioSpriteInvalidTime', time);
+          return 0;
+        }
+
         var min = 0;
         var sec = 0;
 
         if (t.length === 2) {
           min = Number(t[0]);
           sec = Number(t[1]);
-        } else if (t.length === 3) {
-          hrs = Number(t[0]);
-          min = Number(t[1]);
-          sec = Number(t[2]);
         } else {
-          return;
+          $vnjs.emit('error', 'audioSpriteInvalidTime', time);
+          return 0;
         }
 
-        return (hrs * 60 * 60 + min * 60 + sec) * 1000;
+        return (0 * 60 + min * 60 + sec) * 1000;
       }
     }, {
       key: "regSprites",

@@ -11,7 +11,7 @@ export default {
     'can not read a block mapping entry; a multiline key may not be an implicit key': 'can not read a block mapping entry; a multiline key may not be an implicit key',
     'duplicated mapping key': 'duplicated mapping key',
     'can not read an implicit mapping pair; a colon is missed': 'can not read an implicit mapping pair; a colon is missed',
-
+    audioSpriteInvalidTime: 'Invalid time <font color="deepskyblue">{ data }</fon>',
   },
   ru: {
     pluginNotFound: 'Плагин <font color="deepskyblue">{ data }</font> не найден',
@@ -25,6 +25,6 @@ export default {
     'can not read a block mapping entry; a multiline key may not be an implicit key': 'Не читается запись сопоставления блоков; многострочный ключ не может быть неявным ключом',
     'duplicated mapping key': 'Дублированный ключ сопоставления',
     'can not read an implicit mapping pair; a colon is missed': 'Пропущено двоеточие',
-    
+    audioSpriteInvalidTime: 'Некоректный параметр времени <font color="deepskyblue">{ data }</fon>',
   },
 }

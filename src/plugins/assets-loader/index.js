@@ -82,7 +82,7 @@ var load = () => {
   else{
     ++i
     load();
-    console.warn(asset.url +'Resource does not support preload')
+    console.warn(asset.url +' Resource does not support preload')
   }
 
 };
