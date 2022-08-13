@@ -90,6 +90,7 @@
         "audio": false,
         "next": true
       },
+      "t",
       {
         "audio-sprite": {
           "name": "test22",
@@ -107,13 +108,31 @@
         }
       },
       {
-        "audio": "sound_1"
+        "audio": {
+          "name": "sound_2",
+          "action": "play",
+          "volume": 0.3
+        }
+      },
+      {
+        "audio": false
+      },
+      {
+        "audio": "test22"
       },
       {
         "audio": {
           "name": "test22",
-          "action": "play"
-        }
+          "action": "play",
+          "speed": 0.5
+        },
+        "$": "te"
+      },
+      {
+        "audio": false
+      },
+      {
+        "audio": "test22"
       },
       {
         "al": "te <span style=\"color: cyan\"></span><span style=\"color: cyan\"></span> 55<span style=\"color: cyan\"></span><span style=\"color: cyan\"></span>"

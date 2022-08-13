@@ -2872,8 +2872,16 @@
           var soundName = $vnjs.$store.sprites[data];
 
           if (soundName) {
+            vnjs.$store[soundName].stop();
+            $vnjs.$store[soundName].rate(1);
+            $vnjs.$store[soundName].loop(false);
+            $vnjs.$store[soundName].volume(1);
             $vnjs.$store[soundName].play(data);
           } else {
+            $vnjs.$store[data].stop();
+            $vnjs.$store[data].rate(1);
+            $vnjs.$store[data].loop(false);
+            $vnjs.$store[data].volume(1);
             $vnjs.$store[data].play();
           }
         }
@@ -2891,10 +2899,17 @@
             sound = $vnjs.$store[data.name];
           }
 
+          sound.stop();
           sound.rate(data.speed || 1);
           sound.loop(data.loop || false);
           sound.volume(data.volume || 1);
-          sound[data.action](data.name); //console.log(data , soundName )
+
+          if (_soundName) {
+            sound[data.action](data.name);
+          } else {
+            sound[data.action]();
+          } //console.log(data , soundName )
+
 
           this.soundData = data;
         }
@@ -5908,11 +5923,11 @@
 
   var $tpl = $('<div class="vnjson__blocks component"></div>');
   var stepsArray = [];
-  var vnjs = null;
+  var vnjs$1 = null;
   function blocks () {
     var _this = this;
 
-    vnjs = this;
+    vnjs$1 = this;
     this.$store.$screen.append($tpl);
     this.on('blocks', function (param) {
       stepsArray = param;
@@ -5923,7 +5938,7 @@
 
   function getImage(item) {
     if (item.image) {
-      return vnjs.getAssetByName(item.image).url;
+      return vnjs$1.getAssetByName(item.image).url;
     }
 
     return bgIMG;

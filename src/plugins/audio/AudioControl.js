@@ -28,12 +28,19 @@ class AudioControl {
       else if(typeof data==='string'){
           if( !this.isAudioExist(data) ) return
           const soundName = $vnjs.$store.sprites[data]
-      
           if(soundName){
+              vnjs.$store[soundName].stop()
+              $vnjs.$store[soundName].rate(1)
+              $vnjs.$store[soundName].loop(false)
+              $vnjs.$store[soundName].volume(1)
               $vnjs.$store[soundName].play(data)
   
           }
           else{
+              $vnjs.$store[data].stop()
+              $vnjs.$store[data].rate(1)
+              $vnjs.$store[data].loop(false)
+              $vnjs.$store[data].volume(1)
               $vnjs.$store[data].play()
           }
           
@@ -52,10 +59,16 @@ class AudioControl {
         else{
           sound = $vnjs.$store[data.name]
         }
+        sound.stop()
         sound.rate(data.speed||1)
         sound.loop(data.loop||false)
         sound.volume(data.volume||1)
-        sound[data.action](data.name)
+        if(soundName){
+          sound[data.action](data.name)
+        }
+        else{
+          sound[data.action]()
+        }
         //console.log(data , soundName )
         this.soundData = data
       }
