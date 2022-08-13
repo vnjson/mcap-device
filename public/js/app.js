@@ -2861,8 +2861,6 @@
     }, {
       key: "handler",
       value: function handler(data) {
-        var _this = this;
-
         /**
          * BOOLEAN
          */
@@ -2905,8 +2903,8 @@
             sound = $vnjs.$store[data.name];
           }
 
-          sound.stop();
-          sound.off('play');
+          sound.stop(); //sound.off('play')
+
           sound.rate(data.speed || 1);
           sound.loop(data.loop || false);
           sound.volume(data.volume || 1);
@@ -2917,17 +2915,15 @@
           if (data.fadeIn) {
             sound.fade(0, 1, data.fadeIn);
           }
+          /*sound.on('play', () => {
+            if(data.fadeOut&&soundName){
+                  const delay =  ((sound.duration() - sound.seek())  * 1000 ) - data.fadeOut
+                this.timeOutId = setTimeout(() => {
+                        sound.fade(1, 0, data.fadeOut);
+                }, delay)
+                 }
+                })*/
 
-          sound.on('play', function () {
-            if (data.fadeOut && _soundName) {
-              var delay = (sound.duration() - sound.seek()) * 1000 - data.fadeOut;
-              _this.timeOutId = setTimeout(function () {
-                sound.fade(1, 0, data.fadeOut);
-              }, delay);
-            }
-
-            if (data.fadeOut && !_soundName) ;
-          });
 
           if (_soundName) {
             sound[data.action](data.name);

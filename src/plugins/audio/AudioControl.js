@@ -61,7 +61,7 @@ class AudioControl {
           sound = $vnjs.$store[data.name]
         }
         sound.stop()
-        sound.off('play')
+        //sound.off('play')
         sound.rate(data.speed||1)
         sound.loop(data.loop||false)
         sound.volume(data.volume||1)
@@ -71,7 +71,7 @@ class AudioControl {
         if(data.fadeIn){
           sound.fade(0, 1, data.fadeIn);
         }
-        sound.on('play', () => {
+        /*sound.on('play', () => {
           if(data.fadeOut&&soundName){
 
               const delay =  ((sound.duration() - sound.seek())  * 1000 ) - data.fadeOut
@@ -81,16 +81,8 @@ class AudioControl {
               }, delay)
  
             }
-            if(data.fadeOut&&!soundName){
-              /*
-              const delay =  ((sound.duration() - sound.seek())  * 1000 ) - data.fadeOut
-              this.timeOutId = setTimeout(() => {
-
-                    sound.fade(1, 0, data.fadeOut);
-              }, delay)
-              */
-            }
-        })
+    
+        })*/
 
         if(soundName){
           sound[data.action](data.name)
