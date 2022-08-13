@@ -36,12 +36,15 @@ export default function (){
         if(param.css){
           $tpl.find('.video-js').css(param.css);
         }
-        if(param.volume){
-          player.ready( ()=>{
-              player.volume(param.volume);
-              player.play();
-          });
+        if(param.volume<=0){
+          player.volume(param.volume)
         }
+
+        player.ready( () => {
+            
+              player.play();
+        });
+        
         if(param.onEnd){
           onEndObj = param.onEnd;
         }
@@ -56,7 +59,7 @@ export default function (){
                 player.play();
             break;
           case 'stop':
-                player.pause();
+              hide()
             break;
           default:
               const asset = this.getAssetByName(param);
@@ -68,11 +71,13 @@ export default function (){
         }
     } 
     else{
-      player.pause();
-      $tpl.fadeOut();
+      hide()
     }
   })
-
+  function hide (){
+    player.pause();
+    $tpl.fadeOut();
+  }
 
 
 }

@@ -2894,7 +2894,8 @@
           sound.rate(data.speed || 1);
           sound.loop(data.loop || false);
           sound.volume(data.volume || 1);
-          sound[data.action](data.name);
+          sound[data.action](data.name); //console.log(data , soundName )
+
           this.soundData = data;
         }
       }
@@ -4856,12 +4857,13 @@
           $tpl.find('.video-js').css(param.css);
         }
 
-        if (param.volume) {
-          player.ready(function () {
-            player.volume(param.volume);
-            player.play();
-          });
+        if (param.volume <= 0) {
+          player.volume(param.volume);
         }
+
+        player.ready(function () {
+          player.play();
+        });
 
         if (param.onEnd) {
           onEndObj = param.onEnd;
@@ -4879,7 +4881,7 @@
             break;
 
           case 'stop':
-            player.pause();
+            hide();
             break;
 
           default:
@@ -4892,10 +4894,14 @@
             $tpl.fadeIn();
         }
       } else {
-        player.pause();
-        $tpl.fadeOut();
+        hide();
       }
     });
+
+    function hide() {
+      player.pause();
+      $tpl.fadeOut();
+    }
   }
 
   var css$7 = ".typewrite{\n  width: 660px;\n  user-select: none;\n  background-color: #334;\n  padding: 10px;\n  border-radius: 4px;\n  box-shadow: 2px 2px 3px rgba(0,0,0,0.3);\n  top: 50px;\n  left: 50%;\n  transform: translateX(-50%);\n}\n/*\n.typewrite__status{\n  border: 1px dashed gray;\n  display: flex;\n  justify-content: space-between;\n  padding: 0 10px;\n  width: 100%;\n  border-radius: 4px;\n}\n*/\n.typewrite__task{\n  margin-top: 5px;\n  color: gray;\n  width: 100%;\n  height: 50px;\n  padding: 15px 10px;\n  font-size: 22px;\n  border-radius: 4px;\n  \n  font-family: Minecraft;\n  box-shadow:  2px 2px 3px rgba(0,0,0,0.1);\n  background-color: #445;\n\n}\n.typewrite__textarea{\n  margin-top: 20px;\n  font-size: 22px;\n  color: gray;\n  width: 100%;\n  height: 50px;\n  padding: 15px 10px;\n  background-color: #445;\n  outline: 0;\n  border: 0;\n  resize: none;\n  overflow: hidden;\n  caret-color: orange;\n  border-radius: 4px;\n  font-family: Minecraft;\n  box-shadow:  2px 2px 3px rgba(0,0,0,0.1);\n\n}\n\n.active{\n  color: deepskyblue;\n}\n.hot{\n  color: lightgreen;\n}\n@keyframes hot {\n  from {\n    margin-bottom: 10%;\n\n  }\n  to {\n    margin-bottom: 0%;\n  }\n}\n\n.typewrite__character{\n  \n}\n\n\n/**\n * keyboard\n */\n.keyboard{\n  border: 1px solid rgba(0, 0, 0, 0.3);\n  border-radius: 4px;\n  margin-top: 15px;\n}\n.keyboard__row{\n  display: flex;\n}\n\n.keyboard__key{\n  padding: 5px;\n  margin: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  height: 35px;\n  width: 35px;\n  background-color: rgba(0, 0, 0, 0.1);\n  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);\n  margin: 3px;\n  border-radius: 4px;\n  font-size: 12px;\n  color: gray;\n}\n\n.keyboard__actived{\n  background-color: rgba(0, 0, 0, 0.3);\n\n}\n.keyboard__pressed{\n  background-color: darkslateblue;\n}\n\n\n.keyboard__keys_2{\n /* font-size: 10px;*/\n  display: flex;\n  justify-content: flex-end;\n  width: 100%;\n}\n.keyboard__keys_2 +span{\n  display: flex;\n  justify-content: flex-start;\n  width: 100%;\n}\n/**\n * keys\n */\n.keyboard__backspace{\n  width: 97px;\n}\n.keyboard__enter{\n  width: 70px;\n}\n\n.keyboard__caps-lock{\n  width: 97px;\n}\n.keyboard__shift{\n  width: 107px;\n}\n.keyboard__space{\n  width: 53.7%;\n}\n.keyboard__tab{\n  width: 62px;\n}\n.keyboard__backspace,\n.keyboard__enter,\n.keyboard__tab,\n.keyboard__caps-lock,\n.keyboard__shift,\n.keyboard__space,\n.keyboard__ctrl,\n.keyboard__win,\n.keyboard__doc,\n.keyboard__alt{\n  background-color: rgba(0, 0, 0, 0.1);\n\n}";

@@ -56,6 +56,7 @@ class AudioControl {
         sound.loop(data.loop||false)
         sound.volume(data.volume||1)
         sound[data.action](data.name)
+        //console.log(data , soundName )
         this.soundData = data
       }
     }

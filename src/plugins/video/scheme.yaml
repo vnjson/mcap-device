@@ -21,7 +21,8 @@
 
 - video: pause
 - video: play
-- video: false
+- video: false # stop
+- video: stop # stop
 
 - video:
     name: assetName

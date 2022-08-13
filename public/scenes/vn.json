@@ -91,6 +91,31 @@
         "next": true
       },
       {
+        "audio-sprite": {
+          "name": "test22",
+          "volume": 1,
+          "sprite": {
+            "sound_1": [
+              "1:08",
+              "0:06"
+            ],
+            "sound_2": [
+              "2:05",
+              "0:03"
+            ]
+          }
+        }
+      },
+      {
+        "audio": "sound_1"
+      },
+      {
+        "audio": {
+          "name": "test22",
+          "action": "play"
+        }
+      },
+      {
         "al": "te <span style=\"color: cyan\"></span><span style=\"color: cyan\"></span> 55<span style=\"color: cyan\"></span><span style=\"color: cyan\"></span>"
       },
       {
