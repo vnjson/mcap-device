@@ -41,6 +41,7 @@ export default function (){
      * @event
      */
     this.on('menu', (param) => {
+
         if(param===true){
             menu.setData(prevParam)
             menu.show()

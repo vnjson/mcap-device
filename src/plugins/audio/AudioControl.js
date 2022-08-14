@@ -109,8 +109,12 @@ class AudioControl {
     formatTime (time) {
       const t = String(time).split(':')
       if(!String(time).includes(':')){
-        $vnjs.emit('error', 'audioSpriteInvalidTime', time)
-        return 0
+          const errorBody = {
+            en: `Invalid time <font color="deepskyblue">${ time }</fon>`,
+            ru: `Некоректный параметр времени <font color="deepskyblue">${  time }</fon>`
+          }
+          $vnjs.emit('error', errorBody)
+          return 0
       }
    
       let min = 0
@@ -120,8 +124,12 @@ class AudioControl {
         sec = Number(t[1])
       }
       else{
-        $vnjs.emit('error', 'audioSpriteInvalidTime', time)
-        return 0
+          const errorBody = {
+            en: `Invalid time <font color="deepskyblue">${ time }</fon>`,
+            ru: `Некоректный параметр времени <font color="deepskyblue">${  time }</fon>`
+          }
+          $vnjs.emit('error', errorBody)
+          return 0
       }
      
       return (0*60+min*60+sec)*1000

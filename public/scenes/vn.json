@@ -92,6 +92,13 @@
       },
       "test",
       {
+        "menu": [
+          {
+            "test": "lrab"
+          }
+        ]
+      },
+      {
         "audio-sprite": {
           "name": "test22",
           "volume": 1,

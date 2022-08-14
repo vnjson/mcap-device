@@ -6,7 +6,8 @@
 - test
 
 
-
+- menu: 
+    - test: lrab
 - audio-sprite:
     name: test22 # индификатор аудио
     volume: 1 # необязательный параметр. Настройка уровня звука

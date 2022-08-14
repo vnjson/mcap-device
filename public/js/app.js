@@ -252,37 +252,6 @@
   var css$z = "\n.debug-error{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  font-size: 20px;\n  z-index: 99999;  \n  background-color: #334;\n  justify-content: center;\n  align-items: center;\n  display: none;\n  font-family: Consolas;\n}\n\n.debug-error__modal{\n  background-color: #181818;\n  border-radius: 8px;\n  padding: 20px;\n  width: 80%;\n  height: 60%;\n  box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.5);\n}\n.debug-error__modal::before{\n  content: '';\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 10px;\n  background-color: brown;\n  border-radius: 8px 8px 0 0;\n}\n.debug-error__msg{\n  color: brown;\n  line-height: 28px;\n}\n.debug-error__msg:first-letter{\n  text-transform: capitalize;\n}\n\n.debug-error__path{\n  color: #cfa4ff;\n}\n.debug-error__pos{\n  color: skyblue;\n}\n.debug-error__code{\n  color: #e2aa53;\n}\n";
   n(css$z,{});
 
-  var errors = {
-    en: {
-      pluginNotFound: 'Plugin <font color="deepskyblue">{ data }</font> not found',
-      assetNotFound: 'Asset <font color="deepskyblue">{ data }</font> not found',
-      menuOrJumpLeadsNowhere: 'Plugin  <font color="deepskyblue">menu</font>  or <font color="deepskyblue">jump</font>  leads nowhere',
-      // yamljs errors
-      'incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line': 'incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line',
-      'end of the stream or a document separator is expected': 'end of the stream or a document separator is expected',
-      'bad indentation of a mapping entry': 'bad indentation of a mapping entry',
-      'bad indentation of a sequence entry': 'bad indentation of a sequence entry',
-      'can not read a block mapping entry; a multiline key may not be an implicit key': 'can not read a block mapping entry; a multiline key may not be an implicit key',
-      'duplicated mapping key': 'duplicated mapping key',
-      'can not read an implicit mapping pair; a colon is missed': 'can not read an implicit mapping pair; a colon is missed',
-      audioSpriteInvalidTime: 'Invalid time <font color="deepskyblue">{ data }</fon>'
-    },
-    ru: {
-      pluginNotFound: 'Плагин <font color="deepskyblue">{ data }</font> не найден',
-      assetNotFound: 'Файл <font color="deepskyblue">{ data }</font> не найден',
-      menuOrJumpLeadsNowhere: 'Некоректные параметры плагина <font color="deepskyblue">menu</font>  или <font color="deepskyblue">jump</font>. Маршрут не найден.',
-      // yamljs errors
-      'incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line': 'неполная  пара сопостовлений; пропущен ключевой узел; Или за ним следует пустая строка без табуляции',
-      'end of the stream or a document separator is expected': 'Ожидается конец потока или разделитель',
-      'bad indentation of a mapping entry': 'Неправильный отступ записи сопоставления',
-      'bad indentation of a sequence entry': 'Неправильный отступ записи последовательности',
-      'can not read a block mapping entry; a multiline key may not be an implicit key': 'Не читается запись сопоставления блоков; многострочный ключ не может быть неявным ключом',
-      'duplicated mapping key': 'Дублированный ключ сопоставления',
-      'can not read an implicit mapping pair; a colon is missed': 'Пропущено двоеточие',
-      audioSpriteInvalidTime: 'Некоректный параметр времени <font color="deepskyblue">{ data }</fon>'
-    }
-  };
-
   var modalTpl = "<div class=\"debug-error\">\n                        <div class=\"debug-error__modal\">\n                            <p class=\"debug-error__msg\"></p>\n                            <p class=\"debug-error__path\"></p>\n                            <p class=\"debug-error__pos\"></p>\n                            <pre class=\"debug-error__code\"></pre>\n                        </div>\n                    </div>";
   var $modal = $(modalTpl);
   $('#screen').append($modal);
@@ -401,8 +370,8 @@
         var codeError = arguments.length > 1 ? arguments[1] : undefined;
         var data = arguments.length > 2 ? arguments[2] : undefined;
 
-        if (errors[local].hasOwnProperty(codeError)) {
-          var message = errors[local][codeError].replace(/{.{0,}}/gi, data);
+        if ($vnjs.errors[local].hasOwnProperty(codeError)) {
+          var message = $vnjs.errors[local][codeError].replace(/{.{0,}}/gi, data);
           return message;
         }
 
@@ -417,16 +386,47 @@
     ErrorHandler.hideModal();
   });
 
+  var errors = {
+    en: {
+      pluginNotFound: 'Plugin <font color="deepskyblue">{ data }</font> not found',
+      assetNotFound: 'Asset <font color="deepskyblue">{ data }</font> not found',
+      menuOrJumpLeadsNowhere: 'Plugin  <font color="deepskyblue">menu</font>  or <font color="deepskyblue">jump</font>  leads nowhere',
+      // yamljs errors
+      'incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line': 'incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line',
+      'end of the stream or a document separator is expected': 'end of the stream or a document separator is expected',
+      'bad indentation of a mapping entry': 'bad indentation of a mapping entry',
+      'bad indentation of a sequence entry': 'bad indentation of a sequence entry',
+      'can not read a block mapping entry; a multiline key may not be an implicit key': 'can not read a block mapping entry; a multiline key may not be an implicit key',
+      'duplicated mapping key': 'duplicated mapping key',
+      'can not read an implicit mapping pair; a colon is missed': 'can not read an implicit mapping pair; a colon is missed'
+    },
+    ru: {
+      pluginNotFound: 'Плагин <font color="deepskyblue">{ data }</font> не найден',
+      assetNotFound: 'Файл <font color="deepskyblue">{ data }</font> не найден',
+      menuOrJumpLeadsNowhere: 'Некоректные параметры плагина <font color="deepskyblue">menu</font>  или <font color="deepskyblue">jump</font>. Маршрут не найден.',
+      // yamljs errors
+      'incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line': 'неполная  пара сопостовлений; пропущен ключевой узел; Или за ним следует пустая строка без табуляции',
+      'end of the stream or a document separator is expected': 'Ожидается конец потока или разделитель',
+      'bad indentation of a mapping entry': 'Неправильный отступ записи сопоставления',
+      'bad indentation of a sequence entry': 'Неправильный отступ записи последовательности',
+      'can not read a block mapping entry; a multiline key may not be an implicit key': 'Не читается запись сопоставления блоков; многострочный ключ не может быть неявным ключом',
+      'duplicated mapping key': 'Дублированный ключ сопоставления',
+      'can not read an implicit mapping pair; a colon is missed': 'Пропущено двоеточие'
+    }
+  };
+
   function debug () {
     var _this = this;
+
+    $vnjs.errors = errors;
 
     if (!this.debug) {
       $('body').attr('oncontextmenu', 'return false;');
       return;
     }
 
-    this.current.data.local = 'ru';
-    new ErrorHandler(this.current.data.local);
+    this.local = 'ru';
+    new ErrorHandler(this.local);
     this.on('vnjson:exec', function (ctx) {
       /**
        * Добавляем параметры в URI
@@ -454,10 +454,20 @@
       }
     });
     this.on('error', function (codeError, data) {
-      var message = ErrorHandler.getMessage(_this.current.data.local, codeError, data);
-      var path = "".concat(_this.current.sceneName, ".").concat(_this.current.labelName);
-      var snippet = ErrorHandler.getSnippetFromCtx(_this.ctx);
-      ErrorHandler.showModal(message, path, snippet);
+      if (_typeof(codeError) === 'object') {
+        var message = codeError[_this.local];
+        var path = "".concat(_this.current.sceneName, ".").concat(_this.current.labelName);
+        var snippet = ErrorHandler.getSnippetFromCtx(_this.ctx);
+        ErrorHandler.showModal(message, path, snippet);
+      } else {
+        var _message = ErrorHandler.getMessage(_this.local, codeError, data);
+
+        var _path = "".concat(_this.current.sceneName, ".").concat(_this.current.labelName);
+
+        var _snippet = ErrorHandler.getSnippetFromCtx(_this.ctx);
+
+        ErrorHandler.showModal(_message, _path, _snippet);
+      }
     });
     this.on('warn', function (codeError, data) {
       var codes = {
@@ -2954,7 +2964,11 @@
         var t = String(time).split(':');
 
         if (!String(time).includes(':')) {
-          $vnjs.emit('error', 'audioSpriteInvalidTime', time);
+          var errorBody = {
+            en: "Invalid time <font color=\"deepskyblue\">".concat(time, "</fon>"),
+            ru: "\u041D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440 \u0432\u0440\u0435\u043C\u0435\u043D\u0438 <font color=\"deepskyblue\">".concat(time, "</fon>")
+          };
+          $vnjs.emit('error', errorBody);
           return 0;
         }
 
@@ -2965,7 +2979,11 @@
           min = Number(t[0]);
           sec = Number(t[1]);
         } else {
-          $vnjs.emit('error', 'audioSpriteInvalidTime', time);
+          var _errorBody = {
+            en: "Invalid time <font color=\"deepskyblue\">".concat(time, "</fon>"),
+            ru: "\u041D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440 \u0432\u0440\u0435\u043C\u0435\u043D\u0438 <font color=\"deepskyblue\">".concat(time, "</fon>")
+          };
+          $vnjs.emit('error', _errorBody);
           return 0;
         }
 

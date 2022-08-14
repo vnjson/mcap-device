@@ -1,16 +1,18 @@
 import './style.css'
 
 import ErrorHandler from './ErrorHandler.js';
+import errors from './errors.js';
 
 
 
 export default function  (){
+    $vnjs.errors = errors
 	if(!this.debug) {
         $('body').attr('oncontextmenu', 'return false;')
         return
     }
-    this.current.data.local = 'ru';        
-    new ErrorHandler(this.current.data.local);  
+    this.local = 'ru';        
+    new ErrorHandler(this.local);  
   
     this.on('vnjson:exec', ctx => {
         /**
@@ -38,13 +40,20 @@ export default function  (){
     });
 
     this.on('error', (codeError, data)=>{
+        if(typeof codeError==='object'){
+            const message = codeError[this.local]
+     
+            const path = `${this.current.sceneName}.${this.current.labelName}`;
+            const snippet = ErrorHandler.getSnippetFromCtx(this.ctx);
+            ErrorHandler.showModal(message, path, snippet);
+        }
+        else{
+            const message = ErrorHandler.getMessage(this.local, codeError, data);
+            const path = `${this.current.sceneName}.${this.current.labelName}`;
+            const snippet = ErrorHandler.getSnippetFromCtx(this.ctx);
+            ErrorHandler.showModal(message, path, snippet);
+        }
 
-        const message = ErrorHandler.getMessage(this.current.data.local, codeError, data);
-
-        const path = `${this.current.sceneName}.${this.current.labelName}`;
-        
-        const snippet = ErrorHandler.getSnippetFromCtx(this.ctx);
-        ErrorHandler.showModal(message, path, snippet);
     })
     this.on('warn', (codeError, data)=>{
         const codes =  {

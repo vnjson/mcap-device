@@ -1,4 +1,3 @@
-import errors from './errors.js';
 
 const modalTpl = `<div class="debug-error">
                         <div class="debug-error__modal">
@@ -96,8 +95,8 @@ class ErrorHandler {
    * @return {String}           [Сообщение о ошике]
    */
   static getMessage (local='ru', codeError, data){
-    if(errors[local].hasOwnProperty(codeError)){
-          const message =  errors[local][codeError].replace(/{.{0,}}/gi,  data );
+    if($vnjs.errors[local].hasOwnProperty(codeError)){
+          const message =  $vnjs.errors[local][codeError].replace(/{.{0,}}/gi,  data );
           return message;
     }
     return codeError;
