@@ -3,58 +3,12 @@
   hands: true
   audio: false
   next: true
-- test
-
-
-- menu: 
-    - test: lrab
-- audio-sprite:
-    name: test22 # индификатор аудио
-    volume: 1 # необязательный параметр. Настройка уровня звука
-    sprite:
-        sound_1: # произвольный индификатор
-          - 1:08 # начало воспроизведения [ минуты:секунды ]
-          - 0:06 # длительность от начала
-        sound_2: 
-          - 2:05 
-          - 0:07
-
-- audio: 
-    name: sound_2
-    action: play
-    volume: 0.5
-    #fadeIn: 2000
-    #fadeOut: 2000
-
-  al: test
-- END
-- audio: false
-
-- audio: test22
-
-- audio: 
-    name: test22
-    action: play
-    speed: 0.5
-  $: te
-- audio: false
-- audio: test22
-
-- al: 'te <span style="color: cyan"></span><span style="color: cyan"></span> 55<span style="color: cyan"></span><span style="color: cyan"></span>'
-- $: test <span></span> test
-- al: '<span></span>test2 <span></span> <span style="color: cyan">555</span> test2 <span style="color: orange">8 8</span> <span style="color: cyan"></span> <span style="color: cyan">+++</span>'
-- al: 123 123 123
-- al: test test test
-
-- set-name: $
-- al: t t t @$
-- $: 0 3 4
-
 
 
 - main-menu:
   - $root.$init: Начать игру
     icon: ev
+    info: Нажав на эту кнопку игра начнётся
   - next: Продолжить
     icon: ch
   - info: Информация
@@ -68,6 +22,19 @@
       right: 50px
       width: 400px
       
+
+- al: 'te <span style="color: cyan"></span><span style="color: cyan"></span> 55<span style="color: cyan"></span><span style="color: cyan"></span>'
+- $: test <span></span> test
+- al: '<span></span>test2 <span></span> <span style="color: cyan">555</span> test2 <span style="color: orange">8 8</span> <span style="color: cyan"></span> <span style="color: cyan">+++</span>'
+- al: 123 123 123
+- al: test test test
+
+- set-name: $
+- al: t t t @$
+- $: 0 3 4
+
+
+
 
 
 

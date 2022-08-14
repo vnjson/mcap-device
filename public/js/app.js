@@ -2886,7 +2886,7 @@
           var soundName = $vnjs.$store.sprites[data];
 
           if (soundName) {
-            vnjs.$store[soundName].stop();
+            $vnjs.$store[soundName].stop();
             $vnjs.$store[soundName].rate(1);
             $vnjs.$store[soundName].loop(false);
             $vnjs.$store[soundName].volume(1);
@@ -3380,6 +3380,10 @@
               objData.icon = value;
               break;
 
+            case 'info':
+              objData.info = value;
+              break;
+
             case 'css':
               objData.css = value;
               break;
@@ -3418,7 +3422,7 @@
         }
 
         if (item.route) {
-          tpl = "<div data-label=\"".concat(item.route.path, "\" class=\"").concat(this.itemClassName, " ").concat(item.disabled ? 'disabled' : '', "\">\n                            ").concat(item.icon ? this.getIconTpl(item.icon) : '', "\n                            <span>").concat(item.route.value, "</span>\n                      </div>");
+          tpl = "<div data-label=\"".concat(item.route.path, "\" class=\"").concat(this.itemClassName, " ").concat(item.disabled ? 'disabled' : '', "\">\n                            ").concat(item.icon ? this.getIconTpl(item.icon) : '', "\n                            <div>\n                                \n                                <span>").concat(item.route.value, "</span>\n                                ").concat(item.info ? "<div>".concat(item.info, "</div>") : '', "\n                            </div>\n                            \n                            \n                      </div>");
         }
 
         if (item.css) {
@@ -5963,11 +5967,11 @@
 
   var $tpl = $('<div class="vnjson__blocks component"></div>');
   var stepsArray = [];
-  var vnjs$1 = null;
+  var vnjs = null;
   function blocks () {
     var _this = this;
 
-    vnjs$1 = this;
+    vnjs = this;
     this.$store.$screen.append($tpl);
     this.on('blocks', function (param) {
       stepsArray = param;
@@ -5978,7 +5982,7 @@
 
   function getImage(item) {
     if (item.image) {
-      return vnjs$1.getAssetByName(item.image).url;
+      return vnjs.getAssetByName(item.image).url;
     }
 
     return bgIMG;

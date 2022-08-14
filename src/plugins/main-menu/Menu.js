@@ -48,6 +48,9 @@ class Menu {
                     case 'icon':
                          objData.icon = value
                         break
+                    case 'info':
+                         objData.info = value
+                        break
                     case 'css':
                         objData.css = value
                         break
@@ -77,7 +80,13 @@ class Menu {
         if(item.route){
                 tpl = `<div data-label="${ item.route.path }" class="${this.itemClassName} ${item.disabled?'disabled':''}">
                             ${item.icon?this.getIconTpl(item.icon):''}
-                            <span>${ item.route.value }</span>
+                            <div>
+                                
+                                <span>${ item.route.value }</span>
+                                ${item.info?`<div>${item.info}</div>`:''}
+                            </div>
+                            
+                            
                       </div>`;
         } 
 

@@ -30,7 +30,7 @@ class AudioControl {
           if( !this.isAudioExist(data) ) return
           const soundName = $vnjs.$store.sprites[data]
           if(soundName){
-              vnjs.$store[soundName].stop()
+              $vnjs.$store[soundName].stop()
               $vnjs.$store[soundName].rate(1)
               $vnjs.$store[soundName].loop(false)
               $vnjs.$store[soundName].volume(1)
