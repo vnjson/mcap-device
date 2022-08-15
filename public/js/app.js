@@ -4496,17 +4496,14 @@
     }, {
       key: "switchItem",
       value: function switchItem(data) {
-        var _String$split = String(data.item).split(' '),
-            _String$split2 = _slicedToArray(_String$split, 2),
-            level_1 = _String$split2[0],
-            level_2 = _String$split2[1];
+        var level = String(data.item).split(' ');
 
-        if (level_1) {
-          this.__vnjs.TREE.$root.content[level_1].disabled = data.disabled;
+        if (level.length === 1) {
+          this.__vnjs.TREE.$root.content[level[0]].disabled = data.disabled;
         }
 
-        if (level_2) {
-          this.__vnjs.TREE.$root.content[level_1][level_2].disabled = data.disabled;
+        if (level.length === 2) {
+          this.__vnjs.TREE.$root.content[level[0]].children[level[1]].disabled = data.disabled;
         }
         /**
          * addClass / removeClass

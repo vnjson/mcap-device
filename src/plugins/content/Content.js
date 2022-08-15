@@ -88,14 +88,14 @@ class Content {
      * disabled = !disabled
      */
     switchItem (data){
-        const [level_1, level_2] = String(data.item).split(' ')
+        const level = String(data.item).split(' ')
 
 
-        if(level_1){
-            this.__vnjs.TREE.$root.content[level_1].disabled = data.disabled
+        if(level.length===1){
+            this.__vnjs.TREE.$root.content[level[0]].disabled = data.disabled
         }
-        if(level_2){
-            this.__vnjs.TREE.$root.content[level_1][level_2].disabled = data.disabled
+        if(level.length===2){
+            this.__vnjs.TREE.$root.content[level[0]].children[level[1]].disabled = data.disabled
         }
         /**
          * addClass / removeClass
