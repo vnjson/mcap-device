@@ -8,12 +8,14 @@
   height: 518px;
   top: 30px;
   overflow: auto;
+  border-radius: 4px;
 }
 .vnjson__stage li{
   list-style-type: none;
   cursor: pointer;
   font-size: 18px;
   display: block;
+  border-radius: 4px;
 }
 .vnjson__stage li:last-child{
   margin-bottom: 0px;
@@ -25,13 +27,15 @@
   padding: 5px;
   background: rgba(0, 0, 0, 0.1);
   margin-bottom: 5px;
+
 }
 /*Том*/
 .stage-vol{
   padding: 10px;
-  transition: 0.3s;
+
   background: #000;
   color: darkcyan;
+  border-radius: 4px;
 }
 .stage-vol:hover{
   color: #34d1a2;
@@ -41,13 +45,14 @@
   padding-left: 20px;
   display: block;
   margin-top: 10px;
+  border-radius: 4px;
 }
 
 /*Глава*/
 .stage-child{
   color: darkcyan;
   padding: 10px;
-  transition: 0.3s;
+
   background: #000;
   margin-bottom: 10px;
 }

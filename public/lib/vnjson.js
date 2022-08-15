@@ -11,7 +11,7 @@
 'use strict';
 
 class Vnjson {
-  version = '1.8.2';
+  version = '1.8.4';
   //current object
   ctx = {};
   //loaded scenes
@@ -28,12 +28,7 @@ class Vnjson {
    * Plugins store
    */
   plugins = {};
-  /**
-   * Состояние игры.
-   * Необходимо для загрузки и сохранения
-   * А так же во время дебага, что бы при обновлении
-   * ничего не терялось
-   */
+
   current = {
     index: 0,
     labelName: '',
@@ -75,14 +70,38 @@ class Vnjson {
     })
     return data;
   }
- 
+  isSceneExist (sceneName){
+    return this.TREE[sceneName]
+  }
+  isLabelExist (sceneName, labelName){
+
+    if(this.isSceneExist(sceneName)){
+      return this.TREE[sceneName][labelName]
+    }
+    return false
+    
+  }
+  isRouteExist (pathname){
+    const route = pathname.split('.')
+    if(route.length===1){
+      return this.isSceneExist(this.current.sceneName, route[0])
+    }
+    if(route.length>1){
+      return this.isLabelExist (route[0], route[1])
+    }
+  }
   getCurrentLabelBody (){
-    const labelBody = this.TREE[this.current.sceneName][this.current.labelName];
-    if(!labelBody){
+ 
+    try{
+      const labelBody = this.TREE[this.current.sceneName][this.current.labelName]
+      return labelBody
+    }
+    catch(err){
       this.emit('error', 'menuOrJumpLeadsNowhere');
       return ['']
     }
-    return labelBody;
+ 
+
     
   }
   getCurrentCharacter (){

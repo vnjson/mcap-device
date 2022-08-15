@@ -1,18 +1,54 @@
+# Плагин content создает двух уровневое меню
+# После нажатия на пукт меню вызывается плагин jump, который переходит
+# по указанному маршруту
+
+# Плагин content вызывается посредством нажатия на иконку в нижнем правом углу
+# Иконка появляется только тогда, когда активен плагин hands
+
+# Так же необходимо создать файл # $root/content.yaml
+
+# Общий файл conten.yaml
+
+- $root.$init: Том 1
+  disabled: true
+  children:
+      - scene1.ch1: Глава 1
+        disabled: true
+      - scene1.ch2: Глава 2
+
+- $root.$init: Том 2
+  children:
+      - $init: Глава 1
+      - scene2.ch2: Глава 2
+
+- $root.$init: Том 3
+  children:
+      - scene3.ch1: Глава 1
+      - scene3.ch2: Глава 2
+- $root.$init: Том 4
+  children:
+      - scene3.ch1: Глава 1
+      - scene3.ch2: Глава 2
+
+# scene2/content.yaml
+# Так же в любой сцене можно создать файл content 
+# и тогда, когда пользователь будет находиться в конкретной сцене
+# плагин content будет искать файл content.yaml в этой сцене
+# Если файл в сцене остутсвует, то будет вызван файл $root/content.yaml
 
 
-- content:
-    - $root.$init: Том 1
-      disabled: Глава 1
-      beginning.plug: Глава 2
-      beginning.zim-label: Глава 3
+# Для переключения состояния активности пуктов меню
+# используется плагин content-switch
+# В параметре item указывается порядковый номер элемента меню внутри массива
+- content-switch:
+    item: 0
+    disabled: false
+# Если мы хотим обратиться к дечернему пукту меню
+# то необходимо указать номер родительского пукта меню и через пробел номер
+# дочернего пукта. Нумерация начинается с нуля.
+- content-switch:
+    item: 1 0
+    disabled: true
 
-    - experienced.$init: Том 2
-      disabled: Глава 1
-      experienced.how-write-plugin: Глава 2
 
-    - disabled: Том 3
-      experienced.test: Глава 1
-      experienced.$init: Глава 2
-    - disabled: Том 4
-      experienced.test: Глава 1
-      experienced.$init: Глава 2 
+#

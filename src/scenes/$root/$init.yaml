@@ -4,6 +4,11 @@
   audio: false
   next: true
 
+- aaa
+- $: t
+  content-switch:
+      item: 1 1
+      disabled: true
 
 - main-menu:
   - $root.$init: Начать игру
