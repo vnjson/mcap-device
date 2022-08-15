@@ -8,13 +8,17 @@
 - main-menu:
   - $root.$init: Начать игру
     icon: ev
-    info: Нажав на эту кнопку игра начнётся
+    info: Нажав на эту кнопку  начнётся игра
+
   - next: Продолжить
     icon: ch
-  - info: Информация
-    icon: p1
+
+
   - settings: Настройки
+    info: Настройки новелы.
+    icon: p1
     disabled: true
+
   - css:
       transform: unset # убирает центрирование [ transform: translateX(-50%) ]
       top: 50px

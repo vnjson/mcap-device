@@ -80,10 +80,9 @@ class Menu {
         if(item.route){
                 tpl = `<div data-label="${ item.route.path }" class="${this.itemClassName} ${item.disabled?'disabled':''}">
                             ${item.icon?this.getIconTpl(item.icon):''}
-                            <div>
-                                
-                                <span>${ item.route.value }</span>
-                                ${item.info?`<div>${item.info}</div>`:''}
+                            <div class="main-menu__item-wrapper">
+                                <span class="main-menu__item-text">${ item.route.value }</span>
+                                ${item.info?`<div class="main-menu__item-info">${item.info}</div>`:''}
                             </div>
                             
                             
