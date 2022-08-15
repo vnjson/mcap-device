@@ -7,8 +7,8 @@
     icon: ch
 
   - scene2.$init: Настройки
-
     disabled: true
+    
   - css:
       transform: unset # убирает центрирование [ transform: translateX(-50%) ]
       top: 50px
@@ -17,6 +17,7 @@
       width: 400px
   - onClick:
       dialog-box: true
+      hands: true
       
        
 - main-menu: false # hide menu
