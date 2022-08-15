@@ -16,7 +16,7 @@
     background: rgba(70, 70, 70, 0.7);
     width: 100%;
     min-height: 50px;
-    font-size: 26px;
+    font-size: 22px;
     display: flex;
     align-items: center;
     padding: 10px 20px;
@@ -34,7 +34,7 @@
     background-color: #333;
     width: 100%;
     min-height: 50px;
-    font-size: 26px;
+    font-size: 22px;
     display: flex;
     align-items: center;
     transition: 0.1s;
@@ -62,7 +62,7 @@
   padding-left: 15px;
 }
 .main-menu__item-text{
-  width: 265px;
+ 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
