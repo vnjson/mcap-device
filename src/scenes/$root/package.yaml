@@ -13,7 +13,10 @@ publish:
 menu:
   audio: sysFlipPages
   volume: 0.1
-
+main-menu:
+  audio: test22
+  volume: 0.1
+  
 discord-log:
   webhook: https://discord.com/api/webhooks/995314212500938789/C4ul6cKMwYadYYaOCSyla_dlwDVd1IPSZu0wb24l9kkjo971QCfdHolkEPrExR2KcpzO
 # console-port: 8082

@@ -1,16 +1,17 @@
 .vnjson__menu-menu {
   width: 80%;
   padding: 10px;
-  background: black;
+  background: rgba(0,0,0,0.5);
   flex-direction: column;
   left: 50%;
   transform: translateX(-50%);
   top: 200px;
   display: none;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   overflow: auto;
   max-height: 95%;
   color: wheat;
+  border-radius: 4px;
 }
   .vnjson__menu-menu .vnjson__menu-quetion {
     background: rgba(70, 70, 70, 0.7);
@@ -25,6 +26,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     margin-bottom: 10px;
+    border-radius: 4px;
   }
   .vnjson__menu-menu .vnjson__menu-item {
     margin-bottom: 10px;
@@ -37,7 +39,9 @@
     transition: 0.1s;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; }
+    text-overflow: ellipsis; 
+    border-radius: 4px;
+}
     .vnjson__menu-menu .vnjson__menu-item span {
       padding: 10px 20px;
       display: flex;
