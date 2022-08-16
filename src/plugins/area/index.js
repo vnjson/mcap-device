@@ -9,13 +9,7 @@ export default function (){
   $tpl.on('click', e=>{
       if(!e.target.className.includes('vnjson__area-item')) return;
       const execData = JSON.parse( e.target.dataset.exec);
-      if(execData?.next||execData?.jump){
-        const _ctx = Object.assign(execData, { area: false });
-        this.exec( _ctx )
-      }
-      else{
-        this.exec( execData )
-      }
+      this.exec( execData )
   })
 
 }

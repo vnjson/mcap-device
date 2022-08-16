@@ -5899,15 +5899,7 @@
       if (!e.target.className.includes('vnjson__area-item')) return;
       var execData = JSON.parse(e.target.dataset.exec);
 
-      if (execData !== null && execData !== void 0 && execData.next || execData !== null && execData !== void 0 && execData.jump) {
-        var _ctx = Object.assign(execData, {
-          area: false
-        });
-
-        _this.exec(_ctx);
-      } else {
-        _this.exec(execData);
-      }
+      _this.exec(execData);
     });
   }
 
