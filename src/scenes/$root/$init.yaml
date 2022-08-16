@@ -6,17 +6,17 @@
   next: true
 
 - test 1
+
 - $: test
   set-data:
     age: 12
-    gender: M
 
 
-- al: 'te <span style="color: cyan"></span><span style="color: cyan"></span> 55<span style="color: cyan"></span><span style="color: cyan"></span>'
+- al: 'te <span style="color: cyan"></span><span style="color: cyan"></span>355<span style="color: cyan"></span><span style="color: cyan"></span>'
 - $: test <span></span> test
   set-data:
     age: 13
-    gender: M
+
 
 - al: '<span></span>test2 <span></span> <span style="color: cyan">555</span> test2 <span style="color: orange">8 8</span> <span style="color: cyan"></span> <span style="color: cyan">+++</span>'
 - al: 123 123 123

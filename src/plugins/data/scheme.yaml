@@ -4,8 +4,7 @@
 
 # ложим данные в хранилище $vnjs.current.data
 - set-data:
-    age: меньше 12
-    gender: M
+    age: 12
 
 
 # получаем данные данные в хранилище $vnjs.current.data

@@ -52,7 +52,6 @@ class Content {
             if(item.disabled){ 
                 this.disabled(item.disabled, $parent)
             }
-           
             /**
              * children
              */
@@ -128,15 +127,15 @@ class Content {
         }
     }
     disabled (obj, $node){
-        if(typeof obj ==='string'){
-            const [ key, value ] = obj.split('===')
-        
-            const k = String( this.__vnjs.current.data[key.trim()] )
-            const v = String(value).trim()
-
-            if( k === v ){
-                $node.addClass('disabled')
+        if(typeof obj ==='object'){
+            for(let key in obj){
+                const _data = this.__vnjs.current.data[key]
+                const {min, max } = obj[key]
+                if( min<=_data&&_data<=max ){
+                    $node.addClass('disabled')
+                }
             }
+
         }
         else{
             $node.addClass('disabled')

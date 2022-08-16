@@ -95,18 +95,16 @@
       {
         "$": "test",
         "set-data": {
-          "age": 12,
-          "gender": "M"
+          "age": 12
         }
       },
       {
-        "al": "te <span style=\"color: cyan\"></span><span style=\"color: cyan\"></span> 55<span style=\"color: cyan\"></span><span style=\"color: cyan\"></span>"
+        "al": "te <span style=\"color: cyan\"></span><span style=\"color: cyan\"></span>355<span style=\"color: cyan\"></span><span style=\"color: cyan\"></span>"
       },
       {
         "$": "test <span></span> test",
         "set-data": {
-          "age": 13,
-          "gender": "M"
+          "age": 13
         }
       },
       {
@@ -192,7 +190,12 @@
         "children": [
           {
             "scene1.ch1": "Глава 1",
-            "disabled": "age === 12"
+            "disabled": {
+              "age": {
+                "min": 10,
+                "max": 12
+              }
+            }
           },
           {
             "scene1.ch2": "Глава 2"
@@ -212,7 +215,12 @@
       },
       {
         "$root.$init": "Том 3",
-        "disabled": "age === 12",
+        "disabled": {
+          "age": {
+            "min": 10,
+            "max": 12
+          }
+        },
         "children": [
           {
             "scene3.ch1": "Глава 1"

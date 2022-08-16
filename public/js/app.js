@@ -4541,17 +4541,16 @@
     }, {
       key: "disabled",
       value: function disabled(obj, $node) {
-        if (typeof obj === 'string') {
-          var _obj$split = obj.split('==='),
-              _obj$split2 = _slicedToArray(_obj$split, 2),
-              key = _obj$split2[0],
-              value = _obj$split2[1];
+        if (_typeof(obj) === 'object') {
+          for (var key in obj) {
+            var _data = this.__vnjs.current.data[key];
+            var _obj$key = obj[key],
+                min = _obj$key.min,
+                max = _obj$key.max;
 
-          var k = String(this.__vnjs.current.data[key.trim()]);
-          var v = String(value).trim();
-
-          if (k === v) {
-            $node.addClass('disabled');
+            if (min <= _data && _data <= max) {
+              $node.addClass('disabled');
+            }
           }
         } else {
           $node.addClass('disabled');
