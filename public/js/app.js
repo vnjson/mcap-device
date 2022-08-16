@@ -4450,22 +4450,7 @@
            */
 
           if (item.disabled) {
-            if (typeof item.disabled === 'string') {
-              var _item$disabled$split = item.disabled.split('==='),
-                  _item$disabled$split2 = _slicedToArray(_item$disabled$split, 2),
-                  key = _item$disabled$split2[0],
-                  value = _item$disabled$split2[1];
-
-              var k = String(_this.__vnjs.current.data[key]).trim();
-              var v = String(value).trim();
-
-              if (k === v) {
-                $parent.addClass('disabled');
-              }
-            } else {
-              $parent.addClass('disabled');
-            } //$parent.find('.stage-children').hide()
-
+            _this.disabled(item.disabled, $parent);
           }
           /**
            * children
@@ -4477,7 +4462,7 @@
               var $str = $("<li class=\"stage-child stage-child-".concat(childIndex, " stage-item\"><li>"));
 
               if (child.disabled) {
-                $str.addClass('disabled');
+                _this.disabled(child.disabled, $str);
               }
               /*
               * children route
@@ -4551,6 +4536,25 @@
           this.__vnjs.exec({
             jump: label
           });
+        }
+      }
+    }, {
+      key: "disabled",
+      value: function disabled(obj, $node) {
+        if (typeof obj === 'string') {
+          var _obj$split = obj.split('==='),
+              _obj$split2 = _slicedToArray(_obj$split, 2),
+              key = _obj$split2[0],
+              value = _obj$split2[1];
+
+          var k = String(this.__vnjs.current.data[key.trim()]);
+          var v = String(value).trim();
+
+          if (k === v) {
+            $node.addClass('disabled');
+          }
+        } else {
+          $node.addClass('disabled');
         }
       }
     }]);

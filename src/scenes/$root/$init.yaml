@@ -5,36 +5,17 @@
   clear-data: true
   next: true
 
-
-- menu:
-    - testdata.$init: Как подключить 1
-      icon: p1
-    - testdata.$init: Как подключить 2
-
-    - tree__fs: Файловая структура
-      icon: ch
-    - next: YAML скрипты
-    
-    - $init: Список плагинов
-      icon: ev
-      disabled: true
-      
-    - $root.$init: Вернуться в начало
-    - onClick:
-        hands: false
-        dialog-box: true
-    - css:
-        transform: unset
-        left: unset
-        width: 300px
-        top: 50px
-        right: 20px
+- test 1
+- $: test
+  set-data:
+    age: 12
+    gender: M
 
 
 - al: 'te <span style="color: cyan"></span><span style="color: cyan"></span> 55<span style="color: cyan"></span><span style="color: cyan"></span>'
 - $: test <span></span> test
   set-data:
-    age: меньше 12
+    age: 13
     gender: M
 
 - al: '<span></span>test2 <span></span> <span style="color: cyan">555</span> test2 <span style="color: orange">8 8</span> <span style="color: cyan"></span> <span style="color: cyan">+++</span>'

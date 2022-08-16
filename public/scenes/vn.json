@@ -91,46 +91,13 @@
         "clear-data": true,
         "next": true
       },
+      "test 1",
       {
-        "menu": [
-          {
-            "testdata.$init": "Как подключить 1",
-            "icon": "p1"
-          },
-          {
-            "testdata.$init": "Как подключить 2"
-          },
-          {
-            "tree__fs": "Файловая структура",
-            "icon": "ch"
-          },
-          {
-            "next": "YAML скрипты"
-          },
-          {
-            "$init": "Список плагинов",
-            "icon": "ev",
-            "disabled": true
-          },
-          {
-            "$root.$init": "Вернуться в начало"
-          },
-          {
-            "onClick": {
-              "hands": false,
-              "dialog-box": true
-            }
-          },
-          {
-            "css": {
-              "transform": "unset",
-              "left": "unset",
-              "width": "300px",
-              "top": "50px",
-              "right": "20px"
-            }
-          }
-        ]
+        "$": "test",
+        "set-data": {
+          "age": 12,
+          "gender": "M"
+        }
       },
       {
         "al": "te <span style=\"color: cyan\"></span><span style=\"color: cyan\"></span> 55<span style=\"color: cyan\"></span><span style=\"color: cyan\"></span>"
@@ -138,7 +105,7 @@
       {
         "$": "test <span></span> test",
         "set-data": {
-          "age": "меньше 12",
+          "age": 13,
           "gender": "M"
         }
       },
@@ -222,10 +189,10 @@
     "content": [
       {
         "$root.$init": "Том 1",
-        "disabled": "age === меньше 12",
         "children": [
           {
-            "scene1.ch1": "Глава 1"
+            "scene1.ch1": "Глава 1",
+            "disabled": "age === 12"
           },
           {
             "scene1.ch2": "Глава 2"
@@ -245,6 +212,7 @@
       },
       {
         "$root.$init": "Том 3",
+        "disabled": "age === 12",
         "children": [
           {
             "scene3.ch1": "Глава 1"

@@ -51,4 +51,22 @@
     disabled: true
 
 
-#
+### Так же можно передавать параметру disabled сравнение
+## Значения выражений задаются при помощи плагина data
+- set-data:
+    age: 12
+
+### $root/content.yaml
+- $root.$init: Том 1
+  children:
+      - scene1.ch1: Глава 1
+        disabled: age === 12 #######
+      - scene1.ch2: Глава 2
+
+  - scene2.ch2: Глава 2
+
+- $root.$init: Том 3
+  disabled: age === 12 ######
+  children:
+      - scene3.ch1: Глава 1
+      - scene3.ch2: Глава 2

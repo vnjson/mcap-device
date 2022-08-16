@@ -48,27 +48,11 @@ class Content {
             /**
              * disabled
              */
-            if(item.disabled){
 
-                if(typeof item.disabled ==='string'){
-                        const [ key, value ] = item.disabled.split('===')
-          
-                        const k = String( this.__vnjs.current.data[key] ).trim()
-                        const v = String(value).trim()
-
-                        if( k === v ){
-                            $parent.addClass('disabled')
-                        }
-                        else{
-                            // defalut
-                        }
-                }
-                else{
-                    $parent.addClass('disabled')
-                }
-                
-                //$parent.find('.stage-children').hide()
+            if(item.disabled){ 
+                this.disabled(item.disabled, $parent)
             }
+           
             /**
              * children
              */
@@ -76,7 +60,7 @@ class Content {
                     item.children.forEach( (child, childIndex) => {
                         const $str = $(`<li class="stage-child stage-child-${childIndex} stage-item"><li>`)
                         if(child.disabled){
-                            $str.addClass('disabled')
+                            this.disabled(child.disabled, $str)
                         }
                         /*
                         * children route
@@ -143,7 +127,25 @@ class Content {
             this.__vnjs.exec({jump: label })
         }
     }
+    disabled (obj, $node){
+        if(typeof obj ==='string'){
+            const [ key, value ] = obj.split('===')
+        
+            const k = String( this.__vnjs.current.data[key.trim()] )
+            const v = String(value).trim()
+
+            if( k === v ){
+                $node.addClass('disabled')
+            }
+        }
+        else{
+            $node.addClass('disabled')
+        }
+    }
 }
+
+
+
 
 
 export default Content
