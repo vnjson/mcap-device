@@ -49,7 +49,24 @@ class Content {
              * disabled
              */
             if(item.disabled){
-                $parent.addClass('disabled')
+
+                if(typeof item.disabled ==='string'){
+                        const [ key, value ] = item.disabled.split('===')
+          
+                        const k = String( this.__vnjs.current.data[key] ).trim()
+                        const v = String(value).trim()
+
+                        if( k === v ){
+                            $parent.addClass('disabled')
+                        }
+                        else{
+                            // defalut
+                        }
+                }
+                else{
+                    $parent.addClass('disabled')
+                }
+                
                 //$parent.find('.stage-children').hide()
             }
             /**

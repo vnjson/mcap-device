@@ -5,7 +5,7 @@ export default function (){
   const $tpl = $(tpl);
   this.$store.$screen.append($tpl);
   let cid = null
-  this.on('set-name', id=>{
+  this.on('set-name', id => {
       if(id){
         $tpl.css('display', 'flex');
         cid = id;

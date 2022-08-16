@@ -2439,7 +2439,9 @@
         _classPrivateFieldSet(this, _reply, reply); //проверяем сущесвуют ли внутри реплики ссылки на персонажей
 
 
-        this.reply = this.replaceCharacterLink(_classPrivateFieldGet(this, _reply)); // Если скорость вывода символов равна нулю, то строка не разбивается на символы
+        this.reply = this.replaceCharacterLink(_classPrivateFieldGet(this, _reply)); //вырезаем пустые теги
+
+        this.reply = this.reply.replaceAll(/<.{0,}><\/.{0,}>/gi, ''); // Если скорость вывода символов равна нулю, то строка не разбивается на символы
 
         if (this.delay > 0) {
           this.replyOutputBySingleLetter();
@@ -3883,9 +3885,7 @@
 
     var ISBN;
     this.on('postload', function () {
-      var _this$TREE$$root$pack;
-
-      ISBN = ((_this$TREE$$root$pack = _this.TREE.$root["package"]) === null || _this$TREE$$root$pack === void 0 ? void 0 : _this$TREE$$root$pack.ISBN) || '0000000000000';
+      ISBN = '0000000000000';
 
       if (store.get(ISBN)) {
         _this.current.data = store.get(ISBN);
@@ -4450,7 +4450,22 @@
            */
 
           if (item.disabled) {
-            $parent.addClass('disabled'); //$parent.find('.stage-children').hide()
+            if (typeof item.disabled === 'string') {
+              var _item$disabled$split = item.disabled.split('==='),
+                  _item$disabled$split2 = _slicedToArray(_item$disabled$split, 2),
+                  key = _item$disabled$split2[0],
+                  value = _item$disabled$split2[1];
+
+              var k = String(_this.__vnjs.current.data[key]).trim();
+              var v = String(value).trim();
+
+              if (k === v) {
+                $parent.addClass('disabled');
+              }
+            } else {
+              $parent.addClass('disabled');
+            } //$parent.find('.stage-children').hide()
+
           }
           /**
            * children

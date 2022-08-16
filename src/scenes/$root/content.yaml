@@ -1,8 +1,8 @@
 - $root.$init: Том 1
-  disabled: true
+  disabled: age === меньше 12
   children:
       - scene1.ch1: Глава 1
-        disabled: true
+        #disabled: true
       - scene1.ch2: Глава 2
 
 - $root.$init: Том 2

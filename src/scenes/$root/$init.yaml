@@ -2,6 +2,7 @@
   status-bar: false
   hands: true
   audio: false
+  clear-data: true
   next: true
 
 
@@ -32,6 +33,10 @@
 
 - al: 'te <span style="color: cyan"></span><span style="color: cyan"></span> 55<span style="color: cyan"></span><span style="color: cyan"></span>'
 - $: test <span></span> test
+  set-data:
+    age: меньше 12
+    gender: M
+
 - al: '<span></span>test2 <span></span> <span style="color: cyan">555</span> test2 <span style="color: orange">8 8</span> <span style="color: cyan"></span> <span style="color: cyan">+++</span>'
 - al: 123 123 123
 - al: test test test

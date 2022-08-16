@@ -38,6 +38,8 @@ class DialogBox {
     this.#reply = reply
     //проверяем сущесвуют ли внутри реплики ссылки на персонажей
     this.reply = this.replaceCharacterLink(this.#reply);
+    //вырезаем пустые теги
+    this.reply = this.reply.replaceAll(/<.{0,}><\/.{0,}>/gi, '')
     // Если скорость вывода символов равна нулю, то строка не разбивается на символы
     if(this.delay>0){
       this.replyOutputBySingleLetter();
