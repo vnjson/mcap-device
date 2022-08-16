@@ -5,6 +5,7 @@
           age:
             min: 10
             max: 12
+            
       - scene1.ch2: Глава 2
 
 - $root.$init: Том 2

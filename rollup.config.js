@@ -12,6 +12,10 @@ import YAML             from 'yaml';
 import watch            from "rollup-plugin-watch";
 const config = YAML.parse(fse.readFileSync('./config.yaml', 'utf8'))
 
+import packageConfig from './package.json'
+
+console.log(color.magenta('Version: ') + color.red(packageConfig.version)) 
+
 const production = false;
 
 export default {
@@ -99,7 +103,7 @@ const  buildScenes = () => {
 
 
 chokidar.watch(`${config.src}/scenes`).on('change', (event, path) => {
-  buildScenes();
+    buildScenes()
 })
 
 buildScenes()

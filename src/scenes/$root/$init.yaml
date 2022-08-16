@@ -5,17 +5,33 @@
   clear-data: true
   next: true
 
-- test 1
+- al: test
+
+- menu:
+    - _age17: TEXT
+    - _age10: TEXT 10
+
+
+- _age17: true
+  set-data:
+    age: 100
+  next: true
+
+- $: 100
+  _age10: true
+
 
 - $: test
   set-data:
     age: 12
 
-
-- al: 'te <span style="color: cyan"></span><span style="color: cyan"></span>355<span style="color: cyan"></span><span style="color: cyan"></span>'
-- $: test <span></span> test
+- $: aa
   set-data:
     age: 13
+
+- al: 'te <span style="color: cyan"></span><span style="color: cyan"></span><span style="color: cyan"></span><span style="color: cyan"></span>'
+- $: test <span></span> test
+
 
 
 - al: '<span></span>test2 <span></span> <span style="color: cyan">555</span> test2 <span style="color: orange">8 8</span> <span style="color: cyan"></span> <span style="color: cyan">+++</span>'
