@@ -5910,14 +5910,14 @@
     }
     $tpl$3.empty();
     $tpl$3.show();
-    regions.forEach(function (reg) {
+    regions.forEach(function (reg, index) {
       var style = "position:absolute;\n                    top:".concat(reg.top, "px;\n                    left:").concat(reg.left, "px;\n                    width:").concat(reg.width, "px;\n                    height:").concat(reg.height, "px;");
 
       if (reg.show) {
         style += 'border: 5px solid #11f285;';
       }
 
-      var regTpl = "<div style=\"".concat(style, "\" class=\"vnjson__area-item\" data-exec=").concat(JSON.stringify(reg.exec), "></div>");
+      var regTpl = "<div style=\"".concat(style, "\" class=\"vnjson__area-item\" data-exec='").concat(JSON.stringify(reg.exec), "'></div>");
       $tpl$3.append(regTpl);
     });
   }

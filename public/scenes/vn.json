@@ -91,6 +91,41 @@
         "clear-data": true,
         "next": true
       },
+      "tes",
+      {
+        "area": [
+          {
+            "left": 10,
+            "top": 250,
+            "width": 100,
+            "height": 100,
+            "show": true,
+            "exec": {
+              "$": "Первый регион"
+            }
+          },
+          {
+            "left": 50,
+            "top": 50,
+            "width": 100,
+            "height": 100,
+            "show": true,
+            "exec": {
+              "$": "Первый регион"
+            }
+          },
+          {
+            "left": 10,
+            "top": 10,
+            "width": 100,
+            "height": 100,
+            "show": true,
+            "exec": {
+              "$": 1234
+            }
+          }
+        ]
+      },
       {
         "al": "test"
       },

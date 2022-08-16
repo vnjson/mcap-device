@@ -18,7 +18,7 @@ export default function (){
         let input = $('.vnjson__set-name-wrapper input')
      
             $tpl.fadeOut();
-            let char = this.TREE.$root.characters.find(character=>character.id===cid)
+            let char = this.TREE.$root.characters.find(character => character.id===cid)
             //this.current.data[cid] = value;
             char.name = input.val();
             input.val('');
