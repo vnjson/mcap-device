@@ -14,8 +14,10 @@ const config = YAML.parse(fse.readFileSync('./config.yaml', 'utf8'))
 
 import packageConfig from './package.json'
 
-console.log(color.magenta('Version: ') + color.red(packageConfig.version)) 
-
+const printVersion = () => {
+  console.log(color.magenta('Version: ') + color.red(packageConfig.version)) 
+}
+printVersion()
 const production = false;
 
 export default {
@@ -42,11 +44,7 @@ export default {
             ["babel-plugin-root-import", { "rootPathSuffix": `${config.src}`}]
       ]
     }),
-  /*
-    copy({
-      targets: [{ src: `${config.src}/static/*`, dest: `public/` }]
-    }),
-*/
+
     files({
       output: `public/assets`,
       extensions: /\.(waw|ogg|mp3)$/,
@@ -59,7 +57,6 @@ export default {
   ],
 
   watch: [
-    //`${config.src}/plugins`,
     `${config.src}/main.js`,
     `${config.src}/plugins.js`,
   ]
@@ -85,7 +82,8 @@ const  buildScenes = () => {
   const dist = `./public/scenes`;
 
   scenesToJson(src, dist, (err, sceneName, labelName)=>{
-      console.clear();
+      console.clear()
+      printVersion()
       if(err){
           console.log( color.red(err.reason) );
           console.log( color.cyan(sceneName+'/'+ labelName) );
@@ -113,7 +111,6 @@ buildScenes()
  */
 const copyStatic = () => {
    fse.copy(`${config.src}/static`, 'public')
-   console.log( color.green( '[ Static has copy ]' ) )
 }
 copyStatic()
 chokidar.watch(`${config.src}/static`).on('change', (event, path) => {
