@@ -5,7 +5,7 @@
   clear-data: true
   next: true
 
-- tes
+- yt-test: true
 
 - area:
     - left: 10

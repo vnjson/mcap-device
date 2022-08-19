@@ -91,7 +91,9 @@
         "clear-data": true,
         "next": true
       },
-      "tes",
+      {
+        "yt-test": true
+      },
       {
         "area": [
           {
@@ -357,6 +359,9 @@
         ]
       }
     ],
+    "html": {
+      "yt-test": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/p5YEFSQifp0\"></iframe>"
+    },
     "package": {
       "debug": true,
       "preload": true,
@@ -366,7 +371,7 @@
       },
       "publish": {
         "host": "http://vnjson.mcap.fun",
-        "token": "b38ed838f352f6ad7f842bf497800feb"
+        "token": "3ba79c3ecaf5c171072a3a19f41539a0"
       },
       "menu": {
         "audio": "sysFlipPages",
