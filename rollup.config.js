@@ -15,9 +15,9 @@ const config = YAML.parse(fse.readFileSync('./config.yaml', 'utf8'))
 import packageConfig from './package.json'
 
 const printVersion = () => {
-  console.log(color.magenta('Version: ') + color.red(packageConfig.version)) 
+  return color.magenta('Version: ') + color.red(packageConfig.version)
 }
-printVersion()
+
 const production = false;
 
 export default {
@@ -83,7 +83,7 @@ const  buildScenes = () => {
 
   scenesToJson(src, dist, (err, sceneName, labelName)=>{
       console.clear()
-      printVersion()
+
       if(err){
           console.log( color.red(err.reason) );
           console.log( color.cyan(sceneName+'/'+ labelName) );
@@ -92,7 +92,7 @@ const  buildScenes = () => {
           io.emit('yaml-error', err, sceneName, labelName);
       }
       else{
-        console.log( color.green( '[ Scenes has build ]' ) )
+        console.log(printVersion(), color.green( ' [ Scenes has build ]' ) )
         io.emit('yaml-error', null);
       }
   })

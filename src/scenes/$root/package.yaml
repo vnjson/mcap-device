@@ -8,7 +8,7 @@ dialog-box:
 
 publish:
   host: http://vnjson.mcap.fun
-  token: 3ba79c3ecaf5c171072a3a19f41539a0
+  token: ffd5e78f5d987ceaa20b2d26da251b7a
 
 menu:
   audio: sysFlipPages
