@@ -31,7 +31,7 @@ export function eventRegistration(event, tpl){
        $tpl.fadeIn()
     }
     else{
-       $tpl.fadeIn()
+       $tpl.fadeOut()
     }
   })
 

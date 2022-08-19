@@ -15,7 +15,9 @@ export default function (){
             }
             else{
               list = data.list
-              $tpl.css(data.css);
+              if(data.css){
+                $tpl.css(data.css);
+              }
             }
             appendElements.call(this, list)
 

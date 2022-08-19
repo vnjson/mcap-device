@@ -4146,7 +4146,7 @@
     });
   }
 
-  var css$g = ".vnjson__wiki {\n  left: 10px;\n  top: 40px;\n  width: 300px;\n  display: none;\n  height: auto;\n  padding: 10px;\n  border-radius: 4px;\n  background-color: rgba(0,0,0,0.5);\n  z-index: 7100;\n  font-size: 14px;\n}\n.vnjson__wiki li{\n  padding: 5px 0;\n\n  line-height: 18px;\n    \n}\n.vnjson__wiki-key{\n  color: wheat;\n}\n.vnjson__wiki-dash{\n  padding: 0 5px;\n  color: silver;\n}\n.vnjson__wiki-value{\n  color: darkgray;\n}";
+  var css$g = ".vnjson__wiki {\n  left: 10px;\n  top: 40px;\n  width: 300px;\n  height: 400px;\n  display: none;\n  padding: 10px;\n  border-radius: 4px;\n  background-color: rgba(0,0,0,0.5);\n  z-index: 7100;\n  font-size: 14px;\n  overflow: auto;\n}\n.vnjson__wiki li{\n  padding: 5px 0;\n\n  line-height: 18px;\n    \n}\n.vnjson__wiki-key{\n  color: wheat;\n}\n.vnjson__wiki-dash{\n  padding: 0 5px;\n  color: silver;\n}\n.vnjson__wiki-value{\n  color: darkgray;\n}";
   n(css$g,{});
 
   var $tpl$8 = $('<ul class="vnjson__wiki component"></ul>');
@@ -4164,7 +4164,10 @@
           list = data;
         } else {
           list = data.list;
-          $tpl$8.css(data.css);
+
+          if (data.css) {
+            $tpl$8.css(data.css);
+          }
         }
 
         appendElements.call(_this, list);
@@ -4751,7 +4754,7 @@
       } else if (data) {
         $tpl.fadeIn();
       } else {
-        $tpl.fadeIn();
+        $tpl.fadeOut();
       }
     });
   }
