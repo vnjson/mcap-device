@@ -29,11 +29,11 @@
 }
 
 .debug__dialog-box-controls .debug__controls-center{
-  width: 355px;
+  width: 405px;
   flex-direction: row;
 }
 .debug__controls-right{
-  width: 250px;
+  width: 200px;
  
 }
 .debug__mc-exec{
@@ -133,6 +133,15 @@
   margin-top: 5px;
 
 }
+.debug__output{
+  background-color: burlywood;
+  border-radius: 4px;
+  padding: 3px 5px;
+  width: 100%;
+  flex: 1 0 auto;
+  overflow: auto;
+  height: 100%;
+}
 
 .debug__checkbox-wrapper{
   display: flex;
@@ -224,6 +233,9 @@
 .debug-plugin__name--active{
   color: cadetblue;
   border-color: cadetblue;
+}
+.debug-plugin__name--dev{
+  border: 1px solid rgb(207, 113, 5);
 }
 .debug-plugin__name:hover{
   color: cadetblue;

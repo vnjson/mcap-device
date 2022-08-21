@@ -38,8 +38,20 @@ export default function (){
       const str = `CMD_${JSON.stringify(data)}`;
 
       query(str)
-        .then(res => console.log( JSON.stringify(res) ))
-        .catch(err => console.error( JSON.stringify(err) ))
+        .then(res => { 
+            const data = JSON.stringify(res) 
+            console.log( data )
+            if(param.callback){
+                param.callback(data)
+            }
+        })
+        .catch(err => { 
+            const data = JSON.stringify(err) 
+            console.log( data )
+            if(param.callback){
+                param.callback(data)
+            }
+        })
   })
 }
 

@@ -4,8 +4,8 @@ export default function (asset) {
     if(asset) {
         const img = new Image()
         img.onload = function () {
-          $('.debug__plugin--value').val(`${asset}\nwidth: ${this.width}px\nheight: ${this.height}px`)
-
+          const str = `${asset}<br>width: ${this.width}px<br>height: ${this.height}px`
+          $('.debug__output').html(str)
         }
         img.src = this.getAssetByName(asset).url
     }

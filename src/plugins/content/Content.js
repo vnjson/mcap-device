@@ -52,6 +52,7 @@ class Content {
             if(item.disabled){ 
                 this.disabled(item.disabled, $parent)
             }
+
             /**
              * children
              */
@@ -97,21 +98,7 @@ class Content {
         if(level.length===2){
             this.__vnjs.TREE.$root.content[level[0]].children[level[1]].disabled = data.disabled
         }
-        /**
-         * addClass / removeClass
-         * disabled
-         */
-        /*
-        const $p = $(`.state-parent-${ level_1}`)
-        const $ch = $(`.stage-child-${level_2}`)
-        if(data.disabled){
-            $p.removeClass('disabled')
-            $ch.removeClass('disabled')
-        }
-        else{
-            $p.addClass('disabled')
-            $ch.addClass('disabled')
-        }*/
+
         
     }
 
@@ -130,10 +117,19 @@ class Content {
         if(typeof obj ==='object'){
             for(let key in obj){
                 const _data = this.__vnjs.current.data[key]
-                const {min, max } = obj[key]
-                if( min<=_data&&_data<=max ){
-                    $node.addClass('disabled')
+      
+                const [ min, max ] = obj[key]
+                if( Array.isArray( obj[key] ) ){
+                    if( min<=_data&&_data<=max ){
+                        $node.addClass('disabled')
+                    }
                 }
+                if(typeof obj[key] === 'string'){
+                    if(obj[key]===_data){
+                        $node.addClass('disabled')
+                    }
+                }
+
             }
 
         }

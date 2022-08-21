@@ -92,29 +92,11 @@
         "next": true
       },
       {
-        "yt-salut": true,
-        "$": "test"
-      },
-      {
-        "yt-salut": false
-      },
-      {
-        "yt-salut": true
-      },
-      {
-        "yt-salut": false
-      },
-      {
-        "htmlChunk": true
-      },
-      {
-        "htmlChunk": false
-      },
-      {
-        "yt-salut": true
-      },
-      {
-        "$": "test"
+        "$": "test",
+        "set-data": {
+          "age": 14,
+          "gender": "М"
+        }
       },
       {
         "$": "start TIMEOUT",
@@ -368,10 +350,10 @@
           {
             "scene1.ch1": "Глава 1",
             "disabled": {
-              "age": {
-                "min": 10,
-                "max": 12
-              }
+              "age": [
+                10,
+                15
+              ]
             }
           },
           {
@@ -393,10 +375,7 @@
       {
         "$root.$init": "Том 3",
         "disabled": {
-          "age": {
-            "min": 10,
-            "max": 12
-          }
+          "gender": "М"
         },
         "children": [
           {

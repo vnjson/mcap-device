@@ -2,9 +2,7 @@
   children:
       - scene1.ch1: Глава 1
         disabled: 
-          age:
-            min: 10
-            max: 12
+          age: [ 10, 15 ]
             
       - scene1.ch2: Глава 2
 
@@ -15,9 +13,8 @@
 
 - $root.$init: Том 3
   disabled:
-      age:
-          min: 10
-          max: 12
+      #age: [ 10, 12 ]
+      gender: М
   children:
       - scene3.ch1: Глава 1
       - scene3.ch2: Глава 2

@@ -55,20 +55,29 @@
 ## Значения выражений задаются при помощи плагина data
 - set-data:
     age: 12
-
+    gender: М
 ### $root/content.yaml
 - $root.$init: Том 1
   children:
       - scene1.ch1: Глава 1
         disabled: 
-          age:
-            min: 10
-            max: 12
+          age: [ 10, 15 ]
+            
       - scene1.ch2: Глава 2
 
+- $root.$init: Том 2
+  children:
+      - $init: Глава 1
+      - scene2.ch2: Глава 2
 
-
-
+- $root.$init: Том 3
+  disabled:
+      #age: [ 10, 12 ]
+      gender: М
   children:
       - scene3.ch1: Глава 1
+      - scene3.ch2: Глава 2
+- $root.$init: Том 4
+  children:
+      - testdata.$init: Глава 1
       - scene3.ch2: Глава 2

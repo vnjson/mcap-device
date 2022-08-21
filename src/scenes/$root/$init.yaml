@@ -5,16 +5,12 @@
   clear-data: true
   next: true
 
-- yt-salut: true
-  $: test
-- yt-salut: false
-- yt-salut: true
-- yt-salut: false
-- htmlChunk: true
-- htmlChunk: false
-- yt-salut: true
+
 
 - $: test
+  set-data:
+    age: 14
+    gender: М
 - $: start TIMEOUT
   timeout:
     timer: 5000

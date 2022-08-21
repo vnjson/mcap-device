@@ -5,10 +5,20 @@ import tpl from "./tpl.html"
  */
 import './lib/color-picker/color.css'
 import './lib/color-picker/color.js'
+/**
+ * etc
+ */
 import copyTextToClipboard from './clipboard.js'
 import pluginsSnipet from './plugins-snipet.js'
-import getImageSize from './img-size.js'
-
+/**
+ * PLUGINS
+ */
+import getImageSize from './plugins/img-size.js'
+import cmdPlayerPlugin from './plugins/cmd-player.js'
+import cmdServerPlugin from './plugins/cmd-server.js'
+/**
+ * INIT
+ */
 let cid = '$'
 export default function (){
   
@@ -60,15 +70,27 @@ export default function (){
  
     const $pluginValue = $('.debug__plugin--value')
 
-
+    /**
+     * degug plugins
+     */
+    const devPlugins = ['img-size', 'cmd-player', 'cmd-server']
     /**
      * Выводим список плагинов
      */
     const $pluginSelect = $('.debug-plugin__select')
     Object.keys(pluginsSnipet).forEach( (pluginItem, index) => {
-        const tpl = `<div class="debug-plugin__name ${index===0?'debug-plugin__name--active':''}" data-plugin="${pluginItem}">
-                          ${pluginItem}
-                    </div>`
+        const isDev = devPlugins.includes(pluginItem)
+        let tpl = null
+        if(isDev){
+               tpl = `<div class="debug-plugin__name debug-plugin__name--dev" data-plugin="${pluginItem}">
+                            ${pluginItem}
+                      </div>`
+        }
+        else{
+               tpl = `<div class="debug-plugin__name ${index===0?'debug-plugin__name--active':''}" data-plugin="${pluginItem}">
+                            ${pluginItem}
+                      </div>`
+        }
         $pluginSelect.append(tpl)
     })
     /**
@@ -122,39 +144,22 @@ export default function (){
           flagDB = true
         }
     })
-
+    /**
+     * PLUGINS
+     */
     /**
      * get original image size plugin
      */
     this.on('img-size', getImageSize )
-
-
     /**
-    - mc-exec:
-        action: executeCMD
-        data: say TEST TEST TEST # give @p dirt 1
-        type: player
-    */
+     * Minecraft CMD client
+     */
+    this.on('cmd-player', cmdPlayerPlugin )
+    /**
+     * Minecraft CMD server
+     */
+    this.on('cmd-server', cmdServerPlugin )
 
-    $('.debug__mcexec').on('click', () => {
-      const action = $('.debug__mc-exec').val()
-      const data = $('.debug__mcexec-data').val()
-      const checkBoxType = $('.debug__mcexec-type:checked').val()
-      let type = 'player'
-      if(checkBoxType==='on'){
-         type = 'server'
-      }
-      const plugins = { 
-                'mc-exec': {
-                    action,
-                    data,
-                    type
-                } 
-      }
-
-      this.exec(plugins)
-    
-  })
 
 
 }

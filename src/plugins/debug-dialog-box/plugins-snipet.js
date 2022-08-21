@@ -77,7 +77,16 @@ css:
   top: 50px
   left: 50px
   width: 500px
-  height: 300px`
+  height: 300px`,
+  /**
+   * DEV
+   */
+  'img-size': "null",
+/**
+ * minecraft cmd
+ */  
+  'cmd-player': `give @p dirt 1`,
+  'cmd-server': `say TEST`,
 }
 
 
