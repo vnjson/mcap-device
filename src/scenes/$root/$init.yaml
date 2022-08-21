@@ -5,7 +5,6 @@
   clear-data: true
   next: true
 
-#- yt-test: true
 
 - wiki:
     list:
@@ -13,16 +12,15 @@
         - Вагонетка
         - Жабры
         - Абажур
-        - Вагонетка
-        - Жабры
-        - Жабры
-        - Абажур
-        - Вагонетка
-        - Жабры
-        - Жабры
-        - Абажур
-        - Вагонетка
-        - Жабры
+
+
+- $content:
+  disabled: 
+      age: [ 10, 20 ]
+      name: Vasya
+
+  enabled:
+      age: [20, 30 ]
 
 - area:
     - left: 10

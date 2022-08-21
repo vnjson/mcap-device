@@ -62,6 +62,16 @@ export default function (){
 
 
     /**
+     * Выводим список плагинов
+     */
+    const $pluginSelect = $('.debug-plugin__select')
+    Object.keys(pluginsSnipet).forEach( (pluginItem, index) => {
+        const tpl = `<div class="debug-plugin__name ${index===0?'debug-plugin__name--active':''}" data-plugin="${pluginItem}">
+                          ${pluginItem}
+                    </div>`
+        $pluginSelect.append(tpl)
+    })
+    /**
      * выбираем название плагина
      */
     let pluginName = 'scene'
@@ -70,10 +80,10 @@ export default function (){
         $(this).removeClass('debug-plugin__name--active')
       })
     }
-    $('.debug-plugin__select').on('click', '.debug-plugin__name', function (){
+    $pluginSelect.on('click', '.debug-plugin__name', function (){
         resetActivePluginName()
         $(this).addClass('debug-plugin__name--active')
-        pluginName = $(this).text()
+        pluginName = $(this).data('plugin')
     })
     
     /**

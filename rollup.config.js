@@ -92,7 +92,7 @@ const  buildScenes = () => {
           io.emit('yaml-error', err, sceneName, labelName);
       }
       else{
-        console.log(printVersion(), color.green( ' [ Scenes has build ]' ) )
+        console.log(printVersion(), color.green( '[ Scenes has build ]' ) )
         io.emit('yaml-error', null);
       }
   })

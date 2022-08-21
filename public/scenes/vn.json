@@ -97,17 +97,23 @@
             "Абажур",
             "Вагонетка",
             "Жабры",
-            "Абажур",
-            "Вагонетка",
-            "Жабры",
-            "Жабры",
-            "Абажур",
-            "Вагонетка",
-            "Жабры",
-            "Жабры",
-            "Абажур",
-            "Вагонетка",
-            "Жабры"
+            "Абажур"
+          ]
+        }
+      },
+      {
+        "$content": null,
+        "disabled": {
+          "age": [
+            10,
+            20
+          ],
+          "name": "Vasya"
+        },
+        "enabled": {
+          "age": [
+            20,
+            30
           ]
         }
       },
@@ -377,7 +383,8 @@
       }
     ],
     "html": {
-      "yt-test": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/p5YEFSQifp0\"></iframe>"
+      "yt-test": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/p5YEFSQifp0\"></iframe>",
+      "st-tset": "<iframe src=\"https://store.steampowered.com/widget/632470/\" frameborder=\"0\" width=\"646\" height=\"190\"></iframe>"
     },
     "package": {
       "debug": true,
