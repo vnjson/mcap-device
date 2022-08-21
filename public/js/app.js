@@ -6468,7 +6468,9 @@
     }
 
     setTimeout(function () {
-      $img.attr('src', getImage(item));
+      if (item.image !== undefined) {
+        $img.attr('src', getImage(item));
+      }
 
       if (item['z-index']) {
         $imgWrapper.css('z-index', item['z-index']);

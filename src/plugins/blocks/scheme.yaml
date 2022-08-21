@@ -157,7 +157,7 @@
 # STEP
 - blocks-step:
         id: test1
-        image: ev
+        image: ev # false - скрывает изображение
         animation: 
           type: moveTo
           duration: 2000
@@ -167,7 +167,7 @@
 
 - blocks-step:
         id: test1
-        image: ch
+        image: ch  #false
         z-index: 5
         animation: 
           type: moveTo

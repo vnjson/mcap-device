@@ -5,14 +5,29 @@
   clear-data: true
   next: true
 
-
-- wiki:
-    list:
-        - Абажур
-        - Вагонетка
-        - Жабры
-        - Абажур
-
+- blocks: 
+      - image: ev # Изображение отоброжаемое в на экране
+        id: test0 # Индификатор для управления через blocks-step
+        z-index: 0
+        timeout: 0 # Задержка начала воспроизведения анимации
+        width: 130px
+        height: 180px
+        top: 100px
+        left: 400px
+        animation: 
+          type: slideUp # Тип анимации
+          duration: 500 # Длительность анимации
+          onEnd: # vnjs.exec(ctx) Данная функция вызовется по оканчанию воспроизведения анимации 
+            $: Конец воспроизведения анимации slideUp
+- blocks-step:
+        id: test0
+        image: false
+        animation: 
+          type: moveTo
+          duration: 2000
+          left: 150px
+          top: 50px
+- еуые
 
 - $content:
   disabled: 

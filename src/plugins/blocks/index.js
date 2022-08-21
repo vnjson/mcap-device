@@ -16,7 +16,9 @@ function getImage (item){
     if(item.image){
         return vnjs.getAssetByName(item.image).url
     }
-    return bgIMG
+    return bgIMG   
+
+
 }
 function blocksHandler (param){
     if(param){
@@ -236,8 +238,11 @@ function blocksStepHandler (item){
     }
 
     setTimeout( ()=>{
-        $img.attr('src',   getImage(item) )
+        if(item.image!==undefined){
+            $img.attr('src',   getImage(item) )
+        }
         
+   
         if(item['z-index']){
             $imgWrapper.css('z-index', item['z-index'])
         }

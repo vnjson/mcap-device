@@ -92,15 +92,39 @@
         "next": true
       },
       {
-        "wiki": {
-          "list": [
-            "Абажур",
-            "Вагонетка",
-            "Жабры",
-            "Абажур"
-          ]
+        "blocks": [
+          {
+            "image": "ev",
+            "id": "test0",
+            "z-index": 0,
+            "timeout": 0,
+            "width": "130px",
+            "height": "180px",
+            "top": "100px",
+            "left": "400px",
+            "animation": {
+              "type": "slideUp",
+              "duration": 500,
+              "onEnd": {
+                "$": "Конец воспроизведения анимации slideUp"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "blocks-step": {
+          "id": "test0",
+          "image": false,
+          "animation": {
+            "type": "moveTo",
+            "duration": 2000,
+            "left": "150px",
+            "top": "50px"
+          }
         }
       },
+      "еуые",
       {
         "$content": null,
         "disabled": {
