@@ -22,6 +22,7 @@ class Vnjson {
     this.debug = conf.debug;
     this.on('jump', this.jumpHandler);
     this.on('timeout', this.timeoutHandler);
+    this.on('log', (param)=>console.log(param));
   }
 
   /**

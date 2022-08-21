@@ -32,7 +32,6 @@ import test               from './plugins/test/index.js'
 import slide              from './plugins/slide/index.js'
 import content            from './plugins/content/index.js'
 import voice              from './plugins/voice/index.js'
-import embed              from './plugins/embed/index.js'
 import html               from './plugins/html/index.js'
 import discordLog         from './plugins/discord-log/index.js'
 import statusBar          from './plugins/status-bar/index.js'
@@ -88,7 +87,6 @@ export default function(){
   this.use(slide)  
   this.use(content)
   this.use(voice)
-  this.use(embed)
   this.use(html)
   this.use(discordLog)
   this.use(statusBar)

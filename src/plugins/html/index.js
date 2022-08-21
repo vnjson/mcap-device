@@ -17,21 +17,24 @@ this.on('postload', ()=>{
 
 
 export function eventRegistration(event, tpl){
-
-  var $tpl = $(tpl)
+ 
+  const $tpl = $(tpl)
   $tpl.hide().addClass("component").addClass('event__'+event)
   this.$store.$screen.append($tpl)
 
-  this.on(event, data=>{
+  this.on(event, data => {
     if( typeof(data) === 'object' ){
         $tpl.css(data.css)
         $tpl.fadeIn()
     }
     else if(data){
-       $tpl.fadeIn()
+       $tpl.fadeIn()  
     }
     else{
-       $tpl.fadeOut()
+      const $src = $tpl
+      $tpl.remove()
+      $src.hide()
+      this.$store.$screen.append($tpl)
     }
   })
 

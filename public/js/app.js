@@ -4706,39 +4706,6 @@
     });
   }
 
-  function embed () {
-    var _this = this;
-
-    this.on('postload', function () {
-      var embed = _this.TREE.$root.embed;
-
-      if (embed) {
-        for (var event in embed) {
-          eventRegistration$2.call(_this, event, embed[event]);
-        }
-      }
-    });
-  }
-
-  function eventRegistration$2(event, tpl) {
-    var _this2 = this;
-
-    var $tpl = $(tpl);
-    $tpl.hide().addClass("component").css('background-color', 'white');
-    this.$store.$screen.append($tpl);
-    this.on(event, function (data) {
-      if (data) {
-        $tpl.fadeIn();
-      } else {
-        var $src = $tpl;
-        $tpl.remove();
-        $src.hide();
-
-        _this2.$store.$screen.append($tpl);
-      }
-    });
-  }
-
   function html () {
     var _this = this;
 
@@ -4753,6 +4720,8 @@
     });
   }
   function eventRegistration$1(event, tpl) {
+    var _this2 = this;
+
     var $tpl = $(tpl);
     $tpl.hide().addClass("component").addClass('event__' + event);
     this.$store.$screen.append($tpl);
@@ -4763,7 +4732,11 @@
       } else if (data) {
         $tpl.fadeIn();
       } else {
-        $tpl.fadeOut();
+        var $src = $tpl;
+        $tpl.remove();
+        $src.hide();
+
+        _this2.$store.$screen.append($tpl);
       }
     });
   }
@@ -6772,7 +6745,6 @@
     this.use(slide);
     this.use(content);
     this.use(voice);
-    this.use(embed);
     this.use(html);
     this.use(discordLog);
     this.use(statusBar);

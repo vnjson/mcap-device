@@ -22,7 +22,7 @@ function eventRegistration(event, tpl){
   $tpl.hide().addClass("component").css('background-color', 'white')
   this.$store.$screen.append($tpl)
 
-  this.on(event, data=>{
+  this.on(event, data => {
     if(data){
       $tpl.fadeIn()
     }
