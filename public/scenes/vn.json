@@ -92,240 +92,28 @@
         "next": true
       },
       {
-        "$": "test",
-        "set-data": {
-          "age": 14,
-          "gender": "М"
-        }
+        "$": "start TIMEOUT"
       },
       {
-        "$": "start TIMEOUT",
-        "timeout": {
-          "timer": 5000,
-          "exec": {
-            "al": "Первый таймер 5000",
-            "timeout": {
-              "timer": 5000,
-              "exec": {
-                "$": "Второй таймер 5000",
-                "timeout": {
-                  "timer": 10000,
-                  "exec": {
-                    "$": "Третий таймер 10000"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "еуые",
-      {
-        "$content": null,
-        "disabled": {
-          "age": [
-            10,
-            20
-          ],
-          "name": "Vasya"
+        "mc-get": {
+          "request": "PLAYER"
         },
-        "enabled": {
-          "age": [
-            20,
-            30
-          ]
-        }
+        "$": "GET PLAYER"
       },
       {
-        "area": [
-          {
-            "left": 10,
-            "top": 250,
-            "width": 100,
-            "height": 100,
-            "show": true,
-            "exec": {
-              "$": "Первый регион"
-            }
-          },
-          {
-            "left": 50,
-            "top": 50,
-            "width": 100,
-            "height": 100,
-            "show": true,
-            "exec": {
-              "$": "Первый регион"
-            }
-          },
-          {
-            "left": 10,
-            "top": 10,
-            "width": 100,
-            "height": 100,
-            "show": true,
-            "exec": {
-              "$": 1234
-            }
-          }
-        ]
+        "mc.player": true,
+        "$": "print"
       },
       {
-        "al": "test"
-      },
-      {
-        "area": [
-          {
-            "left": 10,
-            "top": 250,
-            "width": 100,
-            "height": 100,
-            "show": true,
-            "exec": {
-              "dialog-box": false
-            }
-          },
-          {
-            "left": 260,
-            "top": 60,
-            "width": 100,
-            "height": 100,
-            "exec": {
-              "wiki": {
-                "list": [
-                  "Юань",
-                  "Хакасы",
-                  "Явка",
-                  "Баба-яга"
-                ],
-                "css": {
-                  "left": "700px",
-                  "top": "50px"
-                }
-              }
-            }
-          },
-          {
-            "left": 580,
-            "top": 105,
-            "width": 100,
-            "height": 100,
-            "show": true,
-            "exec": {
-              "dialog-box": false
-            }
-          },
-          {
-            "left": 780,
-            "top": 400,
-            "width": 100,
-            "height": 100,
-            "exec": {
-              "dialog-box": true,
-              "area": false
-            }
-          }
-        ]
-      },
-      {
-        "menu": [
-          {
-            "_age17": "TEXT"
-          },
-          {
-            "_age10": "TEXT 10"
-          }
-        ]
-      },
-      {
-        "_age17": true,
-        "set-data": {
-          "age": 100
+        "mc-get": {
+          "request": "SLOT",
+          "slot": 0
         },
-        "next": true
+        "$": "GET SLOT"
       },
       {
-        "$": 100,
-        "_age10": true
-      },
-      {
-        "$": "test",
-        "set-data": {
-          "age": 12
-        }
-      },
-      {
-        "$": "aa",
-        "set-data": {
-          "age": 13
-        }
-      },
-      {
-        "al": "te <span style=\"color: cyan\"></span><span style=\"color: cyan\"></span><span style=\"color: cyan\"></span><span style=\"color: cyan\"></span>"
-      },
-      {
-        "$": "test <span></span> test"
-      },
-      {
-        "al": "<span></span>test2 <span></span> <span style=\"color: cyan\">555</span> test2 <span style=\"color: orange\">8 8</span> <span style=\"color: cyan\"></span> <span style=\"color: cyan\">+++</span>"
-      },
-      {
-        "al": "123 123 123"
-      },
-      {
-        "al": "test test test"
-      },
-      {
-        "set-name": "$"
-      },
-      {
-        "al": "t t t @$"
-      },
-      {
-        "$": "0 3 4"
-      },
-      {
-        "al": "NEXT",
-        "audio-sprite": {
-          "name": "test22",
-          "sprite": {
-            "sound_1": [
-              "1:08",
-              "0:06"
-            ],
-            "sound_2": [
-              "2:05",
-              "0:30"
-            ],
-            "theme2": [
-              "1:11",
-              "0:03"
-            ]
-          }
-        }
-      },
-      {
-        "audio": {
-          "name": "sound_2",
-          "action": "play"
-        }
-      },
-      {
-        "audio": "sound_2"
-      },
-      {
-        "$": {
-          "reply": "ttt",
-          "info": "ooo",
-          "borderColor": "red"
-        }
-      },
-      {
-        "$": {
-          "reply": 3333,
-          "info": "ooo333",
-          "borderColor": "yellow"
-        }
+        "$": "END",
+        "mc.slot": true
       }
     ],
     "characters": [
@@ -375,6 +163,10 @@
       {
         "$root.$init": "Том 3",
         "disabled": {
+          "age": [
+            10,
+            12
+          ],
           "gender": "М"
         },
         "children": [
@@ -398,10 +190,7 @@
         ]
       }
     ],
-    "html": {
-      "yt-salut": "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/a_o-P-lIDEA?start=50\"></iframe>",
-      "htmlChunk": "<a class=\"qr-code\" href=\"http://qrcoder.ru\" target=\"_blank\"><img src=\"http://qrcoder.ru/code/?http%3A%2F%2Fatlant.mcacademy.ru%3A9000%2F&10&0\" width=\"370\" height=\"370\" border=\"0\" title=\"QR код\"></a>"
-    },
+    "html": null,
     "package": {
       "debug": true,
       "preload": true,

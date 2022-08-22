@@ -35,7 +35,12 @@ import voice              from './plugins/voice/index.js'
 import html               from './plugins/html/index.js'
 import discordLog         from './plugins/discord-log/index.js'
 import statusBar          from './plugins/status-bar/index.js'
+// minecraft
 import mcPlayer           from './plugins/mc-player/index.js'
+import mcExec             from './plugins/mc-exec/index.js'
+import mcGet             from './plugins/mc-get/index.js'
+import mcCheck            from './plugins/mc-check/index.js'
+//
 import paintBoard         from './plugins/paint-board/index.js'
 import clipBoard          from './plugins/clipboard/index.js'
 import video              from './plugins/video/index.js'
@@ -44,12 +49,11 @@ import typewrite          from './plugins/typewrite/index.js'
 import area               from './plugins/area/index.js'
 import selectWord         from './plugins/select-word/index.js'
 import dragItems          from './plugins/drag-items/index.js'
-import checkMC            from './plugins/mc-check/index.js'
 import consoleVnjson      from './plugins/console/index.js'
 import blocks             from './plugins/blocks/index.js'
 import staticApp          from './plugins/static-app/index.js'
 import HUD                from './plugins/hud/index.js'
-import mcExec             from './plugins/mc-exec/index.js'
+
 import dialogBoxInfo      from './plugins/dialog-box-info/index.js'
 
 export default function(){
@@ -90,7 +94,12 @@ export default function(){
   this.use(html)
   this.use(discordLog)
   this.use(statusBar)
+  // minecraft
   this.use(mcPlayer)
+  this.use(mcCheck)
+  this.use(mcExec)
+  this.use(mcGet)
+  //
   this.use(paintBoard)
   this.use(clipBoard)
   this.use(video)
@@ -98,12 +107,10 @@ export default function(){
   this.use(area)
   this.use(selectWord)
   this.use(dragItems)
-  this.use(checkMC)
   this.use(consoleVnjson)
   this.use(blocks)
   this.use(staticApp)
   this.use(HUD)
-  this.use(mcExec)
   this.use(dialogBoxInfo)
   this.on('next', ()=>{
       setTimeout(()=>this.next(), 10)

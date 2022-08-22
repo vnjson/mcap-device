@@ -1,13 +1,23 @@
-export default function (data) {
+/**
+ * Выполняет консольную команду в MineCraft
+ */
 
-        const plugins = { 
-                  'mc-exec': {
-                      action: 'executeCMD',
-                      data,
-                      type: 'player'
-                  } 
-        }
-  
-        this.exec(plugins)
+
+function callback (data){
+    this.emit('vnjson.info', data)
+}
+
+export default function (param) {
+    const [ action, data ] = param.split(':\n')
+    const plugins = { 
+              'mc-exec': {
+                  action,
+                  data,
+                  type: 'player',
+                  callback: callback.bind(this)
+              } 
+    }
+
+    this.exec(plugins)
 
 }

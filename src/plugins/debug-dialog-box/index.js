@@ -16,6 +16,7 @@ import pluginsSnipet from './plugins-snipet.js'
 import getImageSize from './plugins/img-size.js'
 import cmdPlayerPlugin from './plugins/cmd-player.js'
 import cmdServerPlugin from './plugins/cmd-server.js'
+import queryGetPlugin from './plugins/query-get.js'
 /**
  * INIT
  */
@@ -73,7 +74,12 @@ export default function (){
     /**
      * degug plugins
      */
-    const devPlugins = ['img-size', 'cmd-player', 'cmd-server']
+    const devPlugins = [
+              'img-size', 
+              'cmd-player', 
+              'cmd-server', 
+              'query-get'
+    ]
     /**
      * Выводим список плагинов
      */
@@ -82,14 +88,14 @@ export default function (){
         const isDev = devPlugins.includes(pluginItem)
         let tpl = null
         if(isDev){
-               tpl = `<div class="debug-plugin__name debug-plugin__name--dev" data-plugin="${pluginItem}">
+               tpl = `<code class="debug-plugin__name debug-plugin__name--dev" data-plugin="${pluginItem}">
                             ${pluginItem}
-                      </div>`
+                      </code>`
         }
         else{
-               tpl = `<div class="debug-plugin__name ${index===0?'debug-plugin__name--active':''}" data-plugin="${pluginItem}">
+               tpl = `<code class="debug-plugin__name ${index===0?'debug-plugin__name--active':''}" data-plugin="${pluginItem}">
                             ${pluginItem}
-                      </div>`
+                      </code>`
         }
         $pluginSelect.append(tpl)
     })
@@ -101,6 +107,7 @@ export default function (){
       $('.debug-plugin__select .debug-plugin__name').each(function (node){
         $(this).removeClass('debug-plugin__name--active')
       })
+      $pluginValue.val('')
     }
     $pluginSelect.on('click', '.debug-plugin__name', function (){
         resetActivePluginName()
@@ -159,7 +166,10 @@ export default function (){
      * Minecraft CMD server
      */
     this.on('cmd-server', cmdServerPlugin )
-
+    /**
+     * Minecraft query GET
+     */
+     this.on('query-get', queryGetPlugin )
 
 
 }

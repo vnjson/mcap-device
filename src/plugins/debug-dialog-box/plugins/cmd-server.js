@@ -1,14 +1,20 @@
+/**
+ * Выполняет консольную команду в MineCraft
+ */
+
+
 function callback (data){
-    $('.debug__output').html(data)
+    this.emit('vnjson.info', data)
 }
 
-export default function (data) {
+export default function (param) {
+    const [ action, data ] = param.split(':\n')
     const plugins = { 
               'mc-exec': {
-                  action: 'executeCMD',
+                  action,
                   data,
                   type: 'server',
-                  callback
+                  callback: callback.bind(this)
               } 
     }
 

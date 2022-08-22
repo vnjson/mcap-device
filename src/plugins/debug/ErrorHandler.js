@@ -1,13 +1,15 @@
 
 const modalTpl = `<div class="debug-error">
+                        
                         <div class="debug-error__modal">
-                            <p class="debug-error__msg"></p>
+                            <div class="debug-error__status"></div>
+                            <code> <pre class="debug-error__msg"></pre></code>
                             <p class="debug-error__path"></p>
                             <p class="debug-error__pos"></p>
                             <pre class="debug-error__code"></pre>
                         </div>
                     </div>`
-const $modal =  $(modalTpl);
+const $modal =  $(modalTpl)
 
 $('#screen').append($modal);
 

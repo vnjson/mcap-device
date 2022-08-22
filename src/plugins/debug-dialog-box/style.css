@@ -21,7 +21,7 @@
 }
 
 .debug__controls-left{
-  width: 400px;
+  width: 500px;
 }
 
 .debug__character{
@@ -29,13 +29,10 @@
 }
 
 .debug__dialog-box-controls .debug__controls-center{
-  width: 405px;
+  width: 510px;
   flex-direction: row;
 }
-.debug__controls-right{
-  width: 200px;
- 
-}
+
 .debug__mc-exec{
   width: 50px;
 }
@@ -141,6 +138,7 @@
   flex: 1 0 auto;
   overflow: auto;
   height: 100%;
+  user-select: all;
 }
 
 .debug__checkbox-wrapper{
@@ -229,13 +227,14 @@
   padding: 1px 5px;
   cursor: pointer;
   margin-right: 5px;
+  display: block;
 }
 .debug-plugin__name--active{
   color: cadetblue;
   border-color: cadetblue;
 }
 .debug-plugin__name--dev{
-  border: 1px solid rgb(207, 113, 5);
+  color: brown;
 }
 .debug-plugin__name:hover{
   color: cadetblue;

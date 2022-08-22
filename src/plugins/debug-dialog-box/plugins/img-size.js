@@ -4,8 +4,8 @@ export default function (asset) {
     if(asset) {
         const img = new Image()
         img.onload = function () {
-          const str = `${asset}<br>width: ${this.width}px<br>height: ${this.height}px`
-          $('.debug__output').html(str)
+          const str = `image: ${asset}<br>width: ${this.width}px<br>height: ${this.height}px`
+          _vnjs.emit('vnjson.info', str)
         }
         img.src = this.getAssetByName(asset).url
     }

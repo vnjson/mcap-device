@@ -7,6 +7,9 @@ import errors from './errors.js';
 
 export default function  (){
     $vnjs.errors = errors
+    /**
+     * Блокировка контекстного меню, если не debug
+     */
 	if(!this.debug) {
         $('body').attr('oncontextmenu', 'return false;')
         return
@@ -40,6 +43,10 @@ export default function  (){
     });
 
     this.on('error', (codeError, data)=>{
+        // style
+        $('.debug-error__status').css('background-color', 'brown')
+        $('.debug-error__msg').css('color', 'brown')
+
         if(typeof codeError==='object'){
             const message = codeError[this.local]
      
@@ -63,6 +70,12 @@ export default function  (){
         console.log(codes[codeError]);
     })
 
+    this.on('vnjson.info', (msg) => {
+        // style
+        $('.debug-error__status').css('background-color', 'darkcyan')
+        $('.debug-error__msg').css('color', 'gray')
+        ErrorHandler.showModal(msg)
+    })
 
     
 }
