@@ -7,5 +7,5 @@
 }
 .vnjson__area-item:hover{
   cursor: pointer;
-  background-color: rgba(0,0,0,0.1);
+ /* background-color: rgba(0,0,0,0.1);*/
 }

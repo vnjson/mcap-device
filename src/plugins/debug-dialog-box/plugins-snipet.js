@@ -85,13 +85,15 @@ css:
 /**
  * minecraft cmd
  */  
-  'cmd-player': `executeCMD:\ngive @p dirt 1`,
-  'cmd-server': `executeCMD:\nsay TEST`,
+  'cmd-player': `executeCMD
+give @p dirt 1`,
+  'cmd-server': `executeCMD
+say TEST`,
   'query-get': `request: PLAYER #BLOCK #SLOT #ENTITY
 slot: 0
-posX: 0
-posY: 0
-posZ: 0`
+x: 0
+y: 0
+z: 0`
 }
 
 

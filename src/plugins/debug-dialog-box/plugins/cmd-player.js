@@ -4,14 +4,17 @@
 
 
 function callback (data){
-    this.emit('vnjson.info', data)
+    this.emit('vnjson.error', data)
 }
 
 export default function (param) {
-    const [ action, data ] = param.split(':\n')
+    const arr = param.split(' ')
+
+    const data = param.replace(arr[0], '')
+
     const plugins = { 
               'mc-exec': {
-                  action,
+                  action: arr[0],
                   data,
                   type: 'player',
                   callback: callback.bind(this)

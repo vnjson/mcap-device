@@ -41,7 +41,7 @@ function query (request){
               const data = JSON.stringify(res) 
               console.log( data )
               this.$store.MINECRAFT = this.$store.MINECRAFT||{}
-              this.$store.MINECRAFT[param.request] = data
+              this.$store.MINECRAFT[param.request] = res
               if(param.callback){
                   param.callback(data)
               }

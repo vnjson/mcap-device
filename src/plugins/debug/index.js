@@ -76,6 +76,11 @@ export default function  (){
         $('.debug-error__msg').css('color', 'gray')
         ErrorHandler.showModal(msg)
     })
-
+    this.on('vnjson.error', (msg) => {
+        // style
+        $('.debug-error__status').css('background-color', 'brown')
+        $('.debug-error__msg').css('color', 'brown')
+        ErrorHandler.showModal(msg)
+    })
     
 }

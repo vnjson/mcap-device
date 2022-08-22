@@ -39,17 +39,21 @@ export default function (){
 
       query(str)
         .then(res => { 
-            const data = JSON.stringify(res) 
+            const data = JSON.stringify(res, null, 2) 
             console.log( data )
+            /*
             if(param.callback){
                 param.callback(data)
             }
+            */
         })
         .catch(err => { 
-            const data = JSON.stringify(err) 
+            const data = JSON.stringify(err, null, 2) 
             console.log( data )
             if(param.callback){
+    
                 param.callback(data)
+                
             }
         })
   })

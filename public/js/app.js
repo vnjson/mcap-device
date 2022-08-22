@@ -488,6 +488,12 @@
       $('.debug-error__msg').css('color', 'gray');
       ErrorHandler.showModal(msg);
     });
+    this.on('vnjson.error', function (msg) {
+      // style
+      $('.debug-error__status').css('background-color', 'brown');
+      $('.debug-error__msg').css('color', 'brown');
+      ErrorHandler.showModal(msg);
+    });
   }
 
   var css$y = ".debug__dialog-box-controls{\n  background-color: wheat;\n  padding: 5px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  height: 120px;\n  font-size: 14px;\n  width: 1024px;\n  font-family: Arial, Helvetica, sans-serif;\n}\n\n\n.debug__dialog-box-controls >div{\n  display: flex;\n  flex-direction: column;\n  border-radius: 4px;\n  height: 100%;\n  border: 1px solid #ccc;\n  padding: 5px;\n}\n\n.debug__controls-left{\n  width: 500px;\n}\n\n.debug__character{\n  width: 40px;\n}\n\n.debug__dialog-box-controls .debug__controls-center{\n  width: 510px;\n  flex-direction: row;\n}\n\n.debug__mc-exec{\n  width: 50px;\n}\n.debug__controls-btns{\n  display: flex;\n  justify-content: space-between;\n  height: 30px;\n\n}\n\n\n.debug__dialog-box-controls .debug__input-text{\n  flex: 1 0 auto;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  text-align: left;\n \n  \n}\n\n/*delay*/\n.debug__delay-wrapper{\n  display: flex;\n  align-items: center;\n  background-color: burlywood;\n  border-radius: 4px;\n  margin-left: 5px;\n  padding-left: 5px;\n}\n.debug__delay-img{\n  width: 20px;\n  height: 20px;\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNMTIsMjBBOCw4IDAgMCwwIDIwLDEyQTgsOCAwIDAsMCAxMiw0QTgsOCAwIDAsMCA0LDEyQTgsOCAwIDAsMCAxMiwyME0xMiwyQTEwLDEwIDAgMCwxIDIyLDEyQTEwLDEwIDAgMCwxIDEyLDIyQzYuNDcsMjIgMiwxNy41IDIsMTJBMTAsMTAgMCAwLDEgMTIsMk0xMi41LDdWMTIuMjVMMTcsMTQuOTJMMTYuMjUsMTYuMTVMMTEsMTNWN0gxMi41WiIgLz4NCjwvc3ZnPg==);\n  background-position: center;\n\n}\n\n\n.debug__dialog-box-controls .debug__delay{\n  width: 40px;\n  text-align: center;\n  flex: 0 0 auto;\n}\n\n.debug__btn{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 5px 5px;\n  cursor: pointer;\n  color: black;\n  width: 35px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin-left: 5px;\n\n}\n.debug__btn-img{\n  width: 20px;\n  height: 20px;\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNNiA3LjI0TDE1LjUzIDEyTDYgMTYuNzZWNy4yNE00IDRWMjBMMjAgMTJMNCA0WiIgLz4NCjwvc3ZnPg==);\n  background-position: center;\n  background-repeat: no-repeat;\n  margin-left: 5px;\n}\n.debug__show-dbh{\n  margin-top: 5px;\n\n}\n.debug__btn-img--dbh{\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNMy4zNSwzLjU4TDIwLjY1LDIwLjg3TDE5LjIzLDIyLjI5TDE2Ljk0LDIwSDRBMiwyIDAgMCwxIDIsMThWNkMyLDUuNzIgMi4wNiw1LjQ2IDIuMTYsNS4yMkwxLjIzLDQuMjlMMi42NSwyLjg3TDMuMzUsMy41OE02LjYsNEgyMEEyLDIgMCAwLDEgMjIsNlYxOEMyMiwxOC40IDIxLjg4LDE4Ljc3IDIxLjY4LDE5LjA4TDE3LjYsMTVIMjBWMTNIMTUuNkwxMy42LDExSDIwVjlIMTEuNkw2LjYsNE05Ljk0LDEzSDlWMTVIMTFWMTQuMDZMOS45NCwxM001Ljk0LDlINVYxMUg3VjEwLjA2TDUuOTQsOVoiIC8+DQo8L3N2Zz4=);\n  margin-left: 0;\n}\n.debug__btn-img--dbs{\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiAgZD0iTTIwLDRBMiwyIDAgMCwxIDIyLDZWMThBMiwyIDAgMCwxIDIwLDIwSDRBMiwyIDAgMCwxIDIsMThWNkEyLDIgMCAwLDEgNCw0SDIwTTExLDEzSDlWMTVIMTFWMTNNMTksMTNIMTNWMTVIMTlWMTNNNyw5SDVWMTFIN1Y5TTE5LDlIOVYxMUgxOVY5WiIgLz4NCjwvc3ZnPg==);\n}\n\n.debug__btn:hover{\n  background-color: rgba(0,0,0,0.3);\n}\n\n.debug__textarea{\n  width: 100%;\n  flex: 1 0 auto;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  resize: unset;\n  border: unset;\n  outline: unset;\n  caret-color: deepskyblue;\n  margin-top: 5px;\n\n}\n.debug__output{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  width: 100%;\n  flex: 1 0 auto;\n  overflow: auto;\n  height: 100%;\n  user-select: all;\n}\n\n.debug__checkbox-wrapper{\n  display: flex;\n  align-items: center;\n\n  background-color: burlywood;\n  border-radius: 4px;\n  margin-left: 5px;\n  padding: 5px;\n  padding-right: 10px;\n  justify-content: center;\n}\n.debug__mcexec-type{\n  margin-top: 5px;\n  margin-right: 5px;\n}\n/*\n * color picker  \n */\n.vnjson__debug-color-picker{\n  border-radius: 4px;\n  overflow: hidden;\n  margin-left: 5px;\n\n}\n#debug__color-picker{\n  background-color: burlywood;\n  padding: 5px;\n  width: 90px;\n\n  outline: none;\n  border: 0;\n  height: 100%;\n  cursor: pointer;\n}\n\n\n\n.debug-plugin__topbar{\n  display: flex;\n  flex-direction: column;\n  height: 30px;\n}\n\n.debug-plugin__select{\n  width: 35%;\n  overflow: auto;\n}\n\n.debug-plugin__right{\n  width: 64%;\n  display: flex;\n  margin-left: 2px;\n}\n.debug__plugin--value{\n  margin-top: 0;\n  flex: unset;\n  white-space: nowrap;\n}\n.debug-plugin__params{\n  display: flex;\n}\n\n.debug-plugin__params{\n  display: flex;\n  height: 100%;\n}\n.debug__plugin-param{\n  width: 50%;\n\n}\n.debug__plugin--data{\n  margin-right: 2.5px;\n}\n.debug__plugin--value{\n  margin-left: 2.5px;\n}\n.debug-btn--value{\n  margin-top: 5px;\n}\n.debug-plugin__name{\n  border-radius: 4px;\n  border: 1px solid #ccc;\n  margin-bottom: 5px;\n  padding: 1px 5px;\n  cursor: pointer;\n  margin-right: 5px;\n  display: block;\n}\n.debug-plugin__name--active{\n  color: cadetblue;\n  border-color: cadetblue;\n}\n.debug-plugin__name--dev{\n  color: brown;\n}\n.debug-plugin__name:hover{\n  color: cadetblue;\n  border-color: cadetblue;\n}\n.debug-plugin__value{\n  max-width: 155px;\n  margin-left: 5px;\n}";
@@ -2070,9 +2076,9 @@
     /**
      * minecraft cmd
      */
-    'cmd-player': "executeCMD:\ngive @p dirt 1",
-    'cmd-server': "executeCMD:\nsay TEST",
-    'query-get': "request: PLAYER #BLOCK #SLOT #ENTITY\nslot: 0\nposX: 0\nposY: 0\nposZ: 0"
+    'cmd-player': "executeCMD\ngive @p dirt 1",
+    'cmd-server': "executeCMD\nsay TEST",
+    'query-get': "request: PLAYER #BLOCK #SLOT #ENTITY\nslot: 0\nx: 0\ny: 0\nz: 0"
   };
 
   function getImageSize (asset) {
@@ -2097,18 +2103,15 @@
    * Выполняет консольную команду в MineCraft
    */
   function callback$2(data) {
-    this.emit('vnjson.info', data);
+    this.emit('vnjson.error', data);
   }
 
   function cmdPlayerPlugin (param) {
-    var _param$split = param.split(':\n'),
-        _param$split2 = _slicedToArray(_param$split, 2),
-        action = _param$split2[0],
-        data = _param$split2[1];
-
+    var arr = param.split(' ');
+    var data = param.replace(arr[0], '');
     var plugins = {
       'mc-exec': {
-        action: action,
+        action: arr[0],
         data: data,
         type: 'player',
         callback: callback$2.bind(this)
@@ -2121,18 +2124,19 @@
    * Выполняет консольную команду в MineCraft
    */
   function callback$1(data) {
-    this.emit('vnjson.info', data);
+    this.emit('vnjson.error', data);
   }
 
   function cmdServerPlugin (param) {
-    var _param$split = param.split(':\n'),
-        _param$split2 = _slicedToArray(_param$split, 2),
-        action = _param$split2[0],
-        data = _param$split2[1];
-
+    /**
+     * .split('\n') .split(':') почему то не работает
+     * или у меня крыша поехала
+     */
+    var arr = param.split(' ');
+    var data = param.replace(arr[0], '');
     var plugins = {
       'mc-exec': {
-        action: action,
+        action: arr[0],
         data: data,
         type: 'server',
         callback: callback$1.bind(this)
@@ -5044,14 +5048,15 @@
       };
       var str = "CMD_".concat(JSON.stringify(data));
       query$1(str).then(function (res) {
-        var data = JSON.stringify(res);
+        var data = JSON.stringify(res, null, 2);
         console.log(data);
-
-        if (param.callback) {
-          param.callback(data);
+        /*
+        if(param.callback){
+            param.callback(data)
         }
+        */
       })["catch"](function (err) {
-        var data = JSON.stringify(err);
+        var data = JSON.stringify(err, null, 2);
         console.log(data);
 
         if (param.callback) {
@@ -5097,7 +5102,7 @@
         var data = JSON.stringify(res);
         console.log(data);
         _this.$store.MINECRAFT = _this.$store.MINECRAFT || {};
-        _this.$store.MINECRAFT[param.request] = data;
+        _this.$store.MINECRAFT[param.request] = res;
 
         if (param.callback) {
           param.callback(data);
@@ -6093,10 +6098,11 @@
     });
   }
 
-  var css$6 = "\n\n.vnjson__area{\n  width: 100%;\n  height: 100%;\n  z-index: 5000;\n}\n.vnjson__area-item:hover{\n  cursor: pointer;\n  background-color: rgba(0,0,0,0.1);\n}";
+  var css$6 = "\n\n.vnjson__area{\n  width: 100%;\n  height: 100%;\n  z-index: 5000;\n}\n.vnjson__area-item:hover{\n  cursor: pointer;\n /* background-color: rgba(0,0,0,0.1);*/\n}";
   n(css$6,{});
 
   var $tpl$3 = $('<div class="vnjson__area component"></div>');
+  var _regions = null;
   function area () {
     var _this = this;
 
@@ -6104,9 +6110,9 @@
     this.on('area', handler$1.bind(this));
     $tpl$3.on('click', function (e) {
       if (!e.target.className.includes('vnjson__area-item')) return;
-      var execData = JSON.parse(e.target.dataset.exec);
+      var regIndex = JSON.parse(e.target.dataset.index);
 
-      _this.exec(execData);
+      _this.exec(_regions[regIndex].exec);
     });
   }
 
@@ -6115,16 +6121,23 @@
       $tpl$3.hide();
       return;
     }
+    _regions = regions;
     $tpl$3.empty();
     $tpl$3.show();
     regions.forEach(function (reg, index) {
       var style = "position:absolute;\n                    top:".concat(reg.top, "px;\n                    left:").concat(reg.left, "px;\n                    width:").concat(reg.width, "px;\n                    height:").concat(reg.height, "px;");
 
       if (reg.show) {
-        style += 'border: 5px solid #11f285;';
+        if (reg.show === true) {
+          style += 'border: 5px solid #11f285;';
+        }
+
+        if (typeof reg.show === 'string') {
+          style += "border: 5px solid ".concat(reg.show, ";");
+        }
       }
 
-      var regTpl = "<div style=\"".concat(style, "\" class=\"vnjson__area-item\" data-exec='").concat(JSON.stringify(reg.exec), "'></div>");
+      var regTpl = "<div style=\"".concat(style, "\" class=\"vnjson__area-item\" data-index=\"").concat(index, "\"></div>");
       $tpl$3.append(regTpl);
     });
   }

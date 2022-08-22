@@ -3,11 +3,13 @@
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
     slot: 0
-    posX: 0
-    posY: 0
-    posZ: 0
+    x: 0
+    y: 0
+    z: 0
 
 # С приходящими данными пока не очень ясно как обращаться
 # Я их пока положил сюда
 # this.$store.MINECRAFT["request"] = data
 # this.$store.MINECRAFT.ENTITY.nbt.id
+
+

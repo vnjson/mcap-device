@@ -9,7 +9,7 @@
       top: 250
       width: 100
       height: 100
-      show: true
+      show: true # Показывает рамку цветом поумолчанию. '#e11c90' - можно передать цвет
       exec: 
         wiki:
           - Абажур
@@ -34,7 +34,7 @@
       top: 105
       width: 100
       height: 100
-      show: true
+      show: '#e97616'
       exec:
         dialog-box: false
     - left: 780
