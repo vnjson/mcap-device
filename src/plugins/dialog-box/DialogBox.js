@@ -177,14 +177,14 @@ class DialogBox {
    * И меняем им прозрачность на 1. Эмулируя посимвольный вывод текста.
    */
   startOutputReplyByLetter (){
-   //console.clear()
+   console.clear()
     // получаем все теги в которые обёрныты отдельные символы
     let letters = this.replyTag.querySelectorAll('.'+this.classNameLetter );
     let len = letters.length;
     // отображаем каждый символ по отдельности
-    this.interval = setInterval( ()=>{
+    this.interval = setInterval( () => {
         if(letters.length>0){
-
+          console.log(this.index)
           //this.$vnjs.emit('dialog-box:letter', letters[this.index].innerText)
           letters[this.index].style.opacity = 1;
           this.index++
@@ -198,6 +198,7 @@ class DialogBox {
 
   onEndOutputReply(){
     if(this.endPoint){
+        //this.deleteEndPoint()
         this.addEndPoint()
     }
     this.reset();

@@ -36,8 +36,6 @@
     name: Название теста
     self-control: 1500 # Можно задать время появления статуса ответа #true #false
     color-background: 'gray'
-    color-name: 'black'
-    color-quetion: 'gold'
     color-item: 'black'  #Цвет фона плашки
     color-item-correct: '#0d88f7'     #Цвет фона верного
     color-item-incorrect: '#ff0c9b' #Цвет фона неверного

@@ -6,6 +6,19 @@
   next: true
 
 - $: test
+################
+- $: start TIMEOUT
+  set-data:
+    age: 17
+    name: Сергей
+- +: plus plus
+- +: Пивер мир
+- +: Тестирую скорость
+- +: Ещё один тест
+
+- al: Тестирую другого персонажа
+- +: Вывод от другого персонажа
+##########
 
 #- switch:
 #    age > 13:
@@ -15,12 +28,10 @@
     name: Название теста
     self-control: 1500
     color-background: 'gray'
-    color-name: 'black'
-    color-quetion: 'gold'
     color-item: 'black'  #Цвет фона плашки
     color-item-correct: '#0d88f7'     #Цвет фона верного
     color-item-incorrect: '#ff0c9b' #Цвет фона неверного
-    color-result: "orange"
+    color-result: "orange" # Цвет окошка с результатами
     quetions:
       - quetion: Туристы, приезжающие на Майорку, обязаны заплатить налог
         image: c71c347ae
@@ -45,18 +56,6 @@
           - Винсент Ван Гог
           - Пьер Огюст Ренуар
         
-- $: start TIMEOUT
-  set-data:
-    age: 17
-    name: Сергей
-- +: plus plus
-- +: Пивер мир
-- +: Тестирую скорость
-- +: Ещё один тест
-
-- al: Тестирую другого персонажа
-- +: Вывод от другого персонажа
-##########
 
 - mc-exec:
     action: executeCMD

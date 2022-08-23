@@ -12,10 +12,14 @@ let _falseAnswer = 0;
 /**
  * STYLES
  */
- function resetStyles (){
+ function reset (){
+  qIndex = 0;
+  answers = [];
+  _trueAnswer = 0;
+  _falseAnswer = 0;
+  $vnjs.current.data.trueAnswer = 0
+  $vnjs.current.data.falseAnswer = 0
   $('.vnjson__test').css('background-color', 'unset')
-  $('.vnjson__test-name').css('color', 'unset')
-  $('.vnjson__test-quetion-val').css('color', 'unset')
   $('.vnjson__variants-item').css('background-color','unset')
   $('.vnjson__test-next-btn').css('background-color', 'unset')
   $('.vnjson__variants-item_success').css('background-color', 'unset')
@@ -26,8 +30,6 @@ let _falseAnswer = 0;
 function applyStyles (){
 
   $('.vnjson__test').css('background-color', TEST['color-background'])
-  $('.vnjson__test-name').css('color', TEST['color-name'])
-  $('.vnjson__test-quetion-val').css('color', TEST['color-quetion'])
   $('.vnjson__variants-item').css('background-color', TEST['color-item'])
   $('.vnjson__test-next-btn').css('background-color', TEST['color-item'])
   $('.vnjson__variants-item_success').css('background-color', TEST['color-item-correct'])
@@ -45,12 +47,7 @@ export default function (){
       if(data){
             $tpl.show();
             TEST = data;
-            qIndex = 0;
-            answers = [];
-            _trueAnswer = 0;
-            _falseAnswer = 0;
-
-            resetStyles()
+            reset()
 
 
             renderQuetion.call(this);
@@ -144,10 +141,8 @@ function nextStep(){
             /**
              * Записываем результаты в data
              */
-            $vnjs.current.data[TEST.name] = {
-              correct: _trueAnswer,
-              wrong: _falseAnswer
-            };
+            $vnjs.current.data.trueAnswer = _trueAnswer
+            $vnjs.current.data.falseAnswer = _falseAnswer
 
             $('.vnjson__test-result-item_true').html(_trueAnswer);
             $('.vnjson__test-result-item_false').html( _falseAnswer);
