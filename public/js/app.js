@@ -2521,7 +2521,7 @@
     });
   }
 
-  var css$u = ".dialog-box {\n  z-index: 7000;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: none;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.dialog-box__reply-end-point{\n\n  display: inline-block;\n\n}\n.dialog-box__reply-end-point::before{\n  content: '';\n  position: absolute;\n\n  left: 10px;\n  width: 7px;\n  height: 7px;\n  background-color: silver;\n  opacity: 0.7;\n  animation-duration: 0.7s;\n  animation-name: end-point;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}\n@keyframes end-point {\n  from {\n    top: -10px;\n    opacity: 0.1;\n  }\n  to {\n    top: -20px;\n    opacity: 0.7;\n  }\n}\n\n.dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.dialog-box__avatar{\n  margin-top: 15px;\n  min-width: 150px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  display: none;\n}\n.dialog-box__avatar--show{\n  display: block;\n}\n\n\n.dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n  min-width: 75%;\n}\n\n\n";
+  var css$u = ".dialog-box {\n  z-index: 7000;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: none;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.dialog-box__reply-end-point{\n\n  display: inline-block;\n\n}\n.dialog-box__reply-end-point::before{\n  content: '';\n  position: absolute;\n\n  left: 10px;\n  width: 7px;\n  height: 7px;\n  background-color: silver;\n  opacity: 0.7;\n  animation-duration: 0.7s;\n  animation-name: end-point;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}\n@keyframes end-point {\n  from {\n    top: -10px;\n    opacity: 0.1;\n  }\n  to {\n    top: -20px;\n    opacity: 0.7;\n  }\n}\n\n.dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.dialog-box__avatar{\n  margin-top: 15px;\n  min-width: 150px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  display: none;\n}\n.dialog-box__avatar--show{\n  display: block;\n}\n\n\n.dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n  min-width: 75%;\n}\n.dialog-box__reply-str{\n \n}\n\n";
   n(css$u,{});
 
   var tpl$e = "<div class=\"dialog-box component\">\n  <div class=\"dialog-box__container\">\n        <div class=\"dialog-box__avatar\"></div>\n        <div class=\"dialog-box__reply-wrapper\">\n          <div class=\"dialog-box__name\"></div>\n          <div class=\"dialog-box__reply\"></div>\n        </div>\n  </div>\n</div>";
@@ -2538,6 +2538,10 @@
         writable: true,
         value: ''
       });
+
+      _defineProperty(this, "replyStringTag", null);
+
+      _defineProperty(this, "prevReplyStringTag", null);
 
       this.$vnjs = param.$vnjs;
       /*Tags*/
@@ -2645,10 +2649,16 @@
          * выводиться с начала или добавиться к существующей фразе
          */
 
+        this.replyStringTag = document.createElement('span');
+        this.replyStringTag.classList.add('dialog-box__reply-str');
+        this.replyStringTag.innerHTML = this.reply;
+        this.prevReplyStringTag = this.replyStringTag;
+
         if (append) {
-          this.replyTag.innerHTML += this.reply;
+          this.replyTag.appendChild(this.replyStringTag); //.innerHTML += this.reply;
         } else {
-          this.replyTag.innerHTML = this.reply;
+          this.replyTag.innerHTML = "";
+          this.replyTag.appendChild(this.replyStringTag); //innerHTML = this.reply;
         }
       }
       /**
@@ -2733,14 +2743,14 @@
       value: function startOutputReplyByLetter() {
         var _this = this;
 
-        console.clear(); // получаем все теги в которые обёрныты отдельные символы
+        this.deleteEndPoint(); // получаем все теги в которые обёрныты отдельные символы
 
-        var letters = this.replyTag.querySelectorAll('.' + this.classNameLetter);
+        var letters = this.replyStringTag.querySelectorAll('.' + this.classNameLetter);
         var len = letters.length; // отображаем каждый символ по отдельности
 
         this.interval = setInterval(function () {
           if (letters.length > 0) {
-            console.log(_this.index); //this.$vnjs.emit('dialog-box:letter', letters[this.index].innerText)
+            _this.$vnjs.emit('dialog-box:letter', letters[_this.index].innerHTML);
 
             letters[_this.index].style.opacity = 1;
             _this.index++;
@@ -2755,7 +2765,6 @@
       key: "onEndOutputReply",
       value: function onEndOutputReply() {
         if (this.endPoint) {
-          //this.deleteEndPoint()
           this.addEndPoint();
         }
 
@@ -2770,7 +2779,13 @@
     }, {
       key: "deleteEndPoint",
       value: function deleteEndPoint() {
-        this.replyTag.querySelector('.' + this.classNameEndPoint).remove();
+        /**
+         * При посимвольном выводе текста и использовании плагина [ + ]
+         * метод .remove() пытается удалить не существующий тег и вываливается ошибка
+         */
+        try {
+          this.replyTag.querySelector('.' + this.classNameEndPoint).remove();
+        } catch (err) {}
       }
     }, {
       key: "clear",
@@ -2798,6 +2813,14 @@
         this.reply = '';
 
         _classPrivateFieldSet(this, _reply, '');
+      }
+    }, {
+      key: "forcePrintPrevReply",
+      value: function forcePrintPrevReply() {
+        var letters = this.prevReplyStringTag.querySelectorAll('.' + this.classNameLetter);
+        letters.forEach(function ($letter) {
+          $letter.style.opacity = 1;
+        });
       }
     }]);
 
@@ -2870,15 +2893,13 @@
      * append reply
      */
 
-    /*
-    this.on('+', (reply) => {
-    if(dBox.delay>0){
-     dBox.deleteEndPoint()
-    }
-    const character = this.getCurrentCharacter()
-    dBox.print(character, ' '+String(reply), true)
-    })*/
+    this.on('+', function (reply) {
+      dBox.forcePrintPrevReply();
 
+      var character = _this.getCurrentCharacter();
+
+      dBox.print(character, ' ' + String(reply), true);
+    });
     /**
      * SHOW HIDE DIALOG-BOX
      */
@@ -4507,16 +4528,12 @@
 
   var click = true;
   $tpl$7.find('.vnjson__test-variants').on('click', '.vnjson__variants-item', function () {
-    var _this2 = this;
-
     var index = $(this).data('index');
 
     if (click) {
       if (index === _quetionItem.correct - 1) {
         if (TEST['self-control']) {
-          setTimeout(function () {
-            $(_this2).addClass('vnjson__variants-item_success');
-          }, TEST['self-control'] || 0);
+          $(this).addClass('vnjson__variants-item_success');
         }
 
         ++_trueAnswer;
@@ -4526,16 +4543,14 @@
         });
       } else {
         if (TEST['self-control']) {
-          setTimeout(function () {
-            $(_this2).addClass('vnjson__variants-item_fail'); // навешиваем класс на правильный ответ
+          $(this).addClass('vnjson__variants-item_fail'); // навешиваем класс на правильный ответ
 
-            $('.vnjson__variants-item').toArray().map(function (item) {
-              if ($(item).data('index') === TEST.quetions[qIndex].correct - 1) {
-                $(item).addClass('vnjson__variants-item_success');
-              }
-            });
-            applyStyles();
-          }, TEST['self-control'] || 0);
+          $('.vnjson__variants-item').toArray().map(function (item) {
+            if ($(item).data('index') === TEST.quetions[qIndex].correct - 1) {
+              $(item).addClass('vnjson__variants-item_success');
+            }
+          });
+          applyStyles();
         }
 
         ++_falseAnswer;
@@ -4552,7 +4567,7 @@
   });
 
   function nextStep() {
-    var timer = typeof TEST['self-control'] === 'number' ? TEST['self-control'] + 1000 : 1000;
+    var timer = typeof TEST['self-control'] === 'number' ? TEST['self-control'] : 1000;
     setTimeout(function () {
       click = true;
       ++qIndex;

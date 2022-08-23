@@ -5,16 +5,9 @@
   clear-data: true
   next: true
 
-- $: test
-
-
-#- switch:
-#    age > 13:
-#      jump: $init
-
 - test:
     name: Название теста
-    self-control: 1500
+    self-control: 5000
     color-background: 'gray'
     color-item: 'black'  #Цвет фона плашки
     color-item-correct: '#0d88f7'     #Цвет фона верного
@@ -43,6 +36,26 @@
         variants:
           - Винсент Ван Гог
           - Пьер Огюст Ренуар
+- $: test
+################
+- $: start TIMEOUT
+  set-data:
+    age: 17
+    name: Сергей
+- +: plus plus
+- +: Пивер мир
+- +: Тестирую скорость
+- +: Ещё 
+- +: один
+- +: тест
+- al: Тестирую другого персонажа
+- +: Вывод от другого персонажа
+##########
+
+#- switch:
+#    age > 13:
+#      jump: $init
+
         
 
 - mc-exec:

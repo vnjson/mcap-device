@@ -1,7 +1,8 @@
 
 class DialogBox {
   #reply = ''
-
+  replyStringTag = null
+  prevReplyStringTag = null
   constructor (param){
       this.$vnjs = param.$vnjs;
       /*Tags*/
@@ -97,11 +98,16 @@ class DialogBox {
      * append - флаг указывающий на то, должена ли реплика
      * выводиться с начала или добавиться к существующей фразе
      */
+    this.replyStringTag = document.createElement('span');
+    this.replyStringTag.classList.add('dialog-box__reply-str')
+    this.replyStringTag.innerHTML = this.reply;
+    this.prevReplyStringTag = this.replyStringTag
     if(append){
-      this.replyTag.innerHTML += this.reply;
+      this.replyTag.appendChild(this.replyStringTag)//.innerHTML += this.reply;
     }
     else{
-      this.replyTag.innerHTML = this.reply;
+      this.replyTag.innerHTML = ""
+      this.replyTag.appendChild(this.replyStringTag)//innerHTML = this.reply;
     }
 
   }
@@ -177,15 +183,14 @@ class DialogBox {
    * И меняем им прозрачность на 1. Эмулируя посимвольный вывод текста.
    */
   startOutputReplyByLetter (){
-   console.clear()
+    this.deleteEndPoint()
     // получаем все теги в которые обёрныты отдельные символы
-    let letters = this.replyTag.querySelectorAll('.'+this.classNameLetter );
+    let letters = this.replyStringTag.querySelectorAll('.'+this.classNameLetter );
     let len = letters.length;
     // отображаем каждый символ по отдельности
     this.interval = setInterval( () => {
         if(letters.length>0){
-          console.log(this.index)
-          //this.$vnjs.emit('dialog-box:letter', letters[this.index].innerText)
+          this.$vnjs.emit('dialog-box:letter', letters[this.index].innerHTML)
           letters[this.index].style.opacity = 1;
           this.index++
         }
@@ -198,7 +203,6 @@ class DialogBox {
 
   onEndOutputReply(){
     if(this.endPoint){
-        //this.deleteEndPoint()
         this.addEndPoint()
     }
     this.reset();
@@ -208,7 +212,16 @@ class DialogBox {
     this.replyTag.innerHTML+= `<span class="${this.classNameEndPoint}"></span>`
   }
   deleteEndPoint (){
-    this.replyTag.querySelector('.'+this.classNameEndPoint).remove()
+    /**
+     * При посимвольном выводе текста и использовании плагина [ + ]
+     * метод .remove() пытается удалить не существующий тег и вываливается ошибка
+     */
+    try{
+      this.replyTag.querySelector('.'+this.classNameEndPoint).remove()
+    }
+    catch (err){
+
+    }
   }
   clear (){
       this.characterNameTag.innerHTML = '';
@@ -230,7 +243,12 @@ class DialogBox {
       this.index = 0;
       this.reply = '';
       this.#reply = '';
-
+  }
+  forcePrintPrevReply (){
+      const letters = this.prevReplyStringTag.querySelectorAll('.'+this.classNameLetter );
+      letters.forEach($letter => {
+        $letter.style.opacity = 1
+      })
   }
 }
 

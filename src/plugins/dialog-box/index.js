@@ -65,14 +65,12 @@ export default function (){
   })
   /**
    * append reply
-   *//*
+   */
   this.on('+', (reply) => {
-    if(dBox.delay>0){
-      dBox.deleteEndPoint()
-    }
+    dBox.forcePrintPrevReply()
     const character = this.getCurrentCharacter()
     dBox.print(character, ' '+String(reply), true)
-  })*/
+  })
 
   /**
    * SHOW HIDE DIALOG-BOX

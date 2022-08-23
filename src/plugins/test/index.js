@@ -97,9 +97,9 @@ $tpl.find('.vnjson__test-variants').on('click', '.vnjson__variants-item', functi
   if(click){
       if(index===_quetionItem.correct-1){
             if(TEST['self-control']){
-               setTimeout(() => {
+
                   $(this).addClass('vnjson__variants-item_success')
-                }, TEST['self-control']||0)
+
             }
             else{}
             ++_trueAnswer;
@@ -108,7 +108,7 @@ $tpl.find('.vnjson__test-variants').on('click', '.vnjson__variants-item', functi
       }
       else{
             if(TEST['self-control']){
-              setTimeout(() => {
+
                     $(this).addClass('vnjson__variants-item_fail');
                     // навешиваем класс на правильный ответ
                     $('.vnjson__variants-item').toArray().map(item => {
@@ -117,7 +117,7 @@ $tpl.find('.vnjson__test-variants').on('click', '.vnjson__variants-item', functi
                         }
                     });
                     applyStyles()
-              }, TEST['self-control']||0)
+
             }
             else{}
             ++_falseAnswer;
@@ -133,7 +133,7 @@ $tpl.find('.vnjson__test-variants').on('click', '.vnjson__variants-item', functi
 
 
 function nextStep(){
-  const timer = typeof TEST['self-control']==='number'?TEST['self-control']+1000:1000
+  const timer = typeof TEST['self-control']==='number'?TEST['self-control']:1000
   setTimeout(()=>{
         click = true;
         ++qIndex;
