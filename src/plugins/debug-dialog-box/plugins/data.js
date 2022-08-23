@@ -1,13 +1,15 @@
 const exclude = ['score', 'player']
 
 export default function (asset) {
-    let str = ""
+
+    const data = {}
     for(let key in  this.current.data){
         if( !exclude.includes(key) ){
-            str += `<font color="deepskyblue">${key}</font>: ${this.current.data[key]} <br/>`
+           data[key] = this.current.data[key]
         }
     }
 
-    this.emit('vnjson.info', str)
+    const _data = jsyaml.dump(data)
+    this.emit('vnjson.info', _data)
 
 }

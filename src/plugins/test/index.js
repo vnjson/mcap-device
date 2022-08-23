@@ -10,7 +10,7 @@ let _trueAnswer = 0;
 let _falseAnswer = 0;
 
 export default function (){
-  $vnjs.current.data.tests = {};
+
   this.$store.$screen.append($tpl)
 
   this.on('test', data=>{
@@ -36,13 +36,20 @@ export default function (){
 
 let _quetionItem = null;
 function renderQuetion (){
+  const $imageContaner = $('.vnjson__test-quetion-img')
   _quetionItem = TEST.quetions[qIndex];
 
   $('.vnjson__test-variants').html('');
 
+  if(_quetionItem.image){
+    const url = $vnjs.getAssetByName(_quetionItem.image).url
+    $imageContaner.attr('src', url).show()
+  }
+  else{
+    $imageContaner.hide()
+  }
 
-
-  $('.vnjson__test-quetion').html(_quetionItem.quetion);
+  $('.vnjson__test-quetion-val').html(_quetionItem.quetion);
   _quetionItem.variants.map( (item, index)=>{
 
     let tplItem = `<div class="vnjson__variants-item" data-index="${index}">${item}</div>`;
@@ -85,20 +92,26 @@ $tpl.find('.vnjson__test-variants').on('click', '.vnjson__variants-item', functi
             answers.push({answer: false, quetion: _quetionItem})
       }
     click = false;
-    next();
+    nextStep();
   }
 
 
 });
 
 
-function next(){
+function nextStep(){
 
   setTimeout(()=>{
         click = true;
         ++qIndex;
         if(qIndex===TEST.quetions.length){
-            $vnjs.current.data.tests[TEST.name] = answers;
+            /**
+             * Записываем результаты в data
+             */
+            $vnjs.current.data[TEST.name] = {
+              correct: _trueAnswer,
+              wrong: _falseAnswer
+            };
 
             $('.vnjson__test-result-item_true').html(_trueAnswer);
             $('.vnjson__test-result-item_false').html( _falseAnswer);

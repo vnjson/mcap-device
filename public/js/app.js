@@ -2171,15 +2171,17 @@
 
   var exclude = ['score', 'player'];
   function outputDataPlugin (asset) {
-    var str = "";
+    var data = {};
 
     for (var key in this.current.data) {
       if (!exclude.includes(key)) {
-        str += "<font color=\"deepskyblue\">".concat(key, "</font>: ").concat(this.current.data[key], " <br/>");
+        data[key] = this.current.data[key];
       }
     }
 
-    this.emit('vnjson.info', str);
+    var _data = jsyaml.dump(data);
+
+    this.emit('vnjson.info', _data);
   }
 
   /**
@@ -4407,10 +4409,10 @@
     };
   }
 
-  var css$e = "\n.vnjson__test{\n  width: 600px;\n  min-height: 250px;\n  top: 50px;\n  left: 50%;\n  transform: translateX(-50%);\n  background-color: wheat;\n  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);\n  padding: 20px;\n  border-radius: 4px;\n\n}\n\n.vnjson__test-name{\n\n  border-bottom: 2px solid gray;\n  padding: 5px;\n  font-size: 24px;\n  padding-bottom: 10px;\n  color: brown;\n}\n\n.vnjson__test-quetions-wrapper{\n  position: relative;\n}\n\n\n.vnjson__test-quetion{\n\n  padding: 15px 0;\n  color: black;\n}\n\n.vnjson__variants-item{\n  padding: 10px;\n  margin-top: 5px;\n  background-color: darkslateblue;\n\n  color: rgba(255, 255, 255, 0.7);\n  cursor: pointer;\n  border-radius: 4px;\n}\n\n.vnjson__variants-item_success{\n  background-color: darkcyan;\n  color: white;\n}\n\n.vnjson__variants-item_fail{\n  background-color: crimson;\n  color: white;\n}\n.vnjson__variants-item:hover,\n.vnjson__variants-item_success:hover,\n.vnjson__variants-item_fail:hover{\n\n  filter: brightness(110%);\n}\n\n/**\n * RESULT\n */\n.vnjson__test-result{\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n  position: absolute;\n  border-radius: 4px;\n  display: none;\n  background-color: wheat;\n  padding: 20px 0;\n}\n.vnjson__test-result-data{\n  height: 110px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.vnjson__test-result-item{\n  color: black;\n  padding: 10px 0;\n  display: flex;\n  justify-content: space-between;\n  width: 250px;\n}\n.vnjson__test-result-item:first-child span:last-child{\n  color: darkcyan;\n}\n.vnjson__test-result-item:last-child span:last-child{\n  color: crimson;\n}\n.vnjson__test-next-btn{\n  background-color: burlywood;\n  color: black;\n  border-radius: 4px;\n  padding: 10px 10px;\n  width: 250px;\n  text-align: center;\n  cursor: pointer;\n  margin: 0 auto;\n  box-shadow: 2px 2px 2px rgba(0,0,0,0.3);\n  /*border: 2px solid magenta;*/\n}\n.vnjson__test-next-btn:hover{\n  background-color:  darkslateblue;\n  color: white;\n}";
+  var css$e = "\n.vnjson__test{\n  width: 600px;\n  min-height: 250px;\n  top: 50px;\n  left: 50%;\n  transform: translateX(-50%);\n  background-color: wheat;\n  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);\n  padding: 20px;\n  border-radius: 4px;\n\n}\n\n.vnjson__test-name{\n  border-bottom: 2px solid gray;\n  padding: 5px;\n  font-size: 16px;\n  padding-left: 0;\n  padding-bottom: 10px;\n  color: brown;\n}\n\n.vnjson__test-quetions-wrapper{\n  position: relative;\n}\n\n\n.vnjson__test-quetion{\n  display: flex;\n}\n.vnjson__test-quetion-img{\n  display: none;\n  max-width: 50%;\n  margin: 10px 10px 10px 0;\n}\n.vnjson__test-quetion-val{\n  padding: 15px 0;\n  color: black;\n}\n.vnjson__variants-item{\n  padding: 10px;\n  margin-top: 5px;\n  background-color: darkslateblue;\n\n  color: rgba(255, 255, 255, 0.7);\n  cursor: pointer;\n  border-radius: 4px;\n}\n\n.vnjson__variants-item_success{\n  background-color: darkcyan;\n  color: white;\n}\n\n.vnjson__variants-item_fail{\n  background-color: crimson;\n  color: white;\n}\n.vnjson__variants-item:hover,\n.vnjson__variants-item_success:hover,\n.vnjson__variants-item_fail:hover{\n\n  filter: brightness(110%);\n}\n\n/**\n * RESULT\n */\n.vnjson__test-result{\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n  position: absolute;\n  border-radius: 4px;\n  display: none;\n  background-color: wheat;\n  padding: 20px 0;\n}\n.vnjson__test-result-data{\n  height: 110px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.vnjson__test-result-item{\n  color: black;\n  padding: 10px 0;\n  display: flex;\n  justify-content: space-between;\n  width: 250px;\n}\n.vnjson__test-result-item:first-child span:last-child{\n  color: darkcyan;\n}\n.vnjson__test-result-item:last-child span:last-child{\n  color: crimson;\n}\n.vnjson__test-next-btn{\n  background-color: burlywood;\n  color: black;\n  border-radius: 4px;\n  padding: 10px 10px;\n  width: 250px;\n  text-align: center;\n  cursor: pointer;\n  margin: 0 auto;\n  box-shadow: 2px 2px 2px rgba(0,0,0,0.3);\n  /*border: 2px solid magenta;*/\n}\n.vnjson__test-next-btn:hover{\n  background-color:  darkslateblue;\n  color: white;\n}";
   n(css$e,{});
 
-  var tpl$5 = "<div class=\"vnjson__test component\">\n    <div class=\"vnjson__test-name\"></div>\n    <div class=\"vnjson__test-quetions-wrapper\">\n        <div class=\"vnjson__test-quetion\"></div>\n        <div class=\"vnjson__test-variants\"></div>\n        <!--result-->\n        <div class=\"vnjson__test-result\">\n            <div class=\"vnjson__test-result-data\">\n                <div class=\"vnjson__test-result-item\">\n                      <span>Правильно</span>\n                      <span class=\"vnjson__test-result-item_true\">0</span>\n                </div>\n               <div class=\"vnjson__test-result-item\">\n                      <span>Не правильно</span>\n                      <span class=\"vnjson__test-result-item_false\">0</span>\n                </div>\n            </div>\n            <div class=\"vnjson__test-next-btn\">Продолжить</div>\n        </div>\n    </div>\n</div>";
+  var tpl$5 = "<div class=\"vnjson__test component\">\n    <div class=\"vnjson__test-name\"></div>\n    <div class=\"vnjson__test-quetions-wrapper\">\n        <div class=\"vnjson__test-quetion\">\n                <img class=\"vnjson__test-quetion-img\">\n                <div class=\"vnjson__test-quetion-val\"></div>\n        </div>\n        <div class=\"vnjson__test-variants\"></div>\n        <!--result-->\n        <div class=\"vnjson__test-result\">\n            <div class=\"vnjson__test-result-data\">\n                <div class=\"vnjson__test-result-item\">\n                      <span>Правильно</span>\n                      <span class=\"vnjson__test-result-item_true\">0</span>\n                </div>\n               <div class=\"vnjson__test-result-item\">\n                      <span>Не правильно</span>\n                      <span class=\"vnjson__test-result-item_false\">0</span>\n                </div>\n            </div>\n            <div class=\"vnjson__test-next-btn\">Продолжить</div>\n        </div>\n    </div>\n</div>";
 
   var $tpl$7 = $(tpl$5);
   var TEST = null;
@@ -4421,7 +4423,6 @@
   function test () {
     var _this = this;
 
-    $vnjs.current.data.tests = {};
     this.$store.$screen.append($tpl$7);
     this.on('test', function (data) {
       if (data) {
@@ -4441,9 +4442,18 @@
   var _quetionItem = null;
 
   function renderQuetion() {
+    var $imageContaner = $('.vnjson__test-quetion-img');
     _quetionItem = TEST.quetions[qIndex];
     $('.vnjson__test-variants').html('');
-    $('.vnjson__test-quetion').html(_quetionItem.quetion);
+
+    if (_quetionItem.image) {
+      var url = $vnjs.getAssetByName(_quetionItem.image).url;
+      $imageContaner.attr('src', url).show();
+    } else {
+      $imageContaner.hide();
+    }
+
+    $('.vnjson__test-quetion-val').html(_quetionItem.quetion);
 
     _quetionItem.variants.map(function (item, index) {
       var tplItem = "<div class=\"vnjson__variants-item\" data-index=\"".concat(index, "\">").concat(item, "</div>");
@@ -4489,17 +4499,23 @@
       }
 
       click = false;
-      next();
+      nextStep();
     }
   });
 
-  function next() {
+  function nextStep() {
     setTimeout(function () {
       click = true;
       ++qIndex;
 
       if (qIndex === TEST.quetions.length) {
-        $vnjs.current.data.tests[TEST.name] = answers;
+        /**
+         * Записываем результаты в data
+         */
+        $vnjs.current.data[TEST.name] = {
+          correct: _trueAnswer,
+          wrong: _falseAnswer
+        };
         $('.vnjson__test-result-item_true').html(_trueAnswer);
         $('.vnjson__test-result-item_false').html(_falseAnswer);
         $('.vnjson__test-result').show();
