@@ -20,7 +20,7 @@
     color-item: 'black'  #Цвет фона плашки
     color-item-correct: '#0d88f7'     #Цвет фона верного
     color-item-incorrect: '#ff0c9b' #Цвет фона неверного
-
+    color-result: "orange"
     quetions:
       - quetion: Туристы, приезжающие на Майорку, обязаны заплатить налог
         image: c71c347ae
@@ -40,6 +40,7 @@
 
       - quetion: Кто из знаменитых художников за жизнь продал всего одну картину? 
         correct: 1
+        image: ev
         variants:
           - Винсент Ван Гог
           - Пьер Огюст Ренуар

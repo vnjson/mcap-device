@@ -104,6 +104,7 @@
           "color-item": "black",
           "color-item-correct": "#0d88f7",
           "color-item-incorrect": "#ff0c9b",
+          "color-result": "orange",
           "quetions": [
             {
               "quetion": "Туристы, приезжающие на Майорку, обязаны заплатить налог",
@@ -128,6 +129,7 @@
             {
               "quetion": "Кто из знаменитых художников за жизнь продал всего одну картину?",
               "correct": 1,
+              "image": "ev",
               "variants": [
                 "Винсент Ван Гог",
                 "Пьер Огюст Ренуар"

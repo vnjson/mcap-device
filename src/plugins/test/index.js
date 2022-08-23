@@ -20,6 +20,7 @@ let _falseAnswer = 0;
   $('.vnjson__test-next-btn').css('background-color', 'unset')
   $('.vnjson__variants-item_success').css('background-color', 'unset')
   $('.vnjson__variants-item_fail').css('background-color', 'unset')
+  $('.vnjson__test-result').css('background-color', 'unset')
 }
 
 function applyStyles (){
@@ -31,6 +32,7 @@ function applyStyles (){
   $('.vnjson__test-next-btn').css('background-color', TEST['color-item'])
   $('.vnjson__variants-item_success').css('background-color', TEST['color-item-correct'])
   $('.vnjson__variants-item_fail').css('background-color', TEST['color-item-incorrect'])
+  $('.vnjson__test-result').css('background-color', TEST['color-result'])
 }
 
 
