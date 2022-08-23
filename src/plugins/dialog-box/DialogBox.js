@@ -31,7 +31,7 @@ class DialogBox {
   update (){
     this.print(this.character, this.#reply)
   }
-  print (character, reply=''){
+  print (character, reply='', append){
     this.$vnjs.emit('dialog-box:print')
     this.reset();
     this.character = character;
@@ -43,9 +43,13 @@ class DialogBox {
     // Если скорость вывода символов равна нулю, то строка не разбивается на символы
     if(this.delay>0){
       this.replyOutputBySingleLetter();
+      // выводим готовый реузльтат
+      this.outputToHTML(append);
+      // Запускаем посимвольное изменение прозрачности
+      this.startOutputReplyByLetter();
     }
     else{
-      this.outputToHTML();
+      this.outputToHTML(append);
     }
 
   }
@@ -69,13 +73,9 @@ class DialogBox {
     // пробигаемся по массиву символов методом map
     // И соеденяем массив полученных символов завёрнутых в <span> в одну реплику 
     this.reply = this.reply.map( this.parse.bind(this) ).join('');
-    // выводим готовый реузльтат
-    this.outputToHTML();
-    // Запускаем посимвольное изменение прозрачности
-    this.startOutputReply();
 
   }
-  outputToHTML (){
+  outputToHTML (append){
     /**
      * Определяем, есть ли у текущего персонажа аватар
      * Если есть, то отображаем его
@@ -93,7 +93,16 @@ class DialogBox {
     this.characterNameTag.innerHTML = this.character.name;
     // output reply
     this.replyTag.style.color = this.character.replyColor;
-    this.replyTag.innerHTML = this.reply;
+    /**
+     * append - флаг указывающий на то, должена ли реплика
+     * выводиться с начала или добавиться к существующей фразе
+     */
+    if(append){
+      this.replyTag.innerHTML += this.reply;
+    }
+    else{
+      this.replyTag.innerHTML = this.reply;
+    }
 
   }
   /**
@@ -167,7 +176,7 @@ class DialogBox {
    * Получаем все теги в которые были завёрнуты буквы.
    * И меняем им прозрачность на 1. Эмулируя посимвольный вывод текста.
    */
-  startOutputReply (){
+  startOutputReplyByLetter (){
     // получаем все теги в которые обёрныты отдельные символы
     let letters = this.replyTag.querySelectorAll('.'+this.classNameLetter );
     let len = letters.length;
@@ -186,10 +195,16 @@ class DialogBox {
 
   onEndOutputReply(){
     if(this.endPoint){
-        this.replyTag.innerHTML+= `<span class="${this.classNameEndPoint}"></span>`
+        this.addEndPoint()
     }
     this.reset();
     this.$vnjs.emit('dialog-box:endOutputReply')
+  }
+  addEndPoint (){
+    this.replyTag.innerHTML+= `<span class="${this.classNameEndPoint}"></span>`
+  }
+  deleteEndPoint (){
+    this.replyTag.querySelector('.'+this.classNameEndPoint).remove()
   }
   clear (){
       this.characterNameTag.innerHTML = '';
@@ -209,6 +224,7 @@ class DialogBox {
   reset (){
       this.index = 0;
       this.reply = '';
+      this.#reply = '';
       clearInterval(this.interval);
   }
 }

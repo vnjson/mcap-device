@@ -2550,6 +2550,7 @@
       key: "print",
       value: function print(character) {
         var reply = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+        var append = arguments.length > 2 ? arguments[2] : undefined;
         this.$vnjs.emit('dialog-box:print');
         this.reset();
         this.character = character;
@@ -2562,9 +2563,13 @@
         // Если скорость вывода символов равна нулю, то строка не разбивается на символы
 
         if (this.delay > 0) {
-          this.replyOutputBySingleLetter();
+          this.replyOutputBySingleLetter(); // выводим готовый реузльтат
+
+          this.outputToHTML(append); // Запускаем посимвольное изменение прозрачности
+
+          this.startOutputReplyByLetter();
         } else {
-          this.outputToHTML();
+          this.outputToHTML(append);
         }
       }
       /**
@@ -2589,15 +2594,11 @@
         .split(''); // пробигаемся по массиву символов методом map
         // И соеденяем массив полученных символов завёрнутых в <span> в одну реплику 
 
-        this.reply = this.reply.map(this.parse.bind(this)).join(''); // выводим готовый реузльтат
-
-        this.outputToHTML(); // Запускаем посимвольное изменение прозрачности
-
-        this.startOutputReply();
+        this.reply = this.reply.map(this.parse.bind(this)).join('');
       }
     }, {
       key: "outputToHTML",
-      value: function outputToHTML() {
+      value: function outputToHTML(append) {
         /**
          * Определяем, есть ли у текущего персонажа аватар
          * Если есть, то отображаем его
@@ -2614,7 +2615,16 @@
         this.characterNameTag.innerHTML = this.character.name; // output reply
 
         this.replyTag.style.color = this.character.replyColor;
-        this.replyTag.innerHTML = this.reply;
+        /**
+         * append - флаг указывающий на то, должена ли реплика
+         * выводиться с начала или добавиться к существующей фразе
+         */
+
+        if (append) {
+          this.replyTag.innerHTML += this.reply;
+        } else {
+          this.replyTag.innerHTML = this.reply;
+        }
       }
       /**
        * Заменяем ссылку на персонажа его именем
@@ -2694,8 +2704,8 @@
        */
 
     }, {
-      key: "startOutputReply",
-      value: function startOutputReply() {
+      key: "startOutputReplyByLetter",
+      value: function startOutputReplyByLetter() {
         var _this = this;
 
         // получаем все теги в которые обёрныты отдельные символы
@@ -2718,11 +2728,21 @@
       key: "onEndOutputReply",
       value: function onEndOutputReply() {
         if (this.endPoint) {
-          this.replyTag.innerHTML += "<span class=\"".concat(this.classNameEndPoint, "\"></span>");
+          this.addEndPoint();
         }
 
         this.reset();
         this.$vnjs.emit('dialog-box:endOutputReply');
+      }
+    }, {
+      key: "addEndPoint",
+      value: function addEndPoint() {
+        this.replyTag.innerHTML += "<span class=\"".concat(this.classNameEndPoint, "\"></span>");
+      }
+    }, {
+      key: "deleteEndPoint",
+      value: function deleteEndPoint() {
+        this.replyTag.querySelector('.' + this.classNameEndPoint).remove();
       }
     }, {
       key: "clear",
@@ -2747,6 +2767,9 @@
       value: function reset() {
         this.index = 0;
         this.reply = '';
+
+        _classPrivateFieldSet(this, _reply, '');
+
         clearInterval(this.interval);
       }
     }]);
@@ -2815,6 +2838,17 @@
       } else {
         dBox.print(character, String(param));
       }
+    });
+    /**
+     * append reply
+     */
+
+    this.on('+', function (reply) {
+      dBox.deleteEndPoint();
+
+      var character = _this.getCurrentCharacter();
+
+      dBox.print(character, ' ' + String(reply), true);
     });
     /**
      * SHOW HIDE DIALOG-BOX

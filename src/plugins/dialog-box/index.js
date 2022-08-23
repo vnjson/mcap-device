@@ -49,7 +49,7 @@ export default function (){
   /**
    * CHARACTER native event
    */
-	this.on('character', (_character, param)=>{
+	this.on('character', (_character, param) => {
       const character = {..._character}
       if(typeof param === 'object' ){
         if(param.nameColor) character.nameColor = param.nameColor
@@ -62,8 +62,16 @@ export default function (){
         dBox.print(character, String(param))
       }
 
-      
   })
+  /**
+   * append reply
+   */
+  this.on('+', (reply) => {
+    dBox.deleteEndPoint()
+    const character = this.getCurrentCharacter()
+    dBox.print(character, ' '+String(reply), true)
+  })
+
   /**
    * SHOW HIDE DIALOG-BOX
    */

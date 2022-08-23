@@ -92,43 +92,16 @@
         "next": true
       },
       {
-        "area": [
-          {
-            "top": 250,
-            "left": 10,
-            "width": 100,
-            "height": 100,
-            "show": "#e11c90",
-            "exec": {
-              "$": "<font color='#fff028'>Путевка</font> в рай"
-            }
-          },
-          {
-            "left": 50,
-            "top": 50,
-            "width": 150,
-            "height": 150,
-            "show": true,
-            "exec": {
-              "area": false,
-              "next": true
-            }
-          },
-          {
-            "left": 450,
-            "top": 50,
-            "width": 150,
-            "height": 150,
-            "show": "cyan",
-            "exec": {
-              "area": false,
-              "next": true
-            }
-          }
-        ]
+        "$": "start TIMEOUT"
       },
       {
-        "$": "start TIMEOUT"
+        "+": "plus plus"
+      },
+      {
+        "+": "Пивер мир"
+      },
+      {
+        "al": "Тестирую другого персонажа"
       },
       {
         "mc-exec": {
