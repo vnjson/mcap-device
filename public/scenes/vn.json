@@ -92,9 +92,18 @@
         "next": true
       },
       {
+        "$": "test"
+      },
+      {
         "test": {
           "name": "Название теста",
-          "self-control": true,
+          "self-control": 1500,
+          "color-background": "gray",
+          "color-name": "black",
+          "color-quetion": "gold",
+          "color-item": "black",
+          "color-item-correct": "#0d88f7",
+          "color-item-incorrect": "#ff0c9b",
           "quetions": [
             {
               "quetion": "Туристы, приезжающие на Майорку, обязаны заплатить налог",

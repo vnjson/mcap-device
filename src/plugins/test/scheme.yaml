@@ -10,6 +10,7 @@
           - На солнце
 
       - quetion: Что в Российской империи было вещевым эквивалентом денег?
+        image: c71c347ae # Можно передать изображение вкачестве илюстрации к вопросу
         correct: 1
         variants:
           - Шкуры пушных зверей
@@ -29,3 +30,23 @@
 
 
 ## По прохождению теста срабатывает плагин [ next ]
+
+# STYLES
+- test:
+    name: Название теста
+    self-control: 1500 # Можно задать время появления статуса ответа #true #false
+    color-background: 'gray'
+    color-name: 'black'
+    color-quetion: 'gold'
+    color-item: 'black'  #Цвет фона плашки
+    color-item-correct: '#0d88f7'     #Цвет фона верного
+    color-item-incorrect: '#ff0c9b' #Цвет фона неверного
+
+    quetions:
+      - quetion: Туристы, приезжающие на Майорку, обязаны заплатить налог
+        image: c71c347ae
+        correct: 3
+        variants:
+          - На песок
+          - На пальмы
+          - На солнце

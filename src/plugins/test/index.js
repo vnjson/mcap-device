@@ -9,6 +9,31 @@ let qIndex = 0;
 let _trueAnswer = 0;
 let _falseAnswer = 0;
 
+/**
+ * STYLES
+ */
+ function resetStyles (){
+  $('.vnjson__test').css('background-color', 'unset')
+  $('.vnjson__test-name').css('color', 'unset')
+  $('.vnjson__test-quetion-val').css('color', 'unset')
+  $('.vnjson__variants-item').css('background-color','unset')
+  $('.vnjson__test-next-btn').css('background-color', 'unset')
+  $('.vnjson__variants-item_success').css('background-color', 'unset')
+  $('.vnjson__variants-item_fail').css('background-color', 'unset')
+}
+
+function applyStyles (){
+
+  $('.vnjson__test').css('background-color', TEST['color-background'])
+  $('.vnjson__test-name').css('color', TEST['color-name'])
+  $('.vnjson__test-quetion-val').css('color', TEST['color-quetion'])
+  $('.vnjson__variants-item').css('background-color', TEST['color-item'])
+  $('.vnjson__test-next-btn').css('background-color', TEST['color-item'])
+  $('.vnjson__variants-item_success').css('background-color', TEST['color-item-correct'])
+  $('.vnjson__variants-item_fail').css('background-color', TEST['color-item-incorrect'])
+}
+
+
 export default function (){
 
   this.$store.$screen.append($tpl)
@@ -22,7 +47,10 @@ export default function (){
             answers = [];
             _trueAnswer = 0;
             _falseAnswer = 0;
-            $('.vnjson__test-name').html(TEST.name);
+
+            resetStyles()
+
+
             renderQuetion.call(this);
       }
       else{
@@ -36,6 +64,7 @@ export default function (){
 
 let _quetionItem = null;
 function renderQuetion (){
+  $('.vnjson__test-name').html(TEST.name);
   const $imageContaner = $('.vnjson__test-quetion-img')
   _quetionItem = TEST.quetions[qIndex];
 
@@ -55,7 +84,7 @@ function renderQuetion (){
     let tplItem = `<div class="vnjson__variants-item" data-index="${index}">${item}</div>`;
     $('.vnjson__test-variants').append(tplItem);
   })
-
+  applyStyles()
 }
 
 /**
@@ -68,8 +97,10 @@ $tpl.find('.vnjson__test-variants').on('click', '.vnjson__variants-item', functi
 
   if(click){
       if(index===_quetionItem.correct-1){
-            if(TEST['self-control']===true){
-                $(this).addClass('vnjson__variants-item_success');
+            if(TEST['self-control']){
+               setTimeout(() => {
+                  $(this).addClass('vnjson__variants-item_success')
+                }, TEST['self-control']||0)
             }
             else{}
             ++_trueAnswer;
@@ -77,21 +108,24 @@ $tpl.find('.vnjson__test-variants').on('click', '.vnjson__variants-item', functi
 
       }
       else{
-            if(TEST['self-control']===true){
-                $(this).addClass('vnjson__variants-item_fail');
-                // навешиваем класс на правильный ответ
-                $('.vnjson__variants-item').toArray().map(item=>{
-                    if($(item).data('index')===TEST.quetions[qIndex].correct-1){
-                        $(item).addClass('vnjson__variants-item_success');
-                    }
-                });
-                
+            if(TEST['self-control']){
+              setTimeout(() => {
+                    $(this).addClass('vnjson__variants-item_fail');
+                    // навешиваем класс на правильный ответ
+                    $('.vnjson__variants-item').toArray().map(item => {
+                        if($(item).data('index')===TEST.quetions[qIndex].correct-1){
+                            $(item).addClass('vnjson__variants-item_success');
+                        }
+                    });
+                    applyStyles()
+              }, TEST['self-control']||0)
             }
             else{}
             ++_falseAnswer;
             answers.push({answer: false, quetion: _quetionItem})
       }
     click = false;
+    applyStyles()
     nextStep();
   }
 
@@ -100,7 +134,7 @@ $tpl.find('.vnjson__test-variants').on('click', '.vnjson__variants-item', functi
 
 
 function nextStep(){
-
+  const timer = typeof TEST['self-control']==='number'?TEST['self-control']+1000:1000
   setTimeout(()=>{
         click = true;
         ++qIndex;
@@ -121,7 +155,7 @@ function nextStep(){
             renderQuetion(); 
         }
        
-   }, 800);
+   }, timer);
 
 }
 
@@ -131,3 +165,4 @@ $tpl.find('.vnjson__test-next-btn').on('click', function (){
     $('.vnjson__test-result').hide();
 
 });
+

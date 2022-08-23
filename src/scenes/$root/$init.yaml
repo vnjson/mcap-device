@@ -5,9 +5,22 @@
   clear-data: true
   next: true
 
+- $: test
+
+#- switch:
+#    age > 13:
+#      jump: $init
+
 - test:
     name: Название теста
-    self-control: true
+    self-control: 1500
+    color-background: 'gray'
+    color-name: 'black'
+    color-quetion: 'gold'
+    color-item: 'black'  #Цвет фона плашки
+    color-item-correct: '#0d88f7'     #Цвет фона верного
+    color-item-incorrect: '#ff0c9b' #Цвет фона неверного
+
     quetions:
       - quetion: Туристы, приезжающие на Майорку, обязаны заплатить налог
         image: c71c347ae

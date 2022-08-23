@@ -30,11 +30,25 @@ export default function (){
     }
 
   })
+  function matchExact(r, str) {
+    var match = str.match(r);
+    return match && str === match[0];
+ }
+ // const operators = ['===', '<', '>', '>=', '<=', '!==', 'includes']
   this.on('switch', data=>{
     let defaultFlag = false;
     for(let equal in data){
+      /*
+      const eq = equal.replaceAll(' ', '')
+      operators.forEach( op  => {
+          if( matchExact(op, eq) ){
+            console.log(op)
+          }
+        
+      })
+      return*/
       const [ key, value ] = equal.replaceAll(' ', '').split('===');
-
+      
       // Если существует сохраненная переменная, но выполняем команду
       if( String( this.current.data[key] ) === String(value) && key!=='default'){
           defaultFlag = true;
