@@ -3,7 +3,7 @@ preload: true
 
 dialog-box:
   delay: 60
-  #alpha: 0.3
+  alpha: 0.3
   endPoint: true
 
 publish:

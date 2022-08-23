@@ -2078,7 +2078,12 @@
      */
     'cmd-player': "executeCMD\ngive @p dirt 1",
     'cmd-server': "executeCMD\nsay TEST",
-    'query-get': "request: PLAYER #BLOCK #SLOT #ENTITY\nslot: 0\nx: 0\ny: 0\nz: 0"
+    'query-get': "request: PLAYER #BLOCK #SLOT #ENTITY\nslot: 0\nx: 0\ny: 0\nz: 0",
+
+    /**
+     * DATA
+     */
+    'data': "true"
   };
 
   function getImageSize (asset) {
@@ -2164,6 +2169,19 @@
     this.exec(plugins);
   }
 
+  var exclude = ['score', 'player'];
+  function outputDataPlugin (asset) {
+    var str = "";
+
+    for (var key in this.current.data) {
+      if (!exclude.includes(key)) {
+        str += "<font color=\"deepskyblue\">".concat(key, "</font>: ").concat(this.current.data[key], " <br/>");
+      }
+    }
+
+    this.emit('vnjson.info', str);
+  }
+
   /**
    * INIT
    */
@@ -2219,7 +2237,7 @@
      * degug plugins
      */
 
-    var devPlugins = ['img-size', 'cmd-player', 'cmd-server', 'query-get'];
+    var devPlugins = ['img-size', 'cmd-player', 'cmd-server', 'query-get', 'data'];
     /**
      * Выводим список плагинов
      */
@@ -2230,7 +2248,7 @@
       var tpl = null;
 
       if (isDev) {
-        tpl = "<code class=\"debug-plugin__name debug-plugin__name--dev\" data-plugin=\"".concat(pluginItem, "\">\n                            ").concat(pluginItem, "\n                      </code>");
+        tpl = "<code class=\"debug-plugin__name debug-plugin__name--dev\" data-plugin=\"vnjson.".concat(pluginItem, "\">\n                            ").concat(pluginItem, "\n                      </code>");
       } else {
         tpl = "<code class=\"debug-plugin__name ".concat(index === 0 ? 'debug-plugin__name--active' : '', "\" data-plugin=\"").concat(pluginItem, "\">\n                            ").concat(pluginItem, "\n                      </code>");
       }
@@ -2303,22 +2321,27 @@
      * get original image size plugin
      */
 
-    this.on('img-size', getImageSize);
+    this.on('vnjson.img-size', getImageSize);
     /**
      * Minecraft CMD client
      */
 
-    this.on('cmd-player', cmdPlayerPlugin);
+    this.on('vnjson.cmd-player', cmdPlayerPlugin);
     /**
      * Minecraft CMD server
      */
 
-    this.on('cmd-server', cmdServerPlugin);
+    this.on('vnjson.cmd-server', cmdServerPlugin);
     /**
      * Minecraft query GET
      */
 
-    this.on('query-get', queryGetPlugin);
+    this.on('vnjson.query-get', queryGetPlugin);
+    /**
+     * Output data
+     */
+
+    this.on('vnjson.data', outputDataPlugin);
   }
 
   var css$w = "#loader {\n  background: black;\n  z-index: 9999;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  color: white;\n  display: none;\n  align-items: center;\n  justify-content: center;\n}\n\n.loader {\n  color: wheat;\n  font-family: Consolas, Menlo, Monaco, monospace;\n  font-weight: bold;\n  font-size: 100px;\n  opacity: 0.8;\n}\n.loader span {\n  display: inline-block;\n  animation: pulse 0.4s alternate infinite ease-in-out;\n}\n.loader span:nth-child(2) {\n  animation-delay: 0.4s;\n}\n\n@keyframes pulse {\n  to {\n    transform: scale(0.8);\n    opacity: 0.5; \n  } \n}\n";
@@ -2708,15 +2731,16 @@
       value: function startOutputReplyByLetter() {
         var _this = this;
 
+        //console.clear()
         // получаем все теги в которые обёрныты отдельные символы
         var letters = this.replyTag.querySelectorAll('.' + this.classNameLetter);
         var len = letters.length; // отображаем каждый символ по отдельности
 
         this.interval = setInterval(function () {
           if (letters.length > 0) {
-            _this.$vnjs.emit('dialog-box:letter', letters[_this.index].innerText);
-
-            letters[_this.index++].style.opacity = 1;
+            //this.$vnjs.emit('dialog-box:letter', letters[this.index].innerText)
+            letters[_this.index].style.opacity = 1;
+            _this.index++;
           }
 
           if (_this.index >= len) {
@@ -2765,12 +2789,11 @@
     }, {
       key: "reset",
       value: function reset() {
+        clearInterval(this.interval);
         this.index = 0;
         this.reply = '';
 
         _classPrivateFieldSet(this, _reply, '');
-
-        clearInterval(this.interval);
       }
     }]);
 
@@ -2844,7 +2867,9 @@
      */
 
     this.on('+', function (reply) {
-      dBox.deleteEndPoint();
+      if (dBox.delay > 0) {
+        dBox.deleteEndPoint();
+      }
 
       var character = _this.getCurrentCharacter();
 

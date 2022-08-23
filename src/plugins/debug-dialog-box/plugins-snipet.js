@@ -93,7 +93,11 @@ say TEST`,
 slot: 0
 x: 0
 y: 0
-z: 0`
+z: 0`,
+/**
+ * DATA
+ */
+  'data': "true"
 }
 
 

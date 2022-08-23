@@ -67,7 +67,9 @@ export default function (){
    * append reply
    */
   this.on('+', (reply) => {
-    dBox.deleteEndPoint()
+    if(dBox.delay>0){
+      dBox.deleteEndPoint()
+    }
     const character = this.getCurrentCharacter()
     dBox.print(character, ' '+String(reply), true)
   })

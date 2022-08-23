@@ -17,6 +17,7 @@ import getImageSize from './plugins/img-size.js'
 import cmdPlayerPlugin from './plugins/cmd-player.js'
 import cmdServerPlugin from './plugins/cmd-server.js'
 import queryGetPlugin from './plugins/query-get.js'
+import outputDataPlugin from './plugins/data.js'
 /**
  * INIT
  */
@@ -78,7 +79,8 @@ export default function (){
               'img-size', 
               'cmd-player', 
               'cmd-server', 
-              'query-get'
+              'query-get',
+              'data'
     ]
     /**
      * Выводим список плагинов
@@ -88,7 +90,7 @@ export default function (){
         const isDev = devPlugins.includes(pluginItem)
         let tpl = null
         if(isDev){
-               tpl = `<code class="debug-plugin__name debug-plugin__name--dev" data-plugin="${pluginItem}">
+               tpl = `<code class="debug-plugin__name debug-plugin__name--dev" data-plugin="vnjson.${pluginItem}">
                             ${pluginItem}
                       </code>`
         }
@@ -157,20 +159,23 @@ export default function (){
     /**
      * get original image size plugin
      */
-    this.on('img-size', getImageSize )
+    this.on('vnjson.img-size', getImageSize )
     /**
      * Minecraft CMD client
      */
-    this.on('cmd-player', cmdPlayerPlugin )
+    this.on('vnjson.cmd-player', cmdPlayerPlugin )
     /**
      * Minecraft CMD server
      */
-    this.on('cmd-server', cmdServerPlugin )
+    this.on('vnjson.cmd-server', cmdServerPlugin )
     /**
      * Minecraft query GET
      */
-     this.on('query-get', queryGetPlugin )
-
+     this.on('vnjson.query-get', queryGetPlugin )
+    /**
+     * Output data
+     */
+    this.on('vnjson.data', outputDataPlugin)
 
 }
 
