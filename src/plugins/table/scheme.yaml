@@ -7,9 +7,14 @@
        - text-color: cyan
        - text: 
             content: Aaaa
-            border: '#ff0096' # true # false # Если параметр border не задан, то граница отображается
-            width: 150
-            size: 32           
+            border: '#ff0096' # true 
+            content: test
+            width: 180
+            background-color: black # background-color
+            text-color: gray # text-color
+            align-h: right #left #center # right # У изображений выравнивания нет
+            align-v: bottom #top #center # bottom
+            size: 20           
             jump: $root.$init
        - image:
             name: alice-avatar

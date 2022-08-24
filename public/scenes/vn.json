@@ -314,7 +314,7 @@
           {
             "row": [
               {
-                "height": 50
+                "height": 100
               },
               {
                 "text": {
@@ -335,10 +335,12 @@
               {
                 "text": {
                   "content": "test",
-                  "width": 150,
+                  "width": 180,
                   "background-color": "black",
                   "border": "darkcyan",
-                  "text-color": "gray"
+                  "text-color": "gray",
+                  "align-h": "right",
+                  "align-v": "bottom"
                 }
               }
             ]

@@ -8,7 +8,7 @@
 - table:
 
     - row:
-       - height: 50
+       - height: 100
        - text: 
             content: Aaaa
             width: 150
@@ -21,11 +21,12 @@
             jump: $root.$init
        - text:
             content: test
-            width: 150
+            width: 180
             background-color: black
             border: darkcyan
             text-color: gray
-
+            align-h: right #left #center # right
+            align-v: bottom #top #center # bottom
     - row:
 
        - height: 50
@@ -35,7 +36,7 @@
             border: true
             background-color: black
             text-color: cyan
-            jump: $root.$init            
+            jump: $root.$init
        - image:
             name: ev
             width: 100

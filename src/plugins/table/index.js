@@ -54,7 +54,36 @@ export default function (){
                       }
                       if(cell.text['text-color']){
                             $tpl.css('color', cell.text['text-color'])
-                      }     
+                      }
+                      /**
+                       * ALIGN
+                       */
+                      if(cell.text['align-h']){
+                            switch(cell.text['align-h']){
+                                case 'left':
+                                    $tpl.css('justify-content', 'flex-start')
+                                    break
+                                case 'center':
+                                    $tpl.css('justify-content', 'center')
+                                    break
+                                case 'right':
+                                    $tpl.css('justify-content', 'flex-end')
+                                    break
+                            }
+                      }
+                      if(cell.text['align-v']){
+                        switch(cell.text['align-v']){
+                            case 'top':
+                                $tpl.css('align-items', 'flex-start')
+                                break
+                            case 'center':
+                                $tpl.css('align-items', 'center')
+                                break
+                            case 'bottom':
+                                $tpl.css('align-items', 'flex-end')
+                                break
+                        }
+                    }
                 }
                 $row.append($tpl)
                 /**
