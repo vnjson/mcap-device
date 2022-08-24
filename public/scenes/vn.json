@@ -94,7 +94,8 @@
         "$": "test",
         "status-bar": {
           "onReady": {
-            "$": "READY"
+            "$": "READY",
+            "audio": "sysFlipPages"
           },
           "onHelp": {
             "$": "HELP"

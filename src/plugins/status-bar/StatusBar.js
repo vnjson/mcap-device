@@ -26,12 +26,16 @@ class StatusBar {
   readyHandler (){
         this.showHelp(false)
         this.showReady(this.flagReady =!this.flagReady)
-        $vnjs.exec(this.PLUGIN_DATA.onReady)
+        if(this.flagReady){
+            $vnjs.exec(this.PLUGIN_DATA.onReady)
+        }
   }
   helpHandler (){
         this.showReady(false)
         this.showHelp(this.flagHelp =!this.flagHelp)
-        $vnjs.exec(this.PLUGIN_DATA.onHelp)
+        if(this.flagHelp){
+            $vnjs.exec(this.PLUGIN_DATA.onHelp)
+        }
   }
   showReady (flag){
     this.flagReady = flag

@@ -9,6 +9,7 @@
   status-bar: 
     onReady:
       $: READY
+      audio: sysFlipPages
       #next: true
     onHelp:
       $: HELP
