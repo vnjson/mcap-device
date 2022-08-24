@@ -3990,7 +3990,7 @@
     });
   }
 
-  var css$k = "\n.vnjson__table{\n\n  left: 50%;\n  top: 0%;\n  transform: translateX(-50%);\n  z-index: 1000;\n  flex-direction: column;\n  /*background-color: wheat;*/\n}\n.table-row{\n  overflow: hidden;\n  display: flex;\n  align-content: center;\n  align-items: center;\n  margin-bottom: 10px;\n\n}\n.table__cell{\n  transition: all 0.2s linear;\n  margin: 0 5px;\n  border: 2px solid transparent;\n}\n.table__img-wrapper{\n  border: 2px solid transparent;\n  overflow: hidden;\n  height: 100%;\n  display: flex;\n  align-items: center;\n}\n.table__cell-text{\n  text-align: center;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n\n}\n\n.table__cell[data-jump]{\n  cursor: pointer;\n}\n.table__cell[data-jump]:hover{\n  filter: brightness(150%);\n}\n\n.table__cell-text[data-jump]{\n  cursor: pointer;\n}\n.table__cell-text[data-jump]:hover{\n  color: #24a3bf;\n}";
+  var css$k = "\n.vnjson__table{\n\n  left: 50%;\n  top: 0%;\n  transform: translateX(-50%);\n  z-index: 1000;\n  flex-direction: column;\n  /*background-color: wheat;*/\n}\n.table-row{\n  overflow: hidden;\n  display: flex;\n  align-content: center;\n  align-items: center;\n  margin-bottom: 10px;\n\n}\n.table__cell{\n  transition: all 0.2s linear;\n  margin: 0 5px;\n  border: 2px solid transparent;\n  border-radius: 2px;\n}\n.table__img-wrapper{\n  border: 2px solid transparent;\n  overflow: hidden;\n  height: 100%;\n  display: flex;\n  align-items: center;\n  border-radius: 2px;\n}\n.table__cell-text{\n  text-align: center;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n\n}\n\n.table__cell[data-jump]{\n  cursor: pointer;\n}\n.table__cell[data-jump]:hover{\n  filter: brightness(150%);\n}\n\n.table__cell-text[data-jump]{\n  cursor: pointer;\n}\n.table-row .table__cell.table__cell-text[data-jump]:hover{\n  opacity: 0.7;\n}";
   n(css$k,{});
 
   function table () {
@@ -4046,9 +4046,17 @@
               TYPE = 'text';
 
               if (cell.text.hasOwnProperty('jump')) {
-                $tpl = $("<span class=\"table__cell table__cell-text  data-jump=\"".concat(cell.text.jump, "\" style=\"width: ").concat(cell.text.width || '', "px; font-size: ").concat(cell.text.size, "px;\">").concat(cell.text.content || '', "</span>"));
+                $tpl = $("<span class=\"table__cell table__cell-text\" data-jump=\"".concat(cell.text.jump, "\" style=\"width: ").concat(cell.text.width || '', "px; font-size: ").concat(cell.text.size, "px;\">").concat(cell.text.content || '', "</span>"));
               } else {
                 $tpl = $("<span class=\"table__cell table__cell-text\" style=\"width: ".concat(cell.text.width || '', "px; font-size: ").concat(cell.text.size, "px;\">").concat(cell.text.content || '', "</span>"));
+              }
+
+              if (cell.text['background-color']) {
+                $tpl.css('background-color', cell.text['background-color']);
+              }
+
+              if (cell.text['text-color']) {
+                $tpl.css('color', cell.text['text-color']);
               }
             }
 

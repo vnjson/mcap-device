@@ -22,6 +22,9 @@
        - text:
             content: test
             width: 150
+            background-color: black
+            border: darkcyan
+            text-color: gray
 
     - row:
 
@@ -35,7 +38,7 @@
             jump: $root.$init            
        - image:
             name: ev
-            width: 150
+            width: 100
             border: cyan
        - text:
             content: test

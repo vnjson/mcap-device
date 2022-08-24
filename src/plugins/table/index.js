@@ -7,7 +7,7 @@ export default function (){
   $table.on('click', '.table__cell', function(){
       const label = $(this).data('jump')
       if(label){
-
+        
           $vnjs.exec({'jump': label})
       }
      
@@ -44,13 +44,17 @@ export default function (){
                 if(cell.hasOwnProperty('text') ){
                       TYPE = 'text'
                       if(cell.text.hasOwnProperty('jump')){
-                            $tpl = $(`<span class="table__cell table__cell-text  data-jump="${cell.text.jump}" style="width: ${cell.text.width||''}px; font-size: ${cell.text.size}px;">${cell.text.content||''}</span>`)
+                            $tpl = $(`<span class="table__cell table__cell-text" data-jump="${cell.text.jump}" style="width: ${cell.text.width||''}px; font-size: ${cell.text.size}px;">${cell.text.content||''}</span>`)
                       }
                       else{
                             $tpl = $(`<span class="table__cell table__cell-text" style="width: ${cell.text.width||''}px; font-size: ${cell.text.size}px;">${cell.text.content||''}</span>`)
                       }  
-
-                        
+                      if(cell.text['background-color']){
+                            $tpl.css('background-color', cell.text['background-color'])
+                      }
+                      if(cell.text['text-color']){
+                            $tpl.css('color', cell.text['text-color'])
+                      }     
                 }
                 $row.append($tpl)
                 /**

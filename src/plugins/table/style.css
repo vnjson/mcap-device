@@ -20,6 +20,7 @@
   transition: all 0.2s linear;
   margin: 0 5px;
   border: 2px solid transparent;
+  border-radius: 2px;
 }
 .table__img-wrapper{
   border: 2px solid transparent;
@@ -27,6 +28,7 @@
   height: 100%;
   display: flex;
   align-items: center;
+  border-radius: 2px;
 }
 .table__cell-text{
   text-align: center;
@@ -48,6 +50,6 @@
 .table__cell-text[data-jump]{
   cursor: pointer;
 }
-.table__cell-text[data-jump]:hover{
-  color: #24a3bf;
+.table-row .table__cell.table__cell-text[data-jump]:hover{
+  opacity: 0.7;
 }
