@@ -9,21 +9,20 @@ this.on('setTree', ()=>{
 
 })
 
-var init = ()=>{
+var init = () => {
 
     const $tpl = $('<iframe id="paint-board__vnjson" src="data/paint-board/index.html" width="800" height="500"></iframe>');
     this.$store.$screen.append($tpl);  
-    this.on('paint-board', imgID=>{
+    this.on('paint-board', imgID => {
         if(imgID){
               $tpl.show();
-              let url = this.getAssetByName(imgID).url.split('');
-              url.shift();
-              let IMG = location.protocol+'//'+location.host+url.join('');
-              let win = document.querySelector("iframe#paint-board__vnjson").contentWindow;
+              const url = this.getAssetByName(imgID).url
+              const IMG = `${location.protocol}//${location.host}/${url}`
+              const win = document.querySelector("iframe#paint-board__vnjson").contentWindow;
               win.postMessage({ IMG }, location.origin+"/data/paint-board/index.html");
         }
         else{
-          $tpl.fadeOut();
+          $tpl.hide();
         }
     })
 

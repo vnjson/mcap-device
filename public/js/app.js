@@ -5336,16 +5336,15 @@
         if (imgID) {
           $tpl.show();
 
-          var url = _this.getAssetByName(imgID).url.split('');
+          var url = _this.getAssetByName(imgID).url;
 
-          url.shift();
-          var IMG = location.protocol + '//' + location.host + url.join('');
+          var IMG = "".concat(location.protocol, "//").concat(location.host, "/").concat(url);
           var win = document.querySelector("iframe#paint-board__vnjson").contentWindow;
           win.postMessage({
             IMG: IMG
           }, location.origin + "/data/paint-board/index.html");
         } else {
-          $tpl.fadeOut();
+          $tpl.hide();
         }
       });
     };

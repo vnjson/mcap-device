@@ -249,7 +249,8 @@
       },
       "discord-log": {
         "webhook": "https://discord.com/api/webhooks/995314212500938789/C4ul6cKMwYadYYaOCSyla_dlwDVd1IPSZu0wb24l9kkjo971QCfdHolkEPrExR2KcpzO"
-      }
+      },
+      "paint-board": true
     },
     "wiki": {
       "Абажур": "Колпак для лампы, светильника",
@@ -301,6 +302,13 @@
     ],
     "$init": [
       "CHAPTER 2",
+      {
+        "paint-board": "paintBoardBlack"
+      },
+      {
+        "paint-board": false,
+        "next": true
+      },
       {
         "test": {
           "name": "Название теста",
