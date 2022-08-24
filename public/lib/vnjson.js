@@ -20,6 +20,7 @@ class Vnjson {
   constructor (conf){
     this.conf = conf;
     this.debug = conf.debug;
+    this.on('next', this.nextHandler)
     this.on('jump', this.jumpHandler);
     this.on('timeout', this.timeoutHandler);
     this.on('log', (param)=>console.log(param));
@@ -209,14 +210,13 @@ class Vnjson {
   next (){
 
     if(this.getCurrentLabelBody().length-2<this.current.index){
-  
       this.current.index = this.current.index;
       this.emit('warn', `NoWayOutOfTheLabel`);
     }
     else{
       this.current.index++;
       this.exec();
-      this.emit('vnjson:next')
+      this.emit('vnjson.next')
     }
     
     return this;
@@ -227,6 +227,9 @@ class Vnjson {
         return this;
   }
   /*include plugins*/
+  nextHandler () {
+    setTimeout(() => this.next(), 50)
+  }
   jumpHandler (_pathname){
     let pathname = String(_pathname);
     /**
@@ -260,6 +263,7 @@ class Vnjson {
             this.emit('init', true);
         };      
     }
+
   }
 
   timeoutHandler (param){
@@ -269,3 +273,6 @@ class Vnjson {
 
 return Vnjson;
 });
+/**
+ * this.emit('vnjson:next')
+ */

@@ -1,11 +1,13 @@
 - table:
-    - border: true # не обязательный параметр
     - row:
       - height: 50
     - row:
        - height: 50
+       - background-color: black
+       - text-color: cyan
        - text: 
             content: Aaaa
+            border: '#ff0096' # true # false # Если параметр border не задан, то граница отображается
             width: 150
             size: 32           
             jump: $root.$init
@@ -15,6 +17,7 @@
             jump: $root.$init
        - text:
             content: test
+            border: false
             width: 150
     - row:
        - height: 50

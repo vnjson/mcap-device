@@ -38,12 +38,7 @@ export default function (){
 
   $('.status-bar__status--help').on('click', () => statusBar.helpHandler())
 
-  /**
-   * Следим за статусом ready и help
-   */
-  this.on('status-bar-help', param => statusBar.showHelp(param))
 
-  this.on('status-bar-ready', param => statusBar.showReady(param))
 
 }
         

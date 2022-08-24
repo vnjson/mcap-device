@@ -24,14 +24,14 @@ class StatusBar {
   readyHandler (){
         this.showHelp(false)
         this.showReady(this.flagReady =!this.flagReady)
-        if(this.flagReady){
+        if(!this.flagReady){
             $vnjs.exec(this.PLUGIN_DATA.onReady)
         }
   }
   helpHandler (){
         this.showReady(false)
         this.showHelp(this.flagHelp =!this.flagHelp)
-        if(this.flagHelp){
+        if(!this.flagHelp){
             $vnjs.exec(this.PLUGIN_DATA.onHelp)
         }
   }

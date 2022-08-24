@@ -16,8 +16,3 @@
       $: HELP
       status-bar-help: false
       # next: true
-- status-bar-help: false # Скрыть касное изображение
-- status-bar-ready: false # Скрыть зелёное изображение
-
-- status-bar-help: true
-- status-bar-ready: true

@@ -1,7 +1,7 @@
 - dialog-box: true
   hands: true
   audio: false
-  clear-data: true
+  data-clear: true
   next: true
 
 

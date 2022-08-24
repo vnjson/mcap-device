@@ -19,9 +19,15 @@
 .table__cell{
   transition: all 0.2s linear;
   margin: 0 5px;
-
+  border: 2px solid transparent;
 }
-
+.table__img-wrapper{
+  border: 2px solid transparent;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
 .table__cell-text{
   text-align: center;
   display: flex;
@@ -31,9 +37,7 @@
   height: 100%;
 
 }
-.row-border{
-    border: 2px solid white;
-}
+
 .table__cell[data-jump]{
   cursor: pointer;
 }

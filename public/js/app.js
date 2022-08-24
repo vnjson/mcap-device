@@ -3990,7 +3990,7 @@
     });
   }
 
-  var css$k = "\n.vnjson__table{\n\n  left: 50%;\n  top: 0%;\n  transform: translateX(-50%);\n  z-index: 1000;\n  flex-direction: column;\n  /*background-color: wheat;*/\n}\n.table-row{\n  overflow: hidden;\n  display: flex;\n  align-content: center;\n  align-items: center;\n  margin-bottom: 10px;\n\n}\n.table__cell{\n  transition: all 0.2s linear;\n  margin: 0 5px;\n\n}\n\n.table__cell-text{\n  text-align: center;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n\n}\n.row-border{\n    border: 2px solid white;\n}\n.table__cell[data-jump]{\n  cursor: pointer;\n}\n.table__cell[data-jump]:hover{\n  filter: brightness(150%);\n}\n\n.table__cell-text[data-jump]{\n  cursor: pointer;\n}\n.table__cell-text[data-jump]:hover{\n  color: #24a3bf;\n}";
+  var css$k = "\n.vnjson__table{\n\n  left: 50%;\n  top: 0%;\n  transform: translateX(-50%);\n  z-index: 1000;\n  flex-direction: column;\n  /*background-color: wheat;*/\n}\n.table-row{\n  overflow: hidden;\n  display: flex;\n  align-content: center;\n  align-items: center;\n  margin-bottom: 10px;\n\n}\n.table__cell{\n  transition: all 0.2s linear;\n  margin: 0 5px;\n  border: 2px solid transparent;\n}\n.table__img-wrapper{\n  border: 2px solid transparent;\n  overflow: hidden;\n  height: 100%;\n  display: flex;\n  align-items: center;\n}\n.table__cell-text{\n  text-align: center;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n\n}\n\n.table__cell[data-jump]{\n  cursor: pointer;\n}\n.table__cell[data-jump]:hover{\n  filter: brightness(150%);\n}\n\n.table__cell-text[data-jump]{\n  cursor: pointer;\n}\n.table__cell-text[data-jump]:hover{\n  color: #24a3bf;\n}";
   n(css$k,{});
 
   function table () {
@@ -4011,7 +4011,7 @@
       if (tableData) {
         $table.html('');
         $table.css('display', 'flex');
-        var border = tableData.filter(function (item) {
+        tableData.filter(function (item) {
           return item.hasOwnProperty('border');
         })[0];
         var rows = tableData.filter(function (item) {
@@ -4021,32 +4021,50 @@
           var $row = $("<div class=\"table-row\"></div>");
           var height = 30;
           item.row.map(function (cell) {
+            var _cell$TYPE, _cell$TYPE2;
+
+            var TYPE = null;
+            var $tpl = null; // HEIGHT
+
             if (cell.hasOwnProperty('height')) {
               height = cell.height;
-            }
+            } // IMAGE
+
 
             if (cell.hasOwnProperty('image')) {
-              var tpl = '';
+              TYPE = 'image';
 
               if (cell.image.hasOwnProperty('jump')) {
-                tpl = "<img class=\"table__cell\" style=\"width: ".concat(cell.image.width, "px\" data-jump=\"").concat(cell.image.jump, "\" src=\"").concat(_this.getAssetByName(cell.image.name).url, "\"/>");
+                $tpl = $("<div class=\"table__img-wrapper\"><img class=\"table__cell\" style=\"width: ".concat(cell.image.width, "px\" data-jump=\"").concat(cell.image.jump, "\" src=\"").concat(_this.getAssetByName(cell.image.name).url, "\"/></div>"));
               } else {
-                tpl = "<img class=\"table__cell\" style=\"width: ".concat(cell.image.width, "px\"  src=\"").concat(_this.getAssetByName(cell.image.name).url, "\"/>");
+                $tpl = $("<div class=\"table__img-wrapper\"><img class=\"table__cell\" style=\"width: ".concat(cell.image.width, "px\"  src=\"").concat(_this.getAssetByName(cell.image.name).url, "\"/></div>"));
               }
+            } // TEXT
 
-              $row.append(tpl);
-            }
 
             if (cell.hasOwnProperty('text')) {
-              var _tpl = '';
+              TYPE = 'text';
 
               if (cell.text.hasOwnProperty('jump')) {
-                _tpl = "<span class=\"table__cell table__cell-text ".concat(border ? 'row-border' : '', "\"  data-jump=\"").concat(cell.text.jump, "\" style=\"width: ").concat(cell.text.width || '', "px; font-size: ").concat(cell.text.size, "px\">").concat(cell.text.content || '', "</span>");
+                $tpl = $("<span class=\"table__cell table__cell-text  data-jump=\"".concat(cell.text.jump, "\" style=\"width: ").concat(cell.text.width || '', "px; font-size: ").concat(cell.text.size, "px;\">").concat(cell.text.content || '', "</span>"));
               } else {
-                _tpl = "<span class=\"table__cell table__cell-text ".concat(border ? 'row-border' : '', "\"\" style=\"width: ").concat(cell.text.width || '', "px; font-size: ").concat(cell.text.size, "px\">").concat(cell.text.content || '', "</span>");
+                $tpl = $("<span class=\"table__cell table__cell-text\" style=\"width: ".concat(cell.text.width || '', "px; font-size: ").concat(cell.text.size, "px;\">").concat(cell.text.content || '', "</span>"));
               }
+            }
 
-              $row.append(_tpl);
+            $row.append($tpl);
+            /**
+             * border
+             */
+
+            if (!cell[TYPE]) return;
+
+            if (((_cell$TYPE = cell[TYPE]) === null || _cell$TYPE === void 0 ? void 0 : _cell$TYPE.border) === true) {
+              $tpl.css('border-color', 'white');
+            } else if (typeof ((_cell$TYPE2 = cell[TYPE]) === null || _cell$TYPE2 === void 0 ? void 0 : _cell$TYPE2.border) === 'string') {
+              $tpl.css('border-color', cell[TYPE].border);
+            } else {
+              $tpl.css('border-color', 'transparent');
             }
           });
           $row.css('height', height);
@@ -4095,56 +4113,202 @@
         _this.current.data = {};
       }
     });
-    this.on('set-data', function (data) {
+    /**
+     * set
+     */
+
+    var dataSetHanlder = function dataSetHanlder(data) {
       for (var key in data) {
         _this.current.data[key] = data[key];
       }
 
       store.set(ISBN, _this.current.data);
-    });
-    this.on('clear-data', function (data) {
+    };
+    /**
+     * clear
+     */
+
+
+    var dataClearHanler = function dataClearHanler(data) {
       store.remove(ISBN);
       _this.current.data = {
         score: _this.current.data.score,
         player: _this.current.data.player
       };
-    });
+    };
 
+    this.on('data-set', dataSetHanlder);
+    this.on('data-clear', dataClearHanler);
+    /**
+     * deprecated
+     */
+
+    this.on('set-data', function (data) {
+      console.warn('[set-data] is deprecated. Use [data-set]');
+      dataSetHanlder(data);
+    });
+    this.on('clear-data', function (data) {
+      console.warn('[clear-data] is deprecated. Use [data-clear]');
+      dataClearHanler();
+    });
+  }
+
+  var Switch = /*#__PURE__*/function () {
+    function Switch(vnjs) {
+      _classCallCheck(this, Switch);
+
+      _defineProperty(this, "operators", ['===', '<', '>', '>=', '<=', '!==', '[]', '][', 'default']);
+
+      _defineProperty(this, "dataValue", null);
+
+      _defineProperty(this, "value", null);
+
+      _defineProperty(this, "OPERATOR", null);
+
+      _defineProperty(this, "equal", null);
+
+      _defineProperty(this, "PLUGIN_DATA", null);
+
+      this.__vnjs = vnjs;
+    }
+
+    _createClass(Switch, [{
+      key: "parse",
+      value: function parse(data) {
+        var _this = this;
+
+        this.PLUGIN_DATA = data;
+        /**
+         * Пробегаемся по всем условиям
+         */
+
+        for (var equal in this.PLUGIN_DATA) {
+          this.equal = equal.replaceAll(' ', '');
+          /**
+           * Определяем какой оператор используется в пользовательских данных
+           */
+
+          this.operators.forEach(function (op) {
+            if (new RegExp(op).test(_this.equal)) {
+              _this.OPERATOR = op;
+            }
+          });
+
+          if (this.OPERATOR === 'default') ; else {
+            var _this$equal$split = this.equal.split(this.OPERATOR),
+                _this$equal$split2 = _slicedToArray(_this$equal$split, 2),
+                key = _this$equal$split2[0],
+                val = _this$equal$split2[1];
+
+            this.dataValue = this.__vnjs.current.data[key];
+            this.value = val;
+          }
+
+          this.distributor();
+          /*
+               const [ key, value ] = equal.replaceAll(' ', '').split('===');
+               
+               // Если существует сохраненная переменная, то выполняем команду
+               if( String( this.current.data[key] ) === String(value) && key!=='default'){
+                   defaultFlag = true;
+                   this.exec(data[equal]);
+               }*/
+        }
+      }
+    }, {
+      key: "distributor",
+      value: function distributor() {
+        console.log(this.dataValue, this.value);
+
+        switch (this.OPERATOR) {
+          case '===':
+            if (this.dataValue == this.value) ;
+
+            break;
+
+          case '>':
+            if (this.dataValue > this.value) {
+              console.log('>'); //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
+            }
+
+            break;
+
+          case '<':
+            if (this.dataValue < this.value) {
+              console.log('<'); //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
+            }
+
+            break;
+
+          case '!==':
+            if (this.dataValue !== this.value) {
+              console.log('!=='); //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
+            }
+
+            break;
+
+          case '<=':
+            if (this.dataValue == this.value) {
+              console.log('<='); //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
+            }
+
+            break;
+
+          case '>=':
+            if (this.dataValue == this.value) {
+              console.log('>='); //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
+            }
+
+            break;
+
+          case '[]':
+            if (this.dataValue.includes(this.value)) {
+              console.log('include'); //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
+            }
+
+            break;
+
+          case '][':
+            if (!this.dataValue.includes(this.value)) {
+              console.log('exclude'); //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
+            }
+
+            break;
+
+          case 'default':
+            alert('DEF'); //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
+
+            break;
+
+          default:
+            this.__vnjs.emit('error', {
+              ru: 'Некоректный оператор',
+              en: 'Invalid operator'
+            });
+
+        }
+      }
+    }]);
+
+    return Switch;
+  }();
+
+  function switchVnjson () {
+    var _switch = new Switch(this);
 
     this.on('switch', function (data) {
-      var defaultFlag = false;
+      return _switch.parse(data);
+    }); //let defaultFlag = false;
+    // если ни одна переменная в yaml коде ранее не задавалась, то
+    // выполняем команду поумолчанию, если таковая присутсвует
 
-      for (var equal in data) {
-        /*
-        const eq = equal.replaceAll(' ', '')
-        operators.forEach( op  => {
-            if( matchExact(op, eq) ){
-              console.log(op)
-            }
-          
-        })
-        return*/
-        var _equal$replaceAll$spl = equal.replaceAll(' ', '').split('==='),
-            _equal$replaceAll$spl2 = _slicedToArray(_equal$replaceAll$spl, 2),
-            key = _equal$replaceAll$spl2[0],
-            value = _equal$replaceAll$spl2[1]; // Если существует сохраненная переменная, но выполняем команду
-
-
-        if (String(_this.current.data[key]) === String(value) && key !== 'default') {
-          defaultFlag = true;
-
-          _this.exec(data[equal]);
-        }
-      } // если ни одна переменная в yaml коде ранее не задавалась, то
-      // выполняем команду поумолчанию, если таковая присутсвует
-
-
-      if (!defaultFlag && data !== null && data !== void 0 && data["default"]) {
-        defaultFlag = false;
-
-        _this.exec(data["default"]);
-      }
-    });
+    /*
+    
+     if(!defaultFlag&&data?.default){
+         defaultFlag = false;
+         this.exec(data.default);
+     }
+    */
   }
 
   var css$j = "\n\n.vnjson__qa{\n  display: none;\n  z-index: 8888;\n  width: 60%;\n  flex-direction: column;\n}\n\n.vnjson__qa--item{\n\n  color: white;\n  cursor: pointer;\n  color: wheat;\n  transition: 0.1s;\n  margin-bottom: 10px;\n  border-style: solid;\n  border-width: 3px;\n  border-color: black;\n  color: white;\n  background: grey;\n}\n.vnjson__qa--item:last-child{\n  margin-bottom: 0;\n}\n.vnjson__qa--item:hover {\n  background: rgba(100, 200, 100, 0.7);\n}\n\n.vnjson__qa--quetion{\n  background: rgba(0,0,0,0.7);\n  pointer-events: none;\n  text-overflow: unset;\n  height: auto;\n  white-space: unset;\n}\n.vnjson__qa--quetion span{\n  text-overflow: unset;\n  height: auto;\n  overflow: auto;\n  white-space: unset;\n  line-height: 28px;\n\n}\n.vnjson__qa--item span{\n  padding: 7px 20px;\n  display: block;\n}\n.vnjson__qa--item .vnjson__qa--name{\n  padding: unset;\n  display: none;\n}\n/*\n.vnjson__qa--name:after{\n  content: \" :\"\n}\n*/\n.vnjson__qa--reply{\n  padding: unset;\n  padding-left: 20px;\n}";
@@ -5071,7 +5235,7 @@
         this.showHelp(false);
         this.showReady(this.flagReady = !this.flagReady);
 
-        if (this.flagReady) {
+        if (!this.flagReady) {
           $vnjs.exec(this.PLUGIN_DATA.onReady);
         }
       }
@@ -5081,7 +5245,7 @@
         this.showReady(false);
         this.showHelp(this.flagHelp = !this.flagHelp);
 
-        if (this.flagHelp) {
+        if (!this.flagHelp) {
           $vnjs.exec(this.PLUGIN_DATA.onHelp);
         }
       }
@@ -5152,16 +5316,6 @@
     });
     $('.status-bar__status--help').on('click', function () {
       return statusBar.helpHandler();
-    });
-    /**
-     * Следим за статусом ready и help
-     */
-
-    this.on('status-bar-help', function (param) {
-      return statusBar.showHelp(param);
-    });
-    this.on('status-bar-ready', function (param) {
-      return statusBar.showReady(param);
     });
   }
 
@@ -7065,8 +7219,6 @@
 
   /* native [jump] [next] [timeout] */
   function plugins () {
-    var _this = this;
-
     if ($vnjs.debug) {
       this.use(debug);
       this.use(debugDialogBox);
@@ -7092,6 +7244,7 @@
     this.use(dialogBox);
     this.use(hands);
     this.use(data);
+    this.use(switchVnjson);
     this.use(qa);
     this.use(chess);
     this.use(setName);
@@ -7122,11 +7275,6 @@
     this.use(staticApp);
     this.use(HUD);
     this.use(dialogBoxInfo);
-    this.on('next', function () {
-      setTimeout(function () {
-        return _this.next();
-      }, 10);
-    });
   }
 
   /**

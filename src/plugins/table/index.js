@@ -2,52 +2,73 @@ import "./style.css";
 
 
 export default function (){
-  let $table = $('<div class="vnjson__table component"></div>')
+  const $table = $('<div class="vnjson__table component"></div>')
   this.$store.$screen.append($table)
   $table.on('click', '.table__cell', function(){
-      let label = $(this).data('jump')
+      const label = $(this).data('jump')
       if(label){
 
           $vnjs.exec({'jump': label})
       }
      
   })
-  this.on('table', tableData=>{
+  this.on('table', tableData => {
 
      if(tableData){
         $table.html('')
         $table.css('display', 'flex');
-        let border = tableData.filter(item=>item.hasOwnProperty('border'))[0]
-        let rows = tableData.filter(item=>item.hasOwnProperty('row'))
-        rows.map(item=>{
+        let border = tableData.filter(item => item.hasOwnProperty('border'))[0]
+        let rows = tableData.filter(item => item.hasOwnProperty('row'))
+        rows.map(item => {
             let $row = $(`<div class="table-row"></div>`)
             let height = 30 
-            item.row.map(cell=>{
+            item.row.map(cell => {
+                let TYPE = null
+                let $tpl = null
+                // HEIGHT
                 if(cell.hasOwnProperty('height') ){
                     height = cell.height
                 }
+                // IMAGE
                 if(cell.hasOwnProperty('image') ){
-                      let tpl = ''
+                      TYPE = 'image'
                       if(cell.image.hasOwnProperty('jump')){
-                          tpl = `<img class="table__cell" style="width: ${cell.image.width}px" data-jump="${cell.image.jump}" src="${this.getAssetByName(cell.image.name).url}"/>`
+                          $tpl = $(`<div class="table__img-wrapper"><img class="table__cell" style="width: ${cell.image.width}px" data-jump="${cell.image.jump}" src="${this.getAssetByName(cell.image.name).url}"/></div>`)
                       }
                       else{
-                          tpl = `<img class="table__cell" style="width: ${cell.image.width}px"  src="${this.getAssetByName(cell.image.name).url}"/>`
+                          $tpl = $(`<div class="table__img-wrapper"><img class="table__cell" style="width: ${cell.image.width}px"  src="${this.getAssetByName(cell.image.name).url}"/></div>`)
                       }
-                      $row.append(tpl)
+  
                 }
+                // TEXT
                 if(cell.hasOwnProperty('text') ){
-                      let tpl = ''
+                      TYPE = 'text'
                       if(cell.text.hasOwnProperty('jump')){
-                            tpl = `<span class="table__cell table__cell-text ${border?'row-border':''}"  data-jump="${cell.text.jump}" style="width: ${cell.text.width||''}px; font-size: ${cell.text.size}px">${cell.text.content||''}</span>`
+                            $tpl = $(`<span class="table__cell table__cell-text  data-jump="${cell.text.jump}" style="width: ${cell.text.width||''}px; font-size: ${cell.text.size}px;">${cell.text.content||''}</span>`)
                       }
                       else{
-                            tpl = `<span class="table__cell table__cell-text ${border?'row-border':''}"" style="width: ${cell.text.width||''}px; font-size: ${cell.text.size}px">${cell.text.content||''}</span>`
-                      }
-                  
-                  $row.append(tpl)
+                            $tpl = $(`<span class="table__cell table__cell-text" style="width: ${cell.text.width||''}px; font-size: ${cell.text.size}px;">${cell.text.content||''}</span>`)
+                      }  
+
+                        
+                }
+                $row.append($tpl)
+                /**
+                 * border
+                 */
+                if(!cell[TYPE]) return
+                if(cell[TYPE]?.border===true){
+                    $tpl.css('border-color', 'white')
+                }
+                else if(typeof cell[TYPE]?.border==='string'){
+                    $tpl.css('border-color', cell[TYPE].border)
+                }
+                else{
+                    $tpl.css('border-color', 'transparent')
                 }
 
+               
+            
             })
             $row.css('height', height)
             $table.append($row)

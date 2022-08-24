@@ -23,6 +23,7 @@ import soundHover         from './plugins/sound-hover/index.js'
 import table              from './plugins/table/index.js'
 import clear              from './plugins/clear/index.js'
 import data               from './plugins/data/index.js'
+import switchVnjson       from './plugins/switch/index.js'
 import qa                 from './plugins/qa/index.js'
 import chess              from './plugins/chess/index.js'
 import setName            from './plugins/set-name/index.js'
@@ -64,7 +65,6 @@ export default function(){
   }
   this.use(assetsLoader)
   this.use(screen)
-
   /*components*/
   this.use(scene)
   this.use(show)
@@ -82,6 +82,7 @@ export default function(){
   this.use(dialogBox)
   this.use(hands)
   this.use(data)
+  this.use(switchVnjson)
   this.use(qa)
   this.use(chess)
   this.use(setName)
@@ -112,9 +113,5 @@ export default function(){
   this.use(staticApp)
   this.use(HUD)
   this.use(dialogBoxInfo)
-  this.on('next', ()=>{
-      setTimeout(()=>this.next(), 10)
-  })
 
-  
 }

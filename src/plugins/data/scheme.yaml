@@ -1,20 +1,11 @@
 
 
-- clear-data: true # обнуляет данные текущего пользователя
+- data-clear: true # обнуляет данные текущего пользователя
 
 # ложим данные в хранилище $vnjs.current.data
-- set-data:
+- data-set:
     age: 12
 
-
-# получаем данные данные в хранилище $vnjs.current.data
-- switch:
-    age === меньше12:
-      jump: $root.$init
-    age === больше12:
-      $: Возраст больше 12 лет
-    age === 17:
-      jump: _17лет
 
 
 - status-bar: true
@@ -25,39 +16,8 @@
 
 - _mark1: true
   $: Записываю данные
-  set-data:
+  data-set:
       age: меньше12
       name: Сергей
 
 
-# получаем данные данные в хранилище $vnjs.current.data
-- switch:
-    age === меньше12:
-      $: Меньше 12
-    age === больше12:
-      $: Возраст больше 12 лет
-
-- switch:
-    - age === меньше12:
-      $: Меньше 12
-    - age === больше12:
-      $: Возраст больше 12 лет
-## Так же можно задавать значение поумолчанию
-- dialog-box: false
-  switch:
-    name === Сергей: # приимает объект для выполнения
-      $: Показываем диалоговое окно
-      dialog-box: true
-      scene: lake
-      sound: pianino
-    default:
-        next: true
-        
-
-- switch:
-    age === 18:
-          dialog-box: true
-    stage === 4:
-          jump: _test
-    default:
-          dialog-box: clear

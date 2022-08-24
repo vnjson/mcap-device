@@ -87,7 +87,7 @@
         "dialog-box": true,
         "hands": true,
         "audio": false,
-        "clear-data": true,
+        "data-clear": true,
         "next": true
       },
       {
@@ -301,7 +301,126 @@
       }
     ],
     "$init": [
-      "CHAPTER 2",
+      {
+        "$": "CHAPTER 2",
+        "data-set": {
+          "age": 13,
+          "chunk": "Пришёл краб в лес"
+        },
+        "scene": "ev"
+      },
+      {
+        "table": [
+          {
+            "row": [
+              {
+                "height": 50
+              },
+              {
+                "text": {
+                  "content": "Aaaa",
+                  "width": 150,
+                  "size": 32,
+                  "border": "#ff0096",
+                  "jump": "$root.$init"
+                }
+              },
+              {
+                "image": {
+                  "name": "ev",
+                  "width": 50,
+                  "jump": "$root.$init"
+                }
+              },
+              {
+                "text": {
+                  "content": "test",
+                  "width": 150
+                }
+              }
+            ]
+          },
+          {
+            "row": [
+              {
+                "height": 50
+              },
+              {
+                "text": {
+                  "content": "Screenshot",
+                  "width": 150,
+                  "border": true,
+                  "background-color": "black",
+                  "text-color": "cyan",
+                  "jump": "$root.$init"
+                }
+              },
+              {
+                "image": {
+                  "name": "ev",
+                  "width": 150,
+                  "border": "cyan"
+                }
+              },
+              {
+                "text": {
+                  "content": "test",
+                  "width": 150
+                }
+              },
+              {
+                "image": {
+                  "name": "p1",
+                  "width": 80
+                }
+              },
+              {
+                "image": {
+                  "name": "ch",
+                  "width": 150
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "$": "--END--"
+      },
+      {
+        "switch": {
+          "age === 17": {
+            "$": "HELLO"
+          },
+          "age > 17": {
+            "$": "age больше 17"
+          },
+          "age < 17": {
+            "$": "age меньше 17"
+          },
+          "age >= 17": {
+            "$": "age больше либо равно 17"
+          },
+          "age <= 17": {
+            "$": "age меньше либо равно 17"
+          },
+          "age !== 17": {
+            "$": "age не равно 17"
+          },
+          "chunk [] краб": {
+            "$": "Переменная chunk включает в себя слово краб"
+          },
+          "chunk ][ корова": {
+            "$": "В переменной chunk отсутсвует слово корова"
+          },
+          "deafult": {
+            "$": "def"
+          }
+        }
+      },
+      {
+        "al": "--END--"
+      },
       {
         "paint-board": "paintBoardBlack"
       },
@@ -346,24 +465,6 @@
             }
           ]
         }
-      },
-      {
-        "$": "test",
-        "status-bar": {
-          "onReady": {
-            "$": "READY",
-            "audio": "sysFlipPages"
-          },
-          "onHelp": {
-            "$": "HELP"
-          }
-        }
-      },
-      {
-        "status-bar-help": false
-      },
-      {
-        "status-bar-ready": false
       }
     ],
     "content": [
