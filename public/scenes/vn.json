@@ -102,6 +102,12 @@
         }
       },
       {
+        "status-bar-help": false
+      },
+      {
+        "status-bar-ready": false
+      },
+      {
         "$": "start TIMEOUT",
         "set-data": {
           "age": 17,

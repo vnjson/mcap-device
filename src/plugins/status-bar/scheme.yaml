@@ -4,13 +4,7 @@
 
 
 - status-bar: true
-  ready: true # при клике на кнопку [Готов] выполнить плагин [next]
-  help: true # при клике на кнопку [Помощь] выполнить плагин [next]
 
-
-- $: test3
-  help: false
-  ready: false
 
 
 - status-bar: 
@@ -19,3 +13,9 @@
       dialog-box: true
     onHelp:
       $: HELP
+      # next: true
+- status-bar-help: false # Скрыть касное изображение
+- status-bar-ready: false # Скрыть зелёное изображение
+
+- status-bar-help: true
+- status-bar-ready: true

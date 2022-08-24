@@ -1,100 +1,49 @@
 import './style.css'
 import tpl from './tpl.html'
-import readyImg from './assets/ready.svg'
-import helpImg from './assets/help.svg'
 import playerImg from './assets/player.svg'
+import StatusBar from './StatusBar'
 
 export default function (){
 
-  const $tpl = $(tpl);
-  let ready = false;
-  let help = false;
+  const $tpl = $(tpl)
+
   this.$store.$screen.append($tpl);
+  const statusBar = new StatusBar($tpl)
   /**
    * @ event
    */
-  let PLUGIN_DATA = null
+
   this.on('status-bar', param => {
     if(param){
-      PLUGIN_DATA = param
-      $tpl.css('display', 'flex')
+      statusBar.PLUGIN_DATA = param
+      statusBar.show()
     }
     else{
-      $tpl.hide()
+      statusBar.hide()
     }
   })
 
-  function clearStatus (){
-    $('.status-bar__image-containter').css('background-image', `unset`)
-    $('.status-bar__item').toArray().map(el=>{ 
-      $(el).removeClass('status-active');
-    })
-  }
-  var readyStatus = false;
-  $('.status-bar__status--ready').on('click', function (){
-      clearStatus()
-      if(readyStatus){
-          readyStatus = false;
-      }
-      else{
-        helpStatus = false;
-        readyStatus = true;
-        // красим в зеленый
-        $(this).addClass('status-active')
-        // добавляем изображение
-        $('.status-bar__image-containter').css('background-image', `url(${readyImg})`)
-        /**
-         * При клике на кнопку [ готов ] определяем стоит ли нам выполнить плагин [next] или нет
-         */
-        if(ready){
-          $vnjs.exec({next: true});
-          setTimeout(()=>{
-              clearStatus();
-              readyStatus = false;
-          }, 1000)
-        }
-        ready = false
-        $vnjs.exec(PLUGIN_DATA.onReady)
-      }
-  })
-  var helpStatus = false
-  $('.status-bar__status--help').on('click', function (){
-      clearStatus()
-      if(helpStatus){
-          helpStatus = false
-      }
-      else{
-          readyStatus = false
-          helpStatus = true
-          // красим в красный
-          $(this).addClass('status-active')
-          // добавляем изображение
-          $('.status-bar__image-containter').css('background-image', `url(${helpImg})`)
-         /**
-          * При клике на кнопку [ помощь ] определяем стоит ли нам выполнить плагин [next] или нет
-          */
-          if(help){
-            $vnjs.exec({next: true});
-            setTimeout(()=>{
-                clearStatus();
-                helpStatus = false;
-            }, 1000)
-          }
-          help = false
-          $vnjs.exec(PLUGIN_DATA.onHelp)
-      }
-  })
 
-  this.on('player-load', name=>{
+  /**
+   * Player
+   */
+  this.on('player-load', name => {
       $('#status-bar__player-logo').attr('src', playerImg);
       $('.status-bar__player-name').html(this.current.data.player.name);
   })
   /**
+   * help | ready
+   */
+  $('.status-bar__status--ready').on('click', () => statusBar.readyHandler())
+
+  $('.status-bar__status--help').on('click', () => statusBar.helpHandler())
+
+  /**
    * Следим за статусом ready и help
    */
-  this.on('ready', e=>ready=e)
+  this.on('status-bar-help', param => statusBar.showHelp(param))
 
-  this.on('help', e=>help=e);
+  this.on('status-bar-ready', param => statusBar.showReady(param))
 
 }
         

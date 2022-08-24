@@ -5021,115 +5021,136 @@
 
   var tpl$4 = "<div class=\"status-bar component\">\n  <div class=\"status-bar__player\"><img id=\"status-bar__player-logo\"><span class=\"status-bar__player-name\"></span></div>\n  <div class=\"status-bar__status\">\n      <span class=\"status-bar__item status-bar__status--ready\"><span></span>Готов</span>\n      <span class=\"status-bar__item status-bar__status--help\"><span></span>Помощь</span>\n      <div class=\"status-bar__image-containter\"></div>\n  </div>\n\n</div>";
 
+  var playerImg = "data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%20%20%20%3Cpath%20fill%3D%22gray%22%20d%3D%22M12%2C19.2C9.5%2C19.2%207.29%2C17.92%206%2C16C6.03%2C14%2010%2C12.9%2012%2C12.9C14%2C12.9%2017.97%2C14%2018%2C16C16.71%2C17.92%2014.5%2C19.2%2012%2C19.2M12%2C5A3%2C3%200%200%2C1%2015%2C8A3%2C3%200%200%2C1%2012%2C11A3%2C3%200%200%2C1%209%2C8A3%2C3%200%200%2C1%2012%2C5M12%2C2A10%2C10%200%200%2C0%202%2C12A10%2C10%200%200%2C0%2012%2C22A10%2C10%200%200%2C0%2022%2C12C22%2C6.47%2017.5%2C2%2012%2C2Z%22%20%2F%3E%3C%2Fsvg%3E";
+
   var readyImg = "data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%20%20%20%3Cpath%20fill%3D%22%2300ff00%22%20d%3D%22M12%202C6.5%202%202%206.5%202%2012S6.5%2022%2012%2022%2022%2017.5%2022%2012%2017.5%202%2012%202M10%2017L5%2012L6.41%2010.59L10%2014.17L17.59%206.58L19%208L10%2017Z%22%20%2F%3E%3C%2Fsvg%3E";
 
   var helpImg = "data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%20%20%20%3Cpath%20fill%3D%22red%22%20d%3D%22M15.07%2C11.25L14.17%2C12.17C13.45%2C12.89%2013%2C13.5%2013%2C15H11V14.5C11%2C13.39%2011.45%2C12.39%2012.17%2C11.67L13.41%2C10.41C13.78%2C10.05%2014%2C9.55%2014%2C9C14%2C7.89%2013.1%2C7%2012%2C7A2%2C2%200%200%2C0%2010%2C9H8A4%2C4%200%200%2C1%2012%2C5A4%2C4%200%200%2C1%2016%2C9C16%2C9.88%2015.64%2C10.67%2015.07%2C11.25M13%2C19H11V17H13M12%2C2A10%2C10%200%200%2C0%202%2C12A10%2C10%200%200%2C0%2012%2C22A10%2C10%200%200%2C0%2022%2C12C22%2C6.47%2017.5%2C2%2012%2C2Z%22%20%2F%3E%3C%2Fsvg%3E";
 
-  var playerImg = "data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%20%20%20%3Cpath%20fill%3D%22gray%22%20d%3D%22M12%2C19.2C9.5%2C19.2%207.29%2C17.92%206%2C16C6.03%2C14%2010%2C12.9%2012%2C12.9C14%2C12.9%2017.97%2C14%2018%2C16C16.71%2C17.92%2014.5%2C19.2%2012%2C19.2M12%2C5A3%2C3%200%200%2C1%2015%2C8A3%2C3%200%200%2C1%2012%2C11A3%2C3%200%200%2C1%209%2C8A3%2C3%200%200%2C1%2012%2C5M12%2C2A10%2C10%200%200%2C0%202%2C12A10%2C10%200%200%2C0%2012%2C22A10%2C10%200%200%2C0%2022%2C12C22%2C6.47%2017.5%2C2%2012%2C2Z%22%20%2F%3E%3C%2Fsvg%3E";
+  var StatusBar = /*#__PURE__*/function () {
+    function StatusBar($view) {
+      _classCallCheck(this, StatusBar);
+
+      _defineProperty(this, "flagReady", false);
+
+      _defineProperty(this, "flagHelp", false);
+
+      _defineProperty(this, "PLUGIN_DATA", null);
+
+      this.$view = $view;
+    }
+
+    _createClass(StatusBar, [{
+      key: "show",
+      value: function show() {
+        this.$view.css('display', 'flex');
+      }
+    }, {
+      key: "hide",
+      value: function hide() {
+        this.$view.hide();
+      }
+    }, {
+      key: "clearStatus",
+      value: function clearStatus() {
+        //this.flagReady = false
+        //this.flagHelp = false
+        $('.status-bar__image-containter').css('background-image', "unset");
+        $('.status-bar__item').toArray().map(function (el) {
+          $(el).removeClass('status-active');
+        });
+      }
+    }, {
+      key: "readyHandler",
+      value: function readyHandler() {
+        this.showHelp(false);
+        this.showReady(this.flagReady = !this.flagReady);
+        $vnjs.exec(this.PLUGIN_DATA.onReady);
+      }
+    }, {
+      key: "helpHandler",
+      value: function helpHandler() {
+        this.showReady(false);
+        this.showHelp(this.flagHelp = !this.flagHelp);
+        $vnjs.exec(this.PLUGIN_DATA.onHelp);
+      }
+    }, {
+      key: "showReady",
+      value: function showReady(flag) {
+        this.flagReady = flag;
+
+        if (this.flagReady) {
+          $(this).addClass('status-active'); // добавляем изображение
+
+          $('.status-bar__image-containter').css('background-image', "url(".concat(readyImg, ")"));
+        } else {
+          this.clearStatus();
+        }
+      }
+    }, {
+      key: "showHelp",
+      value: function showHelp(flag) {
+        this.flagHelp = flag;
+
+        if (this.flagHelp) {
+          // красим в красный
+          $(this).addClass('status-active'); // добавляем изображение
+
+          $('.status-bar__image-containter').css('background-image', "url(".concat(helpImg, ")"));
+        } else {
+          this.clearStatus();
+        }
+      }
+    }]);
+
+    return StatusBar;
+  }();
 
   function statusBar () {
     var _this = this;
 
     var $tpl = $(tpl$4);
-    var ready = false;
-    var help = false;
     this.$store.$screen.append($tpl);
+    var statusBar = new StatusBar($tpl);
     /**
      * @ event
      */
 
-    var PLUGIN_DATA = null;
     this.on('status-bar', function (param) {
       if (param) {
-        PLUGIN_DATA = param;
-        $tpl.css('display', 'flex');
+        statusBar.PLUGIN_DATA = param;
+        statusBar.show();
       } else {
-        $tpl.hide();
+        statusBar.hide();
       }
     });
+    /**
+     * Player
+     */
 
-    function clearStatus() {
-      $('.status-bar__image-containter').css('background-image', "unset");
-      $('.status-bar__item').toArray().map(function (el) {
-        $(el).removeClass('status-active');
-      });
-    }
-
-    var readyStatus = false;
-    $('.status-bar__status--ready').on('click', function () {
-      clearStatus();
-
-      if (readyStatus) {
-        readyStatus = false;
-      } else {
-        helpStatus = false;
-        readyStatus = true; // красим в зеленый
-
-        $(this).addClass('status-active'); // добавляем изображение
-
-        $('.status-bar__image-containter').css('background-image', "url(".concat(readyImg, ")"));
-        /**
-         * При клике на кнопку [ готов ] определяем стоит ли нам выполнить плагин [next] или нет
-         */
-
-        if (ready) {
-          $vnjs.exec({
-            next: true
-          });
-          setTimeout(function () {
-            clearStatus();
-            readyStatus = false;
-          }, 1000);
-        }
-
-        ready = false;
-        $vnjs.exec(PLUGIN_DATA.onReady);
-      }
-    });
-    var helpStatus = false;
-    $('.status-bar__status--help').on('click', function () {
-      clearStatus();
-
-      if (helpStatus) {
-        helpStatus = false;
-      } else {
-        readyStatus = false;
-        helpStatus = true; // красим в красный
-
-        $(this).addClass('status-active'); // добавляем изображение
-
-        $('.status-bar__image-containter').css('background-image', "url(".concat(helpImg, ")"));
-        /**
-         * При клике на кнопку [ помощь ] определяем стоит ли нам выполнить плагин [next] или нет
-         */
-
-        if (help) {
-          $vnjs.exec({
-            next: true
-          });
-          setTimeout(function () {
-            clearStatus();
-            helpStatus = false;
-          }, 1000);
-        }
-
-        help = false;
-        $vnjs.exec(PLUGIN_DATA.onHelp);
-      }
-    });
     this.on('player-load', function (name) {
       $('#status-bar__player-logo').attr('src', playerImg);
       $('.status-bar__player-name').html(_this.current.data.player.name);
     });
     /**
+     * help | ready
+     */
+
+    $('.status-bar__status--ready').on('click', function () {
+      return statusBar.readyHandler();
+    });
+    $('.status-bar__status--help').on('click', function () {
+      return statusBar.helpHandler();
+    });
+    /**
      * Следим за статусом ready и help
      */
 
-    this.on('ready', function (e) {
-      return ready = e;
+    this.on('status-bar-help', function (param) {
+      return statusBar.showHelp(param);
     });
-    this.on('help', function (e) {
-      return help = e;
+    this.on('status-bar-ready', function (param) {
+      return statusBar.showReady(param);
     });
   }
 
