@@ -19,12 +19,12 @@ let _falseAnswer = 0;
   _falseAnswer = 0;
   $vnjs.current.data.trueAnswer = 0
   $vnjs.current.data.falseAnswer = 0
-  $('.vnjson__test').css('background-color', 'unset')
+  $('.vnjson__test').css('background-color', 'wheat')
   $('.vnjson__variants-item').css('background-color','unset')
-  $('.vnjson__test-next-btn').css('background-color', 'unset')
+  $('.vnjson__test-next-btn').css('background-color', 'black')
   $('.vnjson__variants-item_success').css('background-color', 'unset')
   $('.vnjson__variants-item_fail').css('background-color', 'unset')
-  $('.vnjson__test-result').css('background-color', 'unset')
+  $('.vnjson__test-result').css('background-color', 'wheat')
 }
 
 function applyStyles (){
@@ -42,31 +42,30 @@ export default function (){
 
   this.$store.$screen.append($tpl)
 
-  this.on('test', data=>{
-
+  this.on('test', data => {
       if(data){
-            $tpl.show();
-            TEST = data;
+            $tpl.show()
+            TEST = data
             reset()
-
-
-            renderQuetion.call(this);
+            renderQuetion.call(this)
       }
       else{
-         $tpl.hide();
+         $tpl.hide()
       }
-
-
   })
-
 }
 
 let _quetionItem = null;
 function renderQuetion (){
-  $('.vnjson__test-name').html(TEST.name);
-  const $imageContaner = $('.vnjson__test-quetion-img')
   _quetionItem = TEST.quetions[qIndex];
 
+
+  $('.vnjson__test-name').html(TEST.name);
+  const $imageContaner = $('.vnjson__test-quetion-img')
+  // AUDIO
+  if(_quetionItem?.audio){
+      $vnjs.emit('audio', _quetionItem.audio)
+  }
   $('.vnjson__test-variants').html('');
 
   if(_quetionItem.image){
@@ -97,11 +96,8 @@ $tpl.find('.vnjson__test-variants').on('click', '.vnjson__variants-item', functi
   if(click){
       if(index===_quetionItem.correct-1){
             if(TEST['self-control']){
-
                   $(this).addClass('vnjson__variants-item_success')
-
             }
-            else{}
             ++_trueAnswer;
             answers.push({answer: true, quetion: _quetionItem})
 
@@ -119,7 +115,6 @@ $tpl.find('.vnjson__test-variants').on('click', '.vnjson__variants-item', functi
                     applyStyles()
 
             }
-            else{}
             ++_falseAnswer;
             answers.push({answer: false, quetion: _quetionItem})
       }
@@ -133,6 +128,7 @@ $tpl.find('.vnjson__test-variants').on('click', '.vnjson__variants-item', functi
 
 
 function nextStep(){
+
   const timer = typeof TEST['self-control']==='number'?TEST['self-control']:1000
   setTimeout(()=>{
         click = true;

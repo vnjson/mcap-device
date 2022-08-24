@@ -5,17 +5,8 @@
   next: true
 
 
-- $: test
-  status-bar: 
-    onReady:
-      $: READY
-      audio: sysFlipPages
-      #next: true
-    onHelp:
-      $: HELP
+- jump: testdata.$init
 
-- status-bar-help: false
-- status-bar-ready: false
 ################
 - $: start TIMEOUT
   set-data:

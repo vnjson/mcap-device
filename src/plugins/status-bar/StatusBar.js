@@ -16,11 +16,9 @@ class StatusBar {
         this.$view.hide()
   }
   clearStatus (){
-        //this.flagReady = false
-        //this.flagHelp = false
         $('.status-bar__image-containter').css('background-image', `unset`)
         $('.status-bar__item').toArray().map(el => { 
-        $(el).removeClass('status-active');
+            $(el).removeClass('status-active');
         })
   }
   readyHandler (){

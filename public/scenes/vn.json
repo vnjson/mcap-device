@@ -91,22 +91,7 @@
         "next": true
       },
       {
-        "$": "test",
-        "status-bar": {
-          "onReady": {
-            "$": "READY",
-            "audio": "sysFlipPages"
-          },
-          "onHelp": {
-            "$": "HELP"
-          }
-        }
-      },
-      {
-        "status-bar-help": false
-      },
-      {
-        "status-bar-ready": false
+        "jump": "testdata.$init"
       },
       {
         "$": "start TIMEOUT",
@@ -315,7 +300,63 @@
       }
     ],
     "$init": [
-      "CHAPTER 2"
+      "CHAPTER 2",
+      {
+        "test": {
+          "name": "Название теста",
+          "self-control": true,
+          "quetions": [
+            {
+              "quetion": "Туристы, приезжающие на Майорку, обязаны заплатить налог",
+              "correct": 3,
+              "audio": "sysFlipPages",
+              "variants": [
+                "На песок",
+                "На пальмы",
+                "На солнце"
+              ]
+            },
+            {
+              "quetion": "Что в Российской империи было вещевым эквивалентом денег?",
+              "image": "c71c347ae",
+              "correct": 1,
+              "variants": [
+                "Шкуры пушных зверей",
+                "Крупный рогатый скот",
+                "Табак",
+                "Женские серьги"
+              ]
+            },
+            {
+              "quetion": "Кто из знаменитых художников за жизнь продал всего одну картину?",
+              "correct": 1,
+              "audio": "sysFlipPages",
+              "variants": [
+                "Винсент Ван Гог",
+                "Пьер Огюст Ренуар"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "$": "test",
+        "status-bar": {
+          "onReady": {
+            "$": "READY",
+            "audio": "sysFlipPages"
+          },
+          "onHelp": {
+            "$": "HELP"
+          }
+        }
+      },
+      {
+        "status-bar-help": false
+      },
+      {
+        "status-bar-ready": false
+      }
     ],
     "content": [
       {

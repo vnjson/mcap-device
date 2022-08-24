@@ -4465,12 +4465,12 @@
     _falseAnswer = 0;
     $vnjs.current.data.trueAnswer = 0;
     $vnjs.current.data.falseAnswer = 0;
-    $('.vnjson__test').css('background-color', 'unset');
+    $('.vnjson__test').css('background-color', 'wheat');
     $('.vnjson__variants-item').css('background-color', 'unset');
-    $('.vnjson__test-next-btn').css('background-color', 'unset');
+    $('.vnjson__test-next-btn').css('background-color', 'black');
     $('.vnjson__variants-item_success').css('background-color', 'unset');
     $('.vnjson__variants-item_fail').css('background-color', 'unset');
-    $('.vnjson__test-result').css('background-color', 'unset');
+    $('.vnjson__test-result').css('background-color', 'wheat');
   }
 
   function applyStyles() {
@@ -4500,9 +4500,16 @@
   var _quetionItem = null;
 
   function renderQuetion() {
-    $('.vnjson__test-name').html(TEST.name);
-    var $imageContaner = $('.vnjson__test-quetion-img');
+    var _quetionItem2;
+
     _quetionItem = TEST.quetions[qIndex];
+    $('.vnjson__test-name').html(TEST.name);
+    var $imageContaner = $('.vnjson__test-quetion-img'); // AUDIO
+
+    if ((_quetionItem2 = _quetionItem) !== null && _quetionItem2 !== void 0 && _quetionItem2.audio) {
+      $vnjs.emit('audio', _quetionItem.audio);
+    }
+
     $('.vnjson__test-variants').html('');
 
     if (_quetionItem.image) {
@@ -5053,8 +5060,6 @@
     }, {
       key: "clearStatus",
       value: function clearStatus() {
-        //this.flagReady = false
-        //this.flagHelp = false
         $('.status-bar__image-containter').css('background-image', "unset");
         $('.status-bar__item').toArray().map(function (el) {
           $(el).removeClass('status-active');

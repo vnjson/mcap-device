@@ -11,8 +11,10 @@
     onReady: # Принимает объект с перечнем плагинов для вызова .exec(ctx)
       $: READY
       dialog-box: true
+      
     onHelp:
       $: HELP
+      status-bar-help: false
       # next: true
 - status-bar-help: false # Скрыть касное изображение
 - status-bar-ready: false # Скрыть зелёное изображение
