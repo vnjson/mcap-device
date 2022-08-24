@@ -33,6 +33,7 @@
        - image:
             name: Screenshot_45  # this.label.table[2].row[2].image.name = img
             width: 250
+            border: cyan
        - text:
             content: test
             width: 150
