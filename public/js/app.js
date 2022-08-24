@@ -5034,8 +5034,14 @@
     var ready = false;
     var help = false;
     this.$store.$screen.append($tpl);
+    /**
+     * @ event
+     */
+
+    var PLUGIN_DATA = null;
     this.on('status-bar', function (param) {
       if (param) {
+        PLUGIN_DATA = param;
         $tpl.css('display', 'flex');
       } else {
         $tpl.hide();
@@ -5077,6 +5083,7 @@
         }
 
         ready = false;
+        $vnjs.exec(PLUGIN_DATA.onReady);
       }
     });
     var helpStatus = false;
@@ -5107,6 +5114,7 @@
         }
 
         help = false;
+        $vnjs.exec(PLUGIN_DATA.onHelp);
       }
     });
     this.on('player-load', function (name) {
@@ -5142,7 +5150,7 @@
       });
     } catch (err) {
       this.current.data.player = {
-        name: 'mcap_uknown_' + new Date().toLocaleDateString(),
+        name: 'mcap_uknown',
         uuid: new Date().toLocaleString()
       };
       this.emit('player-load', this.current.data.player.name);

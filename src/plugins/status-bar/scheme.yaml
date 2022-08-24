@@ -6,8 +6,16 @@
 - status-bar: true
   ready: true # при клике на кнопку [Готов] выполнить плагин [next]
   help: true # при клике на кнопку [Помощь] выполнить плагин [next]
-  $: test
-- $: test2
+
+
 - $: test3
   help: false
   ready: false
+
+
+- status-bar: 
+    onReady: # Принимает объект с перечнем плагинов для вызова .exec(ctx)
+      $: READY
+      dialog-box: true
+    onHelp:
+      $: HELP

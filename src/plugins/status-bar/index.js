@@ -10,14 +10,20 @@ export default function (){
   let ready = false;
   let help = false;
   this.$store.$screen.append($tpl);
-  this.on('status-bar', param=>{
+  /**
+   * @ event
+   */
+  let PLUGIN_DATA = null
+  this.on('status-bar', param => {
     if(param){
-      $tpl.css('display', 'flex');
+      PLUGIN_DATA = param
+      $tpl.css('display', 'flex')
     }
     else{
-      $tpl.hide();
+      $tpl.hide()
     }
   })
+
   function clearStatus (){
     $('.status-bar__image-containter').css('background-image', `unset`)
     $('.status-bar__item').toArray().map(el=>{ 
@@ -48,6 +54,7 @@ export default function (){
           }, 1000)
         }
         ready = false
+        $vnjs.exec(PLUGIN_DATA.onReady)
       }
   })
   var helpStatus = false
@@ -74,19 +81,20 @@ export default function (){
             }, 1000)
           }
           help = false
+          $vnjs.exec(PLUGIN_DATA.onHelp)
       }
   })
 
-this.on('player-load', name=>{
-    $('#status-bar__player-logo').attr('src', playerImg);
-    $('.status-bar__player-name').html(this.current.data.player.name);
-})
-/**
- * Следим за статусом ready и help
- */
-this.on('ready', e=>ready=e)
+  this.on('player-load', name=>{
+      $('#status-bar__player-logo').attr('src', playerImg);
+      $('.status-bar__player-name').html(this.current.data.player.name);
+  })
+  /**
+   * Следим за статусом ready и help
+   */
+  this.on('ready', e=>ready=e)
 
-this.on('help', e=>help=e);
+  this.on('help', e=>help=e);
 
 }
         
