@@ -56,7 +56,7 @@ export default function (){
             }
             // если есть аватар, но руки не отображаются
             if(character.avatar&&!isShow){
-               replyWrapper.css('width', 'auto');
+               replyWrapper.css('width', '84.5%');
             }
 
   })

@@ -119,8 +119,10 @@ class DialogBox {
     if(this.character.avatar){
         this.characterAvatarTag.style.backgroundImage = `url('${this.$vnjs.getAssetByName(this.character.avatar).url}')`;
         this.characterAvatarTag.classList.add('dialog-box__avatar--show');
+        this.replyWrapperTag.style.width = '84.5%'
     }
     else{
+        this.replyWrapperTag.style.width = '99%'
         this.characterAvatarTag.classList.remove('dialog-box__avatar--show');
     }
 
@@ -271,7 +273,6 @@ class DialogBox {
       this.dialogBoxTag.style['pointer-events'] = 'all';
 
     }
-    this.$vnjs.emit('dialog-box:disabled', !flag)
   }
   reset (){
       clearInterval(this.interval);

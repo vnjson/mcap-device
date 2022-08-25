@@ -92,8 +92,8 @@
     ],
     "$init": [
       {
-        "dialog-box": "fullscreen",
-        "hands": true,
+        "dialog-box": true,
+        "hands": false,
         "status-bar": {
           "onCheck": {
             "$": "CHECK"

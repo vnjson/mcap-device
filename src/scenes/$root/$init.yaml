@@ -1,5 +1,5 @@
-- dialog-box: fullscreen
-  hands: true
+- dialog-box: true #fullscreen
+  hands: false
   status-bar: 
     onCheck:
       $: CHECK
