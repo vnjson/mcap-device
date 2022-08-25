@@ -5,8 +5,10 @@
 - dialog-box: false # скрыть компонент диалогового окна
 - dialog-box: clear # очишает диалоговое окно от реплики и имени персонажа
 - dialog-box: disabled # отключаем возмнозность клика, для включения необходимо передать параметр true
-- dialog-box: fullscreen
-
+- dialog-box: fullscreen # mode-fullscreen Диалоговое окно на весь экран 
+- dialog-box: classic # mode-classic Обычное диалоговое окно.
+- dialog-box: transparent # Сделать прозрачным
+- dialog-box: reset # disabled = false | transparent = false | mode = classic
 # Плагин [ character ]
 # 
 - $: # Зарезервированный движком индификатор. Не рекомендуется удалять из файла characters.yaml 

@@ -3,7 +3,7 @@ class DialogBox {
   #reply = ''
   replyStringTag = null
   prevReplyStringTag = null
-  
+  MODE = 'classic'
   constructor (param){
       this.$vnjs = param.$vnjs;
       /*Tags*/
@@ -31,21 +31,33 @@ class DialogBox {
 
   }
   show (){
+    /**
+     * Прозрачость убирает изображение, что бы его восстановить
+     * необходимо его задать заново
+     */
+    this.setImage()
     this.dialogBoxTag.style.display = 'block'
   }
   hide (){
     this.dialogBoxTag.style.display = 'none'
   }
   setMode (MODE){
-    if(MODE==='mode-classic'){
+    this.MODE = MODE
+    if(this.MODE==='mode-classic'){
         this.dialogBoxTag.style.height = 200 + 'px'
     }
-    if(MODE==='mode-fullscreen'){
+    if(this.MODE==='mode-fullscreen'){
         this.dialogBoxTag.style.height = this.$vnjs.config.height + 'px'
     }
-    const url = this.$vnjs.getAssetByName(this.$vnjs.package['dialog-box'][MODE]).url
+    this.setImage()
+    this.$vnjs.emit('dialog-box.mode', this.MODE)
+  }
+  setImage (){
+    const url = this.$vnjs.getAssetByName(this.$vnjs.package['dialog-box'][this.MODE]).url
     this.dialogBoxTag.style['background-image'] = `url(${url})`
-    this.$vnjs.emit('dialog-box.mode', MODE)
+  }
+  transparent (){
+    this.dialogBoxTag.style['background-image'] = `unset`
   }
   update (){
     this.print(this.character, this.#reply)

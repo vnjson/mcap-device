@@ -2520,6 +2520,8 @@
 
       _defineProperty(this, "prevReplyStringTag", null);
 
+      _defineProperty(this, "MODE", 'classic');
+
       this.$vnjs = param.$vnjs;
       /*Tags*/
 
@@ -2550,6 +2552,11 @@
     _createClass(DialogBox, [{
       key: "show",
       value: function show() {
+        /**
+         * Прозрачость убирает изображение, что бы его восстановить
+         * необходимо его задать заново
+         */
+        this.setImage();
         this.dialogBoxTag.style.display = 'block';
       }
     }, {
@@ -2560,17 +2567,29 @@
     }, {
       key: "setMode",
       value: function setMode(MODE) {
-        if (MODE === 'mode-classic') {
+        this.MODE = MODE;
+
+        if (this.MODE === 'mode-classic') {
           this.dialogBoxTag.style.height = 200 + 'px';
         }
 
-        if (MODE === 'mode-fullscreen') {
+        if (this.MODE === 'mode-fullscreen') {
           this.dialogBoxTag.style.height = this.$vnjs.config.height + 'px';
         }
 
-        var url = this.$vnjs.getAssetByName(this.$vnjs["package"]['dialog-box'][MODE]).url;
+        this.setImage();
+        this.$vnjs.emit('dialog-box.mode', this.MODE);
+      }
+    }, {
+      key: "setImage",
+      value: function setImage() {
+        var url = this.$vnjs.getAssetByName(this.$vnjs["package"]['dialog-box'][this.MODE]).url;
         this.dialogBoxTag.style['background-image'] = "url(".concat(url, ")");
-        this.$vnjs.emit('dialog-box.mode', MODE);
+      }
+    }, {
+      key: "transparent",
+      value: function transparent() {
+        this.dialogBoxTag.style['background-image'] = "unset";
       }
     }, {
       key: "update",
@@ -2924,29 +2943,53 @@
      */
 
     this.on('dialog-box', function (param) {
-      if (_typeof(param) === 'object') {
-        for (var key in param) {
-          dBox[key] = param[key];
-        }
+      var key = null;
 
-        dBox.show();
-      } else if (param === true) {
-        dBox.disabled(false);
-        dBox.show();
-      } else if (param === 'clear') {
-        dBox.disabled(false);
-        dBox.clear();
-      } else if (param === 'disabled') {
-        dBox.disabled(true);
-      } else if (param === 'fullscreen') {
-        dBox.setMode('mode-fullscreen');
-        dBox.show();
-      } else if (param === 'reset' || param === 'classic') {
-        dBox.setMode('mode-classic');
-        dBox.show();
-      } else {
-        dBox.hide();
+      if (_typeof(param) === 'object') {
+        key = 'object';
       }
+
+      key = String(param);
+      var controller = {
+        'object': function object() {
+          for (var _key in param) {
+            dBox[_key] = param[_key];
+          }
+
+          dBox.show();
+        },
+        'true': function _true() {
+          dBox.disabled(false);
+          dBox.show();
+        },
+        'false': function _false() {
+          dBox.hide();
+        },
+        'clear': function clear() {
+          dBox.disabled(false);
+          dBox.clear();
+        },
+        'disabled': function disabled() {
+          dBox.disabled(true);
+        },
+        'reset': function reset() {
+          dBox.setMode('mode-classic');
+          dBox.disabled(false);
+          dBox.show();
+        },
+        'transparent': function transparent() {
+          dBox.transparent();
+        },
+        'classic': function classic() {
+          dBox.setMode('mode-classic');
+          dBox.show();
+        },
+        'fullscreen': function fullscreen() {
+          dBox.setMode('mode-fullscreen');
+          dBox.show();
+        }
+      };
+      controller[key]();
     });
   }
 

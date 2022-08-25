@@ -88,35 +88,53 @@ export default function (){
   /**
    * SHOW HIDE DIALOG-BOX
    */
-  this.on('dialog-box', param=>{
+  this.on('dialog-box', param => {
+    let key = null
     if(typeof param==='object'){
-        for(let key in param){
-          dBox[key] = param[key]
-        }
-        dBox.show()
+        key = 'object'
     }
-    else if(param===true){
-      dBox.disabled(false)
-      dBox.show()
+    key = String(param)
+    const controller = {
+        'object': () => {
+            for(let key in param){
+              dBox[key] = param[key]
+            }
+            dBox.show()
+        },
+        'true': () => {
+            dBox.disabled(false)
+            dBox.show()
+        },
+        'false': () => {
+            dBox.hide()
+        },
+        'clear': () => {
+            dBox.disabled(false)
+            dBox.clear()
+        },
+        'disabled': () => {
+            dBox.disabled(true)
+        },
+        'reset': () => {
+            dBox.setMode('mode-classic')
+            dBox.disabled(false)
+            dBox.show()
+        },
+        'transparent': () => {
+            dBox.transparent()
+        },
+        'classic': () => {
+            dBox.setMode('mode-classic')
+            dBox.show()
+        },
+        'fullscreen': () => {
+            dBox.setMode('mode-fullscreen')
+            dBox.show()
+        },
     }
-    else if(param==='clear'){
-      dBox.disabled(false)
-      dBox.clear()
-    }
-    else if(param==='disabled'){
-      dBox.disabled(true)
-    }
-    else if(param==='fullscreen'){
-      dBox.setMode('mode-fullscreen')
-      dBox.show()
-    }
-    else if(param==='reset'|| param==='classic'){
-      dBox.setMode('mode-classic')
-      dBox.show()
-    }
-    else{
-      dBox.hide()
-    }
+
+    controller[key]()
+
   })
   
  
