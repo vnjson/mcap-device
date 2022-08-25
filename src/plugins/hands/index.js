@@ -40,26 +40,28 @@ export default function (){
     }
   })
   const replyWrapper = $('.dialog-box__reply-wrapper');
-  this.on('character', (character, reply)=>{
+  const handler = (character, reply)=>{
     
-            // если аватар есть и руки отображены
-            if(character.avatar&&isShow){
-              replyWrapper.css('width', '75%');
-            }
-            // если нет ни аватара ни рук
-            if(!character.avatar&&!isShow){
-              replyWrapper.css('width', 'auto');
-            }
-            // Если аватара нет, но показывает руки
-            if(!character.avatar&&isShow){
-              replyWrapper.css('width', '90%');
-            }
-            // если есть аватар, но руки не отображаются
-            if(character.avatar&&!isShow){
-               replyWrapper.css('width', '84.5%');
-            }
+    // если аватар есть и руки отображены
+    if(character.avatar&&isShow){
+      replyWrapper.css('width', '75%');
+    }
+    // если нет ни аватара ни рук
+    if(!character.avatar&&!isShow){
+      replyWrapper.css('width', 'auto');
+    }
+    // Если аватара нет, но показывает руки
+    if(!character.avatar&&isShow){
+      replyWrapper.css('width', '90%');
+    }
+    // если есть аватар, но руки не отображаются
+    if(character.avatar&&!isShow){
+       replyWrapper.css('width', '84.5%');
+    }
 
-  })
+  } 
+  this.on('character', handler)
+  this.on('+', handler)
     /**
    * Когда screen: true, то dialog-box нужно скрыть
    */

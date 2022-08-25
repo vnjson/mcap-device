@@ -3037,7 +3037,8 @@
       }
     });
     var replyWrapper = $('.dialog-box__reply-wrapper');
-    this.on('character', function (character, reply) {
+
+    var handler = function handler(character, reply) {
       // если аватар есть и руки отображены
       if (character.avatar && isShow) {
         replyWrapper.css('width', '75%');
@@ -3057,7 +3058,10 @@
       if (character.avatar && !isShow) {
         replyWrapper.css('width', '84.5%');
       }
-    });
+    };
+
+    this.on('character', handler);
+    this.on('+', handler);
     /**
     * Когда screen: true, то dialog-box нужно скрыть
     */
