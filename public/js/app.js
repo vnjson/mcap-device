@@ -2573,11 +2573,13 @@
         if (this.MODE === 'mode-classic') {
           this.dialogBoxTag.style.height = 200 + 'px';
           this.replyContaiterTag.style['padding-top'] = 0 + 'px';
+          this.replyContaiterTag.style['padding-right'] = 0 + 'px';
         }
 
         if (this.MODE === 'mode-fullscreen') {
           this.dialogBoxTag.style.height = this.$vnjs.config.height + 'px';
           this.replyContaiterTag.style['padding-top'] = 30 + 'px';
+          this.replyContaiterTag.style['padding-right'] = 30 + 'px';
         }
 
         this.setImage();

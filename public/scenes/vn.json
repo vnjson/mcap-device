@@ -92,7 +92,7 @@
     ],
     "$init": [
       {
-        "dialog-box": true,
+        "dialog-box": "fullscreen",
         "hands": true,
         "status-bar": {
           "onCheck": {
@@ -108,9 +108,6 @@
         "audio": false,
         "data-clear": true,
         "next": true
-      },
-      {
-        "jump": "testdata.$init"
       },
       {
         "$": "Изначально интерпретатор пробегает по коду, видит наши функции, объекты и пр. и сохраняет их в памяти (Heap).",
