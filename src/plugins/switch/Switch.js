@@ -1,3 +1,5 @@
+import controller from './controller.js'
+
 class Switch {
     operators = [
         '===', 
@@ -6,8 +8,8 @@ class Switch {
         '>=', 
         '<=', 
         '!==', 
-        '\[\]', 
-        '\]\[',
+        '\\[\\]', 
+        '\\]\\[',
         'default'
     ]
     dataValue= null
@@ -24,96 +26,46 @@ class Switch {
          * Пробегаемся по всем условиям
          */
         for(let equal in this.PLUGIN_DATA){
-            this.equal = equal.replaceAll(' ', '')
+            this.equal = equal
             /**
              * Определяем какой оператор используется в пользовательских данных
              */
-            this.operators.forEach( op => {
+          
+            for(let i=0;i<this.operators.length; i++){
+                const op = this.operators[i]
                 if( new RegExp(op).test(this.equal) ){
-
                     this.OPERATOR = op
                 }
-            })
-            if(this.OPERATOR==='default'){
-
+            }
+            if(this.OPERATOR.includes('\\') ){
+                this.OPERATOR = this.OPERATOR.replaceAll('\\', '')
+            }
+           
+            const [ key, val ] = this.equal.split(this.OPERATOR)
+           
+            this.dataValue = this.__vnjs.state.data[key.trim()]
+            if( isNaN(+val) ){
+                this.value = val.trim()
             }
             else{
-                const [ key, val ] = this.equal.split(this.OPERATOR)
-                this.dataValue = this.__vnjs.state.data[key]
-                this.value = val
+                this.value = Number(val)
             }
-            this.distributor()
-       /*
-            const [ key, value ] = equal.replaceAll(' ', '').split('===');
             
-            // Если существует сохраненная переменная, то выполняем команду
-            if( String( this.state.data[key] ) === String(value) && key!=='default'){
-                defaultFlag = true;
-                this.exec(data[equal]);
-            }*/
-        }
-    }
-    distributor (){
-        console.log(this.dataValue, this.value)
-        switch (this.OPERATOR){
-            case '===':
-                if(this.dataValue==this.value){
-                    //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
-                }
-                break
-            case '>':
-                if(this.dataValue>this.value){
-                    console.log('>')
-                    //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
-                }
-                break
-            case '<':
-                if(this.dataValue<this.value){
-                    console.log('<')
-                    //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
-                }
-                break
-            case '!==':
-                if(this.dataValue!==this.value){
-                    console.log('!==')
-                    //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
-                }
-                break
-            case '<=':
-                if(this.dataValue==this.value){
-                    console.log('<=')
-                    //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
-                }
-                break   
-            case '>=':
-                if(this.dataValue==this.value){
-                    console.log('>=')
-                    //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
-                }
-                break   
-            case '[]':
-                if(this.dataValue.includes(this.value)){
-                    console.log('include')
-                    //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
-                }
-                break   
-            case '][':
-                if(!this.dataValue.includes(this.value)){
-                    console.log('exclude')
-                    //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
-                }
-                break  
-            case 'default':
-                alert('DEF')
-                //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
-                break
-            default:
-                this.__vnjs.emit('error', {
-                    ru: 'Некоректный оператор',
-                    en: 'Invalid operator'
+
+            const execData = this.PLUGIN_DATA[this.equal]
+            if(controller[this.OPERATOR]){
+                controller[this.OPERATOR](this.dataValue, this.value, execData)
+            }
+            else{
+                $vnjs.emit('error', {
+                    ru: `Некоректный оператор ${this.OPERATOR}`,
+                    en: `Invalid operator ${this.OPERATOR}`
                 })
+            }
+
         }
     }
+  
 }
 
 export default Switch

@@ -4260,11 +4260,54 @@
     });
   }
 
+  var controller = {
+    '===': function _(dataValue, value, execData) {
+      if (dataValue === value) {
+        $vnjs.exec(execData);
+      }
+    },
+    '>': function _(dataValue, value, execData) {
+      if (dataValue > value) {
+        $vnjs.exec(execData);
+      }
+    },
+    '<': function _(dataValue, value, execData) {
+      if (dataValue < value) {
+        $vnjs.exec(execData);
+      }
+    },
+    '!==': function _(dataValue, value, execData) {
+      if (dataValue !== value) {
+        $vnjs.exec(execData);
+      }
+    },
+    '<=': function _(dataValue, value, execData) {
+      if (dataValue < value) {
+        $vnjs.exec(execData);
+      }
+    },
+    '>=': function _(dataValue, value, execData) {
+      if (dataValue >= value) {
+        $vnjs.exec(execData);
+      }
+    },
+    '[]': function _(dataValue, value, execData) {
+      if (dataValue.includes(value)) {
+        $vnjs.exec(execData);
+      }
+    },
+    '][': function _(dataValue, value, execData) {
+      if (!dataValue.includes(value)) {
+        $vnjs.exec(execData);
+      }
+    }
+  };
+
   var Switch = /*#__PURE__*/function () {
     function Switch(vnjs) {
       _classCallCheck(this, Switch);
 
-      _defineProperty(this, "operators", ['===', '<', '>', '>=', '<=', '!==', '\[\]', '\]\[', 'default']);
+      _defineProperty(this, "operators", ['===', '<', '>', '>=', '<=', '!==', '\\[\\]', '\\]\\[', 'default']);
 
       _defineProperty(this, "dataValue", null);
 
@@ -4282,117 +4325,52 @@
     _createClass(Switch, [{
       key: "parse",
       value: function parse(data) {
-        var _this = this;
-
         this.PLUGIN_DATA = data;
         /**
          * Пробегаемся по всем условиям
          */
 
         for (var equal in this.PLUGIN_DATA) {
-          this.equal = equal.replaceAll(' ', '');
+          this.equal = equal;
           /**
            * Определяем какой оператор используется в пользовательских данных
            */
 
-          this.operators.forEach(function (op) {
-            if (new RegExp(op).test(_this.equal)) {
-              _this.OPERATOR = op;
+          for (var i = 0; i < this.operators.length; i++) {
+            var op = this.operators[i];
+
+            if (new RegExp(op).test(this.equal)) {
+              this.OPERATOR = op;
             }
-          });
-
-          if (this.OPERATOR === 'default') ; else {
-            var _this$equal$split = this.equal.split(this.OPERATOR),
-                _this$equal$split2 = _slicedToArray(_this$equal$split, 2),
-                key = _this$equal$split2[0],
-                val = _this$equal$split2[1];
-
-            this.dataValue = this.__vnjs.state.data[key];
-            this.value = val;
           }
 
-          this.distributor();
-          /*
-               const [ key, value ] = equal.replaceAll(' ', '').split('===');
-               
-               // Если существует сохраненная переменная, то выполняем команду
-               if( String( this.state.data[key] ) === String(value) && key!=='default'){
-                   defaultFlag = true;
-                   this.exec(data[equal]);
-               }*/
-        }
-      }
-    }, {
-      key: "distributor",
-      value: function distributor() {
-        console.log(this.dataValue, this.value);
+          if (this.OPERATOR.includes('\\')) {
+            this.OPERATOR = this.OPERATOR.replaceAll('\\', '');
+          }
 
-        switch (this.OPERATOR) {
-          case '===':
-            if (this.dataValue == this.value) ;
+          var _this$equal$split = this.equal.split(this.OPERATOR),
+              _this$equal$split2 = _slicedToArray(_this$equal$split, 2),
+              key = _this$equal$split2[0],
+              val = _this$equal$split2[1];
 
-            break;
+          this.dataValue = this.__vnjs.state.data[key.trim()];
 
-          case '>':
-            if (this.dataValue > this.value) {
-              console.log('>'); //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
-            }
+          if (isNaN(+val)) {
+            this.value = val.trim();
+          } else {
+            this.value = Number(val);
+          }
 
-            break;
+          var execData = this.PLUGIN_DATA[this.equal];
 
-          case '<':
-            if (this.dataValue < this.value) {
-              console.log('<'); //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
-            }
-
-            break;
-
-          case '!==':
-            if (this.dataValue !== this.value) {
-              console.log('!=='); //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
-            }
-
-            break;
-
-          case '<=':
-            if (this.dataValue == this.value) {
-              console.log('<='); //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
-            }
-
-            break;
-
-          case '>=':
-            if (this.dataValue == this.value) {
-              console.log('>='); //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
-            }
-
-            break;
-
-          case '[]':
-            if (this.dataValue.includes(this.value)) {
-              console.log('include'); //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
-            }
-
-            break;
-
-          case '][':
-            if (!this.dataValue.includes(this.value)) {
-              console.log('exclude'); //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
-            }
-
-            break;
-
-          case 'default':
-            alert('DEF'); //this.__vnjs.exec(this.PLUGIN_DATA[this.equal])
-
-            break;
-
-          default:
-            this.__vnjs.emit('error', {
-              ru: 'Некоректный оператор',
-              en: 'Invalid operator'
+          if (controller[this.OPERATOR]) {
+            controller[this.OPERATOR](this.dataValue, this.value, execData);
+          } else {
+            $vnjs.emit('error', {
+              ru: "\u041D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u043E\u043F\u0435\u0440\u0430\u0442\u043E\u0440 ".concat(this.OPERATOR),
+              en: "Invalid operator ".concat(this.OPERATOR)
             });
-
+          }
         }
       }
     }]);
@@ -4405,17 +4383,7 @@
 
     this.on('switch', function (data) {
       return _switch.parse(data);
-    }); //let defaultFlag = false;
-    // если ни одна переменная в yaml коде ранее не задавалась, то
-    // выполняем команду поумолчанию, если таковая присутсвует
-
-    /*
-    
-     if(!defaultFlag&&data?.default){
-         defaultFlag = false;
-         this.exec(data.default);
-     }
-    */
+    });
   }
 
   var css$j = "\n\n.vnjson__qa{\n  display: none;\n  z-index: 8888;\n  width: 60%;\n  flex-direction: column;\n}\n\n.vnjson__qa--item{\n\n  color: white;\n  cursor: pointer;\n  color: wheat;\n  transition: 0.1s;\n  margin-bottom: 10px;\n  border-style: solid;\n  border-width: 3px;\n  border-color: black;\n  color: white;\n  background: grey;\n}\n.vnjson__qa--item:last-child{\n  margin-bottom: 0;\n}\n.vnjson__qa--item:hover {\n  background: rgba(100, 200, 100, 0.7);\n}\n\n.vnjson__qa--quetion{\n  background: rgba(0,0,0,0.7);\n  pointer-events: none;\n  text-overflow: unset;\n  height: auto;\n  white-space: unset;\n}\n.vnjson__qa--quetion span{\n  text-overflow: unset;\n  height: auto;\n  overflow: auto;\n  white-space: unset;\n  line-height: 28px;\n\n}\n.vnjson__qa--item span{\n  padding: 7px 20px;\n  display: block;\n}\n.vnjson__qa--item .vnjson__qa--name{\n  padding: unset;\n  display: none;\n}\n/*\n.vnjson__qa--name:after{\n  content: \" :\"\n}\n*/\n.vnjson__qa--reply{\n  padding: unset;\n  padding-left: 20px;\n}";
