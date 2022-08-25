@@ -1,19 +1,22 @@
 import "./style.css"
 import tpl from "./tpl.html"
-import dialogBoxImage from './assets/dialog-box.png'
 import DialogBox from './DialogBox.js'
+import errorSnippet from './error-snippet.js'
 
 
+/**
+ * INIT
+ */
 export default function (){
   const $tpl = $(tpl);
-  $tpl.css('background-image', `url(${dialogBoxImage})`)
+ 
   this.$store.$screen.append($tpl);
   // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
   $tpl.find('.dialog-box__reply-wrapper').on('mousedown', e => {
-      this.emit('dialog-box:click')
+      this.emit('dialog-box.click')
       this.next() 
   })
-
+  
   /**
    * DialogBox
    */
@@ -39,11 +42,21 @@ export default function (){
    * DELAY 
    */  
   this.on('postload', () => {
-    const conf = this.TREE.$root.package?.['dialog-box'];
+    const conf = this.package?.['dialog-box'];
     if(conf){
         dBox.delay = conf.delay||dBox.delay;
         dBox.alpha = conf.alpha||dBox.alpha;
         dBox.endPoint = conf.endPoint||dBox.endPoint;
+        if(conf['mode-classic']){
+            dBox.setMode('mode-classic')
+        }
+        else{
+            this.emit('vnjson.error', errorSnippet)
+        }
+       
+    }
+    else{
+      this.emit('vnjson.error', errorSnippet)
     }
   })
   /**
@@ -80,38 +93,33 @@ export default function (){
         for(let key in param){
           dBox[key] = param[key]
         }
-        $tpl.show()
-        this.emit('dialog-box:show')
+        dBox.show()
     }
     else if(param===true){
       dBox.disabled(false)
-      $tpl.show()
-      this.emit('dialog-box:show')
+      dBox.show()
     }
     else if(param==='clear'){
       dBox.disabled(false)
       dBox.clear()
-      this.emit('dialog-box:clear')
     }
     else if(param==='disabled'){
       dBox.disabled(true)
-    
+    }
+    else if(param==='fullscreen'){
+      dBox.setMode('mode-fullscreen')
+      dBox.show()
+    }
+    else if(param==='reset'|| param==='classic'){
+      dBox.setMode('mode-classic')
+      dBox.show()
     }
     else{
-      $tpl.hide()
-      this.emit('dialog-box:hide')
+      dBox.hide()
     }
   })
   
-  /**
-   * Когда screen: true, то dialog-box нужно скрыть
-   */
-  this.on('screen:click', flag => {
-      
-      if(flag===true){
-        this.exec({ 'dialog-box': false })
-      }
-  })
+ 
     
  
 

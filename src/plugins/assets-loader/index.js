@@ -45,10 +45,10 @@ var load = () => {
   }
   else if(/\.png|\.jpg|\.jpeg|\.webp|\.gif/i.test(asset.url)){
       if(this.TREE.$root?.package){
-          if(this.TREE.$root.package?.preload ){
+          if(this.package?.preload ){
             
             if(this.state.assets.length-1>=++i){
-              if(this.TREE.$root.package.preload){
+              if(this.package.preload){
                     let img = new Image();
                     img.src =  asset.url; 
 

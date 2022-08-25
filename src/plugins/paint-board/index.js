@@ -3,7 +3,7 @@ import './style.css'
 export default function (){
 
 this.on('vnjson.mount', ()=>{
-    if(this.TREE.$root.package['paint-board']){
+    if(this.package['paint-board']){
       init()
     }
 

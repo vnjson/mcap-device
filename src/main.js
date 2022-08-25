@@ -19,7 +19,11 @@ fetch(`scenes/vn.json?v=${new Date().getTime()}`)
   
 
 $vnjs.on('postload', function (){
-  $vnjs.config = { debug: this.TREE.$root.package?.debug }
+  $vnjs.config = { 
+      debug: this.TREE.$root.package?.debug,
+      width: 1024,
+      height: 768
+  }
   // ?jump=scene.label
   // ?jump=scene  //default $init
   const label = new URL( location.href ).searchParams.get("jump")

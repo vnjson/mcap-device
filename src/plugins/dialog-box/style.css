@@ -1,11 +1,10 @@
 .dialog-box {
-  z-index: 7000;
+  z-index: 0;
   position: absolute;
   bottom: 0;
   width: 100%;
   line-height: 32px;
   height: 200px;
-
   cursor: pointer;
   display: block;
   padding-top: 10px;

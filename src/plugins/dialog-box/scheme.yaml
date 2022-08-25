@@ -5,6 +5,7 @@
 - dialog-box: false # скрыть компонент диалогового окна
 - dialog-box: clear # очишает диалоговое окно от реплики и имени персонажа
 - dialog-box: disabled # отключаем возмнозность клика, для включения необходимо передать параметр true
+- dialog-box: fullscreen
 
 # Плагин [ character ]
 # 
@@ -100,7 +101,7 @@ dialog-box:
 #        console.log(ch)
 #    })
 #    this.on('dialog-box:endOutputReply')
-#    this.on('dialog-box:hide')
-#    this.on('dialog-box:clear')
-#    this.on('dialog-box:click' )
+#    this.on('dialog-box.false')
+#    this.on('dialog-box.clear')
+#    this.on('dialog-box.click' )
 #    this.on('dialog-box:avatar-click')

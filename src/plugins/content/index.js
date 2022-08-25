@@ -64,7 +64,7 @@ export default function (){
     content.selectItem(label)
   })
 
-  this.on('dialog-box:click', () => {
+  this.on('dialog-box.click', () => {
     content.hide()
   })
 }

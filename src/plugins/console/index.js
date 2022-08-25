@@ -11,8 +11,8 @@ export default function (){
  
   this.on('postload', ()=>{
 
-      if(this.TREE.$root.package['console-port']){
-        port = this.TREE.$root.package['console-port']
+      if(this.package['console-port']){
+        port = this.package['console-port']
       }
       const src = `http://localhost:${port}`
       $tpl.attr('src', src)

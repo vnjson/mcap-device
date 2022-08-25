@@ -2,6 +2,14 @@
   "$root": {
     "assets": [
       {
+        "name": "dialog-box-full",
+        "url": "scenes/assets/dialog-box-full.png"
+      },
+      {
+        "name": "dialog-box",
+        "url": "scenes/assets/dialog-box.png"
+      },
+      {
         "name": "paintBoard",
         "url": "scenes/assets/paintBoard.jpg"
       },
@@ -84,42 +92,30 @@
     ],
     "$init": [
       {
-        "dialog-box": true,
+        "dialog-box": "fullscreen",
         "hands": true,
         "audio": false,
         "data-clear": true,
         "next": true
       },
       {
-        "jump": "testdata.$init"
-      },
-      {
-        "$": "start TIMEOUT",
+        "$": "Изначально интерпретатор пробегает по коду, видит наши функции, объекты и пр. и сохраняет их в памяти (Heap).",
         "set-data": {
           "age": 17,
           "name": "Сергей"
         }
       },
       {
-        "+": "plus plus"
-      },
-      {
-        "+": "Пивер мир"
-      },
-      {
-        "+": "Тестирую скорость"
-      },
-      {
-        "+": "Ещё"
-      },
-      {
-        "+": "один"
+        "+": "<br/><br/>Далее как только доходит до вызова функции callAllMsgs(), помещает ее в стек, создается контекст выполнения и выводится сообщение ‘Start’."
       },
       {
         "+": "тест"
       },
       {
         "al": "Тестирую другого персонажа"
+      },
+      {
+        "+": "<br/><br/>Далее в стек попадает функция fn1() для которой также создается контекст выполнения, исполняется код из функции fn1() после выполнения которого данная функция удаляется из стека и вызывается следующая функция fn2()."
       },
       {
         "+": "Вывод от другого персонажа"
@@ -159,13 +155,14 @@
         "name": ". . . .",
         "nameColor": "#49de58",
         "replyColor": "#a4deaa",
-        "avatar": "sceneMainMenu"
+        "avatar": "ev"
       },
       {
         "id": "al",
         "name": "Алиса",
         "nameColor": "#f1c232",
-        "replyColor": "#ee068e"
+        "replyColor": "#ee068e",
+        "avatar": "ch"
       }
     ],
     "content": [
@@ -233,7 +230,9 @@
       "preload": true,
       "dialog-box": {
         "delay": 60,
-        "endPoint": true
+        "endPoint": true,
+        "mode-classic": "dialog-box",
+        "mode-fullscreen": "dialog-box-full"
       },
       "publish": {
         "host": "http://vnjson.mcap.fun",

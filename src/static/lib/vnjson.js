@@ -1,10 +1,8 @@
 class Vnjson {
-  version = '1.9.0';
-  //current object
-  ctx = {};
-  //loaded scenes
-  TREE = {};
-
+  version = '1.9.1';
+  ctx = null
+  TREE = null
+  package = null
   constructor (conf){
     this.conf = conf;
     this.debug = conf.debug;
@@ -31,7 +29,7 @@ class Vnjson {
   $store = {};
 
   getAssetByName (name){
-    const asset = this.state.assets.filter(asset=>{
+    const asset = this.state.assets.filter(asset => {
                       return asset.name===name;
                 })[0];
     if(asset){ 
@@ -46,7 +44,7 @@ class Vnjson {
   getDataByName (id){
     const scenesBody = Object.values(this.TREE);
     let data = null;
-    scenesBody.map(body=>{
+    scenesBody.forEach(body => {
 
       if(body.data){
         if(body.data.hasOwnProperty(id)){
@@ -57,12 +55,15 @@ class Vnjson {
     return data;
   }
   isSceneExist (sceneName){
-    return this.TREE[sceneName]
+    if(this.TREE[sceneName]){
+        return true
+    }
+    return false
   }
   isLabelExist (sceneName, labelName){
 
-    if(this.isSceneExist(sceneName)){
-      return this.TREE[sceneName][labelName]
+    if(this.isSceneExist(sceneName)&& this.TREE[sceneName][labelName]){
+        return true
     }
     return false
     
@@ -107,7 +108,7 @@ class Vnjson {
 
   mount (tree){
           this.TREE = tree;
-
+          this.package = this.TREE.$root.package
           if(!this.TREE.$root.hasOwnProperty('characters')){
             const narrator = {
                   id: "$",

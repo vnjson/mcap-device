@@ -3,7 +3,7 @@ import './style.css'
 export default function (){
 
 this.on('vnjson.mount', ()=>{
-    if(this.TREE.$root.package.chess){
+    if(this.package.chess){
       chessInit()
     }
 

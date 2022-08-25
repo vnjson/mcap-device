@@ -50,5 +50,5 @@ export default function (){
       this.emit('dialog-box:avatar-click')
     } )
  
-    this.on('dialog-box:click', () => info.removeBorder() )
+    this.on('dialog-box.click', () => info.removeBorder() )
 }

@@ -2209,9 +2209,9 @@
     var _vnjs = this;
 
     this.on('postload', function () {
-      var _this$TREE$$root$pack;
+      var _this$package;
 
-      var dBox = (_this$TREE$$root$pack = _this.TREE.$root["package"]) === null || _this$TREE$$root$pack === void 0 ? void 0 : _this$TREE$$root$pack['dialog-box'];
+      var dBox = (_this$package = _this["package"]) === null || _this$package === void 0 ? void 0 : _this$package['dialog-box'];
       $('.debug__delay').val((dBox === null || dBox === void 0 ? void 0 : dBox.delay) || 0);
     }); // _vnjs.TREE.$root.characters[0]
 
@@ -2400,11 +2400,11 @@
           var _this$TREE$$root;
 
           if ((_this$TREE$$root = _this.TREE.$root) !== null && _this$TREE$$root !== void 0 && _this$TREE$$root["package"]) {
-            var _this$TREE$$root$pack;
+            var _this$package;
 
-            if ((_this$TREE$$root$pack = _this.TREE.$root["package"]) !== null && _this$TREE$$root$pack !== void 0 && _this$TREE$$root$pack.preload) {
+            if ((_this$package = _this["package"]) !== null && _this$package !== void 0 && _this$package.preload) {
               if (_this.state.assets.length - 1 >= ++i) {
-                if (_this.TREE.$root["package"].preload) {
+                if (_this["package"].preload) {
                   var img = new Image();
                   img.src = asset.url;
 
@@ -2497,36 +2497,13 @@
   n(css$v,{});
 
   function screen () {
-    var _this = this;
-
     this.$store.$screen = $('#screen');
-    var click = false;
-    this.on('screen', function (flag) {
-      _this.emit('screen:click', flag);
-
-      click = flag;
-
-      if (click) {
-        _this.$store.$screen.css('cursor', 'pointer');
-      } else {
-        _this.$store.$screen.css('cursor', 'unset');
-      }
-    });
-    this.$store.$screen.on('click', function () {
-      if (click) {
-        _this.exec({
-          next: true
-        });
-      }
-    });
   }
 
-  var css$u = ".dialog-box {\n  z-index: 7000;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  line-height: 32px;\n  height: 200px;\n\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: none;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.dialog-box__reply-end-point{\n\n  display: inline-block;\n\n}\n.dialog-box__reply-end-point::before{\n  content: '';\n  position: absolute;\n\n  left: 10px;\n  width: 7px;\n  height: 7px;\n  background-color: silver;\n  opacity: 0.7;\n  animation-duration: 0.7s;\n  animation-name: end-point;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}\n@keyframes end-point {\n  from {\n    top: -10px;\n    opacity: 0.1;\n  }\n  to {\n    top: -20px;\n    opacity: 0.7;\n  }\n}\n\n.dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.dialog-box__avatar{\n  margin-top: 15px;\n  min-width: 150px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  display: none;\n}\n.dialog-box__avatar--show{\n  display: block;\n}\n\n\n.dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n  min-width: 75%;\n}\n.dialog-box__reply-str{\n \n}\n\n";
+  var css$u = ".dialog-box {\n  z-index: 0;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  line-height: 32px;\n  height: 200px;\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: none;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.dialog-box__name {\n  color: wheat;\n  font-size: 22px;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.dialog-box__reply {\n  color: wheat;\n  font-size: 22px;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.dialog-box__reply-end-point{\n\n  display: inline-block;\n\n}\n.dialog-box__reply-end-point::before{\n  content: '';\n  position: absolute;\n\n  left: 10px;\n  width: 7px;\n  height: 7px;\n  background-color: silver;\n  opacity: 0.7;\n  animation-duration: 0.7s;\n  animation-name: end-point;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}\n@keyframes end-point {\n  from {\n    top: -10px;\n    opacity: 0.1;\n  }\n  to {\n    top: -20px;\n    opacity: 0.7;\n  }\n}\n\n.dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.dialog-box__avatar{\n  margin-top: 15px;\n  min-width: 150px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  display: none;\n}\n.dialog-box__avatar--show{\n  display: block;\n}\n\n\n.dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n  min-width: 75%;\n}\n.dialog-box__reply-str{\n \n}\n\n";
   n(css$u,{});
 
   var tpl$e = "<div class=\"dialog-box component\">\n  <div class=\"dialog-box__container\">\n        <div class=\"dialog-box__avatar\"></div>\n        <div class=\"dialog-box__reply-wrapper\">\n          <div class=\"dialog-box__name\"></div>\n          <div class=\"dialog-box__reply\"></div>\n        </div>\n  </div>\n</div>";
-
-  var dialogBoxImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAADICAYAAAB26ZNJAAABbmlDQ1BpY2MAACiRdZE7SwNBFIU/oxLRSIqkELFIEcUiAVGQlBJBG7VIIvhqks1LyCbLboIEW8HGQrAQbXwV/gNtBVsFQVAEESt/gK9GwnrHDSRIMsvs/Tgz5zJzBlxzBU23usZAL5bN2Gw0sLS8EnC/4cKPjwiepGYZ8/GZBG3H9wMdqt6HVa/2+1qOvnTG0qCjR3hSM8yy8JTw3EbZULwj7NfyybTwsXDIlAMK3yg95fCr4pzDn4rNRGwaXKpnINfEqSbW8qYuPCoc1AsVrX4edRNPprgYlzoocwiLGLNECZCiwjoFyoSlFiWz1r6xP98CJfFo8jeoYoojR168IVEr0jUjNSt6Rr4CVZX7/zyt7MS4090The4X2/4YBvce1HZt++fEtmun0PkMV8WGvyQ5Rb5E321owSPwbsHFdUNL7cPlNgw8GUkz+Sd1ynRls/B+Dv3L4LuD3lUnq/o6Z4+Q2JQnuoWDQxiR/d61XxVkaBT4cFhYAAAACXBIWXMAAArwAAAK8AFCrDSYAAAFAUlEQVR4Xu3YMQHAIBDAwKf+pSEKCcwld3MUZM3MHgAAAOBp3y0AAAAA/s8AAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDAAAAAAIMAAAAAAgwAAAAACAAAMAAAAAAgwAAAAACDAAAAAAIMAAAAAAgAADAAAAAAIMAAAAAAgwAAAAACDAAAAAAIAAAwAAAAACDuHwAlzNu7SaAAAAAElFTkSuQmCC";
 
   var _reply = /*#__PURE__*/new WeakMap();
 
@@ -2571,6 +2548,31 @@
     }
 
     _createClass(DialogBox, [{
+      key: "show",
+      value: function show() {
+        this.dialogBoxTag.style.display = 'block';
+      }
+    }, {
+      key: "hide",
+      value: function hide() {
+        this.dialogBoxTag.style.display = 'none';
+      }
+    }, {
+      key: "setMode",
+      value: function setMode(MODE) {
+        if (MODE === 'mode-classic') {
+          this.dialogBoxTag.style.height = 200 + 'px';
+        }
+
+        if (MODE === 'mode-fullscreen') {
+          this.dialogBoxTag.style.height = this.$vnjs.config.height + 'px';
+        }
+
+        var url = this.$vnjs.getAssetByName(this.$vnjs["package"]['dialog-box'][MODE]).url;
+        this.dialogBoxTag.style['background-image'] = "url(".concat(url, ")");
+        this.$vnjs.emit('dialog-box.mode', MODE);
+      }
+    }, {
       key: "update",
       value: function update() {
         this.print(this.character, _classPrivateFieldGet(this, _reply));
@@ -2827,15 +2829,24 @@
     return DialogBox;
   }();
 
+  /**
+   * $root/package.yaml 
+   * ERROR snippet
+   */
+  var errorSnippet = "# \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B \u0432 $root/package.yaml\n\ndialog-box:\n  #delay: 60\n  #alpha: 0.3\n  #endPoint: true\n  mode-classic: dialog-box # \u0438\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u0435 1024 x 200\n  mode-fullscreen: dialog-box-full # \u0438\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u0435 1024 x 768";
+
+  /**
+   * INIT
+   */
+
   function dialogBox () {
     var _this = this;
 
     var $tpl = $(tpl$e);
-    $tpl.css('background-image', "url(".concat(dialogBoxImage, ")"));
     this.$store.$screen.append($tpl); // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
 
     $tpl.find('.dialog-box__reply-wrapper').on('mousedown', function (e) {
-      _this.emit('dialog-box:click');
+      _this.emit('dialog-box.click');
 
       _this.next();
     });
@@ -2863,14 +2874,22 @@
      */
 
     this.on('postload', function () {
-      var _this$TREE$$root$pack;
+      var _this$package;
 
-      var conf = (_this$TREE$$root$pack = _this.TREE.$root["package"]) === null || _this$TREE$$root$pack === void 0 ? void 0 : _this$TREE$$root$pack['dialog-box'];
+      var conf = (_this$package = _this["package"]) === null || _this$package === void 0 ? void 0 : _this$package['dialog-box'];
 
       if (conf) {
         dBox.delay = conf.delay || dBox.delay;
         dBox.alpha = conf.alpha || dBox.alpha;
         dBox.endPoint = conf.endPoint || dBox.endPoint;
+
+        if (conf['mode-classic']) {
+          dBox.setMode('mode-classic');
+        } else {
+          _this.emit('vnjson.error', errorSnippet);
+        }
+      } else {
+        _this.emit('vnjson.error', errorSnippet);
       }
     });
     /**
@@ -2910,36 +2929,23 @@
           dBox[key] = param[key];
         }
 
-        $tpl.show();
-
-        _this.emit('dialog-box:show');
+        dBox.show();
       } else if (param === true) {
         dBox.disabled(false);
-        $tpl.show();
-
-        _this.emit('dialog-box:show');
+        dBox.show();
       } else if (param === 'clear') {
         dBox.disabled(false);
         dBox.clear();
-
-        _this.emit('dialog-box:clear');
       } else if (param === 'disabled') {
         dBox.disabled(true);
+      } else if (param === 'fullscreen') {
+        dBox.setMode('mode-fullscreen');
+        dBox.show();
+      } else if (param === 'reset' || param === 'classic') {
+        dBox.setMode('mode-classic');
+        dBox.show();
       } else {
-        $tpl.hide();
-
-        _this.emit('dialog-box:hide');
-      }
-    });
-    /**
-     * Когда screen: true, то dialog-box нужно скрыть
-     */
-
-    this.on('screen:click', function (flag) {
-      if (flag === true) {
-        _this.exec({
-          'dialog-box': false
-        });
+        dBox.hide();
       }
     });
   }
@@ -3007,10 +3013,25 @@
     * Когда screen: true, то dialog-box нужно скрыть
     */
 
-    this.on('dialog-box:hide', function () {
+    this.on('dialog-box.false', function () {
       _this.exec({
         'hands': false
       });
+    });
+    this.on('dialog-box.mode', function (mode) {
+      if (mode === 'mode-classic') {
+        $tpl$b.css({
+          top: 'unset',
+          bottom: '10px'
+        });
+      }
+
+      if (mode === 'mode-fullscreen') {
+        $tpl$b.css({
+          top: '10px',
+          bottom: 'unset'
+        });
+      }
     });
   }
 
@@ -3469,7 +3490,7 @@
      */
 
     this.on('postload', function () {
-      var menuConf = _this.TREE.$root["package"].menu;
+      var menuConf = _this["package"].menu;
 
       if (menuConf) {
         var audioUrl = _this.getAssetByName(menuConf.audio).url;
@@ -3705,7 +3726,7 @@
      */
 
     this.on('postload', function () {
-      var menuConf = _this.TREE.$root["package"]['main-menu'];
+      var menuConf = _this["package"]['main-menu'];
 
       if (menuConf) {
         var audioUrl = _this.getAssetByName(menuConf.audio).url;
@@ -4414,7 +4435,7 @@
   function clearData() {
     if (this.state.data.score) {
       this.state.data.score = new Score();
-      store.set(this.TREE.$root["package"].ISBN, this.state.data);
+      store.set(this["package"].ISBN, this.state.data);
       this.emit('setScore');
     }
   }
@@ -4436,7 +4457,7 @@
         }
       }
 
-      store.set(_this.TREE.$root["package"].ISBN, _this.state.data);
+      store.set(_this["package"].ISBN, _this.state.data);
 
       _this.emit('setScore');
     };
@@ -4505,7 +4526,7 @@
     var _this = this;
 
     this.on('vnjson.mount', function () {
-      if (_this.TREE.$root["package"].chess) {
+      if (_this["package"].chess) {
         chessInit();
       }
     });
@@ -4620,7 +4641,7 @@
     var _this = this;
 
     this.on('vnjson.mount', function () {
-      if (_this.TREE.$root["package"]['crossword']) {
+      if (_this["package"]['crossword']) {
         init();
       }
     });
@@ -5085,7 +5106,7 @@
       var label = $(this).data('label');
       content.selectItem(label);
     });
-    this.on('dialog-box:click', function () {
+    this.on('dialog-box.click', function () {
       content.hide();
     });
   }
@@ -5200,8 +5221,8 @@
     var webhook;
     var avatar_url = 'https://avatars.githubusercontent.com/u/17809187?s=200&v=4';
     this.on('postload', function () {
-      if (_this.TREE.$root["package"]) {
-        var discordLogParam = _this.TREE.$root["package"]['discord-log'];
+      if (_this["package"]) {
+        var discordLogParam = _this["package"]['discord-log'];
         if (!discordLogParam) return;
         webhook = discordLogParam.webhook; //avatar_url = discordLogParam.avatar_url
       }
@@ -5210,9 +5231,9 @@
       var content = null;
 
       if (typeof msg === 'string') {
-        content = _this.TREE.$root["package"].name + ' [ ' + _this.state.sceneName + '.' + _this.state.labelName + ' ]  ' + msg;
+        content = _this["package"].name + ' [ ' + _this.state.sceneName + '.' + _this.state.labelName + ' ]  ' + msg;
       } else {
-        content = _this.TREE.$root["package"].name + ' [ ' + _this.state.sceneName + '.' + _this.state.labelName + ' ]';
+        content = _this["package"].name + ' [ ' + _this.state.sceneName + '.' + _this.state.labelName + ' ]';
       }
 
       var params = {
@@ -5520,7 +5541,7 @@
     var _this = this;
 
     this.on('vnjson.mount', function () {
-      if (_this.TREE.$root["package"]['paint-board']) {
+      if (_this["package"]['paint-board']) {
         init();
       }
     });
@@ -6669,8 +6690,8 @@
       backgroundColor: '#000000'
     });
     this.on('postload', function () {
-      if (_this.TREE.$root["package"]['console-port']) {
-        port = _this.TREE.$root["package"]['console-port'];
+      if (_this["package"]['console-port']) {
+        port = _this["package"]['console-port'];
       }
 
       var src = "http://localhost:".concat(port);
@@ -7256,7 +7277,7 @@
 
       _this.emit('dialog-box:avatar-click');
     });
-    this.on('dialog-box:click', function () {
+    this.on('dialog-box.click', function () {
       return info.removeBorder();
     });
   }
@@ -7336,7 +7357,9 @@
     var _this$TREE$$root$pack;
 
     $vnjs.config = {
-      debug: (_this$TREE$$root$pack = this.TREE.$root["package"]) === null || _this$TREE$$root$pack === void 0 ? void 0 : _this$TREE$$root$pack.debug
+      debug: (_this$TREE$$root$pack = this.TREE.$root["package"]) === null || _this$TREE$$root$pack === void 0 ? void 0 : _this$TREE$$root$pack.debug,
+      width: 1024,
+      height: 768
     }; // ?jump=scene.label
     // ?jump=scene  //default $init
 

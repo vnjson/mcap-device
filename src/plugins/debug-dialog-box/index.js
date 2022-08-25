@@ -43,7 +43,7 @@ export default function (){
      */
     const _vnjs = this 
     this.on('postload', () => {
-        const dBox = this.TREE.$root.package?.['dialog-box']
+        const dBox = this.package?.['dialog-box']
         $('.debug__delay').val(dBox?.delay||0)
 
     }) 

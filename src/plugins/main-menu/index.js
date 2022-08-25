@@ -23,7 +23,7 @@ export default function (){
      * аудио
      */
     this.on('postload', () => {
-        const menuConf = this.TREE.$root.package['main-menu']
+        const menuConf = this.package['main-menu']
         if(menuConf){
             const audioUrl = this.getAssetByName(menuConf.audio).url
             menu.audio = new Howl({src: audioUrl, volume: menuConf.volume||1})

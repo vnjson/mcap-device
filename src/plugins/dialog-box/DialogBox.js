@@ -3,6 +3,7 @@ class DialogBox {
   #reply = ''
   replyStringTag = null
   prevReplyStringTag = null
+  
   constructor (param){
       this.$vnjs = param.$vnjs;
       /*Tags*/
@@ -27,8 +28,25 @@ class DialogBox {
       this.letterExlude = false;
       // текущий символ
       this.letter;
-  }
 
+  }
+  show (){
+    this.dialogBoxTag.style.display = 'block'
+  }
+  hide (){
+    this.dialogBoxTag.style.display = 'none'
+  }
+  setMode (MODE){
+    if(MODE==='mode-classic'){
+        this.dialogBoxTag.style.height = 200 + 'px'
+    }
+    if(MODE==='mode-fullscreen'){
+        this.dialogBoxTag.style.height = this.$vnjs.config.height + 'px'
+    }
+    const url = this.$vnjs.getAssetByName(this.$vnjs.package['dialog-box'][MODE]).url
+    this.dialogBoxTag.style['background-image'] = `url(${url})`
+    this.$vnjs.emit('dialog-box.mode', MODE)
+  }
   update (){
     this.print(this.character, this.#reply)
   }

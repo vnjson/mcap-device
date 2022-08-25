@@ -4,8 +4,8 @@ let webhook;
 const avatar_url = 'https://avatars.githubusercontent.com/u/17809187?s=200&v=4'
 
 this.on('postload', ()=>{
-  if(this.TREE.$root.package){
-    let discordLogParam = this.TREE.$root.package['discord-log'];
+  if(this.package){
+    let discordLogParam = this.package['discord-log'];
     if(!discordLogParam) return;
     webhook = discordLogParam.webhook;
     //avatar_url = discordLogParam.avatar_url
@@ -16,10 +16,10 @@ this.on('postload', ()=>{
 this.on('discord-log', msg=>{
   var content = null
   if(typeof(msg)==='string'){
-    content = this.TREE.$root.package.name+' [ '+this.state.sceneName+'.'+this.state.labelName+' ]  '+ msg
+    content = this.package.name+' [ '+this.state.sceneName+'.'+this.state.labelName+' ]  '+ msg
   }
   else{
-    content = this.TREE.$root.package.name+' [ '+this.state.sceneName+'.'+this.state.labelName+' ]'
+    content = this.package.name+' [ '+this.state.sceneName+'.'+this.state.labelName+' ]'
   }
 
       const params = {

@@ -5,7 +5,7 @@ export default function (){
 
 
 this.on('vnjson.mount', ()=>{
-    if(this.TREE.$root.package['crossword']){
+    if(this.package['crossword']){
       init();
     }
 
