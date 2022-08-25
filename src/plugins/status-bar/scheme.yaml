@@ -17,3 +17,7 @@
       $: HELP
       status-bar-help: false
       # next: true
+
+
+- data-set:
+    readyСheck: true # Показать жёлтый кружок
