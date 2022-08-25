@@ -49,27 +49,29 @@
 .status-bar__status--help.status-active{
   color: white;
 }
-/*
-.status-bar__item:hover{
-  color: white;
-}
-.status-bar__status--ready:hover span{
-    background-color: lightgreen;
-}
-.status-bar__status--help:hover span{
-    background-color: red;
-}
-*/
+
 
 .status-bar__image-containter{
   position: absolute;
-  background-repeat: no-repeat;
-  background-size: contain;
   top: 40px;
   right: 0;
+  display: flex;
+
+}
+.status-bar__image{
+  background-repeat: no-repeat;
+  background-size: contain;
   width: 100px;
   height: 100px;
 }
+.status-bar__image:hover{
+  cursor: pointer;
+}
+
+/*
+ * PLAYER
+ */
+
 .status-bar__player-name{
   padding-left: 10px;
 }

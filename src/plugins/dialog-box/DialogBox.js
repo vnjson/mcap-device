@@ -12,6 +12,7 @@ class DialogBox {
       this.replyTag = document.querySelector(param.replyOutputSelector);
       this.characterAvatarTag = document.querySelector(param.characterAvatarSelector);
       this.replyWrapperTag = document.querySelector(param.replyWrapperSelector);
+      this.replyContaiterTag = document.querySelector(param.replyContaiterSelector)
       /**/
       this.classNameEndPoint = param.classNameEndPoint;
       this.classNameLetter = param.classNameLetter;
@@ -45,9 +46,11 @@ class DialogBox {
     this.MODE = MODE
     if(this.MODE==='mode-classic'){
         this.dialogBoxTag.style.height = 200 + 'px'
+        this.replyContaiterTag.style['padding-top'] = 0 + 'px'  
     }
     if(this.MODE==='mode-fullscreen'){
         this.dialogBoxTag.style.height = this.$vnjs.config.height + 'px'
+        this.replyContaiterTag.style['padding-top'] = 30 + 'px'  
     }
     this.setImage()
     this.$vnjs.emit('dialog-box.mode', this.MODE)

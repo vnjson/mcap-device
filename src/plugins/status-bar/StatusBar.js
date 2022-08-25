@@ -1,10 +1,10 @@
 
 import readyImg from './assets/ready.svg'
 import helpImg from './assets/help.svg'
+import checkImg from './assets/check.svg'
+
 
 class StatusBar {
-  flagReady = false
-  flagHelp = false
   PLUGIN_DATA = null
   constructor ($view){
         this.$view = $view
@@ -15,49 +15,62 @@ class StatusBar {
   hide (){
         this.$view.hide()
   }
-  clearStatus (){
-        $('.status-bar__image-containter').css('background-image', `unset`)
-        $('.status-bar__item').toArray().map(el => { 
-            $(el).removeClass('status-active');
-        })
-  }
-  readyHandler (){
+  handler (){
+    const isReady = $('.status-bar__image--last').hasClass('status-bar__ready')
+
+    if(!isReady){
         this.showHelp(false)
-        this.showReady(this.flagReady =!this.flagReady)
-        if(!this.flagReady){
-            $vnjs.exec(this.PLUGIN_DATA.onReady)
-        }
-  }
-  helpHandler (){
-        this.showReady(false)
-        this.showHelp(this.flagHelp =!this.flagHelp)
-        if(!this.flagHelp){
+        if(this.PLUGIN_DATA.onHelp){
             $vnjs.exec(this.PLUGIN_DATA.onHelp)
         }
+    }
+    else{
+        this.showReady(false)
+        this.showCheck(false)
+        if(this.PLUGIN_DATA.onReady){
+            $vnjs.exec(this.PLUGIN_DATA.onReady)
+        }
+    }
   }
-  showReady (flag){
-    this.flagReady = flag
-        if(this.flagReady){
-            $(this).addClass('status-active')
-            // добавляем изображение
-            $('.status-bar__image-containter').css('background-image', `url(${readyImg})`)
-        }
-        else{
-            this.clearStatus()
-        }
+  checkHandler (){
+    if(this.PLUGIN_DATA.onCheck){
+        $vnjs.exec(this.PLUGIN_DATA.onCheck)
+    }
+    this.showReady(false)
+    this.showCheck(false)
+
   }
 
+  /**
+   * SHOW
+   */
+  showReady (flag){
+    if($vnjs.state.data.readyСheck){
+            this.showCheck(true)
+    }
+    if(flag){
+        $('.status-bar__image--last').css('background-image', `url(${readyImg})`).addClass('status-bar__ready')
+    }
+    else{
+        $('.status-bar__image--last').css('background-image', 'unset').removeClass('status-bar__ready')
+    }
+  }
+  showCheck (flag){
+    if(flag){
+        $('.status-bar__image--first').css('background-image', `url(${checkImg})`)
+    }
+    else{
+        $('.status-bar__image--first').css('background-image', 'unset')
+    }
+  }
   showHelp (flag){
-        this.flagHelp = flag
-        if(this.flagHelp){
-            // красим в красный
-            $(this).addClass('status-active')
-            // добавляем изображение
-            $('.status-bar__image-containter').css('background-image', `url(${helpImg})`)
-        }
-        else{
-            this.clearStatus()
-        }
+    if(flag){
+        this.showCheck(false)
+        $('.status-bar__image--last').css('background-image', `url(${helpImg})`).removeClass('status-bar__ready')
+    }
+    else{
+        $('.status-bar__image--last').css('background-image', 'unset')
+    }
   }
 
 }

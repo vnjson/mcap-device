@@ -4,7 +4,7 @@ import playerImg from './assets/player.svg'
 import StatusBar from './StatusBar'
 
 export default function (){
-
+  this.state.data.readyСheck = false
   const $tpl = $(tpl)
 
   this.$store.$screen.append($tpl);
@@ -14,11 +14,18 @@ export default function (){
    */
 
   this.on('status-bar', param => {
-    if(param){
+
+    if(param==='clear'){
+      statusBar.showReady(false)
+      statusBar.showHelp(false)
+      statusBar.showCheck(false)
+    }
+    else if(param){
       statusBar.PLUGIN_DATA = param
       statusBar.show()
     }
     else{
+      this.state.data.readyСheck = false
       statusBar.hide()
     }
   })
@@ -34,11 +41,11 @@ export default function (){
   /**
    * help | ready
    */
-  $('.status-bar__status--ready').on('click', () => statusBar.readyHandler())
+  $('.status-bar__status--ready').on('click', () => statusBar.showReady(true))
 
-  $('.status-bar__status--help').on('click', () => statusBar.helpHandler())
+  $('.status-bar__status--help').on('click', () => statusBar.showHelp(true))
 
-
-
+  $('.status-bar__image--first').on('click', () => statusBar.checkHandler())
+  $('.status-bar__image--last').on('click', () => statusBar.handler())
 }
         

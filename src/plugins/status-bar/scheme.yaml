@@ -1,9 +1,9 @@
 
 - status-bar: true
 - status-bar: false
+- status-bar: clear # скрывает все кружки
 
 
-- status-bar: true
 
 
 
@@ -11,7 +11,8 @@
     onReady: # Принимает объект с перечнем плагинов для вызова .exec(ctx)
       $: READY
       dialog-box: true
-      
+    onCheck:
+      $: CHECK
     onHelp:
       $: HELP
       status-bar-help: false

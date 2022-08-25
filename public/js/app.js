@@ -2530,6 +2530,7 @@
       this.replyTag = document.querySelector(param.replyOutputSelector);
       this.characterAvatarTag = document.querySelector(param.characterAvatarSelector);
       this.replyWrapperTag = document.querySelector(param.replyWrapperSelector);
+      this.replyContaiterTag = document.querySelector(param.replyContaiterSelector);
       /**/
 
       this.classNameEndPoint = param.classNameEndPoint;
@@ -2571,10 +2572,12 @@
 
         if (this.MODE === 'mode-classic') {
           this.dialogBoxTag.style.height = 200 + 'px';
+          this.replyContaiterTag.style['padding-top'] = 0 + 'px';
         }
 
         if (this.MODE === 'mode-fullscreen') {
           this.dialogBoxTag.style.height = this.$vnjs.config.height + 'px';
+          this.replyContaiterTag.style['padding-top'] = 30 + 'px';
         }
 
         this.setImage();
@@ -2883,6 +2886,7 @@
       characterAvatarSelector: '.dialog-box__avatar',
       replyWrapperSelector: '.dialog-box__reply-wrapper',
       replyOutputSelector: '.dialog-box__reply',
+      replyContaiterSelector: '.dialog-box__container',
       classNameLetter: 'dialog-box__letter',
       classNameCharacterNameInReply: 'dialog-box__reply-character-name',
       classNameEndPoint: 'dialog-box__reply-end-point'
@@ -3061,21 +3065,16 @@
         'hands': false
       });
     });
-    this.on('dialog-box.mode', function (mode) {
-      if (mode === 'mode-classic') {
-        $tpl$b.css({
-          top: 'unset',
-          bottom: '10px'
-        });
-      }
-
-      if (mode === 'mode-fullscreen') {
-        $tpl$b.css({
-          top: '10px',
-          bottom: 'unset'
-        });
-      }
-    });
+    /*
+    this.on('dialog-box.mode', mode => {
+        if(mode==='mode-classic'){
+            $tpl.css({ top: 'unset', bottom: '10px' })
+        }
+        if(mode==='mode-fullscreen'){
+          $tpl.css({ top: '10px', bottom: 'unset' })
+        }
+    })
+    */
   }
 
   var css$s = ".screen__cloud {\n  width: 500px;\n  background: wheat;\n  padding: 30px;\n  flex-wrap: wrap;\n  justify-content: center;\n  align-content: center;\n  align-items: center;\n  z-index: 1000;\n  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);\n  transform: translate(-50%, 0);\n  top: 10%; }\n  .screen__cloud .tag {\n    padding: 10px 15px;\n    font-size: 18px;\n    margin: 10px;\n    display: inline-flex;\n    background: #444;\n    cursor: pointer;\n    color: #34d1a2;\n    transition: 0.3s;\n    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); }\n    .screen__cloud .tag:hover {\n      background: #000;\n      color: darkcyan; }\n";
@@ -5295,10 +5294,10 @@
     request.send(JSON.stringify(params));
   }
 
-  var css$b = ".status-bar{\n  position: absolute;\n  top: 0;\n  left: 0;\n  background: rgba(0,0,0,0.7);\n  color: gray;\n  width: 100%;\n  height: 4%;\n  z-index: 9999;\n  align-items: center;\n  justify-content: space-between;\n  padding: 5px 15px;\n  display: none;\n}\n.status-bar__status--ready,\n.status-bar__status--help{\n  display: inline-flex;\n  align-items: center;\n  cursor: pointer;\n  margin-right: 10px;\n}\n.status-bar__status--ready span{\n  width: 15px;\n  height: 15px;\n  border-radius: 50%;\n  background-color: gray;\n  display: inline-block;\n  margin-right: 10px;\n}\n\n.status-bar__status--help span{\n  width: 15px;\n  height: 15px;\n  border-radius: 50%;\n  background-color: gray;\n  display: i gray;\n  margin-right: 10px;\n}\n\n.status-bar__status--ready.status-active span{\n    background-color: lightgreen;\n}\n.status-bar__status--ready.status-active {\n   color: white;\n}\n.status-bar__status--help.status-active span{\n    background-color: red;\n}\n.status-bar__status--help.status-active{\n  color: white;\n}\n/*\n.status-bar__item:hover{\n  color: white;\n}\n.status-bar__status--ready:hover span{\n    background-color: lightgreen;\n}\n.status-bar__status--help:hover span{\n    background-color: red;\n}\n*/\n\n.status-bar__image-containter{\n  position: absolute;\n  background-repeat: no-repeat;\n  background-size: contain;\n  top: 40px;\n  right: 0;\n  width: 100px;\n  height: 100px;\n}\n.status-bar__player-name{\n  padding-left: 10px;\n}\n.status-bar__player{\n  display: flex;\n  align-items: center;\n}";
+  var css$b = ".status-bar{\n  position: absolute;\n  top: 0;\n  left: 0;\n  background: rgba(0,0,0,0.7);\n  color: gray;\n  width: 100%;\n  height: 4%;\n  z-index: 9999;\n  align-items: center;\n  justify-content: space-between;\n  padding: 5px 15px;\n  display: none;\n}\n.status-bar__status--ready,\n.status-bar__status--help{\n  display: inline-flex;\n  align-items: center;\n  cursor: pointer;\n  margin-right: 10px;\n}\n.status-bar__status--ready span{\n  width: 15px;\n  height: 15px;\n  border-radius: 50%;\n  background-color: gray;\n  display: inline-block;\n  margin-right: 10px;\n}\n\n.status-bar__status--help span{\n  width: 15px;\n  height: 15px;\n  border-radius: 50%;\n  background-color: gray;\n  display: i gray;\n  margin-right: 10px;\n}\n\n.status-bar__status--ready.status-active span{\n    background-color: lightgreen;\n}\n.status-bar__status--ready.status-active {\n   color: white;\n}\n.status-bar__status--help.status-active span{\n    background-color: red;\n}\n.status-bar__status--help.status-active{\n  color: white;\n}\n\n\n.status-bar__image-containter{\n  position: absolute;\n  top: 40px;\n  right: 0;\n  display: flex;\n\n}\n.status-bar__image{\n  background-repeat: no-repeat;\n  background-size: contain;\n  width: 100px;\n  height: 100px;\n}\n.status-bar__image:hover{\n  cursor: pointer;\n}\n\n/*\n * PLAYER\n */\n\n.status-bar__player-name{\n  padding-left: 10px;\n}\n.status-bar__player{\n  display: flex;\n  align-items: center;\n}";
   n(css$b,{});
 
-  var tpl$4 = "<div class=\"status-bar component\">\n  <div class=\"status-bar__player\"><img id=\"status-bar__player-logo\"><span class=\"status-bar__player-name\"></span></div>\n  <div class=\"status-bar__status\">\n      <span class=\"status-bar__item status-bar__status--ready\"><span></span>Готов</span>\n      <span class=\"status-bar__item status-bar__status--help\"><span></span>Помощь</span>\n      <div class=\"status-bar__image-containter\"></div>\n  </div>\n\n</div>";
+  var tpl$4 = "<div class=\"status-bar component\">\n  <div class=\"status-bar__player\"><img id=\"status-bar__player-logo\"><span class=\"status-bar__player-name\"></span></div>\n  <div class=\"status-bar__status\">\n      <span class=\"status-bar__item status-bar__status--ready\"><span></span>Готов</span>\n      <span class=\"status-bar__item status-bar__status--help\"><span></span>Помощь</span>\n      <div class=\"status-bar__image-containter\">\n          <div class=\"status-bar__image status-bar__image--first\"></div>\n          <div class=\"status-bar__image status-bar__image--last\"></div>\n      </div>\n  </div>\n\n</div>";
 
   var playerImg = "data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%20%20%20%3Cpath%20fill%3D%22gray%22%20d%3D%22M12%2C19.2C9.5%2C19.2%207.29%2C17.92%206%2C16C6.03%2C14%2010%2C12.9%2012%2C12.9C14%2C12.9%2017.97%2C14%2018%2C16C16.71%2C17.92%2014.5%2C19.2%2012%2C19.2M12%2C5A3%2C3%200%200%2C1%2015%2C8A3%2C3%200%200%2C1%2012%2C11A3%2C3%200%200%2C1%209%2C8A3%2C3%200%200%2C1%2012%2C5M12%2C2A10%2C10%200%200%2C0%202%2C12A10%2C10%200%200%2C0%2012%2C22A10%2C10%200%200%2C0%2022%2C12C22%2C6.47%2017.5%2C2%2012%2C2Z%22%20%2F%3E%3C%2Fsvg%3E";
 
@@ -5306,13 +5305,11 @@
 
   var helpImg = "data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%20%20%20%3Cpath%20fill%3D%22red%22%20d%3D%22M15.07%2C11.25L14.17%2C12.17C13.45%2C12.89%2013%2C13.5%2013%2C15H11V14.5C11%2C13.39%2011.45%2C12.39%2012.17%2C11.67L13.41%2C10.41C13.78%2C10.05%2014%2C9.55%2014%2C9C14%2C7.89%2013.1%2C7%2012%2C7A2%2C2%200%200%2C0%2010%2C9H8A4%2C4%200%200%2C1%2012%2C5A4%2C4%200%200%2C1%2016%2C9C16%2C9.88%2015.64%2C10.67%2015.07%2C11.25M13%2C19H11V17H13M12%2C2A10%2C10%200%200%2C0%202%2C12A10%2C10%200%200%2C0%2012%2C22A10%2C10%200%200%2C0%2022%2C12C22%2C6.47%2017.5%2C2%2012%2C2Z%22%20%2F%3E%3C%2Fsvg%3E";
 
+  var checkImg = "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2023.6%2023.6%22%3E%20%20%20%3Cpath%20fill%3D%22%23fcc23c%22%20d%3D%22M13%2C13H11V7H13M13%2C17H11V15H13M12%2C2A10%2C10%200%200%2C0%202%2C12A10%2C10%200%200%2C0%2012%2C22A10%2C10%200%200%2C0%2022%2C12A10%2C10%200%200%2C0%2012%2C2Z%22%20%2F%3E%3C%2Fsvg%3E";
+
   var StatusBar = /*#__PURE__*/function () {
     function StatusBar($view) {
       _classCallCheck(this, StatusBar);
-
-      _defineProperty(this, "flagReady", false);
-
-      _defineProperty(this, "flagHelp", false);
 
       _defineProperty(this, "PLUGIN_DATA", null);
 
@@ -5330,58 +5327,69 @@
         this.$view.hide();
       }
     }, {
-      key: "clearStatus",
-      value: function clearStatus() {
-        $('.status-bar__image-containter').css('background-image', "unset");
-        $('.status-bar__item').toArray().map(function (el) {
-          $(el).removeClass('status-active');
-        });
-      }
-    }, {
-      key: "readyHandler",
-      value: function readyHandler() {
-        this.showHelp(false);
-        this.showReady(this.flagReady = !this.flagReady);
+      key: "handler",
+      value: function handler() {
+        var isReady = $('.status-bar__image--last').hasClass('status-bar__ready');
 
-        if (!this.flagReady) {
-          $vnjs.exec(this.PLUGIN_DATA.onReady);
+        if (!isReady) {
+          this.showHelp(false);
+
+          if (this.PLUGIN_DATA.onHelp) {
+            $vnjs.exec(this.PLUGIN_DATA.onHelp);
+          }
+        } else {
+          this.showReady(false);
+          this.showCheck(false);
+
+          if (this.PLUGIN_DATA.onReady) {
+            $vnjs.exec(this.PLUGIN_DATA.onReady);
+          }
         }
       }
     }, {
-      key: "helpHandler",
-      value: function helpHandler() {
+      key: "checkHandler",
+      value: function checkHandler() {
+        if (this.PLUGIN_DATA.onCheck) {
+          $vnjs.exec(this.PLUGIN_DATA.onCheck);
+        }
+
         this.showReady(false);
-        this.showHelp(this.flagHelp = !this.flagHelp);
-
-        if (!this.flagHelp) {
-          $vnjs.exec(this.PLUGIN_DATA.onHelp);
-        }
+        this.showCheck(false);
       }
+      /**
+       * SHOW
+       */
+
     }, {
       key: "showReady",
       value: function showReady(flag) {
-        this.flagReady = flag;
+        if ($vnjs.state.data.readyСheck) {
+          this.showCheck(true);
+        }
 
-        if (this.flagReady) {
-          $(this).addClass('status-active'); // добавляем изображение
-
-          $('.status-bar__image-containter').css('background-image', "url(".concat(readyImg, ")"));
+        if (flag) {
+          $('.status-bar__image--last').css('background-image', "url(".concat(readyImg, ")")).addClass('status-bar__ready');
         } else {
-          this.clearStatus();
+          $('.status-bar__image--last').css('background-image', 'unset').removeClass('status-bar__ready');
+        }
+      }
+    }, {
+      key: "showCheck",
+      value: function showCheck(flag) {
+        if (flag) {
+          $('.status-bar__image--first').css('background-image', "url(".concat(checkImg, ")"));
+        } else {
+          $('.status-bar__image--first').css('background-image', 'unset');
         }
       }
     }, {
       key: "showHelp",
       value: function showHelp(flag) {
-        this.flagHelp = flag;
-
-        if (this.flagHelp) {
-          // красим в красный
-          $(this).addClass('status-active'); // добавляем изображение
-
-          $('.status-bar__image-containter').css('background-image', "url(".concat(helpImg, ")"));
+        if (flag) {
+          this.showCheck(false);
+          $('.status-bar__image--last').css('background-image', "url(".concat(helpImg, ")")).removeClass('status-bar__ready');
         } else {
-          this.clearStatus();
+          $('.status-bar__image--last').css('background-image', 'unset');
         }
       }
     }]);
@@ -5392,6 +5400,7 @@
   function statusBar () {
     var _this = this;
 
+    this.state.data.readyСheck = false;
     var $tpl = $(tpl$4);
     this.$store.$screen.append($tpl);
     var statusBar = new StatusBar($tpl);
@@ -5400,10 +5409,15 @@
      */
 
     this.on('status-bar', function (param) {
-      if (param) {
+      if (param === 'clear') {
+        statusBar.showReady(false);
+        statusBar.showHelp(false);
+        statusBar.showCheck(false);
+      } else if (param) {
         statusBar.PLUGIN_DATA = param;
         statusBar.show();
       } else {
+        _this.state.data.readyСheck = false;
         statusBar.hide();
       }
     });
@@ -5420,10 +5434,16 @@
      */
 
     $('.status-bar__status--ready').on('click', function () {
-      return statusBar.readyHandler();
+      return statusBar.showReady(true);
     });
     $('.status-bar__status--help').on('click', function () {
-      return statusBar.helpHandler();
+      return statusBar.showHelp(true);
+    });
+    $('.status-bar__image--first').on('click', function () {
+      return statusBar.checkHandler();
+    });
+    $('.status-bar__image--last').on('click', function () {
+      return statusBar.handler();
     });
   }
 

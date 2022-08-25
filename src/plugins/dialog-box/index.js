@@ -30,6 +30,7 @@ export default function (){
                       characterAvatarSelector: '.dialog-box__avatar',
                       replyWrapperSelector: '.dialog-box__reply-wrapper',
                       replyOutputSelector: '.dialog-box__reply',
+                      replyContaiterSelector: '.dialog-box__container',
                       classNameLetter: 'dialog-box__letter',
                       classNameCharacterNameInReply: 'dialog-box__reply-character-name',
                       classNameEndPoint: 'dialog-box__reply-end-point'

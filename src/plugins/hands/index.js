@@ -67,6 +67,7 @@ export default function (){
     this.on('dialog-box.false', () => {
         this.exec({ 'hands': false })
     })
+    /*
     this.on('dialog-box.mode', mode => {
         if(mode==='mode-classic'){
             $tpl.css({ top: 'unset', bottom: '10px' })
@@ -75,5 +76,6 @@ export default function (){
           $tpl.css({ top: '10px', bottom: 'unset' })
         }
     })
+    */
 }
 
