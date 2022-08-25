@@ -6,10 +6,10 @@ export default function (){
   this.on('postload', ()=>{
       ISBN = '0000000000000';
       if( store.get(ISBN) ){
-          this.current.data = store.get(ISBN);
+          this.state.data = store.get(ISBN);
       }
       else{
-        this.current.data = {};
+        this.state.data = {};
       }
   })
   /**
@@ -17,18 +17,18 @@ export default function (){
    */
   const dataSetHanlder = data => {
     for(let key in data){
-      this.current.data[key] = data[key]
+      this.state.data[key] = data[key]
     }
-    store.set(ISBN, this.current.data)
+    store.set(ISBN, this.state.data)
   }
   /**
    * clear
    */
   const dataClearHanler = data => {
     store.remove(ISBN)
-    this.current.data = {
-      score: this.current.data.score,
-      player: this.current.data.player
+    this.state.data = {
+      score: this.state.data.score,
+      player: this.state.data.player
     }
   }
   this.on('data-set', dataSetHanlder)

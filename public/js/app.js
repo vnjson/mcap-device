@@ -437,8 +437,8 @@
       // убрал сцену по умолчанию, потому что на неё постоянно прыгало
 
       /*
-      if(this.current.sceneName!==''){
-          history.pushState(null, null, `?jump=${this.current.sceneName}.${this.current.labelName}`);
+      if(this.state.sceneName!==''){
+          history.pushState(null, null, `?jump=${this.state.sceneName}.${this.state.labelName}`);
       }
       */
 
@@ -463,13 +463,13 @@
 
       if (_typeof(codeError) === 'object') {
         var message = codeError[_this.local];
-        var path = "".concat(_this.current.sceneName, ".").concat(_this.current.labelName);
+        var path = "".concat(_this.state.sceneName, ".").concat(_this.state.labelName);
         var snippet = ErrorHandler.getSnippetFromCtx(_this.ctx);
         ErrorHandler.showModal(message, path, snippet);
       } else {
         var _message = ErrorHandler.getMessage(_this.local, codeError, data);
 
-        var _path = "".concat(_this.current.sceneName, ".").concat(_this.current.labelName);
+        var _path = "".concat(_this.state.sceneName, ".").concat(_this.state.labelName);
 
         var _snippet = ErrorHandler.getSnippetFromCtx(_this.ctx);
 
@@ -478,7 +478,7 @@
     });
     this.on('warn', function (codeError, data) {
       var codes = {
-        NoWayOutOfTheLabel: "No way out of the label [ ".concat(_this.current.labelName, " ]")
+        NoWayOutOfTheLabel: "No way out of the label [ ".concat(_this.state.labelName, " ]")
       };
       console.log(codes[codeError]);
     });
@@ -2173,9 +2173,9 @@
   function outputDataPlugin (asset) {
     var data = {};
 
-    for (var key in this.current.data) {
+    for (var key in this.state.data) {
       if (!exclude.includes(key)) {
-        data[key] = this.current.data[key];
+        data[key] = this.state.data[key];
       }
     }
 
@@ -2363,7 +2363,7 @@
       var i = 0;
 
       var load = function load() {
-        var asset = _this.current.assets[i];
+        var asset = _this.state.assets[i];
 
         if (!asset) {
           _this.emit('postload');
@@ -2372,7 +2372,7 @@
         }
 
         if (/\.mp3|\.wav|\.ogg/i.test(asset.url)) {
-          if (_this.current.assets.length - 1 >= ++i) {
+          if (_this.state.assets.length - 1 >= ++i) {
             var sound = new Howl({
               src: asset.url
             });
@@ -2403,7 +2403,7 @@
             var _this$TREE$$root$pack;
 
             if ((_this$TREE$$root$pack = _this.TREE.$root["package"]) !== null && _this$TREE$$root$pack !== void 0 && _this$TREE$$root$pack.preload) {
-              if (_this.current.assets.length - 1 >= ++i) {
+              if (_this.state.assets.length - 1 >= ++i) {
                 if (_this.TREE.$root["package"].preload) {
                   var img = new Image();
                   img.src = asset.url;
@@ -2449,13 +2449,13 @@
             _Object$entries$_i[0];
             var body = _Object$entries$_i[1];
 
-        _this.current.assets = _this.current.assets.concat(body.assets);
+        _this.state.assets = _this.state.assets.concat(body.assets);
       }
       /**
        * Загрузка ресурсов происходит только тогда, когда есть ресурсы
        */
 
-      if (_this.current.assets.length > 0) {
+      if (_this.state.assets.length > 0) {
         getAssets();
       }
       /**
@@ -2479,7 +2479,7 @@
      */
 
 
-    this.on('setTree', setAllAssets);
+    this.on('vnjson.mount', setAllAssets);
     /**
      * Отображаем прелоэдер
      */
@@ -3774,7 +3774,7 @@
         if (/\./.test(param)) {
           if (!data) {
             console.error('Data file not found');
-            console.warn(_this.current.sceneName + '.' + _this.current.labelName + '.' + _this.current.index);
+            console.warn(_this.state.sceneName + '.' + _this.state.labelName + '.' + _this.state.index);
           } else {
             $tpl.find('pre code').removeAttr('class');
             var str = param.split('.');
@@ -4152,9 +4152,9 @@
       ISBN = '0000000000000';
 
       if (store.get(ISBN)) {
-        _this.current.data = store.get(ISBN);
+        _this.state.data = store.get(ISBN);
       } else {
-        _this.current.data = {};
+        _this.state.data = {};
       }
     });
     /**
@@ -4163,10 +4163,10 @@
 
     var dataSetHanlder = function dataSetHanlder(data) {
       for (var key in data) {
-        _this.current.data[key] = data[key];
+        _this.state.data[key] = data[key];
       }
 
-      store.set(ISBN, _this.current.data);
+      store.set(ISBN, _this.state.data);
     };
     /**
      * clear
@@ -4175,9 +4175,9 @@
 
     var dataClearHanler = function dataClearHanler(data) {
       store.remove(ISBN);
-      _this.current.data = {
-        score: _this.current.data.score,
-        player: _this.current.data.player
+      _this.state.data = {
+        score: _this.state.data.score,
+        player: _this.state.data.player
       };
     };
 
@@ -4201,7 +4201,7 @@
     function Switch(vnjs) {
       _classCallCheck(this, Switch);
 
-      _defineProperty(this, "operators", ['===', '<', '>', '>=', '<=', '!==', '[]', '][', 'default']);
+      _defineProperty(this, "operators", ['===', '<', '>', '>=', '<=', '!==', '\[\]', '\]\[', 'default']);
 
       _defineProperty(this, "dataValue", null);
 
@@ -4244,7 +4244,7 @@
                 key = _this$equal$split2[0],
                 val = _this$equal$split2[1];
 
-            this.dataValue = this.__vnjs.current.data[key];
+            this.dataValue = this.__vnjs.state.data[key];
             this.value = val;
           }
 
@@ -4253,7 +4253,7 @@
                const [ key, value ] = equal.replaceAll(' ', '').split('===');
                
                // Если существует сохраненная переменная, то выполняем команду
-               if( String( this.current.data[key] ) === String(value) && key!=='default'){
+               if( String( this.state.data[key] ) === String(value) && key!=='default'){
                    defaultFlag = true;
                    this.exec(data[equal]);
                }*/
@@ -4412,9 +4412,9 @@
   });
 
   function clearData() {
-    if (this.current.data.score) {
-      this.current.data.score = new Score();
-      store.set(this.TREE.$root["package"].ISBN, this.current.data);
+    if (this.state.data.score) {
+      this.state.data.score = new Score();
+      store.set(this.TREE.$root["package"].ISBN, this.state.data);
       this.emit('setScore');
     }
   }
@@ -4422,8 +4422,8 @@
   function qa () {
     var _this = this;
 
-    if (!this.current.data.score) {
-      this.current.data.score = new Score();
+    if (!this.state.data.score) {
+      this.state.data.score = new Score();
     }
 
     var $tpl = $(tpl$7);
@@ -4432,11 +4432,11 @@
     var setScore = function setScore(data) {
       for (var key in data) {
         for (var param in data[key]) {
-          _this.current.data.score[key][param] += data[key][param];
+          _this.state.data.score[key][param] += data[key][param];
         }
       }
 
-      store.set(_this.TREE.$root["package"].ISBN, _this.current.data);
+      store.set(_this.TREE.$root["package"].ISBN, _this.state.data);
 
       _this.emit('setScore');
     };
@@ -4444,7 +4444,7 @@
     this.on('оценка', function (data) {
       if (data === 'reset') {
         clearData.call(_this);
-        _this.current.data.score = new Score();
+        _this.state.data.score = new Score();
       } else {
         setScore(data);
       }
@@ -4504,7 +4504,7 @@
   function chess () {
     var _this = this;
 
-    this.on('setTree', function () {
+    this.on('vnjson.mount', function () {
       if (_this.TREE.$root["package"].chess) {
         chessInit();
       }
@@ -4554,7 +4554,7 @@
 
       var _char = _this.TREE.$root.characters.find(function (character) {
         return character.id === cid;
-      }); //this.current.data[cid] = value;
+      }); //this.state.data[cid] = value;
 
 
       _char.name = input.val();
@@ -4619,7 +4619,7 @@
   function crossWord () {
     var _this = this;
 
-    this.on('setTree', function () {
+    this.on('vnjson.mount', function () {
       if (_this.TREE.$root["package"]['crossword']) {
         init();
       }
@@ -4671,8 +4671,8 @@
     answers = [];
     _trueAnswer = 0;
     _falseAnswer = 0;
-    $vnjs.current.data.trueAnswer = 0;
-    $vnjs.current.data.falseAnswer = 0;
+    $vnjs.state.data.trueAnswer = 0;
+    $vnjs.state.data.falseAnswer = 0;
     $('.vnjson__test').css('background-color', 'wheat');
     $('.vnjson__variants-item').css('background-color', 'unset');
     $('.vnjson__test-next-btn').css('background-color', 'black');
@@ -4791,8 +4791,8 @@
         /**
          * Записываем результаты в data
          */
-        $vnjs.current.data.trueAnswer = _trueAnswer;
-        $vnjs.current.data.falseAnswer = _falseAnswer;
+        $vnjs.state.data.trueAnswer = _trueAnswer;
+        $vnjs.state.data.falseAnswer = _falseAnswer;
         $('.vnjson__test-result-item_true').html(_trueAnswer);
         $('.vnjson__test-result-item_false').html(_falseAnswer);
         $('.vnjson__test-result').show();
@@ -4874,7 +4874,7 @@
     _createClass(Content, [{
       key: "getData",
       value: function getData() {
-        var sceneName = this.__vnjs.current.sceneName;
+        var sceneName = this.__vnjs.state.sceneName;
         var currentContent = this.__vnjs.TREE[sceneName].content;
 
         if (currentContent) {
@@ -4999,7 +4999,7 @@
       value: function disabled(obj, $node) {
         if (_typeof(obj) === 'object') {
           for (var key in obj) {
-            var _data = this.__vnjs.current.data[key];
+            var _data = this.__vnjs.state.data[key];
 
             var _obj$key = _slicedToArray(obj[key], 2),
                 min = _obj$key[0],
@@ -5101,7 +5101,7 @@
       if (data) {
         $('.vnjson__hand-left').css('background-image', "url(".concat(icoPlay, ")"));
         _this.$store.$voice = data;
-        INDEX = _this.current.index;
+        INDEX = _this.state.index;
         prev = data;
       } else {
         _this.emit('hand-left', false);
@@ -5151,9 +5151,9 @@
       $(this).css('opacity', 1);
     });
     $('.vnjson__hands').on('click', '.vnjson__hand-left', function (e) {
-      console.log(INDEX, _this.current.index);
+      console.log(INDEX, _this.state.index);
 
-      if (INDEX === _this.current.index) {
+      if (INDEX === _this.state.index) {
         _this.emit('voicePlay');
       }
     });
@@ -5210,13 +5210,13 @@
       var content = null;
 
       if (typeof msg === 'string') {
-        content = _this.TREE.$root["package"].name + ' [ ' + _this.current.sceneName + '.' + _this.current.labelName + ' ]  ' + msg;
+        content = _this.TREE.$root["package"].name + ' [ ' + _this.state.sceneName + '.' + _this.state.labelName + ' ]  ' + msg;
       } else {
-        content = _this.TREE.$root["package"].name + ' [ ' + _this.current.sceneName + '.' + _this.current.labelName + ' ]';
+        content = _this.TREE.$root["package"].name + ' [ ' + _this.state.sceneName + '.' + _this.state.labelName + ' ]';
       }
 
       var params = {
-        username: $vnjs.current.data.player.name,
+        username: $vnjs.state.data.player.name,
         avatar_url: avatar_url,
         content: content
       };
@@ -5349,7 +5349,7 @@
 
     this.on('player-load', function (name) {
       $('#status-bar__player-logo').attr('src', playerImg);
-      $('.status-bar__player-name').html(_this.current.data.player.name);
+      $('.status-bar__player-name').html(_this.state.data.player.name);
     });
     /**
      * help | ready
@@ -5373,17 +5373,17 @@
         request: "info",
         persistent: true,
         onSuccess: function onSuccess(response) {
-          _this.current.data.player = JSON.parse(response);
+          _this.state.data.player = JSON.parse(response);
 
-          _this.emit('player-load', _this.current.data.player.name);
+          _this.emit('player-load', _this.state.data.player.name);
         }
       });
     } catch (err) {
-      this.current.data.player = {
+      this.state.data.player = {
         name: 'mcap_uknown',
         uuid: new Date().toLocaleString()
       };
-      this.emit('player-load', this.current.data.player.name);
+      this.emit('player-load', this.state.data.player.name);
     }
   }
 
@@ -5519,7 +5519,7 @@
   function paintBoard () {
     var _this = this;
 
-    this.on('setTree', function () {
+    this.on('vnjson.mount', function () {
       if (_this.TREE.$root["package"]['paint-board']) {
         init();
       }
@@ -7262,64 +7262,63 @@
   }
 
   /* native [jump] [next] [timeout] */
-  function plugins () {
-    if ($vnjs.debug) {
-      this.use(debug);
-      this.use(debugDialogBox);
-    }
 
-    this.use(assetsLoader);
-    this.use(screen);
-    /*components*/
-
-    this.use(scene);
-    this.use(show);
-    this.use(showAuto);
-    this.use(audio);
-    this.use(frame);
-    this.use(animate);
-    this.use(menu);
-    this.use(mainMenu);
-    this.use(term);
-    this.use(cloud);
-    this.use(soundHover);
-    this.use(table);
-    this.use(clear);
-    this.use(dialogBox);
-    this.use(hands);
-    this.use(data);
-    this.use(switchVnjson);
-    this.use(qa);
-    this.use(chess);
-    this.use(setName);
-    this.use(wiki);
-    this.use(crossWord);
-    this.use(test);
-    this.use(slide);
-    this.use(content);
-    this.use(voice);
-    this.use(html);
-    this.use(discordLog);
-    this.use(statusBar); // minecraft
-
-    this.use(mcPlayer);
-    this.use(mcCheck);
-    this.use(mcExec);
-    this.use(mcGet); //
-
-    this.use(paintBoard);
-    this.use(clipBoard);
-    this.use(video);
-    this.use(typewrite);
-    this.use(area);
-    this.use(selectWord);
-    this.use(dragItems);
-    this.use(consoleVnjson);
-    this.use(blocks);
-    this.use(staticApp);
-    this.use(HUD);
-    this.use(dialogBoxInfo);
+  if ($vnjs.debug) {
+    $vnjs.use(debug);
+    $vnjs.use(debugDialogBox);
   }
+
+  $vnjs.use(assetsLoader);
+  $vnjs.use(screen);
+  /*components*/
+
+  $vnjs.use(scene);
+  $vnjs.use(show);
+  $vnjs.use(showAuto);
+  $vnjs.use(audio);
+  $vnjs.use(frame);
+  $vnjs.use(animate);
+  $vnjs.use(menu);
+  $vnjs.use(mainMenu);
+  $vnjs.use(term);
+  $vnjs.use(cloud);
+  $vnjs.use(soundHover);
+  $vnjs.use(table);
+  $vnjs.use(clear);
+  $vnjs.use(dialogBox);
+  $vnjs.use(hands);
+  $vnjs.use(data);
+  $vnjs.use(switchVnjson);
+  $vnjs.use(qa);
+  $vnjs.use(chess);
+  $vnjs.use(setName);
+  $vnjs.use(wiki);
+  $vnjs.use(crossWord);
+  $vnjs.use(test);
+  $vnjs.use(slide);
+  $vnjs.use(content);
+  $vnjs.use(voice);
+  $vnjs.use(html);
+  $vnjs.use(discordLog);
+  $vnjs.use(statusBar); // minecraft
+
+  $vnjs.use(mcPlayer);
+  $vnjs.use(mcCheck);
+  $vnjs.use(mcExec);
+  $vnjs.use(mcGet); //
+
+  $vnjs.use(paintBoard);
+  $vnjs.use(clipBoard);
+  $vnjs.use(video);
+  $vnjs.use(typewrite);
+  $vnjs.use(area);
+  $vnjs.use(selectWord);
+  $vnjs.use(dragItems);
+  $vnjs.use(consoleVnjson);
+  $vnjs.use(blocks);
+  $vnjs.use(staticApp);
+  $vnjs.use(HUD);
+  $vnjs.use(dialogBoxInfo);
 
   /**
    * Загрузка игры
@@ -7328,50 +7327,35 @@
   fetch("scenes/vn.json?v=".concat(new Date().getTime())).then(function (r) {
     return r.json();
   }).then(function (tree) {
-    return init(tree);
+    return $vnjs.mount(tree);
   })["catch"](function (err) {
     $('.debug-error').css('display', 'flex').find('.debug-error__msg').html('Невалидный скрипт');
     console.error('Invalid script', err.message);
   });
+  $vnjs.on('postload', function () {
+    var _this$TREE$$root$pack;
 
-  function init(tree) {
-    var _tree$$root$package;
+    $vnjs.config = {
+      debug: (_this$TREE$$root$pack = this.TREE.$root["package"]) === null || _this$TREE$$root$pack === void 0 ? void 0 : _this$TREE$$root$pack.debug
+    }; // ?jump=scene.label
+    // ?jump=scene  //default $init
 
-    /*
-      conf: {
-        debug: true,
-        $: {id: '$', name: 'Автор', replyColor: 'red'} //default character
-      }
-     */
-    window.$vnjs = new Vnjson({
-      debug: (_tree$$root$package = tree.$root["package"]) === null || _tree$$root$package === void 0 ? void 0 : _tree$$root$package.debug
-    });
-    plugins.call($vnjs);
-    $vnjs.setTree(tree);
-    $vnjs.on('postload', function () {
-      // ?jump=scene.label
-      // ?jump=scene  //default $init
-      var label = new URL(location.href).searchParams.get("jump");
+    var label = new URL(location.href).searchParams.get("jump");
 
-      if (label) {
-        var _label$split = label.split('.'),
-            _label$split2 = _slicedToArray(_label$split, 3),
-            sceneName = _label$split2[0],
-            labelName = _label$split2[1];
-            _label$split2[2];
+    if (label) {
+      var _label$split = label.split('.'),
+          _label$split2 = _slicedToArray(_label$split, 2),
+          sceneName = _label$split2[0],
+          labelName = _label$split2[1];
 
-        $vnjs.exec({
-          jump: "".concat(sceneName, ".").concat(labelName)
-        });
-      } else {
-        $vnjs.exec({
-          jump: '$root.$init'
-        });
-      }
-    });
-    $vnjs.on('init', function () {
-      $vnjs.exec();
-    });
-  }
+      $vnjs.exec({
+        jump: "".concat(sceneName, ".").concat(labelName)
+      });
+    } else {
+      $vnjs.exec({
+        jump: '$root.$init'
+      });
+    }
+  });
 
 })();

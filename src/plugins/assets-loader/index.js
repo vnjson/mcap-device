@@ -15,7 +15,7 @@ var getAssets = _=>{
 var i = 0;
 
 var load = () => {
-  var asset = this.current.assets[i];
+  var asset = this.state.assets[i];
 
   if(!asset) {
     this.emit('postload');
@@ -23,7 +23,7 @@ var load = () => {
   }
   if(/\.mp3|\.wav|\.ogg/i.test(asset.url)){
          
-          if( this.current.assets.length-1>=++i){
+          if( this.state.assets.length-1>=++i){
               var sound = new Howl({src: asset.url});
 
                   sound.on('end', () => this.emit('audioEnd', asset.name))
@@ -47,7 +47,7 @@ var load = () => {
       if(this.TREE.$root?.package){
           if(this.TREE.$root.package?.preload ){
             
-            if(this.current.assets.length-1>=++i){
+            if(this.state.assets.length-1>=++i){
               if(this.TREE.$root.package.preload){
                     let img = new Image();
                     img.src =  asset.url; 
@@ -94,12 +94,12 @@ load();
 
 const setAllAssets = ()=>{
     for(let [scene, body] of Object.entries(this.TREE)){
-        this.current.assets = this.current.assets.concat(body.assets);
+        this.state.assets = this.state.assets.concat(body.assets);
     };
     /**
      * Загрузка ресурсов происходит только тогда, когда есть ресурсы
      */
-    if(this.current.assets.length>0){
+    if(this.state.assets.length>0){
           getAssets();
     }
     /**
@@ -120,7 +120,7 @@ const setAllAssets = ()=>{
   /**
    * Получили vn.json
    */
-  this.on('setTree', setAllAssets);
+  this.on('vnjson.mount', setAllAssets);
   /**
    * Отображаем прелоэдер
    */

@@ -16,14 +16,14 @@ this.on('postload', ()=>{
 this.on('discord-log', msg=>{
   var content = null
   if(typeof(msg)==='string'){
-    content = this.TREE.$root.package.name+' [ '+this.current.sceneName+'.'+this.current.labelName+' ]  '+ msg
+    content = this.TREE.$root.package.name+' [ '+this.state.sceneName+'.'+this.state.labelName+' ]  '+ msg
   }
   else{
-    content = this.TREE.$root.package.name+' [ '+this.current.sceneName+'.'+this.current.labelName+' ]'
+    content = this.TREE.$root.package.name+' [ '+this.state.sceneName+'.'+this.state.labelName+' ]'
   }
 
       const params = {
-        username: $vnjs.current.data.player.name,
+        username: $vnjs.state.data.player.name,
         avatar_url,
         content
       }

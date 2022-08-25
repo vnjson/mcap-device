@@ -14,7 +14,7 @@ this.on('$voice', data => {
   if(data){
     $('.vnjson__hand-left').css('background-image', `url(${icoPlay})`)
     this.$store.$voice = data
-    INDEX = this.current.index
+    INDEX = this.state.index
     prev = data
   }
   else{
@@ -68,8 +68,8 @@ this.on('voicePlay', data => {
 
   
   $('.vnjson__hands').on('click', '.vnjson__hand-left', e => {
-    console.log(INDEX, this.current.index)
-     if(INDEX===this.current.index){
+    console.log(INDEX, this.state.index)
+     if(INDEX===this.state.index){
         this.emit('voicePlay')
      }
   })

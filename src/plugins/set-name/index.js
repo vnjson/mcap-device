@@ -19,7 +19,7 @@ export default function (){
      
             $tpl.fadeOut();
             let char = this.TREE.$root.characters.find(character => character.id===cid)
-            //this.current.data[cid] = value;
+            //this.state.data[cid] = value;
             char.name = input.val();
             input.val('');
             this.exec({ next: true })

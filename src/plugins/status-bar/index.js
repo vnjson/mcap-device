@@ -29,7 +29,7 @@ export default function (){
    */
   this.on('player-load', name => {
       $('#status-bar__player-logo').attr('src', playerImg);
-      $('.status-bar__player-name').html(this.current.data.player.name);
+      $('.status-bar__player-name').html(this.state.data.player.name);
   })
   /**
    * help | ready

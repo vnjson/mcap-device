@@ -23,8 +23,8 @@ export default function  (){
          */
         // убрал сцену по умолчанию, потому что на неё постоянно прыгало
         /*
-        if(this.current.sceneName!==''){
-            history.pushState(null, null, `?jump=${this.current.sceneName}.${this.current.labelName}`);
+        if(this.state.sceneName!==''){
+            history.pushState(null, null, `?jump=${this.state.sceneName}.${this.state.labelName}`);
         }
         */
         /**
@@ -50,13 +50,13 @@ export default function  (){
         if(typeof codeError==='object'){
             const message = codeError[this.local]
      
-            const path = `${this.current.sceneName}.${this.current.labelName}`;
+            const path = `${this.state.sceneName}.${this.state.labelName}`;
             const snippet = ErrorHandler.getSnippetFromCtx(this.ctx);
             ErrorHandler.showModal(message, path, snippet);
         }
         else{
             const message = ErrorHandler.getMessage(this.local, codeError, data);
-            const path = `${this.current.sceneName}.${this.current.labelName}`;
+            const path = `${this.state.sceneName}.${this.state.labelName}`;
             const snippet = ErrorHandler.getSnippetFromCtx(this.ctx);
             ErrorHandler.showModal(message, path, snippet);
         }
@@ -64,7 +64,7 @@ export default function  (){
     })
     this.on('warn', (codeError, data)=>{
         const codes =  {
-            NoWayOutOfTheLabel: `No way out of the label [ ${this.current.labelName} ]`
+            NoWayOutOfTheLabel: `No way out of the label [ ${this.state.labelName} ]`
         }
      
         console.log(codes[codeError]);

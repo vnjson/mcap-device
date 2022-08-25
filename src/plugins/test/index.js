@@ -17,8 +17,8 @@ let _falseAnswer = 0;
   answers = [];
   _trueAnswer = 0;
   _falseAnswer = 0;
-  $vnjs.current.data.trueAnswer = 0
-  $vnjs.current.data.falseAnswer = 0
+  $vnjs.state.data.trueAnswer = 0
+  $vnjs.state.data.falseAnswer = 0
   $('.vnjson__test').css('background-color', 'wheat')
   $('.vnjson__variants-item').css('background-color','unset')
   $('.vnjson__test-next-btn').css('background-color', 'black')
@@ -137,8 +137,8 @@ function nextStep(){
             /**
              * Записываем результаты в data
              */
-            $vnjs.current.data.trueAnswer = _trueAnswer
-            $vnjs.current.data.falseAnswer = _falseAnswer
+            $vnjs.state.data.trueAnswer = _trueAnswer
+            $vnjs.state.data.falseAnswer = _falseAnswer
 
             $('.vnjson__test-result-item_true').html(_trueAnswer);
             $('.vnjson__test-result-item_false').html( _falseAnswer);

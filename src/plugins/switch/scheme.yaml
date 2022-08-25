@@ -1,5 +1,5 @@
 
-# получаем данные данные в хранилище $vnjs.current.data
+# получаем данные данные в хранилище $vnjs.state.data
 - switch:
     age === меньше12:
       jump: $root.$init
@@ -19,7 +19,7 @@
         next: true
         
 
-# получаем данные данные в хранилище $vnjs.current.data
+# получаем данные данные в хранилище $vnjs.state.data
 - switch:
     age === меньше12:
       $: Меньше 12

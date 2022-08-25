@@ -6,8 +6,8 @@ class Switch {
         '>=', 
         '<=', 
         '!==', 
-        '[]', 
-        '][',
+        '\[\]', 
+        '\]\[',
         'default'
     ]
     dataValue= null
@@ -30,6 +30,7 @@ class Switch {
              */
             this.operators.forEach( op => {
                 if( new RegExp(op).test(this.equal) ){
+
                     this.OPERATOR = op
                 }
             })
@@ -38,7 +39,7 @@ class Switch {
             }
             else{
                 const [ key, val ] = this.equal.split(this.OPERATOR)
-                this.dataValue = this.__vnjs.current.data[key]
+                this.dataValue = this.__vnjs.state.data[key]
                 this.value = val
             }
             this.distributor()
@@ -46,7 +47,7 @@ class Switch {
             const [ key, value ] = equal.replaceAll(' ', '').split('===');
             
             // Если существует сохраненная переменная, то выполняем команду
-            if( String( this.current.data[key] ) === String(value) && key!=='default'){
+            if( String( this.state.data[key] ) === String(value) && key!=='default'){
                 defaultFlag = true;
                 this.exec(data[equal]);
             }*/

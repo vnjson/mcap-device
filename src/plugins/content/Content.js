@@ -11,7 +11,7 @@ class Content {
         this.$view = $view
     }
     getData (){
-        const { sceneName } = this.__vnjs.current
+        const { sceneName } = this.__vnjs.state
         const currentContent = this.__vnjs.TREE[sceneName].content
         if(currentContent){
             return currentContent
@@ -116,7 +116,7 @@ class Content {
     disabled (obj, $node){
         if(typeof obj ==='object'){
             for(let key in obj){
-                const _data = this.__vnjs.current.data[key]
+                const _data = this.__vnjs.state.data[key]
       
                 const [ min, max ] = obj[key]
                 if( Array.isArray( obj[key] ) ){

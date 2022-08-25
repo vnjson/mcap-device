@@ -4,7 +4,7 @@ import './style.css';
 export default function (){
 
 
-this.on('setTree', ()=>{
+this.on('vnjson.mount', ()=>{
     if(this.TREE.$root.package['crossword']){
       init();
     }

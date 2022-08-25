@@ -3,9 +3,9 @@ const exclude = ['score', 'player']
 export default function (asset) {
 
     const data = {}
-    for(let key in  this.current.data){
+    for(let key in  this.state.data){
         if( !exclude.includes(key) ){
-           data[key] = this.current.data[key]
+           data[key] = this.state.data[key]
         }
     }
 

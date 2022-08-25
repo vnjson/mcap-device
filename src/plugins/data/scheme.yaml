@@ -2,7 +2,7 @@
 
 - data-clear: true # обнуляет данные текущего пользователя
 
-# ложим данные в хранилище $vnjs.current.data
+# ложим данные в хранилище $vnjs.state.data
 - data-set:
     age: 12
 

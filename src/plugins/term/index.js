@@ -25,7 +25,7 @@ export default function (){
             
         if(!data){
           console.error('Data file not found')
-          console.warn(this.current.sceneName+'.'+this.current.labelName+'.'+this.current.index)
+          console.warn(this.state.sceneName+'.'+this.state.labelName+'.'+this.state.index)
         }
         else{
                 $tpl.find('pre code').removeAttr('class');

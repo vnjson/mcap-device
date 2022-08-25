@@ -1,17 +1,5 @@
-(function (root, factory) {
-  if ( typeof define === 'function' && define.amd ) {
-    define([], factory(root));
-  } else if ( typeof exports === 'object' ) {
-    module.exports = factory(root);
-  } else {
-    root.Vnjson = factory(root);
-  }
-})(typeof global !== "undefined" ? global : this.window || this.global, function (root) {
-
-'use strict';
-
 class Vnjson {
-  version = '1.8.4';
+  version = '1.9.0';
   //current object
   ctx = {};
   //loaded scenes
@@ -20,10 +8,6 @@ class Vnjson {
   constructor (conf){
     this.conf = conf;
     this.debug = conf.debug;
-    this.on('next', this.nextHandler)
-    this.on('jump', this.jumpHandler);
-    this.on('timeout', this.timeoutHandler);
-    this.on('log', (param)=>console.log(param));
   }
 
   /**
@@ -31,7 +15,7 @@ class Vnjson {
    */
   plugins = {};
 
-  current = {
+  state = {
     index: 0,
     labelName: '',
     sceneName: '',
@@ -47,7 +31,7 @@ class Vnjson {
   $store = {};
 
   getAssetByName (name){
-    const asset = this.current.assets.filter(asset=>{
+    const asset = this.state.assets.filter(asset=>{
                       return asset.name===name;
                 })[0];
     if(asset){ 
@@ -86,7 +70,7 @@ class Vnjson {
   isRouteExist (pathname){
     const route = pathname.split('.')
     if(route.length===1){
-      return this.isSceneExist(this.current.sceneName, route[0])
+      return this.isSceneExist(this.state.sceneName, route[0])
     }
     if(route.length>1){
       return this.isLabelExist (route[0], route[1])
@@ -95,7 +79,7 @@ class Vnjson {
   getCurrentLabelBody (){
  
     try{
-      const labelBody = this.TREE[this.current.sceneName][this.current.labelName]
+      const labelBody = this.TREE[this.state.sceneName][this.state.labelName]
       return labelBody
     }
     catch(err){
@@ -108,7 +92,7 @@ class Vnjson {
   }
   getCurrentCharacter (){
 
-    return this.current.character;
+    return this.state.character;
   }
   getCharacterById (id){
     return this.TREE.$root.characters.find(character=>character.id === id)
@@ -118,14 +102,14 @@ class Vnjson {
   }
 
   getCtx (){
-    return this.getCurrentLabelBody()[this.current.index];
+    return this.getCurrentLabelBody()[this.state.index];
   }
 
-  setTree (tree){
-    this.TREE = tree;
+  mount (tree){
+          this.TREE = tree;
 
           if(!this.TREE.$root.hasOwnProperty('characters')){
-            let narrator = {
+            const narrator = {
                   id: "$",
                   name: ". . . .",
                   nameColor: "#49de58",
@@ -144,13 +128,13 @@ class Vnjson {
              * 
              */
             this.on(character.id, (reply) => {
-              this.current.character = character;
-              this.emit('character', character, reply );
+                this.state.character = character;
+                this.emit('character', character, reply );
             })
 
           });
 
-    this.emit('setTree')
+    this.emit('vnjson.mount')
     return this;
   }
 
@@ -209,12 +193,12 @@ class Vnjson {
 
   next (){
 
-    if(this.getCurrentLabelBody().length-2<this.current.index){
-      this.current.index = this.current.index;
+    if(this.getCurrentLabelBody().length-2<this.state.index){
+      this.state.index = this.state.index;
       this.emit('warn', `NoWayOutOfTheLabel`);
     }
     else{
-      this.current.index++;
+      this.state.index++;
       this.exec();
       this.emit('vnjson.next')
     }
@@ -226,53 +210,72 @@ class Vnjson {
         plugin.call(this);  
         return this;
   }
-  /*include plugins*/
-  nextHandler () {
+
+};
+
+/**
+ * this.emit('vnjson:next')
+ */
+
+
+
+window.$vnjs = new Vnjson({debug: true})
+/**
+ * Native plagins 
+ */ 
+/**
+ * next: true
+ */
+$vnjs.on('next', function () {
     setTimeout(() => this.next(), 50)
-  }
-  jumpHandler (_pathname){
-    let pathname = String(_pathname);
+});
+/**
+ * timeout:
+ *   timer: 1000
+ *   exec:
+ *      $: Time is over
+ */
+$vnjs.on('timeout', function (param){
+    setTimeout(() => this.exec(param.exec), param.timer)
+});
+/**
+ * jump: scene.label
+ */
+$vnjs.on('jump', function (_pathname){
+    const pathname = String(_pathname);
     /**
      * Обработка прыжка по менткам _mark
      */
     if(/^_/i.test(pathname) ){
         const labelBody = this.getCurrentLabelBody();
         if(labelBody.length===0) return;
-        const index = labelBody.map( ctx=>{
+        const index = labelBody.map( ctx => {
                                 return ctx.hasOwnProperty(pathname)
                               })
                               .indexOf(true);
               
-        const label = [ this.current.sceneName, this.current.labelName, index ].join('.');
+        const label = [ this.state.sceneName, this.state.labelName, index ].join('.');
         
         this.exec({jump: label});
+
     }
     else{
-        const path = pathname.split('.');
-        this.current.index = path[2]||0;
+        const path = pathname.split('.')
+        this.state.index = path[2]||0
         //label
         if(!/\./i.test(pathname)){    
-          this.current.labelName = path[0];
-          this.emit('init', false);
-
+          this.state.labelName = path[0]
+          this.emit('jump.init', false)
+          this.exec()
         }
         //scene.label
         if(/\./i.test(pathname)){
-            this.current.sceneName = path[0];
-            this.current.labelName = path[1];
-            this.emit('init', true);
-        };      
+            this.state.sceneName = path[0]
+            this.state.labelName = path[1]
+            this.emit('jump.init', true)
+            this.exec()
+        };   
+
     }
 
-  }
-
-  timeoutHandler (param){
-    setTimeout(() => this.exec(param.exec), param.timer)
-  }
-};
-
-return Vnjson;
 });
-/**
- * this.emit('vnjson:next')
- */

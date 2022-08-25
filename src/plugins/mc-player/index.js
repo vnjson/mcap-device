@@ -7,20 +7,20 @@ const rndID = new Date().toLocaleDateString()
         request: "info",
         persistent: true,
         onSuccess: response=>{
-          this.current.data.player = JSON.parse(response)
+          this.state.data.player = JSON.parse(response)
 
-          this.emit('player-load', this.current.data.player.name)
+          this.emit('player-load', this.state.data.player.name)
         }
       })
 
   } 
   catch (err) {
-      this.current.data.player = {
+      this.state.data.player = {
         name: 'mcap_uknown',
         uuid: new Date().toLocaleString()
       }
 
-      this.emit('player-load', this.current.data.player.name)
+      this.emit('player-load', this.state.data.player.name)
   }
 
 }

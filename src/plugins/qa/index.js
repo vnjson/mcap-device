@@ -6,17 +6,17 @@ import  { Score } from './default-score.js'
 
 function clearData(){
 
-  if(this.current.data.score){
-      this.current.data.score = new Score();
-      store.set(this.TREE.$root.package.ISBN, this.current.data)
+  if(this.state.data.score){
+      this.state.data.score = new Score();
+      store.set(this.TREE.$root.package.ISBN, this.state.data)
       this.emit('setScore')
   }
 
 }
 
 export default function (){
-  if(!this.current.data.score){
-    this.current.data.score = new Score()
+  if(!this.state.data.score){
+    this.state.data.score = new Score()
 
   }
 
@@ -28,10 +28,10 @@ export default function (){
 
     for(let key in data){
         for(let param in data[key]){
-          this.current.data.score[key][param] += data[key][param]
+          this.state.data.score[key][param] += data[key][param]
         }
     }
-     store.set(this.TREE.$root.package.ISBN, this.current.data)
+     store.set(this.TREE.$root.package.ISBN, this.state.data)
 
 
     this.emit('setScore')
@@ -40,7 +40,7 @@ export default function (){
   this.on('оценка', (data)=>{
     if(data==='reset'){
       clearData.call(this)
-      this.current.data.score = new Score()
+      this.state.data.score = new Score()
     }
     else{
       setScore(data)
