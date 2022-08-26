@@ -176,7 +176,10 @@ export default function (){
      * Output data
      */
     this.on('vnjson.data', outputDataPlugin)
-
+    /**
+     * exec
+     */
+  //  this.on('vnjson.execute', (data) =>  this.emit('exec', data) )
 }
 
 

@@ -188,7 +188,7 @@ class Vnjson {
     else{
         this.emit('$', String(this.ctx) );
     }
-    this.emit('vnjson:exec', this.ctx)
+    this.emit('vnjson.exec', this.ctx)
     return this;
   }
 
@@ -224,6 +224,9 @@ window.$vnjs = new Vnjson({debug: true})
 /**
  * Native plagins 
  */ 
+$vnjs.on('log', function (data) {
+   console.log(data)
+});
 /**
  * next: true
  */

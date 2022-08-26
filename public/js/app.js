@@ -414,7 +414,7 @@
 
     this.local = 'ru';
     new ErrorHandler(this.local);
-    this.on('vnjson:exec', function (ctx) {
+    this.on('vnjson.exec', function (ctx) {
       /**
        * Добавляем параметры в URI
        */
@@ -2053,6 +2053,11 @@
     'video': "name: null\nvolume: 0.7\ncss:\n  top: 50px\n  left: 50px\n  width: 500px\n  height: 300px",
 
     /**
+     * execute
+     */
+    'execute': "- ...\n- ...",
+
+    /**
      * DEV
      */
     'img-size': "null",
@@ -2328,6 +2333,10 @@
      */
 
     this.on('vnjson.data', outputDataPlugin);
+    /**
+     * exec
+     */
+    //  this.on('vnjson.execute', (data) =>  this.emit('exec', data) )
   }
 
   var css$u = "#loader {\n  background: black;\n  z-index: 9999;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  color: white;\n  display: none;\n  align-items: center;\n  justify-content: center;\n}\n\n.loader {\n  color: wheat;\n  font-family: Consolas, Menlo, Monaco, monospace;\n  font-weight: bold;\n  font-size: 100px;\n  opacity: 0.8;\n}\n.loader span {\n  display: inline-block;\n  animation: pulse 0.4s alternate infinite ease-in-out;\n}\n.loader span:nth-child(2) {\n  animation-delay: 0.4s;\n}\n\n@keyframes pulse {\n  to {\n    transform: scale(0.8);\n    opacity: 0.5; \n  } \n}\n";
@@ -2962,19 +2971,16 @@
         'disabled': function disabled() {
           dBox.disabled(true);
         },
-        'reset': function reset() {
-          dBox.setMode('mode-classic');
-          dBox.disabled(false);
-          dBox.show();
-        },
         'transparent': function transparent() {
           dBox.transparent();
         },
         'classic': function classic() {
+          dBox.disabled(false);
           dBox.setMode('mode-classic');
           dBox.show();
         },
         'fullscreen': function fullscreen() {
+          dBox.disabled(false);
           dBox.setMode('mode-fullscreen');
           dBox.show();
         }
@@ -7209,6 +7215,38 @@
     });
   }
 
+  function executeVnjson () {
+    var _this = this;
+
+    this.on('execute', function (data) {
+      if (Array.isArray(data)) {
+        data.forEach(function (plugin) {
+          var key = null;
+          var value = null;
+
+          for (var _key in plugin) {
+            key = _key;
+            value = plugin[key];
+          }
+
+          if (key !== 'execute') {
+            _this.emit(key, value);
+          } else {
+            _this.emit('error', {
+              ru: 'Нельзя использовать вложенный <font color="deepskyblue">execute</font> внутри <font color="deepskyblue">execute</font>',
+              en: 'Сan not use <font color="deepskyblue">execute</font> into <font color="deepskyblue">execute</font>'
+            });
+          }
+        });
+      } else {
+        _this.emit('error', {
+          ru: 'Плагин  <font color="deepskyblue">execute</font> принимает в качестве аргумента, только список плагинов',
+          en: 'Plugin <font color="deepskyblue">execute</font> takes as an argument, only a list of plugins'
+        });
+      }
+    });
+  }
+
   /**
    * Init plugins
    */
@@ -7265,6 +7303,7 @@
   $vnjs.use(staticApp);
   $vnjs.use(HUD);
   $vnjs.use(dialogBoxInfo);
+  $vnjs.use(executeVnjson);
   /**
    * LOAD scenes
    */

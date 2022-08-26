@@ -52,7 +52,7 @@ import staticApp          from './plugins/static-app/index.js'
 import HUD                from './plugins/hud/index.js'
 
 import dialogBoxInfo      from './plugins/dialog-box-info/index.js'
-
+import executeVnjson      from './plugins/execute/index.js'
 /**
  * Init plugins
  */
@@ -106,7 +106,7 @@ $vnjs.use(blocks)
 $vnjs.use(staticApp)
 $vnjs.use(HUD)
 $vnjs.use(dialogBoxInfo)
-
+$vnjs.use(executeVnjson)
 
 /**
  * LOAD scenes

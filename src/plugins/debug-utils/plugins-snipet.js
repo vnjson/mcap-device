@@ -79,6 +79,11 @@ css:
   width: 500px
   height: 300px`,
   /**
+   * execute
+   */
+  'execute': `- ...
+- ...`,
+  /**
    * DEV
    */
   'img-size': "null",
@@ -97,7 +102,8 @@ z: 0`,
 /**
  * DATA
  */
-  'data': "true"
+  'data': "true",
+  
 }
 
 

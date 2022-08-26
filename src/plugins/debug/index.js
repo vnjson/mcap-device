@@ -17,7 +17,7 @@ export default function  (){
     this.local = 'ru';        
     new ErrorHandler(this.local);  
   
-    this.on('vnjson:exec', ctx => {
+    this.on('vnjson.exec', ctx => {
         /**
          * Добавляем параметры в URI
          */

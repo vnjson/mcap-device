@@ -116,19 +116,16 @@ export default function (){
         'disabled': () => {
             dBox.disabled(true)
         },
-        'reset': () => {
-            dBox.setMode('mode-classic')
-            dBox.disabled(false)
-            dBox.show()
-        },
         'transparent': () => {
             dBox.transparent()
         },
         'classic': () => {
+            dBox.disabled(false)
             dBox.setMode('mode-classic')
             dBox.show()
         },
         'fullscreen': () => {
+            dBox.disabled(false)
             dBox.setMode('mode-fullscreen')
             dBox.show()
         },

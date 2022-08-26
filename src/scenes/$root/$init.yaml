@@ -12,75 +12,17 @@
   next: true
 
 #- jump: testdata.$init
-- area:
-    - left: 10
-      top: 250
-      width: 100
-      height: 100
-      show: true # Показывает рамку цветом поумолчанию. '#e11c90' - можно передать цвет
-      exec: 
-        wiki:
-          list:
-            - Абажур
-            - Вагонетка
-            - Картофель
-            - Краб
-          css:
-             left: 700px
-             top: 50px
-    - left: 260
-      top: 60
-      width: 100
-      height: 100
-      show: true
-      exec: 
-        wiki:
-          list:
-            - Юань
-            - Хакасы
-            - Явка
-            - Баба-яга
-          css:
-             left: 700px
-             top: 50px
-################
-- $: Изначально интерпретатор пробегает 
-- +: по коду, видит наши функции, объекты и пр.  объекты и пр.
-- +: и сохраняет их в памяти (Heap).  объекты и пр.  объекты и пр.
-- menu:
-    # label - перемещение внутри текущей сцены
-    - $init: Как подключить 1
-      icon: p1
-    # scene2.label - перемещение в другую сцену
-    - testdata.$init: Как подключить 2
-    - tree__fs: Файловая структура
-      icon: ch
-    # next
-    - next: YAML скрипты
-    # mark
-    - _mark: Прыжок на метку
 
-    - plug: Список плагинов
-      icon: ev # asset
-      disabled: true # деактивировать элемент списка
-      
-    - $root.$init: Вернуться в начало
-    # onClick - Выполняет плагины после клика по любому пункту меню
-    - onClick:
-        hands: false
-        dialog-box: true
-    # css - стилизация меню
-    - css:
-        transform: unset
-        left: unset
-        width: 300px
-        top: 50px
-        right: 20px
+- $: test
+- +: <br/><br/>Далее как только доходит до вызова функции callAllMsgs
 
-
-- +: <br/><br/>Далее как только доходит до вызова функции callAllMsgs(), помещает ее в стек, создается контекст выполнения и выводится сообщение ‘Start’. 
-  status-bar: clear
 - +: тест
+  execute:
+    - log: TEST 1
+    - log: TEST  2
+    - log: TEST   3
+    - log: TEST    4
+    - execute: test
 - dialog-box: transparent
 - dialog-box: reset
   next: true
