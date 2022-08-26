@@ -1,4 +1,4 @@
-- dialog-box: true #fullscreen
+- dialog-box: fullscreen
   hands: true
   status-bar: 
     onCheck:
@@ -48,6 +48,36 @@
 - $: Изначально интерпретатор пробегает 
 - +: по коду, видит наши функции, объекты и пр.  объекты и пр.
 - +: и сохраняет их в памяти (Heap).  объекты и пр.  объекты и пр.
+- menu:
+    # label - перемещение внутри текущей сцены
+    - $init: Как подключить 1
+      icon: p1
+    # scene2.label - перемещение в другую сцену
+    - testdata.$init: Как подключить 2
+    - tree__fs: Файловая структура
+      icon: ch
+    # next
+    - next: YAML скрипты
+    # mark
+    - _mark: Прыжок на метку
+
+    - plug: Список плагинов
+      icon: ev # asset
+      disabled: true # деактивировать элемент списка
+      
+    - $root.$init: Вернуться в начало
+    # onClick - Выполняет плагины после клика по любому пункту меню
+    - onClick:
+        hands: false
+        dialog-box: true
+    # css - стилизация меню
+    - css:
+        transform: unset
+        left: unset
+        width: 300px
+        top: 50px
+        right: 20px
+
 
 - +: <br/><br/>Далее как только доходит до вызова функции callAllMsgs(), помещает ее в стек, создается контекст выполнения и выводится сообщение ‘Start’. 
   status-bar: clear

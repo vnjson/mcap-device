@@ -1,9 +1,9 @@
 
 
 .vnjson__area{
+  z-index: 500;
   width: 100%;
   height: 570px;
-  z-index: 5000;
 }
 .vnjson__area-item:hover{
   cursor: pointer;

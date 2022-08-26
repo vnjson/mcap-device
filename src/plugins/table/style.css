@@ -1,12 +1,9 @@
 
 .vnjson__table{
-
   left: 50%;
   top: 0%;
   transform: translateX(-50%);
-  z-index: 1000;
   flex-direction: column;
-  /*background-color: wheat;*/
 }
 .table-row{
   overflow: hidden;

@@ -2,7 +2,6 @@
 
 .vnjson__qa{
   display: none;
-  z-index: 8888;
   width: 60%;
   flex-direction: column;
 }

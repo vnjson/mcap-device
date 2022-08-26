@@ -2,7 +2,7 @@ debug: true
 preload: true
 
 dialog-box:
-  delay: 60
+  delay: 30
   #alpha: 0.3
   endPoint: true
   mode-classic: dialog-box 
@@ -13,11 +13,11 @@ publish:
   token: ffd5e78f5d987ceaa20b2d26da251b7a
 
 menu:
-  audio: sysFlipPages
+  audio: menu-item
   volume: 0.1
   
 main-menu:
-  audio: test22
+  audio: menu-item
   volume: 0.1
   
 discord-log:
