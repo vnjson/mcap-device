@@ -6,14 +6,20 @@ import checkImg from './assets/check.svg'
 
 class StatusBar {
   PLUGIN_DATA = null
+  flag = false
+  MODE = null
   constructor ($view){
         this.$view = $view
   }
   show (){
         this.$view.css('display', 'flex')
+        this.flag = true
+        this.controlDBoxPadding(this.MODE)
   }
   hide (){
         this.$view.hide()
+        this.flag = false
+        this.controlDBoxPadding(this.MODE)
   }
   handler (){
     const isReady = $('.status-bar__image--last').hasClass('status-bar__ready')
@@ -71,6 +77,25 @@ class StatusBar {
     else{
         $('.status-bar__image--last').css('background-image', 'unset')
     }
+  }
+  controlDBoxPadding (MODE){
+      this.MODE = MODE
+      /**
+       * Если плагин dialog-box и плагин status-bar находятся в одном объекте
+       * - dialog-box: fullscreen
+       *   status-bar: true
+       * Плагин dialog-box отработает быстрее, чем плагин status-bar
+       * Поэтому переменная flag будет равна изначальному значению false
+       * Но, небольшая задержка исправит это
+       */
+        setTimeout(() => {
+            if(this.MODE==='mode-fullscreen'&&this.flag){
+                $('.dialog-box').css('padding-top', '30px')
+            }
+            else{
+                $('.dialog-box').css('padding-top', '10px')
+            }
+        }, 100)
   }
 
 }

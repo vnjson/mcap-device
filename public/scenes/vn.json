@@ -96,68 +96,70 @@
     ],
     "$init": [
       {
-        "dialog-box": true,
+        "dialog-box": "fullscreen",
         "hands": true,
-        "status-bar": {
-          "onCheck": {
-            "$": "CHECK"
-          },
-          "onReady": {
-            "al": "READY"
-          },
-          "onHelp": {
-            "$": "HELP"
-          }
-        },
         "audio": false,
         "data-clear": true,
+        "status-bar": false,
+        "scene": "ev",
         "next": true
       },
       {
         "$": "test"
       },
       {
-        "+": "<br/><br/>Далее как только доходит до вызова функции callAllMsgs"
-      },
-      {
-        "+": "тест",
         "execute": [
           {
-            "log": "TEST 1"
+            "log": true
           },
           {
-            "log": "TEST  2"
+            "log": "classic"
           },
           {
-            "log": "TEST   3"
+            "log": "fullscreen",
+            "$": "Первая реплика..."
+          }
+        ]
+      },
+      "ТЕСТ 2",
+      {
+        "execute": [
+          {
+            "dialog-box": {
+              "delay": 100,
+              "alpha": 0.1,
+              "endPoint": true
+            }
           },
           {
-            "log": "TEST    4"
+            "log": true
           },
           {
-            "execute": "test"
+            "log": "classic"
+          },
+          {
+            "log": "fullscreen"
+          },
+          {
+            "log": "disabled"
+          },
+          {
+            "$": "Первая реплика..."
           }
         ]
       },
       {
-        "dialog-box": "transparent"
+        "$": "Если первое предложение начинается со знака ( + ) то вываливается ошибка"
       },
       {
-        "dialog-box": "reset",
-        "next": true
+        "+": "<br/>Далее как только доходит до вызова функции callAllMsgs",
+        "video": "videoTest"
       },
       {
         "al": "Тестирую другого персонажа"
       },
       {
-        "+": "<br/><br/>Далее в стек попадает функция fn1() для которой также создается",
-        "dialog-box": "disabled",
-        "timeout": {
-          "timer": 3000,
-          "exec": {
-            "dialog-box": "reset"
-          }
-        }
+        "+": "<br/><br/>Далее в стек попадает функция fn1() для которой также создается"
       },
       {
         "+": "контекст выполнения, исполняется код из функции fn1() после выполнения которого",

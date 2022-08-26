@@ -91,14 +91,14 @@ export default function (){
    */
   this.on('dialog-box', param => {
     let key = null
+    key = String(param)
     if(typeof param==='object'){
         key = 'object'
     }
-    key = String(param)
     const controller = {
         'object': () => {
-            for(let key in param){
-              dBox[key] = param[key]
+            for(let _key in param){
+              dBox[_key] = param[_key]
             }
             dBox.show()
         },

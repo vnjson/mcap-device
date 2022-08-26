@@ -10,6 +10,7 @@ import './lib/color-picker/color.js'
  */
 import copyTextToClipboard from './clipboard.js'
 import pluginsSnipet from './plugins-snipet.js'
+import screenShot from './screenshot.js'
 /**
  * PLUGINS
  */
@@ -23,7 +24,7 @@ import outputDataPlugin from './plugins/data.js'
  */
 let cid = '$'
 export default function (){
-  
+
   const $tpl = $(tpl)
   $('.game').append($tpl)
 
@@ -43,9 +44,12 @@ export default function (){
      */
     const _vnjs = this 
     this.on('postload', () => {
+        // delay
         const dBox = this.package?.['dialog-box']
         $('.debug__delay').val(dBox?.delay||0)
-
+        // screenshot
+        screenShot.WEBHOOK = ''
+        screenShot.HOST = this.package.publish.host
     }) 
    // _vnjs.TREE.$root.characters[0]
     $('.debug__delay').on('change', function() {
@@ -154,6 +158,10 @@ export default function (){
         }
     })
     /**
+     * Screenshot
+     */
+    $('.debug__inner-screenshot').on('click', () => screenShot.nodeToCanvas())
+    /**
      * PLUGINS
      */
     /**
@@ -176,10 +184,7 @@ export default function (){
      * Output data
      */
     this.on('vnjson.data', outputDataPlugin)
-    /**
-     * exec
-     */
-  //  this.on('vnjson.execute', (data) =>  this.emit('exec', data) )
+
 }
 
 

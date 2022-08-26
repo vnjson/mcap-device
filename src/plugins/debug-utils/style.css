@@ -71,7 +71,12 @@
   background-position: center;
 
 }
-
+.debug__btn-screenshot{
+  width: 20px;
+  height: 20px;
+  background-image: url(./assets/screenshot.svg);
+  background-position: center;
+}
 
 .debug__dialog-box-controls .debug__delay{
   width: 40px;

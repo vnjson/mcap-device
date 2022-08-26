@@ -12,7 +12,7 @@ export default function (){
                     value = plugin[key]
                 }
                 if(key!=='execute'){
-                    this.emit(key, value)
+                    this.exec(plugin)
                 }
                 else{
                     this.emit('error', {

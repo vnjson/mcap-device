@@ -13,7 +13,7 @@ export default function (){
     const info = new Info( $info, $avatar)
     
    
-    this.on('dialog-box:print', () => info.close() )    
+    this.on('dialog-box.print', () => info.close() )    
  
   
 
@@ -47,7 +47,7 @@ export default function (){
 
         info.toggle()
       }
-      this.emit('dialog-box:avatar-click')
+      this.emit('dialog-box.avatar-click')
     } )
  
     this.on('dialog-box.click', () => info.removeBorder() )

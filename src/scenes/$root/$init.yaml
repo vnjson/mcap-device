@@ -1,38 +1,37 @@
-- dialog-box: true
+- dialog-box: fullscreen
   hands: true
-  status-bar: 
-    onCheck:
-      $: CHECK
-    onReady:
-      al: READY
-    onHelp:
-      $: HELP
   audio: false
   data-clear: true
+  status-bar: false
+  scene: ev
   next: true
-
-#- jump: testdata.$init
 
 - $: test
-- +: <br/><br/>Далее как только доходит до вызова функции callAllMsgs
+#- jump: testdata.$init
+- execute:
+    - log: true
+    - log: classic
+    - log: fullscreen
+      $: "Первая реплика..."
+- ТЕСТ 2
+- execute:
+    - dialog-box:
+        delay: 100
+        alpha: 0.1
+        endPoint: true 
+    - log: true   
+    - log: classic
+    - log: fullscreen  
+    - log: disabled
+    - $: "Первая реплика..."
+- $: Если первое предложение начинается со знака ( + ) то вываливается ошибка
+- +: <br/>Далее как только доходит до вызова функции callAllMsgs
+  video: videoTest
 
-- +: тест
-  execute:
-    - log: TEST 1
-    - log: TEST  2
-    - log: TEST   3
-    - log: TEST    4
-    - execute: test
-- dialog-box: transparent
-- dialog-box: reset
-  next: true
+
 - al: Тестирую другого персонажа
 - +: <br/><br/>Далее в стек попадает функция fn1() для которой также создается 
-  dialog-box: disabled
-  timeout:
-    timer: 3000
-    exec:
-      dialog-box: reset
+
 - +: контекст выполнения, исполняется код из функции fn1() после выполнения которого
   dialog-box: fullscreen
 - +: данная функция удаляется из стека и вызывается следующая функция fn2().
@@ -41,11 +40,7 @@
 
 - +: Вывод от другого персонажа
   dialog-box: classic
-##########
 
-#- switch:
-#    age > 13:
-#      jump: $init
 
         
 

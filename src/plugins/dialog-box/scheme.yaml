@@ -89,7 +89,7 @@ dialog-box:
 #
 # EVENTS
 #
-#    this.on('dialog-box:print', () => {
+#    this.on('dialog-box.print', () => {
 
 #    })
 
@@ -106,4 +106,5 @@ dialog-box:
 #    this.on('dialog-box.false')
 #    this.on('dialog-box.clear')
 #    this.on('dialog-box.click' )
-#    this.on('dialog-box:avatar-click')
+#    this.on('dialog-box.avatar-click')
+#    this.on('dialog-box.mode', this.MODE)

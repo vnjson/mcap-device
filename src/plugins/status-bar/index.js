@@ -23,10 +23,12 @@ export default function (){
     else if(param){
       statusBar.PLUGIN_DATA = param
       statusBar.show()
+
     }
     else{
       this.state.data.readyСheck = false
       statusBar.hide()
+ 
     }
   })
 
@@ -47,5 +49,6 @@ export default function (){
 
   $('.status-bar__image--first').on('click', () => statusBar.checkHandler())
   $('.status-bar__image--last').on('click', () => statusBar.handler())
+  this.on('dialog-box.mode', MODE => statusBar.controlDBoxPadding(MODE))
 }
         
