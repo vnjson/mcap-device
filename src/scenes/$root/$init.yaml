@@ -1,4 +1,4 @@
-- dialog-box: fullscreen
+- dialog-box: true
   hands: true
   status-bar: 
     onCheck:
@@ -10,7 +10,6 @@
   audio: false
   data-clear: true
   next: true
-
 
 #- jump: testdata.$init
 - area:

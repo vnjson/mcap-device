@@ -249,11 +249,12 @@
     }
   }
 
-  var css$x = "\n.debug-error{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  font-size: 20px;\n  z-index: 99999;  \n  background-color: #334;\n  justify-content: center;\n  align-items: center;\n  display: none;\n  font-family: Consolas;\n  user-select: all;\n}\n.debug-error__status{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 10px;\n  background-color: brown;\n  border-radius: 8px 8px 0 0;\n}\n.debug-error__modal{\n  background-color: #181818;\n  border-radius: 8px;\n  padding: 20px;\n  width: 80%;\n  height: 60%;\n  box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.5);\n}\n\n.debug-error__msg{\n  color: brown;\n  line-height: 28px;\n  word-break: break-all;\n  overflow: auto;\n  max-height: 100%;\n}\n\n\n.debug-error__path{\n  color: #cfa4ff;\n}\n.debug-error__pos{\n  color: skyblue;\n}\n.debug-error__code{\n  color: #e2aa53;\n}\n";
+  var css$x = "\n.debug-error{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  font-size: 20px;\n  z-index: 9999;  \n  background-color: #334;\n  justify-content: center;\n  align-items: center;\n  display: none;\n  font-family: Consolas;\n  user-select: all;\n}\n.debug-error__status{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 10px;\n  background-color: brown;\n  border-radius: 8px 8px 0 0;\n}\n.debug-error__modal{\n  background-color: #181818;\n  border-radius: 8px;\n  padding: 20px;\n  width: 80%;\n  height: 60%;\n  box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.5);\n}\n\n.debug-error__msg{\n  color: brown;\n  line-height: 28px;\n  word-break: break-all;\n  overflow: auto;\n  max-height: 100%;\n}\n\n\n.debug-error__path{\n  color: #cfa4ff;\n}\n.debug-error__pos{\n  color: skyblue;\n}\n.debug-error__code{\n  color: #e2aa53;\n}\n";
   n(css$x,{});
 
-  var modalTpl = "<div class=\"debug-error\">\n                        \n                        <div class=\"debug-error__modal\">\n                            <div class=\"debug-error__status\"></div>\n                            <code> <pre class=\"debug-error__msg\"></pre></code>\n                            <p class=\"debug-error__path\"></p>\n                            <p class=\"debug-error__pos\"></p>\n                            <pre class=\"debug-error__code\"></pre>\n                        </div>\n                    </div>";
-  var $modal = $(modalTpl);
+  var tpl$f = "<div class=\"debug-error\">\r\n                        \r\n    <div class=\"debug-error__modal\">\r\n        <div class=\"debug-error__status\"></div>\r\n        <code> <pre class=\"debug-error__msg\"></pre></code>\r\n        <p class=\"debug-error__path\"></p>\r\n        <p class=\"debug-error__pos\"></p>\r\n        <pre class=\"debug-error__code\"></pre>\r\n    </div>\r\n</div>";
+
+  var $modal = $(tpl$f);
   $('#screen').append($modal);
 
   var ErrorHandler = /*#__PURE__*/function () {
@@ -336,24 +337,7 @@
     }, {
       key: "getSnippetFromCtx",
       value: function getSnippetFromCtx(ctx) {
-        var snippet = '';
-        if (typeof ctx === 'string') return snippet;
-
-        for (var key in ctx) {
-          var value = ctx[key]; // Проверяем является ли репликой value
-          // Если ключ является персонажем, соответсвенно значение является репликой
-
-          value = String(value).slice(0, 60);
-
-          if (value.length === 60) {
-            value = value.concat('...');
-          } // Делаем yaml-подобную структуру
-
-
-          snippet = "".concat(snippet, "<br/>").concat(key, ": <font color=\"#999\">").concat(value, "</font>");
-        }
-
-        return snippet;
+        return jsyaml.dump(ctx);
       }
       /**
        * Подставляю переменную в строку описания ошибки

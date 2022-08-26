@@ -1,15 +1,5 @@
-
-const modalTpl = `<div class="debug-error">
-                        
-                        <div class="debug-error__modal">
-                            <div class="debug-error__status"></div>
-                            <code> <pre class="debug-error__msg"></pre></code>
-                            <p class="debug-error__path"></p>
-                            <p class="debug-error__pos"></p>
-                            <pre class="debug-error__code"></pre>
-                        </div>
-                    </div>`
-const $modal =  $(modalTpl)
+import tpl from './tpl.html'
+const $modal =  $(tpl)
 
 $('#screen').append($modal);
 
@@ -73,21 +63,7 @@ class ErrorHandler {
    * @return {String}       [Возвращает снипет или пустую строку]
    */
   static getSnippetFromCtx (ctx){
-        let snippet = '';
-        if(typeof ctx==='string') return snippet;
-        for(let key in ctx){
-            let value = ctx[key];
-            // Проверяем является ли репликой value
-            // Если ключ является персонажем, соответсвенно значение является репликой
-            value = String(value).slice(0, 60)
-            if(value.length===60){
-                value = value.concat('...');
-            }
-  
-            // Делаем yaml-подобную структуру
-            snippet = `${snippet}<br/>${key}: <font color="#999">${value}</font>`
-        }
-        return snippet;
+        return jsyaml.dump(ctx)
   }
   /**
    * Подставляю переменную в строку описания ошибки
