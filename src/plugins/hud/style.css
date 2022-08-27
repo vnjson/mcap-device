@@ -4,6 +4,7 @@
     transform: translateX(-50%);
     top: unset;
     bottom: 210px;
+    z-index: 4000;
 }
 .vnjson-hud__indicators{
     display: flex;
