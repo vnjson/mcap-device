@@ -6625,7 +6625,7 @@
     });
   }
 
-  var css$6 = "\n\n.vnjson__area{\n  z-index: 500;\n  width: 100%;\n  height: 570px;\n}\n.vnjson__area-item:hover{\n  cursor: pointer;\n /* background-color: rgba(0,0,0,0.1);*/\n}";
+  var css$6 = "\n\n.vnjson__area{\n  z-index: 700;\n  width: 100%;\n  height: 570px;\n}\n.vnjson__area-item:hover{\n  cursor: pointer;\n /* background-color: rgba(0,0,0,0.1);*/\n}";
   n(css$6,{});
 
   var $tpl$3 = $('<div class="vnjson__area component"></div>');
