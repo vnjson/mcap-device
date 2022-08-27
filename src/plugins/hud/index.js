@@ -34,5 +34,8 @@ export default function (){
       else{
         $slot.css({ 'background-image': 'unset' })
       }
+      if(param.exec){
+        this.exec(param.exec)
+      }
   })
 }

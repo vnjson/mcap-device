@@ -111,19 +111,16 @@
         "hud-left": "17%"
       },
       {
+        "hud-inv": {
+          "slot": 4,
+          "icon": "ev",
+          "exec": {
+            "scene": "ch"
+          }
+        }
+      },
+      {
         "hud-left": "70%"
-      },
-      {
-        "hud-left": "40%"
-      },
-      {
-        "hud-right": "20%"
-      },
-      {
-        "hud-right": "40%"
-      },
-      {
-        "hud-right": "90%"
       },
       {
         "$": "test"

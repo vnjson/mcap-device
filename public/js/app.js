@@ -7291,6 +7291,10 @@
           'background-image': 'unset'
         });
       }
+
+      if (param.exec) {
+        _this.exec(param.exec);
+      }
     });
   }
 

@@ -28,7 +28,8 @@
 - hud-inv:
     slot: 4
     icon: map
-
+    exec:
+      scene: ch
 - hud-inv:
     slot: 1
     icon: false
