@@ -7,6 +7,8 @@ dialog-box:
   endPoint: true
   mode-classic: dialog-box 
   mode-fullscreen: dialog-box-full
+  #font-family: Minecraft 
+  #font-size: 12
 
 publish:
   host: http://vnjson.mcap.fun

@@ -44,7 +44,7 @@ export default function (){
     
     // если аватар есть и руки отображены
     if(character.avatar&&isShow){
-      replyWrapper.css('width', '75%');
+      replyWrapper.css('width', '76%');
     }
     // если нет ни аватара ни рук
     if(!character.avatar&&!isShow){

@@ -4,6 +4,7 @@
   bottom: 0;
   width: 100%;
   line-height: 32px;
+  font-size: 22px;
   height: 200px;
   cursor: pointer;
   display: block;
@@ -19,7 +20,6 @@
 
 .dialog-box__name {
   color: wheat;
-  font-size: 22px;
   width: 100%;
   font-weight: bold;
   padding-left: 10px;
@@ -28,20 +28,16 @@
 
 .dialog-box__reply {
   color: wheat;
-  font-size: 22px;
   padding-left: 10px;
   width: 100%; 
 }
 
 .dialog-box__reply-end-point{
-
   display: inline-block;
-
 }
 .dialog-box__reply-end-point::before{
   content: '';
   position: absolute;
-
   left: 10px;
   width: 7px;
   height: 7px;

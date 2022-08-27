@@ -278,10 +278,15 @@ class DialogBox {
       this.reply = '';
       this.#reply = '';
   }
+  /**
+   * Для работы плагина + необходимо отобразить предыдущий кусок реплики сразу
+   * Когда реплика начинает выводиться посимвольно и пользователь решил кликнуть
+   * А следующим плагином вызывается + , то предыдущая реплика прекатиться выводиться
+   */
   forcePrintPrevReply (){
       const letters = this.prevReplyStringTag.querySelectorAll('.'+this.classNameLetter );
       letters.forEach($letter => {
-        $letter.style.opacity = 1
+          $letter.style.opacity = 1
       })
   }
 }

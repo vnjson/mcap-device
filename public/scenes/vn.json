@@ -96,7 +96,7 @@
     ],
     "$init": [
       {
-        "dialog-box": "fullscreen",
+        "dialog-box": true,
         "hands": true,
         "audio": false,
         "data-clear": true,
@@ -105,55 +105,37 @@
         "next": true
       },
       {
+        "hud": true
+      },
+      {
+        "hud-left": "17%"
+      },
+      {
+        "hud-left": "70%"
+      },
+      {
+        "hud-left": "40%"
+      },
+      {
+        "hud-right": "20%"
+      },
+      {
+        "hud-right": "40%"
+      },
+      {
+        "hud-right": "90%"
+      },
+      {
         "$": "test"
       },
       {
-        "execute": [
-          {
-            "log": true
-          },
-          {
-            "log": "classic"
-          },
-          {
-            "log": "fullscreen",
-            "$": "Первая реплика..."
-          }
-        ]
-      },
-      "ТЕСТ 2",
-      {
-        "execute": [
-          {
-            "dialog-box": {
-              "delay": 100,
-              "alpha": 0.1,
-              "endPoint": true
-            }
-          },
-          {
-            "log": true
-          },
-          {
-            "log": "classic"
-          },
-          {
-            "log": "fullscreen"
-          },
-          {
-            "log": "disabled"
-          },
-          {
-            "$": "Первая реплика..."
-          }
-        ]
+        "scene": false
       },
       {
         "$": "Если первое предложение начинается со знака ( + ) то вываливается ошибка"
       },
       {
-        "+": "<br/>Далее как только доходит до вызова функции callAllMsgs",
-        "video": "videoTest"
+        "+": "<br/>Далее как только доходит до вызова функции callAllMsgs"
       },
       {
         "al": "Тестирую другого персонажа"

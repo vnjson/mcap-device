@@ -53,9 +53,11 @@ import HUD                from './plugins/hud/index.js'
 
 import dialogBoxInfo      from './plugins/dialog-box-info/index.js'
 import executeVnjson      from './plugins/execute/index.js'
+
 /**
  * Init plugins
  */
+
 if($vnjs.debug){
   $vnjs.use(debug)
   $vnjs.use(debugUtils)

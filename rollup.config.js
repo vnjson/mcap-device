@@ -1,12 +1,20 @@
-import color            from 'ansi-colors';
+/**
+ * rollup import files from js
+ */
 import styles           from 'rollup-plugin-styles';
-import yaml             from '@rollup/plugin-yaml';
-import { babel }        from '@rollup/plugin-babel';
 import url              from '@rollup/plugin-url';
 import files            from 'rollup-plugin-import-file';
+import nodeResolve      from 'rollup-plugin-node-resolve';
+import html             from 'rollup-plugin-html';
+import yaml             from '@rollup/plugin-yaml';
+
+/**
+ * 
+ */
+import color            from 'ansi-colors';
+import { babel }        from '@rollup/plugin-babel';
 import scenesToJson     from 'scenes-to-json';
 import chokidar         from 'chokidar';
-import html             from 'rollup-plugin-html';
 import fse              from 'fs-extra';
 import YAML             from 'yaml';
 import watch            from "rollup-plugin-watch";
@@ -37,6 +45,12 @@ export default {
       fileName: '[hash][extname]',
       destDir: `./public/assets`
     }),
+    files({
+      output: `public/assets`,
+      extensions: /\.(waw|ogg|mp3)$/,
+      hash: false,
+    }),
+    nodeResolve({ jsnext: true }),
     babel({ 
       babelHelpers: 'bundled',
       presets: ['@babel/preset-env'],
@@ -45,11 +59,6 @@ export default {
       ]
     }),
 
-    files({
-      output: `public/assets`,
-      extensions: /\.(waw|ogg|mp3)$/,
-      hash: false,
-    }),
     // watch
     watch({ dir: `${config.src}/plugins` }),
 

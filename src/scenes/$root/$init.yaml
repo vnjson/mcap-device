@@ -1,4 +1,4 @@
-- dialog-box: fullscreen
+- dialog-box: true #fullscreen
   hands: true
   audio: false
   data-clear: true
@@ -6,27 +6,25 @@
   scene: ev
   next: true
 
+- hud: true
+
+
+# status bars
+- hud-left: 17%
+
+- hud-left: 70%
+- hud-left: 40%
+
+- hud-right: 20%
+- hud-right: 40%
+- hud-right: 90%
 - $: test
+- scene: false
 #- jump: testdata.$init
-- execute:
-    - log: true
-    - log: classic
-    - log: fullscreen
-      $: "Первая реплика..."
-- ТЕСТ 2
-- execute:
-    - dialog-box:
-        delay: 100
-        alpha: 0.1
-        endPoint: true 
-    - log: true   
-    - log: classic
-    - log: fullscreen  
-    - log: disabled
-    - $: "Первая реплика..."
+
+
 - $: Если первое предложение начинается со знака ( + ) то вываливается ошибка
 - +: <br/>Далее как только доходит до вызова функции callAllMsgs
-  video: videoTest
 
 
 - al: Тестирую другого персонажа

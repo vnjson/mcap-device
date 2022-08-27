@@ -1,4 +1,3 @@
-
 export default function (){
 
   this.on('scene', id=>{
