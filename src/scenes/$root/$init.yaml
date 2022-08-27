@@ -6,22 +6,10 @@
   scene: ev
   next: true
 
-- hud: true
+  hud: true
 
 
-# status bars
-- hud-left: 17%
-- hud-inv:
-    slot: 4
-    icon: ev
-    exec:
-      scene: ch
-
-- hud-left: 70%
-
-- $: test
-- scene: false
-#- jump: testdata.$init
+- jump: testdata.$init
 
 
 - $: Если первое предложение начинается со знака ( + ) то вываливается ошибка

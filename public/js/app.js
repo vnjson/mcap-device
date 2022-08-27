@@ -3226,16 +3226,6 @@
         'hands': false
       });
     });
-    /*
-    this.on('dialog-box.mode', mode => {
-        if(mode==='mode-classic'){
-            $tpl.css({ top: 'unset', bottom: '10px' })
-        }
-        if(mode==='mode-fullscreen'){
-          $tpl.css({ top: '10px', bottom: 'unset' })
-        }
-    })
-    */
   }
 
   var AudioControl = /*#__PURE__*/function () {
@@ -7308,6 +7298,19 @@
         $slot.css('cursor', 'pointer');
       } else {
         $slot.css('cursor', 'unset');
+      }
+    });
+    this.on('dialog-box.mode', function (mode) {
+      if (mode === 'mode-classic') {
+        $tpl.css({
+          bottom: '210px'
+        });
+      }
+
+      if (mode === 'mode-fullscreen') {
+        $tpl.css({
+          bottom: '10px'
+        });
       }
     });
   }

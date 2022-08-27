@@ -60,5 +60,13 @@ export default function () {
             $slot.css('cursor', 'unset')
         }
 
-    });
+    })
+    this.on('dialog-box.mode', (mode) => {
+        if(mode==='mode-classic'){
+            $tpl.css({ bottom: '210px' })
+        }
+        if(mode==='mode-fullscreen'){
+            $tpl.css({ bottom: '10px' })
+        }
+    })
 }
