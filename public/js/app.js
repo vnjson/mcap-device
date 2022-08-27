@@ -4110,7 +4110,7 @@
     });
   }
 
-  var css$k = "\n.vnjson__table{\n  left: 50%;\n  top: 0%;\n  transform: translateX(-50%);\n  flex-direction: column;\n}\n.table-row{\n  overflow: hidden;\n  display: flex;\n  align-content: center;\n  align-items: center;\n  margin-bottom: 10px;\n\n}\n.table__cell{\n  transition: all 0.2s linear;\n  margin: 0 5px;\n  border: 2px solid transparent;\n  border-radius: 2px;\n}\n.table__img-wrapper{\n  border: 2px solid transparent;\n  overflow: hidden;\n  height: 100%;\n  display: flex;\n  align-items: center;\n  border-radius: 2px;\n}\n.table__cell-text{\n  text-align: center;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n  padding: 10px;\n}\n\n.table__cell[data-jump]{\n  cursor: pointer;\n}\n.table__cell[data-jump]:hover{\n  filter: brightness(150%);\n}\n\n.table__cell-text[data-jump]{\n  cursor: pointer;\n}\n.table-row .table__cell.table__cell-text[data-jump]:hover{\n  opacity: 0.7;\n}";
+  var css$k = "\n.vnjson__table{\n  left: 50%;\n  top: 0%;\n  transform: translateX(-50%);\n  flex-direction: column;\n}\n.table-row{\n  overflow: hidden;\n  display: flex;\n  align-content: center;\n  align-items: center;\n  justify-content: center;\n  margin-bottom: 10px;\n\n}\n.table__cell{\n  transition: all 0.2s linear;\n  overflow: hidden;\n  border: 2px solid transparent;\n  border-radius: 2px;\n}\n\n.table__img-wrapper{\n  border: 2px solid transparent;\n  overflow: hidden;\n  height: 100%;\n  display: flex;\n  align-items: center;\n  border-radius: 2px;\n  margin: 0 5px;\n}\n.table__cell-text{\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n  padding: 10px;\n  color: wheat;\n  margin: 0 5px;\n}\n\n.table__cell[data-jump]{\n  cursor: pointer;\n}\n.table__cell[data-jump]:hover{\n  filter: brightness(150%);\n}\n\n.table__cell-text[data-jump]{\n  cursor: pointer;\n}\n.table-row .table__cell.table__cell-text[data-jump]:hover{\n  opacity: 0.7;\n}";
   n(css$k,{});
 
   function table () {
@@ -4118,16 +4118,20 @@
 
     var $table = $('<div class="vnjson__table component"></div>');
     this.$store.$screen.append($table);
+    var _tableData = null;
     $table.on('click', '.table__cell', function () {
-      var label = $(this).data('jump');
+      var indexRow = $(this).data('row');
+      var indexCell = $(this).data('cell');
+      var cellType = $(this).data('type');
+      var cell = _tableData[indexRow].row[indexCell][cellType];
 
-      if (label) {
-        $vnjs.exec({
-          'jump': label
-        });
+      if (cell.exec) {
+        $vnjs.exec(cell.exec);
       }
     });
     this.on('table', function (tableData) {
+      _tableData = tableData;
+
       if (tableData) {
         $table.html('');
         $table.css('display', 'flex');
@@ -4137,14 +4141,14 @@
         var rows = tableData.filter(function (item) {
           return item.hasOwnProperty('row');
         });
-        rows.map(function (item) {
+        rows.map(function (item, indexRow) {
           var $row = $("<div class=\"table-row\"></div>");
           var height = 30;
-          item.row.map(function (cell) {
+          item.row.map(function (cell, indexCell) {
             var _cell$TYPE, _cell$TYPE2;
 
             var TYPE = null;
-            var $tpl = null; // HEIGHT
+            var $cell = null; // HEIGHT
 
             if (cell.hasOwnProperty('height')) {
               height = cell.height;
@@ -4153,30 +4157,33 @@
 
             if (cell.hasOwnProperty('image')) {
               TYPE = 'image';
+              $cell = $("<div class=\"table__img-wrapper\"><img class=\"table__cell\" style=\"width: ".concat(cell.image.width, "px\" data-row=\"").concat(indexRow, "\" data-cell=\"").concat(indexCell, "\" data-type=\"").concat(TYPE, "\" src=\"").concat(_this.getAssetByName(cell.image.name).url, "\"/></div>"));
 
-              if (cell.image.hasOwnProperty('jump')) {
-                $tpl = $("<div class=\"table__img-wrapper\"><img class=\"table__cell\" style=\"width: ".concat(cell.image.width, "px\" data-jump=\"").concat(cell.image.jump, "\" src=\"").concat(_this.getAssetByName(cell.image.name).url, "\"/></div>"));
+              if (cell.image.hasOwnProperty('exec')) {
+                $cell.css('cursor', 'pointer');
               } else {
-                $tpl = $("<div class=\"table__img-wrapper\"><img class=\"table__cell\" style=\"width: ".concat(cell.image.width, "px\"  src=\"").concat(_this.getAssetByName(cell.image.name).url, "\"/></div>"));
+                $cell.css('cursor', 'unset');
               }
             } // TEXT
 
 
             if (cell.hasOwnProperty('text')) {
               TYPE = 'text';
+              $cell = $("<span class=\"table__cell table__cell-text\" data-row=\"".concat(indexRow, "\" data-cell=\"").concat(indexCell, "\" data-type=\"").concat(TYPE, "\" >").concat(cell.text.content || '', "</span>"));
+              $cell.css({
+                width: cell.text.width + 'px',
+                'font-size': cell.text.size + 'px',
+                'line-height': cell.text.size + 4 + 'px'
+              });
 
-              if (cell.text.hasOwnProperty('jump')) {
-                $tpl = $("<span class=\"table__cell table__cell-text\" data-jump=\"".concat(cell.text.jump, "\" style=\"width: ").concat(cell.text.width || '', "px; font-size: ").concat(cell.text.size, "px;\">").concat(cell.text.content || '', "</span>"));
+              if (cell.text.hasOwnProperty('exec')) {
+                $cell.css('cursor', 'pointer');
               } else {
-                $tpl = $("<span class=\"table__cell table__cell-text\" style=\"width: ".concat(cell.text.width || '', "px; font-size: ").concat(cell.text.size, "px;\">").concat(cell.text.content || '', "</span>"));
+                $cell.css('cursor', 'unset');
               }
 
-              if (cell.text['background-color']) {
-                $tpl.css('background-color', cell.text['background-color']);
-              }
-
-              if (cell.text['text-color']) {
-                $tpl.css('color', cell.text['text-color']);
+              if (cell.text['color-background']) {
+                $cell.css('background-color', cell.text['color-background']);
               }
               /**
                * ALIGN
@@ -4186,15 +4193,15 @@
               if (cell.text['align-h']) {
                 switch (cell.text['align-h']) {
                   case 'left':
-                    $tpl.css('justify-content', 'flex-start');
+                    $cell.css('justify-content', 'flex-start');
                     break;
 
                   case 'center':
-                    $tpl.css('justify-content', 'center');
+                    $cell.css('justify-content', 'center');
                     break;
 
                   case 'right':
-                    $tpl.css('justify-content', 'flex-end');
+                    $cell.css('justify-content', 'flex-end');
                     break;
                 }
               }
@@ -4202,21 +4209,21 @@
               if (cell.text['align-v']) {
                 switch (cell.text['align-v']) {
                   case 'top':
-                    $tpl.css('align-items', 'flex-start');
+                    $cell.css('align-items', 'flex-start');
                     break;
 
                   case 'center':
-                    $tpl.css('align-items', 'center');
+                    $cell.css('align-items', 'center');
                     break;
 
                   case 'bottom':
-                    $tpl.css('align-items', 'flex-end');
+                    $cell.css('align-items', 'flex-end');
                     break;
                 }
               }
             }
 
-            $row.append($tpl);
+            $row.append($cell);
             /**
              * border
              */
@@ -4224,11 +4231,11 @@
             if (!cell[TYPE]) return;
 
             if (((_cell$TYPE = cell[TYPE]) === null || _cell$TYPE === void 0 ? void 0 : _cell$TYPE.border) === true) {
-              $tpl.css('border-color', 'white');
+              $cell.css('border-color', 'white');
             } else if (typeof ((_cell$TYPE2 = cell[TYPE]) === null || _cell$TYPE2 === void 0 ? void 0 : _cell$TYPE2.border) === 'string') {
-              $tpl.css('border-color', cell[TYPE].border);
+              $cell.css('border-color', cell[TYPE].border);
             } else {
-              $tpl.css('border-color', 'transparent');
+              $cell.css('border-color', 'transparent');
             }
           });
           $row.css('height', height);

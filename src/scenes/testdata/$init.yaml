@@ -8,15 +8,17 @@
             width: 150
             size: 32           
             border: '#ff0096'
-            jump: $root.$init
+            exec: 
+              $: EXECUTE TEXT 1
        - image:
             name: ev
             width: 50
-            jump: $root.$init
+            exec: 
+              $: EXECUTE TEXT 2
        - text:
             content: test
             width: 180
-            background-color: black
+            color-background: brown
             border: darkcyan
             align-h: right #left #center # right
             align-v: bottom #top #center # bottom
@@ -26,21 +28,26 @@
             content: Screenshot
             width: 150
             border: true
-            background-color: black
-            jump: $root.$init
+            color-background: darkcyan
+            exec: 
+              $: EXECUTE TEXT 3
        - image:
             name: ev
             width: 100
             border: cyan
-       - text:
-            content: test
-            width: 150
        - image:
             name: p1
             width: 80
-       - image:
-            name: ch
-            width: 150
+            border: true
+
+    - row:
+      - height: 100
+        text:
+            content: Эксперименты с баранами
+            border: '#3d85c6'
+            width: 500
+            size: 25
+            align-h: center
 
 - $: --END--
 

@@ -4,7 +4,6 @@
 import styles           from 'rollup-plugin-styles';
 import url              from '@rollup/plugin-url';
 import files            from 'rollup-plugin-import-file';
-//import nodeResolve      from 'rollup-plugin-node-resolve';
 import html             from 'rollup-plugin-html';
 import yaml             from '@rollup/plugin-yaml';
 
@@ -50,7 +49,6 @@ export default {
       extensions: /\.(waw|ogg|mp3)$/,
       hash: false,
     }),
-    //nodeResolve({ jsnext: true }),
     babel({ 
       babelHelpers: 'bundled',
       presets: ['@babel/preset-env'],
