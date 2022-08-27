@@ -7245,14 +7245,14 @@
   var css$1 = ".vnjson-hud{\r\n    width: 480px;\r\n    left: 50%;\r\n    transform: translateX(-50%);\r\n    top: unset;\r\n    bottom: 210px;\r\n    z-index: 4000;\r\n}\r\n.vnjson-hud__indicators{\r\n    display: flex;\r\n    justify-content: space-between;\r\n    padding-bottom: 7px;\r\n}\r\n.vnjson-hud__indicator{\r\n    width: 235px;\r\n    height: 20px;\r\n    border-radius: 2px;\r\n    border: 2px solid black;\r\n    background-color: rgba(0,0,0,0.8);\r\n}\r\n.vnjson-hud__left{\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 100%; \r\n    background-color: crimson;\r\n    border-radius: 2px;\r\n}\r\n\r\n.vnjson-hud__right{\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    background-color: lightgreen; \r\n    border-radius: 2px;\r\n}\r\n/**\r\n * INV\r\n */\r\n.vnjson-hud__inv{\r\n    display: flex;\r\n    justify-content: space-between;\r\n}\r\n.vnjson-hud__slot{\r\n    width: 60px;\r\n    height: 60px;\r\n    background-image: url(data:image/png;base64,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);\r\n    background-size: 109%;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.vnjson-hud__item{\r\n    width: 40px;\r\n    height: 40px;  \r\n   /* background-image: url(./assets/slot.png);*/\r\n    background-size: cover;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    transition: 0.3s;\r\n}";
   n(css$1,{});
 
-  var tpl = "<div class=\"vnjson-hud component\">\r\n    <div class=\"vnjson-hud__indicators\">\r\n        <div class=\"vnjson-hud__indicator\">\r\n            <div class=\"vnjson-hud__left\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__indicator\">\r\n            <div class=\"vnjson-hud__right\"></div>\r\n        </div>\r\n    </div>\r\n    <div class=\"vnjson-hud__inv\">\r\n        <div class=\"vnjson-hud__slot\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--1\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__slot\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--2\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__slot\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--3\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__slot\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--4\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__slot\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--5\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__slot\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--6\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__slot\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--7\"></div>\r\n        </div>\r\n    </div>\r\n</div>";
+  var tpl = "<div class=\"vnjson-hud component\">\r\n    <div class=\"vnjson-hud__indicators\">\r\n        <div class=\"vnjson-hud__indicator\">\r\n            <div class=\"vnjson-hud__left\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__indicator\">\r\n            <div class=\"vnjson-hud__right\"></div>\r\n        </div>\r\n    </div>\r\n    <div class=\"vnjson-hud__inv\">\r\n        <div class=\"vnjson-hud__slot\" data-index=\"1\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--1\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__slot\" data-index=\"2\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--2\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__slot\" data-index=\"3\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--3\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__slot\" data-index=\"4\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--4\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__slot\" data-index=\"5\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--5\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__slot\" data-index=\"6\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--6\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__slot\" data-index=\"7\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--7\"></div>\r\n        </div>\r\n    </div>\r\n</div>";
 
   function HUD () {
     var _this = this;
 
     var $tpl = $(tpl);
     this.$store.$screen.append($tpl);
-    this.on('hud', function (param) {
+    this.on("hud", function (param) {
       if (param) {
         $tpl.show();
       } else {
@@ -7263,14 +7263,14 @@
      * status bar
      */
 
-    var $hudLeft = $tpl.find('.vnjson-hud__left');
-    this.on('hud-left', function (param) {
+    var $hudLeft = $tpl.find(".vnjson-hud__left");
+    this.on("hud-left", function (param) {
       $hudLeft.animate({
         width: param
       }, 300);
     });
-    var $hudRight = $tpl.find('.vnjson-hud__right');
-    this.on('hud-right', function (param) {
+    var $hudRight = $tpl.find(".vnjson-hud__right");
+    this.on("hud-right", function (param) {
       $hudRight.animate({
         width: param
       }, 300);
@@ -7279,21 +7279,35 @@
      * inv
      */
 
-    this.on('hud-inv', function (param) {
+    var slotData = null;
+    var $invTag = $('.vnjson-hud__inv');
+    $invTag.on('click', '.vnjson-hud__slot', function (e) {
+      if (!slotData) return;
+      if (!slotData.exec) return;
+
+      if (slotData.slot === $(this).data('index')) {
+        $vnjs.exec(slotData.exec);
+      }
+    });
+    this.on("hud-inv", function (param) {
       var $slot = $(".vnjson-hud__item--".concat(param.slot));
 
       if (param.icon) {
+        slotData = param;
         $slot.css({
-          'background-image': "url(".concat(_this.getAssetByName(param.icon).url, ")")
+          "background-image": "url(".concat(_this.getAssetByName(param.icon).url, ")")
         });
       } else {
+        slotData = null;
         $slot.css({
-          'background-image': 'unset'
+          "background-image": "unset"
         });
       }
 
       if (param.exec) {
-        _this.exec(param.exec);
+        $slot.css('cursor', 'pointer');
+      } else {
+        $slot.css('cursor', 'unset');
       }
     });
   }
