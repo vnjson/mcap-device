@@ -101,9 +101,9 @@
         "audio": false,
         "data-clear": true,
         "status-bar": false,
-        "scene": "ev",
-        "next": true,
-        "hud": true
+        "scene": "paintBoardBlack",
+        "hud": true,
+        "next": true
       },
       {
         "jump": "testdata.$init"
@@ -314,6 +314,7 @@
     ],
     "$init": [
       {
+        "al": "Тестирую таблицу",
         "table": [
           {
             "row": [
@@ -342,7 +343,6 @@
                   "width": 180,
                   "background-color": "black",
                   "border": "darkcyan",
-                  "text-color": "gray",
                   "align-h": "right",
                   "align-v": "bottom"
                 }
@@ -360,7 +360,6 @@
                   "width": 150,
                   "border": true,
                   "background-color": "black",
-                  "text-color": "cyan",
                   "jump": "$root.$init"
                 }
               },

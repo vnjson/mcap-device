@@ -3,11 +3,9 @@
   audio: false
   data-clear: true
   status-bar: false
-  scene: ev
-  next: true
-
+  scene: paintBoardBlack
   hud: true
-
+  next: true
 
 - jump: testdata.$init
 
