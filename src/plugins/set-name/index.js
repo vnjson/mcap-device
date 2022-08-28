@@ -1,18 +1,27 @@
 import tpl from './tpl.html';
 import './style.css';
 
+
+
 export default function (){
   const $tpl = $(tpl);
   this.$store.$screen.append($tpl);
+
+
   let cid = null
-  this.on('set-name', id => {
-      if(id){
+  const handler = (param) => {
+      if(param){
         $tpl.css('display', 'flex');
-        cid = id;
+        cid = param;
       }
       else{
         $tpl.hide();
       }
+  }
+
+  this.on('set-name', handler)
+  this.on('data-input', (param) => {
+
   })
   $('.vnjson__set-name-wrapper .vnjson__set-name-btn').on('click', ()=>{
         let input = $('.vnjson__set-name-wrapper input')

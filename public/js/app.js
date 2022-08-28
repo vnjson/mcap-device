@@ -249,7 +249,7 @@
     }
   }
 
-  var css$w = "\n.debug-error{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  font-size: 20px;\n  z-index: 9999;  \n  background-color: #334;\n  justify-content: center;\n  align-items: center;\n  display: none;\n  font-family: Consolas;\n  user-select: all;\n}\n.debug-error__status{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 10px;\n  background-color: brown;\n  border-radius: 8px 8px 0 0;\n}\n.debug-error__modal{\n  background-color: #181818;\n  border-radius: 8px;\n  padding: 20px;\n  width: 80%;\n  height: 60%;\n  box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.5);\n}\n\n.debug-error__msg{\n  color: brown;\n  line-height: 28px;\n  word-break: break-all;\n  overflow: auto;\n  max-height: 100%;\n}\n\n\n.debug-error__path{\n  color: #cfa4ff;\n}\n.debug-error__pos{\n  color: skyblue;\n}\n.debug-error__code{\n  color: #e2aa53;\n}\n";
+  var css$w = "\n.debug-error{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  font-size: 20px;\n  z-index: 9999;  \n  background-color: #334;\n  justify-content: center;\n  align-items: center;\n  display: none;\n  font-family: Consolas;\n  user-select: all;\n}\n.debug-error__status{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 10px;\n  background-color: brown;\n  border-radius: 8px 8px 0 0;\n}\n.debug-error__modal{\n  background-color: #181818;\n  border-radius: 8px;\n  padding: 20px;\n  width: 80%;\n  height: 60%;\n  box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.5);\n}\n\n.debug-error__msg{\n  color: brown;\n  line-height: 28px;\n  word-break: break-all;\n  overflow: auto;\n  max-height: 100%;\n}\n\n\n.debug-error__path{\n  color: #cfa4ff;\n}\n.debug-error__pos{\n  color: skyblue;\n}\n.debug-error__code{\n  color: #e2aa53;\n  height: 290px;\n  overflow: auto;\n}\n";
   n(css$w,{});
 
   var tpl$f = "<div class=\"debug-error\">\r\n                        \r\n    <div class=\"debug-error__modal\">\r\n        <div class=\"debug-error__status\"></div>\r\n        <code> <pre class=\"debug-error__msg\"></pre></code>\r\n        <p class=\"debug-error__path\"></p>\r\n        <p class=\"debug-error__pos\"></p>\r\n        <pre class=\"debug-error__code\"></pre>\r\n    </div>\r\n</div>";
@@ -2476,10 +2476,10 @@
   function assetsLoader () {
     var _this = this;
 
-    $('#screen').append($tpl$c);
+    $("#screen").append($tpl$c);
 
-    var getAssets = function getAssets(_) {
-      _this.emit('preload');
+    var getAssets = function getAssets() {
+      _this.emit("preload");
 
       var i = 0;
 
@@ -2487,7 +2487,7 @@
         var asset = _this.state.assets[i];
 
         if (!asset) {
-          _this.emit('postload');
+          _this.emit("postload");
 
           return;
         }
@@ -2497,25 +2497,25 @@
             var sound = new Howl({
               src: asset.url
             });
-            sound.on('end', function () {
-              return _this.emit('audioEnd', asset.name);
+            sound.on("end", function () {
+              return _this.emit("audioEnd", asset.name);
             });
-            sound.on('load', function (_) {
+            sound.on("load", function (_) {
               _this.$store[asset.name] = sound;
 
-              _this.emit('load', asset);
+              _this.emit("load", asset);
 
               load();
             });
-            sound.on('loaderror', function () {
+            sound.on("loaderror", function () {
               console.error("File not found [ ".concat(asset.name, " ]"));
 
-              _this.emit('load', asset);
+              _this.emit("load", asset);
 
               load();
             });
           } else {
-            _this.emit('postload');
+            _this.emit("postload");
           }
         } else if (/\.png|\.jpg|\.jpeg|\.webp|\.gif/i.test(asset.url)) {
           var _this$TREE$$root;
@@ -2532,16 +2532,16 @@
                   img.onerror = function () {
                     _this.$store[asset.name] = img;
 
-                    _this.emit('load', asset);
+                    _this.emit("load", asset);
 
-                    console.error('Image not found');
+                    console.error("Image not found");
                     load();
                   };
 
                   img.onload = function () {
                     _this.$store[asset.name] = img;
 
-                    _this.emit('load', asset);
+                    _this.emit("load", asset);
 
                     load();
                   };
@@ -2550,14 +2550,13 @@
                   load();
                 }
               } else {
-                _this.emit('postload');
+                _this.emit("postload");
               }
             }
           }
         } else {
           ++i;
-          load();
-          console.warn(asset.url + ' Resource does not support preload');
+          load(); // console.warn(asset.url +' Resource does not support preload')
         }
       };
 
@@ -2576,22 +2575,22 @@
        * Загрузка ресурсов происходит только тогда, когда есть ресурсы
        */
 
+
       if (_this.state.assets.length > 0) {
         getAssets();
-      }
-      /**
-       * Если ресурсов нет, то эмулируем событыия, будто ресурсы есть
-       * [ postlaod ] - Является важным событием, так как первый прыжок совершается
-       * после этого события. Так же для коректной работы некоторых плагинов.
-       * Которым требуются загруженные ресурсы.
-       */
-      else {
+      } else {
+        /**
+         * Если ресурсов нет, то эмулируем событыия, будто ресурсы есть
+         * [ postlaod ] - Является важным событием, так как первый прыжок совершается
+         * после этого события. Так же для коректной работы некоторых плагинов.
+         * Которым требуются загруженные ресурсы.
+         */
         setTimeout(function () {
-          _this.emit('preload');
+          _this.emit("preload");
 
-          _this.emit('load');
+          _this.emit("load");
 
-          _this.emit('postload');
+          _this.emit("postload");
         }, 0);
       }
     };
@@ -2600,16 +2599,16 @@
      */
 
 
-    this.on('vnjson.mount', setAllAssets);
+    this.on("vnjson.mount", setAllAssets);
     /**
      * Отображаем прелоэдер
      */
 
-    this.on('preload', function () {
-      $tpl$c.css('display', 'flex');
+    this.on("preload", function () {
+      $tpl$c.css("display", "flex");
     });
-    this.on('load', function () {});
-    this.on('postload', function () {
+    this.on("load", function () {});
+    this.on("postload", function () {
       $tpl$c.fadeOut();
     });
   }
@@ -2631,14 +2630,14 @@
 
       _classPrivateFieldInitSpec(this, _reply, {
         writable: true,
-        value: ''
+        value: ""
       });
 
       _defineProperty(this, "replyStringTag", null);
 
       _defineProperty(this, "prevReplyStringTag", null);
 
-      _defineProperty(this, "MODE", 'classic');
+      _defineProperty(this, "MODE", "classic");
 
       this.$vnjs = param.$vnjs;
       /*Tags*/
@@ -2653,7 +2652,6 @@
 
       this.classNameEndPoint = param.classNameEndPoint;
       this.classNameLetter = param.classNameLetter;
-      this.classNameCharacterNameInReply = param.classNameCharacterNameInReply;
       this.delay = param.delay;
       this.alpha = param.alpha;
       this.endPoint = param.endPoint;
@@ -2676,41 +2674,41 @@
          * необходимо его задать заново
          */
         this.setImage();
-        this.dialogBoxTag.style.display = 'block';
+        this.dialogBoxTag.style.display = "block";
       }
     }, {
       key: "hide",
       value: function hide() {
-        this.dialogBoxTag.style.display = 'none';
+        this.dialogBoxTag.style.display = "none";
       }
     }, {
       key: "setMode",
       value: function setMode(MODE) {
         this.MODE = MODE;
 
-        if (this.MODE === 'mode-classic') {
-          this.dialogBoxTag.style.height = 200 + 'px';
-          this.replyContaiterTag.style['padding-right'] = 0 + 'px';
+        if (this.MODE === "mode-classic") {
+          this.dialogBoxTag.style.height = 200 + "px";
+          this.replyContaiterTag.style["padding-right"] = 0 + "px";
         }
 
-        if (this.MODE === 'mode-fullscreen') {
-          this.dialogBoxTag.style.height = this.$vnjs.config.height + 'px';
-          this.replyContaiterTag.style['padding-right'] = 10 + 'px';
+        if (this.MODE === "mode-fullscreen") {
+          this.dialogBoxTag.style.height = this.$vnjs.config.height + "px";
+          this.replyContaiterTag.style["padding-right"] = 10 + "px";
         }
 
         this.setImage();
-        this.$vnjs.emit('dialog-box.mode', this.MODE);
+        this.$vnjs.emit("dialog-box.mode", this.MODE);
       }
     }, {
       key: "setImage",
       value: function setImage() {
-        var url = this.$vnjs.getAssetByName(this.$vnjs["package"]['dialog-box'][this.MODE]).url;
-        this.dialogBoxTag.style['background-image'] = "url(".concat(url, ")");
+        var url = this.$vnjs.getAssetByName(this.$vnjs["package"]["dialog-box"][this.MODE]).url;
+        this.dialogBoxTag.style["background-image"] = "url(".concat(url, ")");
       }
     }, {
       key: "transparent",
       value: function transparent() {
-        this.dialogBoxTag.style['background-image'] = "unset";
+        this.dialogBoxTag.style["background-image"] = "unset";
       }
     }, {
       key: "update",
@@ -2720,16 +2718,18 @@
     }, {
       key: "print",
       value: function print(character) {
-        var reply = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+        var reply = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
         var append = arguments.length > 2 ? arguments[2] : undefined;
-        this.$vnjs.emit('dialog-box.print');
+        this.$vnjs.emit("dialog-box.print");
         this.reset();
         this.character = character;
 
         _classPrivateFieldSet(this, _reply, reply); //проверяем сущесвуют ли внутри реплики ссылки на персонажей
 
 
-        this.reply = this.replaceCharacterLink(_classPrivateFieldGet(this, _reply)); //вырезаем пустые теги
+        _classPrivateFieldSet(this, _reply, this.replaceCharacterLink(_classPrivateFieldGet(this, _reply)));
+
+        this.reply = this.replaceDataTemplate(_classPrivateFieldGet(this, _reply)); //вырезаем пустые теги
         //this.reply = this.reply.replaceAll(/<.{0,}><\/.{0,}>/gi, '')
         // Если скорость вывода символов равна нулю, то строка не разбивается на символы
 
@@ -2753,19 +2753,19 @@
         // Перед открывающей скобкой ставим пробел.
         // Это помогает избежать бага когда между двумя тегами ( >< ) отсутсуют символы
         // А так же, если реплика начинается с открывающей угловой скобки ( < )
-        this.reply = this.reply.replaceAll('<', ' <').split(''); // Убираем лишние пробелы.
+        this.reply = this.reply.replaceAll("<", " <").split(""); // Убираем лишние пробелы.
         // Из за того, что  встречается несколько пробелов вывод символов идёт рвано
         // Так как затрачивается время на отрисовку пробелов завернутых в <span>
         // А визуально их не видно. Так как браузер обычные пробелы съедает
 
-        this.reply = this.reply.join('').replaceAll(/ {2,}/gi, ' ')
+        this.reply = this.reply.join("").replaceAll(/ {2,}/gi, " ")
         /*убираем пробелы больше одного подряд*/
-        .replaceAll(' </span>', '</span>')
+        .replaceAll(" </span>", "</span>")
         /*убираем проел в конце имени*/
-        .split(''); // пробигаемся по массиву символов методом map
-        // И соеденяем массив полученных символов завёрнутых в <span> в одну реплику 
+        .split(""); // пробигаемся по массиву символов методом map
+        // И соеденяем массив полученных символов завёрнутых в <span> в одну реплику
 
-        this.reply = this.reply.map(this.parse.bind(this)).join('');
+        this.reply = this.reply.map(this.parse.bind(this)).join("");
       }
     }, {
       key: "outputToHTML",
@@ -2776,11 +2776,11 @@
          */
         if (this.character.avatar) {
           this.characterAvatarTag.style.backgroundImage = "url('".concat(this.$vnjs.getAssetByName(this.character.avatar).url, "')");
-          this.characterAvatarTag.classList.add('dialog-box__avatar--show');
-          this.replyWrapperTag.style.width = '84.5%';
+          this.characterAvatarTag.classList.add("dialog-box__avatar--show");
+          this.replyWrapperTag.style.width = "84.5%";
         } else {
-          this.replyWrapperTag.style.width = '99%';
-          this.characterAvatarTag.classList.remove('dialog-box__avatar--show');
+          this.replyWrapperTag.style.width = "99%";
+          this.characterAvatarTag.classList.remove("dialog-box__avatar--show");
         } // output character name
 
 
@@ -2793,8 +2793,8 @@
          * выводиться с начала или добавиться к существующей фразе
          */
 
-        this.replyStringTag = document.createElement('span');
-        this.replyStringTag.classList.add('dialog-box__reply-str');
+        this.replyStringTag = document.createElement("span");
+        this.replyStringTag.classList.add("dialog-box__reply-str");
         this.replyStringTag.innerHTML = this.reply;
         this.prevReplyStringTag = this.replyStringTag;
 
@@ -2812,8 +2812,9 @@
     }, {
       key: "replaceCharacterLink",
       value: function replaceCharacterLink(reply) {
-        // проверяем есть ли ссылка на персонажа в реплике
-        var characterAliaces = reply.match(/@\w+|@\$.*?[\s]|@\$/gi);
+        var _newReply = reply; // проверяем есть ли ссылка на персонажа в реплике
+
+        var characterAliaces = _newReply.match(/@\w+|@\$?[^$]\w+|@\$/gi);
 
         if (characterAliaces) {
           var len = characterAliaces.length;
@@ -2821,18 +2822,34 @@
           for (var i = 0; i < len; i++) {
             var id = characterAliaces[i]; // получаем id персонажа
 
-            var cid = id.replace('@', '').trim(); // получаем персонажа по id
+            var cid = id.replace("@", "").trim(); // получаем персонажа по id
 
             var character = this.$vnjs.getCharacterById(cid);
 
             if (character) {
               // заменяем ссылку на персонажа именем персонажа
-              reply = reply.replace(id, "<span class=\"".concat(this.classNameCharacterNameInReply, "\" style=\"color: ").concat(character.nameColor, "\">").concat(character.name, "</span>"));
+              _newReply = _newReply.replace(id, character.name);
             }
           }
         }
 
-        return reply;
+        return _newReply.trim();
+      }
+      /**
+       * {{data}} Подставляем данные в реплику из this.state.data
+       */
+
+    }, {
+      key: "replaceDataTemplate",
+      value: function replaceDataTemplate(reply) {
+        var _newReply = reply;
+        var variables = reply.match(/{{.+?}}/g);
+        if (!variables) return _newReply;
+        variables.forEach(function (varItem) {
+          var dataKey = varItem.replaceAll('{{', '').replaceAll('}}', '').trim();
+          _newReply = _newReply.replaceAll(varItem, $vnjs.state.data[dataKey] || '');
+        });
+        return _newReply;
       }
       /**
        * Вызывается в качестве callback функции метода map
@@ -2857,7 +2874,7 @@
       /**
        * Проверяем символ на html теги.
        * Если таковые присутсвуют, то останавливаем посимвольный вывод текста.
-       * Что бы не нарушать целостность html разметки. 
+       * Что бы не нарушать целостность html разметки.
        * Найдя закрывающую угловую скобку, переключаем режим обратно в посимвольный вывод текста
        * @param {String} letter текущий сивол
        */
@@ -2866,9 +2883,9 @@
       key: "analyzeLetter",
       value: function analyzeLetter(letter) {
         // this.letterExlude = false
-        if (letter === '<') {
+        if (letter === "<") {
           this.letterInclude = false;
-        } else if (letter === '>') {
+        } else if (letter === ">") {
           this.letterExlude = true;
         } else {
           if (this.letterExlude) {
@@ -2889,12 +2906,12 @@
 
         this.deleteEndPoint(); // получаем все теги в которые обёрныты отдельные символы
 
-        var letters = this.replyStringTag.querySelectorAll('.' + this.classNameLetter);
+        var letters = this.replyStringTag.querySelectorAll("." + this.classNameLetter);
         var len = letters.length; // отображаем каждый символ по отдельности
 
         this.interval = setInterval(function () {
           if (letters.length > 0) {
-            _this.$vnjs.emit('dialog-box:letter', letters[_this.index].innerHTML);
+            _this.$vnjs.emit("dialog-box:letter", letters[_this.index].innerHTML);
 
             letters[_this.index].style.opacity = 1;
             _this.index++;
@@ -2913,7 +2930,7 @@
         }
 
         this.reset();
-        this.$vnjs.emit('dialog-box:endOutputReply');
+        this.$vnjs.emit("dialog-box:endOutputReply");
       }
     }, {
       key: "addEndPoint",
@@ -2928,23 +2945,23 @@
          * метод .remove() пытается удалить не существующий тег и вываливается ошибка
          */
         try {
-          this.replyTag.querySelector('.' + this.classNameEndPoint).remove();
+          this.replyTag.querySelector("." + this.classNameEndPoint).remove();
         } catch (err) {}
       }
     }, {
       key: "clear",
       value: function clear() {
-        this.characterNameTag.innerHTML = '';
-        this.replyTag.innerHTML = '';
-        this.characterAvatarTag.style.backgroundImage = 'unset';
+        this.characterNameTag.innerHTML = "";
+        this.replyTag.innerHTML = "";
+        this.characterAvatarTag.style.backgroundImage = "unset";
       }
     }, {
       key: "disabled",
       value: function disabled(flag) {
         if (flag) {
-          this.dialogBoxTag.style['pointer-events'] = 'none';
+          this.dialogBoxTag.style["pointer-events"] = "none";
         } else {
-          this.dialogBoxTag.style['pointer-events'] = 'all';
+          this.dialogBoxTag.style["pointer-events"] = "all";
         }
       }
     }, {
@@ -2952,9 +2969,9 @@
       value: function reset() {
         clearInterval(this.interval);
         this.index = 0;
-        this.reply = '';
+        this.reply = "";
 
-        _classPrivateFieldSet(this, _reply, '');
+        _classPrivateFieldSet(this, _reply, "");
       }
       /**
        * Для работы плагина + необходимо отобразить предыдущий кусок реплики сразу
@@ -2965,7 +2982,7 @@
     }, {
       key: "forcePrintPrevReply",
       value: function forcePrintPrevReply() {
-        var letters = this.prevReplyStringTag.querySelectorAll('.' + this.classNameLetter);
+        var letters = this.prevReplyStringTag.querySelectorAll("." + this.classNameLetter);
         letters.forEach(function ($letter) {
           $letter.style.opacity = 1;
         });
@@ -3012,7 +3029,6 @@
       replyOutputSelector: ".dialog-box__reply",
       replyContaiterSelector: ".dialog-box__container",
       classNameLetter: "dialog-box__letter",
-      classNameCharacterNameInReply: "dialog-box__reply-character-name",
       classNameEndPoint: "dialog-box__reply-end-point"
     });
     this.$store["dialog-box"] = dBox;
@@ -3890,7 +3906,7 @@
     "py": "python"
   };
 
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener("DOMContentLoaded", function () {
     hljs.highlightAll();
   });
   /**/
@@ -3900,7 +3916,7 @@
 
     var $tpl = $(tpl$8);
     this.$store.$screen.append($tpl);
-    this.on('term', function (param) {
+    this.on("term", function (param) {
       if (param === true) {
         $tpl.fadeIn();
       } else if (param) {
@@ -3908,11 +3924,11 @@
 
         if (/\./.test(param)) {
           if (!data) {
-            console.error('Data file not found');
-            console.warn(_this.state.sceneName + '.' + _this.state.labelName + '.' + _this.state.index);
+            console.error("Data file not found");
+            console.warn(_this.state.sceneName + "." + _this.state.labelName + "." + _this.state.index);
           } else {
-            $tpl.find('pre code').removeAttr('class');
-            var str = param.split('.');
+            $tpl.find("pre code").removeAttr("class");
+            var str = param.split(".");
             var langName = str[1];
             var val = map[langName];
 
@@ -3920,37 +3936,37 @@
               langName = val;
             }
 
-            $tpl.find('pre code').css({
-              overflow: 'auto',
+            $tpl.find("pre code").css({
+              overflow: "auto",
               padding: 10
             });
-            $tpl.find('pre code').addClass('language-' + langName).addClass('hljs');
+            $tpl.find("pre code").addClass("language-" + langName).addClass("hljs");
             var html = hljs.highlight(data.body, {
               language: langName
             }).value;
-            $tpl.find('pre code').html(html); // yaml reply from Norrator
+            $tpl.find("pre code").html(html); // yaml reply from Norrator
 
-            $tpl.find('pre code .hljs-string').toArray().map(function (str) {
-              if ($(str).html() === '$:') {
-                $(str).addClass('hljs-reply');
+            $tpl.find("pre code .hljs-string").toArray().map(function (str) {
+              if ($(str).html() === "$:") {
+                $(str).addClass("hljs-reply");
               }
             });
             $tpl.fadeIn();
           }
         } else {
-          if (param === 'clear') {
-            $tpl.find('pre code').empty();
+          if (param === "clear") {
+            $tpl.find("pre code").empty();
           } else {
             var img = $("<img src=".concat(_this.getAssetByName(param).url, " />"));
-            $tpl.find('pre code').empty();
-            $tpl.find('pre code').css('overflow', 'hidden');
-            $tpl.find('pre code').append(img);
+            $tpl.find("pre code").empty();
+            $tpl.find("pre code").css("overflow", "hidden");
+            $tpl.find("pre code").append(img);
             $tpl.fadeIn();
           }
         }
       } else {
         $tpl.hide();
-        $tpl.find('pre code').removeAttr('class');
+        $tpl.find("pre code").removeAttr("class");
       }
     });
   }
@@ -4085,26 +4101,26 @@
   function scene () {
     var _this = this;
 
-    this.on('scene', function (id) {
-      if (_typeof(id) === 'object') {
-        _this.$store.$screen.css('opacity', 0);
+    this.on("scene", function (id) {
+      if (_typeof(id) === "object") {
+        _this.$store.$screen.css("opacity", 0);
 
         _this.$store.$screen.css({
-          'background-image': "url(".concat(id.url, ")")
+          "background-image": "url(".concat(id.url, ")")
         });
 
-        _this.$store.$screen.css('opacity', 1);
-      } else if (typeof id === 'string') {
-        _this.$store.$screen.css('opacity', 0);
+        _this.$store.$screen.css("opacity", 1);
+      } else if (typeof id === "string") {
+        _this.$store.$screen.css("opacity", 0);
 
         _this.$store.$screen.css({
-          'background-image': "url('".concat(_this.getAssetByName(id).url, "')")
+          "background-image": "url('".concat(_this.getAssetByName(id).url, "')")
         });
 
-        _this.$store.$screen.css('opacity', 1);
+        _this.$store.$screen.css("opacity", 1);
       } else {
         _this.$store.$screen.css({
-          'background-image': "unset"
+          "background-image": "unset"
         });
       }
     });
@@ -4271,56 +4287,132 @@
     });
   }
 
+  var Data = /*#__PURE__*/function () {
+    function Data() {
+      _classCallCheck(this, Data);
+
+      _defineProperty(this, "token", null);
+    }
+
+    _createClass(Data, [{
+      key: "load",
+      value: function load(token) {
+        this.token = token;
+        var data = localStorage.getItem(this.token);
+
+        if (data) {
+          $vnjs.state.data = JSON.parse(data);
+        } else {
+          $vnjs.state.data = {};
+        }
+      }
+    }, {
+      key: "save",
+      value: function save(data) {
+        localStorage.setItem(this.token, JSON.stringify(data));
+      }
+      /**
+       * localStorage.remove()
+       */
+
+    }, {
+      key: "clear",
+      value: function clear() {
+        localStorage.removeItem(this.token);
+        $vnjs.state.data = {
+          score: $vnjs.state.data.score,
+          player: $vnjs.state.data.player
+        };
+      }
+    }, {
+      key: "set",
+      value: function set(data) {
+        for (var key in data) {
+          var value = String(data[key]);
+
+          if (value.includes("+=")) {
+            var val = value.replace("+=", "");
+            this.valueIncrement(key, val);
+          } else if (value.includes("-=")) {
+            var _val2 = value.replace("-=", "");
+
+            this.valueDecrement(key, _val2);
+          } else {
+            $vnjs.state.data[key] = data[key];
+          }
+        }
+
+        this.save($vnjs.state.data);
+      }
+    }, {
+      key: "valueIncrement",
+      value: function valueIncrement(key, val) {
+        var _val = Number(val);
+
+        if (isNaN(_val)) {
+          _val = val;
+        }
+
+        if ($vnjs.state.data[key]) {
+          $vnjs.state.data[key] = $vnjs.state.data[key] + _val;
+        } else {
+          $vnjs.state.data[key] = _val;
+        }
+      }
+    }, {
+      key: "valueDecrement",
+      value: function valueDecrement(key, val) {
+        var _val = Number(val);
+
+        if (isNaN(_val)) {
+          _val = val;
+
+          if ($vnjs.state.data[key]) {
+            $vnjs.state.data[key] = $vnjs.state.data[key].replace(_val, '');
+          }
+
+          return;
+        }
+
+        if ($vnjs.state.data[key]) {
+          $vnjs.state.data[key] = $vnjs.state.data[key] - _val;
+        } else {
+          $vnjs.state.data[key] = _val;
+        }
+      }
+    }]);
+
+    return Data;
+  }();
+
   function data () {
     var _this = this;
 
-    var ISBN;
-    this.on('postload', function () {
-      ISBN = '0000000000000';
-
-      if (store.get(ISBN)) {
-        _this.state.data = store.get(ISBN);
-      } else {
-        _this.state.data = {};
-      }
+    var data = new Data();
+    this.on("postload", function () {
+      data.load(_this["package"].publish.token);
     });
     /**
-     * set
+     * events
      */
 
-    var dataSetHanlder = function dataSetHanlder(data) {
-      for (var key in data) {
-        _this.state.data[key] = data[key];
-      }
-
-      store.set(ISBN, _this.state.data);
-    };
-    /**
-     * clear
-     */
-
-
-    var dataClearHanler = function dataClearHanler(data) {
-      store.remove(ISBN);
-      _this.state.data = {
-        score: _this.state.data.score,
-        player: _this.state.data.player
-      };
-    };
-
-    this.on('data-set', dataSetHanlder);
-    this.on('data-clear', dataClearHanler);
+    this.on("data-set", function (params) {
+      return data.set(params);
+    });
+    this.on("data-clear", function () {
+      return data.clear();
+    });
     /**
      * deprecated
      */
 
-    this.on('set-data', function (data) {
-      console.warn('[set-data] is deprecated. Use [data-set]');
-      dataSetHanlder(data);
+    this.on("set-data", function (params) {
+      console.warn("[set-data] is deprecated. Use [data-set]");
+      data.set(params);
     });
-    this.on('clear-data', function (data) {
-      console.warn('[clear-data] is deprecated. Use [data-clear]');
-      dataClearHanler();
+    this.on("clear-data", function () {
+      console.warn("[clear-data] is deprecated. Use [data-clear]");
+      data.clear();
     });
   }
 
@@ -4508,8 +4600,8 @@
 
   function clearData() {
     if (this.state.data.score) {
-      this.state.data.score = new Score();
-      store.set(this["package"].ISBN, this.state.data);
+      this.state.data.score = new Score(); //store.set(this.package.ISBN, this.state.data)
+
       this.emit('setScore');
     }
   }
@@ -4529,9 +4621,8 @@
         for (var param in data[key]) {
           _this.state.data.score[key][param] += data[key][param];
         }
-      }
+      } //store.set(this.package.ISBN, this.state.data)
 
-      store.set(_this["package"].ISBN, _this.state.data);
 
       _this.emit('setScore');
     };
@@ -4635,14 +4726,18 @@
     var $tpl = $(tpl$6);
     this.$store.$screen.append($tpl);
     var cid = null;
-    this.on('set-name', function (id) {
-      if (id) {
+
+    var handler = function handler(param) {
+      if (param) {
         $tpl.css('display', 'flex');
-        cid = id;
+        cid = param;
       } else {
         $tpl.hide();
       }
-    });
+    };
+
+    this.on('set-name', handler);
+    this.on('data-input', function (param) {});
     $('.vnjson__set-name-wrapper .vnjson__set-name-btn').on('click', function () {
       var input = $('.vnjson__set-name-wrapper input');
       $tpl.fadeOut();

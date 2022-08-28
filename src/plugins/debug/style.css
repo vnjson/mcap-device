@@ -50,4 +50,6 @@
 }
 .debug-error__code{
   color: #e2aa53;
+  height: 290px;
+  overflow: auto;
 }

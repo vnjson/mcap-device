@@ -8,7 +8,7 @@ function clearData(){
 
   if(this.state.data.score){
       this.state.data.score = new Score();
-      store.set(this.package.ISBN, this.state.data)
+      //store.set(this.package.ISBN, this.state.data)
       this.emit('setScore')
   }
 
@@ -31,7 +31,7 @@ export default function (){
           this.state.data.score[key][param] += data[key][param]
         }
     }
-     store.set(this.package.ISBN, this.state.data)
+     //store.set(this.package.ISBN, this.state.data)
 
 
     this.emit('setScore')

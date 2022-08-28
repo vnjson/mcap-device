@@ -31,7 +31,6 @@ export default function () {
         replyOutputSelector: ".dialog-box__reply",
         replyContaiterSelector: ".dialog-box__container",
         classNameLetter: "dialog-box__letter",
-        classNameCharacterNameInReply: "dialog-box__reply-character-name",
         classNameEndPoint: "dialog-box__reply-end-point",
     });
 

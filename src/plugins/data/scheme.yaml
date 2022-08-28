@@ -1,23 +1,17 @@
 
+# ложим данные в хранилище $vnjs.state.data
+- data-set:
+    age: 17
+    animals: корова
+ 
+- data-set:
+    age: += 17 # к текущей переменной age  прибавляется +5
+    animals: +=  краб # # добавляет слово  краб в переменную animals
+
+- data-set:
+    age: -= 5 # от текущей переменной age вычитается -5
+    animals: -=  краб # удаляет слово  краб из переменной animals
 
 - data-clear: true # обнуляет данные текущего пользователя
 
-# ложим данные в хранилище $vnjs.state.data
-- data-set:
-    age: 12
-
-
-
-- status-bar: true
-  menu:
-    _mark1: Прыгаем по метке и там присваиваем данные
-    _mark2: Ещё один пукт меню
-
-
-- _mark1: true
-  $: Записываю данные
-  data-set:
-      age: меньше12
-      name: Сергей
-
-
+- $: Мне исполнилось  <font color="deepskyblue">{{age}}</font>  лет

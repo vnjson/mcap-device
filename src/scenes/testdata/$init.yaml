@@ -1,5 +1,6 @@
 
 - al: Тестирую таблицу
+  scene: paintBoardBlack
   table:
     - row:
        - height: 100

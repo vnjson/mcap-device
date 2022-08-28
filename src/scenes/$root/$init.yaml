@@ -3,14 +3,26 @@
   audio: false
   data-clear: true
   status-bar: false
-  scene: paintBoardBlack
+  scene: false
   hud: true
   next: true
+  data-set:
+    age: 17
+    animals: корова
+- <font color="deepskyblue"> @al </font>  <font color="magenta">{{age}}</font> Привет <font color="deepskyblue">@$  </font> меня зовут @al   test @al
+  <font color="magenta">@$</font> <font color="orange">@al </font>
+- $: Если первое предложение Возраст - <font color="magenta">{{age}}</font> начинается со знака ( + ) то <font color="deepskyblue">{{animals}}</font> вываливается ошибка
+- $: test
+  set-name: $
 
-- jump: testdata.$init
+
+- $: __TEST__ 
+- data-set: age
+
+#- jump: testdata.$init
 
 
-- $: Если первое предложение начинается со знака ( + ) то вываливается ошибка
+
 - +: <br/>Далее как только доходит до вызова функции callAllMsgs
 
 
