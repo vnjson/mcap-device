@@ -2760,8 +2760,7 @@
 
         this.reply = this.reply.join("").replaceAll(/ {2,}/gi, " ")
         /*убираем пробелы больше одного подряд*/
-        .replaceAll(" </span>", "</span>")
-        /*убираем проел в конце имени*/
+        //.replaceAll('<span class="dialog-box__letter" style="opacity: 0;"> </span>', "") /*удаляем пустые теги*/
         .split(""); // пробигаемся по массиву символов методом map
         // И соеденяем массив полученных символов завёрнутых в <span> в одну реплику
 
@@ -4338,7 +4337,11 @@
 
             this.valueDecrement(key, _val2);
           } else {
-            $vnjs.state.data[key] = data[key];
+            if (isNaN(value)) {
+              $vnjs.state.data[key] = value;
+            } else {
+              $vnjs.state.data[key] = Number(value);
+            }
           }
         }
 
@@ -4720,39 +4723,48 @@
   var css$h = ".vnjson__set-name{\n  width: 470px;\n  height: 120px;\n  background-color: rgba(0, 0, 0, 0.7);\n  top: 250px;\n  left: 50%;\n  transform: translateX(-50%);\n  box-shadow: 3px 3px 5px rgba(0,0,0,0.5);\n  border-radius: 4px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  display: none;\n}\n.vnjson__set-name-wrapper{\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.vnjson__set-name-wrapper input{\n  caret-color: skyblue;\n  height: 47px;\n  border-radius: 4px;\n  width: 350px;\n  background-color: rgba(200,200,200,0.1);\n  font-size: 22px;\n  font-family: Minecraft;\n  color: skyblue;\n}\n\n.vnjson__set-name-wrapper .vnjson__set-name-btn{\n  width: 60px;\n  height: 60px;\n  cursor: pointer;\n}\n.vnjson__set-name-wrapper .vnjson__set-name-btn svg path{\n  fill: silver;\n  transition: 0.3s;\n\n}\n\n.vnjson__set-name-wrapper .vnjson__set-name-btn:hover svg path{\n  fill: skyblue;\n}";
   n(css$h,{});
 
-  function setName () {
+  function input () {
     var _this = this;
 
     var $tpl = $(tpl$6);
     this.$store.$screen.append($tpl);
-    var cid = null;
+    var dataID = false;
 
     var handler = function handler(param) {
+      dataID = param;
+
       if (param) {
-        $tpl.css('display', 'flex');
-        cid = param;
+        $tpl.css("display", "flex");
       } else {
         $tpl.hide();
       }
     };
 
-    this.on('set-name', handler);
-    this.on('data-input', function (param) {});
-    $('.vnjson__set-name-wrapper .vnjson__set-name-btn').on('click', function () {
-      var input = $('.vnjson__set-name-wrapper input');
+    this.on("set-name", function (param) {
+      console.warn("[set-name] is deprecated. Use [input-name]");
+      handler(param);
+    });
+    this.on("input-name", handler);
+    this.on("input-data", handler);
+    $(".vnjson__set-name-wrapper .vnjson__set-name-btn").on("click", function () {
+      var input = $(".vnjson__set-name-wrapper input");
       $tpl.fadeOut();
 
-      var _char = _this.TREE.$root.characters.find(function (character) {
-        return character.id === cid;
-      }); //this.state.data[cid] = value;
+      var character = _this.getCharacterById(dataID);
 
+      if (character) {
+        character.name = input.val();
+      }
+      /* state.data */
+      else {
+        $vnjs.emit('data-set', _defineProperty({}, dataID, input.val()));
+      }
 
-      _char.name = input.val();
-      input.val('');
+      input.val("");
 
       _this.exec({
         next: true
-      }); // this.exec({ next: true, 'set-data': { [cid]: value } });
+      }); // this.exec({ next: true, 'set-data': { [dataID]: value } });
 
     });
   }
@@ -7596,7 +7608,7 @@
   $vnjs.use(switchVnjson);
   $vnjs.use(qa);
   $vnjs.use(chess);
-  $vnjs.use(setName);
+  $vnjs.use(input);
   $vnjs.use(wiki);
   $vnjs.use(crossWord);
   $vnjs.use(test);

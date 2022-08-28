@@ -103,7 +103,18 @@
         "status-bar": false,
         "scene": false,
         "hud": true,
-        "next": true,
+        "next": true
+      },
+      {
+        "$": "test",
+        "input-name": "$"
+      },
+      "aa aa aa",
+      {
+        "input-data": "age"
+      },
+      "Проверка <font color=\"brown\">{{age}} </font>",
+      {
         "data-set": {
           "age": 17,
           "animals": "корова"
@@ -112,10 +123,6 @@
       "<font color=\"deepskyblue\"> @al </font>  <font color=\"magenta\">{{age}}</font> Привет <font color=\"deepskyblue\">@$  </font> меня зовут @al   test @al <font color=\"magenta\">@$</font> <font color=\"orange\">@al </font>",
       {
         "$": "Если первое предложение Возраст - <font color=\"magenta\">{{age}}</font> начинается со знака ( + ) то <font color=\"deepskyblue\">{{animals}}</font> вываливается ошибка"
-      },
-      {
-        "$": "test",
-        "set-name": "$"
       },
       {
         "$": "__TEST__"

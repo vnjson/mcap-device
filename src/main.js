@@ -22,7 +22,7 @@ import data               from './plugins/data/index.js'
 import switchVnjson       from './plugins/switch/index.js'
 import qa                 from './plugins/qa/index.js'
 import chess              from './plugins/chess/index.js'
-import setName            from './plugins/set-name/index.js'
+import input              from './plugins/input/index.js'
 import wiki               from './plugins/wiki/index.js'
 import crossWord          from './plugins/crossword/index.js'
 import test               from './plugins/test/index.js'
@@ -80,7 +80,7 @@ $vnjs.use(data)
 $vnjs.use(switchVnjson)
 $vnjs.use(qa)
 $vnjs.use(chess)
-$vnjs.use(setName)
+$vnjs.use(input)
 $vnjs.use(wiki)
 $vnjs.use(crossWord)
 $vnjs.use(test)

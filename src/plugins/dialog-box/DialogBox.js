@@ -108,7 +108,7 @@ class DialogBox {
         this.reply = this.reply
             .join("")
             .replaceAll(/ {2,}/gi, " ") /*убираем пробелы больше одного подряд*/
-            .replaceAll(" </span>", "</span>") /*убираем проел в конце имени*/
+            //.replaceAll('<span class="dialog-box__letter" style="opacity: 0;"> </span>', "") /*удаляем пустые теги*/
             .split("");
         // пробигаемся по массиву символов методом map
         // И соеденяем массив полученных символов завёрнутых в <span> в одну реплику

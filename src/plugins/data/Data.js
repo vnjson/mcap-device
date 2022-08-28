@@ -34,7 +34,11 @@ class Data {
                 const val = value.replace("-=", "");
                 this.valueDecrement(key, val)
             } else {
-                $vnjs.state.data[key] = data[key];
+                if(isNaN(value)){
+                    $vnjs.state.data[key] = value;
+                } else{
+                    $vnjs.state.data[key] = Number(value);
+                }
             }
         }
         this.save($vnjs.state.data);
