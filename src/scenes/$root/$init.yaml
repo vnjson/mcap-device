@@ -8,8 +8,6 @@
   next: true
 
 
-
-- dialog-box: fullscreen
   $: test
 - input-data: age
 

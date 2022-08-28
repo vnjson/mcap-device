@@ -103,10 +103,7 @@
         "status-bar": false,
         "scene": false,
         "hud": true,
-        "next": true
-      },
-      {
-        "dialog-box": "fullscreen",
+        "next": true,
         "$": "test"
       },
       {
