@@ -44,6 +44,14 @@ class Info {
       this.$avatar.css('border-color', 'transparent')
       this.$info.css('border-color', 'transparent')
     }
+    controlPadding(MODE){
+      if(MODE==='mode-classic'){
+          this.$info.css('bottom', '205px')
+      }
+      else{
+        this.$info.css('bottom', '5px')
+      }
+    }
 }
 
 export default Info

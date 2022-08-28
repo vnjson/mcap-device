@@ -7,11 +7,12 @@
   hud: true
   next: true
 
-- $: test
-  input-name: $
 
-- aa aa aa
+
+- dialog-box: fullscreen
+  $: test
 - input-data: age
+
 
 - Проверка <font color="brown">{{age}} </font>
 

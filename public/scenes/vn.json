@@ -106,10 +106,9 @@
         "next": true
       },
       {
-        "$": "test",
-        "input-name": "$"
+        "dialog-box": "fullscreen",
+        "$": "test"
       },
-      "aa aa aa",
       {
         "input-data": "age"
       },

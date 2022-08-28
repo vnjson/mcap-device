@@ -4718,9 +4718,9 @@
     };
   }
 
-  var tpl$6 = "<div class=\"vnjson__set-name\">\n    <div class=\"vnjson__set-name-wrapper\">\n        <input type=\"text\">\n        <div class=\"vnjson__set-name-btn\">\n            <svg style=\"width:60px;height:60px\" viewBox=\"0 0 24 24\">\n                <path fill=\"currentColor\" d=\"M3,19V5A2,2 0 0,1 5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19M17,12L12,7V10H8V14H12V17L17,12Z\"/>\n            </svg>\n        </div>\n    </div>\n  \n</div>";
+  var tpl$6 = "<div class=\"vnjson__input component\">\n    <div class=\"vnjson__input-wrapper\">\n        <input type=\"text\">\n        <div class=\"vnjson__input-btn\">\n            <svg style=\"width:60px;height:60px\" viewBox=\"0 0 24 24\">\n                <path fill=\"currentColor\" d=\"M3,19V5A2,2 0 0,1 5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19M17,12L12,7V10H8V14H12V17L17,12Z\"/>\n            </svg>\n        </div>\n    </div>\n  \n</div>";
 
-  var css$h = ".vnjson__set-name{\n  width: 470px;\n  height: 120px;\n  background-color: rgba(0, 0, 0, 0.7);\n  top: 250px;\n  left: 50%;\n  transform: translateX(-50%);\n  box-shadow: 3px 3px 5px rgba(0,0,0,0.5);\n  border-radius: 4px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  display: none;\n}\n.vnjson__set-name-wrapper{\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.vnjson__set-name-wrapper input{\n  caret-color: skyblue;\n  height: 47px;\n  border-radius: 4px;\n  width: 350px;\n  background-color: rgba(200,200,200,0.1);\n  font-size: 22px;\n  font-family: Minecraft;\n  color: skyblue;\n}\n\n.vnjson__set-name-wrapper .vnjson__set-name-btn{\n  width: 60px;\n  height: 60px;\n  cursor: pointer;\n}\n.vnjson__set-name-wrapper .vnjson__set-name-btn svg path{\n  fill: silver;\n  transition: 0.3s;\n\n}\n\n.vnjson__set-name-wrapper .vnjson__set-name-btn:hover svg path{\n  fill: skyblue;\n}";
+  var css$h = ".vnjson__input{\n  width: 470px;\n  height: 120px;\n  background-color: rgba(0, 0, 0, 0.7);\n  top: 250px;\n  left: 50%;\n  transform: translateX(-50%);\n  box-shadow: 3px 3px 5px rgba(0,0,0,0.5);\n  border-radius: 4px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  display: none;\n}\n.vnjson__input-wrapper{\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.vnjson__input-wrapper input{\n  caret-color: skyblue;\n  height: 47px;\n  border-radius: 4px;\n  width: 350px;\n  background-color: rgba(200,200,200,0.1);\n  font-size: 22px;\n  font-family: Minecraft;\n  color: skyblue;\n}\n\n.vnjson__input-wrapper .vnjson__input-btn{\n  width: 60px;\n  height: 60px;\n  cursor: pointer;\n}\n.vnjson__input-wrapper .vnjson__input-btn svg path{\n  fill: silver;\n  transition: 0.3s;\n\n}\n\n.vnjson__input-wrapper .vnjson__input-btn:hover svg path{\n  fill: skyblue;\n}";
   n(css$h,{});
 
   function input () {
@@ -4746,8 +4746,8 @@
     });
     this.on("input-name", handler);
     this.on("input-data", handler);
-    $(".vnjson__set-name-wrapper .vnjson__set-name-btn").on("click", function () {
-      var input = $(".vnjson__set-name-wrapper input");
+    $(".vnjson__input-wrapper .vnjson__input-btn").on("click", function () {
+      var input = $(".vnjson__input-wrapper input");
       $tpl.fadeOut();
 
       var character = _this.getCharacterById(dataID);
@@ -7496,19 +7496,28 @@
         this.$avatar.css('border-color', 'transparent');
         this.$info.css('border-color', 'transparent');
       }
+    }, {
+      key: "controlPadding",
+      value: function controlPadding(MODE) {
+        if (MODE === 'mode-classic') {
+          this.$info.css('bottom', '205px');
+        } else {
+          this.$info.css('bottom', '5px');
+        }
+      }
     }]);
 
     return Info;
   }();
 
-  var css = "\r\n\r\n.dialog-box__avatar{\r\n    border: 3px solid transparent;\r\n    border-radius: 4px;\r\n\r\n}\r\n\r\n.dialog-box__info{\r\n    position: absolute;\r\n    bottom: 205px;\r\n    left: 5px;\r\n    min-width: 200px;\r\n    max-width: 400px;\r\n \r\n    border-radius: 6px;\r\n    background-color: rgba(0,0,0,0.8);\r\n    color: gray;\r\n    display: none;\r\n    border: 4px solid gray;\r\n    padding: 5px;\r\n    z-index: 1000;\r\n\r\n  }\r\n  /*\r\n  @keyframes movingBox {\r\n    0% {\r\n      border-color: yellow;\r\n    }\r\n    50% {\r\n        border-color: green;\r\n    }\r\n    100% {\r\n      border-color: yellow;\r\n    }\r\n  }*/";
+  var css = "\r\n\r\n.dialog-box__avatar{\r\n    border: 3px solid transparent;\r\n    border-radius: 4px;\r\n\r\n}\r\n\r\n.dialog-box__info{\r\n    position: absolute;\r\n    bottom: 205px;\r\n    left: 5px;\r\n    min-width: 200px;\r\n    max-width: 400px;\r\n \r\n    border-radius: 6px;\r\n    background-color: rgba(0,0,0,0.8);\r\n    color: gray;\r\n    display: none;\r\n    border: 4px solid gray;\r\n    padding: 5px;\r\n    z-index: 5000;\r\n    font-size: 22px;\r\n    line-height: 32px;\r\n    word-spacing: 10px;\r\n\r\n  }\r\n ";
   n(css,{});
 
   function dialogBoxInfo () {
     var _this = this;
 
     var $tpl = $('<div class="dialog-box__info"></div>');
-    $('.dialog-box.component').append($tpl);
+    this.$store.$screen.append($tpl);
     /**
      * INFO
      */
@@ -7547,6 +7556,9 @@
     });
     this.on('dialog-box.click', function () {
       return info.removeBorder();
+    });
+    this.on('dialog-box.mode', function (MODE) {
+      return info.controlPadding(MODE);
     });
   }
 

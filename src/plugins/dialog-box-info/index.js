@@ -4,7 +4,7 @@ import "./style.css"
 export default function (){
 
     const $tpl = $('<div class="dialog-box__info"></div>')
-    $('.dialog-box.component').append($tpl)
+    this.$store.$screen.append($tpl)
     /**
      * INFO
      */
@@ -51,4 +51,5 @@ export default function (){
     } )
  
     this.on('dialog-box.click', () => info.removeBorder() )
+    this.on('dialog-box.mode', (MODE) => info.controlPadding(MODE))
 }

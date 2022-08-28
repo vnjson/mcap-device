@@ -22,8 +22,8 @@ export default function () {
     this.on("input-name", handler);
     this.on("input-data", handler);
 
-    $(".vnjson__set-name-wrapper .vnjson__set-name-btn").on("click", () => {
-        const input = $(".vnjson__set-name-wrapper input");
+    $(".vnjson__input-wrapper .vnjson__input-btn").on("click", () => {
+        const input = $(".vnjson__input-wrapper input");
 
         $tpl.fadeOut();
         const character = this.getCharacterById(dataID);

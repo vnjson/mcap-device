@@ -4,7 +4,7 @@
 
 
 - $: У лукоморья дуб зелёный;
-  input-name: $
+  input-name: $ # character id
   dialog-box: disabled
 
 
@@ -12,8 +12,7 @@
 - input-data: age # имя переменой. Можно как создать новую, так и переопределить
 - $: Возраст <font color="brown">{{age}}</font> # вывод переменной в реплику
 
-- set-name: characterID
-- set-name: false
+
 
 ### deprecated ###
 # ключевое слово set-name устарело. Вместо него рекомендуется использовать input-name
