@@ -1,4 +1,17 @@
 import "./style.css";
+/**
+* {{data}} Подставляем данные в реплику из this.state.data
+*/
+function replaceDataTemplate(reply) {
+    let _newReply = reply
+    const variables = reply.match(/{{.+?}}/g)
+    if(!variables) return  _newReply
+    variables.forEach( (varItem) => {
+        const dataKey = varItem.replaceAll('{{', '').replaceAll('}}', '').trim()
+        _newReply = _newReply.replaceAll(varItem, vnjs.state.data[dataKey]||'')
+    })
+    return `<span> ${_newReply} </span>`
+}
 
 
 export default function (){
@@ -50,7 +63,9 @@ export default function (){
                 // TEXT
                 if(cell.hasOwnProperty('text') ){
                       TYPE = 'text'
-                      $cell = $(`<span class="table__cell table__cell-text" data-row="${indexRow}" data-cell="${indexCell}" data-type="${TYPE}" >${cell.text.content||''}</span>`)
+                      let text = null
+                      text = replaceDataTemplate(cell.text.content)
+                      $cell = $(`<span class="table__cell table__cell-text" data-row="${indexRow}" data-cell="${indexCell}" data-type="${TYPE}" >${text}</span>`)
                       $cell.css({
                             width: cell.text.width +'px',
                             'font-size': cell.text.size+'px',

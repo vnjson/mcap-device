@@ -100,51 +100,23 @@
         "audio": false,
         "data-clear": true,
         "status-bar": false,
-        "hud": true,
+        "scene": "alice",
         "next": true
       },
       {
-        "$": "set HP 70%",
-        "data-set": {
-          "HP": "70%"
-        }
+        "al": "te <font color=\"deepskyblue\">телескопом</font>"
       },
       {
-        "$": "RIGHT 70%",
-        "hud-right": "HP"
+        "al": "Как указывает НАСА, использование SP именно в таком виде"
       },
       {
-        "$": "set HP 30%",
-        "data-set": {
-          "HP": "30%"
-        }
+        "+": "te <font color=\"deepskyblue\">телескопом </font>"
       },
       {
-        "$": "RIGHT 30%",
-        "hud-right": "HP"
+        "+": "телескопом"
       },
       {
-        "$": "set HP 10%",
-        "data-set": {
-          "HP": "10%"
-        }
-      },
-      {
-        "$": "RIGHT 10%",
-        "hud-right": "HP"
-      },
-      {
-        "hud-inv": {
-          "slot": 4,
-          "icon": "alice",
-          "exec": {
-            "scene": "alice"
-          }
-        }
-      },
-      {
-        "al": "Мне {{age}} лет",
-        "hands": true
+        "+": "телескопом"
       },
       {
         "al": "Всё ходит по цепи кругом",

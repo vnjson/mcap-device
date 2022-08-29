@@ -18,6 +18,8 @@
   data-set:
     HP: 70%
     
+- hud-right: HP
+
 - $: RIGHT 70% 
   hud-right: HP
 

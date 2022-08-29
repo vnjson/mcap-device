@@ -6,7 +6,6 @@
        - text: 
             content: Aaaa
             border: '#ff0096' # true 
-            content: test
             width: 180
             color-background: black # color-background
             align-h: right #left #center # right # У изображений выравнивания нет

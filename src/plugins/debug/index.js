@@ -35,7 +35,7 @@ export default function () {
             Object.keys(ctx).forEach((event) => {
                 if (
                     !/^_/gi.test(event) &&
-                    !this.plugins.hasOwnProperty(event)
+                    !this.events.hasOwnProperty(event)
                 ) {
                     this.emit("error", "pluginNotFound", event);
                 }

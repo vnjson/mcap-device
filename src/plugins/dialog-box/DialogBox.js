@@ -4,7 +4,6 @@ class DialogBox {
     prevReplyStringTag = null;
     MODE = "classic";
     constructor(param) {
-        this.vnjs = param.vnjs;
         /*Tags*/
         this.dialogBoxTag = document.querySelector(param.dialogBoxSelector);
         this.characterNameTag = document.querySelector(
@@ -54,15 +53,15 @@ class DialogBox {
             this.replyContaiterTag.style["padding-right"] = 0 + "px";
         }
         if (this.MODE === "mode-fullscreen") {
-            this.dialogBoxTag.style.height = this.vnjs.config.height + "px";
+            this.dialogBoxTag.style.height = vnjs.config.height + "px";
             this.replyContaiterTag.style["padding-right"] = 10 + "px";
         }
         this.setImage();
-        this.vnjs.emit("dialog-box.mode", this.MODE);
+        vnjs.emit("dialog-box.mode", this.MODE);
     }
     setImage() {
-        const url = this.vnjs.getAssetByName(
-            this.vnjs.package["dialog-box"][this.MODE]
+        const url = vnjs.getAssetByName(
+            vnjs.package["dialog-box"][this.MODE]
         ).url;
         this.dialogBoxTag.style["background-image"] = `url(${url})`;
     }
@@ -73,7 +72,7 @@ class DialogBox {
         this.print(this.character, this.#reply);
     }
     print(character, reply = "", append) {
-        this.vnjs.emit("dialog-box.print");
+        vnjs.emit("dialog-box.print");
         this.reset();
         this.character = character;
         this.#reply = reply;
@@ -84,6 +83,7 @@ class DialogBox {
         //this.reply = this.reply.replaceAll(/<.{0,}><\/.{0,}>/gi, '')
         // Если скорость вывода символов равна нулю, то строка не разбивается на символы
         if (this.delay > 0) {
+            console.log(this.reply)
             this.replyOutputBySingleLetter();
             // выводим готовый реузльтат
             this.outputToHTML(append);
@@ -108,7 +108,7 @@ class DialogBox {
         this.reply = this.reply
             .join("")
             .replaceAll(/ {2,}/gi, " ") /*убираем пробелы больше одного подряд*/
-            //.replaceAll('<span class="dialog-box__letter" style="opacity: 0;"> </span>', "") /*удаляем пустые теги*/
+            .replaceAll(' </span>', '</span>') /*убираем проел в конце имени*/
             .split("");
         // пробигаемся по массиву символов методом map
         // И соеденяем массив полученных символов завёрнутых в <span> в одну реплику
@@ -121,7 +121,7 @@ class DialogBox {
          */
         if (this.character.avatar) {
             this.characterAvatarTag.style.backgroundImage = `url('${
-                this.vnjs.getAssetByName(this.character.avatar).url
+                vnjs.getAssetByName(this.character.avatar).url
             }')`;
             this.characterAvatarTag.classList.add("dialog-box__avatar--show");
             this.replyWrapperTag.style.width = "84.5%";
@@ -146,6 +146,7 @@ class DialogBox {
         this.replyStringTag.innerHTML = this.reply;
         this.prevReplyStringTag = this.replyStringTag;
         if (append) {
+            this.replyStringTag.classList.add("dialog-box__reply-append");
             this.replyTag.appendChild(this.replyStringTag); //.innerHTML += this.reply;
         } else {
             this.replyTag.innerHTML = "";
@@ -166,7 +167,7 @@ class DialogBox {
                 // получаем id персонажа
                 let cid = id.replace("@", "").trim();
                 // получаем персонажа по id
-                let character = this.vnjs.getCharacterById(cid);
+                let character = vnjs.getCharacterById(cid);
                 if (character) {
                     // заменяем ссылку на персонажа именем персонажа
                     _newReply = _newReply.replace(id, character.name);
@@ -240,7 +241,7 @@ class DialogBox {
         // отображаем каждый символ по отдельности
         this.interval = setInterval(() => {
             if (letters.length > 0) {
-                this.vnjs.emit(
+                vnjs.emit(
                     "dialog-box:letter",
                     letters[this.index].innerHTML
                 );
@@ -258,7 +259,7 @@ class DialogBox {
             this.addEndPoint();
         }
         this.reset();
-        this.vnjs.emit("dialog-box:endOutputReply");
+        vnjs.emit("dialog-box:endOutputReply");
     }
     addEndPoint() {
         this.replyTag.innerHTML += `<span class="${this.classNameEndPoint}"></span>`;

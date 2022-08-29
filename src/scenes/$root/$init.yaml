@@ -3,47 +3,16 @@
   audio: false
   data-clear: true
   status-bar: false
-  #scene: alice
-  hud: true
+  scene: alice
+  #hud: true
   next: true
+- al: te <font color="deepskyblue">телескопом</font>
+- al: Как указывает НАСА, использование SP именно в таком виде
+- +: te <font color="deepskyblue">телескопом </font>
+- +: телескопом 
+- +: телескопом 
 
 
-- $: set HP 70%
-  data-set:
-    HP: 70%
-    
-- $: RIGHT 70% 
-  hud-right: HP
-
-- $: set HP 30%
-  data-set:
-    HP: 30%
-
-- $: RIGHT 30% 
-  hud-right: HP
-
-- $: set HP 10% 
-  data-set:
-    HP: 10%
-
-- $: RIGHT 10% 
-  hud-right: HP
-
-
-
-
-
-
-
-
-
-- hud-inv:
-    slot: 4
-    icon: alice
-    exec:
-      scene: alice
-- al: Мне {{age}} лет
-  hands: true
 - al: Всё ходит по цепи кругом
   filter:
       target: scene

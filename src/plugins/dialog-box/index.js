@@ -20,7 +20,6 @@ export default function () {
      * DialogBox
      */
     const dBox = new DialogBox({
-        vnjs,
         delay: 0,
         alpha: 0,
         endPoint: false,
@@ -34,7 +33,7 @@ export default function () {
         classNameEndPoint: "dialog-box__reply-end-point",
     });
 
-    vnjs.store["dialog-box"] = dBox;
+    vnjs.plugins["dialog-box"] = dBox;
     /**
      * DELAY
      */
@@ -108,7 +107,7 @@ export default function () {
         }
 
         dBox.forcePrintPrevReply();
-        dBox.print(character, " " + String(reply), true);
+        dBox.print(character, String(reply), true);
     });
 
     /**

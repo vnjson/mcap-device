@@ -39,19 +39,27 @@ export default function () {
     /*
      * delay
      */
-    const _vnjs = this;
+
     this.on("postload", () => {
         // delay
         const dBox = this.package?.["dialog-box"];
         $(".debug__delay").val(dBox?.delay || 0);
+        $(".debug__alpha").val(dBox?.alpha || 1);
         // screenshot
         screenShot.WEBHOOK = "";
         screenShot.HOST = this.package.publish.host;
     });
-    // _vnjs.tree.$root.characters[0]
+
     $(".debug__delay").on("change", function () {
-        _vnjs.store["dialog-box"].delay = $(this).val();
+        vnjs.plugins["dialog-box"].delay = $(this).val();
     });
+    $(".debug__alpha").on("change", function () {
+        vnjs.plugins["dialog-box"].alpha = $(this).val();
+    });
+ 
+    /**
+     * color-picker
+     */
     $("#debug__color-picker").on("change", function () {
         const value = $(this).val();
 
@@ -131,7 +139,7 @@ export default function () {
      */
     $(".debug__show-asset").on("click", function () {
         let pluginValue = jsyaml.load($pluginValue.val().trim());
-        _vnjs.exec({
+        vnjs.exec({
             [pluginName]: pluginValue,
         });
     });
@@ -139,21 +147,18 @@ export default function () {
      * Показываем и скрываем [ dialog-box ]
      */
     let flagDB = 0;
-    const dbhNode = $(".debug__btn-img--dbh");
     $(".debug__show-dbh").on("click", function () {
         switch (flagDB){
             case 0:
-                _vnjs.exec({ "dialog-box": true });
-                dbhNode.removeClass("debug__btn-img--dbs");
+                vnjs.exec({ "dialog-box": 'fullscreen' });
                 flagDB = 1;
                 break;
             case 1:
-                _vnjs.exec({ "dialog-box": 'fullscreen' });
+                vnjs.exec({ "dialog-box": false });
                 flagDB = 2;
                 break;
             case 2:
-                _vnjs.exec({ "dialog-box": false });
-                dbhNode.addClass("debug__btn-img--dbs");
+                vnjs.exec({ "dialog-box": 'classic' });
                 flagDB = 0;
                 break;
         }

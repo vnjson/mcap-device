@@ -447,7 +447,7 @@
 
       if (_typeof(ctx) === "object") {
         Object.keys(ctx).forEach(function (event) {
-          if (!/^_/gi.test(event) && !_this.plugins.hasOwnProperty(event)) {
+          if (!/^_/gi.test(event) && !_this.events.hasOwnProperty(event)) {
             _this.emit("error", "pluginNotFound", event);
           }
         });
@@ -493,10 +493,10 @@
     });
   }
 
-  var css$w = ".debug__dialog-box-controls{\n  background-color: wheat;\n  padding: 5px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  height: 120px;\n  font-size: 14px;\n  width: 1024px;\n  font-family: Arial, Helvetica, sans-serif;\n}\n\n\n.debug__dialog-box-controls >div{\n  display: flex;\n  flex-direction: column;\n  border-radius: 4px;\n  height: 100%;\n  border: 1px solid #ccc;\n  padding: 5px;\n}\n\n.debug__controls-left{\n  width: 500px;\n}\n\n.debug__character{\n  width: 40px;\n}\n\n.debug__dialog-box-controls .debug__controls-center{\n  width: 510px;\n  flex-direction: row;\n}\n\n.debug__mc-exec{\n  width: 50px;\n}\n.debug__controls-btns{\n  display: flex;\n  justify-content: space-between;\n  height: 30px;\n\n}\n\n\n.debug__dialog-box-controls .debug__input-text{\n  flex: 1 0 auto;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  text-align: left;\n \n  \n}\n\n/*delay*/\n.debug__delay-wrapper{\n  display: flex;\n  align-items: center;\n  background-color: burlywood;\n  border-radius: 4px;\n  margin-left: 5px;\n  padding-left: 5px;\n}\n.debug__delay-img{\n  width: 20px;\n  height: 20px;\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNMTIsMjBBOCw4IDAgMCwwIDIwLDEyQTgsOCAwIDAsMCAxMiw0QTgsOCAwIDAsMCA0LDEyQTgsOCAwIDAsMCAxMiwyME0xMiwyQTEwLDEwIDAgMCwxIDIyLDEyQTEwLDEwIDAgMCwxIDEyLDIyQzYuNDcsMjIgMiwxNy41IDIsMTJBMTAsMTAgMCAwLDEgMTIsMk0xMi41LDdWMTIuMjVMMTcsMTQuOTJMMTYuMjUsMTYuMTVMMTEsMTNWN0gxMi41WiIgLz4NCjwvc3ZnPg==);\n  background-position: center;\n\n}\n.debug__btn-screenshot{\n  width: 20px;\n  height: 20px;\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNMTksMTlINVY1SDE5TTE5LDNINUEyLDIgMCAwLDAgMyw1VjE5QTIsMiAwIDAsMCA1LDIxSDE5QTIsMiAwIDAsMCAyMSwxOVY1QTIsMiAwIDAsMCAxOSwzTTEzLjk2LDEyLjI5TDExLjIxLDE1LjgzTDkuMjUsMTMuNDdMNi41LDE3SDE3LjVMMTMuOTYsMTIuMjlaIiAvPg0KPC9zdmc+);\n  background-position: center;\n}\n\n.debug__dialog-box-controls .debug__delay{\n  width: 40px;\n  text-align: center;\n  flex: 0 0 auto;\n}\n\n.debug__btn{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 5px 5px;\n  cursor: pointer;\n  color: black;\n  width: 35px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin-left: 5px;\n\n}\n.debug__btn-img{\n  width: 20px;\n  height: 20px;\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNNiA3LjI0TDE1LjUzIDEyTDYgMTYuNzZWNy4yNE00IDRWMjBMMjAgMTJMNCA0WiIgLz4NCjwvc3ZnPg==);\n  background-position: center;\n  background-repeat: no-repeat;\n  margin-left: 5px;\n}\n.debug__show-dbh{\n  margin-top: 5px;\n\n}\n.debug__btn-img--dbh{\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNMy4zNSwzLjU4TDIwLjY1LDIwLjg3TDE5LjIzLDIyLjI5TDE2Ljk0LDIwSDRBMiwyIDAgMCwxIDIsMThWNkMyLDUuNzIgMi4wNiw1LjQ2IDIuMTYsNS4yMkwxLjIzLDQuMjlMMi42NSwyLjg3TDMuMzUsMy41OE02LjYsNEgyMEEyLDIgMCAwLDEgMjIsNlYxOEMyMiwxOC40IDIxLjg4LDE4Ljc3IDIxLjY4LDE5LjA4TDE3LjYsMTVIMjBWMTNIMTUuNkwxMy42LDExSDIwVjlIMTEuNkw2LjYsNE05Ljk0LDEzSDlWMTVIMTFWMTQuMDZMOS45NCwxM001Ljk0LDlINVYxMUg3VjEwLjA2TDUuOTQsOVoiIC8+DQo8L3N2Zz4=);\n  margin-left: 0;\n}\n.debug__btn-img--dbs{\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiAgZD0iTTIwLDRBMiwyIDAgMCwxIDIyLDZWMThBMiwyIDAgMCwxIDIwLDIwSDRBMiwyIDAgMCwxIDIsMThWNkEyLDIgMCAwLDEgNCw0SDIwTTExLDEzSDlWMTVIMTFWMTNNMTksMTNIMTNWMTVIMTlWMTNNNyw5SDVWMTFIN1Y5TTE5LDlIOVYxMUgxOVY5WiIgLz4NCjwvc3ZnPg==);\n}\n\n.debug__btn:hover{\n  background-color: rgba(0,0,0,0.3);\n}\n\n.debug__textarea{\n  width: 100%;\n  flex: 1 0 auto;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  resize: unset;\n  border: unset;\n  outline: unset;\n  caret-color: deepskyblue;\n  margin-top: 5px;\n\n}\n.debug__output{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  width: 100%;\n  flex: 1 0 auto;\n  overflow: auto;\n  height: 100%;\n  user-select: all;\n}\n\n.debug__checkbox-wrapper{\n  display: flex;\n  align-items: center;\n\n  background-color: burlywood;\n  border-radius: 4px;\n  margin-left: 5px;\n  padding: 5px;\n  padding-right: 10px;\n  justify-content: center;\n}\n.debug__mcexec-type{\n  margin-top: 5px;\n  margin-right: 5px;\n}\n/*\n * color picker  \n */\n.vnjson__debug-color-picker{\n  border-radius: 4px;\n  overflow: hidden;\n  margin-left: 5px;\n\n}\n#debug__color-picker{\n  background-color: burlywood;\n  padding: 5px;\n  width: 90px;\n\n  outline: none;\n  border: 0;\n  height: 100%;\n  cursor: pointer;\n}\n\n\n\n.debug-plugin__topbar{\n  display: flex;\n  flex-direction: column;\n  height: 30px;\n}\n\n.debug-plugin__select{\n  width: 35%;\n  overflow: auto;\n}\n\n.debug-plugin__right{\n  width: 64%;\n  display: flex;\n  margin-left: 2px;\n}\n.debug__plugin--value{\n  margin-top: 0;\n  flex: unset;\n  white-space: nowrap;\n}\n.debug-plugin__params{\n  display: flex;\n}\n\n.debug-plugin__params{\n  display: flex;\n  height: 100%;\n}\n.debug__plugin-param{\n  width: 50%;\n\n}\n.debug__plugin--data{\n  margin-right: 2.5px;\n}\n.debug__plugin--value{\n  margin-left: 2.5px;\n}\n.debug-btn--value{\n  margin-top: 5px;\n}\n.debug-plugin__name{\n  border-radius: 4px;\n  border: 1px solid #ccc;\n  margin-bottom: 5px;\n  padding: 1px 5px;\n  cursor: pointer;\n  margin-right: 5px;\n  display: block;\n}\n.debug-plugin__name--active{\n  color: cadetblue;\n  border-color: cadetblue;\n}\n.debug-plugin__name--dev{\n  color: brown;\n}\n.debug-plugin__name:hover{\n  color: cadetblue;\n  border-color: cadetblue;\n}\n.debug-plugin__value{\n  max-width: 155px;\n  margin-left: 5px;\n}";
+  var css$w = ".debug__dialog-box-controls{\n  background-color: wheat;\n  padding: 5px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  height: 120px;\n  font-size: 14px;\n  width: 1024px;\n  font-family: Arial, Helvetica, sans-serif;\n}\n\n\n.debug__dialog-box-controls >div{\n  display: flex;\n  flex-direction: column;\n  border-radius: 4px;\n  height: 100%;\n  border: 1px solid #ccc;\n  padding: 5px;\n}\n\n.debug__controls-left{\n  width: 500px;\n}\n\n.debug__character{\n  width: 40px;\n}\n\n.debug__dialog-box-controls .debug__controls-center{\n  width: 510px;\n  flex-direction: row;\n}\n\n.debug__mc-exec{\n  width: 50px;\n}\n.debug__controls-btns{\n  display: flex;\n  justify-content: space-between;\n  height: 30px;\n\n}\n\n\n.debug__dialog-box-controls .debug__input-text{\n  flex: 1 0 auto;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  text-align: left;\n \n  \n}\n/* убираю стрелочки */\ninput::-webkit-outer-spin-button,\ninput::-webkit-inner-spin-button {\n    /* display: none; <- Crashes Chrome on hover */\n    -webkit-appearance: none;\n    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */\n}\n\ninput[type=number] {\n    -moz-appearance:textfield; /* Firefox */\n    outline: 0;\n    border: 0;\n}\n/*delay*/\n.debug__delay-wrapper{\n  display: flex;\n  align-items: center;\n  background-color: burlywood;\n  border-radius: 4px;\n  margin-left: 5px;\n  padding-left: 5px;\n}\n.debug__delay-img{\n  width: 20px;\n  height: 20px;\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNMTIsMjBBOCw4IDAgMCwwIDIwLDEyQTgsOCAwIDAsMCAxMiw0QTgsOCAwIDAsMCA0LDEyQTgsOCAwIDAsMCAxMiwyME0xMiwyQTEwLDEwIDAgMCwxIDIyLDEyQTEwLDEwIDAgMCwxIDEyLDIyQzYuNDcsMjIgMiwxNy41IDIsMTJBMTAsMTAgMCAwLDEgMTIsMk0xMi41LDdWMTIuMjVMMTcsMTQuOTJMMTYuMjUsMTYuMTVMMTEsMTNWN0gxMi41WiIgLz4NCjwvc3ZnPg==);\n  background-position: center;\n}\n/*alpha*/\n.debug__alpha-wrapper{\n  display: flex;\n  align-items: center;\n  background-color: burlywood;\n  border-radius: 4px;\n  margin-left: 5px;\n  padding-left: 5px;\n}\n.debug__alpha-img{\n  width: 20px;\n  height: 20px;\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNMTEsN0gxM0EyLDIgMCAwLDEgMTUsOVYxN0gxM1YxM0gxMVYxN0g5VjlBMiwyIDAgMCwxIDExLDdNMTEsOVYxMUgxM1Y5SDExTTEyLDIwQTgsOCAwIDAsMCAyMCwxMkE4LDggMCAwLDAgMTIsNEE4LDggMCAwLDAgNCwxMkE4LDggMCAwLDAgMTIsMjBNMTIsMkExMCwxMCAwIDAsMSAyMiwxMkExMCwxMCAwIDAsMSAxMiwyMkExMCwxMCAwIDAsMSAyLDEyQTEwLDEwIDAgMCwxIDEyLDJaIiAvPg0KPC9zdmc+);\n  background-position: center;\n}\n.debug__dialog-box-controls .debug__alpha{\n  width: 40px;\n  text-align: center;\n  flex: 0 0 auto;\n}\n\n.debug__btn-screenshot{\n  width: 20px;\n  height: 20px;\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNMTksMTlINVY1SDE5TTE5LDNINUEyLDIgMCAwLDAgMyw1VjE5QTIsMiAwIDAsMCA1LDIxSDE5QTIsMiAwIDAsMCAyMSwxOVY1QTIsMiAwIDAsMCAxOSwzTTEzLjk2LDEyLjI5TDExLjIxLDE1LjgzTDkuMjUsMTMuNDdMNi41LDE3SDE3LjVMMTMuOTYsMTIuMjlaIiAvPg0KPC9zdmc+);\n  background-position: center;\n}\n\n\n\n.debug__dialog-box-controls .debug__delay{\n  width: 40px;\n  text-align: center;\n  flex: 0 0 auto;\n}\n\n.debug__btn{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 5px 5px;\n  cursor: pointer;\n  color: black;\n  width: 35px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin-left: 5px;\n\n}\n.debug__btn-img{\n  width: 20px;\n  height: 20px;\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNNiA3LjI0TDE1LjUzIDEyTDYgMTYuNzZWNy4yNE00IDRWMjBMMjAgMTJMNCA0WiIgLz4NCjwvc3ZnPg==);\n  background-position: center;\n  background-repeat: no-repeat;\n  margin-left: 5px;\n}\n.debug__show-dbh{\n  margin-top: 5px;\n\n}\n.debug__btn-img--dbs{\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiAgZD0iTTIwLDRBMiwyIDAgMCwxIDIyLDZWMThBMiwyIDAgMCwxIDIwLDIwSDRBMiwyIDAgMCwxIDIsMThWNkEyLDIgMCAwLDEgNCw0SDIwTTExLDEzSDlWMTVIMTFWMTNNMTksMTNIMTNWMTVIMTlWMTNNNyw5SDVWMTFIN1Y5TTE5LDlIOVYxMUgxOVY5WiIgLz4NCjwvc3ZnPg==);\n  margin-left: 0;\n}\n\n\n.debug__btn:hover{\n  background-color: rgba(0,0,0,0.3);\n}\n\n.debug__textarea{\n  width: 100%;\n  flex: 1 0 auto;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  resize: unset;\n  border: unset;\n  outline: unset;\n  caret-color: deepskyblue;\n  margin-top: 5px;\n\n}\n.debug__output{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  width: 100%;\n  flex: 1 0 auto;\n  overflow: auto;\n  height: 100%;\n  user-select: all;\n}\n\n.debug__checkbox-wrapper{\n  display: flex;\n  align-items: center;\n\n  background-color: burlywood;\n  border-radius: 4px;\n  margin-left: 5px;\n  padding: 5px;\n  padding-right: 10px;\n  justify-content: center;\n}\n.debug__mcexec-type{\n  margin-top: 5px;\n  margin-right: 5px;\n}\n/*\n * color picker  \n */\n.vnjson__debug-color-picker{\n  border-radius: 4px;\n  overflow: hidden;\n  margin-left: 5px;\n  width: 65px;\n}\n#debug__color-picker{\n  background-color: burlywood;\n  padding: 5px;\n  width: 90px;\n\n  outline: none;\n  border: 0;\n  height: 100%;\n  cursor: pointer;\n}\n\n\n\n.debug-plugin__topbar{\n  display: flex;\n  flex-direction: column;\n  height: 30px;\n}\n\n.debug-plugin__select{\n  width: 35%;\n  overflow: auto;\n}\n\n.debug-plugin__right{\n  width: 64%;\n  display: flex;\n  margin-left: 2px;\n}\n.debug__plugin--value{\n  margin-top: 0;\n  flex: unset;\n  white-space: nowrap;\n}\n.debug-plugin__params{\n  display: flex;\n}\n\n.debug-plugin__params{\n  display: flex;\n  height: 100%;\n}\n.debug__plugin-param{\n  width: 50%;\n\n}\n.debug__plugin--data{\n  margin-right: 2.5px;\n}\n.debug__plugin--value{\n  margin-left: 2.5px;\n}\n.debug-btn--value{\n  margin-top: 5px;\n}\n.debug-plugin__name{\n  border-radius: 4px;\n  border: 1px solid #ccc;\n  margin-bottom: 5px;\n  padding: 1px 5px;\n  cursor: pointer;\n  margin-right: 5px;\n  display: block;\n}\n.debug-plugin__name--active{\n  color: cadetblue;\n  border-color: cadetblue;\n}\n.debug-plugin__name--dev{\n  color: brown;\n}\n.debug-plugin__name:hover{\n  color: cadetblue;\n  border-color: cadetblue;\n}\n.debug-plugin__value{\n  max-width: 155px;\n  margin-left: 5px;\n}";
   n(css$w,{});
 
-  var tpl$e = "<div class=\"debug__dialog-box-controls\">\r\n  <!--left-->\r\n  <div class=\"debug__controls-left\">\r\n      <div class=\"debug__controls-btns\">\r\n          <input class=\"debug__input-text debug__character\" type=\"text\" value=\"$\" title=\"character\">\r\n          <div class=\"debug__btn debug-btn--character-snipet\" style=\"color: #778;font-weight: 600\" title=\"snipet\">{..}</div>\r\n          <div class=\"debug__btn debug__inner-screenshot\" title=\"Скриншот\"> \r\n                <div class=\"debug__btn-screenshot\"></div>\r\n          </div>\r\n          <div class=\"debug__delay-wrapper\" title=\"dialog-box delay\">\r\n                <div class=\"debug__delay-img\"></div>\r\n                <input class=\"debug__input-text debug__delay\" type=\"text\">\r\n          </div>\r\n          <div class=\"debug__btn debug__inner-reply\" title=\"Показать\"> \r\n                <div class=\"debug__btn-img\"></div>\r\n          </div>\r\n          <div class=\"vnjson__debug-color-picker\">\r\n                <input id=\"debug__color-picker\" readonly=\"1\">\r\n          </div>\r\n\r\n      </div>\r\n      <textarea class=\"debug__textarea debug__reply\" placeholder=\"param\" title=\"Реплика\" spellcheck=\"false\"></textarea>\r\n  </div>\r\n  <!--img-->\r\n  <div class=\"debug__controls-center\">\r\n        <!--left-->\r\n        <div class=\"debug-plugin__select\">\r\n\r\n         </div>\r\n\r\n        <!--right-->\r\n        <div class=\"debug-plugin__right\">\r\n            <textarea class=\"debug__textarea debug__plugin--value\" placeholder=\"param\" spellcheck=\"false\"></textarea>\r\n            <div class=\"debug-plugin__topbar\">\r\n                <div class=\"debug__btn debug__show-asset\" title=\"Выполнить\"> \r\n                    <div class=\"debug__btn-img\"></div>\r\n                </div>\r\n\r\n                <div class=\"debug__btn debug-btn--value\" style=\"color: #778;font-weight: 600\" title=\"snipet\">{..}</div>\r\n                <div class=\"debug__btn debug__show-dbh\" title=\"dialog-box: false\"> \r\n                    <div class=\"debug__btn-img debug__btn-img--dbh\"></div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n  </div>\r\n\r\n</div>\r\n";
+  var tpl$e = "<div class=\"debug__dialog-box-controls\">\r\n  <!--left-->\r\n  <div class=\"debug__controls-left\">\r\n      <div class=\"debug__controls-btns\">\r\n          <input class=\"debug__input-text debug__character\" type=\"text\" value=\"$\" title=\"character\">\r\n          <div class=\"debug__btn debug-btn--character-snipet\" style=\"color: #778;font-weight: 600\" title=\"snipet\">{..}</div>\r\n        <!--\r\n          <div class=\"debug__btn debug__inner-screenshot\" title=\"Скриншот\"> \r\n                <div class=\"debug__btn-screenshot\"></div>\r\n          </div>\r\n        -->\r\n          <div class=\"debug__delay-wrapper\" title=\"dialog-box delay\">\r\n                <div class=\"debug__delay-img\"></div>\r\n                <input class=\"debug__input-text debug__delay\" type=\"number\">\r\n          </div>\r\n          <div class=\"debug__alpha-wrapper\" title=\"dialog-box alpha\">\r\n                <div class=\"debug__alpha-img\"></div>\r\n                <input class=\"debug__input-text debug__alpha\" type=\"number\">\r\n          </div>\r\n\r\n          <div class=\"debug__btn debug__inner-reply\" title=\"Показать\"> \r\n                <div class=\"debug__btn-img\"></div>\r\n          </div>\r\n          <div class=\"vnjson__debug-color-picker\">\r\n                <input id=\"debug__color-picker\" readonly=\"1\">\r\n          </div>\r\n\r\n      </div>\r\n      <textarea class=\"debug__textarea debug__reply\" placeholder=\"param\" title=\"Реплика\" spellcheck=\"false\"></textarea>\r\n  </div>\r\n  <!--img-->\r\n  <div class=\"debug__controls-center\">\r\n        <!--left-->\r\n        <div class=\"debug-plugin__select\">\r\n\r\n         </div>\r\n\r\n        <!--right-->\r\n        <div class=\"debug-plugin__right\">\r\n            <textarea class=\"debug__textarea debug__plugin--value\" placeholder=\"param\" spellcheck=\"false\"></textarea>\r\n            <div class=\"debug-plugin__topbar\">\r\n                <div class=\"debug__btn debug__show-asset\" title=\"Выполнить\"> \r\n                    <div class=\"debug__btn-img\"></div>\r\n                </div>\r\n\r\n                <div class=\"debug__btn debug-btn--value\" style=\"color: #778;font-weight: 600\" title=\"snipet\">{..}</div>\r\n                <div class=\"debug__btn debug__show-dbh\" title=\"dialog-box: false\"> \r\n                    <div class=\"debug__btn-img debug__btn-img--dbs\"></div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n  </div>\r\n\r\n</div>\r\n";
 
   var css$v = ".sp-container{position:absolute;top:0;left:0;display:inline-block;z-index:9999994;overflow:hidden}.sp-original-input-container{position:relative;display:inline-flex}.sp-original-input-container input{margin:0!important}.sp-original-input-container .sp-add-on{width:40px;border-top-right-radius:0!important;border-bottom-right-radius:0!important}input.spectrum.with-add-on{border-top-left-radius:0;border-bottom-left-radius:0;border-left:0}.sp-original-input-container .sp-add-on .sp-colorize{height:100%;width:100%;border-radius:inherit}.sp-colorize-container{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='%23ccc' fill-opacity='1'%3E%3Crect x='0' y='0' width='6' height='6' /%3E%3Crect x='6' y='6' width='6' height='6' /%3E%3C/svg%3E\")}.sp-container.sp-flat{position:relative}.sp-container,.sp-container *{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}.sp-top{position:relative;width:100%;display:inline-block}.sp-top-inner{position:absolute;top:0;left:0;bottom:0;right:0}.sp-color{position:absolute;top:0;left:0;bottom:0;right:20px!important}.sp-hue{position:absolute;top:0;right:0;bottom:0;width:12px;height:100%;left:initial!important}.sp-clear-enabled .sp-hue{top:15%;height:85%}.sp-fill{padding-top:80%}.sp-sat,.sp-val{position:absolute;top:0;left:0;right:0;bottom:0}.sp-alpha-enabled .sp-top{margin-bottom:28px!important}.sp-alpha-enabled .sp-alpha{display:block}.sp-alpha-handle{position:absolute;top:-3px;cursor:pointer;height:16px;border-radius:50%;width:16px;margin-right:5px;left:-2px;right:0;background:#f9f9f9;box-shadow:0 0 2px 0 #3a3a3a}.sp-alpha{display:none;position:absolute;bottom:-18px;right:0;left:0;height:10px}.sp-alpha-inner{border-radius:4px}.sp-clear{display:none}.sp-clear.sp-clear-display{background-position:center}.sp-clear-enabled .sp-clear{display:block;position:absolute;top:3px;right:0;bottom:0;cursor:pointer;left:initial;height:14px;width:14px}.sp-alpha,.sp-alpha-handle,.sp-clear,.sp-container,.sp-container button,.sp-container.sp-dragging .sp-input,.sp-dragger,.sp-preview,.sp-replacer,.sp-slider{-webkit-user-select:none;-moz-user-select:-moz-none;-o-user-select:none;user-select:none}.sp-container.sp-input-disabled .sp-input-container{display:none}.sp-container.sp-buttons-disabled .sp-button-container{display:none}.sp-container.sp-palette-buttons-disabled .sp-palette-button-container{display:none}.sp-palette-only .sp-picker-container{display:none}.sp-palette-disabled .sp-palette-container{display:none}.sp-initial-disabled .sp-initial{display:none}.sp-sat{background-image:-webkit-gradient(linear,0 0,100% 0,from(#fff),to(rgba(204,154,129,0)));background-image:-webkit-linear-gradient(left,#fff,rgba(204,154,129,0));background-image:-moz-linear-gradient(left,#fff,rgba(204,154,129,0));background-image:-o-linear-gradient(left,#fff,rgba(204,154,129,0));background-image:-ms-linear-gradient(left,#fff,rgba(204,154,129,0));background-image:linear-gradient(to right,#fff,rgba(204,154,129,0))}.sp-val{border-radius:4px;background-image:-webkit-gradient(linear,0 100%,0 0,from(#000),to(rgba(204,154,129,0)));background-image:-webkit-linear-gradient(bottom,#000,rgba(204,154,129,0));background-image:-moz-linear-gradient(bottom,#000,rgba(204,154,129,0));background-image:-o-linear-gradient(bottom,#000,rgba(204,154,129,0));background-image:-ms-linear-gradient(bottom,#000,rgba(204,154,129,0));background-image:linear-gradient(to top,#000,rgba(204,154,129,0))}.sp-hue{background:-moz-linear-gradient(top,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%);background:-ms-linear-gradient(top,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%);background:-o-linear-gradient(top,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%);background:-webkit-gradient(linear,left top,left bottom,from(red),color-stop(.17,#ff0),color-stop(.33,#0f0),color-stop(.5,#0ff),color-stop(.67,#00f),color-stop(.83,#f0f),to(red));background:-webkit-linear-gradient(top,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%);background:linear-gradient(to bottom,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%)}.sp-1{height:17%}.sp-2{height:16%}.sp-3{height:17%}.sp-4{height:17%}.sp-5{height:16%}.sp-6{height:17%}.sp-hidden{display:none!important}.sp-cf:after,.sp-cf:before{content:\"\";display:table}.sp-cf:after{clear:both}@media (max-device-width:480px){.sp-color{right:40%}.sp-hue{left:63%}.sp-fill{padding-top:60%}}.sp-dragger{border-radius:5px;height:10px;width:10px;border:1px solid #fff;cursor:pointer;position:absolute;top:0;left:0;margin-left:3px;margin-top:3px;box-shadow:0 0 2px 1px rgba(0,0,0,.2)}.sp-slider{position:absolute;top:0;cursor:pointer;height:16px;border-radius:50%;width:16px;left:-2px;background:#f9f9f9;box-shadow:0 0 2px 0 #3a3a3a;margin-top:8px}.sp-container{display:inline-flex;border-radius:0;background-color:#fff;padding:0;border-radius:4px;color:#000;box-shadow:0 0 0 1px rgba(99,114,130,.16),0 8px 16px rgba(27,39,51,.08)}.sp-clear,.sp-color,.sp-container,.sp-container button,.sp-container input,.sp-hue{font-size:12px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box}.sp-top{margin-bottom:10px}.sp-clear,.sp-color,.sp-hue,.sp-sat,.sp-val{border-radius:3px}.sp-input-container{margin-top:-5px}.sp-button-container.sp-cf,.sp-initial.sp-thumb.sp-cf,.sp-input-container.sp-cf{height:25px}.sp-picker-container .sp-cf{margin-bottom:10px}.sp-palette-row-initial>span:first-child{cursor:pointer}.sp-initial-disabled .sp-input-container{width:100%}.sp-input{padding:0 5px!important;margin:0;width:100%;box-shadow:none!important;height:100%!important;background:0 0;color:#3a3a3a;border-radius:2px!important;border:1px solid #e0e0e0!important;text-align:center;font-family:monospace;font-size:inherit!important}.sp-input:focus{border:1px solid orange}.sp-input.sp-validation-error{border:1px solid red;background:#fdd}.sp-palette-container,.sp-picker-container{position:relative;padding:10px}.sp-picker-container{width:200px;padding-bottom:0}.sp-palette-container{border-right:solid 1px #ccc}.sp-palette-only .sp-palette-container{border:0}.sp-palette .sp-thumb-el{display:block;position:relative;float:left;width:24px;height:15px;margin:3px;cursor:pointer;border:solid 2px transparent}.sp-palette .sp-thumb-el.sp-thumb-active,.sp-palette .sp-thumb-el:hover{border-color:orange}.sp-thumb-el{position:relative}.sp-initial{float:left}.sp-initial span{width:30px;height:25px;border:none;display:block;float:left;margin:0}.sp-initial .spe-thumb-el.sp-thumb-active{border-radius:0 5px 5px 0}.sp-initial .spe-thumb-el{border-radius:5px 0 0 5px}.sp-initial .sp-clear-display{background-position:center}.sp-button-container{float:right}.sp-palette-button-container{margin-top:10px}.sp-replacer{position:relative;overflow:hidden;cursor:pointer;display:inline-block;border-radius:3px;border:1px solid #aaa;color:#666;transition:border-color .3s;vertical-align:middle;width:3rem;height:1.5rem}.sp-replacer.sp-active,.sp-replacer:hover{border:1px solid #666;color:#000}.sp-replacer.sp-disabled{cursor:default;border-color:silver;color:silver}.sp-dd{position:absolute;font-size:10px;right:0;top:0;bottom:0;padding:0 2px;line-height:1.6rem;background-color:#fff}.sp-preview{position:relative;width:100%;height:100%;float:left;z-index:0}.sp-preview-inner{transition:background-color .2s}.sp-preview-inner.sp-clear-display{display:none}.sp-palette .sp-thumb-el{width:16px;height:16px;margin:3px;border:none;border-radius:3px}.sp-container button{border-radius:3px;border:none;background:0 0;line-height:1;padding:0 8px;height:25px;text-transform:capitalize;text-align:center;vertical-align:middle;cursor:pointer;color:#606c72;font-weight:700}.sp-container button.sp-choose{background-color:#3cab3b;color:#fff;margin-left:5px}.sp-container button:hover{opacity:.8}.sp-container button.sp-palette-toggle{width:100%;background-color:#f3f3f3;margin:0}.sp-palette span.sp-thumb-active,.sp-palette span:hover{border-color:#000}.sp-alpha,.sp-preview,.sp-thumb-el{position:relative;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='%23ccc' fill-opacity='1'%3E%3Crect x='0' y='0' width='6' height='6' /%3E%3Crect x='6' y='6' width='6' height='6' /%3E%3C/svg%3E\")}.sp-alpha-inner,.sp-preview-inner,.sp-thumb-inner{display:block;position:absolute;top:0;left:0;bottom:0;right:0}.sp-palette .sp-thumb-inner{border-radius:3px;background-position:50% 50%;background-repeat:no-repeat}.sp-palette .sp-thumb-light.sp-thumb-active .sp-thumb-inner{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIVJREFUeNpiYBhsgJFMffxAXABlN5JruT4Q3wfi/0DsT64h8UD8HmpIPCWG/KemIfOJCUB+Aoacx6EGBZyHBqI+WsDCwuQ9mhxeg2A210Ntfo8klk9sOMijaURm7yc1UP2RNCMbKE9ODK1HM6iegYLkfx8pligC9lCD7KmRof0ZhjQACDAAceovrtpVBRkAAAAASUVORK5CYII=);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='18' height='18'%3E%3Cpath d='M9 16.172l10.594-10.594 1.406 1.406-12 12-5.578-5.578 1.406-1.406z' fill='%23000'%3E%3C/path%3E%3C/svg%3E\")}.sp-palette .sp-thumb-dark.sp-thumb-active .sp-thumb-inner{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAAMdJREFUOE+tkgsNwzAMRMugEAahEAahEAZhEAqlEAZhEAohEAYh81X2dIm8fKpEspLGvudPOsUYpxE2BIJCroJmEW9qJ+MKaBFhEMNabSy9oIcIPwrB+afvAUFoK4H0tMaQ3XtlrggDhOVVMuT4E5MMG0FBbCEYzjYT7OxLEvIHQLY2zWwQ3D+9luyOQTfKDiFD3iUIfPk8VqrKjgAiSfGFPecrg6HN6m/iBcwiDAo7WiBeawa+Kwh7tZoSCGLMqwlSAzVDhoK+6vH4G0P5wdkAAAAASUVORK5CYII=);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='18' height='18'%3E%3Cpath d='M9 16.172l10.594-10.594 1.406 1.406-12 12-5.578-5.578 1.406-1.406z' fill='%23fff'%3E%3C/path%3E%3C/svg%3E\")}.sp-clear-display{background-repeat:no-repeat;background-position:center;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAABe0lEQVQokYXSsUtcQRTF4d8Jj+VhHSxkEQuLsEUKK0nhTBFTmLSSUhBCMCAWsmgIwWrBLk0akfwLCaSQKBJmtrIIISwpRFKIhViETScphGMzysMtvOVwvpm5d0bGNCuGWAOPgYdl6S8wSDn9b+bUhDHEKWAdeAFMANg+l/TV9ofcz6cjMIbYBvaBMds7QCqZ58CmpBNgPuV0DvAAIMyFGugWtJr7eTv38xEwkPRPErY7QDeG2LqFkjrAgu0dSd/KDVqSNmxvAZ8lfbS9AHRuYemnLWkv5XRVBrQMbAI/gTXgEzAJtJuwBVS2L2OIle03QA/4Lmkl5XQBXEqqbFcAVYFDYChpFngiqWf7l6TXKaezMt2Zkhk24THwG+jZriX9AFZvUAyxLbRke2D75O5zPAO+ADXwEtizjaRHwDvbTyUtppwOmicCHAJvbXcl9YA1SQDjtseA97YPRz7ATcUQp2y/kjRdevsjaTfldNrMjcDGBjXA3T96L7yvrgFzP69+0Ao/HAAAAABJRU5ErkJggg==);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='14' height='14'%3E%3Cpath d='M12 20.016q3.281 0 5.648-2.367t2.367-5.648q0-2.672-1.734-4.922l-11.203 11.203q2.25 1.734 4.922 1.734zM3.984 12q0 2.672 1.734 4.922l11.203-11.203q-2.25-1.734-4.922-1.734-3.281 0-5.648 2.367t-2.367 5.648zM12 2.016q4.125 0 7.055 2.93t2.93 7.055-2.93 7.055-7.055 2.93-7.055-2.93-2.93-7.055 2.93-7.055 7.055-2.93z' fill='%23000'%3E%3C/path%3E%3C/svg%3E\")}\r\n\r\n\r\n.sp-original-input-container{\r\n    height: 100%;\r\n}\r\n\r\n.sp-colorize{\r\n    border-radius: 4px 0 0 4px !important;\r\n}";
   n(css$v,{});
@@ -2316,22 +2316,27 @@
      * delay
      */
 
-    var _vnjs = this;
-
     this.on("postload", function () {
       var _this$package;
 
       // delay
       var dBox = (_this$package = _this["package"]) === null || _this$package === void 0 ? void 0 : _this$package["dialog-box"];
-      $(".debug__delay").val((dBox === null || dBox === void 0 ? void 0 : dBox.delay) || 0); // screenshot
+      $(".debug__delay").val((dBox === null || dBox === void 0 ? void 0 : dBox.delay) || 0);
+      $(".debug__alpha").val((dBox === null || dBox === void 0 ? void 0 : dBox.alpha) || 1); // screenshot
 
       screenShot.WEBHOOK = "";
       screenShot.HOST = _this["package"].publish.host;
-    }); // _vnjs.tree.$root.characters[0]
-
-    $(".debug__delay").on("change", function () {
-      _vnjs.store["dialog-box"].delay = $(this).val();
     });
+    $(".debug__delay").on("change", function () {
+      vnjs.plugins["dialog-box"].delay = $(this).val();
+    });
+    $(".debug__alpha").on("change", function () {
+      vnjs.plugins["dialog-box"].alpha = $(this).val();
+    });
+    /**
+     * color-picker
+     */
+
     $("#debug__color-picker").on("change", function () {
       var value = $(this).val();
       copyTextToClipboard(value);
@@ -2403,40 +2408,33 @@
 
     $(".debug__show-asset").on("click", function () {
       var pluginValue = jsyaml.load($pluginValue.val().trim());
-
-      _vnjs.exec(_defineProperty({}, pluginName, pluginValue));
+      vnjs.exec(_defineProperty({}, pluginName, pluginValue));
     });
     /**
      * Показываем и скрываем [ dialog-box ]
      */
 
     var flagDB = 0;
-    var dbhNode = $(".debug__btn-img--dbh");
     $(".debug__show-dbh").on("click", function () {
       switch (flagDB) {
         case 0:
-          _vnjs.exec({
-            "dialog-box": true
+          vnjs.exec({
+            "dialog-box": 'fullscreen'
           });
-
-          dbhNode.removeClass("debug__btn-img--dbs");
           flagDB = 1;
           break;
 
         case 1:
-          _vnjs.exec({
-            "dialog-box": 'fullscreen'
+          vnjs.exec({
+            "dialog-box": false
           });
-
           flagDB = 2;
           break;
 
         case 2:
-          _vnjs.exec({
-            "dialog-box": false
+          vnjs.exec({
+            "dialog-box": 'classic'
           });
-
-          dbhNode.addClass("debug__btn-img--dbs");
           flagDB = 0;
           break;
       }
@@ -2629,7 +2627,7 @@
     this.store.screen = $("#screen");
   }
 
-  var css$t = ".dialog-box {\n  z-index: 1000;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  line-height: 32px;\n  font-size: 22px;\n  height: 200px;\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: none;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.dialog-box__name {\n  color: wheat;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.dialog-box__reply {\n  color: wheat;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.dialog-box__reply-end-point{\n  display: inline-block;\n}\n.dialog-box__reply-end-point::before{\n  content: '';\n  position: absolute;\n  left: 10px;\n  width: 7px;\n  height: 7px;\n  background-color: silver;\n  opacity: 0.7;\n  animation-duration: 0.7s;\n  animation-name: end-point;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}\n@keyframes end-point {\n  from {\n    top: -10px;\n    opacity: 0.1;\n  }\n  to {\n    top: -20px;\n    opacity: 0.7;\n  }\n}\n\n.dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.dialog-box__avatar{\n  margin-top: 15px;\n  min-width: 150px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  display: none;\n}\n.dialog-box__avatar--show{\n  display: block;\n}\n\n\n.dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n  min-width: 75%;\n}\n";
+  var css$t = ".dialog-box {\n  z-index: 1000;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  line-height: 32px;\n  font-size: 22px;\n  height: 200px;\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: none;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.dialog-box__name {\n  color: wheat;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.dialog-box__reply {\n  color: wheat;\n  padding-left: 10px;\n  width: 100%; \n}\n.dialog-box__reply-append{\n  padding-left: 8px;\n}\n.dialog-box__reply-end-point{\n  display: inline-block;\n}\n.dialog-box__reply-end-point::before{\n  content: '';\n  position: absolute;\n  left: 10px;\n  width: 7px;\n  height: 7px;\n  background-color: silver;\n  opacity: 0.7;\n  animation-duration: 0.7s;\n  animation-name: end-point;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}\n@keyframes end-point {\n  from {\n    top: -10px;\n    opacity: 0.1;\n  }\n  to {\n    top: -20px;\n    opacity: 0.7;\n  }\n}\n\n.dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.dialog-box__avatar{\n  margin-top: 15px;\n  min-width: 150px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  display: none;\n}\n.dialog-box__avatar--show{\n  display: block;\n}\n\n\n.dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n  min-width: 75%;\n}\n";
   n(css$t,{});
 
   var tpl$c = "<div class=\"dialog-box component\">\n  <div class=\"dialog-box__container\">\n        <div class=\"dialog-box__avatar\"></div>\n        <div class=\"dialog-box__reply-wrapper\">\n          <div class=\"dialog-box__name\"></div>\n          <div class=\"dialog-box__reply\"></div>\n        </div>\n  </div>\n</div>";
@@ -2651,9 +2649,7 @@
 
       _defineProperty(this, "MODE", "classic");
 
-      this.vnjs = param.vnjs;
       /*Tags*/
-
       this.dialogBoxTag = document.querySelector(param.dialogBoxSelector);
       this.characterNameTag = document.querySelector(param.characterNameOutputSelector);
       this.replyTag = document.querySelector(param.replyOutputSelector);
@@ -2704,17 +2700,17 @@
         }
 
         if (this.MODE === "mode-fullscreen") {
-          this.dialogBoxTag.style.height = this.vnjs.config.height + "px";
+          this.dialogBoxTag.style.height = vnjs.config.height + "px";
           this.replyContaiterTag.style["padding-right"] = 10 + "px";
         }
 
         this.setImage();
-        this.vnjs.emit("dialog-box.mode", this.MODE);
+        vnjs.emit("dialog-box.mode", this.MODE);
       }
     }, {
       key: "setImage",
       value: function setImage() {
-        var url = this.vnjs.getAssetByName(this.vnjs["package"]["dialog-box"][this.MODE]).url;
+        var url = vnjs.getAssetByName(vnjs["package"]["dialog-box"][this.MODE]).url;
         this.dialogBoxTag.style["background-image"] = "url(".concat(url, ")");
       }
     }, {
@@ -2732,7 +2728,7 @@
       value: function print(character) {
         var reply = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
         var append = arguments.length > 2 ? arguments[2] : undefined;
-        this.vnjs.emit("dialog-box.print");
+        vnjs.emit("dialog-box.print");
         this.reset();
         this.character = character;
 
@@ -2746,6 +2742,7 @@
         // Если скорость вывода символов равна нулю, то строка не разбивается на символы
 
         if (this.delay > 0) {
+          console.log(this.reply);
           this.replyOutputBySingleLetter(); // выводим готовый реузльтат
 
           this.outputToHTML(append); // Запускаем посимвольное изменение прозрачности
@@ -2772,7 +2769,8 @@
 
         this.reply = this.reply.join("").replaceAll(/ {2,}/gi, " ")
         /*убираем пробелы больше одного подряд*/
-        //.replaceAll('<span class="dialog-box__letter" style="opacity: 0;"> </span>', "") /*удаляем пустые теги*/
+        .replaceAll(' </span>', '</span>')
+        /*убираем проел в конце имени*/
         .split(""); // пробигаемся по массиву символов методом map
         // И соеденяем массив полученных символов завёрнутых в <span> в одну реплику
 
@@ -2786,7 +2784,7 @@
          * Если есть, то отображаем его
          */
         if (this.character.avatar) {
-          this.characterAvatarTag.style.backgroundImage = "url('".concat(this.vnjs.getAssetByName(this.character.avatar).url, "')");
+          this.characterAvatarTag.style.backgroundImage = "url('".concat(vnjs.getAssetByName(this.character.avatar).url, "')");
           this.characterAvatarTag.classList.add("dialog-box__avatar--show");
           this.replyWrapperTag.style.width = "84.5%";
         } else {
@@ -2810,6 +2808,7 @@
         this.prevReplyStringTag = this.replyStringTag;
 
         if (append) {
+          this.replyStringTag.classList.add("dialog-box__reply-append");
           this.replyTag.appendChild(this.replyStringTag); //.innerHTML += this.reply;
         } else {
           this.replyTag.innerHTML = "";
@@ -2835,7 +2834,7 @@
 
             var cid = id.replace("@", "").trim(); // получаем персонажа по id
 
-            var character = this.vnjs.getCharacterById(cid);
+            var character = vnjs.getCharacterById(cid);
 
             if (character) {
               // заменяем ссылку на персонажа именем персонажа
@@ -2922,8 +2921,7 @@
 
         this.interval = setInterval(function () {
           if (letters.length > 0) {
-            _this.vnjs.emit("dialog-box:letter", letters[_this.index].innerHTML);
-
+            vnjs.emit("dialog-box:letter", letters[_this.index].innerHTML);
             letters[_this.index].style.opacity = 1;
             _this.index++;
           }
@@ -2941,7 +2939,7 @@
         }
 
         this.reset();
-        this.vnjs.emit("dialog-box:endOutputReply");
+        vnjs.emit("dialog-box:endOutputReply");
       }
     }, {
       key: "addEndPoint",
@@ -3029,7 +3027,6 @@
      */
 
     var dBox = new DialogBox({
-      vnjs: vnjs,
       delay: 0,
       alpha: 0,
       endPoint: false,
@@ -3042,7 +3039,7 @@
       classNameLetter: "dialog-box__letter",
       classNameEndPoint: "dialog-box__reply-end-point"
     });
-    vnjs.store["dialog-box"] = dBox;
+    vnjs.plugins["dialog-box"] = dBox;
     /**
      * DELAY
      */
@@ -3126,7 +3123,7 @@
       }
 
       dBox.forcePrintPrevReply();
-      dBox.print(character, " " + String(reply), true);
+      dBox.print(character, String(reply), true);
     });
     /**
      * SHOW HIDE DIALOG-BOX
@@ -4160,6 +4157,21 @@
   var css$k = "\n.vnjson__table{\n  left: 50%;\n  top: 0%;\n  transform: translateX(-50%);\n  flex-direction: column;\n}\n.table-row{\n  overflow: hidden;\n  display: flex;\n  align-content: center;\n  align-items: center;\n  justify-content: center;\n  margin-bottom: 10px;\n\n}\n.table__cell{\n  transition: all 0.2s linear;\n  overflow: hidden;\n  border: 2px solid transparent;\n  border-radius: 2px;\n}\n\n.table__img-wrapper{\n  border: 2px solid transparent;\n  overflow: hidden;\n  height: 100%;\n  display: flex;\n  align-items: center;\n  border-radius: 2px;\n  margin: 0 5px;\n}\n.table__cell-text{\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n  padding: 10px;\n  color: wheat;\n  margin: 0 5px;\n}\n\n.table__cell[data-jump]{\n  cursor: pointer;\n}\n.table__cell[data-jump]:hover{\n  filter: brightness(150%);\n}\n\n.table__cell-text[data-jump]{\n  cursor: pointer;\n}\n.table-row .table__cell.table__cell-text[data-jump]:hover{\n  opacity: 0.7;\n}";
   n(css$k,{});
 
+  /**
+  * {{data}} Подставляем данные в реплику из this.state.data
+  */
+
+  function replaceDataTemplate(reply) {
+    var _newReply = reply;
+    var variables = reply.match(/{{.+?}}/g);
+    if (!variables) return _newReply;
+    variables.forEach(function (varItem) {
+      var dataKey = varItem.replaceAll('{{', '').replaceAll('}}', '').trim();
+      _newReply = _newReply.replaceAll(varItem, vnjs.state.data[dataKey] || '');
+    });
+    return "<span> ".concat(_newReply, " </span>");
+  }
+
   function table () {
     var _this = this;
 
@@ -4216,7 +4228,9 @@
 
             if (cell.hasOwnProperty('text')) {
               TYPE = 'text';
-              $cell = $("<span class=\"table__cell table__cell-text\" data-row=\"".concat(indexRow, "\" data-cell=\"").concat(indexCell, "\" data-type=\"").concat(TYPE, "\" >").concat(cell.text.content || '', "</span>"));
+              var text = null;
+              text = replaceDataTemplate(cell.text.content);
+              $cell = $("<span class=\"table__cell table__cell-text\" data-row=\"".concat(indexRow, "\" data-cell=\"").concat(indexCell, "\" data-type=\"").concat(TYPE, "\" >").concat(text, "</span>"));
               $cell.css({
                 width: cell.text.width + 'px',
                 'font-size': cell.text.size + 'px',
@@ -4727,7 +4741,7 @@
   function chess () {
     var _this = this;
 
-    this.on('vnjson.mount', function () {
+    this.on("vnjson.mount", function () {
       if (_this["package"].chess) {
         chessInit();
       }
@@ -4738,7 +4752,7 @@
 
       _this.store.screen.append($tpl);
 
-      _this.on('chess', function (fen) {
+      _this.on("chess", function (fen) {
         if (fen) {
           $tpl.show();
           var win = document.querySelector("iframe.chess__vnjson").contentWindow;

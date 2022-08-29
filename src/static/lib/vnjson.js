@@ -5,6 +5,7 @@ class Vnjson {
     package = null;
     debug = false
     conf = null
+    events = {};
     plugins = {};
     store = {};
     state = {
@@ -124,20 +125,20 @@ class Vnjson {
     }
 
     on(event, handler) {
-        if (!this.plugins[event]) {
-            this.plugins[event] = [];
+        if (!this.events[event]) {
+            this.events[event] = [];
         }
-        this.plugins[event].push(handler);
+        this.events[event].push(handler);
     }
     emit(event, ...args) {
-        if (event in this.plugins) {
-            this.plugins[event].forEach((handler) =>
+        if (event in this.events) {
+            this.events[event].forEach((handler) =>
                 handler.call(this, ...args)
             );
         }
     }
     off(event) {
-        delete this.plugins[event];
+        delete this.events[event];
     }
 
     exec(ctx) {
@@ -186,6 +187,7 @@ class Vnjson {
     use(plugin) {
         if(typeof plugin === 'object'){
             plugin.mount()
+            //this.plugins[plugin] = plugin
             return
         }
         plugin.call(this);

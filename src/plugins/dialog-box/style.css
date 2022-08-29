@@ -31,7 +31,9 @@
   padding-left: 10px;
   width: 100%; 
 }
-
+.dialog-box__reply-append{
+  padding-left: 8px;
+}
 .dialog-box__reply-end-point{
   display: inline-block;
 }
