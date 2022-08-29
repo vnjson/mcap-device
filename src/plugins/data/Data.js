@@ -60,13 +60,16 @@ class Data {
           _val = val
           if (vnjs.state.data[key]) {
             vnjs.state.data[key] = vnjs.state.data[key].replace(_val, '');
+          }
+          else{
+            vnjs.state.data[key] = ''
           } 
           return
         }
         if (vnjs.state.data[key]) {
             vnjs.state.data[key] = vnjs.state.data[key] - _val;
         } else {
-            vnjs.state.data[key] = _val;
+            vnjs.state.data[key] = - _val;
         }
       }
 

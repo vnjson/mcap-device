@@ -101,9 +101,14 @@
         "audio": false,
         "data-clear": true,
         "status-bar": false,
-        "scene": "alice",
-        "hud": true,
         "next": true
+      },
+      {
+        "$": "tset",
+        "input-data": "age"
+      },
+      {
+        "al": "Мне {{age}} лет"
       },
       {
         "al": "Всё ходит по цепи кругом",
@@ -112,14 +117,14 @@
           "items": [
             {
               "type": "grayscale",
-              "duration": 1000,
+              "duration": 4000,
               "value": 5
             }
           ]
         }
       },
       {
-        "al": "И днём и ночью, {{age}} кот учёный",
+        "al": "И днём и ночью, кот учёный",
         "scene": false
       },
       {

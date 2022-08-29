@@ -1,5 +1,5 @@
 class Vnjson {
-    version = "1.9.4";
+    version = "1.9.6";
     ctx = null;
     TREE = null;
     package = null;
@@ -18,7 +18,10 @@ class Vnjson {
         tree: [],
         assets: [],
     };
-    constructor() {}
+    constructor(conf) {
+        this.conf = conf
+        this.debug = conf.debug
+    }
 
 
     getAssetByName(name) {
@@ -182,6 +185,10 @@ class Vnjson {
     }
 
     use(plugin) {
+        if(typeof plugin === 'object'){
+            plugin.mount()
+            return
+        }
         plugin.call(this);
     }
 }
@@ -190,7 +197,7 @@ class Vnjson {
  * NATIVE PLAGINS
  */
 
-window.vnjs = new Vnjson();
+window.vnjs = new Vnjson({debug: true});
 /**
  * Native plagins
  */

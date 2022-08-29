@@ -1,45 +1,49 @@
 import tpl from "./tpl.html";
 import "./style.css";
 
-export default function () {
-    const $tpl = $(tpl);
-    this.store.screen.append($tpl);
+const $tpl = $(tpl);
 
-    let dataID = false;
-    const handler = (param) => {
-        dataID = param;
-        if (param) {
+
+export default {
+    args: null,
+    mount() {
+        vnjs.store.screen.append($tpl);
+        vnjs.on("input-name", (args) => this.handler(args));
+        vnjs.on("input-data", (args) => this.handler(args));
+        /**
+         * deprecated
+         */
+        vnjs.on("set-name", (args) => {
+            console.warn("[set-name] is deprecated. Use [input-name]");
+            this.handler(args);
+        });
+        /**
+         * click
+         */
+        $tpl.find(".vnjson__input-btn").on("click", () => this.clickHandler());
+    },
+    handler(args) {
+        if (args) {
+            this.args = args;
             $tpl.css("display", "flex");
-        } else {
+        } 
+        else {
             $tpl.hide();
         }
-    };
-
-
-    this.on("input-name", handler);
-    this.on("input-data", handler);
-
-    $(".vnjson__input-wrapper .vnjson__input-btn").on("click", () => {
-        const input = $(".vnjson__input-wrapper input");
-
+    },
+    clickHandler() {
+        const input = $tpl.find(".vnjson__input-wrapper input");
         $tpl.fadeOut();
-        const character = this.getCharacterById(dataID);
+        const character = vnjs.getCharacterById(this.args);
         if (character) {
             character.name = input.val();
-        } else {
-        /* state.data */
+        } 
+        else {
             vnjs.emit("data-set", {
-                [dataID]: input.val(),
+                [this.args]: input.val(),
             });
         }
         input.val("");
-        this.exec({ next: true });
-    });
-    /**
-     * DEPRECATED
-     */
-    this.on("set-name", (param) => {
-        console.warn("[set-name] is deprecated. Use [input-name]");
-        handler(param);
-    });
-}
+        vnjs.emit('next', true);
+    },
+};

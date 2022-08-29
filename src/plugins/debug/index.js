@@ -8,10 +8,11 @@ export default function () {
     /**
      * Блокировка контекстного меню, если не debug
      */
-    if (!this.debug) {
+/*     if (!vnjs.$root.package.debug) {
         $("body").attr("oncontextmenu", "return false;");
         return;
-    }
+    } */
+    
     this.local = "ru";
     new ErrorHandler(this.local);
 

@@ -138,19 +138,26 @@ export default function () {
     /**
      * Показываем и скрываем [ dialog-box ]
      */
-    let flagDB = false;
+    let flagDB = 0;
     const dbhNode = $(".debug__btn-img--dbh");
     $(".debug__show-dbh").on("click", function () {
-        if (flagDB) {
-            _vnjs.exec({ "dialog-box": true });
-            dbhNode.removeClass("debug__btn-img--dbs");
-            flagDB = false;
-        } else {
-            _vnjs.exec({ "dialog-box": false });
-            dbhNode.addClass("debug__btn-img--dbs");
-            flagDB = true;
+        switch (flagDB){
+            case 0:
+                _vnjs.exec({ "dialog-box": true });
+                dbhNode.removeClass("debug__btn-img--dbs");
+                flagDB = 1;
+                break;
+            case 1:
+                _vnjs.exec({ "dialog-box": 'fullscreen' });
+                flagDB = 2;
+                break;
+            case 2:
+                _vnjs.exec({ "dialog-box": false });
+                dbhNode.addClass("debug__btn-img--dbs");
+                flagDB = 0;
+                break;
         }
-    });
+    })
     /**
      * Screenshot
      */
