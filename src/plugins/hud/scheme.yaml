@@ -12,6 +12,29 @@
 - hud-right: 40%
 - hud-right: 90%
 
+# variables
+# В качестве значения плагина hud-right, можно передать имя переменной ( HP )
+- $: set HP 70%
+  data-set:
+    HP: 70%
+    
+- $: RIGHT 70% 
+  hud-right: HP
+
+- $: set HP 30%
+  data-set:
+    HP: 30%
+
+- $: RIGHT 30% 
+  hud-right: HP
+
+- $: set HP 10% 
+  data-set:
+    HP: 10%
+
+- $: RIGHT 10% 
+  hud-right: HP
+
 # inventory
 
 - hud-inv:
@@ -44,3 +67,5 @@
 - hud-inv:
     slot: 4
     icon: false
+
+###########################

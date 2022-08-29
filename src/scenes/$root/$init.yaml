@@ -4,12 +4,44 @@
   data-clear: true
   status-bar: false
   #scene: alice
-  #hud: true
+  hud: true
   next: true
 
-- $: tset
- 
 
+- $: set HP 70%
+  data-set:
+    HP: 70%
+    
+- $: RIGHT 70% 
+  hud-right: HP
+
+- $: set HP 30%
+  data-set:
+    HP: 30%
+
+- $: RIGHT 30% 
+  hud-right: HP
+
+- $: set HP 10% 
+  data-set:
+    HP: 10%
+
+- $: RIGHT 10% 
+  hud-right: HP
+
+
+
+
+
+
+
+
+
+- hud-inv:
+    slot: 4
+    icon: alice
+    exec:
+      scene: alice
 - al: Мне {{age}} лет
   hands: true
 - al: Всё ходит по цепи кругом

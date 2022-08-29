@@ -2484,11 +2484,11 @@
 
   var tpl$d = "<div id=\"loader\">\n    <div class=\"loader\"><span>{</span><span>}</span></div>\n</div>";
 
-  var $tpl$e = $(tpl$d);
+  var $tpl$f = $(tpl$d);
   function assetsLoader () {
     var _this = this;
 
-    $("#screen").append($tpl$e);
+    $("#screen").append($tpl$f);
 
     var getAssets = function getAssets() {
       _this.emit("preload");
@@ -2617,11 +2617,11 @@
      */
 
     this.on("preload", function () {
-      $tpl$e.css("display", "flex");
+      $tpl$f.css("display", "flex");
     });
     this.on("load", function () {});
     this.on("postload", function () {
-      $tpl$e.fadeOut();
+      $tpl$f.fadeOut();
     });
   }
 
@@ -3185,13 +3185,13 @@
 
   var tpl$b = "<div class=\"vnjson__hands component\">\n    <div class=\"vnjson__hand\">\n        <div class=\"vnjson__hand-left\"></div>\n    </div>\n    <div class=\"vnjson__hand\">\n        <div class=\"vnjson__hand-right\"></div>\n    </div>\n</div>";
 
-  var $tpl$d = $(tpl$b);
+  var $tpl$e = $(tpl$b);
   var hands = {
     show: false,
     mount: function mount() {
       var _this = this;
 
-      vnjs.store.screen.append($tpl$d);
+      vnjs.store.screen.append($tpl$e);
       vnjs.on("hands", function (args) {
         return _this.handler(args);
       });
@@ -3223,28 +3223,28 @@
     handler: function handler(args) {
       if (args) {
         this.show = true;
-        $tpl$d.show();
+        $tpl$e.show();
       } else {
         this.show = false;
-        $tpl$d.hide();
+        $tpl$e.hide();
       }
     },
     leftHandler: function leftHandler(args) {
       if (args) {
         this.show = true;
-        $tpl$d.show();
-        $tpl$d.find(".vnjson__hand-left").css("background-image", "url('".concat(this.getAssetByName(id).url, "')"));
+        $tpl$e.show();
+        $tpl$e.find(".vnjson__hand-left").css("background-image", "url('".concat(this.getAssetByName(id).url, "')"));
       } else {
-        $tpl$d.find(".vnjson__hand-left").css("background-image", "unset");
+        $tpl$e.find(".vnjson__hand-left").css("background-image", "unset");
       }
     },
     rightHandler: function rightHandler(args) {
       if (args) {
         this.show = true;
-        $tpl$d.show();
-        $tpl$d.find(".vnjson__hand-right").css("background-image", "url('".concat(vnjs.getAssetByName(id).url, "')"));
+        $tpl$e.show();
+        $tpl$e.find(".vnjson__hand-right").css("background-image", "url('".concat(vnjs.getAssetByName(id).url, "')"));
       } else {
-        $tpl$d.find(".vnjson__hand-right").css("background-image", "unset");
+        $tpl$e.find(".vnjson__hand-right").css("background-image", "unset");
       }
     },
     characterHandler: function characterHandler(character) {
@@ -3624,7 +3624,7 @@
 
   var tpl$a = "<div class=\"vnjson__menu-menu component\"></div>";
 
-  var $tpl$c = $(tpl$a);
+  var $tpl$d = $(tpl$a);
   function menu () {
     var _this = this;
 
@@ -3632,16 +3632,16 @@
       itemQuetionClassName: 'vnjson__menu-quetion',
       itemClassName: 'vnjson__menu-item'
     };
-    var menu = new Menu$1($tpl$c, this, config);
+    var menu = new Menu$1($tpl$d, this, config);
     /**
      * Навешиваем click на пункты меню
      */
 
-    $tpl$c.on("click", ".vnjson__menu-item", function () {
+    $tpl$d.on("click", ".vnjson__menu-item", function () {
       var label = $(this).data('label');
       menu.clickItemHundler(label);
     });
-    this.store.screen.append($tpl$c);
+    this.store.screen.append($tpl$d);
     /**
      * аудио
      */
@@ -3860,7 +3860,7 @@
 
   var tpl$9 = "<div class=\"main-menu component\"></div>";
 
-  var $tpl$b = $(tpl$9);
+  var $tpl$c = $(tpl$9);
   function mainMenu () {
     var _this = this;
 
@@ -3868,16 +3868,16 @@
       itemQuetionClassName: 'main-menu__item--quetion',
       itemClassName: 'main-menu__item'
     };
-    var menu = new Menu($tpl$b, this, config);
+    var menu = new Menu($tpl$c, this, config);
     /**
      * Навешиваем click на пункты меню
      */
 
-    $tpl$b.on("click", ".main-menu__item", function () {
+    $tpl$c.on("click", ".main-menu__item", function () {
       var label = $(this).data('label');
       menu.clickItemHundler(label);
     });
-    this.store.screen.append($tpl$b);
+    this.store.screen.append($tpl$c);
     /**
      * аудио
      */
@@ -4127,30 +4127,30 @@
   var css$l = ".vnjson-scene{\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\r\n    z-index: 0;\r\n    width: 100%;\r\n    height: 100%\r\n}";
   n(css$l,{});
 
-  var $tpl$a = $('<div class="vnjson-scene component"></div>');
+  var $tpl$b = $('<div class="vnjson-scene component"></div>');
   function scene () {
     var _this = this;
 
-    this.store.screen.append($tpl$a);
+    this.store.screen.append($tpl$b);
     this.on("scene", function (id) {
-      _this.emit('image.update', $tpl$a, {
+      _this.emit('image.update', $tpl$b, {
         plugin: 'scene',
         prop: 'background-image'
       });
 
       if (_typeof(id) === "object") {
-        $tpl$a.css({
+        $tpl$b.css({
           "background-image": "url(".concat(id.url, ")")
         });
-        $tpl$a.fadeIn();
+        $tpl$b.fadeIn();
       } else if (typeof id === "string") {
-        $tpl$a.css({
+        $tpl$b.css({
           "background-image": "url('".concat(_this.getAssetByName(id).url, "')")
         });
-        $tpl$a.fadeIn();
+        $tpl$b.fadeIn();
       } else {
-        $tpl$a.fadeOut();
-        $tpl$a.css({
+        $tpl$b.fadeOut();
+        $tpl$b.css({
           "background-image": "unset"
         });
       }
@@ -4757,13 +4757,13 @@
   var css$h = ".vnjson__input{\r\n    width: 470px;\r\n    height: 120px;\r\n    background-color: rgba(0, 0, 0, 0.7);\r\n    top: 250px;\r\n    left: 50%;\r\n    transform: translateX(-50%);\r\n    box-shadow: 3px 3px 5px rgba(0,0,0,0.5);\r\n    border-radius: 4px;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    display: none;\r\n  }\r\n  .vnjson__input-wrapper{\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n  }\r\n  .vnjson__input-wrapper input{\r\n    caret-color: skyblue;\r\n    height: 47px;\r\n    border-radius: 4px;\r\n    width: 350px;\r\n    background-color: rgba(200,200,200,0.1);\r\n    font-size: 22px;\r\n    font-family: Minecraft;\r\n    color: skyblue;\r\n  }\r\n  \r\n  .vnjson__input-wrapper .vnjson__input-btn{\r\n    width: 60px;\r\n    height: 60px;\r\n    cursor: pointer;\r\n  }\r\n  .vnjson__input-wrapper .vnjson__input-btn svg path{\r\n    fill: silver;\r\n    transition: 0.3s;\r\n  \r\n  }\r\n  \r\n  .vnjson__input-wrapper .vnjson__input-btn:hover svg path{\r\n    fill: skyblue;\r\n  }";
   n(css$h,{});
 
-  var $tpl$9 = $(tpl$6);
+  var $tpl$a = $(tpl$6);
   var input = {
     args: null,
     mount: function mount() {
       var _this = this;
 
-      vnjs.store.screen.append($tpl$9);
+      vnjs.store.screen.append($tpl$a);
       vnjs.on("input-name", function (args) {
         return _this.handler(args);
       });
@@ -4783,21 +4783,21 @@
        * click
        */
 
-      $tpl$9.find(".vnjson__input-btn").on("click", function () {
+      $tpl$a.find(".vnjson__input-btn").on("click", function () {
         return _this.clickHandler();
       });
     },
     handler: function handler(args) {
       if (args) {
         this.args = args;
-        $tpl$9.css("display", "flex");
+        $tpl$a.css("display", "flex");
       } else {
-        $tpl$9.hide();
+        $tpl$a.hide();
       }
     },
     clickHandler: function clickHandler() {
-      var input = $tpl$9.find(".vnjson__input-wrapper input");
-      $tpl$9.fadeOut();
+      var input = $tpl$a.find(".vnjson__input-wrapper input");
+      $tpl$a.fadeOut();
       var character = vnjs.getCharacterById(this.args);
 
       if (character) {
@@ -4814,15 +4814,15 @@
   var css$g = ".vnjson__wiki {\n  left: 10px;\n  top: 40px;\n  width: 300px;\n  height: 400px;\n  display: none;\n  padding: 10px;\n  border-radius: 4px;\n  background-color: rgba(0,0,0,0.5);\n  font-size: 14px;\n  overflow: auto;\n}\n.vnjson__wiki li{\n  padding: 5px 0;\n\n  line-height: 18px;\n    \n}\n.vnjson__wiki-key{\n  color: wheat;\n}\n.vnjson__wiki-dash{\n  padding: 0 5px;\n  color: silver;\n}\n.vnjson__wiki-value{\n  color: darkgray;\n}";
   n(css$g,{});
 
-  var $tpl$8 = $('<ul class="vnjson__wiki component"></ul>');
+  var $tpl$9 = $('<ul class="vnjson__wiki component"></ul>');
   function wiki () {
     var _this = this;
 
-    this.store.screen.append($tpl$8);
+    this.store.screen.append($tpl$9);
     this.on("wiki", function (data) {
       if (data) {
-        $tpl$8.html("");
-        $tpl$8.fadeIn();
+        $tpl$9.html("");
+        $tpl$9.fadeIn();
         var list;
 
         if (Array.isArray(data)) {
@@ -4831,13 +4831,13 @@
           list = data.list;
 
           if (data.css) {
-            $tpl$8.css(data.css);
+            $tpl$9.css(data.css);
           }
         }
 
         appendElements.call(_this, list);
       } else {
-        $tpl$8.fadeOut();
+        $tpl$9.fadeOut();
       }
     });
   }
@@ -4853,7 +4853,7 @@
         str = "<li><span class=\"vnjson__wiki-key\">".concat(key, "</span> <span class=\"vnjson__wiki-dash\">-</span> <span class=\"vnjson__wiki-value\">").concat(wikiStore[key], "</span></li>");
       }
 
-      $tpl$8.append(str);
+      $tpl$9.append(str);
     });
   }
 
@@ -4900,7 +4900,7 @@
 
   var tpl$5 = "<div class=\"vnjson__test component\">\n    <div class=\"vnjson__test-name\"></div>\n    <div class=\"vnjson__test-quetions-wrapper\">\n        <div class=\"vnjson__test-quetion\">\n                <img class=\"vnjson__test-quetion-img\">\n                <div class=\"vnjson__test-quetion-val\"></div>\n        </div>\n        <div class=\"vnjson__test-variants\"></div>\n        <!--result-->\n        <div class=\"vnjson__test-result\">\n            <div class=\"vnjson__test-result-data\">\n                <div class=\"vnjson__test-result-item\">\n                      <span>Правильно</span>\n                      <span class=\"vnjson__test-result-item_true\">0</span>\n                </div>\n               <div class=\"vnjson__test-result-item\">\n                      <span>Не правильно</span>\n                      <span class=\"vnjson__test-result-item_false\">0</span>\n                </div>\n            </div>\n            <div class=\"vnjson__test-next-btn\">Продолжить</div>\n        </div>\n    </div>\n</div>";
 
-  var $tpl$7 = $(tpl$5);
+  var $tpl$8 = $(tpl$5);
   var TEST = null;
   var answers = [];
   var qIndex = 0;
@@ -4937,15 +4937,15 @@
   function test () {
     var _this = this;
 
-    this.store.screen.append($tpl$7);
+    this.store.screen.append($tpl$8);
     this.on('test', function (data) {
       if (data) {
-        $tpl$7.show();
+        $tpl$8.show();
         TEST = data;
         reset();
         renderQuetion.call(_this);
       } else {
-        $tpl$7.hide();
+        $tpl$8.hide();
       }
     });
   }
@@ -4986,7 +4986,7 @@
 
 
   var click = true;
-  $tpl$7.find('.vnjson__test-variants').on('click', '.vnjson__variants-item', function () {
+  $tpl$8.find('.vnjson__test-variants').on('click', '.vnjson__variants-item', function () {
     var index = $(this).data('index');
 
     if (click) {
@@ -5046,7 +5046,7 @@
     }, timer);
   }
 
-  $tpl$7.find('.vnjson__test-next-btn').on('click', function () {
+  $tpl$8.find('.vnjson__test-next-btn').on('click', function () {
     vnjs.exec({
       next: true,
       test: false
@@ -5057,16 +5057,16 @@
   var css$d = ".screen-vnjson__slide{\n  position: absolute;\n  display: none;\n  top: 5%;\n  left: 50%;\n  transform: translateX(-50%);\n  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5);\n  z-index: 2000;\n}";
   n(css$d,{});
 
-  var $tpl$6 = $("<img class=\"screen-vnjson__slide component\"/>");
+  var $tpl$7 = $("<img class=\"screen-vnjson__slide component\"/>");
   function slide () {
     var _this = this;
 
-    this.store.screen.append($tpl$6);
+    this.store.screen.append($tpl$7);
     this.on('slide', function (id) {
-      $tpl$6.attr('src', null);
+      $tpl$7.attr('src', null);
 
       if (typeof id === 'string') {
-        $tpl$6.attr('src', _this.getAssetByName(id).url).show();
+        $tpl$7.attr('src', _this.getAssetByName(id).url).show();
       } else if (_typeof(id) === 'object') {
         /*
          * id.name
@@ -5074,21 +5074,21 @@
          * id.url
          */
         if (id.hasOwnProperty('css')) {
-          $tpl$6.css(id.css);
-          $tpl$6.attr('src', id.name).show();
+          $tpl$7.css(id.css);
+          $tpl$7.attr('src', id.name).show();
         }
 
         if (id.hasOwnProperty('url')) {
-          $tpl$6.attr('src', id.url).fadeIn();
+          $tpl$7.attr('src', id.url).fadeIn();
         } else {
-          $tpl$6.attr('src', _this.getAssetByName(id.name).url).show();
+          $tpl$7.attr('src', _this.getAssetByName(id.name).url).show();
         }
         /*
         .css(id.css)
          */
 
       } else {
-        $tpl$6.attr('src', null).hide();
+        $tpl$7.attr('src', null).hide();
       }
     });
   }
@@ -5270,12 +5270,12 @@
     return Content;
   }();
 
-  var $tpl$5 = $("<ul class=\"vnjson__stage component\"></ul>");
+  var $tpl$6 = $("<ul class=\"vnjson__stage component\"></ul>");
   function content () {
     var _this = this;
 
-    var content = new Content(this, $tpl$5);
-    this.store.screen.append($tpl$5);
+    var content = new Content(this, $tpl$6);
+    this.store.screen.append($tpl$6);
     /**
      * @ content
      */
@@ -5325,7 +5325,7 @@
         content.open = true;
       }
     });
-    $tpl$5.on('click', '.stage-item', function () {
+    $tpl$6.on('click', '.stage-item', function () {
       var label = $(this).data('label');
       content.selectItem(label);
     });
@@ -6722,25 +6722,25 @@
     return TypeWrite;
   }();
 
-  var $tpl$4 = $(tpl$2);
+  var $tpl$5 = $(tpl$2);
   function typewrite () {
     var _this = this;
 
-    this.store.screen.append($tpl$4);
+    this.store.screen.append($tpl$5);
     var tw = new TypeWrite();
     this.on('typewrite', function (param) {
       if (typeof param === 'string') {
-        $tpl$4.show();
+        $tpl$5.show();
         tw.setTask(param);
         tw.onEnd(function () {
-          $tpl$4.hide();
+          $tpl$5.hide();
 
           _this.exec({
             next: true
           });
         });
       } else if (_typeof(param) === 'object') {
-        $tpl$4.show();
+        $tpl$5.show();
         tw.kb.setLocal(param.local);
 
         if (param.activeKeys) {
@@ -6757,14 +6757,14 @@
         }
 
         tw.onEnd(function () {
-          $tpl$4.hide();
+          $tpl$5.hide();
 
           _this.exec({
             next: true
           });
         });
       } else {
-        $tpl$4.hide();
+        $tpl$5.hide();
       }
     });
   }
@@ -6772,14 +6772,14 @@
   var css$6 = "\n\n.vnjson__area{\n  z-index: 700;\n  width: 100%;\n  height: 570px;\n}\n.vnjson__area-item:hover{\n  cursor: pointer;\n /* background-color: rgba(0,0,0,0.1);*/\n}";
   n(css$6,{});
 
-  var $tpl$3 = $('<div class="vnjson__area component"></div>');
+  var $tpl$4 = $('<div class="vnjson__area component"></div>');
   var _regions = null;
   function area () {
     var _this = this;
 
-    this.store.screen.append($tpl$3);
+    this.store.screen.append($tpl$4);
     this.on("area", handler$1.bind(this));
-    $tpl$3.on("click", function (e) {
+    $tpl$4.on("click", function (e) {
       if (!e.target.className.includes("vnjson__area-item")) return;
       var regIndex = JSON.parse(e.target.dataset.index);
 
@@ -6789,13 +6789,13 @@
 
   function handler$1(regions) {
     if (!regions) {
-      $tpl$3.hide();
+      $tpl$4.hide();
       return;
     }
 
     _regions = regions;
-    $tpl$3.empty();
-    $tpl$3.show();
+    $tpl$4.empty();
+    $tpl$4.show();
     regions.forEach(function (reg, index) {
       var style = "position:absolute;\n                    top:".concat(reg.top, "px;\n                    left:").concat(reg.left, "px;\n                    width:").concat(reg.width, "px;\n                    height:").concat(reg.height, "px;");
 
@@ -6810,7 +6810,7 @@
       }
 
       var regTpl = "<div style=\"".concat(style, "\" class=\"vnjson__area-item\" data-index=\"").concat(index, "\"></div>");
-      $tpl$3.append(regTpl);
+      $tpl$4.append(regTpl);
     });
   }
 
@@ -6819,14 +6819,14 @@
 
   var tpl$1 = "<div class=\"select-word component\">\n  <div class=\"select-word__quetion\">\n    <div class=\"select-word__text\"></div>\n    <div class=\"select-word__dropzone\"></div>\n  </div>\n\n  <div class=\"select-word__variants\"></div>\n\n</div>";
 
-  var $tpl$2 = $(tpl$1);
+  var $tpl$3 = $(tpl$1);
   var correct = null;
   var _scriptData = false;
   function selectWord () {
     var _this = this;
 
-    this.store.screen.append($tpl$2);
-    var $dropZone = $tpl$2.find(".select-word__dropzone");
+    this.store.screen.append($tpl$3);
+    var $dropZone = $tpl$3.find(".select-word__dropzone");
     var indexItem = 0;
     this.on("select-word", function (data) {
       _scriptData = data;
@@ -6834,7 +6834,7 @@
       $dropZone.empty();
       handler(data);
     });
-    $tpl$2.find(".select-word__variants").on("click", ".select-word__item", function (e) {
+    $tpl$3.find(".select-word__variants").on("click", ".select-word__item", function (e) {
       correct = _scriptData.answers.correct - 1; // удаляю активный класс
 
       $(this).parent().find(".select-word__item").toArray().forEach(function (node) {
@@ -6875,27 +6875,27 @@
 
   function handler(scriptData) {
     if (scriptData) {
-      $tpl$2.show();
+      $tpl$3.show();
       var quetion = scriptData.quetion,
           answers = scriptData.answers;
 
       if (quetion !== null && quetion !== void 0 && quetion.css) {
-        $tpl$2.find(".select-word__quetion").css(quetion.css);
+        $tpl$3.find(".select-word__quetion").css(quetion.css);
       }
 
       if (answers !== null && answers !== void 0 && answers.css) {
-        $tpl$2.find(".select-word__variants").css(answers.css);
+        $tpl$3.find(".select-word__variants").css(answers.css);
       }
 
-      $tpl$2.find(".select-word__text").html(quetion.text);
-      $tpl$2.find(".select-word__variants").empty(); //$tpl.find('.select-word__variants').removeClass('select-word__variants--disable')
+      $tpl$3.find(".select-word__text").html(quetion.text);
+      $tpl$3.find(".select-word__variants").empty(); //$tpl.find('.select-word__variants').removeClass('select-word__variants--disable')
 
       answers.variants.forEach(function (item, index) {
         var str = $("<div class=\"select-word__item\" data-index=\"".concat(index, "\">").concat(item, "</div>"));
-        $tpl$2.find(".select-word__variants").append(str);
+        $tpl$3.find(".select-word__variants").append(str);
       });
     } else {
-      $tpl$2.hide();
+      $tpl$3.hide();
       correct = null;
     }
   }
@@ -6903,21 +6903,21 @@
   var css$4 = "\n.drag-items{\n  width: 100%;\n  height: 570px;\n  z-index: 500;\n}\n\n.drag-items__item{\n  color: skyblue;\n  padding: 7px 15px;\n  font-size: 25px;\n  border-radius: 8px;\n  background-color: rgba(0,0,0,0.85);\n  margin-bottom: 10px;\n  position: relative;\n  cursor: pointer;\n  position: absolute;\n\n}\n.drag-items__item::before{\n  content: \"\";\n  position: absolute;\n  top: 3px;\n  width: 5px;\n  height: 5px;\n  left: 3px;\n  border-radius: 50%;\n  background-color: darkslategray;\n}\n.drag-items__item:hover{\n  color: deepskyblue;\n}";
   n(css$4,{});
 
-  var $tpl$1 = $('<div class="drag-items component"></div>');
+  var $tpl$2 = $('<div class="drag-items component"></div>');
   var selectedElement = null;
   function dragItems () {
     var _this = this;
 
-    this.store.screen.append($tpl$1);
+    this.store.screen.append($tpl$2);
     this.on('drag-items', function (data) {
       if (data) {
-        $tpl$1.show();
+        $tpl$2.show();
         renderItems.call(_this, data);
       } else {
-        $tpl$1.hide();
+        $tpl$2.hide();
       }
     });
-    $tpl$1.on('mousedown', function (e) {
+    $tpl$2.on('mousedown', function (e) {
       if (selectedElement === null) return;
       var rect = e.target.getBoundingClientRect();
       var x = e.clientX - rect.left;
@@ -6931,7 +6931,7 @@
   }
 
   function renderItems(data) {
-    $tpl$1.empty();
+    $tpl$2.empty();
     var top = data.top;
     var left = data.left;
     var nodeHeight = 50;
@@ -6954,7 +6954,7 @@
       str.on('click', function (e) {
         selectedElement = this;
       });
-      $tpl$1.append(str);
+      $tpl$2.append(str);
     });
   }
 
@@ -6999,14 +6999,14 @@
 
   var bgIMG = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABbmlDQ1BpY2MAACiRdZE7SwNBFIW/JIohRlNoIWKRIoqFgiiIpUQwjVokEYzaZDcvIRuX3Q0SbAUbC8FCtPFV+A+0FWwVBEERRKz8Ab4akfWOK0TEzDJ7P87MucycAf9UWTfspiEwKo6VTMSjc5n5aMsTQUK0EyCc1W1zOjWZpuF4v8Gn6vWg6tV437+jNZe3dfAFhUd103KEx4WnVhxT8YZwp17K5oT3hQcsOaDwhdI1jx8VFz1+VWylkxPgVz2jxV+s/WK9ZBnC/cIxo1zVf86jbhLOV2ZTUrtl9mCTJEGcKBpVlijjMCi1Ipn97xv69s2wLB5d/iY1LHEUKYl3QNSqdM1LLYiel69MTeX+N0+7MDLsdQ/HofnBdV96oWULPjdd9+PAdT8PIXAPZ5W6f1lyGnsTfbOuxfYgsgYn53VN24bTdei6M7NW9lsKyPQXCvB8DG0Z6LiC0IKX1c86R7eQXpUnuoSdXeiT/ZHFL47dZ9Y0nzKJAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAC0lEQVQIW2NgAAIAAAUAAR4f7BQAAAAASUVORK5CYII=";
 
-  var $tpl = $('<div class="vnjson__blocks component"></div>');
+  var $tpl$1 = $('<div class="vnjson__blocks component"></div>');
   var stepsArray = [];
   var vnjs$1 = null;
   function blocks () {
     var _this = this;
 
     vnjs$1 = this;
-    this.store.screen.append($tpl);
+    this.store.screen.append($tpl$1);
     this.on('blocks', function (param) {
       stepsArray = param;
       blocksHandler.call(_this, stepsArray);
@@ -7026,7 +7026,7 @@
     var _this2 = this;
 
     if (param) {
-      $tpl.show();
+      $tpl$1.show();
       param.forEach(function (item) {
         var $imgWrapper = $("\n                        <div class=\"vnjson__blocks-item component vnjson__blocks--".concat(item.id, "\" >\n                                <div class=\"vnjson__blocks-wrapper-item vnjson__blocks-wrapper--").concat(item.id, "\">\n                                    <img alt=\"\"  src=\"").concat(getImage(item), "\">\n                                </div>\n                        </div>"));
         $imgWrapper.css({
@@ -7046,7 +7046,7 @@
           top: 0,
           opacity: 0
         });
-        $tpl.append($imgWrapper);
+        $tpl$1.append($imgWrapper);
         /**
          * item.animation
          */
@@ -7067,8 +7067,8 @@
         }, item.timeout + 100);
       });
     } else {
-      $tpl.hide();
-      $tpl.empty();
+      $tpl$1.hide();
+      $tpl$1.empty();
     }
   }
 
@@ -7391,83 +7391,106 @@
 
   var tpl = "<div class=\"vnjson-hud component\">\r\n    <div class=\"vnjson-hud__indicators\">\r\n        <div class=\"vnjson-hud__indicator\">\r\n            <div class=\"vnjson-hud__left\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__indicator\">\r\n            <div class=\"vnjson-hud__right\"></div>\r\n        </div>\r\n    </div>\r\n    <div class=\"vnjson-hud__inv\">\r\n        <div class=\"vnjson-hud__slot\" data-index=\"1\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--1\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__slot\" data-index=\"2\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--2\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__slot\" data-index=\"3\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--3\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__slot\" data-index=\"4\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--4\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__slot\" data-index=\"5\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--5\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__slot\" data-index=\"6\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--6\"></div>\r\n        </div>\r\n        <div class=\"vnjson-hud__slot\" data-index=\"7\">\r\n          <div class=\"vnjson-hud__item vnjson-hud__item--7\"></div>\r\n        </div>\r\n    </div>\r\n</div>";
 
-  function HUD () {
-    var _this = this;
+  var $tpl = $(tpl);
+  var $hudLeft = $tpl.find(".vnjson-hud__left");
+  var $hudRight = $tpl.find(".vnjson-hud__right");
+  var $invTag = $tpl.find(".vnjson-hud__inv");
+  var HUD = {
+    slotData: null,
+    mount: function mount() {
+      var _this2 = this;
 
-    var $tpl = $(tpl);
-    this.store.screen.append($tpl);
-    this.on("hud", function (param) {
-      if (param) {
-        $tpl.show();
-      } else {
-        $tpl.hide();
-      }
-    });
-    /**
-     * status bar
-     */
+      vnjs.store.screen.append($tpl);
+      vnjs.on("hud", function (args) {
+        if (args) {
+          $tpl.show();
+        } else {
+          $tpl.hide();
+        }
+      });
+      vnjs.on("hud-left", function (args) {
+        var width = null;
 
-    var $hudLeft = $tpl.find(".vnjson-hud__left");
-    this.on("hud-left", function (param) {
-      $hudLeft.animate({
-        width: param
-      }, 300);
-    });
-    var $hudRight = $tpl.find(".vnjson-hud__right");
-    this.on("hud-right", function (param) {
-      $hudRight.animate({
-        width: param
-      }, 300);
-    });
-    /**
-     * inv
-     */
+        if (vnjs.state.data[args]) {
+          width = vnjs.state.data[args];
+        } else {
+          width = args;
+        }
 
-    var slotData = null;
-    var $invTag = $('.vnjson-hud__inv');
-    $invTag.on('click', '.vnjson-hud__slot', function (e) {
-      if (!slotData) return;
-      if (!slotData.exec) return;
+        $hudLeft.animate({
+          width: width
+        }, 300);
+      });
+      vnjs.on("hud-right", function (args) {
+        var width = null;
 
-      if (slotData.slot === $(this).data('index')) {
-        vnjs.exec(slotData.exec);
-      }
-    });
-    this.on("hud-inv", function (param) {
-      var $slot = $(".vnjson-hud__item--".concat(param.slot));
+        if (vnjs.state.data[args]) {
+          width = vnjs.state.data[args];
+        } else {
+          width = args;
+        }
 
-      if (param.icon) {
-        slotData = param;
+        $hudRight.animate({
+          width: width
+        }, 300);
+      });
+      vnjs.on("hud-inv", function (args) {
+        return _this2.hudInvHandler(args);
+      });
+
+      var _this = this;
+
+      $invTag.on("click", ".vnjson-hud__slot", function () {
+        _this.clickSlotHandler($(this));
+      });
+      /**
+       * Если режим диалогового окна полноэкранный. То hud прижимаем к низу
+       */
+
+      vnjs.on("dialog-box.mode", function (mode) {
+        if (mode === "mode-classic") {
+          $tpl.css({
+            bottom: "210px"
+          });
+        }
+
+        if (mode === "mode-fullscreen") {
+          $tpl.css({
+            bottom: "10px"
+          });
+        }
+      });
+    },
+    hudInvHandler: function hudInvHandler(args) {
+      var $slot = $tpl.find(".vnjson-hud__item--".concat(args.slot));
+
+      if (args.icon) {
+        this.slotData = args;
         $slot.css({
-          "background-image": "url(".concat(_this.getAssetByName(param.icon).url, ")")
+          "background-image": "url(".concat(vnjs.getAssetByName(args.icon).url, ")")
         });
       } else {
-        slotData = null;
+        this.slotData = null;
         $slot.css({
           "background-image": "unset"
         });
       }
 
-      if (param.exec) {
-        $slot.css('cursor', 'pointer');
+      if (args.exec) {
+        $slot.css("cursor", "pointer");
       } else {
-        $slot.css('cursor', 'unset');
+        $slot.css("cursor", "unset");
       }
-    });
-    this.on('dialog-box.mode', function (mode) {
-      if (mode === 'mode-classic') {
-        $tpl.css({
-          bottom: '210px'
-        });
-      }
+    },
+    clickSlotHandler: function clickSlotHandler(target) {
+      if (!this.slotData) return;
+      if (!this.slotData.exec) return;
 
-      if (mode === 'mode-fullscreen') {
-        $tpl.css({
-          bottom: '10px'
-        });
+      if (this.slotData.slot === $(target).data('index')) {
+        vnjs.exec(this.slotData.exec);
       }
-    });
-  }
+    }
+  };
 
   // character.info
   var Info = /*#__PURE__*/function () {
