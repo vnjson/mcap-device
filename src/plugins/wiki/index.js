@@ -25,7 +25,7 @@ export default function () {
 }
 
 function appendElements(list) {
-    let wikiStore = this.TREE.$root.wiki;
+    let wikiStore = this.tree.$root.wiki;
     list.forEach((key) => {
         let str;
         if (typeof wikiStore[key] === "object") {

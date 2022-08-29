@@ -88,6 +88,7 @@ export default function () {
             if (param.nameColor) character.nameColor = param.nameColor;
             if (param.replyColor) character.replyColor = param.replyColor;
             if (param.avatar) character.avatar = param.avatar;
+            vnjs.emit('character.set-param', character)
             dBox.print(character, String(param.reply));
         } 
         else {
@@ -99,13 +100,13 @@ export default function () {
      */
     this.on("+", (reply) => {
         
-        let character = this.getCurrentCharacter();
-        /*
+        let character = vnjs.state.character;
+
         if(!character) {
             character = this.getCharacterById('$')
-            this.state.character = character
+            vnjs.state.character = character
         }
-        */
+
         dBox.forcePrintPrevReply();
         dBox.print(character, " " + String(reply), true);
     });

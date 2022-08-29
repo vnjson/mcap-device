@@ -48,7 +48,7 @@ export default function () {
         screenShot.WEBHOOK = "";
         screenShot.HOST = this.package.publish.host;
     });
-    // _vnjs.TREE.$root.characters[0]
+    // _vnjs.tree.$root.characters[0]
     $(".debug__delay").on("change", function () {
         _vnjs.store["dialog-box"].delay = $(this).val();
     });

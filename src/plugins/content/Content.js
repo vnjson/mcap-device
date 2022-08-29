@@ -12,11 +12,11 @@ class Content {
     }
     getData (){
         const { sceneName } = this.__vnjs.state
-        const currentContent = this.__vnjs.TREE[sceneName].content
+        const currentContent = this.__vnjs.tree[sceneName].content
         if(currentContent){
             return currentContent
         }
-        const globalontent = this.__vnjs.TREE.$root.content
+        const globalontent = this.__vnjs.tree.$root.content
         if(globalontent){
             return globalontent
         }
@@ -93,10 +93,10 @@ class Content {
 
 
         if(level.length===1){
-            this.__vnjs.TREE.$root.content[level[0]].disabled = data.disabled
+            this.__vnjs.tree.$root.content[level[0]].disabled = data.disabled
         }
         if(level.length===2){
-            this.__vnjs.TREE.$root.content[level[0]].children[level[1]].disabled = data.disabled
+            this.__vnjs.tree.$root.content[level[0]].children[level[1]].disabled = data.disabled
         }
 
         

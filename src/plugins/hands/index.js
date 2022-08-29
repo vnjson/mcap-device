@@ -1,74 +1,82 @@
 import "./style.css";
-import tpl from "./tpl.html"
-
+import tpl from "./tpl.html";
 
 const $tpl = $(tpl);
-export default function (){
 
-  const vnjs = this;
-  this.store.screen.append($tpl)
-  let isShow = false;
-  this.on('hand-left', id=>{
-    if(id){
-      isShow = true;
-      $tpl.show();
-      $tpl.find('.vnjson__hand-left').css('background-image', `url('${this.getAssetByName(id).url}')` )
-    }
-    else{
-      $tpl.find('.vnjson__hand-left').css('background-image', "unset" ); 
-    }
-  })
+export default {
+    show: false,
+    mount() {
+        vnjs.store.screen.append($tpl);
+        vnjs.on("hands", (args) => this.handler(args));
+        vnjs.on("hand-left", (args) => this.leftHandler(args));
+        vnjs.on("hand-right", (args) => this.rightHandler(args));
+        /**
+         * Когда  dialog-box скрыт, то и плагин hands нужно скрыть
+         */
+        vnjs.on("dialog-box.false", () => vnjs.emit("hands", false));
+        /**
+         * При выводе реплик проверяем, есть ли у персонажа свойство avatar
+         * Если есть, то ширину блока с репликой необходимо уменьшить
+         * Так же, стили необходимо восстановить, если встретился персонаж без аватара
+         */
+        vnjs.on("character", (character) => {
+            setTimeout(() => {
+                this.characterHandler(vnjs.state.character)
+            }, 50)
+        });
+    },
+    handler(args) {
+        if (args) {
+            this.show = true;
+            $tpl.show();
+        } else {
+            this.show = false;
+            $tpl.hide();
+        }
+    },
+    leftHandler(args) {
+        if (args) {
+            this.show = true;
+            $tpl.show();
+            $tpl.find(".vnjson__hand-left").css(
+                "background-image",
+                `url('${this.getAssetByName(id).url}')`
+            );
+        } else {
+            $tpl.find(".vnjson__hand-left").css("background-image", "unset");
+        }
+    },
+    rightHandler(args) {
+        if (args) {
+            this.show = true;
+            $tpl.show();
+            $tpl.find(".vnjson__hand-right").css(
+                "background-image",
+                `url('${vnjs.getAssetByName(id).url}')`
+            );
+        } else {
+            $tpl.find(".vnjson__hand-right").css("background-image", "unset");
+        }
+    },
+    characterHandler(character) {
+        const replyWrapper = $(".dialog-box__reply-wrapper");
+                // если нет ни аватара ни рук
+        if (!character.avatar && !this.show) {
+            replyWrapper.css("width", "99%");
+        }
+        // если есть аватар, но руки не отображаются
+        if (character.avatar && !this.show) {
+            replyWrapper.css("width", "84.5%");
+        }
+        // если аватар есть и руки отображены
+        if (character.avatar && this.show) {
+            replyWrapper.css("width", "76%");
 
-  this.on('hand-right', id=>{
-    if(id){
-      isShow = true;
-      $tpl.show();
-      $tpl.find('.vnjson__hand-right').css('background-image', `url('${this.getAssetByName(id).url}')` )
-    }
-    else{
-      $tpl.find('.vnjson__hand-right').css('background-image', "unset" ); 
-    }
-  })
-  this.on('hands', data=>{
-    if(data){
-      isShow = true;
-      $tpl.show();
-    }
-    else{
-      isShow = false;
-      $tpl.hide();
-    }
-  })
-  const replyWrapper = $('.dialog-box__reply-wrapper');
-  const handler = (character, reply)=>{
-    
-    // если аватар есть и руки отображены
-    if(character.avatar&&isShow){
-      replyWrapper.css('width', '76%');
-    }
-    // если нет ни аватара ни рук
-    if(!character.avatar&&!isShow){
-      replyWrapper.css('width', 'auto');
-    }
-    // Если аватара нет, но показывает руки
-    if(!character.avatar&&isShow){
-      replyWrapper.css('width', '90%');
-    }
-    // если есть аватар, но руки не отображаются
-    if(character.avatar&&!isShow){
-       replyWrapper.css('width', '84.5%');
-    }
+        }
+        // Если аватара нет, но показывает руки
+        if (!character.avatar && this.show) {
+            replyWrapper.css("width", "90%");
+        }
 
-  } 
-  this.on('character', handler)
-  this.on('+', handler)
-    /**
-   * Когда screen: true, то dialog-box нужно скрыть
-   */
-
-    this.on('dialog-box.false', () => {
-        this.exec({ 'hands': false })
-    })
-
-}
-
+    },
+};

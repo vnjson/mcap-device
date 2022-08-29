@@ -1,5 +1,5 @@
 - dialog-box: true #fullscreen
-  hands: true
+
   audio: false
   data-clear: true
   status-bar: false
@@ -8,10 +8,10 @@
   next: true
 
 - $: tset
-  input-data: age
+ 
 
 - al: Мне {{age}} лет
-
+  hands: true
 - al: Всё ходит по цепи кругом
   filter:
       target: scene
@@ -21,6 +21,7 @@
             value: 5
 
 - al: И днём и ночью, кот учёный
+  hands: false
   scene: false
 #- jump: testdata.$init
 
@@ -32,7 +33,7 @@
 - +: контекст выполнения, исполняется код из функции fn1() после выполнения которого
   dialog-box: fullscreen
 - +: данная функция удаляется из стека и вызывается следующая функция fn2().
-- dialog-box: clear
+
 
 - +: Вывод от другого персонажа
   dialog-box: classic

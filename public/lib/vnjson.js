@@ -1,7 +1,7 @@
 class Vnjson {
-    version = "1.9.4";
+    version = "1.9.6";
     ctx = null;
-    TREE = null;
+    tree = null;
     package = null;
     debug = false
     conf = null
@@ -18,9 +18,8 @@ class Vnjson {
         tree: [],
         assets: [],
     };
-    constructor(conf) {
-        this.conf = conf
-        this.debug = conf.debug
+    constructor() {
+
     }
 
 
@@ -37,7 +36,7 @@ class Vnjson {
     }
 
     getDataByName(id) {
-        const scenesBody = Object.values(this.TREE);
+        const scenesBody = Object.values(this.tree);
         let data = null;
         scenesBody.forEach((body) => {
             if (body.data) {
@@ -49,13 +48,13 @@ class Vnjson {
         return data;
     }
     isSceneExist(sceneName) {
-        if (this.TREE[sceneName]) {
+        if (this.tree[sceneName]) {
             return true;
         }
         return false;
     }
     isLabelExist(sceneName, labelName) {
-        if (this.isSceneExist(sceneName) && this.TREE[sceneName][labelName]) {
+        if (this.isSceneExist(sceneName) && this.tree[sceneName][labelName]) {
             return true;
         }
         return false;
@@ -72,7 +71,7 @@ class Vnjson {
     getCurrentLabelBody() {
         try {
             const labelBody =
-                this.TREE[this.state.sceneName][this.state.labelName];
+                this.tree[this.state.sceneName][this.state.labelName];
             return labelBody;
         } catch (err) {
             this.emit("error", "menuOrJumpLeadsNowhere");
@@ -83,21 +82,21 @@ class Vnjson {
         return this.state.character;
     }
     getCharacterById(id) {
-        return this.TREE.$root.characters.find(
+        return this.tree.$root.characters.find(
             (character) => character.id === id
         );
     }
     getCharacters() {
-        return this.TREE.$root.characters;
+        return this.tree.$root.characters;
     }
 
     getCtx() {
         return this.getCurrentLabelBody()[this.state.index];
     }
     mount(tree) {
-        this.TREE = tree;
-        this.package = this.TREE.$root.package;
-        if (!this.TREE.$root.hasOwnProperty("characters")) {
+        this.tree = tree;
+        this.package = this.tree.$root.package;
+        if (!this.tree.$root.hasOwnProperty("characters")) {
             const narrator = {
                 id: "$",
                 name: ". . . .",
@@ -107,10 +106,10 @@ class Vnjson {
             if (this.conf.$) {
                 narrator = this.conf.$;
             }
-            this.TREE.$root.characters = [narrator];
+            this.tree.$root.characters = [narrator];
         }
 
-        this.TREE.$root.characters.map((character) => {
+        this.tree.$root.characters.map((character) => {
             /**
              * Навешиваем слушатель на id персонажа
              *
@@ -197,7 +196,7 @@ class Vnjson {
  * NATIVE PLAGINS
  */
 
-window.vnjs = new Vnjson({debug: true});
+window.vnjs = new Vnjson();
 /**
  * Native plagins
  */

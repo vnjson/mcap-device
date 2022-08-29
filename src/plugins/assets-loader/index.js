@@ -36,7 +36,7 @@ export default function () {
                     this.emit("postload");
                 }
             } else if (/\.png|\.jpg|\.jpeg|\.webp|\.gif/i.test(asset.url)) {
-                if (this.TREE.$root?.package) {
+                if (this.tree.$root?.package) {
                     if (this.package?.preload) {
                         if (this.state.assets.length - 1 >= ++i) {
                             if (this.package.preload) {
@@ -74,7 +74,7 @@ export default function () {
     };
 
     const setAllAssets = () => {
-        for (let [scene, body] of Object.entries(this.TREE)) {
+        for (let [scene, body] of Object.entries(this.tree)) {
             this.state.assets = this.state.assets.concat(body.assets);
         }
         /**

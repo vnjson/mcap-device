@@ -2327,7 +2327,7 @@
 
       screenShot.WEBHOOK = "";
       screenShot.HOST = _this["package"].publish.host;
-    }); // _vnjs.TREE.$root.characters[0]
+    }); // _vnjs.tree.$root.characters[0]
 
     $(".debug__delay").on("change", function () {
       _vnjs.store["dialog-box"].delay = $(this).val();
@@ -2530,9 +2530,9 @@
             _this.emit("postload");
           }
         } else if (/\.png|\.jpg|\.jpeg|\.webp|\.gif/i.test(asset.url)) {
-          var _this$TREE$$root;
+          var _this$tree$$root;
 
-          if ((_this$TREE$$root = _this.TREE.$root) !== null && _this$TREE$$root !== void 0 && _this$TREE$$root["package"]) {
+          if ((_this$tree$$root = _this.tree.$root) !== null && _this$tree$$root !== void 0 && _this$tree$$root["package"]) {
             var _this$package;
 
             if ((_this$package = _this["package"]) !== null && _this$package !== void 0 && _this$package.preload) {
@@ -2576,7 +2576,7 @@
     };
 
     var setAllAssets = function setAllAssets() {
-      for (var _i = 0, _Object$entries = Object.entries(_this.TREE); _i < _Object$entries.length; _i++) {
+      for (var _i = 0, _Object$entries = Object.entries(_this.tree); _i < _Object$entries.length; _i++) {
         var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2);
             _Object$entries$_i[0];
             var body = _Object$entries$_i[1];
@@ -3107,6 +3107,7 @@
         if (param.nameColor) character.nameColor = param.nameColor;
         if (param.replyColor) character.replyColor = param.replyColor;
         if (param.avatar) character.avatar = param.avatar;
+        vnjs.emit('character.set-param', character);
         dBox.print(character, String(param.reply));
       } else {
         dBox.print(character, String(param));
@@ -3117,14 +3118,12 @@
      */
 
     this.on("+", function (reply) {
-      var character = _this.getCurrentCharacter();
-      /*
-      if(!character) {
-          character = this.getCharacterById('$')
-          this.state.character = character
-      }
-      */
+      var character = vnjs.state.character;
 
+      if (!character) {
+        character = _this.getCharacterById('$');
+        vnjs.state.character = character;
+      }
 
       dBox.forcePrintPrevReply();
       dBox.print(character, " " + String(reply), true);
@@ -3187,73 +3186,90 @@
   var tpl$b = "<div class=\"vnjson__hands component\">\n    <div class=\"vnjson__hand\">\n        <div class=\"vnjson__hand-left\"></div>\n    </div>\n    <div class=\"vnjson__hand\">\n        <div class=\"vnjson__hand-right\"></div>\n    </div>\n</div>";
 
   var $tpl$d = $(tpl$b);
-  function hands () {
-    var _this = this;
-    this.store.screen.append($tpl$d);
-    var isShow = false;
-    this.on('hand-left', function (id) {
-      if (id) {
-        isShow = true;
+  var hands = {
+    show: false,
+    mount: function mount() {
+      var _this = this;
+
+      vnjs.store.screen.append($tpl$d);
+      vnjs.on("hands", function (args) {
+        return _this.handler(args);
+      });
+      vnjs.on("hand-left", function (args) {
+        return _this.leftHandler(args);
+      });
+      vnjs.on("hand-right", function (args) {
+        return _this.rightHandler(args);
+      });
+      /**
+       * Когда  dialog-box скрыт, то и плагин hands нужно скрыть
+       */
+
+      vnjs.on("dialog-box.false", function () {
+        return vnjs.emit("hands", false);
+      });
+      /**
+       * При выводе реплик проверяем, есть ли у персонажа свойство avatar
+       * Если есть, то ширину блока с репликой необходимо уменьшить
+       * Так же, стили необходимо восстановить, если встретился персонаж без аватара
+       */
+
+      vnjs.on("character", function (character) {
+        setTimeout(function () {
+          _this.characterHandler(vnjs.state.character);
+        }, 50);
+      });
+    },
+    handler: function handler(args) {
+      if (args) {
+        this.show = true;
         $tpl$d.show();
-        $tpl$d.find('.vnjson__hand-left').css('background-image', "url('".concat(_this.getAssetByName(id).url, "')"));
       } else {
-        $tpl$d.find('.vnjson__hand-left').css('background-image', "unset");
-      }
-    });
-    this.on('hand-right', function (id) {
-      if (id) {
-        isShow = true;
-        $tpl$d.show();
-        $tpl$d.find('.vnjson__hand-right').css('background-image', "url('".concat(_this.getAssetByName(id).url, "')"));
-      } else {
-        $tpl$d.find('.vnjson__hand-right').css('background-image', "unset");
-      }
-    });
-    this.on('hands', function (data) {
-      if (data) {
-        isShow = true;
-        $tpl$d.show();
-      } else {
-        isShow = false;
+        this.show = false;
         $tpl$d.hide();
       }
-    });
-    var replyWrapper = $('.dialog-box__reply-wrapper');
+    },
+    leftHandler: function leftHandler(args) {
+      if (args) {
+        this.show = true;
+        $tpl$d.show();
+        $tpl$d.find(".vnjson__hand-left").css("background-image", "url('".concat(this.getAssetByName(id).url, "')"));
+      } else {
+        $tpl$d.find(".vnjson__hand-left").css("background-image", "unset");
+      }
+    },
+    rightHandler: function rightHandler(args) {
+      if (args) {
+        this.show = true;
+        $tpl$d.show();
+        $tpl$d.find(".vnjson__hand-right").css("background-image", "url('".concat(vnjs.getAssetByName(id).url, "')"));
+      } else {
+        $tpl$d.find(".vnjson__hand-right").css("background-image", "unset");
+      }
+    },
+    characterHandler: function characterHandler(character) {
+      var replyWrapper = $(".dialog-box__reply-wrapper"); // если нет ни аватара ни рук
 
-    var handler = function handler(character, reply) {
-      // если аватар есть и руки отображены
-      if (character.avatar && isShow) {
-        replyWrapper.css('width', '76%');
-      } // если нет ни аватара ни рук
-
-
-      if (!character.avatar && !isShow) {
-        replyWrapper.css('width', 'auto');
-      } // Если аватара нет, но показывает руки
-
-
-      if (!character.avatar && isShow) {
-        replyWrapper.css('width', '90%');
+      if (!character.avatar && !this.show) {
+        replyWrapper.css("width", "99%");
       } // если есть аватар, но руки не отображаются
 
 
-      if (character.avatar && !isShow) {
-        replyWrapper.css('width', '84.5%');
+      if (character.avatar && !this.show) {
+        replyWrapper.css("width", "84.5%");
+      } // если аватар есть и руки отображены
+
+
+      if (character.avatar && this.show) {
+        replyWrapper.css("width", "76%");
+      } // Если аватара нет, но показывает руки
+
+
+      if (!character.avatar && this.show) {
+        replyWrapper.css("width", "90%");
       }
-    };
-
-    this.on('character', handler);
-    this.on('+', handler);
-    /**
-    * Когда screen: true, то dialog-box нужно скрыть
-    */
-
-    this.on('dialog-box.false', function () {
-      _this.exec({
-        'hands': false
-      });
-    });
-  }
+    }
+  };
 
   var AudioControl = /*#__PURE__*/function () {
     function AudioControl() {
@@ -4738,7 +4754,7 @@
 
   var tpl$6 = "<div class=\"vnjson__input component\">\n    <div class=\"vnjson__input-wrapper\">\n        <input type=\"text\">\n        <div class=\"vnjson__input-btn\">\n            <svg style=\"width:60px;height:60px\" viewBox=\"0 0 24 24\">\n                <path fill=\"currentColor\" d=\"M3,19V5A2,2 0 0,1 5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19M17,12L12,7V10H8V14H12V17L17,12Z\"/>\n            </svg>\n        </div>\n    </div>\n  \n</div>";
 
-  var css$h = ".vnjson__input{\n    width: 470px;\n    height: 120px;\n    background-color: rgba(0, 0, 0, 0.7);\n    top: 250px;\n    left: 50%;\n    transform: translateX(-50%);\n    box-shadow: 3px 3px 5px rgba(0,0,0,0.5);\n    border-radius: 4px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    display: none;\n  }\n  .vnjson__input-wrapper{\n    display: flex;\n    align-items: center;\n    justify-content: center;\n  }\n  .vnjson__input-wrapper input{\n    caret-color: skyblue;\n    height: 47px;\n    border-radius: 4px;\n    width: 350px;\n    background-color: rgba(200,200,200,0.1);\n    font-size: 22px;\n    font-family: Minecraft;\n    color: skyblue;\n  }\n  \n  .vnjson__input-wrapper .vnjson__input-btn{\n    width: 60px;\n    height: 60px;\n    cursor: pointer;\n  }\n  .vnjson__input-wrapper .vnjson__input-btn svg path{\n    fill: silver;\n    transition: 0.3s;\n  \n  }\n  \n  .vnjson__input-wrapper .vnjson__input-btn:hover svg path{\n    fill: skyblue;\n  }";
+  var css$h = ".vnjson__input{\r\n    width: 470px;\r\n    height: 120px;\r\n    background-color: rgba(0, 0, 0, 0.7);\r\n    top: 250px;\r\n    left: 50%;\r\n    transform: translateX(-50%);\r\n    box-shadow: 3px 3px 5px rgba(0,0,0,0.5);\r\n    border-radius: 4px;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    display: none;\r\n  }\r\n  .vnjson__input-wrapper{\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n  }\r\n  .vnjson__input-wrapper input{\r\n    caret-color: skyblue;\r\n    height: 47px;\r\n    border-radius: 4px;\r\n    width: 350px;\r\n    background-color: rgba(200,200,200,0.1);\r\n    font-size: 22px;\r\n    font-family: Minecraft;\r\n    color: skyblue;\r\n  }\r\n  \r\n  .vnjson__input-wrapper .vnjson__input-btn{\r\n    width: 60px;\r\n    height: 60px;\r\n    cursor: pointer;\r\n  }\r\n  .vnjson__input-wrapper .vnjson__input-btn svg path{\r\n    fill: silver;\r\n    transition: 0.3s;\r\n  \r\n  }\r\n  \r\n  .vnjson__input-wrapper .vnjson__input-btn:hover svg path{\r\n    fill: skyblue;\r\n  }";
   n(css$h,{});
 
   var $tpl$9 = $(tpl$6);
@@ -4827,7 +4843,7 @@
   }
 
   function appendElements(list) {
-    var wikiStore = this.TREE.$root.wiki;
+    var wikiStore = this.tree.$root.wiki;
     list.forEach(function (key) {
       var str;
 
@@ -5103,13 +5119,13 @@
       key: "getData",
       value: function getData() {
         var sceneName = this.__vnjs.state.sceneName;
-        var currentContent = this.__vnjs.TREE[sceneName].content;
+        var currentContent = this.__vnjs.tree[sceneName].content;
 
         if (currentContent) {
           return currentContent;
         }
 
-        var globalontent = this.__vnjs.TREE.$root.content;
+        var globalontent = this.__vnjs.tree.$root.content;
 
         if (globalontent) {
           return globalontent;
@@ -5200,11 +5216,11 @@
         var level = String(data.item).split(' ');
 
         if (level.length === 1) {
-          this.__vnjs.TREE.$root.content[level[0]].disabled = data.disabled;
+          this.__vnjs.tree.$root.content[level[0]].disabled = data.disabled;
         }
 
         if (level.length === 2) {
-          this.__vnjs.TREE.$root.content[level[0]].children[level[1]].disabled = data.disabled;
+          this.__vnjs.tree.$root.content[level[0]].children[level[1]].disabled = data.disabled;
         }
       }
     }, {
@@ -5391,7 +5407,7 @@
     var _this = this;
 
     this.on('postload', function () {
-      var htmlChunk = _this.TREE.$root.html;
+      var htmlChunk = _this.tree.$root.html;
 
       if (htmlChunk) {
         for (var event in htmlChunk) {
@@ -7748,3 +7764,4 @@
   });
 
 })();
+//# sourceMappingURL=app.js.map

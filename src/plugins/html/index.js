@@ -2,7 +2,7 @@
 export default function(){
 
 this.on('postload', ()=>{
-  var htmlChunk = this.TREE.$root.html
+  var htmlChunk = this.tree.$root.html
 
 
   if(htmlChunk){

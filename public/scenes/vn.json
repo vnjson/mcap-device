@@ -97,18 +97,17 @@
     "$init": [
       {
         "dialog-box": true,
-        "hands": true,
         "audio": false,
         "data-clear": true,
         "status-bar": false,
         "next": true
       },
       {
-        "$": "tset",
-        "input-data": "age"
+        "$": "tset"
       },
       {
-        "al": "Мне {{age}} лет"
+        "al": "Мне {{age}} лет",
+        "hands": true
       },
       {
         "al": "Всё ходит по цепи кругом",
@@ -125,6 +124,7 @@
       },
       {
         "al": "И днём и ночью, кот учёный",
+        "hands": false,
         "scene": false
       },
       {
@@ -143,9 +143,6 @@
       },
       {
         "+": "данная функция удаляется из стека и вызывается следующая функция fn2()."
-      },
-      {
-        "dialog-box": "clear"
       },
       {
         "+": "Вывод от другого персонажа",
@@ -185,8 +182,7 @@
         "id": "$",
         "name": ". . . .",
         "nameColor": "#49de58",
-        "replyColor": "#a4deaa",
-        "avatar": "robocop"
+        "replyColor": "#a4deaa"
       },
       {
         "id": "al",
