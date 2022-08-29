@@ -7,7 +7,7 @@ export default function (){
   this.state.data.readyСheck = false
   const $tpl = $(tpl)
 
-  this.$store.$screen.append($tpl);
+  this.store.screen.append($tpl);
   const statusBar = new StatusBar($tpl)
   /**
    * @ event

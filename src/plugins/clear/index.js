@@ -11,7 +11,7 @@ export default function (){
           'dialog-box': 'clear'
       })
 
-      Object.values(this.$store).map(asset=>{
+      Object.values(vnjs.store).map(asset=>{
         if(asset.hasOwnProperty("_muted") ){
           asset.stop()
         }

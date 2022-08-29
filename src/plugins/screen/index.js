@@ -1,5 +1,5 @@
 export default function () {
-    this.$store.$screen = $("#screen");
+    this.store.screen = $("#screen");
 
 
     

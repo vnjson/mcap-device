@@ -15,7 +15,7 @@ class ErrorHandler {
             socket.on("yaml-error", (err, sceneName, labelName) => {
                 if (err) {
                     /*
-                    $vnjs.emit("data-set", {
+                    vnjs.emit("data-set", {
                         yamlError: [msg, path, err.mark.snippet, pos],
                     });
                     */
@@ -28,7 +28,7 @@ class ErrorHandler {
                 /*
                 # data-clear - вначале новеллы стирает информацию об ошибке
                 # Поэтому ошибку надо хранить в другом ключе localStorage
-                $vnjs.emit("data-set", {
+                vnjs.emit("data-set", {
                     yamlError: null,
                 });
                 */
@@ -82,8 +82,8 @@ class ErrorHandler {
      * @return {String}           [Сообщение о ошике]
      */
     static getMessage(local = "ru", codeError, data) {
-        if ($vnjs.errors[local].hasOwnProperty(codeError)) {
-            const message = $vnjs.errors[local][codeError].replace(
+        if (vnjs.errors[local].hasOwnProperty(codeError)) {
+            const message = vnjs.errors[local][codeError].replace(
                 /{.{0,}}/gi,
                 data
             );

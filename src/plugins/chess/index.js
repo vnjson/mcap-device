@@ -12,7 +12,7 @@ this.on('vnjson.mount', ()=>{
 var chessInit = ()=>{
 
 const $tpl = $('<iframe class="chess__vnjson component" src="data/chess/index.html" width="500" height="500"></iframe>')
-    this.$store.$screen.append($tpl)  
+    this.store.screen.append($tpl)  
     this.on('chess', fen=>{
         if(fen){
               $tpl.show()

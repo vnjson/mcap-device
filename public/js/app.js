@@ -249,8 +249,8 @@
     }
   }
 
-  var css$w = "\n.debug-error{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  font-size: 20px;\n  z-index: 9999;  \n  background-color: #334;\n  justify-content: center;\n  align-items: center;\n  display: none;\n  font-family: Consolas;\n  user-select: all;\n}\n.debug-error__status{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 10px;\n  background-color: brown;\n  border-radius: 8px 8px 0 0;\n}\n.debug-error__modal{\n  background-color: #181818;\n  border-radius: 8px;\n  padding: 20px;\n  width: 80%;\n  height: 60%;\n  box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.5);\n}\n\n.debug-error__msg{\n  color: brown;\n  line-height: 28px;\n  word-break: break-all;\n  overflow: auto;\n  max-height: 100%;\n}\n\n\n.debug-error__path{\n  color: #cfa4ff;\n}\n.debug-error__pos{\n  color: skyblue;\n}\n.debug-error__code{\n  color: #e2aa53;\n  height: 290px;\n  overflow: auto;\n}\n";
-  n(css$w,{});
+  var css$x = "\n.debug-error{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  font-size: 20px;\n  z-index: 9999;  \n  background-color: #334;\n  justify-content: center;\n  align-items: center;\n  display: none;\n  font-family: Consolas;\n  user-select: all;\n}\n.debug-error__status{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 10px;\n  background-color: brown;\n  border-radius: 8px 8px 0 0;\n}\n.debug-error__modal{\n  background-color: #181818;\n  border-radius: 8px;\n  padding: 20px;\n  width: 80%;\n  height: 60%;\n  box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.5);\n}\n\n.debug-error__msg{\n  color: brown;\n  line-height: 28px;\n  word-break: break-all;\n  overflow: auto;\n  max-height: 100%;\n}\n\n\n.debug-error__path{\n  color: #cfa4ff;\n}\n.debug-error__pos{\n  color: skyblue;\n}\n.debug-error__code{\n  color: #e2aa53;\n  height: 290px;\n  overflow: auto;\n}\n";
+  n(css$x,{});
 
   var tpl$f = "<div class=\"debug-error\">\r\n                        \r\n    <div class=\"debug-error__modal\">\r\n        <div class=\"debug-error__status\"></div>\r\n        <code> <pre class=\"debug-error__msg\"></pre></code>\r\n        <p class=\"debug-error__path\"></p>\r\n        <p class=\"debug-error__pos\"></p>\r\n        <pre class=\"debug-error__code\"></pre>\r\n    </div>\r\n</div>";
 
@@ -278,7 +278,7 @@
           socket.on("yaml-error", function (err, sceneName, labelName) {
             if (err) {
               /*
-              $vnjs.emit("data-set", {
+              vnjs.emit("data-set", {
                   yamlError: [msg, path, err.mark.snippet, pos],
               });
               */
@@ -291,7 +291,7 @@
             /*
             # data-clear - вначале новеллы стирает информацию об ошибке
             # Поэтому ошибку надо хранить в другом ключе localStorage
-            $vnjs.emit("data-set", {
+            vnjs.emit("data-set", {
                 yamlError: null,
             });
             */
@@ -367,8 +367,8 @@
         var codeError = arguments.length > 1 ? arguments[1] : undefined;
         var data = arguments.length > 2 ? arguments[2] : undefined;
 
-        if ($vnjs.errors[local].hasOwnProperty(codeError)) {
-          var message = $vnjs.errors[local][codeError].replace(/{.{0,}}/gi, data);
+        if (vnjs.errors[local].hasOwnProperty(codeError)) {
+          var message = vnjs.errors[local][codeError].replace(/{.{0,}}/gi, data);
           return message;
         }
 
@@ -415,7 +415,7 @@
   function debug () {
     var _this = this;
 
-    $vnjs.errors = errors;
+    vnjs.errors = errors;
     /**
      * Блокировка контекстного меню, если не debug
      */
@@ -493,13 +493,13 @@
     });
   }
 
-  var css$v = ".debug__dialog-box-controls{\n  background-color: wheat;\n  padding: 5px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  height: 120px;\n  font-size: 14px;\n  width: 1024px;\n  font-family: Arial, Helvetica, sans-serif;\n}\n\n\n.debug__dialog-box-controls >div{\n  display: flex;\n  flex-direction: column;\n  border-radius: 4px;\n  height: 100%;\n  border: 1px solid #ccc;\n  padding: 5px;\n}\n\n.debug__controls-left{\n  width: 500px;\n}\n\n.debug__character{\n  width: 40px;\n}\n\n.debug__dialog-box-controls .debug__controls-center{\n  width: 510px;\n  flex-direction: row;\n}\n\n.debug__mc-exec{\n  width: 50px;\n}\n.debug__controls-btns{\n  display: flex;\n  justify-content: space-between;\n  height: 30px;\n\n}\n\n\n.debug__dialog-box-controls .debug__input-text{\n  flex: 1 0 auto;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  text-align: left;\n \n  \n}\n\n/*delay*/\n.debug__delay-wrapper{\n  display: flex;\n  align-items: center;\n  background-color: burlywood;\n  border-radius: 4px;\n  margin-left: 5px;\n  padding-left: 5px;\n}\n.debug__delay-img{\n  width: 20px;\n  height: 20px;\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNMTIsMjBBOCw4IDAgMCwwIDIwLDEyQTgsOCAwIDAsMCAxMiw0QTgsOCAwIDAsMCA0LDEyQTgsOCAwIDAsMCAxMiwyME0xMiwyQTEwLDEwIDAgMCwxIDIyLDEyQTEwLDEwIDAgMCwxIDEyLDIyQzYuNDcsMjIgMiwxNy41IDIsMTJBMTAsMTAgMCAwLDEgMTIsMk0xMi41LDdWMTIuMjVMMTcsMTQuOTJMMTYuMjUsMTYuMTVMMTEsMTNWN0gxMi41WiIgLz4NCjwvc3ZnPg==);\n  background-position: center;\n\n}\n.debug__btn-screenshot{\n  width: 20px;\n  height: 20px;\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNMTksMTlINVY1SDE5TTE5LDNINUEyLDIgMCAwLDAgMyw1VjE5QTIsMiAwIDAsMCA1LDIxSDE5QTIsMiAwIDAsMCAyMSwxOVY1QTIsMiAwIDAsMCAxOSwzTTEzLjk2LDEyLjI5TDExLjIxLDE1LjgzTDkuMjUsMTMuNDdMNi41LDE3SDE3LjVMMTMuOTYsMTIuMjlaIiAvPg0KPC9zdmc+);\n  background-position: center;\n}\n\n.debug__dialog-box-controls .debug__delay{\n  width: 40px;\n  text-align: center;\n  flex: 0 0 auto;\n}\n\n.debug__btn{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 5px 5px;\n  cursor: pointer;\n  color: black;\n  width: 35px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin-left: 5px;\n\n}\n.debug__btn-img{\n  width: 20px;\n  height: 20px;\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNNiA3LjI0TDE1LjUzIDEyTDYgMTYuNzZWNy4yNE00IDRWMjBMMjAgMTJMNCA0WiIgLz4NCjwvc3ZnPg==);\n  background-position: center;\n  background-repeat: no-repeat;\n  margin-left: 5px;\n}\n.debug__show-dbh{\n  margin-top: 5px;\n\n}\n.debug__btn-img--dbh{\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNMy4zNSwzLjU4TDIwLjY1LDIwLjg3TDE5LjIzLDIyLjI5TDE2Ljk0LDIwSDRBMiwyIDAgMCwxIDIsMThWNkMyLDUuNzIgMi4wNiw1LjQ2IDIuMTYsNS4yMkwxLjIzLDQuMjlMMi42NSwyLjg3TDMuMzUsMy41OE02LjYsNEgyMEEyLDIgMCAwLDEgMjIsNlYxOEMyMiwxOC40IDIxLjg4LDE4Ljc3IDIxLjY4LDE5LjA4TDE3LjYsMTVIMjBWMTNIMTUuNkwxMy42LDExSDIwVjlIMTEuNkw2LjYsNE05Ljk0LDEzSDlWMTVIMTFWMTQuMDZMOS45NCwxM001Ljk0LDlINVYxMUg3VjEwLjA2TDUuOTQsOVoiIC8+DQo8L3N2Zz4=);\n  margin-left: 0;\n}\n.debug__btn-img--dbs{\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiAgZD0iTTIwLDRBMiwyIDAgMCwxIDIyLDZWMThBMiwyIDAgMCwxIDIwLDIwSDRBMiwyIDAgMCwxIDIsMThWNkEyLDIgMCAwLDEgNCw0SDIwTTExLDEzSDlWMTVIMTFWMTNNMTksMTNIMTNWMTVIMTlWMTNNNyw5SDVWMTFIN1Y5TTE5LDlIOVYxMUgxOVY5WiIgLz4NCjwvc3ZnPg==);\n}\n\n.debug__btn:hover{\n  background-color: rgba(0,0,0,0.3);\n}\n\n.debug__textarea{\n  width: 100%;\n  flex: 1 0 auto;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  resize: unset;\n  border: unset;\n  outline: unset;\n  caret-color: deepskyblue;\n  margin-top: 5px;\n\n}\n.debug__output{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  width: 100%;\n  flex: 1 0 auto;\n  overflow: auto;\n  height: 100%;\n  user-select: all;\n}\n\n.debug__checkbox-wrapper{\n  display: flex;\n  align-items: center;\n\n  background-color: burlywood;\n  border-radius: 4px;\n  margin-left: 5px;\n  padding: 5px;\n  padding-right: 10px;\n  justify-content: center;\n}\n.debug__mcexec-type{\n  margin-top: 5px;\n  margin-right: 5px;\n}\n/*\n * color picker  \n */\n.vnjson__debug-color-picker{\n  border-radius: 4px;\n  overflow: hidden;\n  margin-left: 5px;\n\n}\n#debug__color-picker{\n  background-color: burlywood;\n  padding: 5px;\n  width: 90px;\n\n  outline: none;\n  border: 0;\n  height: 100%;\n  cursor: pointer;\n}\n\n\n\n.debug-plugin__topbar{\n  display: flex;\n  flex-direction: column;\n  height: 30px;\n}\n\n.debug-plugin__select{\n  width: 35%;\n  overflow: auto;\n}\n\n.debug-plugin__right{\n  width: 64%;\n  display: flex;\n  margin-left: 2px;\n}\n.debug__plugin--value{\n  margin-top: 0;\n  flex: unset;\n  white-space: nowrap;\n}\n.debug-plugin__params{\n  display: flex;\n}\n\n.debug-plugin__params{\n  display: flex;\n  height: 100%;\n}\n.debug__plugin-param{\n  width: 50%;\n\n}\n.debug__plugin--data{\n  margin-right: 2.5px;\n}\n.debug__plugin--value{\n  margin-left: 2.5px;\n}\n.debug-btn--value{\n  margin-top: 5px;\n}\n.debug-plugin__name{\n  border-radius: 4px;\n  border: 1px solid #ccc;\n  margin-bottom: 5px;\n  padding: 1px 5px;\n  cursor: pointer;\n  margin-right: 5px;\n  display: block;\n}\n.debug-plugin__name--active{\n  color: cadetblue;\n  border-color: cadetblue;\n}\n.debug-plugin__name--dev{\n  color: brown;\n}\n.debug-plugin__name:hover{\n  color: cadetblue;\n  border-color: cadetblue;\n}\n.debug-plugin__value{\n  max-width: 155px;\n  margin-left: 5px;\n}";
-  n(css$v,{});
+  var css$w = ".debug__dialog-box-controls{\n  background-color: wheat;\n  padding: 5px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  height: 120px;\n  font-size: 14px;\n  width: 1024px;\n  font-family: Arial, Helvetica, sans-serif;\n}\n\n\n.debug__dialog-box-controls >div{\n  display: flex;\n  flex-direction: column;\n  border-radius: 4px;\n  height: 100%;\n  border: 1px solid #ccc;\n  padding: 5px;\n}\n\n.debug__controls-left{\n  width: 500px;\n}\n\n.debug__character{\n  width: 40px;\n}\n\n.debug__dialog-box-controls .debug__controls-center{\n  width: 510px;\n  flex-direction: row;\n}\n\n.debug__mc-exec{\n  width: 50px;\n}\n.debug__controls-btns{\n  display: flex;\n  justify-content: space-between;\n  height: 30px;\n\n}\n\n\n.debug__dialog-box-controls .debug__input-text{\n  flex: 1 0 auto;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  text-align: left;\n \n  \n}\n\n/*delay*/\n.debug__delay-wrapper{\n  display: flex;\n  align-items: center;\n  background-color: burlywood;\n  border-radius: 4px;\n  margin-left: 5px;\n  padding-left: 5px;\n}\n.debug__delay-img{\n  width: 20px;\n  height: 20px;\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNMTIsMjBBOCw4IDAgMCwwIDIwLDEyQTgsOCAwIDAsMCAxMiw0QTgsOCAwIDAsMCA0LDEyQTgsOCAwIDAsMCAxMiwyME0xMiwyQTEwLDEwIDAgMCwxIDIyLDEyQTEwLDEwIDAgMCwxIDEyLDIyQzYuNDcsMjIgMiwxNy41IDIsMTJBMTAsMTAgMCAwLDEgMTIsMk0xMi41LDdWMTIuMjVMMTcsMTQuOTJMMTYuMjUsMTYuMTVMMTEsMTNWN0gxMi41WiIgLz4NCjwvc3ZnPg==);\n  background-position: center;\n\n}\n.debug__btn-screenshot{\n  width: 20px;\n  height: 20px;\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNMTksMTlINVY1SDE5TTE5LDNINUEyLDIgMCAwLDAgMyw1VjE5QTIsMiAwIDAsMCA1LDIxSDE5QTIsMiAwIDAsMCAyMSwxOVY1QTIsMiAwIDAsMCAxOSwzTTEzLjk2LDEyLjI5TDExLjIxLDE1LjgzTDkuMjUsMTMuNDdMNi41LDE3SDE3LjVMMTMuOTYsMTIuMjlaIiAvPg0KPC9zdmc+);\n  background-position: center;\n}\n\n.debug__dialog-box-controls .debug__delay{\n  width: 40px;\n  text-align: center;\n  flex: 0 0 auto;\n}\n\n.debug__btn{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 5px 5px;\n  cursor: pointer;\n  color: black;\n  width: 35px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin-left: 5px;\n\n}\n.debug__btn-img{\n  width: 20px;\n  height: 20px;\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNNiA3LjI0TDE1LjUzIDEyTDYgMTYuNzZWNy4yNE00IDRWMjBMMjAgMTJMNCA0WiIgLz4NCjwvc3ZnPg==);\n  background-position: center;\n  background-repeat: no-repeat;\n  margin-left: 5px;\n}\n.debug__show-dbh{\n  margin-top: 5px;\n\n}\n.debug__btn-img--dbh{\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiBkPSJNMy4zNSwzLjU4TDIwLjY1LDIwLjg3TDE5LjIzLDIyLjI5TDE2Ljk0LDIwSDRBMiwyIDAgMCwxIDIsMThWNkMyLDUuNzIgMi4wNiw1LjQ2IDIuMTYsNS4yMkwxLjIzLDQuMjlMMi42NSwyLjg3TDMuMzUsMy41OE02LjYsNEgyMEEyLDIgMCAwLDEgMjIsNlYxOEMyMiwxOC40IDIxLjg4LDE4Ljc3IDIxLjY4LDE5LjA4TDE3LjYsMTVIMjBWMTNIMTUuNkwxMy42LDExSDIwVjlIMTEuNkw2LjYsNE05Ljk0LDEzSDlWMTVIMTFWMTQuMDZMOS45NCwxM001Ljk0LDlINVYxMUg3VjEwLjA2TDUuOTQsOVoiIC8+DQo8L3N2Zz4=);\n  margin-left: 0;\n}\n.debug__btn-img--dbs{\n  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjNzc4IiAgZD0iTTIwLDRBMiwyIDAgMCwxIDIyLDZWMThBMiwyIDAgMCwxIDIwLDIwSDRBMiwyIDAgMCwxIDIsMThWNkEyLDIgMCAwLDEgNCw0SDIwTTExLDEzSDlWMTVIMTFWMTNNMTksMTNIMTNWMTVIMTlWMTNNNyw5SDVWMTFIN1Y5TTE5LDlIOVYxMUgxOVY5WiIgLz4NCjwvc3ZnPg==);\n}\n\n.debug__btn:hover{\n  background-color: rgba(0,0,0,0.3);\n}\n\n.debug__textarea{\n  width: 100%;\n  flex: 1 0 auto;\n  color: black;\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  resize: unset;\n  border: unset;\n  outline: unset;\n  caret-color: deepskyblue;\n  margin-top: 5px;\n\n}\n.debug__output{\n  background-color: burlywood;\n  border-radius: 4px;\n  padding: 3px 5px;\n  width: 100%;\n  flex: 1 0 auto;\n  overflow: auto;\n  height: 100%;\n  user-select: all;\n}\n\n.debug__checkbox-wrapper{\n  display: flex;\n  align-items: center;\n\n  background-color: burlywood;\n  border-radius: 4px;\n  margin-left: 5px;\n  padding: 5px;\n  padding-right: 10px;\n  justify-content: center;\n}\n.debug__mcexec-type{\n  margin-top: 5px;\n  margin-right: 5px;\n}\n/*\n * color picker  \n */\n.vnjson__debug-color-picker{\n  border-radius: 4px;\n  overflow: hidden;\n  margin-left: 5px;\n\n}\n#debug__color-picker{\n  background-color: burlywood;\n  padding: 5px;\n  width: 90px;\n\n  outline: none;\n  border: 0;\n  height: 100%;\n  cursor: pointer;\n}\n\n\n\n.debug-plugin__topbar{\n  display: flex;\n  flex-direction: column;\n  height: 30px;\n}\n\n.debug-plugin__select{\n  width: 35%;\n  overflow: auto;\n}\n\n.debug-plugin__right{\n  width: 64%;\n  display: flex;\n  margin-left: 2px;\n}\n.debug__plugin--value{\n  margin-top: 0;\n  flex: unset;\n  white-space: nowrap;\n}\n.debug-plugin__params{\n  display: flex;\n}\n\n.debug-plugin__params{\n  display: flex;\n  height: 100%;\n}\n.debug__plugin-param{\n  width: 50%;\n\n}\n.debug__plugin--data{\n  margin-right: 2.5px;\n}\n.debug__plugin--value{\n  margin-left: 2.5px;\n}\n.debug-btn--value{\n  margin-top: 5px;\n}\n.debug-plugin__name{\n  border-radius: 4px;\n  border: 1px solid #ccc;\n  margin-bottom: 5px;\n  padding: 1px 5px;\n  cursor: pointer;\n  margin-right: 5px;\n  display: block;\n}\n.debug-plugin__name--active{\n  color: cadetblue;\n  border-color: cadetblue;\n}\n.debug-plugin__name--dev{\n  color: brown;\n}\n.debug-plugin__name:hover{\n  color: cadetblue;\n  border-color: cadetblue;\n}\n.debug-plugin__value{\n  max-width: 155px;\n  margin-left: 5px;\n}";
+  n(css$w,{});
 
   var tpl$e = "<div class=\"debug__dialog-box-controls\">\r\n  <!--left-->\r\n  <div class=\"debug__controls-left\">\r\n      <div class=\"debug__controls-btns\">\r\n          <input class=\"debug__input-text debug__character\" type=\"text\" value=\"$\" title=\"character\">\r\n          <div class=\"debug__btn debug-btn--character-snipet\" style=\"color: #778;font-weight: 600\" title=\"snipet\">{..}</div>\r\n          <div class=\"debug__btn debug__inner-screenshot\" title=\"Скриншот\"> \r\n                <div class=\"debug__btn-screenshot\"></div>\r\n          </div>\r\n          <div class=\"debug__delay-wrapper\" title=\"dialog-box delay\">\r\n                <div class=\"debug__delay-img\"></div>\r\n                <input class=\"debug__input-text debug__delay\" type=\"text\">\r\n          </div>\r\n          <div class=\"debug__btn debug__inner-reply\" title=\"Показать\"> \r\n                <div class=\"debug__btn-img\"></div>\r\n          </div>\r\n          <div class=\"vnjson__debug-color-picker\">\r\n                <input id=\"debug__color-picker\" readonly=\"1\">\r\n          </div>\r\n\r\n      </div>\r\n      <textarea class=\"debug__textarea debug__reply\" placeholder=\"param\" title=\"Реплика\" spellcheck=\"false\"></textarea>\r\n  </div>\r\n  <!--img-->\r\n  <div class=\"debug__controls-center\">\r\n        <!--left-->\r\n        <div class=\"debug-plugin__select\">\r\n\r\n         </div>\r\n\r\n        <!--right-->\r\n        <div class=\"debug-plugin__right\">\r\n            <textarea class=\"debug__textarea debug__plugin--value\" placeholder=\"param\" spellcheck=\"false\"></textarea>\r\n            <div class=\"debug-plugin__topbar\">\r\n                <div class=\"debug__btn debug__show-asset\" title=\"Выполнить\"> \r\n                    <div class=\"debug__btn-img\"></div>\r\n                </div>\r\n\r\n                <div class=\"debug__btn debug-btn--value\" style=\"color: #778;font-weight: 600\" title=\"snipet\">{..}</div>\r\n                <div class=\"debug__btn debug__show-dbh\" title=\"dialog-box: false\"> \r\n                    <div class=\"debug__btn-img debug__btn-img--dbh\"></div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n  </div>\r\n\r\n</div>\r\n";
 
-  var css$u = ".sp-container{position:absolute;top:0;left:0;display:inline-block;z-index:9999994;overflow:hidden}.sp-original-input-container{position:relative;display:inline-flex}.sp-original-input-container input{margin:0!important}.sp-original-input-container .sp-add-on{width:40px;border-top-right-radius:0!important;border-bottom-right-radius:0!important}input.spectrum.with-add-on{border-top-left-radius:0;border-bottom-left-radius:0;border-left:0}.sp-original-input-container .sp-add-on .sp-colorize{height:100%;width:100%;border-radius:inherit}.sp-colorize-container{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='%23ccc' fill-opacity='1'%3E%3Crect x='0' y='0' width='6' height='6' /%3E%3Crect x='6' y='6' width='6' height='6' /%3E%3C/svg%3E\")}.sp-container.sp-flat{position:relative}.sp-container,.sp-container *{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}.sp-top{position:relative;width:100%;display:inline-block}.sp-top-inner{position:absolute;top:0;left:0;bottom:0;right:0}.sp-color{position:absolute;top:0;left:0;bottom:0;right:20px!important}.sp-hue{position:absolute;top:0;right:0;bottom:0;width:12px;height:100%;left:initial!important}.sp-clear-enabled .sp-hue{top:15%;height:85%}.sp-fill{padding-top:80%}.sp-sat,.sp-val{position:absolute;top:0;left:0;right:0;bottom:0}.sp-alpha-enabled .sp-top{margin-bottom:28px!important}.sp-alpha-enabled .sp-alpha{display:block}.sp-alpha-handle{position:absolute;top:-3px;cursor:pointer;height:16px;border-radius:50%;width:16px;margin-right:5px;left:-2px;right:0;background:#f9f9f9;box-shadow:0 0 2px 0 #3a3a3a}.sp-alpha{display:none;position:absolute;bottom:-18px;right:0;left:0;height:10px}.sp-alpha-inner{border-radius:4px}.sp-clear{display:none}.sp-clear.sp-clear-display{background-position:center}.sp-clear-enabled .sp-clear{display:block;position:absolute;top:3px;right:0;bottom:0;cursor:pointer;left:initial;height:14px;width:14px}.sp-alpha,.sp-alpha-handle,.sp-clear,.sp-container,.sp-container button,.sp-container.sp-dragging .sp-input,.sp-dragger,.sp-preview,.sp-replacer,.sp-slider{-webkit-user-select:none;-moz-user-select:-moz-none;-o-user-select:none;user-select:none}.sp-container.sp-input-disabled .sp-input-container{display:none}.sp-container.sp-buttons-disabled .sp-button-container{display:none}.sp-container.sp-palette-buttons-disabled .sp-palette-button-container{display:none}.sp-palette-only .sp-picker-container{display:none}.sp-palette-disabled .sp-palette-container{display:none}.sp-initial-disabled .sp-initial{display:none}.sp-sat{background-image:-webkit-gradient(linear,0 0,100% 0,from(#fff),to(rgba(204,154,129,0)));background-image:-webkit-linear-gradient(left,#fff,rgba(204,154,129,0));background-image:-moz-linear-gradient(left,#fff,rgba(204,154,129,0));background-image:-o-linear-gradient(left,#fff,rgba(204,154,129,0));background-image:-ms-linear-gradient(left,#fff,rgba(204,154,129,0));background-image:linear-gradient(to right,#fff,rgba(204,154,129,0))}.sp-val{border-radius:4px;background-image:-webkit-gradient(linear,0 100%,0 0,from(#000),to(rgba(204,154,129,0)));background-image:-webkit-linear-gradient(bottom,#000,rgba(204,154,129,0));background-image:-moz-linear-gradient(bottom,#000,rgba(204,154,129,0));background-image:-o-linear-gradient(bottom,#000,rgba(204,154,129,0));background-image:-ms-linear-gradient(bottom,#000,rgba(204,154,129,0));background-image:linear-gradient(to top,#000,rgba(204,154,129,0))}.sp-hue{background:-moz-linear-gradient(top,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%);background:-ms-linear-gradient(top,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%);background:-o-linear-gradient(top,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%);background:-webkit-gradient(linear,left top,left bottom,from(red),color-stop(.17,#ff0),color-stop(.33,#0f0),color-stop(.5,#0ff),color-stop(.67,#00f),color-stop(.83,#f0f),to(red));background:-webkit-linear-gradient(top,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%);background:linear-gradient(to bottom,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%)}.sp-1{height:17%}.sp-2{height:16%}.sp-3{height:17%}.sp-4{height:17%}.sp-5{height:16%}.sp-6{height:17%}.sp-hidden{display:none!important}.sp-cf:after,.sp-cf:before{content:\"\";display:table}.sp-cf:after{clear:both}@media (max-device-width:480px){.sp-color{right:40%}.sp-hue{left:63%}.sp-fill{padding-top:60%}}.sp-dragger{border-radius:5px;height:10px;width:10px;border:1px solid #fff;cursor:pointer;position:absolute;top:0;left:0;margin-left:3px;margin-top:3px;box-shadow:0 0 2px 1px rgba(0,0,0,.2)}.sp-slider{position:absolute;top:0;cursor:pointer;height:16px;border-radius:50%;width:16px;left:-2px;background:#f9f9f9;box-shadow:0 0 2px 0 #3a3a3a;margin-top:8px}.sp-container{display:inline-flex;border-radius:0;background-color:#fff;padding:0;border-radius:4px;color:#000;box-shadow:0 0 0 1px rgba(99,114,130,.16),0 8px 16px rgba(27,39,51,.08)}.sp-clear,.sp-color,.sp-container,.sp-container button,.sp-container input,.sp-hue{font-size:12px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box}.sp-top{margin-bottom:10px}.sp-clear,.sp-color,.sp-hue,.sp-sat,.sp-val{border-radius:3px}.sp-input-container{margin-top:-5px}.sp-button-container.sp-cf,.sp-initial.sp-thumb.sp-cf,.sp-input-container.sp-cf{height:25px}.sp-picker-container .sp-cf{margin-bottom:10px}.sp-palette-row-initial>span:first-child{cursor:pointer}.sp-initial-disabled .sp-input-container{width:100%}.sp-input{padding:0 5px!important;margin:0;width:100%;box-shadow:none!important;height:100%!important;background:0 0;color:#3a3a3a;border-radius:2px!important;border:1px solid #e0e0e0!important;text-align:center;font-family:monospace;font-size:inherit!important}.sp-input:focus{border:1px solid orange}.sp-input.sp-validation-error{border:1px solid red;background:#fdd}.sp-palette-container,.sp-picker-container{position:relative;padding:10px}.sp-picker-container{width:200px;padding-bottom:0}.sp-palette-container{border-right:solid 1px #ccc}.sp-palette-only .sp-palette-container{border:0}.sp-palette .sp-thumb-el{display:block;position:relative;float:left;width:24px;height:15px;margin:3px;cursor:pointer;border:solid 2px transparent}.sp-palette .sp-thumb-el.sp-thumb-active,.sp-palette .sp-thumb-el:hover{border-color:orange}.sp-thumb-el{position:relative}.sp-initial{float:left}.sp-initial span{width:30px;height:25px;border:none;display:block;float:left;margin:0}.sp-initial .spe-thumb-el.sp-thumb-active{border-radius:0 5px 5px 0}.sp-initial .spe-thumb-el{border-radius:5px 0 0 5px}.sp-initial .sp-clear-display{background-position:center}.sp-button-container{float:right}.sp-palette-button-container{margin-top:10px}.sp-replacer{position:relative;overflow:hidden;cursor:pointer;display:inline-block;border-radius:3px;border:1px solid #aaa;color:#666;transition:border-color .3s;vertical-align:middle;width:3rem;height:1.5rem}.sp-replacer.sp-active,.sp-replacer:hover{border:1px solid #666;color:#000}.sp-replacer.sp-disabled{cursor:default;border-color:silver;color:silver}.sp-dd{position:absolute;font-size:10px;right:0;top:0;bottom:0;padding:0 2px;line-height:1.6rem;background-color:#fff}.sp-preview{position:relative;width:100%;height:100%;float:left;z-index:0}.sp-preview-inner{transition:background-color .2s}.sp-preview-inner.sp-clear-display{display:none}.sp-palette .sp-thumb-el{width:16px;height:16px;margin:3px;border:none;border-radius:3px}.sp-container button{border-radius:3px;border:none;background:0 0;line-height:1;padding:0 8px;height:25px;text-transform:capitalize;text-align:center;vertical-align:middle;cursor:pointer;color:#606c72;font-weight:700}.sp-container button.sp-choose{background-color:#3cab3b;color:#fff;margin-left:5px}.sp-container button:hover{opacity:.8}.sp-container button.sp-palette-toggle{width:100%;background-color:#f3f3f3;margin:0}.sp-palette span.sp-thumb-active,.sp-palette span:hover{border-color:#000}.sp-alpha,.sp-preview,.sp-thumb-el{position:relative;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='%23ccc' fill-opacity='1'%3E%3Crect x='0' y='0' width='6' height='6' /%3E%3Crect x='6' y='6' width='6' height='6' /%3E%3C/svg%3E\")}.sp-alpha-inner,.sp-preview-inner,.sp-thumb-inner{display:block;position:absolute;top:0;left:0;bottom:0;right:0}.sp-palette .sp-thumb-inner{border-radius:3px;background-position:50% 50%;background-repeat:no-repeat}.sp-palette .sp-thumb-light.sp-thumb-active .sp-thumb-inner{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIVJREFUeNpiYBhsgJFMffxAXABlN5JruT4Q3wfi/0DsT64h8UD8HmpIPCWG/KemIfOJCUB+Aoacx6EGBZyHBqI+WsDCwuQ9mhxeg2A210Ntfo8klk9sOMijaURm7yc1UP2RNCMbKE9ODK1HM6iegYLkfx8pligC9lCD7KmRof0ZhjQACDAAceovrtpVBRkAAAAASUVORK5CYII=);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='18' height='18'%3E%3Cpath d='M9 16.172l10.594-10.594 1.406 1.406-12 12-5.578-5.578 1.406-1.406z' fill='%23000'%3E%3C/path%3E%3C/svg%3E\")}.sp-palette .sp-thumb-dark.sp-thumb-active .sp-thumb-inner{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAAMdJREFUOE+tkgsNwzAMRMugEAahEAahEAZhEAqlEAZhEAohEAYh81X2dIm8fKpEspLGvudPOsUYpxE2BIJCroJmEW9qJ+MKaBFhEMNabSy9oIcIPwrB+afvAUFoK4H0tMaQ3XtlrggDhOVVMuT4E5MMG0FBbCEYzjYT7OxLEvIHQLY2zWwQ3D+9luyOQTfKDiFD3iUIfPk8VqrKjgAiSfGFPecrg6HN6m/iBcwiDAo7WiBeawa+Kwh7tZoSCGLMqwlSAzVDhoK+6vH4G0P5wdkAAAAASUVORK5CYII=);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='18' height='18'%3E%3Cpath d='M9 16.172l10.594-10.594 1.406 1.406-12 12-5.578-5.578 1.406-1.406z' fill='%23fff'%3E%3C/path%3E%3C/svg%3E\")}.sp-clear-display{background-repeat:no-repeat;background-position:center;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAABe0lEQVQokYXSsUtcQRTF4d8Jj+VhHSxkEQuLsEUKK0nhTBFTmLSSUhBCMCAWsmgIwWrBLk0akfwLCaSQKBJmtrIIISwpRFKIhViETScphGMzysMtvOVwvpm5d0bGNCuGWAOPgYdl6S8wSDn9b+bUhDHEKWAdeAFMANg+l/TV9ofcz6cjMIbYBvaBMds7QCqZ58CmpBNgPuV0DvAAIMyFGugWtJr7eTv38xEwkPRPErY7QDeG2LqFkjrAgu0dSd/KDVqSNmxvAZ8lfbS9AHRuYemnLWkv5XRVBrQMbAI/gTXgEzAJtJuwBVS2L2OIle03QA/4Lmkl5XQBXEqqbFcAVYFDYChpFngiqWf7l6TXKaezMt2Zkhk24THwG+jZriX9AFZvUAyxLbRke2D75O5zPAO+ADXwEtizjaRHwDvbTyUtppwOmicCHAJvbXcl9YA1SQDjtseA97YPRz7ATcUQp2y/kjRdevsjaTfldNrMjcDGBjXA3T96L7yvrgFzP69+0Ao/HAAAAABJRU5ErkJggg==);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='14' height='14'%3E%3Cpath d='M12 20.016q3.281 0 5.648-2.367t2.367-5.648q0-2.672-1.734-4.922l-11.203 11.203q2.25 1.734 4.922 1.734zM3.984 12q0 2.672 1.734 4.922l11.203-11.203q-2.25-1.734-4.922-1.734-3.281 0-5.648 2.367t-2.367 5.648zM12 2.016q4.125 0 7.055 2.93t2.93 7.055-2.93 7.055-7.055 2.93-7.055-2.93-2.93-7.055 2.93-7.055 7.055-2.93z' fill='%23000'%3E%3C/path%3E%3C/svg%3E\")}\r\n\r\n\r\n.sp-original-input-container{\r\n    height: 100%;\r\n}\r\n\r\n.sp-colorize{\r\n    border-radius: 4px 0 0 4px !important;\r\n}";
-  n(css$u,{});
+  var css$v = ".sp-container{position:absolute;top:0;left:0;display:inline-block;z-index:9999994;overflow:hidden}.sp-original-input-container{position:relative;display:inline-flex}.sp-original-input-container input{margin:0!important}.sp-original-input-container .sp-add-on{width:40px;border-top-right-radius:0!important;border-bottom-right-radius:0!important}input.spectrum.with-add-on{border-top-left-radius:0;border-bottom-left-radius:0;border-left:0}.sp-original-input-container .sp-add-on .sp-colorize{height:100%;width:100%;border-radius:inherit}.sp-colorize-container{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='%23ccc' fill-opacity='1'%3E%3Crect x='0' y='0' width='6' height='6' /%3E%3Crect x='6' y='6' width='6' height='6' /%3E%3C/svg%3E\")}.sp-container.sp-flat{position:relative}.sp-container,.sp-container *{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}.sp-top{position:relative;width:100%;display:inline-block}.sp-top-inner{position:absolute;top:0;left:0;bottom:0;right:0}.sp-color{position:absolute;top:0;left:0;bottom:0;right:20px!important}.sp-hue{position:absolute;top:0;right:0;bottom:0;width:12px;height:100%;left:initial!important}.sp-clear-enabled .sp-hue{top:15%;height:85%}.sp-fill{padding-top:80%}.sp-sat,.sp-val{position:absolute;top:0;left:0;right:0;bottom:0}.sp-alpha-enabled .sp-top{margin-bottom:28px!important}.sp-alpha-enabled .sp-alpha{display:block}.sp-alpha-handle{position:absolute;top:-3px;cursor:pointer;height:16px;border-radius:50%;width:16px;margin-right:5px;left:-2px;right:0;background:#f9f9f9;box-shadow:0 0 2px 0 #3a3a3a}.sp-alpha{display:none;position:absolute;bottom:-18px;right:0;left:0;height:10px}.sp-alpha-inner{border-radius:4px}.sp-clear{display:none}.sp-clear.sp-clear-display{background-position:center}.sp-clear-enabled .sp-clear{display:block;position:absolute;top:3px;right:0;bottom:0;cursor:pointer;left:initial;height:14px;width:14px}.sp-alpha,.sp-alpha-handle,.sp-clear,.sp-container,.sp-container button,.sp-container.sp-dragging .sp-input,.sp-dragger,.sp-preview,.sp-replacer,.sp-slider{-webkit-user-select:none;-moz-user-select:-moz-none;-o-user-select:none;user-select:none}.sp-container.sp-input-disabled .sp-input-container{display:none}.sp-container.sp-buttons-disabled .sp-button-container{display:none}.sp-container.sp-palette-buttons-disabled .sp-palette-button-container{display:none}.sp-palette-only .sp-picker-container{display:none}.sp-palette-disabled .sp-palette-container{display:none}.sp-initial-disabled .sp-initial{display:none}.sp-sat{background-image:-webkit-gradient(linear,0 0,100% 0,from(#fff),to(rgba(204,154,129,0)));background-image:-webkit-linear-gradient(left,#fff,rgba(204,154,129,0));background-image:-moz-linear-gradient(left,#fff,rgba(204,154,129,0));background-image:-o-linear-gradient(left,#fff,rgba(204,154,129,0));background-image:-ms-linear-gradient(left,#fff,rgba(204,154,129,0));background-image:linear-gradient(to right,#fff,rgba(204,154,129,0))}.sp-val{border-radius:4px;background-image:-webkit-gradient(linear,0 100%,0 0,from(#000),to(rgba(204,154,129,0)));background-image:-webkit-linear-gradient(bottom,#000,rgba(204,154,129,0));background-image:-moz-linear-gradient(bottom,#000,rgba(204,154,129,0));background-image:-o-linear-gradient(bottom,#000,rgba(204,154,129,0));background-image:-ms-linear-gradient(bottom,#000,rgba(204,154,129,0));background-image:linear-gradient(to top,#000,rgba(204,154,129,0))}.sp-hue{background:-moz-linear-gradient(top,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%);background:-ms-linear-gradient(top,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%);background:-o-linear-gradient(top,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%);background:-webkit-gradient(linear,left top,left bottom,from(red),color-stop(.17,#ff0),color-stop(.33,#0f0),color-stop(.5,#0ff),color-stop(.67,#00f),color-stop(.83,#f0f),to(red));background:-webkit-linear-gradient(top,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%);background:linear-gradient(to bottom,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%)}.sp-1{height:17%}.sp-2{height:16%}.sp-3{height:17%}.sp-4{height:17%}.sp-5{height:16%}.sp-6{height:17%}.sp-hidden{display:none!important}.sp-cf:after,.sp-cf:before{content:\"\";display:table}.sp-cf:after{clear:both}@media (max-device-width:480px){.sp-color{right:40%}.sp-hue{left:63%}.sp-fill{padding-top:60%}}.sp-dragger{border-radius:5px;height:10px;width:10px;border:1px solid #fff;cursor:pointer;position:absolute;top:0;left:0;margin-left:3px;margin-top:3px;box-shadow:0 0 2px 1px rgba(0,0,0,.2)}.sp-slider{position:absolute;top:0;cursor:pointer;height:16px;border-radius:50%;width:16px;left:-2px;background:#f9f9f9;box-shadow:0 0 2px 0 #3a3a3a;margin-top:8px}.sp-container{display:inline-flex;border-radius:0;background-color:#fff;padding:0;border-radius:4px;color:#000;box-shadow:0 0 0 1px rgba(99,114,130,.16),0 8px 16px rgba(27,39,51,.08)}.sp-clear,.sp-color,.sp-container,.sp-container button,.sp-container input,.sp-hue{font-size:12px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box}.sp-top{margin-bottom:10px}.sp-clear,.sp-color,.sp-hue,.sp-sat,.sp-val{border-radius:3px}.sp-input-container{margin-top:-5px}.sp-button-container.sp-cf,.sp-initial.sp-thumb.sp-cf,.sp-input-container.sp-cf{height:25px}.sp-picker-container .sp-cf{margin-bottom:10px}.sp-palette-row-initial>span:first-child{cursor:pointer}.sp-initial-disabled .sp-input-container{width:100%}.sp-input{padding:0 5px!important;margin:0;width:100%;box-shadow:none!important;height:100%!important;background:0 0;color:#3a3a3a;border-radius:2px!important;border:1px solid #e0e0e0!important;text-align:center;font-family:monospace;font-size:inherit!important}.sp-input:focus{border:1px solid orange}.sp-input.sp-validation-error{border:1px solid red;background:#fdd}.sp-palette-container,.sp-picker-container{position:relative;padding:10px}.sp-picker-container{width:200px;padding-bottom:0}.sp-palette-container{border-right:solid 1px #ccc}.sp-palette-only .sp-palette-container{border:0}.sp-palette .sp-thumb-el{display:block;position:relative;float:left;width:24px;height:15px;margin:3px;cursor:pointer;border:solid 2px transparent}.sp-palette .sp-thumb-el.sp-thumb-active,.sp-palette .sp-thumb-el:hover{border-color:orange}.sp-thumb-el{position:relative}.sp-initial{float:left}.sp-initial span{width:30px;height:25px;border:none;display:block;float:left;margin:0}.sp-initial .spe-thumb-el.sp-thumb-active{border-radius:0 5px 5px 0}.sp-initial .spe-thumb-el{border-radius:5px 0 0 5px}.sp-initial .sp-clear-display{background-position:center}.sp-button-container{float:right}.sp-palette-button-container{margin-top:10px}.sp-replacer{position:relative;overflow:hidden;cursor:pointer;display:inline-block;border-radius:3px;border:1px solid #aaa;color:#666;transition:border-color .3s;vertical-align:middle;width:3rem;height:1.5rem}.sp-replacer.sp-active,.sp-replacer:hover{border:1px solid #666;color:#000}.sp-replacer.sp-disabled{cursor:default;border-color:silver;color:silver}.sp-dd{position:absolute;font-size:10px;right:0;top:0;bottom:0;padding:0 2px;line-height:1.6rem;background-color:#fff}.sp-preview{position:relative;width:100%;height:100%;float:left;z-index:0}.sp-preview-inner{transition:background-color .2s}.sp-preview-inner.sp-clear-display{display:none}.sp-palette .sp-thumb-el{width:16px;height:16px;margin:3px;border:none;border-radius:3px}.sp-container button{border-radius:3px;border:none;background:0 0;line-height:1;padding:0 8px;height:25px;text-transform:capitalize;text-align:center;vertical-align:middle;cursor:pointer;color:#606c72;font-weight:700}.sp-container button.sp-choose{background-color:#3cab3b;color:#fff;margin-left:5px}.sp-container button:hover{opacity:.8}.sp-container button.sp-palette-toggle{width:100%;background-color:#f3f3f3;margin:0}.sp-palette span.sp-thumb-active,.sp-palette span:hover{border-color:#000}.sp-alpha,.sp-preview,.sp-thumb-el{position:relative;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='%23ccc' fill-opacity='1'%3E%3Crect x='0' y='0' width='6' height='6' /%3E%3Crect x='6' y='6' width='6' height='6' /%3E%3C/svg%3E\")}.sp-alpha-inner,.sp-preview-inner,.sp-thumb-inner{display:block;position:absolute;top:0;left:0;bottom:0;right:0}.sp-palette .sp-thumb-inner{border-radius:3px;background-position:50% 50%;background-repeat:no-repeat}.sp-palette .sp-thumb-light.sp-thumb-active .sp-thumb-inner{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIVJREFUeNpiYBhsgJFMffxAXABlN5JruT4Q3wfi/0DsT64h8UD8HmpIPCWG/KemIfOJCUB+Aoacx6EGBZyHBqI+WsDCwuQ9mhxeg2A210Ntfo8klk9sOMijaURm7yc1UP2RNCMbKE9ODK1HM6iegYLkfx8pligC9lCD7KmRof0ZhjQACDAAceovrtpVBRkAAAAASUVORK5CYII=);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='18' height='18'%3E%3Cpath d='M9 16.172l10.594-10.594 1.406 1.406-12 12-5.578-5.578 1.406-1.406z' fill='%23000'%3E%3C/path%3E%3C/svg%3E\")}.sp-palette .sp-thumb-dark.sp-thumb-active .sp-thumb-inner{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAAMdJREFUOE+tkgsNwzAMRMugEAahEAahEAZhEAqlEAZhEAohEAYh81X2dIm8fKpEspLGvudPOsUYpxE2BIJCroJmEW9qJ+MKaBFhEMNabSy9oIcIPwrB+afvAUFoK4H0tMaQ3XtlrggDhOVVMuT4E5MMG0FBbCEYzjYT7OxLEvIHQLY2zWwQ3D+9luyOQTfKDiFD3iUIfPk8VqrKjgAiSfGFPecrg6HN6m/iBcwiDAo7WiBeawa+Kwh7tZoSCGLMqwlSAzVDhoK+6vH4G0P5wdkAAAAASUVORK5CYII=);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='18' height='18'%3E%3Cpath d='M9 16.172l10.594-10.594 1.406 1.406-12 12-5.578-5.578 1.406-1.406z' fill='%23fff'%3E%3C/path%3E%3C/svg%3E\")}.sp-clear-display{background-repeat:no-repeat;background-position:center;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAABe0lEQVQokYXSsUtcQRTF4d8Jj+VhHSxkEQuLsEUKK0nhTBFTmLSSUhBCMCAWsmgIwWrBLk0akfwLCaSQKBJmtrIIISwpRFKIhViETScphGMzysMtvOVwvpm5d0bGNCuGWAOPgYdl6S8wSDn9b+bUhDHEKWAdeAFMANg+l/TV9ofcz6cjMIbYBvaBMds7QCqZ58CmpBNgPuV0DvAAIMyFGugWtJr7eTv38xEwkPRPErY7QDeG2LqFkjrAgu0dSd/KDVqSNmxvAZ8lfbS9AHRuYemnLWkv5XRVBrQMbAI/gTXgEzAJtJuwBVS2L2OIle03QA/4Lmkl5XQBXEqqbFcAVYFDYChpFngiqWf7l6TXKaezMt2Zkhk24THwG+jZriX9AFZvUAyxLbRke2D75O5zPAO+ADXwEtizjaRHwDvbTyUtppwOmicCHAJvbXcl9YA1SQDjtseA97YPRz7ATcUQp2y/kjRdevsjaTfldNrMjcDGBjXA3T96L7yvrgFzP69+0Ao/HAAAAABJRU5ErkJggg==);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='14' height='14'%3E%3Cpath d='M12 20.016q3.281 0 5.648-2.367t2.367-5.648q0-2.672-1.734-4.922l-11.203 11.203q2.25 1.734 4.922 1.734zM3.984 12q0 2.672 1.734 4.922l11.203-11.203q-2.25-1.734-4.922-1.734-3.281 0-5.648 2.367t-2.367 5.648zM12 2.016q4.125 0 7.055 2.93t2.93 7.055-2.93 7.055-7.055 2.93-7.055-2.93-2.93-7.055 2.93-7.055 7.055-2.93z' fill='%23000'%3E%3C/path%3E%3C/svg%3E\")}\r\n\r\n\r\n.sp-original-input-container{\r\n    height: 100%;\r\n}\r\n\r\n.sp-colorize{\r\n    border-radius: 4px 0 0 4px !important;\r\n}";
+  n(css$v,{});
 
   !function (e) {
 
@@ -2122,7 +2122,7 @@
       value: function nodeToCanvas() {
         var _this = this;
 
-        html2canvas($vnjs.$store.$screen.get(0)).then(function (canvas) {
+        html2canvas(vnjs.store.screen.get(0)).then(function (canvas) {
           //this.sendToDiscord(canvas.toDataURL())
           canvas.toBlob(function (blob) {
             _this.sendToDiscord(blob); // this.saveImageToServer(blob)
@@ -2150,7 +2150,7 @@
           console.log(r);
         })["catch"](function (err) {
           console.error(err);
-          $vnjs.emit("error", {
+          vnjs.emit("error", {
             ru: "\u0421\u0435\u0440\u0432\u0435\u0440 \u043D\u0435 \u043E\u0442\u0432\u0435\u0447\u0430\u0435\u0442 <font color=\"deepskyblue\">".concat(_this2.HOST, "</font>"),
             en: "Server not responding <font color=\"deepskyblue\">".concat(_this2.HOST, "</font>")
           });
@@ -2183,7 +2183,7 @@
         };
         fetch(this.WEB_HOOK, params).then(function (res) {})["catch"](function (err) {
           console.error(err);
-          $vnjs.emit("error", {
+          vnjs.emit("error", {
             ru: "\u041D\u0435\u0442 \u0434\u043E\u0441\u0442\u0443\u043F\u0430 \u043A webhook <font color=\"deepskyblue\">".concat(_this3.WEB_HOOK, "</font>"),
             en: "No access to <font color=\"deepskyblue\">".concat(_this3.WEB_HOOK, "</font>")
           });
@@ -2330,7 +2330,7 @@
     }); // _vnjs.TREE.$root.characters[0]
 
     $(".debug__delay").on("change", function () {
-      _vnjs.$store["dialog-box"].delay = $(this).val();
+      _vnjs.store["dialog-box"].delay = $(this).val();
     });
     $("#debug__color-picker").on("change", function () {
       var value = $(this).val();
@@ -2467,16 +2467,16 @@
     this.on("vnjson.data", outputDataPlugin);
   }
 
-  var css$t = "#loader {\n  background: black;\n  z-index: 9999;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  color: white;\n  display: none;\n  align-items: center;\n  justify-content: center;\n}\n\n.loader {\n  color: wheat;\n  font-family: Consolas, Menlo, Monaco, monospace;\n  font-weight: bold;\n  font-size: 100px;\n  opacity: 0.8;\n}\n.loader span {\n  display: inline-block;\n  animation: pulse 0.4s alternate infinite ease-in-out;\n}\n.loader span:nth-child(2) {\n  animation-delay: 0.4s;\n}\n\n@keyframes pulse {\n  to {\n    transform: scale(0.8);\n    opacity: 0.5; \n  } \n}\n";
-  n(css$t,{});
+  var css$u = "#loader {\n  background: black;\n  z-index: 9999;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  color: white;\n  display: none;\n  align-items: center;\n  justify-content: center;\n}\n\n.loader {\n  color: wheat;\n  font-family: Consolas, Menlo, Monaco, monospace;\n  font-weight: bold;\n  font-size: 100px;\n  opacity: 0.8;\n}\n.loader span {\n  display: inline-block;\n  animation: pulse 0.4s alternate infinite ease-in-out;\n}\n.loader span:nth-child(2) {\n  animation-delay: 0.4s;\n}\n\n@keyframes pulse {\n  to {\n    transform: scale(0.8);\n    opacity: 0.5; \n  } \n}\n";
+  n(css$u,{});
 
   var tpl$d = "<div id=\"loader\">\n    <div class=\"loader\"><span>{</span><span>}</span></div>\n</div>";
 
-  var $tpl$c = $(tpl$d);
+  var $tpl$d = $(tpl$d);
   function assetsLoader () {
     var _this = this;
 
-    $("#screen").append($tpl$c);
+    $("#screen").append($tpl$d);
 
     var getAssets = function getAssets() {
       _this.emit("preload");
@@ -2501,7 +2501,7 @@
               return _this.emit("audioEnd", asset.name);
             });
             sound.on("load", function (_) {
-              _this.$store[asset.name] = sound;
+              vnjs.store[asset.name] = sound;
 
               _this.emit("load", asset);
 
@@ -2530,7 +2530,7 @@
                   img.src = asset.url;
 
                   img.onerror = function () {
-                    _this.$store[asset.name] = img;
+                    vnjs.store[asset.name] = img;
 
                     _this.emit("load", asset);
 
@@ -2539,14 +2539,14 @@
                   };
 
                   img.onload = function () {
-                    _this.$store[asset.name] = img;
+                    vnjs.store[asset.name] = img;
 
                     _this.emit("load", asset);
 
                     load();
                   };
                 } else {
-                  _this.$store[asset.name] = asset.url;
+                  vnjs.store[asset.name] = asset.url;
                   load();
                 }
               } else {
@@ -2605,20 +2605,20 @@
      */
 
     this.on("preload", function () {
-      $tpl$c.css("display", "flex");
+      $tpl$d.css("display", "flex");
     });
     this.on("load", function () {});
     this.on("postload", function () {
-      $tpl$c.fadeOut();
+      $tpl$d.fadeOut();
     });
   }
 
   function screen () {
-    this.$store.$screen = $("#screen");
+    this.store.screen = $("#screen");
   }
 
-  var css$s = ".dialog-box {\n  z-index: 1000;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  line-height: 32px;\n  font-size: 22px;\n  height: 200px;\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: none;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.dialog-box__name {\n  color: wheat;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.dialog-box__reply {\n  color: wheat;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.dialog-box__reply-end-point{\n  display: inline-block;\n}\n.dialog-box__reply-end-point::before{\n  content: '';\n  position: absolute;\n  left: 10px;\n  width: 7px;\n  height: 7px;\n  background-color: silver;\n  opacity: 0.7;\n  animation-duration: 0.7s;\n  animation-name: end-point;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}\n@keyframes end-point {\n  from {\n    top: -10px;\n    opacity: 0.1;\n  }\n  to {\n    top: -20px;\n    opacity: 0.7;\n  }\n}\n\n.dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.dialog-box__avatar{\n  margin-top: 15px;\n  min-width: 150px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  display: none;\n}\n.dialog-box__avatar--show{\n  display: block;\n}\n\n\n.dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n  min-width: 75%;\n}\n";
-  n(css$s,{});
+  var css$t = ".dialog-box {\n  z-index: 1000;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  line-height: 32px;\n  font-size: 22px;\n  height: 200px;\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: none;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.dialog-box__name {\n  color: wheat;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.dialog-box__reply {\n  color: wheat;\n  padding-left: 10px;\n  width: 100%; \n}\n\n.dialog-box__reply-end-point{\n  display: inline-block;\n}\n.dialog-box__reply-end-point::before{\n  content: '';\n  position: absolute;\n  left: 10px;\n  width: 7px;\n  height: 7px;\n  background-color: silver;\n  opacity: 0.7;\n  animation-duration: 0.7s;\n  animation-name: end-point;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}\n@keyframes end-point {\n  from {\n    top: -10px;\n    opacity: 0.1;\n  }\n  to {\n    top: -20px;\n    opacity: 0.7;\n  }\n}\n\n.dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.dialog-box__avatar{\n  margin-top: 15px;\n  min-width: 150px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  display: none;\n}\n.dialog-box__avatar--show{\n  display: block;\n}\n\n\n.dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n  min-width: 75%;\n}\n";
+  n(css$t,{});
 
   var tpl$c = "<div class=\"dialog-box component\">\n  <div class=\"dialog-box__container\">\n        <div class=\"dialog-box__avatar\"></div>\n        <div class=\"dialog-box__reply-wrapper\">\n          <div class=\"dialog-box__name\"></div>\n          <div class=\"dialog-box__reply\"></div>\n        </div>\n  </div>\n</div>";
 
@@ -2639,7 +2639,7 @@
 
       _defineProperty(this, "MODE", "classic");
 
-      this.$vnjs = param.$vnjs;
+      this.vnjs = param.vnjs;
       /*Tags*/
 
       this.dialogBoxTag = document.querySelector(param.dialogBoxSelector);
@@ -2692,17 +2692,17 @@
         }
 
         if (this.MODE === "mode-fullscreen") {
-          this.dialogBoxTag.style.height = this.$vnjs.config.height + "px";
+          this.dialogBoxTag.style.height = this.vnjs.config.height + "px";
           this.replyContaiterTag.style["padding-right"] = 10 + "px";
         }
 
         this.setImage();
-        this.$vnjs.emit("dialog-box.mode", this.MODE);
+        this.vnjs.emit("dialog-box.mode", this.MODE);
       }
     }, {
       key: "setImage",
       value: function setImage() {
-        var url = this.$vnjs.getAssetByName(this.$vnjs["package"]["dialog-box"][this.MODE]).url;
+        var url = this.vnjs.getAssetByName(this.vnjs["package"]["dialog-box"][this.MODE]).url;
         this.dialogBoxTag.style["background-image"] = "url(".concat(url, ")");
       }
     }, {
@@ -2720,7 +2720,7 @@
       value: function print(character) {
         var reply = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
         var append = arguments.length > 2 ? arguments[2] : undefined;
-        this.$vnjs.emit("dialog-box.print");
+        this.vnjs.emit("dialog-box.print");
         this.reset();
         this.character = character;
 
@@ -2774,7 +2774,7 @@
          * Если есть, то отображаем его
          */
         if (this.character.avatar) {
-          this.characterAvatarTag.style.backgroundImage = "url('".concat(this.$vnjs.getAssetByName(this.character.avatar).url, "')");
+          this.characterAvatarTag.style.backgroundImage = "url('".concat(this.vnjs.getAssetByName(this.character.avatar).url, "')");
           this.characterAvatarTag.classList.add("dialog-box__avatar--show");
           this.replyWrapperTag.style.width = "84.5%";
         } else {
@@ -2823,7 +2823,7 @@
 
             var cid = id.replace("@", "").trim(); // получаем персонажа по id
 
-            var character = this.$vnjs.getCharacterById(cid);
+            var character = this.vnjs.getCharacterById(cid);
 
             if (character) {
               // заменяем ссылку на персонажа именем персонажа
@@ -2846,7 +2846,7 @@
         if (!variables) return _newReply;
         variables.forEach(function (varItem) {
           var dataKey = varItem.replaceAll('{{', '').replaceAll('}}', '').trim();
-          _newReply = _newReply.replaceAll(varItem, $vnjs.state.data[dataKey] || '');
+          _newReply = _newReply.replaceAll(varItem, vnjs.state.data[dataKey] || '');
         });
         return _newReply;
       }
@@ -2910,7 +2910,7 @@
 
         this.interval = setInterval(function () {
           if (letters.length > 0) {
-            _this.$vnjs.emit("dialog-box:letter", letters[_this.index].innerHTML);
+            _this.vnjs.emit("dialog-box:letter", letters[_this.index].innerHTML);
 
             letters[_this.index].style.opacity = 1;
             _this.index++;
@@ -2929,7 +2929,7 @@
         }
 
         this.reset();
-        this.$vnjs.emit("dialog-box:endOutputReply");
+        this.vnjs.emit("dialog-box:endOutputReply");
       }
     }, {
       key: "addEndPoint",
@@ -3005,7 +3005,7 @@
     var _this = this;
 
     var $tpl = $(tpl$c);
-    this.$store.$screen.append($tpl); // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
+    this.store.screen.append($tpl); // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
 
     $tpl.find(".dialog-box__reply-wrapper").on("mousedown", function (e) {
       _this.emit("dialog-box.click");
@@ -3017,7 +3017,7 @@
      */
 
     var dBox = new DialogBox({
-      $vnjs: $vnjs,
+      vnjs: vnjs,
       delay: 0,
       alpha: 0,
       endPoint: false,
@@ -3030,7 +3030,7 @@
       classNameLetter: "dialog-box__letter",
       classNameEndPoint: "dialog-box__reply-end-point"
     });
-    this.$store["dialog-box"] = dBox;
+    vnjs.store["dialog-box"] = dBox;
     /**
      * DELAY
      */
@@ -3072,7 +3072,7 @@
               break;
 
             default:
-              $vnjs.emit("error", {
+              vnjs.emit("error", {
                 ru: "\u041D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440 <font color=\"deepskyblue\">".concat(key, "</font>"),
                 en: "Invalid parametr <font color=\"deepskyblue\">".concat(key, "</font>")
               }
@@ -3169,41 +3169,41 @@
     });
   }
 
-  var css$r = ".vnjson__hands {\n    position: absolute;\n    opacity: 0.8;\n    top: unset;\n    right: 0;\n    bottom: 10px;\n    display: none; \n    height: 185px;\n  }\n.vnjson__hands .vnjson__hand {\n    width: 95px;\n    height: 95px;\n    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAGZmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLWMwMDIgNzkuMTY0NDYwLCAyMDIwLzA1LzEyLTE2OjA0OjE3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIxLTExLTA1VDEyOjM5OjM0KzAzOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDIxLTExLTA1VDEyOjM5OjM0KzAzOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMS0xMS0wNVQxMjozOTozNCswMzowMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo0ZDZhODRkYi1kYWE5LTE3NDYtOWYxZS1iMjE4ODRiZDRmNTkiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDphMmY2NzgyMy03MTY2LTRhNGYtOGMyMC04N2FlNzQ5YzJmZTMiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1MmI1MTYxMC1kMjQ0LTkzNGYtYjBmNS1jMjk1ZjJlNzY5OTQiIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIGRjOmZvcm1hdD0iaW1hZ2UvcG5nIj4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iY3JlYXRlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo1MmI1MTYxMC1kMjQ0LTkzNGYtYjBmNS1jMjk1ZjJlNzY5OTQiIHN0RXZ0OndoZW49IjIwMjEtMTEtMDVUMTI6Mzk6MzQrMDM6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMS4yIChXaW5kb3dzKSIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6NGQ2YTg0ZGItZGFhOS0xNzQ2LTlmMWUtYjIxODg0YmQ0ZjU5IiBzdEV2dDp3aGVuPSIyMDIxLTExLTA1VDEyOjM5OjM0KzAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDxwaG90b3Nob3A6RG9jdW1lbnRBbmNlc3RvcnM+IDxyZGY6QmFnPiA8cmRmOmxpPmFkb2JlOmRvY2lkOnBob3Rvc2hvcDoyZWIwNzk3Mi1hMTdlLTA0NGYtYWIxYi04MDExN2JmYWYzODM8L3JkZjpsaT4gPC9yZGY6QmFnPiA8L3Bob3Rvc2hvcDpEb2N1bWVudEFuY2VzdG9ycz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6BgqWgAAAF1klEQVR4nOVb247TMBA9YzvOZcWyVYWQeOEBxHfzA7zwzCfwD0gIgQQS0E1308Q3Hrr2Ote2CFiSHqlSktpJ5oxnMh57yDmHcwZ76Bd4aJw9ASI+efPmjcvzHF++fMHV1RX8sZQSQtw35Zxju91is9mAcw4iAgAYY7BarXBxcQHnHL5//46qqsA5B2OHuT7VHKfaExGUUrDWIs9zvH//HsYYEBFev35NgwTc3t7CWou6rlvHl5eXLQKEEFBKIUmSlnDGGGRZhjzP4ZxDmqYwxoBzDs75bwvknAMR9f4P5wQQqPVfrJQkSaC1hlIqXB8kgDEGxhiIqHX89evXlgCcc1RVhZubmyC8cw7GGBhjUJYlnHMoyxK73e4o4aeI8MITUUsAay2IAGcBh+E+ngTfd5IArz0pJd6+fRu03u1krYWUEmmawjmHpmnQNE1o5x+cJEl4aF3X0FqDiFqEGGPCsb/uyfTP5pzDOQchBGQqQz+jNRhjaGqFRjUtxRljsF6vkec5rLXh3pMExMM+TVMwxiCEQJqmrU7OOUgpkSQJAKBpGtR13WPYmwcRYbfbQd+9cOwPrLXhuDua/DXGWCAgzdJAgFZqkgD/foyx000AAKSU2G63+PjxY48AIUQYIUqpoN3u/Twp3iHFgk4REJuBJ4BzDpGI0M8aAyIGrTS00YEAf48XL15gvV4HwQ+agJQyaJaIUBQFPnz4gHfv3mGOWK1WeP78OTabTU+5HqMjwDc81YH9TyAiaK3vnCUNfopbBNzc3EBrjd1uB2stjDEnf5v/Jwghwqg2xqBpmh4JLQJ+/PgBKSWur6+D04htdG5IkgRZlu0d5p1iuyO6Nya8xofsZW7wznRKia0R8OjRI6RpCqVUGP5zNoEYQggkSTJtAo8fP0ZRFKiqahEExM58jIBRE3DOwdl5ExDDK7MrT2sEbDabMBHK8gwyu4/25o6jCNhut6jrGlVVIU1TyLQ9DZ4zxghomQDnHEKIEHpiGaN/Ei0C9gwBzlk0dY26rqGUeqh3+6PwUe5BJwjsidBaQysFY/Q/ecG/jbHJ0GieaqzD0tAjYC8vdX7LwEkj4Fxw9gQs4yN/BBhjrRR+uP5A7/PPcfJX4FzQMgHPjk9FH7ui878i1vpYTnC+0v0hLJ6AQ8Fc7yvgG1trYa2ddT4gyzIURRGSO03THM4JLgmxLxvDogkwxkApBaXU6EhedCB0fX2Nb9++oSzLsDw2mRCJMZZBmROOkWE0KbqEOMCHv/GyexctE/DLYcD9XoE5J0WllOErQESDCyQHTWDuONkEloqj9gcc02FecOG3nw9wMHZGOcFjZBgcAT4r7Le+zBXeqd/vc9in/WO0CPDOwm+Umvu6QKxE54bnNYv2AXF+wzkbtsrEWHQo7CdDRAQpUwy5vIUTwMC5ABGDlBk474u7+Djg3u5d53yPnhNcSgR4Dwei/WbOeDuvxyABS4RSCnVdH7c6vET4zPBZZYXjT/kZL4xMr3CPEuAzwnOPBGObHwrqek7QR0tXV1cQQuDVq1d49uzZXcUGcGi/wH6YhbPJh8fPJSKkaRoSF3ESo7sVn4hCkYZzDhcXFyiKIrT1iY+nT5+iLEsAe4Wqu/qCUQL8yzDGQpHEer3Gy5cvAwFtQfpC/S4BjDEURdETeqjQgTGGqqpwe3sL5xxWqxUuLy+DkL59WZao6xpCiOO2yeV5DiFEYJExBqVUqAH62wTEWvdC+NR2l4DdbhcIEEK0+vn21tqw6y1JEhhjpkfAkydPQqmc1vpuFuXw8+fPAUH3oaYXYKiiq7XlLkK8DT/O03lNMcYg5b42SGsdynHie8cJ28+fP+PTp09B6O7zfNWY7ztKQFwz5Bv7ffbdgqi4AKH7UL/VTko5SEBsp3HRlM/beyJ826qqegT4oi0AYeo+Nspih350xUis1aHvZ3yt/x/gHBvs1yVvqDYoDliGAphuHWE86xuKZON79d51qaHvsTiDQGgaZ0/ALy4XCMLKcyfBAAAAAElFTkSuQmCC);\n    background-size: contain;\n    background-position: center;\n    background-repeat: no-repeat;\n    z-index: 100;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    cursor: pointer;\n}\n.vnjson__hands .vnjson__hand-left {\n    width: 60px;\n    height: 60px;\n    background-size: contain;\n    background-position: center;\n    background-repeat: no-repeat; \n}\n.vnjson__hands .vnjson__hand-right {\n    width: 60px;\n    height: 60px;\n    background-size: contain;\n    background-position: center;\n    background-repeat: no-repeat; \n}\n\n";
-  n(css$r,{});
+  var css$s = ".vnjson__hands {\n    position: absolute;\n    opacity: 0.8;\n    top: unset;\n    right: 0;\n    bottom: 10px;\n    display: none; \n    height: 185px;\n  }\n.vnjson__hands .vnjson__hand {\n    width: 95px;\n    height: 95px;\n    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAGZmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLWMwMDIgNzkuMTY0NDYwLCAyMDIwLzA1LzEyLTE2OjA0OjE3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIxLTExLTA1VDEyOjM5OjM0KzAzOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDIxLTExLTA1VDEyOjM5OjM0KzAzOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMS0xMS0wNVQxMjozOTozNCswMzowMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo0ZDZhODRkYi1kYWE5LTE3NDYtOWYxZS1iMjE4ODRiZDRmNTkiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDphMmY2NzgyMy03MTY2LTRhNGYtOGMyMC04N2FlNzQ5YzJmZTMiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1MmI1MTYxMC1kMjQ0LTkzNGYtYjBmNS1jMjk1ZjJlNzY5OTQiIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIGRjOmZvcm1hdD0iaW1hZ2UvcG5nIj4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iY3JlYXRlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo1MmI1MTYxMC1kMjQ0LTkzNGYtYjBmNS1jMjk1ZjJlNzY5OTQiIHN0RXZ0OndoZW49IjIwMjEtMTEtMDVUMTI6Mzk6MzQrMDM6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMS4yIChXaW5kb3dzKSIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6NGQ2YTg0ZGItZGFhOS0xNzQ2LTlmMWUtYjIxODg0YmQ0ZjU5IiBzdEV2dDp3aGVuPSIyMDIxLTExLTA1VDEyOjM5OjM0KzAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDxwaG90b3Nob3A6RG9jdW1lbnRBbmNlc3RvcnM+IDxyZGY6QmFnPiA8cmRmOmxpPmFkb2JlOmRvY2lkOnBob3Rvc2hvcDoyZWIwNzk3Mi1hMTdlLTA0NGYtYWIxYi04MDExN2JmYWYzODM8L3JkZjpsaT4gPC9yZGY6QmFnPiA8L3Bob3Rvc2hvcDpEb2N1bWVudEFuY2VzdG9ycz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6BgqWgAAAF1klEQVR4nOVb247TMBA9YzvOZcWyVYWQeOEBxHfzA7zwzCfwD0gIgQQS0E1308Q3Hrr2Ote2CFiSHqlSktpJ5oxnMh57yDmHcwZ76Bd4aJw9ASI+efPmjcvzHF++fMHV1RX8sZQSQtw35Zxju91is9mAcw4iAgAYY7BarXBxcQHnHL5//46qqsA5B2OHuT7VHKfaExGUUrDWIs9zvH//HsYYEBFev35NgwTc3t7CWou6rlvHl5eXLQKEEFBKIUmSlnDGGGRZhjzP4ZxDmqYwxoBzDs75bwvknAMR9f4P5wQQqPVfrJQkSaC1hlIqXB8kgDEGxhiIqHX89evXlgCcc1RVhZubmyC8cw7GGBhjUJYlnHMoyxK73e4o4aeI8MITUUsAay2IAGcBh+E+ngTfd5IArz0pJd6+fRu03u1krYWUEmmawjmHpmnQNE1o5x+cJEl4aF3X0FqDiFqEGGPCsb/uyfTP5pzDOQchBGQqQz+jNRhjaGqFRjUtxRljsF6vkec5rLXh3pMExMM+TVMwxiCEQJqmrU7OOUgpkSQJAKBpGtR13WPYmwcRYbfbQd+9cOwPrLXhuDua/DXGWCAgzdJAgFZqkgD/foyx000AAKSU2G63+PjxY48AIUQYIUqpoN3u/Twp3iHFgk4REJuBJ4BzDpGI0M8aAyIGrTS00YEAf48XL15gvV4HwQ+agJQyaJaIUBQFPnz4gHfv3mGOWK1WeP78OTabTU+5HqMjwDc81YH9TyAiaK3vnCUNfopbBNzc3EBrjd1uB2stjDEnf5v/Jwghwqg2xqBpmh4JLQJ+/PgBKSWur6+D04htdG5IkgRZlu0d5p1iuyO6Nya8xofsZW7wznRKia0R8OjRI6RpCqVUGP5zNoEYQggkSTJtAo8fP0ZRFKiqahEExM58jIBRE3DOwdl5ExDDK7MrT2sEbDabMBHK8gwyu4/25o6jCNhut6jrGlVVIU1TyLQ9DZ4zxghomQDnHEKIEHpiGaN/Ei0C9gwBzlk0dY26rqGUeqh3+6PwUe5BJwjsidBaQysFY/Q/ecG/jbHJ0GieaqzD0tAjYC8vdX7LwEkj4Fxw9gQs4yN/BBhjrRR+uP5A7/PPcfJX4FzQMgHPjk9FH7ui878i1vpYTnC+0v0hLJ6AQ8Fc7yvgG1trYa2ddT4gyzIURRGSO03THM4JLgmxLxvDogkwxkApBaXU6EhedCB0fX2Nb9++oSzLsDw2mRCJMZZBmROOkWE0KbqEOMCHv/GyexctE/DLYcD9XoE5J0WllOErQESDCyQHTWDuONkEloqj9gcc02FecOG3nw9wMHZGOcFjZBgcAT4r7Le+zBXeqd/vc9in/WO0CPDOwm+Umvu6QKxE54bnNYv2AXF+wzkbtsrEWHQo7CdDRAQpUwy5vIUTwMC5ABGDlBk474u7+Djg3u5d53yPnhNcSgR4Dwei/WbOeDuvxyABS4RSCnVdH7c6vET4zPBZZYXjT/kZL4xMr3CPEuAzwnOPBGObHwrqek7QR0tXV1cQQuDVq1d49uzZXcUGcGi/wH6YhbPJh8fPJSKkaRoSF3ESo7sVn4hCkYZzDhcXFyiKIrT1iY+nT5+iLEsAe4Wqu/qCUQL8yzDGQpHEer3Gy5cvAwFtQfpC/S4BjDEURdETeqjQgTGGqqpwe3sL5xxWqxUuLy+DkL59WZao6xpCiOO2yeV5DiFEYJExBqVUqAH62wTEWvdC+NR2l4DdbhcIEEK0+vn21tqw6y1JEhhjpkfAkydPQqmc1vpuFuXw8+fPAUH3oaYXYKiiq7XlLkK8DT/O03lNMcYg5b42SGsdynHie8cJ28+fP+PTp09B6O7zfNWY7ztKQFwz5Bv7ffbdgqi4AKH7UL/VTko5SEBsp3HRlM/beyJ826qqegT4oi0AYeo+Nspih350xUis1aHvZ3yt/x/gHBvs1yVvqDYoDliGAphuHWE86xuKZON79d51qaHvsTiDQGgaZ0/ALy4XCMLKcyfBAAAAAElFTkSuQmCC);\n    background-size: contain;\n    background-position: center;\n    background-repeat: no-repeat;\n    z-index: 100;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    cursor: pointer;\n}\n.vnjson__hands .vnjson__hand-left {\n    width: 60px;\n    height: 60px;\n    background-size: contain;\n    background-position: center;\n    background-repeat: no-repeat; \n}\n.vnjson__hands .vnjson__hand-right {\n    width: 60px;\n    height: 60px;\n    background-size: contain;\n    background-position: center;\n    background-repeat: no-repeat; \n}\n\n";
+  n(css$s,{});
 
   var tpl$b = "<div class=\"vnjson__hands component\">\n    <div class=\"vnjson__hand\">\n        <div class=\"vnjson__hand-left\"></div>\n    </div>\n    <div class=\"vnjson__hand\">\n        <div class=\"vnjson__hand-right\"></div>\n    </div>\n</div>";
 
-  var $tpl$b = $(tpl$b);
+  var $tpl$c = $(tpl$b);
   function hands () {
     var _this = this;
-    this.$store.$screen.append($tpl$b);
+    this.store.screen.append($tpl$c);
     var isShow = false;
     this.on('hand-left', function (id) {
       if (id) {
         isShow = true;
-        $tpl$b.show();
-        $tpl$b.find('.vnjson__hand-left').css('background-image', "url('".concat(_this.getAssetByName(id).url, "')"));
+        $tpl$c.show();
+        $tpl$c.find('.vnjson__hand-left').css('background-image', "url('".concat(_this.getAssetByName(id).url, "')"));
       } else {
-        $tpl$b.find('.vnjson__hand-left').css('background-image', "unset");
+        $tpl$c.find('.vnjson__hand-left').css('background-image', "unset");
       }
     });
     this.on('hand-right', function (id) {
       if (id) {
         isShow = true;
-        $tpl$b.show();
-        $tpl$b.find('.vnjson__hand-right').css('background-image', "url('".concat(_this.getAssetByName(id).url, "')"));
+        $tpl$c.show();
+        $tpl$c.find('.vnjson__hand-right').css('background-image', "url('".concat(_this.getAssetByName(id).url, "')"));
       } else {
-        $tpl$b.find('.vnjson__hand-right').css('background-image', "unset");
+        $tpl$c.find('.vnjson__hand-right').css('background-image', "unset");
       }
     });
     this.on('hands', function (data) {
       if (data) {
         isShow = true;
-        $tpl$b.show();
+        $tpl$c.show();
       } else {
         isShow = false;
-        $tpl$b.hide();
+        $tpl$c.hide();
       }
     });
     var replyWrapper = $('.dialog-box__reply-wrapper');
@@ -3258,8 +3258,8 @@
     _createClass(AudioControl, [{
       key: "isAudioExist",
       value: function isAudioExist(name) {
-        if (!$vnjs.$store[name] && !$vnjs.$store.sprites[name]) {
-          $vnjs.emit('error', 'assetNotFound', name);
+        if (!vnjs.store[name] && !vnjs.store.sprites[name]) {
+          vnjs.emit('error', 'assetNotFound', name);
           return false;
         }
 
@@ -3280,20 +3280,20 @@
          */
         else if (typeof data === 'string') {
           if (!this.isAudioExist(data)) return;
-          var soundName = $vnjs.$store.sprites[data];
+          var soundName = vnjs.store.sprites[data];
 
           if (soundName) {
-            $vnjs.$store[soundName].stop();
-            $vnjs.$store[soundName].rate(1);
-            $vnjs.$store[soundName].loop(false);
-            $vnjs.$store[soundName].volume(1);
-            $vnjs.$store[soundName].play(data);
+            vnjs.store[soundName].stop();
+            vnjs.store[soundName].rate(1);
+            vnjs.store[soundName].loop(false);
+            vnjs.store[soundName].volume(1);
+            vnjs.store[soundName].play(data);
           } else {
-            $vnjs.$store[data].stop();
-            $vnjs.$store[data].rate(1);
-            $vnjs.$store[data].loop(false);
-            $vnjs.$store[data].volume(1);
-            $vnjs.$store[data].play();
+            vnjs.store[data].stop();
+            vnjs.store[data].rate(1);
+            vnjs.store[data].loop(false);
+            vnjs.store[data].volume(1);
+            vnjs.store[data].play();
           }
         }
         /**
@@ -3301,13 +3301,13 @@
          */
         else if (_typeof(data) === 'object') {
           if (!this.isAudioExist(data.name)) return;
-          var _soundName = $vnjs.$store.sprites[data.name];
+          var _soundName = vnjs.store.sprites[data.name];
           var sound = null;
 
           if (_soundName) {
-            sound = $vnjs.$store[_soundName];
+            sound = vnjs.store[_soundName];
           } else {
-            sound = $vnjs.$store[data.name];
+            sound = vnjs.store[data.name];
           }
 
           sound.stop(); //sound.off('play')
@@ -3344,7 +3344,7 @@
     }, {
       key: "stopAll",
       value: function stopAll() {
-        Object.values($vnjs.$store).map(function (asset) {
+        Object.values(vnjs.store).map(function (asset) {
           if (asset.hasOwnProperty("_muted")) {
             asset.stop();
           }
@@ -3365,7 +3365,7 @@
             en: "Invalid time <font color=\"deepskyblue\">".concat(time, "</fon>"),
             ru: "\u041D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440 \u0432\u0440\u0435\u043C\u0435\u043D\u0438 <font color=\"deepskyblue\">".concat(time, "</fon>")
           };
-          $vnjs.emit('error', errorBody);
+          vnjs.emit('error', errorBody);
           return 0;
         }
 
@@ -3380,7 +3380,7 @@
             en: "Invalid time <font color=\"deepskyblue\">".concat(time, "</fon>"),
             ru: "\u041D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440 \u0432\u0440\u0435\u043C\u0435\u043D\u0438 <font color=\"deepskyblue\">".concat(time, "</fon>")
           };
-          $vnjs.emit('error', _errorBody);
+          vnjs.emit('error', _errorBody);
           return 0;
         }
 
@@ -3393,9 +3393,9 @@
           var startTime = this.formatTime(data.sprite[spriteID][0]);
           var endTime = this.formatTime(data.sprite[spriteID][1]);
           var timeRange = [startTime, endTime];
-          $vnjs.$store.sprites[spriteID] = data.name;
-          $vnjs.$store[data.name]._sprite[spriteID] = timeRange;
-          $vnjs.$store[data.name].volume(data.volume || 1);
+          vnjs.store.sprites[spriteID] = data.name;
+          vnjs.store[data.name]._sprite[spriteID] = timeRange;
+          vnjs.store[data.name].volume(data.volume || 1);
         }
       }
     }]);
@@ -3406,7 +3406,7 @@
   function audio () {
     var _this = this;
 
-    $vnjs.$store.sprites = {};
+    vnjs.store.sprites = {};
     var audioControl = new AudioControl();
     this.on('audio', function (data) {
       return audioControl.handler(data);
@@ -3560,17 +3560,17 @@
 
         if (label === 'next') {
           setTimeout(function () {
-            $vnjs.exec({
+            vnjs.exec({
               next: true
             });
           }, 0);
         } else {
           if (this.itemClickParam) {
-            $vnjs.exec(this.itemClickParam);
+            vnjs.exec(this.itemClickParam);
           }
 
           setTimeout(function () {
-            $vnjs.exec({
+            vnjs.exec({
               jump: label
             });
           }, 0);
@@ -3591,12 +3591,12 @@
     return Menu;
   }();
 
-  var css$q = ".vnjson__menu-menu {\n  width: 80%;\n  padding: 10px;\n  background: rgba(0,0,0,0.5);\n  flex-direction: column;\n  left: 50%;\n  transform: translateX(-50%);\n  top: 200px;\n  display: none;\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);\n  overflow: auto;\n  max-height: 95%;\n  color: wheat;\n  border-radius: 4px;\n}\n  .vnjson__menu-menu .vnjson__menu-quetion {\n    background: rgba(70, 70, 70, 0.7);\n    width: 100%;\n    min-height: 40px;\n    font-size: 16px;\n    display: flex;\n    align-items: center;\n    padding: 10px 20px;\n    transition: 0.1s;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    margin-bottom: 10px;\n    border-radius: 4px;\n  }\n  .vnjson__menu-menu .vnjson__menu-item {\n    margin-bottom: 10px;\n    background: rgba(120, 120, 120, 0.7);\n    width: 100%;\n    min-height: 40px;\n    font-size: 16px;\n    display: flex;\n    align-items: center;\n    transition: 0.1s;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis; \n    border-radius: 4px;\n}\n    .vnjson__menu-menu .vnjson__menu-item span {\n      padding: 10px 20px;\n      display: flex;\n      flex: 1; }\n    .vnjson__menu-menu .vnjson__menu-item:hover {\n      cursor: pointer;\n      background: rgba(200, 100, 100, 0.8); }\n    .vnjson__menu-menu .vnjson__menu-item span {\n      white-space: nowrap;\n      overflow: hidden;\n      text-overflow: ellipsis; }\n.vnjson__menu-menu .vnjson__menu-item:last-child{\n  margin-bottom: 0;\n}\n\n\n.vnjson__menu-menu .menu-item__icon{\n  width: 32px;\n  height: 32px;\n  margin-left: 15px;\n}\n.vnjson__menu-menu .menu-item__icon+span{\n  /*padding-left: 20px;*/\n}";
-  n(css$q,{});
+  var css$r = ".vnjson__menu-menu {\n  width: 80%;\n  padding: 10px;\n  background: rgba(0,0,0,0.5);\n  flex-direction: column;\n  left: 50%;\n  transform: translateX(-50%);\n  top: 200px;\n  display: none;\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);\n  overflow: auto;\n  max-height: 95%;\n  color: wheat;\n  border-radius: 4px;\n}\n  .vnjson__menu-menu .vnjson__menu-quetion {\n    background: rgba(70, 70, 70, 0.7);\n    width: 100%;\n    min-height: 40px;\n    font-size: 16px;\n    display: flex;\n    align-items: center;\n    padding: 10px 20px;\n    transition: 0.1s;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    margin-bottom: 10px;\n    border-radius: 4px;\n  }\n  .vnjson__menu-menu .vnjson__menu-item {\n    margin-bottom: 10px;\n    background: rgba(120, 120, 120, 0.7);\n    width: 100%;\n    min-height: 40px;\n    font-size: 16px;\n    display: flex;\n    align-items: center;\n    transition: 0.1s;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis; \n    border-radius: 4px;\n}\n    .vnjson__menu-menu .vnjson__menu-item span {\n      padding: 10px 20px;\n      display: flex;\n      flex: 1; }\n    .vnjson__menu-menu .vnjson__menu-item:hover {\n      cursor: pointer;\n      background: rgba(200, 100, 100, 0.8); }\n    .vnjson__menu-menu .vnjson__menu-item span {\n      white-space: nowrap;\n      overflow: hidden;\n      text-overflow: ellipsis; }\n.vnjson__menu-menu .vnjson__menu-item:last-child{\n  margin-bottom: 0;\n}\n\n\n.vnjson__menu-menu .menu-item__icon{\n  width: 32px;\n  height: 32px;\n  margin-left: 15px;\n}\n.vnjson__menu-menu .menu-item__icon+span{\n  /*padding-left: 20px;*/\n}";
+  n(css$r,{});
 
   var tpl$a = "<div class=\"vnjson__menu-menu component\"></div>";
 
-  var $tpl$a = $(tpl$a);
+  var $tpl$b = $(tpl$a);
   function menu () {
     var _this = this;
 
@@ -3604,16 +3604,16 @@
       itemQuetionClassName: 'vnjson__menu-quetion',
       itemClassName: 'vnjson__menu-item'
     };
-    var menu = new Menu$1($tpl$a, this, config);
+    var menu = new Menu$1($tpl$b, this, config);
     /**
      * Навешиваем click на пункты меню
      */
 
-    $tpl$a.on("click", ".vnjson__menu-item", function () {
+    $tpl$b.on("click", ".vnjson__menu-item", function () {
       var label = $(this).data('label');
       menu.clickItemHundler(label);
     });
-    this.$store.$screen.append($tpl$a);
+    this.store.screen.append($tpl$b);
     /**
      * аудио
      */
@@ -3796,17 +3796,17 @@
 
         if (label === 'next') {
           setTimeout(function () {
-            $vnjs.exec({
+            vnjs.exec({
               next: true
             });
           }, 0);
         } else {
           if (this.itemClickParam) {
-            $vnjs.exec(this.itemClickParam);
+            vnjs.exec(this.itemClickParam);
           }
 
           setTimeout(function () {
-            $vnjs.exec({
+            vnjs.exec({
               jump: label
             });
           }, 0);
@@ -3827,12 +3827,12 @@
     return Menu;
   }();
 
-  var css$p = ".main-menu {\n  width: 50%;\n  padding: 10px;\n  background-color: transparent;\n  left: 50%;\n  transform: translateX(-50%);\n  flex-direction: column;\n  display: none;\n  /*box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);*/\n  overflow: auto;\n  max-height: 95%;\n  top: 200px;\n  color: #34d1a2;\n  border-radius: 4px;\n}\n  .main-menu__item--quetion {\n    background: rgba(70, 70, 70, 0.7);\n    width: 100%;\n    min-height: 50px;\n    font-size: 22px;\n    display: flex;\n    align-items: center;\n    padding: 10px 20px;\n    color: white;\n    transition: 0.1s;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    margin-bottom: 7px;\n    box-shadow: 0 0 8px rgba(0,0,0,0.5);\n    border-radius: 4px;\n  }\n  .main-menu__item {\n    padding: 10px;\n    margin-bottom: 15px;\n    background-color: #333;\n    width: 100%;\n    min-height: 50px;\n    font-size: 22px;\n    display: flex;\n    align-items: center;\n    transition: 0.1s;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    box-shadow: 0 0 8px rgba(0,0,0,0.7);\n    border-radius: 4px;\n\n  }\n\n.main-menu__item:hover {\n  cursor: pointer;\n  color: darkcyan;\n  background: rgba(0, 0, 0, 0.7); \n}\n\n.main-menu__item:last-child{\n  margin-bottom: 0;\n}\n\n.main-menu__item.disabled{\n  opacity: 0.6;\n}\n.main-menu__item-wrapper{\n  padding-left: 15px;\n}\n.main-menu__item-text{\n \n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n.main-menu .menu-item__icon{\n  width: 80px;\n  height: 80px;\n}\n\n.main-menu__item-info{\n  font-size: 16px;\n  white-space: break-spaces;\n  padding-top: 10px;\n  line-height: 18px;\n  color: gray;\n}";
-  n(css$p,{});
+  var css$q = ".main-menu {\n  width: 50%;\n  padding: 10px;\n  background-color: transparent;\n  left: 50%;\n  transform: translateX(-50%);\n  flex-direction: column;\n  display: none;\n  /*box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);*/\n  overflow: auto;\n  max-height: 95%;\n  top: 200px;\n  color: #34d1a2;\n  border-radius: 4px;\n}\n  .main-menu__item--quetion {\n    background: rgba(70, 70, 70, 0.7);\n    width: 100%;\n    min-height: 50px;\n    font-size: 22px;\n    display: flex;\n    align-items: center;\n    padding: 10px 20px;\n    color: white;\n    transition: 0.1s;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    margin-bottom: 7px;\n    box-shadow: 0 0 8px rgba(0,0,0,0.5);\n    border-radius: 4px;\n  }\n  .main-menu__item {\n    padding: 10px;\n    margin-bottom: 15px;\n    background-color: #333;\n    width: 100%;\n    min-height: 50px;\n    font-size: 22px;\n    display: flex;\n    align-items: center;\n    transition: 0.1s;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    box-shadow: 0 0 8px rgba(0,0,0,0.7);\n    border-radius: 4px;\n\n  }\n\n.main-menu__item:hover {\n  cursor: pointer;\n  color: darkcyan;\n  background: rgba(0, 0, 0, 0.7); \n}\n\n.main-menu__item:last-child{\n  margin-bottom: 0;\n}\n\n.main-menu__item.disabled{\n  opacity: 0.6;\n}\n.main-menu__item-wrapper{\n  padding-left: 15px;\n}\n.main-menu__item-text{\n \n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n.main-menu .menu-item__icon{\n  width: 80px;\n  height: 80px;\n}\n\n.main-menu__item-info{\n  font-size: 16px;\n  white-space: break-spaces;\n  padding-top: 10px;\n  line-height: 18px;\n  color: gray;\n}";
+  n(css$q,{});
 
   var tpl$9 = "<div class=\"main-menu component\"></div>";
 
-  var $tpl$9 = $(tpl$9);
+  var $tpl$a = $(tpl$9);
   function mainMenu () {
     var _this = this;
 
@@ -3840,16 +3840,16 @@
       itemQuetionClassName: 'main-menu__item--quetion',
       itemClassName: 'main-menu__item'
     };
-    var menu = new Menu($tpl$9, this, config);
+    var menu = new Menu($tpl$a, this, config);
     /**
      * Навешиваем click на пункты меню
      */
 
-    $tpl$9.on("click", ".main-menu__item", function () {
+    $tpl$a.on("click", ".main-menu__item", function () {
       var label = $(this).data('label');
       menu.clickItemHundler(label);
     });
-    this.$store.$screen.append($tpl$9);
+    this.store.screen.append($tpl$a);
     /**
      * аудио
      */
@@ -3891,11 +3891,11 @@
     });
   }
 
-  var css$o = ".vnjson__term-board {\n  width: 808px;\n  height: 480px;\n  padding: 25px;\n  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAygAAAHgCAYAAABO0EkBAAAACXBIWXMAAAsTAAALEwEAmpwYAAAHM2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLWMwMDIgNzkuMTY0NDYwLCAyMDIwLzA1LzEyLTE2OjA0OjE3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIxLTEwLTE0VDE2OjI1OjM3KzAzOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMi0wMy0yMVQyMToyNToxMSswMzowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMi0wMy0yMVQyMToyNToxMSswMzowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6YjU3NzllYTEtMDk0Zi1hNTQxLWJiZmYtZTY3YTFkZWVjNzdjIiB4bXBNTTpEb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6NmRlYTlhYzAtYWQ5Mi03ZjQzLTk2YWItMGUyZTFkODQ2NWViIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6YTBkYTUwNjItZGM4NC0yMzRkLWExOWYtMDExMmMzOWM3N2FhIj4gPHBob3Rvc2hvcDpEb2N1bWVudEFuY2VzdG9ycz4gPHJkZjpCYWc+IDxyZGY6bGk+YWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOjZkZWE5YWMwLWFkOTItN2Y0My05NmFiLTBlMmUxZDg0NjVlYjwvcmRmOmxpPiA8L3JkZjpCYWc+IDwvcGhvdG9zaG9wOkRvY3VtZW50QW5jZXN0b3JzPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOmEwZGE1MDYyLWRjODQtMjM0ZC1hMTlmLTAxMTJjMzljNzdhYSIgc3RFdnQ6d2hlbj0iMjAyMS0xMC0xNFQxNjoyNTozNyswMzowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIxLjIgKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDphZjBkMjdiMy1jOGJkLTVlNGEtOWRiOC0yMzAyY2E2OTYxZmQiIHN0RXZ0OndoZW49IjIwMjEtMTAtMTRUMTc6NDA6MjMrMDM6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMS4yIChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6YjU3NzllYTEtMDk0Zi1hNTQxLWJiZmYtZTY3YTFkZWVjNzdjIiBzdEV2dDp3aGVuPSIyMDIyLTAzLTIxVDIxOjI1OjExKzAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Hu0bEAAADtNJREFUeJzt3U+LZFcdx+Hfubeq/zmJcaIGoiBRslDI23DhxpVkJQgufQO+B/cuBHHjSiQq0a2CO4ngwj+IYqJBBTUjk5me7q6uvve4mKRN0lEwzq35duZ5VrdvVd1zelcfzrm32pc+/9n+za9+uX75h1erquqDN47q9eOTAgAA2KWvfO2bNbzz5MU0PYy5AAAAj7CXfvLDqqoa7t69U1VVHzjYr9ZaHZ9sHua8AACA97nee63G8fLv73//hcvj1XZ7USebTZ2en1fvvVq7/FhVG6qN693OFgAAeH+7OL/cufXWOKmqWt28ebM2m/Oa53558vxvv7887tvTqt7rLeUCAADwnh2sxnrl1km98trplddWh4cHNc/zv8/0+6Fy9pdfV1XVuH+jqk9VbbzyYQAAgP/Z/li3//56/e7l2/XUk4/X0fr+rfE3j/ZqNU1TtbesjrRxdXm8uvHk/QMrKAAAwIOyGmu9f1g3bmyrqupkO9dqM9X5NF99ildbH1we94s3bpgXJwAAwA5cCZTqvdq4qmHvqNpq/yFMCQAAeFRdDRQAAICHRKAAAAAxBAoAABBDoAAAADEECgAAEEOgAAAAMQQKAAAQQ6AAAAAxBAoAABBDoAAAADEECgAAEGO1xEV7r1qPrdbjUL36EkMAAAAPQatW22mu7dSrtQd//UUC5XBvqD/846Reee2kDtfjEkMAAAAPwel2qmc+fFSf+shRnW3nB379RQJlNbZ6/fSi/vjaaX3waFVH66FalbUUAAC4hlpr1XuvW3eO69bdTT2299H69NOPXZ9AeXOL12MHqxqHVn+6valeVQusAAEAAAvrvVdrrZ775DP17Hq/njrc1mZzXkt8w18kUN60v2p1vJ3rxd/+s6bea2ytmkwBAIBro1ev7Xaq9XqsLz7/hXru2U/Vq7/5Wd155Re1OrjxwMdbNFB6rxpa1Y298TJQAACA62U7VK1XY23OTuvO3bu13W5rGJZ5IPCigfJW4zDWyb3j2mw2i/0zAADAgzPPc+3v79f+4eHOxtxZoFRVTdO0aG0BAAAPzjzPtVrtNBl2GyittRqGQaAAAMA10XZ8m4ZSAAAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYqx2Odg8zzVNU/XedzksAADwHszzXPM873TMnQXK3Oc6PDys9XpdrbVdDQsAALxHvfdarVbV51417uY7/KKB0lqrufe6fXxSF73X3jhWa0OVBRQAALgGWm23U51tzmpvPdbc++KLDYsGyjTNtR7H+swnnq65eg1l5QQAAK6bi2mq1TjWehxrmpbd8rVooByfndXHnvpwff35z9U4DDXteP8aAADw/2t1fxPUNM11fLZZdKxFAqW1qu3U697mojYXvYbVQbVxqGHh2gIAABbQqlqv6sNcbX1YbVxVLfTgq0UC5fR8rk/cPKwnnnu6Dvb36vjll6q15uldAABwzbVhrHlzr9r6YJHrLxIoF1OvJ45W9dHH92uapjq9/dfqVe5AAQCAa673Xm1cV1utF1lFWXSL13a6uP/3+kCcAADA+8Dl9/qFdkf5JXkAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAABgZ9bjUAfrocahVe9XXxcoAADAztw521ZV1dl2qvFdakSgAAAAixtaq6qqjz9xcHnucG+88r7VO0/0zb3aa3ON++tq66sfAAAA+F+NrdXUe51s5//6viuB0vY/UJs+1E9/9ec6fPxDi00QAAB4lLSq6nXr3ra203y5ovJOVwKlquq7P/55VR1U3TpdcIIAAMCj5mA9Xt4g3+v+PSdHb2z1Wo/D1UB54Tvffte9YAAAAA/Cm0/vGlvVxfz2R3m9LVB+8IMX6j+stAAAADxQe2Ork+1cJ9upHtu/v0hyGSg/evF7tRrUCQAAsBvj0Gr9RoPc3UxV9UagfONb33p4swIAAB5J51Ovg/Xbf/mk9Xf7+UYAAICH4F/no41w/cIydwAAAABJRU5ErkJggg==);\n  background-size: contain;\n  background-repeat: no-repeat;\n  background-position: center;\n  position: absolute;\n  top: 5%;\n  left: 50%;\n  transform: translateX(-50%);\n  display: none; }\n  .vnjson__term-board pre {\n    height: 100%;\n    width: 100%;\n    position: relative;\n    margin: 0; }\n    .vnjson__term-board pre code {\n      padding: 25px;\n      font-size: 24px;\n      height: 100%;\n      width: 100%;\n      position: absolute;\n      top: 0;\n      overflow-x: auto;\n      font-family: Minecraft; }\n      .vnjson__term-board pre code img {\n        height: 100%; }\n\n\n\n/* term theme */\n\n.vnjson__term-board pre code{\n  font-size: 18px;\n  line-height: 24px;\n}\n";
-  n(css$o,{});
+  var css$p = ".vnjson__term-board {\n  width: 808px;\n  height: 480px;\n  padding: 25px;\n  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAygAAAHgCAYAAABO0EkBAAAACXBIWXMAAAsTAAALEwEAmpwYAAAHM2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLWMwMDIgNzkuMTY0NDYwLCAyMDIwLzA1LzEyLTE2OjA0OjE3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIxLTEwLTE0VDE2OjI1OjM3KzAzOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMi0wMy0yMVQyMToyNToxMSswMzowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMi0wMy0yMVQyMToyNToxMSswMzowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6YjU3NzllYTEtMDk0Zi1hNTQxLWJiZmYtZTY3YTFkZWVjNzdjIiB4bXBNTTpEb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6NmRlYTlhYzAtYWQ5Mi03ZjQzLTk2YWItMGUyZTFkODQ2NWViIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6YTBkYTUwNjItZGM4NC0yMzRkLWExOWYtMDExMmMzOWM3N2FhIj4gPHBob3Rvc2hvcDpEb2N1bWVudEFuY2VzdG9ycz4gPHJkZjpCYWc+IDxyZGY6bGk+YWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOjZkZWE5YWMwLWFkOTItN2Y0My05NmFiLTBlMmUxZDg0NjVlYjwvcmRmOmxpPiA8L3JkZjpCYWc+IDwvcGhvdG9zaG9wOkRvY3VtZW50QW5jZXN0b3JzPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOmEwZGE1MDYyLWRjODQtMjM0ZC1hMTlmLTAxMTJjMzljNzdhYSIgc3RFdnQ6d2hlbj0iMjAyMS0xMC0xNFQxNjoyNTozNyswMzowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIxLjIgKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDphZjBkMjdiMy1jOGJkLTVlNGEtOWRiOC0yMzAyY2E2OTYxZmQiIHN0RXZ0OndoZW49IjIwMjEtMTAtMTRUMTc6NDA6MjMrMDM6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMS4yIChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6YjU3NzllYTEtMDk0Zi1hNTQxLWJiZmYtZTY3YTFkZWVjNzdjIiBzdEV2dDp3aGVuPSIyMDIyLTAzLTIxVDIxOjI1OjExKzAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Hu0bEAAADtNJREFUeJzt3U+LZFcdx+Hfubeq/zmJcaIGoiBRslDI23DhxpVkJQgufQO+B/cuBHHjSiQq0a2CO4ngwj+IYqJBBTUjk5me7q6uvve4mKRN0lEwzq35duZ5VrdvVd1zelcfzrm32pc+/9n+za9+uX75h1erquqDN47q9eOTAgAA2KWvfO2bNbzz5MU0PYy5AAAAj7CXfvLDqqoa7t69U1VVHzjYr9ZaHZ9sHua8AACA97nee63G8fLv73//hcvj1XZ7USebTZ2en1fvvVq7/FhVG6qN693OFgAAeH+7OL/cufXWOKmqWt28ebM2m/Oa53558vxvv7887tvTqt7rLeUCAADwnh2sxnrl1km98trplddWh4cHNc/zv8/0+6Fy9pdfV1XVuH+jqk9VbbzyYQAAgP/Z/li3//56/e7l2/XUk4/X0fr+rfE3j/ZqNU1TtbesjrRxdXm8uvHk/QMrKAAAwIOyGmu9f1g3bmyrqupkO9dqM9X5NF99ildbH1we94s3bpgXJwAAwA5cCZTqvdq4qmHvqNpq/yFMCQAAeFRdDRQAAICHRKAAAAAxBAoAABBDoAAAADEECgAAEEOgAAAAMQQKAAAQQ6AAAAAxBAoAABBDoAAAADEECgAAEGO1xEV7r1qPrdbjUL36EkMAAAAPQatW22mu7dSrtQd//UUC5XBvqD/846Reee2kDtfjEkMAAAAPwel2qmc+fFSf+shRnW3nB379RQJlNbZ6/fSi/vjaaX3waFVH66FalbUUAAC4hlpr1XuvW3eO69bdTT2299H69NOPXZ9AeXOL12MHqxqHVn+6valeVQusAAEAAAvrvVdrrZ775DP17Hq/njrc1mZzXkt8w18kUN60v2p1vJ3rxd/+s6bea2ytmkwBAIBro1ev7Xaq9XqsLz7/hXru2U/Vq7/5Wd155Re1OrjxwMdbNFB6rxpa1Y298TJQAACA62U7VK1XY23OTuvO3bu13W5rGJZ5IPCigfJW4zDWyb3j2mw2i/0zAADAgzPPc+3v79f+4eHOxtxZoFRVTdO0aG0BAAAPzjzPtVrtNBl2GyittRqGQaAAAMA10XZ8m4ZSAAAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYqx2Odg8zzVNU/XedzksAADwHszzXPM873TMnQXK3Oc6PDys9XpdrbVdDQsAALxHvfdarVbV51417uY7/KKB0lqrufe6fXxSF73X3jhWa0OVBRQAALgGWm23U51tzmpvPdbc++KLDYsGyjTNtR7H+swnnq65eg1l5QQAAK6bi2mq1TjWehxrmpbd8rVooByfndXHnvpwff35z9U4DDXteP8aAADw/2t1fxPUNM11fLZZdKxFAqW1qu3U697mojYXvYbVQbVxqGHh2gIAABbQqlqv6sNcbX1YbVxVLfTgq0UC5fR8rk/cPKwnnnu6Dvb36vjll6q15uldAABwzbVhrHlzr9r6YJHrLxIoF1OvJ45W9dHH92uapjq9/dfqVe5AAQCAa673Xm1cV1utF1lFWXSL13a6uP/3+kCcAADA+8Dl9/qFdkf5JXkAACCGQAEAAGIIFAAAIIZAAQAAYggUAAAghkABAABiCBQAACCGQAEAAGIIFAAAIIZAAQAAYggUAABgZ9bjUAfrocahVe9XXxcoAADAztw521ZV1dl2qvFdakSgAAAAixtaq6qqjz9xcHnucG+88r7VO0/0zb3aa3ON++tq66sfAAAA+F+NrdXUe51s5//6viuB0vY/UJs+1E9/9ec6fPxDi00QAAB4lLSq6nXr3ra203y5ovJOVwKlquq7P/55VR1U3TpdcIIAAMCj5mA9Xt4g3+v+PSdHb2z1Wo/D1UB54Tvffte9YAAAAA/Cm0/vGlvVxfz2R3m9LVB+8IMX6j+stAAAADxQe2Ork+1cJ9upHtu/v0hyGSg/evF7tRrUCQAAsBvj0Gr9RoPc3UxV9UagfONb33p4swIAAB5J51Ovg/Xbf/mk9Xf7+UYAAICH4F/no41w/cIydwAAAABJRU5ErkJggg==);\n  background-size: contain;\n  background-repeat: no-repeat;\n  background-position: center;\n  position: absolute;\n  top: 5%;\n  left: 50%;\n  transform: translateX(-50%);\n  display: none; }\n  .vnjson__term-board pre {\n    height: 100%;\n    width: 100%;\n    position: relative;\n    margin: 0; }\n    .vnjson__term-board pre code {\n      padding: 25px;\n      font-size: 24px;\n      height: 100%;\n      width: 100%;\n      position: absolute;\n      top: 0;\n      overflow-x: auto;\n      font-family: Minecraft; }\n      .vnjson__term-board pre code img {\n        height: 100%; }\n\n\n\n/* term theme */\n\n.vnjson__term-board pre code{\n  font-size: 18px;\n  line-height: 24px;\n}\n";
+  n(css$p,{});
 
-  var css$n = "pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#a9b7c6;background:#282b2e}.hljs-bullet,.hljs-literal,.hljs-number,.hljs-symbol{color:#6897bb}.hljs-deletion,.hljs-keyword,.hljs-selector-tag{color:#cc7832}.hljs-link,.hljs-template-variable,.hljs-variable{color:#629755}.hljs-comment,.hljs-quote{color:grey}.hljs-meta{color:#bbb529}.hljs-addition,.hljs-attribute,.hljs-string{color:#6a8759}.hljs-section,.hljs-title,.hljs-type{color:#ffc66d}.hljs-name,.hljs-selector-class,.hljs-selector-id{color:#e8bf6a}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}";
-  n(css$n,{});
+  var css$o = "pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#a9b7c6;background:#282b2e}.hljs-bullet,.hljs-literal,.hljs-number,.hljs-symbol{color:#6897bb}.hljs-deletion,.hljs-keyword,.hljs-selector-tag{color:#cc7832}.hljs-link,.hljs-template-variable,.hljs-variable{color:#629755}.hljs-comment,.hljs-quote{color:grey}.hljs-meta{color:#bbb529}.hljs-addition,.hljs-attribute,.hljs-string{color:#6a8759}.hljs-section,.hljs-title,.hljs-type{color:#ffc66d}.hljs-name,.hljs-selector-class,.hljs-selector-id{color:#e8bf6a}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}";
+  n(css$o,{});
 
   var tpl$8 = "<div class=\"vnjson__term-board component\">\n    <pre><code></code></pre>\n</div>\n";
 
@@ -3914,7 +3914,7 @@
     var _this = this;
 
     var $tpl = $(tpl$8);
-    this.$store.$screen.append($tpl);
+    this.store.screen.append($tpl);
     this.on("term", function (param) {
       if (param === true) {
         $tpl.fadeIn();
@@ -3970,8 +3970,8 @@
     });
   }
 
-  var css$m = ".vnjson__show-left {\n  position: absolute;\n  left: 50px;\n  bottom: 210px;\n  top: unset;\n  width: 260px;\n  height: 450px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  background-position: center;\n  z-index: 2000 \n}\n\n.vnjson__show-center {\n  position: absolute;\n  left: 50%;\n  transform: translateX(-50%);\n  bottom: 210px;\n  top: unset;\n  width: 260px;\n  height: 450px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  background-position: center;\n  z-index: 2000;\n}\n\n.vnjson__show-right {\n  position: absolute;\n  right: 50px;\n  bottom: 210px;\n  top: unset;\n  width: 260px;\n  height: 450px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  background-position: center;\n  z-index: 2000;\n}\n";
-  n(css$m,{});
+  var css$n = ".vnjson__show-left {\n  position: absolute;\n  left: 50px;\n  bottom: 210px;\n  top: unset;\n  width: 260px;\n  height: 450px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  background-position: center;\n  z-index: 2000 \n}\n\n.vnjson__show-center {\n  position: absolute;\n  left: 50%;\n  transform: translateX(-50%);\n  bottom: 210px;\n  top: unset;\n  width: 260px;\n  height: 450px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  background-position: center;\n  z-index: 2000;\n}\n\n.vnjson__show-right {\n  position: absolute;\n  right: 50px;\n  bottom: 210px;\n  top: unset;\n  width: 260px;\n  height: 450px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  background-position: center;\n  z-index: 2000;\n}\n";
+  n(css$n,{});
 
   function show () {
     var _this = this;
@@ -3980,49 +3980,48 @@
     var $right = $('<div class="vnjson__show-right component"></div>');
     var $center = $('<div class="vnjson__show-center component"></div>');
     var $show = $('<div class="vnjson__show-show component"></div>');
-    this.$store.$screen.append($left);
-    this.$store.$screen.append($right);
-    this.$store.$screen.append($center);
+    this.store.screen.append($left);
+    this.store.screen.append($right);
+    this.store.screen.append($center);
     /*
-    
     .vnjson__show-show.component
-     */
+    */
 
-    this.on('left', function (id) {
+    this.on("left", function (id) {
       if (id) {
         $left.hide();
-        $left.css('background-image', "url('".concat(_this.getAssetByName(id).url, "')")).fadeIn();
+        $left.css("background-image", "url('".concat(_this.getAssetByName(id).url, "')")).fadeIn();
       } else {
         $left.fadeOut();
       }
     });
-    this.on('center', function (id) {
+    this.on("center", function (id) {
       if (id) {
         $center.hide();
-        $center.css('background-image', "url('".concat(_this.getAssetByName(id).url, "')")).fadeIn();
+        $center.css("background-image", "url('".concat(_this.getAssetByName(id).url, "')")).fadeIn();
       } else {
         $center.fadeOut();
       }
     });
-    this.on('right', function (id) {
+    this.on("right", function (id) {
       if (id) {
         $right.hide();
-        $right.css('background-image', "url('".concat(_this.getAssetByName(id).url, "')")).fadeIn();
+        $right.css("background-image", "url('".concat(_this.getAssetByName(id).url, "')")).fadeIn();
       } else {
         $right.fadeOut();
       }
     });
-    this.on('show', function (param) {
+    this.on("show", function (param) {
       if (param) {
-        $show.css('background-image', "url('".concat(_this.getAssetByName(id).url, "')")).css(param.css).fadeIn();
+        $show.css("background-image", "url('".concat(_this.getAssetByName(id).url, "')")).css(param.css).fadeIn();
       } else {
         $show.fadeOut();
       }
     });
   }
 
-  var css$l = ".vnjson__show-auto-left {\n  position: absolute;\n  left: 50px;\n  bottom: 210px;\n  top: unset;\n  z-index: 2000;\n}\n\n.vnjson__show-auto-center {\n  position: absolute;\n  bottom: 210px;\n  top: unset;\n  left: 50%;\n  transform: translateX(-50%);\n  z-index: 2000;\n\n}\n\n.vnjson__show-auto-right {\n  position: absolute;\n  right: 50px;\n  bottom: 210px;\n  top: unset;\n  z-index: 2000;\n\n}\n";
-  n(css$l,{});
+  var css$m = ".vnjson__show-auto-left {\n  position: absolute;\n  left: 50px;\n  bottom: 210px;\n  top: unset;\n  z-index: 2000;\n}\n\n.vnjson__show-auto-center {\n  position: absolute;\n  bottom: 210px;\n  top: unset;\n  left: 50%;\n  transform: translateX(-50%);\n  z-index: 2000;\n\n}\n\n.vnjson__show-auto-right {\n  position: absolute;\n  right: 50px;\n  bottom: 210px;\n  top: unset;\n  z-index: 2000;\n\n}\n";
+  n(css$m,{});
 
   function showAuto () {
     var _this = this;
@@ -4030,9 +4029,9 @@
     var $left = $('<img alt="" src="" class="vnjson__show-auto-left component"/>');
     var $center = $('<img alt="" src="" class="vnjson__show-auto-center component"/>');
     var $right = $('<img alt="" src="" class="vnjson__show-auto-right component"/>');
-    this.$store.$screen.append($left);
-    this.$store.$screen.append($center);
-    this.$store.$screen.append($right);
+    this.store.screen.append($left);
+    this.store.screen.append($center);
+    this.store.screen.append($right);
     /*
     
     
@@ -4097,28 +4096,28 @@
     });
   }
 
+  var css$l = ".vnjson-scene{\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\r\n    z-index: 0;\r\n    width: 100%;\r\n    height: 100%\r\n}";
+  n(css$l,{});
+
+  var $tpl$9 = $('<div class="vnjson-scene component"></div>');
   function scene () {
     var _this = this;
 
+    this.store.screen.append($tpl$9);
     this.on("scene", function (id) {
       if (_typeof(id) === "object") {
-        _this.$store.$screen.css("opacity", 0);
-
-        _this.$store.$screen.css({
+        $tpl$9.css({
           "background-image": "url(".concat(id.url, ")")
         });
-
-        _this.$store.$screen.css("opacity", 1);
+        $tpl$9.fadeIn();
       } else if (typeof id === "string") {
-        _this.$store.$screen.css("opacity", 0);
-
-        _this.$store.$screen.css({
+        $tpl$9.css({
           "background-image": "url('".concat(_this.getAssetByName(id).url, "')")
         });
-
-        _this.$store.$screen.css("opacity", 1);
+        $tpl$9.fadeIn();
       } else {
-        _this.$store.$screen.css({
+        $tpl$9.fadeOut();
+        $tpl$9.css({
           "background-image": "unset"
         });
       }
@@ -4132,7 +4131,7 @@
     var _this = this;
 
     var $table = $('<div class="vnjson__table component"></div>');
-    this.$store.$screen.append($table);
+    this.store.screen.append($table);
     var _tableData = null;
     $table.on('click', '.table__cell', function () {
       var indexRow = $(this).data('row');
@@ -4141,7 +4140,7 @@
       var cell = _tableData[indexRow].row[indexCell][cellType];
 
       if (cell.exec) {
-        $vnjs.exec(cell.exec);
+        vnjs.exec(cell.exec);
       }
     });
     this.on('table', function (tableData) {
@@ -4277,7 +4276,7 @@
           'dialog-box': 'clear'
         });
 
-        Object.values(_this.$store).map(function (asset) {
+        Object.values(vnjs.store).map(function (asset) {
           if (asset.hasOwnProperty("_muted")) {
             asset.stop();
           }
@@ -4300,9 +4299,9 @@
         var data = localStorage.getItem(this.token);
 
         if (data) {
-          $vnjs.state.data = JSON.parse(data);
+          vnjs.state.data = JSON.parse(data);
         } else {
-          $vnjs.state.data = {};
+          vnjs.state.data = {};
         }
       }
     }, {
@@ -4318,9 +4317,9 @@
       key: "clear",
       value: function clear() {
         localStorage.removeItem(this.token);
-        $vnjs.state.data = {
-          score: $vnjs.state.data.score,
-          player: $vnjs.state.data.player
+        vnjs.state.data = {
+          score: vnjs.state.data.score,
+          player: vnjs.state.data.player
         };
       }
     }, {
@@ -4338,14 +4337,14 @@
             this.valueDecrement(key, _val2);
           } else {
             if (isNaN(value)) {
-              $vnjs.state.data[key] = value;
+              vnjs.state.data[key] = value;
             } else {
-              $vnjs.state.data[key] = Number(value);
+              vnjs.state.data[key] = Number(value);
             }
           }
         }
 
-        this.save($vnjs.state.data);
+        this.save(vnjs.state.data);
       }
     }, {
       key: "valueIncrement",
@@ -4356,10 +4355,10 @@
           _val = val;
         }
 
-        if ($vnjs.state.data[key]) {
-          $vnjs.state.data[key] = $vnjs.state.data[key] + _val;
+        if (vnjs.state.data[key]) {
+          vnjs.state.data[key] = vnjs.state.data[key] + _val;
         } else {
-          $vnjs.state.data[key] = _val;
+          vnjs.state.data[key] = _val;
         }
       }
     }, {
@@ -4370,17 +4369,17 @@
         if (isNaN(_val)) {
           _val = val;
 
-          if ($vnjs.state.data[key]) {
-            $vnjs.state.data[key] = $vnjs.state.data[key].replace(_val, '');
+          if (vnjs.state.data[key]) {
+            vnjs.state.data[key] = vnjs.state.data[key].replace(_val, '');
           }
 
           return;
         }
 
-        if ($vnjs.state.data[key]) {
-          $vnjs.state.data[key] = $vnjs.state.data[key] - _val;
+        if (vnjs.state.data[key]) {
+          vnjs.state.data[key] = vnjs.state.data[key] - _val;
         } else {
-          $vnjs.state.data[key] = _val;
+          vnjs.state.data[key] = _val;
         }
       }
     }]);
@@ -4422,42 +4421,42 @@
   var controller = {
     '===': function _(dataValue, value, execData) {
       if (dataValue === value) {
-        $vnjs.exec(execData);
+        vnjs.exec(execData);
       }
     },
     '>': function _(dataValue, value, execData) {
       if (dataValue > value) {
-        $vnjs.exec(execData);
+        vnjs.exec(execData);
       }
     },
     '<': function _(dataValue, value, execData) {
       if (dataValue < value) {
-        $vnjs.exec(execData);
+        vnjs.exec(execData);
       }
     },
     '!==': function _(dataValue, value, execData) {
       if (dataValue !== value) {
-        $vnjs.exec(execData);
+        vnjs.exec(execData);
       }
     },
     '<=': function _(dataValue, value, execData) {
       if (dataValue < value) {
-        $vnjs.exec(execData);
+        vnjs.exec(execData);
       }
     },
     '>=': function _(dataValue, value, execData) {
       if (dataValue >= value) {
-        $vnjs.exec(execData);
+        vnjs.exec(execData);
       }
     },
     '[]': function _(dataValue, value, execData) {
       if (dataValue.includes(value)) {
-        $vnjs.exec(execData);
+        vnjs.exec(execData);
       }
     },
     '][': function _(dataValue, value, execData) {
       if (!dataValue.includes(value)) {
-        $vnjs.exec(execData);
+        vnjs.exec(execData);
       }
     }
   };
@@ -4525,7 +4524,7 @@
           if (controller[this.OPERATOR]) {
             controller[this.OPERATOR](this.dataValue, this.value, execData);
           } else {
-            $vnjs.emit('error', {
+            vnjs.emit('error', {
               ru: "\u041D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u043E\u043F\u0435\u0440\u0430\u0442\u043E\u0440 ".concat(this.OPERATOR),
               en: "Invalid operator ".concat(this.OPERATOR)
             });
@@ -4617,7 +4616,7 @@
     }
 
     var $tpl = $(tpl$7);
-    this.$store.$screen.append($tpl);
+    this.store.screen.append($tpl);
 
     var setScore = function setScore(data) {
       for (var key in data) {
@@ -4661,14 +4660,14 @@
       }
 
       $tpl.css('display', 'flex');
-      var $vnjs = _this;
+      var vnjs = _this;
 
       function clickHundler() {
         var data = $(this).data('score');
         setScore(data);
         $('.vnjson__qa').off("click", clickHundler);
         $('.vnjson__qa').hide();
-        $vnjs.exec({
+        vnjs.exec({
           next: true
         });
       }
@@ -4702,7 +4701,7 @@
     var chessInit = function chessInit() {
       var $tpl = $('<iframe class="chess__vnjson component" src="data/chess/index.html" width="500" height="500"></iframe>');
 
-      _this.$store.$screen.append($tpl);
+      _this.store.screen.append($tpl);
 
       _this.on('chess', function (fen) {
         if (fen) {
@@ -4720,14 +4719,14 @@
 
   var tpl$6 = "<div class=\"vnjson__input component\">\n    <div class=\"vnjson__input-wrapper\">\n        <input type=\"text\">\n        <div class=\"vnjson__input-btn\">\n            <svg style=\"width:60px;height:60px\" viewBox=\"0 0 24 24\">\n                <path fill=\"currentColor\" d=\"M3,19V5A2,2 0 0,1 5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19M17,12L12,7V10H8V14H12V17L17,12Z\"/>\n            </svg>\n        </div>\n    </div>\n  \n</div>";
 
-  var css$h = ".vnjson__input{\n  width: 470px;\n  height: 120px;\n  background-color: rgba(0, 0, 0, 0.7);\n  top: 250px;\n  left: 50%;\n  transform: translateX(-50%);\n  box-shadow: 3px 3px 5px rgba(0,0,0,0.5);\n  border-radius: 4px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  display: none;\n}\n.vnjson__input-wrapper{\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.vnjson__input-wrapper input{\n  caret-color: skyblue;\n  height: 47px;\n  border-radius: 4px;\n  width: 350px;\n  background-color: rgba(200,200,200,0.1);\n  font-size: 22px;\n  font-family: Minecraft;\n  color: skyblue;\n}\n\n.vnjson__input-wrapper .vnjson__input-btn{\n  width: 60px;\n  height: 60px;\n  cursor: pointer;\n}\n.vnjson__input-wrapper .vnjson__input-btn svg path{\n  fill: silver;\n  transition: 0.3s;\n\n}\n\n.vnjson__input-wrapper .vnjson__input-btn:hover svg path{\n  fill: skyblue;\n}";
+  var css$h = ".vnjson__input{\n    width: 470px;\n    height: 120px;\n    background-color: rgba(0, 0, 0, 0.7);\n    top: 250px;\n    left: 50%;\n    transform: translateX(-50%);\n    box-shadow: 3px 3px 5px rgba(0,0,0,0.5);\n    border-radius: 4px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    display: none;\n  }\n  .vnjson__input-wrapper{\n    display: flex;\n    align-items: center;\n    justify-content: center;\n  }\n  .vnjson__input-wrapper input{\n    caret-color: skyblue;\n    height: 47px;\n    border-radius: 4px;\n    width: 350px;\n    background-color: rgba(200,200,200,0.1);\n    font-size: 22px;\n    font-family: Minecraft;\n    color: skyblue;\n  }\n  \n  .vnjson__input-wrapper .vnjson__input-btn{\n    width: 60px;\n    height: 60px;\n    cursor: pointer;\n  }\n  .vnjson__input-wrapper .vnjson__input-btn svg path{\n    fill: silver;\n    transition: 0.3s;\n  \n  }\n  \n  .vnjson__input-wrapper .vnjson__input-btn:hover svg path{\n    fill: skyblue;\n  }";
   n(css$h,{});
 
   function input () {
     var _this = this;
 
     var $tpl = $(tpl$6);
-    this.$store.$screen.append($tpl);
+    this.store.screen.append($tpl);
     var dataID = false;
 
     var handler = function handler(param) {
@@ -4740,10 +4739,6 @@
       }
     };
 
-    this.on("set-name", function (param) {
-      console.warn("[set-name] is deprecated. Use [input-name]");
-      handler(param);
-    });
     this.on("input-name", handler);
     this.on("input-data", handler);
     $(".vnjson__input-wrapper .vnjson__input-btn").on("click", function () {
@@ -4754,18 +4749,24 @@
 
       if (character) {
         character.name = input.val();
-      }
-      /* state.data */
-      else {
-        $vnjs.emit('data-set', _defineProperty({}, dataID, input.val()));
+      } else {
+        /* state.data */
+        vnjs.emit("data-set", _defineProperty({}, dataID, input.val()));
       }
 
       input.val("");
 
       _this.exec({
         next: true
-      }); // this.exec({ next: true, 'set-data': { [dataID]: value } });
+      });
+    });
+    /**
+     * DEPRECATED
+     */
 
+    this.on("set-name", function (param) {
+      console.warn("[set-name] is deprecated. Use [input-name]");
+      handler(param);
     });
   }
 
@@ -4776,10 +4777,10 @@
   function wiki () {
     var _this = this;
 
-    this.$store.$screen.append($tpl$8);
-    this.on('wiki', function (data) {
+    this.store.screen.append($tpl$8);
+    this.on("wiki", function (data) {
       if (data) {
-        $tpl$8.html('');
+        $tpl$8.html("");
         $tpl$8.fadeIn();
         var list;
 
@@ -4805,7 +4806,7 @@
     list.forEach(function (key) {
       var str;
 
-      if (_typeof(wikiStore[key]) === 'object') {
+      if (_typeof(wikiStore[key]) === "object") {
         str = "<li><span class=\"vnjson__wiki-key\" style=\"color: ".concat(wikiStore[key].color, "\">").concat(key, "</span> <span class=\"vnjson__wiki-dash\">-</span> <span class=\"vnjson__wiki-value\">").concat(wikiStore[key].text, "</span></li>");
       } else {
         str = "<li><span class=\"vnjson__wiki-key\">".concat(key, "</span> <span class=\"vnjson__wiki-dash\">-</span> <span class=\"vnjson__wiki-value\">").concat(wikiStore[key], "</span></li>");
@@ -4838,7 +4839,7 @@
         if (data) {
           $tpl = $('<iframe id="crossword" src="data/crossword/index.html" width="975" height="500"></iframe>');
 
-          _this.$store.$screen.append($tpl);
+          _this.store.screen.append($tpl);
 
           setTimeout(function () {
             $tpl.show();
@@ -4873,8 +4874,8 @@
     answers = [];
     _trueAnswer = 0;
     _falseAnswer = 0;
-    $vnjs.state.data.trueAnswer = 0;
-    $vnjs.state.data.falseAnswer = 0;
+    vnjs.state.data.trueAnswer = 0;
+    vnjs.state.data.falseAnswer = 0;
     $('.vnjson__test').css('background-color', 'wheat');
     $('.vnjson__variants-item').css('background-color', 'unset');
     $('.vnjson__test-next-btn').css('background-color', 'black');
@@ -4895,7 +4896,7 @@
   function test () {
     var _this = this;
 
-    this.$store.$screen.append($tpl$7);
+    this.store.screen.append($tpl$7);
     this.on('test', function (data) {
       if (data) {
         $tpl$7.show();
@@ -4917,13 +4918,13 @@
     var $imageContaner = $('.vnjson__test-quetion-img'); // AUDIO
 
     if ((_quetionItem2 = _quetionItem) !== null && _quetionItem2 !== void 0 && _quetionItem2.audio) {
-      $vnjs.emit('audio', _quetionItem.audio);
+      vnjs.emit('audio', _quetionItem.audio);
     }
 
     $('.vnjson__test-variants').html('');
 
     if (_quetionItem.image) {
-      var url = $vnjs.getAssetByName(_quetionItem.image).url;
+      var url = vnjs.getAssetByName(_quetionItem.image).url;
       $imageContaner.attr('src', url).show();
     } else {
       $imageContaner.hide();
@@ -4993,8 +4994,8 @@
         /**
          * Записываем результаты в data
          */
-        $vnjs.state.data.trueAnswer = _trueAnswer;
-        $vnjs.state.data.falseAnswer = _falseAnswer;
+        vnjs.state.data.trueAnswer = _trueAnswer;
+        vnjs.state.data.falseAnswer = _falseAnswer;
         $('.vnjson__test-result-item_true').html(_trueAnswer);
         $('.vnjson__test-result-item_false').html(_falseAnswer);
         $('.vnjson__test-result').show();
@@ -5005,7 +5006,7 @@
   }
 
   $tpl$7.find('.vnjson__test-next-btn').on('click', function () {
-    $vnjs.exec({
+    vnjs.exec({
       next: true,
       test: false
     });
@@ -5019,7 +5020,7 @@
   function slide () {
     var _this = this;
 
-    this.$store.$screen.append($tpl$6);
+    this.store.screen.append($tpl$6);
     this.on('slide', function (id) {
       $tpl$6.attr('src', null);
 
@@ -5233,7 +5234,7 @@
     var _this = this;
 
     var content = new Content(this, $tpl$5);
-    this.$store.$screen.append($tpl$5);
+    this.store.screen.append($tpl$5);
     /**
      * @ content
      */
@@ -5302,19 +5303,19 @@
     this.on('$voice', function (data) {
       if (data) {
         $('.vnjson__hand-left').css('background-image', "url(".concat(icoPlay, ")"));
-        _this.$store.$voice = data;
+        _this.store.$voice = data;
         INDEX = _this.state.index;
         prev = data;
       } else {
         _this.emit('hand-left', false);
 
-        _this.$store[prev].stop();
+        _this.store[prev].stop();
 
         prev = null;
       }
 
       if (prev) {
-        _this.$store[prev].stop();
+        _this.store[prev].stop();
 
         prev = null;
       }
@@ -5323,7 +5324,7 @@
       if (INDEX) {
         var name = _this.getCurrentLabelBody()[INDEX].$voice;
 
-        _this.$store[name].stop();
+        _this.store[name].stop();
 
         _this.emit('hand-left', false);
 
@@ -5334,15 +5335,15 @@
     this.on('voicePlay', function (data) {
       if (INDEX) {
         if (prev) {
-          _this.$store[prev].stop();
+          _this.store[prev].stop();
         }
 
         var name = _this.getCurrentLabelBody()[INDEX].$voice;
 
-        _this.$store[name].play();
+        _this.store[name].play();
       } else {
         //const name = this.getCurrentLabelBody()[INDEX].$voice
-        //this.$store[name].stop()
+        //this.store[name].stop()
         prev = null;
       }
     });
@@ -5379,7 +5380,7 @@
 
     var $tpl = $(tpl);
     $tpl.hide().addClass("component").addClass('event__' + event);
-    this.$store.$screen.append($tpl);
+    this.store.screen.append($tpl);
     this.on(event, function (data) {
       if (_typeof(data) === 'object') {
         $tpl.css(data.css);
@@ -5391,7 +5392,7 @@
         $tpl.remove();
         $src.hide();
 
-        _this2.$store.$screen.append($tpl);
+        _this2.store.screen.append($tpl);
       }
     });
   }
@@ -5418,7 +5419,7 @@
       }
 
       var params = {
-        username: $vnjs.state.data.player.name,
+        username: vnjs.state.data.player.name,
         avatar_url: avatar_url,
         content: content
       };
@@ -5482,14 +5483,14 @@
           this.showHelp(false);
 
           if (this.PLUGIN_DATA.onHelp) {
-            $vnjs.exec(this.PLUGIN_DATA.onHelp);
+            vnjs.exec(this.PLUGIN_DATA.onHelp);
           }
         } else {
           this.showReady(false);
           this.showCheck(false);
 
           if (this.PLUGIN_DATA.onReady) {
-            $vnjs.exec(this.PLUGIN_DATA.onReady);
+            vnjs.exec(this.PLUGIN_DATA.onReady);
           }
         }
       }
@@ -5497,7 +5498,7 @@
       key: "checkHandler",
       value: function checkHandler() {
         if (this.PLUGIN_DATA.onCheck) {
-          $vnjs.exec(this.PLUGIN_DATA.onCheck);
+          vnjs.exec(this.PLUGIN_DATA.onCheck);
         }
 
         this.showReady(false);
@@ -5510,7 +5511,7 @@
     }, {
       key: "showReady",
       value: function showReady(flag) {
-        if ($vnjs.state.data.readyСheck) {
+        if (vnjs.state.data.readyСheck) {
           this.showCheck(true);
         }
 
@@ -5572,7 +5573,7 @@
 
     this.state.data.readyСheck = false;
     var $tpl = $(tpl$4);
-    this.$store.$screen.append($tpl);
+    this.store.screen.append($tpl);
     var statusBar = new StatusBar($tpl);
     /**
      * @ event
@@ -5718,8 +5719,6 @@
   }
 
   function mcGet () {
-    var _this = this;
-
     this.on('mc-get', function (param) {
       var data = {
         "request": param.request,
@@ -5733,8 +5732,8 @@
       query(str).then(function (res) {
         var data = JSON.stringify(res);
         console.log(data);
-        _this.$store.MINECRAFT = _this.$store.MINECRAFT || {};
-        _this.$store.MINECRAFT[param.request] = res;
+        thisstore.MINECRAFT = thisstore.MINECRAFT || {};
+        thisstore.MINECRAFT[param.request] = res;
 
         if (param.callback) {
           param.callback(data);
@@ -5750,10 +5749,10 @@
     });
     /*
         this.on('mc.player', () => {
-            alert(JSON.stringify(this.$store.MINECRAFT.PLAYER))
+            alert(JSON.stringify(thisstore.MINECRAFT.PLAYER))
         })
         this.on('mc.slot', () => {
-            alert(JSON.stringify(this.$store.MINECRAFT.SLOT.id))
+            alert(JSON.stringify(thisstore.MINECRAFT.SLOT.id))
         })
         */
   }
@@ -5785,7 +5784,7 @@
     var init = function init() {
       var $tpl = $('<iframe id="paint-board__vnjson" src="data/paint-board/index.html" width="800" height="500"></iframe>');
 
-      _this.$store.$screen.append($tpl);
+      _this.store.screen.append($tpl);
 
       _this.on('paint-board', function (imgID) {
         if (imgID) {
@@ -5809,7 +5808,7 @@
     var _this = this;
 
     var $tpl = $('<textarea class="vnjson__clipboard" style="position: absolute; left:-99999px;top:0;"></textarea>');
-    this.$store.$screen.append($tpl);
+    this.store.screen.append($tpl);
     var flag = false;
     this.on('clipboard', function (data) {
       flag = true; // получаем файл
@@ -5890,7 +5889,7 @@
     var _this = this;
 
     var $tpl = $(tpl$3);
-    this.$store.$screen.append($tpl);
+    this.store.screen.append($tpl);
     var options = {
       responsive: true,
       controls: false,
@@ -6686,7 +6685,7 @@
   function typewrite () {
     var _this = this;
 
-    this.$store.$screen.append($tpl$4);
+    this.store.screen.append($tpl$4);
     var tw = new TypeWrite();
     this.on('typewrite', function (param) {
       if (typeof param === 'string') {
@@ -6737,7 +6736,7 @@
   function area () {
     var _this = this;
 
-    this.$store.$screen.append($tpl$3);
+    this.store.screen.append($tpl$3);
     this.on("area", handler$1.bind(this));
     $tpl$3.on("click", function (e) {
       if (!e.target.className.includes("vnjson__area-item")) return;
@@ -6785,30 +6784,30 @@
   function selectWord () {
     var _this = this;
 
-    this.$store.$screen.append($tpl$2);
-    var $dropZone = $tpl$2.find('.select-word__dropzone');
+    this.store.screen.append($tpl$2);
+    var $dropZone = $tpl$2.find(".select-word__dropzone");
     var indexItem = 0;
-    this.on('select-word', function (data) {
+    this.on("select-word", function (data) {
       _scriptData = data;
-      $dropZone.removeClass('select-word__dropzone--disable');
+      $dropZone.removeClass("select-word__dropzone--disable");
       $dropZone.empty();
       handler(data);
     });
-    $tpl$2.find('.select-word__variants').on('click', '.select-word__item', function (e) {
+    $tpl$2.find(".select-word__variants").on("click", ".select-word__item", function (e) {
       correct = _scriptData.answers.correct - 1; // удаляю активный класс
 
-      $(this).parent().find('.select-word__item').toArray().forEach(function (node) {
-        return $(node).removeClass('select-word__item--active');
+      $(this).parent().find(".select-word__item").toArray().forEach(function (node) {
+        return $(node).removeClass("select-word__item--active");
       }); // вешаю активный класс на выбранный элемент
 
-      $(this).addClass('select-word__item--active'); // подсвечиваю дропзону
+      $(this).addClass("select-word__item--active"); // подсвечиваю дропзону
 
-      $dropZone.addClass('select-word__dropzone--active');
+      $dropZone.addClass("select-word__dropzone--active");
       indexItem = Number(this.dataset.index);
     });
-    $dropZone.on('click', function () {
+    $dropZone.on("click", function () {
       if (correct === null) return;
-      $dropZone.addClass('select-word__dropzone--disable'); //$tpl.find('.select-word__variants').removeClass('select-word__variants--disable')
+      $dropZone.addClass("select-word__dropzone--disable"); //$tpl.find('.select-word__variants').removeClass('select-word__variants--disable')
 
       var answerItemHTML = $("<div class=\"select-word__item\">".concat(_scriptData.answers.variants[indexItem], "</div>"));
       $dropZone.html(answerItemHTML); // проверяю на правильность ответ пользователя
@@ -6818,7 +6817,7 @@
           _this.exec(_scriptData.onSuccess);
 
           _this.exec({
-            'select-word': false
+            "select-word": false
           });
         }, 1000);
       } else {
@@ -6826,7 +6825,7 @@
           _this.exec(_scriptData.onFailure);
 
           _this.exec({
-            'select-word': false
+            "select-word": false
           });
         }, 1000);
       }
@@ -6840,19 +6839,19 @@
           answers = scriptData.answers;
 
       if (quetion !== null && quetion !== void 0 && quetion.css) {
-        $tpl$2.find('.select-word__quetion').css(quetion.css);
+        $tpl$2.find(".select-word__quetion").css(quetion.css);
       }
 
       if (answers !== null && answers !== void 0 && answers.css) {
-        $tpl$2.find('.select-word__variants').css(answers.css);
+        $tpl$2.find(".select-word__variants").css(answers.css);
       }
 
-      $tpl$2.find('.select-word__text').html(quetion.text);
-      $tpl$2.find('.select-word__variants').empty(); //$tpl.find('.select-word__variants').removeClass('select-word__variants--disable')
+      $tpl$2.find(".select-word__text").html(quetion.text);
+      $tpl$2.find(".select-word__variants").empty(); //$tpl.find('.select-word__variants').removeClass('select-word__variants--disable')
 
       answers.variants.forEach(function (item, index) {
         var str = $("<div class=\"select-word__item\" data-index=\"".concat(index, "\">").concat(item, "</div>"));
-        $tpl$2.find('.select-word__variants').append(str);
+        $tpl$2.find(".select-word__variants").append(str);
       });
     } else {
       $tpl$2.hide();
@@ -6868,7 +6867,7 @@
   function dragItems () {
     var _this = this;
 
-    this.$store.$screen.append($tpl$1);
+    this.store.screen.append($tpl$1);
     this.on('drag-items', function (data) {
       if (data) {
         $tpl$1.show();
@@ -6941,7 +6940,7 @@
        * к такому решению
        */
       if (once) {
-        _this.$store.$screen.append($tpl);
+        _this.store.screen.append($tpl);
 
         once = false;
       }
@@ -6961,12 +6960,12 @@
 
   var $tpl = $('<div class="vnjson__blocks component"></div>');
   var stepsArray = [];
-  var vnjs = null;
+  var vnjs$1 = null;
   function blocks () {
     var _this = this;
 
-    vnjs = this;
-    this.$store.$screen.append($tpl);
+    vnjs$1 = this;
+    this.store.screen.append($tpl);
     this.on('blocks', function (param) {
       stepsArray = param;
       blocksHandler.call(_this, stepsArray);
@@ -6976,7 +6975,7 @@
 
   function getImage(item) {
     if (item.image) {
-      return vnjs.getAssetByName(item.image).url;
+      return vnjs$1.getAssetByName(item.image).url;
     }
 
     return bgIMG;
@@ -7336,7 +7335,7 @@
     var src = "apps/".concat(event, "/index.html");
     var tpl = "<iframe src=\"".concat(src, "\" class=\"vnjson__").concat(event, " vnjson__static-app component\" ></iframe>");
     var $tpl = $(tpl);
-    this.$store.$screen.append($tpl);
+    this.store.screen.append($tpl);
     this.on(event, function (data) {
       if (data) {
         $tpl.show();
@@ -7355,7 +7354,7 @@
     var _this = this;
 
     var $tpl = $(tpl);
-    this.$store.$screen.append($tpl);
+    this.store.screen.append($tpl);
     this.on("hud", function (param) {
       if (param) {
         $tpl.show();
@@ -7390,7 +7389,7 @@
       if (!slotData.exec) return;
 
       if (slotData.slot === $(this).data('index')) {
-        $vnjs.exec(slotData.exec);
+        vnjs.exec(slotData.exec);
       }
     });
     this.on("hud-inv", function (param) {
@@ -7517,7 +7516,7 @@
     var _this = this;
 
     var $tpl = $('<div class="dialog-box__info"></div>');
-    this.$store.$screen.append($tpl);
+    this.store.screen.append($tpl);
     /**
      * INFO
      */
@@ -7592,63 +7591,93 @@
     });
   }
 
+  function greyscale(data) {
+    var target = data.target,
+        size = data.size,
+        duration = data.duration;
+    Object.assign(target.style, {
+      'filter': "grayscale(".concat(size, ")"),
+      '-webkit-filter': "grayscale(".concat(size, ")"),
+      'transition': "".concat(duration, "s filter linear"),
+      '-webkit-transition': "".concat(duration, "s  -webkit-filter linear")
+    });
+  }
+  function filter () {
+    this.on('filter', function (param) {
+      var target = param.target;
+          param.type;
+      greyscale({
+        target: document.querySelector(".vnjson-".concat(target)),
+        size: 5,
+        duration: 0.9
+      });
+    }); // Так не канает. Так как изображения задаются через style
+
+    /*
+    this.on('scene', param => {
+        document.querySelector(`.vnjson-scene`).removeAttribute('style')
+    })
+    */
+  }
+
   /**
    * Init plugins
    */
 
-  if ($vnjs.debug) {
-    $vnjs.use(debug);
-    $vnjs.use(debugUtils);
+  if (vnjs.debug) {
+    vnjs.use(debug);
+    vnjs.use(debugUtils);
   }
 
-  $vnjs.use(assetsLoader);
-  $vnjs.use(screen);
+  vnjs.use(assetsLoader);
+  vnjs.use(screen);
   /*components*/
 
-  $vnjs.use(scene);
-  $vnjs.use(show);
-  $vnjs.use(showAuto);
-  $vnjs.use(audio);
-  $vnjs.use(menu);
-  $vnjs.use(mainMenu);
-  $vnjs.use(term);
-  $vnjs.use(table);
-  $vnjs.use(clear);
-  $vnjs.use(dialogBox);
-  $vnjs.use(hands);
-  $vnjs.use(data);
-  $vnjs.use(switchVnjson);
-  $vnjs.use(qa);
-  $vnjs.use(chess);
-  $vnjs.use(input);
-  $vnjs.use(wiki);
-  $vnjs.use(crossWord);
-  $vnjs.use(test);
-  $vnjs.use(slide);
-  $vnjs.use(content);
-  $vnjs.use(voice);
-  $vnjs.use(html);
-  $vnjs.use(discordLog);
-  $vnjs.use(statusBar); // minecraft
+  vnjs.use(scene);
+  vnjs.use(show);
+  vnjs.use(showAuto);
+  vnjs.use(audio);
+  vnjs.use(menu);
+  vnjs.use(mainMenu);
+  vnjs.use(term);
+  vnjs.use(table);
+  vnjs.use(clear);
+  vnjs.use(dialogBox);
+  vnjs.use(hands);
+  vnjs.use(data);
+  vnjs.use(switchVnjson);
+  vnjs.use(qa);
+  vnjs.use(chess);
+  vnjs.use(input);
+  vnjs.use(wiki);
+  vnjs.use(crossWord);
+  vnjs.use(test);
+  vnjs.use(slide);
+  vnjs.use(content);
+  vnjs.use(voice);
+  vnjs.use(html);
+  vnjs.use(discordLog);
+  vnjs.use(statusBar); // minecraft
 
-  $vnjs.use(mcPlayer);
-  $vnjs.use(mcCheck);
-  $vnjs.use(mcExec);
-  $vnjs.use(mcGet); //
+  vnjs.use(mcPlayer);
+  vnjs.use(mcCheck);
+  vnjs.use(mcExec);
+  vnjs.use(mcGet); //
 
-  $vnjs.use(paintBoard);
-  $vnjs.use(clipBoard);
-  $vnjs.use(video);
-  $vnjs.use(typewrite);
-  $vnjs.use(area);
-  $vnjs.use(selectWord);
-  $vnjs.use(dragItems);
-  $vnjs.use(consoleVnjson);
-  $vnjs.use(blocks);
-  $vnjs.use(staticApp);
-  $vnjs.use(HUD);
-  $vnjs.use(dialogBoxInfo);
-  $vnjs.use(executeVnjson);
+  vnjs.use(paintBoard);
+  vnjs.use(clipBoard);
+  vnjs.use(video);
+  vnjs.use(typewrite);
+  vnjs.use(area);
+  vnjs.use(selectWord);
+  vnjs.use(dragItems);
+  vnjs.use(consoleVnjson);
+  vnjs.use(blocks);
+  vnjs.use(staticApp);
+  vnjs.use(HUD);
+  vnjs.use(dialogBoxInfo);
+  vnjs.use(executeVnjson);
+  vnjs.use(filter);
   /**
    * LOAD scenes
    */
@@ -7657,15 +7686,15 @@
     return r.json();
   }) // preload assets
   .then(function (tree) {
-    return $vnjs.mount(tree);
+    return vnjs.mount(tree);
   })["catch"](function (err) {
     $('.debug-error').css('display', 'flex').find('.debug-error__msg').html('Невалидный скрипт');
     console.error('Invalid script', err.message);
   });
-  $vnjs.on('postload', function () {
+  vnjs.on('postload', function () {
     var _this$TREE$$root$pack;
 
-    $vnjs.config = {
+    vnjs.config = {
       debug: (_this$TREE$$root$pack = this.TREE.$root["package"]) === null || _this$TREE$$root$pack === void 0 ? void 0 : _this$TREE$$root$pack.debug,
       width: 1024,
       height: 768
@@ -7680,11 +7709,11 @@
           sceneName = _label$split2[0],
           labelName = _label$split2[1];
 
-      $vnjs.exec({
+      vnjs.exec({
         jump: "".concat(sceneName, ".").concat(labelName)
       });
     } else {
-      $vnjs.exec({
+      vnjs.exec({
         jump: '$root.$init'
       });
     }

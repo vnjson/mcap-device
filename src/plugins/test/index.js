@@ -17,8 +17,8 @@ let _falseAnswer = 0;
   answers = [];
   _trueAnswer = 0;
   _falseAnswer = 0;
-  $vnjs.state.data.trueAnswer = 0
-  $vnjs.state.data.falseAnswer = 0
+  vnjs.state.data.trueAnswer = 0
+  vnjs.state.data.falseAnswer = 0
   $('.vnjson__test').css('background-color', 'wheat')
   $('.vnjson__variants-item').css('background-color','unset')
   $('.vnjson__test-next-btn').css('background-color', 'black')
@@ -40,7 +40,7 @@ function applyStyles (){
 
 export default function (){
 
-  this.$store.$screen.append($tpl)
+  this.store.screen.append($tpl)
 
   this.on('test', data => {
       if(data){
@@ -64,12 +64,12 @@ function renderQuetion (){
   const $imageContaner = $('.vnjson__test-quetion-img')
   // AUDIO
   if(_quetionItem?.audio){
-      $vnjs.emit('audio', _quetionItem.audio)
+      vnjs.emit('audio', _quetionItem.audio)
   }
   $('.vnjson__test-variants').html('');
 
   if(_quetionItem.image){
-    const url = $vnjs.getAssetByName(_quetionItem.image).url
+    const url = vnjs.getAssetByName(_quetionItem.image).url
     $imageContaner.attr('src', url).show()
   }
   else{
@@ -137,8 +137,8 @@ function nextStep(){
             /**
              * Записываем результаты в data
              */
-            $vnjs.state.data.trueAnswer = _trueAnswer
-            $vnjs.state.data.falseAnswer = _falseAnswer
+            vnjs.state.data.trueAnswer = _trueAnswer
+            vnjs.state.data.falseAnswer = _falseAnswer
 
             $('.vnjson__test-result-item_true').html(_trueAnswer);
             $('.vnjson__test-result-item_false').html( _falseAnswer);
@@ -154,7 +154,7 @@ function nextStep(){
 
 
 $tpl.find('.vnjson__test-next-btn').on('click', function (){
-    $vnjs.exec({next: true, test: false});
+    vnjs.exec({next: true, test: false});
     $('.vnjson__test-result').hide();
 
 });

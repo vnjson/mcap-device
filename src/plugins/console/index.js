@@ -26,7 +26,7 @@ export default function (){
        * к такому решению
        */
         if(once){
-           this.$store.$screen.append($tpl)
+           this.store.screen.append($tpl)
            once = false
         } 
         if(data){

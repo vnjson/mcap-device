@@ -57,7 +57,7 @@ class Switch {
                 controller[this.OPERATOR](this.dataValue, this.value, execData)
             }
             else{
-                $vnjs.emit('error', {
+                vnjs.emit('error', {
                     ru: `Некоректный оператор ${this.OPERATOR}`,
                     en: `Invalid operator ${this.OPERATOR}`
                 })

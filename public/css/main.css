@@ -53,8 +53,6 @@ h6 {
 #screen {
     width: 1024px;
     height: 768px;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 .component {
     display: none;

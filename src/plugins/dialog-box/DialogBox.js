@@ -4,7 +4,7 @@ class DialogBox {
     prevReplyStringTag = null;
     MODE = "classic";
     constructor(param) {
-        this.$vnjs = param.$vnjs;
+        this.vnjs = param.vnjs;
         /*Tags*/
         this.dialogBoxTag = document.querySelector(param.dialogBoxSelector);
         this.characterNameTag = document.querySelector(
@@ -54,15 +54,15 @@ class DialogBox {
             this.replyContaiterTag.style["padding-right"] = 0 + "px";
         }
         if (this.MODE === "mode-fullscreen") {
-            this.dialogBoxTag.style.height = this.$vnjs.config.height + "px";
+            this.dialogBoxTag.style.height = this.vnjs.config.height + "px";
             this.replyContaiterTag.style["padding-right"] = 10 + "px";
         }
         this.setImage();
-        this.$vnjs.emit("dialog-box.mode", this.MODE);
+        this.vnjs.emit("dialog-box.mode", this.MODE);
     }
     setImage() {
-        const url = this.$vnjs.getAssetByName(
-            this.$vnjs.package["dialog-box"][this.MODE]
+        const url = this.vnjs.getAssetByName(
+            this.vnjs.package["dialog-box"][this.MODE]
         ).url;
         this.dialogBoxTag.style["background-image"] = `url(${url})`;
     }
@@ -73,7 +73,7 @@ class DialogBox {
         this.print(this.character, this.#reply);
     }
     print(character, reply = "", append) {
-        this.$vnjs.emit("dialog-box.print");
+        this.vnjs.emit("dialog-box.print");
         this.reset();
         this.character = character;
         this.#reply = reply;
@@ -121,7 +121,7 @@ class DialogBox {
          */
         if (this.character.avatar) {
             this.characterAvatarTag.style.backgroundImage = `url('${
-                this.$vnjs.getAssetByName(this.character.avatar).url
+                this.vnjs.getAssetByName(this.character.avatar).url
             }')`;
             this.characterAvatarTag.classList.add("dialog-box__avatar--show");
             this.replyWrapperTag.style.width = "84.5%";
@@ -166,7 +166,7 @@ class DialogBox {
                 // получаем id персонажа
                 let cid = id.replace("@", "").trim();
                 // получаем персонажа по id
-                let character = this.$vnjs.getCharacterById(cid);
+                let character = this.vnjs.getCharacterById(cid);
                 if (character) {
                     // заменяем ссылку на персонажа именем персонажа
                     _newReply = _newReply.replace(id, character.name);
@@ -184,7 +184,7 @@ class DialogBox {
       if(!variables) return  _newReply
       variables.forEach( (varItem) => {
           const dataKey = varItem.replaceAll('{{', '').replaceAll('}}', '').trim()
-          _newReply = _newReply.replaceAll(varItem, $vnjs.state.data[dataKey]||'')
+          _newReply = _newReply.replaceAll(varItem, vnjs.state.data[dataKey]||'')
       })
       return _newReply
     }
@@ -240,7 +240,7 @@ class DialogBox {
         // отображаем каждый символ по отдельности
         this.interval = setInterval(() => {
             if (letters.length > 0) {
-                this.$vnjs.emit(
+                this.vnjs.emit(
                     "dialog-box:letter",
                     letters[this.index].innerHTML
                 );
@@ -258,7 +258,7 @@ class DialogBox {
             this.addEndPoint();
         }
         this.reset();
-        this.$vnjs.emit("dialog-box:endOutputReply");
+        this.vnjs.emit("dialog-box:endOutputReply");
     }
     addEndPoint() {
         this.replyTag.innerHTML += `<span class="${this.classNameEndPoint}"></span>`;

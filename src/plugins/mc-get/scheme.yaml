@@ -9,7 +9,7 @@
 
 # С приходящими данными пока не очень ясно как обращаться
 # Я их пока положил сюда
-# this.$store.MINECRAFT["request"] = data
-# this.$store.MINECRAFT.ENTITY.nbt.id
+# thisstore.MINECRAFT["request"] = data
+# thisstore.MINECRAFT.ENTITY.nbt.id
 
 

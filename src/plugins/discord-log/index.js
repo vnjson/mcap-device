@@ -23,7 +23,7 @@ this.on('discord-log', msg=>{
   }
 
       const params = {
-        username: $vnjs.state.data.player.name,
+        username: vnjs.state.data.player.name,
         avatar_url,
         content
       }

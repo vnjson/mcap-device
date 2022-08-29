@@ -20,7 +20,7 @@ export function eventRegistration(event, tpl){
  
   const $tpl = $(tpl)
   $tpl.hide().addClass("component").addClass('event__'+event)
-  this.$store.$screen.append($tpl)
+  this.store.screen.append($tpl)
 
   this.on(event, data => {
     if( typeof(data) === 'object' ){
@@ -34,7 +34,7 @@ export function eventRegistration(event, tpl){
       const $src = $tpl
       $tpl.remove()
       $src.hide()
-      this.$store.$screen.append($tpl)
+      this.store.screen.append($tpl)
     }
   })
 

@@ -106,15 +106,15 @@ class Menu {
         this.hide()
         if(label==='next'){
             setTimeout(() => {
-                $vnjs.exec({ next: true })
+                vnjs.exec({ next: true })
             }, 0)
         }
         else{
             if(this.itemClickParam){
-                $vnjs.exec(this.itemClickParam)
+                vnjs.exec(this.itemClickParam)
             }
             setTimeout(() => {
-                $vnjs.exec({ jump: label })
+                vnjs.exec({ jump: label })
             }, 0)
         }
         if(this.audio){

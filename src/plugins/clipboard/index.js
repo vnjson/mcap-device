@@ -1,7 +1,7 @@
 export default function (){
 
   const $tpl = $('<textarea class="vnjson__clipboard" style="position: absolute; left:-99999px;top:0;"></textarea>')
-  this.$store.$screen.append($tpl);
+  this.store.screen.append($tpl);
   let flag = false;
   this.on('clipboard', data=>{
       flag = true;

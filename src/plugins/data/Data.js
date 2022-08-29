@@ -5,10 +5,10 @@ class Data {
         this.token = token;
         const data = localStorage.getItem(this.token)
         if(data){
-            $vnjs.state.data = JSON.parse(data);
+            vnjs.state.data = JSON.parse(data);
         }
         else{
-            $vnjs.state.data = {};
+            vnjs.state.data = {};
         }
     }
     save(data) {
@@ -19,9 +19,9 @@ class Data {
      */
     clear() {
         localStorage.removeItem(this.token);
-        $vnjs.state.data = {
-            score: $vnjs.state.data.score,
-            player: $vnjs.state.data.player,
+        vnjs.state.data = {
+            score: vnjs.state.data.score,
+            player: vnjs.state.data.player,
         };
     }
     set(data) {
@@ -35,38 +35,38 @@ class Data {
                 this.valueDecrement(key, val)
             } else {
                 if(isNaN(value)){
-                    $vnjs.state.data[key] = value;
+                    vnjs.state.data[key] = value;
                 } else{
-                    $vnjs.state.data[key] = Number(value);
+                    vnjs.state.data[key] = Number(value);
                 }
             }
         }
-        this.save($vnjs.state.data);
+        this.save(vnjs.state.data);
     }
     valueIncrement(key, val) {
         let _val = Number(val);
         if (isNaN(_val)) {
           _val = val
         }
-        if ($vnjs.state.data[key]) {
-            $vnjs.state.data[key] = $vnjs.state.data[key] + _val;
+        if (vnjs.state.data[key]) {
+            vnjs.state.data[key] = vnjs.state.data[key] + _val;
         } else {
-            $vnjs.state.data[key] = _val;
+            vnjs.state.data[key] = _val;
         }
     }
     valueDecrement(key, val) {
         let _val = Number(val);
         if (isNaN(_val)) {
           _val = val
-          if ($vnjs.state.data[key]) {
-            $vnjs.state.data[key] = $vnjs.state.data[key].replace(_val, '');
+          if (vnjs.state.data[key]) {
+            vnjs.state.data[key] = vnjs.state.data[key].replace(_val, '');
           } 
           return
         }
-        if ($vnjs.state.data[key]) {
-            $vnjs.state.data[key] = $vnjs.state.data[key] - _val;
+        if (vnjs.state.data[key]) {
+            vnjs.state.data[key] = vnjs.state.data[key] - _val;
         } else {
-            $vnjs.state.data[key] = _val;
+            vnjs.state.data[key] = _val;
         }
       }
 

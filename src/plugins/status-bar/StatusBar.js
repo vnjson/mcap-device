@@ -27,20 +27,20 @@ class StatusBar {
     if(!isReady){
         this.showHelp(false)
         if(this.PLUGIN_DATA.onHelp){
-            $vnjs.exec(this.PLUGIN_DATA.onHelp)
+            vnjs.exec(this.PLUGIN_DATA.onHelp)
         }
     }
     else{
         this.showReady(false)
         this.showCheck(false)
         if(this.PLUGIN_DATA.onReady){
-            $vnjs.exec(this.PLUGIN_DATA.onReady)
+            vnjs.exec(this.PLUGIN_DATA.onReady)
         }
     }
   }
   checkHandler (){
     if(this.PLUGIN_DATA.onCheck){
-        $vnjs.exec(this.PLUGIN_DATA.onCheck)
+        vnjs.exec(this.PLUGIN_DATA.onCheck)
     }
     this.showReady(false)
     this.showCheck(false)
@@ -51,7 +51,7 @@ class StatusBar {
    * SHOW
    */
   showReady (flag){
-    if($vnjs.state.data.readyСheck){
+    if(vnjs.state.data.readyСheck){
             this.showCheck(true)
     }
     if(flag){

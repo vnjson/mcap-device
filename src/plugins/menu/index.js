@@ -18,7 +18,7 @@ export default function (){
         let label = $(this).data('label')
         menu.clickItemHundler(label)
     })
-    this.$store.$screen.append($tpl)
+    this.store.screen.append($tpl)
     /**
      * аудио
      */

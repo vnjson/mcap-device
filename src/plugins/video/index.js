@@ -4,7 +4,7 @@ import tpl from './tpl.html';
 export default function (){
 
   const $tpl = $(tpl);
-  this.$store.$screen.append($tpl);
+  this.store.screen.append($tpl);
 
   const options = {
     responsive: true,

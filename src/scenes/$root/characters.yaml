@@ -2,11 +2,11 @@
   name: . . . .
   nameColor: '#49de58'
   replyColor: '#a4deaa'
-  #avatar: ev
+  avatar: robocop
 
 
 - id: al
   name: Алиса
   nameColor: '#f1c232'
   replyColor: '#ee068e'
-  avatar: ch
+  avatar: alice

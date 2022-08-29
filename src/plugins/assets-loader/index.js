@@ -23,7 +23,7 @@ export default function () {
 
                     sound.on("end", () => this.emit("audioEnd", asset.name));
                     sound.on("load", (_) => {
-                        this.$store[asset.name] = sound;
+                        vnjs.store[asset.name] = sound;
                         this.emit("load", asset);
                         load();
                     });
@@ -44,18 +44,18 @@ export default function () {
                                 img.src = asset.url;
 
                                 img.onerror = () => {
-                                    this.$store[asset.name] = img;
+                                    vnjs.store[asset.name] = img;
                                     this.emit("load", asset);
                                     console.error("Image not found");
                                     load();
                                 };
                                 img.onload = () => {
-                                    this.$store[asset.name] = img;
+                                    vnjs.store[asset.name] = img;
                                     this.emit("load", asset);
                                     load();
                                 };
                             } else {
-                                this.$store[asset.name] = asset.url;
+                                vnjs.store[asset.name] = asset.url;
                                 load();
                             }
                         } else {

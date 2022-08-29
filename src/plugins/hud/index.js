@@ -3,7 +3,7 @@ import tpl from "./tpl.html";
 
 export default function () {
     const $tpl = $(tpl);
-    this.$store.$screen.append($tpl);
+    this.store.screen.append($tpl);
     this.on("hud", (param) => {
         if (param) {
             $tpl.show();
@@ -33,7 +33,7 @@ export default function () {
         if(!slotData.exec) return
        
         if(slotData.slot===$(this).data('index')){
-            $vnjs.exec(slotData.exec);
+            vnjs.exec(slotData.exec);
         }
 
     })

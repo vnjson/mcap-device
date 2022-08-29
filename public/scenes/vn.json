@@ -101,33 +101,30 @@
         "audio": false,
         "data-clear": true,
         "status-bar": false,
-        "scene": false,
+        "scene": "alice",
         "hud": true,
-        "next": true,
-        "$": "test"
+        "next": true
       },
       {
-        "input-data": "age"
-      },
-      "Проверка <font color=\"brown\">{{age}} </font>",
-      {
-        "data-set": {
-          "age": 17,
-          "animals": "корова"
+        "al": "Всё ходит по цепи кругом",
+        "filter": {
+          "target": "scene",
+          "items": [
+            {
+              "type": "grayscale",
+              "duration": 1000,
+              "value": 5
+            }
+          ]
         }
       },
-      "<font color=\"deepskyblue\"> @al </font>  <font color=\"magenta\">{{age}}</font> Привет <font color=\"deepskyblue\">@$  </font> меня зовут @al   test @al <font color=\"magenta\">@$</font> <font color=\"orange\">@al </font>",
       {
-        "$": "Если первое предложение Возраст - <font color=\"magenta\">{{age}}</font> начинается со знака ( + ) то <font color=\"deepskyblue\">{{animals}}</font> вываливается ошибка"
+        "al": "И днём и ночью, {{age}} кот учёный",
+        "scene": false
       },
       {
-        "$": "__TEST__"
-      },
-      {
-        "data-set": "age"
-      },
-      {
-        "+": "<br/>Далее как только доходит до вызова функции callAllMsgs"
+        "+": "<br/>Далее как только доходит до вызова функции callAllMsgs",
+        "scene": "alice"
       },
       {
         "al": "Тестирую другого персонажа"
@@ -183,14 +180,15 @@
         "id": "$",
         "name": ". . . .",
         "nameColor": "#49de58",
-        "replyColor": "#a4deaa"
+        "replyColor": "#a4deaa",
+        "avatar": "robocop"
       },
       {
         "id": "al",
         "name": "Алиса",
         "nameColor": "#f1c232",
         "replyColor": "#ee068e",
-        "avatar": "ch"
+        "avatar": "alice"
       }
     ],
     "content": [
@@ -299,32 +297,12 @@
   "testdata": {
     "assets": [
       {
-        "name": "1337adf11d70",
-        "url": "scenes/assets/1337adf11d70.jpg"
+        "name": "alice",
+        "url": "scenes/assets/alice.png"
       },
       {
-        "name": "6b3abcbf393",
-        "url": "scenes/assets/6b3abcbf393.jpg"
-      },
-      {
-        "name": "c71c347ae",
-        "url": "scenes/assets/c71c347ae.jpg"
-      },
-      {
-        "name": "ch",
-        "url": "scenes/assets/ch.png"
-      },
-      {
-        "name": "ev",
-        "url": "scenes/assets/ev.png"
-      },
-      {
-        "name": "p1",
-        "url": "scenes/assets/p1.png"
-      },
-      {
-        "name": "videoTest",
-        "url": "scenes/assets/videoTest.mp4"
+        "name": "robocop",
+        "url": "scenes/assets/robocop.png"
       }
     ],
     "$init": [

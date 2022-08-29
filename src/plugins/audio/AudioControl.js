@@ -8,8 +8,8 @@ class AudioControl {
       this.stopAll()
     }
     isAudioExist (name) {
-      if(!$vnjs.$store[name]&&!$vnjs.$store.sprites[name]){
-        $vnjs.emit('error', 'assetNotFound', name)
+      if(!vnjs.store[name]&&!vnjs.store.sprites[name]){
+        vnjs.emit('error', 'assetNotFound', name)
 
         return false
       }
@@ -28,21 +28,21 @@ class AudioControl {
        */
       else if(typeof data==='string'){
           if( !this.isAudioExist(data) ) return
-          const soundName = $vnjs.$store.sprites[data]
+          const soundName = vnjs.store.sprites[data]
           if(soundName){
-              $vnjs.$store[soundName].stop()
-              $vnjs.$store[soundName].rate(1)
-              $vnjs.$store[soundName].loop(false)
-              $vnjs.$store[soundName].volume(1)
-              $vnjs.$store[soundName].play(data)
+              vnjs.store[soundName].stop()
+              vnjs.store[soundName].rate(1)
+              vnjs.store[soundName].loop(false)
+              vnjs.store[soundName].volume(1)
+              vnjs.store[soundName].play(data)
   
           }
           else{
-              $vnjs.$store[data].stop()
-              $vnjs.$store[data].rate(1)
-              $vnjs.$store[data].loop(false)
-              $vnjs.$store[data].volume(1)
-              $vnjs.$store[data].play()
+              vnjs.store[data].stop()
+              vnjs.store[data].rate(1)
+              vnjs.store[data].loop(false)
+              vnjs.store[data].volume(1)
+              vnjs.store[data].play()
           }
           
       }
@@ -52,13 +52,13 @@ class AudioControl {
       else if(typeof data==='object'){
         if( !this.isAudioExist(data.name) ) return
 
-        const soundName = $vnjs.$store.sprites[data.name]
+        const soundName = vnjs.store.sprites[data.name]
         let sound = null
         if(soundName){
-            sound = $vnjs.$store[soundName]
+            sound = vnjs.store[soundName]
         }
         else{
-          sound = $vnjs.$store[data.name]
+          sound = vnjs.store[data.name]
         }
         sound.stop()
         //sound.off('play')
@@ -97,7 +97,7 @@ class AudioControl {
       }
     }
     stopAll (){
-      Object.values($vnjs.$store).map(asset=>{
+      Object.values(vnjs.store).map(asset=>{
             if(asset.hasOwnProperty("_muted") ){
               asset.stop()
             }
@@ -113,7 +113,7 @@ class AudioControl {
             en: `Invalid time <font color="deepskyblue">${ time }</fon>`,
             ru: `Некоректный параметр времени <font color="deepskyblue">${  time }</fon>`
           }
-          $vnjs.emit('error', errorBody)
+          vnjs.emit('error', errorBody)
           return 0
       }
    
@@ -128,7 +128,7 @@ class AudioControl {
             en: `Invalid time <font color="deepskyblue">${ time }</fon>`,
             ru: `Некоректный параметр времени <font color="deepskyblue">${  time }</fon>`
           }
-          $vnjs.emit('error', errorBody)
+          vnjs.emit('error', errorBody)
           return 0
       }
      
@@ -142,9 +142,9 @@ class AudioControl {
         const endTime = this.formatTime( data.sprite[spriteID][1] )
         const timeRange = [ startTime, endTime ]
       
-        $vnjs.$store.sprites[spriteID] = data.name
-        $vnjs.$store[data.name]._sprite[spriteID] = timeRange
-        $vnjs.$store[data.name].volume(data.volume||1)
+        vnjs.store.sprites[spriteID] = data.name
+        vnjs.store[data.name]._sprite[spriteID] = timeRange
+        vnjs.store[data.name].volume(data.volume||1)
       }
 
   

@@ -1,5 +1,5 @@
 
-# ложим данные в хранилище $vnjs.state.data
+# ложим данные в хранилище vnjs.state.data
 - data-set:
     age: 17
     animals: корова

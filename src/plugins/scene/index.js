@@ -1,19 +1,23 @@
+import "./style.css";
+
+const $tpl = $('<div class="vnjson-scene component"></div>');
+
 export default function () {
+    this.store.screen.append($tpl);
     this.on("scene", (id) => {
         if (typeof id === "object") {
-            this.$store.$screen.css("opacity", 0);
-            this.$store.$screen.css({
+            $tpl.css({
                 "background-image": `url(${id.url})`,
             });
-            this.$store.$screen.css("opacity", 1);
+            $tpl.fadeIn();
         } else if (typeof id === "string") {
-            this.$store.$screen.css("opacity", 0);
-            this.$store.$screen.css({
+            $tpl.css({
                 "background-image": `url('${this.getAssetByName(id).url}')`,
             });
-            this.$store.$screen.css("opacity", 1);
+            $tpl.fadeIn();
         } else {
-            this.$store.$screen.css({
+            $tpl.fadeOut();
+            $tpl.css({
                 "background-image": `unset`,
             });
         }

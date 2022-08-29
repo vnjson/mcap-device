@@ -53,62 +53,63 @@ import HUD                from './plugins/hud/index.js'
 
 import dialogBoxInfo      from './plugins/dialog-box-info/index.js'
 import executeVnjson      from './plugins/execute/index.js'
-
+import filter             from './plugins/filter/index.js'
 /**
  * Init plugins
  */
 
-if($vnjs.debug){
-  $vnjs.use(debug)
-  $vnjs.use(debugUtils)
+if(vnjs.debug){
+  vnjs.use(debug)
+  vnjs.use(debugUtils)
 }
-$vnjs.use(assetsLoader)
-$vnjs.use(screen)
+vnjs.use(assetsLoader)
+vnjs.use(screen)
   /*components*/
-$vnjs.use(scene)
-$vnjs.use(show)
-$vnjs.use(showAuto)
-$vnjs.use(audio)
-$vnjs.use(menu)
-$vnjs.use(mainMenu)
-$vnjs.use(term)
-$vnjs.use(table)
-$vnjs.use(clear)
-$vnjs.use(dialogBox)
-$vnjs.use(hands)
-$vnjs.use(data)
-$vnjs.use(switchVnjson)
-$vnjs.use(qa)
-$vnjs.use(chess)
-$vnjs.use(input)
-$vnjs.use(wiki)
-$vnjs.use(crossWord)
-$vnjs.use(test)
-$vnjs.use(slide)  
-$vnjs.use(content)
-$vnjs.use(voice)
-$vnjs.use(html)
-$vnjs.use(discordLog)
-$vnjs.use(statusBar)
+vnjs.use(scene)
+vnjs.use(show)
+vnjs.use(showAuto)
+vnjs.use(audio)
+vnjs.use(menu)
+vnjs.use(mainMenu)
+vnjs.use(term)
+vnjs.use(table)
+vnjs.use(clear)
+vnjs.use(dialogBox)
+vnjs.use(hands)
+vnjs.use(data)
+vnjs.use(switchVnjson)
+vnjs.use(qa)
+vnjs.use(chess)
+vnjs.use(input)
+vnjs.use(wiki)
+vnjs.use(crossWord)
+vnjs.use(test)
+vnjs.use(slide)  
+vnjs.use(content)
+vnjs.use(voice)
+vnjs.use(html)
+vnjs.use(discordLog)
+vnjs.use(statusBar)
   // minecraft
-$vnjs.use(mcPlayer)
-$vnjs.use(mcCheck)
-$vnjs.use(mcExec)
-$vnjs.use(mcGet)
+vnjs.use(mcPlayer)
+vnjs.use(mcCheck)
+vnjs.use(mcExec)
+vnjs.use(mcGet)
   //
-$vnjs.use(paintBoard)
-$vnjs.use(clipBoard)
-$vnjs.use(video)
-$vnjs.use(typewrite)
-$vnjs.use(area)
-$vnjs.use(selectWord)
-$vnjs.use(dragItems)
-$vnjs.use(consoleVnjson)
-$vnjs.use(blocks)
-$vnjs.use(staticApp)
-$vnjs.use(HUD)
-$vnjs.use(dialogBoxInfo)
-$vnjs.use(executeVnjson)
+vnjs.use(paintBoard)
+vnjs.use(clipBoard)
+vnjs.use(video)
+vnjs.use(typewrite)
+vnjs.use(area)
+vnjs.use(selectWord)
+vnjs.use(dragItems)
+vnjs.use(consoleVnjson)
+vnjs.use(blocks)
+vnjs.use(staticApp)
+vnjs.use(HUD)
+vnjs.use(dialogBoxInfo)
+vnjs.use(executeVnjson)
+vnjs.use(filter)
 
 /**
  * LOAD scenes
@@ -116,7 +117,7 @@ $vnjs.use(executeVnjson)
 fetch(`scenes/vn.json?v=${new Date().getTime()}`)
   .then(r => r.json())
   // preload assets
-  .then(tree => $vnjs.mount(tree)) 
+  .then(tree => vnjs.mount(tree)) 
   .catch(err => {
     $('.debug-error').css('display', 'flex')
                      .find('.debug-error__msg')
@@ -126,8 +127,8 @@ fetch(`scenes/vn.json?v=${new Date().getTime()}`)
   });
   
 
-$vnjs.on('postload', function (){
-  $vnjs.config = { 
+vnjs.on('postload', function (){
+  vnjs.config = { 
       debug: this.TREE.$root.package?.debug,
       width: 1024,
       height: 768
@@ -138,10 +139,10 @@ $vnjs.on('postload', function (){
   if(label){
     const [ sceneName, labelName ] = label.split('.');
 
-    $vnjs.exec({jump: `${sceneName}.${labelName}`})
+    vnjs.exec({jump: `${sceneName}.${labelName}`})
   }
   else{
-    $vnjs.exec({jump: '$root.$init'})
+    vnjs.exec({jump: '$root.$init'})
   }
   
 });

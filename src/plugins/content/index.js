@@ -7,7 +7,7 @@ const $tpl = $(`<ul class="vnjson__stage component"></ul>`)
 
 export default function (){
   const content = new Content(this, $tpl)
-  this.$store.$screen.append($tpl)
+  this.store.screen.append($tpl)
   /**
    * @ content
    */

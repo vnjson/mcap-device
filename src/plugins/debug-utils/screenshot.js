@@ -14,7 +14,7 @@ class ScreenShot {
         return `${this.HOST}/api/vnjson/screenshot`;
     }
     nodeToCanvas() {
-        html2canvas($vnjs.$store.$screen.get(0)).then((canvas) => {
+        html2canvas(vnjs.store.screen.get(0)).then((canvas) => {
             //this.sendToDiscord(canvas.toDataURL())
           
            canvas.toBlob((blob) => {
@@ -41,7 +41,7 @@ class ScreenShot {
             })
             .catch((err) => {
                 console.error(err);
-                $vnjs.emit("error", {
+                vnjs.emit("error", {
                     ru: `Сервер не отвечает <font color="deepskyblue">${this.HOST}</font>`,
                     en: `Server not responding <font color="deepskyblue">${this.HOST}</font>`,
                 });
@@ -78,7 +78,7 @@ class ScreenShot {
             .then((res) => {})
             .catch((err) => {
                 console.error(err);
-                $vnjs.emit("error", {
+                vnjs.emit("error", {
                     ru: `Нет доступа к webhook <font color="deepskyblue">${this.WEB_HOOK}</font>`,
                     en: `No access to <font color="deepskyblue">${this.WEB_HOOK}</font>`,
                 });

@@ -402,13 +402,13 @@ Ctrl+Shift+R - Обновить страницу без кэша
 ```
 ## assets-loader
 Загрузка медиа ресурсов
-Вызывается не явно. По срабатыванию события $vnjs.emit('setTree')
+Вызывается не явно. По срабатыванию события .emit('setTree')
 
 ```js
 Излучает события
-$vnjs.emit('preload')
-$vnjs.emit('load', asset)
-$vnjs.emit('postload')
+.emit('preload')
+.emit('load', asset)
+.emit('postload')
 ```
 ```text
 /scenes

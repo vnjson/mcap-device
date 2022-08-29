@@ -13,17 +13,17 @@ this.on('$voice', data => {
 
   if(data){
     $('.vnjson__hand-left').css('background-image', `url(${icoPlay})`)
-    this.$store.$voice = data
+    this.store.$voice = data
     INDEX = this.state.index
     prev = data
   }
   else{
     this.emit('hand-left', false)
-    this.$store[prev].stop()
+    this.store[prev].stop()
     prev = null
   }
   if(prev){
-      this.$store[prev].stop()
+      this.store[prev].stop()
       prev = null
   }
 
@@ -33,7 +33,7 @@ this.on('$voice', data => {
 this.on('character', ctx => {
   if( INDEX ){ 
     const name = this.getCurrentLabelBody()[INDEX].$voice
-    this.$store[name].stop();
+    this.store[name].stop();
     this.emit('hand-left', false)
     prev = null
     INDEX = null
@@ -44,15 +44,15 @@ this.on('voicePlay', data => {
     
   if(INDEX){
       if(prev){
-          this.$store[prev].stop()
+          this.store[prev].stop()
           
       } 
       const name = this.getCurrentLabelBody()[INDEX].$voice
-      this.$store[name].play()
+      this.store[name].play()
   }
   else{
     //const name = this.getCurrentLabelBody()[INDEX].$voice
-    //this.$store[name].stop()
+    //this.store[name].stop()
     prev = null
   }
 })

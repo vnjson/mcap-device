@@ -4,7 +4,7 @@ import "./style.css"
 export default function (){
 
     const $tpl = $('<div class="dialog-box__info"></div>')
-    this.$store.$screen.append($tpl)
+    this.store.screen.append($tpl)
     /**
      * INFO
      */

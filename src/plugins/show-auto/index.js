@@ -7,9 +7,9 @@ export default function (){
   let $right = $('<img alt="" src="" class="vnjson__show-auto-right component"/>')
 
 
-  this.$store.$screen.append($left)
-  this.$store.$screen.append($center)
-  this.$store.$screen.append($right)
+  this.store.screen.append($left)
+  this.store.screen.append($center)
+  this.store.screen.append($right)
 /*
 
 

@@ -50,7 +50,7 @@ export default function () {
     });
     // _vnjs.TREE.$root.characters[0]
     $(".debug__delay").on("change", function () {
-        _vnjs.$store["dialog-box"].delay = $(this).val();
+        _vnjs.store["dialog-box"].delay = $(this).val();
     });
     $("#debug__color-picker").on("change", function () {
         const value = $(this).val();

@@ -21,7 +21,7 @@ export default function (){
   }
 
   var $tpl = $(tpl)
-  this.$store.$screen.append($tpl)
+  this.store.screen.append($tpl)
 
 
   var setScore = data=>{
@@ -68,7 +68,7 @@ export default function (){
       }
     }
     $tpl.css('display', 'flex'); 
-  let $vnjs = this
+  let vnjs = this
 
   function clickHundler(){
       let data = $(this).data('score')
@@ -77,7 +77,7 @@ export default function (){
 
       $('.vnjson__qa').off( "click", clickHundler)
       $('.vnjson__qa').hide();
-      $vnjs.exec({ next: true })
+      vnjs.exec({ next: true })
   }
 
   $(".vnjson__qa").on("click", ".vnjson__qa--item", clickHundler);

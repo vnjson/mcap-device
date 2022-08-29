@@ -8,7 +8,7 @@
       scene: lake
       sound: pianino
 
-# получаем данные из хранилища $vnjs.state.data
+# получаем данные из хранилища vnjs.state.data
 - $: CHAPTER 2
   data-set:
     age: 13

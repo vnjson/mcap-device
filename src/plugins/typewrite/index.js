@@ -6,7 +6,7 @@ import TypeWrite from './TypeWrite.js';
 const $tpl = $(tpl);
 
 export default function (){
-  this.$store.$screen.append($tpl);
+  this.store.screen.append($tpl);
   const tw = new TypeWrite();
   this.on('typewrite', param=>{
       if(typeof param ==='string'){

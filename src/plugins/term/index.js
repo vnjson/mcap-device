@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 export default function () {
     const $tpl = $(tpl);
 
-    this.$store.$screen.append($tpl);
+    this.store.screen.append($tpl);
 
     this.on("term", (param) => {
         if (param === true) {

@@ -5,7 +5,7 @@ let selectedElement = null
 
 export default function (){
 
-  this.$store.$screen.append($tpl)
+  this.store.screen.append($tpl)
   this.on('drag-items', data=>{
     if(data){
       $tpl.show()

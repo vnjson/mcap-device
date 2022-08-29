@@ -4,7 +4,7 @@ import ErrorHandler from "./ErrorHandler.js";
 import errors from "./errors.js";
 
 export default function () {
-    $vnjs.errors = errors;
+    vnjs.errors = errors;
     /**
      * Блокировка контекстного меню, если не debug
      */

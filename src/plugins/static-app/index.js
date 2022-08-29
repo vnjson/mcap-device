@@ -17,7 +17,7 @@ function eventRegistration (event) {
   const tpl = `<iframe src="${src}" class="vnjson__${event} vnjson__static-app component" ></iframe>`
   const $tpl = $(tpl)
 
-  this.$store.$screen.append($tpl)
+  this.store.screen.append($tpl)
 
   this.on(event, data=>{
     if(data){

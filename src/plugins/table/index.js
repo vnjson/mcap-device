@@ -3,7 +3,7 @@ import "./style.css";
 
 export default function (){
   const $table = $('<div class="vnjson__table component"></div>')
-  this.$store.$screen.append($table)
+  this.store.screen.append($table)
   let _tableData = null
   $table.on('click', '.table__cell', function(){
       const indexRow = $(this).data('row')
@@ -13,7 +13,7 @@ export default function (){
       const cell = _tableData[indexRow].row[indexCell][cellType]
 
       if(cell.exec){
-          $vnjs.exec(cell.exec)
+          vnjs.exec(cell.exec)
       }
      
   })

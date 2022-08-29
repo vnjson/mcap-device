@@ -3,7 +3,7 @@ import "./style.css";
 const $tpl = $('<div class="vnjson__area component"></div>');
 let _regions = null;
 export default function () {
-    this.$store.$screen.append($tpl);
+    this.store.screen.append($tpl);
     this.on("area", handler.bind(this));
     $tpl.on("click", (e) => {
         if (!e.target.className.includes("vnjson__area-item")) return;

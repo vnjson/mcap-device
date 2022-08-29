@@ -3,7 +3,7 @@ import "./style.css";
 
 export default function () {
     const $tpl = $(tpl);
-    this.$store.$screen.append($tpl);
+    this.store.screen.append($tpl);
 
     let dataID = false;
     const handler = (param) => {
@@ -15,10 +15,7 @@ export default function () {
         }
     };
 
-    this.on("set-name", (param) => {
-        console.warn("[set-name] is deprecated. Use [input-name]");
-        handler(param)
-    });
+
     this.on("input-name", handler);
     this.on("input-data", handler);
 
@@ -27,17 +24,22 @@ export default function () {
 
         $tpl.fadeOut();
         const character = this.getCharacterById(dataID);
-        if(character){
+        if (character) {
             character.name = input.val();
-        }
+        } else {
         /* state.data */
-        else{
-          $vnjs.emit('data-set', {
-              [dataID]: input.val()
-          })
+            vnjs.emit("data-set", {
+                [dataID]: input.val(),
+            });
         }
         input.val("");
         this.exec({ next: true });
-        // this.exec({ next: true, 'set-data': { [dataID]: value } });
+    });
+    /**
+     * DEPRECATED
+     */
+    this.on("set-name", (param) => {
+        console.warn("[set-name] is deprecated. Use [input-name]");
+        handler(param);
     });
 }

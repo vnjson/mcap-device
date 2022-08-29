@@ -40,8 +40,8 @@ function query (request){
           .then(res => { 
               const data = JSON.stringify(res) 
               console.log( data )
-              this.$store.MINECRAFT = this.$store.MINECRAFT||{}
-              this.$store.MINECRAFT[param.request] = res
+              thisstore.MINECRAFT = thisstore.MINECRAFT||{}
+              thisstore.MINECRAFT[param.request] = res
               if(param.callback){
                   param.callback(data)
               }
@@ -57,10 +57,10 @@ function query (request){
 
 /*
     this.on('mc.player', () => {
-        alert(JSON.stringify(this.$store.MINECRAFT.PLAYER))
+        alert(JSON.stringify(thisstore.MINECRAFT.PLAYER))
     })
     this.on('mc.slot', () => {
-        alert(JSON.stringify(this.$store.MINECRAFT.SLOT.id))
+        alert(JSON.stringify(thisstore.MINECRAFT.SLOT.id))
     })
     */
   }

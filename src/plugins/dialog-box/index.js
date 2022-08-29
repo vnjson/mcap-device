@@ -9,7 +9,7 @@ import errorSnippet from "./error-snippet.js";
 export default function () {
     const $tpl = $(tpl);
 
-    this.$store.$screen.append($tpl);
+    this.store.screen.append($tpl);
     // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
     $tpl.find(".dialog-box__reply-wrapper").on("mousedown", (e) => {
         this.emit("dialog-box.click");
@@ -20,7 +20,7 @@ export default function () {
      * DialogBox
      */
     const dBox = new DialogBox({
-        $vnjs,
+        vnjs,
         delay: 0,
         alpha: 0,
         endPoint: false,
@@ -34,7 +34,7 @@ export default function () {
         classNameEndPoint: "dialog-box__reply-end-point",
     });
 
-    this.$store["dialog-box"] = dBox;
+    vnjs.store["dialog-box"] = dBox;
     /**
      * DELAY
      */
@@ -65,7 +65,7 @@ export default function () {
                         $tpl.css("font-size", conf["font-size"] + "px");
                         break;
                     default:
-                        $vnjs.emit(
+                        vnjs.emit(
                             "error",
                             {
                                 ru: `Некоректный параметр <font color="deepskyblue">${key}</font>`,
