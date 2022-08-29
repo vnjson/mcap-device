@@ -83,7 +83,6 @@ class DialogBox {
         //this.reply = this.reply.replaceAll(/<.{0,}><\/.{0,}>/gi, '')
         // Если скорость вывода символов равна нулю, то строка не разбивается на символы
         if (this.delay > 0) {
-            console.log(this.reply)
             this.replyOutputBySingleLetter();
             // выводим готовый реузльтат
             this.outputToHTML(append);

@@ -2742,7 +2742,6 @@
         // Если скорость вывода символов равна нулю, то строка не разбивается на символы
 
         if (this.delay > 0) {
-          console.log(this.reply);
           this.replyOutputBySingleLetter(); // выводим готовый реузльтат
 
           this.outputToHTML(append); // Запускаем посимвольное изменение прозрачности
@@ -7021,11 +7020,11 @@
 
     vnjs$1 = this;
     this.store.screen.append($tpl$1);
-    this.on('blocks', function (param) {
+    this.on("blocks", function (param) {
       stepsArray = param;
       blocksHandler.call(_this, stepsArray);
     });
-    this.on('blocks-step', blocksStepHandler);
+    this.on("blocks-step", blocksStepHandler);
   }
 
   function getImage(item) {
@@ -7037,8 +7036,6 @@
   }
 
   function blocksHandler(param) {
-    var _this2 = this;
-
     if (param) {
       $tpl$1.show();
       param.forEach(function (item) {
@@ -7048,12 +7045,12 @@
           height: item.height,
           left: item.left,
           top: item.top,
-          display: 'block'
+          display: "block"
         });
-        var $img = $imgWrapper.find('img');
+        var $img = $imgWrapper.find("img");
         var $imgBox = $imgWrapper.find(".vnjson__blocks-wrapper--".concat(item.id));
         $img.css({
-          display: 'none',
+          display: "none",
           width: item.width,
           height: item.height,
           left: 0,
@@ -7066,16 +7063,16 @@
          */
 
         setTimeout(function () {
-          if (item['z-index']) {
-            $imgWrapper.css('z-index', item['z-index']);
+          if (item["z-index"]) {
+            $imgWrapper.css("z-index", item["z-index"]);
           }
 
           if (item.animation) {
-            animationType.call(_this2, $imgWrapper, $img, $imgBox, item);
+            animationType($imgWrapper, $img, $imgBox, item);
           } else {
             $img.css({
-              opacity: '1',
-              display: 'block'
+              opacity: "1",
+              display: "block"
             });
           }
         }, item.timeout + 100);
@@ -7087,18 +7084,16 @@
   }
 
   function animationType($imgWrapper, $img, $imgBox, item) {
-    var _this3 = this;
-
     switch (item.animation.type) {
       /**
        * slide
        */
-      case 'slideUp':
+      case "slideUp":
         $img.css({
-          display: 'block'
+          display: "block"
         });
         $imgBox.css({
-          top: '-100%'
+          top: "-100%"
         });
         $img.animate({
           opacity: 1
@@ -7107,17 +7102,17 @@
           top: "0%"
         }, item.animation.duration, function () {
           if (item.animation.onEnd) {
-            _this3.exec(item.animation.onEnd);
+            vnjs$1.exec(item.animation.onEnd);
           }
         });
         break;
 
-      case 'slideDown':
+      case "slideDown":
         $img.css({
-          display: 'block'
+          display: "block"
         });
         $imgBox.css({
-          top: '100%'
+          top: "100%"
         });
         $img.animate({
           opacity: 1
@@ -7126,17 +7121,17 @@
           top: "0%"
         }, item.animation.duration, function () {
           if (item.animation.onEnd) {
-            _this3.exec(item.animation.onEnd);
+            vnjs$1.exec(item.animation.onEnd);
           }
         });
         break;
 
-      case 'slideLeft':
+      case "slideLeft":
         $img.css({
-          display: 'block'
+          display: "block"
         });
         $imgBox.css({
-          left: '-100%'
+          left: "-100%"
         });
         $img.animate({
           opacity: 1
@@ -7145,17 +7140,17 @@
           left: "0%"
         }, item.animation.duration, function () {
           if (item.animation.onEnd) {
-            _this3.exec(item.animation.onEnd);
+            vnjs$1.exec(item.animation.onEnd);
           }
         });
         break;
 
-      case 'slideRight':
+      case "slideRight":
         $img.css({
-          display: 'block'
+          display: "block"
         });
         $imgBox.css({
-          left: '100%'
+          left: "100%"
         });
         $img.animate({
           opacity: 1
@@ -7164,7 +7159,7 @@
           left: "0%"
         }, item.animation.duration, function () {
           if (item.animation.onEnd) {
-            _this3.exec(item.animation.onEnd);
+            vnjs$1.exec(item.animation.onEnd);
           }
         });
         break;
@@ -7173,82 +7168,82 @@
        * show
        */
 
-      case 'showUp':
+      case "showUp":
         $img.css({
           opacity: 1,
-          display: 'block'
+          display: "block"
         });
         $imgBox.css({
-          height: '0px',
-          top: '0px',
-          bottom: 'unset',
-          'align-items': 'flex-start'
+          height: "0px",
+          top: "0px",
+          bottom: "unset",
+          "align-items": "flex-start"
         });
         $imgBox.animate({
           height: item.height
         }, item.animation.duration, function () {
           if (item.animation.onEnd) {
-            _this3.exec(item.animation.onEnd);
+            vnjs$1.exec(item.animation.onEnd);
           }
         });
         break;
 
-      case 'showDown':
+      case "showDown":
         $img.css({
           opacity: 1,
-          display: 'block'
+          display: "block"
         });
         $imgBox.css({
-          height: '0px',
-          top: 'unset',
-          bottom: '0px',
-          'align-items': 'flex-end'
+          height: "0px",
+          top: "unset",
+          bottom: "0px",
+          "align-items": "flex-end"
         });
         $imgBox.animate({
           height: item.height
         }, item.animation.duration, function () {
           if (item.animation.onEnd) {
-            _this3.exec(item.animation.onEnd);
+            vnjs$1.exec(item.animation.onEnd);
           }
         });
         break;
 
-      case 'showLeft':
+      case "showLeft":
         $img.css({
           opacity: 1,
-          display: 'block'
+          display: "block"
         });
         $imgBox.css({
-          width: '0px',
-          left: '0px',
-          right: 'unset',
-          'justify-content': 'flex-start'
+          width: "0px",
+          left: "0px",
+          right: "unset",
+          "justify-content": "flex-start"
         });
         $imgBox.animate({
           width: item.width
         }, item.animation.duration, function () {
           if (item.animation.onEnd) {
-            _this3.exec(item.animation.onEnd);
+            vnjs$1.exec(item.animation.onEnd);
           }
         });
         break;
 
-      case 'showRight':
+      case "showRight":
         $img.css({
           opacity: 1,
-          display: 'block'
+          display: "block"
         });
         $imgBox.css({
-          width: '0px',
-          right: '0px',
-          left: 'unset',
-          'justify-content': 'flex-end'
+          width: "0px",
+          right: "0px",
+          left: "unset",
+          "justify-content": "flex-end"
         });
         $imgBox.animate({
           width: item.width
         }, item.animation.duration, function () {
           if (item.animation.onEnd) {
-            _this3.exec(item.animation.onEnd);
+            vnjs$1.exec(item.animation.onEnd);
           }
         });
         break;
@@ -7257,24 +7252,24 @@
        * move
        */
 
-      case 'moveTo':
+      case "moveTo":
         $img.css({
-          display: 'block',
+          display: "block",
           opacity: 1
         });
         var animationData = {};
 
         if (item.animation.left) {
-          animationData.left = item.animation.left.replaceAll(' ', '');
+          animationData.left = item.animation.left.replaceAll(" ", "");
         }
 
         if (item.animation.top) {
-          animationData.top = item.animation.top.replaceAll(' ', '');
+          animationData.top = item.animation.top.replaceAll(" ", "");
         }
 
         $imgWrapper.animate(animationData, item.animation.duration, function () {
           if (item.animation.onEnd) {
-            _this3.exec(item.animation.onEnd);
+            vnjs$1.exec(item.animation.onEnd);
           }
         });
         break;
@@ -7283,9 +7278,9 @@
        * zoom
        */
 
-      case 'zoom':
+      case "zoom":
         $img.css({
-          display: 'block',
+          display: "block",
           opacity: 1
         });
         var animationData2 = {
@@ -7296,7 +7291,7 @@
 
         if (item.animation.onEnd) {
           setTimeout(function () {
-            _this3.exec(item.animation.onEnd);
+            vnjs$1.exec(item.animation.onEnd);
           }, item.animation.duration);
         }
 
@@ -7306,43 +7301,43 @@
        * fade
        */
 
-      case 'fadeIn':
+      case "fadeIn":
         $img.css({
-          display: 'block'
+          display: "block"
         });
         $img.animate({
           opacity: 1
         }, item.animation.duration, function () {
           if (item.animation.onEnd) {
-            _this3.exec(item.animation.onEnd);
+            vnjs$1.exec(item.animation.onEnd);
           }
         });
         break;
 
-      case 'fadeOut':
+      case "fadeOut":
         $img.css({
           opacity: 1,
-          display: 'block'
+          display: "block"
         });
         $img.animate({
           opacity: 0
         }, item.animation.duration, function () {
           if (item.animation.onEnd) {
-            _this3.exec(item.animation.onEnd);
+            vnjs$1.exec(item.animation.onEnd);
           }
         });
         break;
 
       default:
-        this.exec({
-          '$': "<font color=\"red\">\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0442\u0438\u043F \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 ".concat(JSON.stringify(item.animation.type), "</font>")
+        vnjs$1.exec({
+          $: "<font color=\"red\">\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0442\u0438\u043F \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 ".concat(JSON.stringify(item.animation.type), "</font>")
         });
     }
   }
 
   function blocksStepHandler(item) {
     var $imgWrapper = $(".vnjson__blocks--".concat(item.id));
-    var $img = $imgWrapper.find('img');
+    var $img = $imgWrapper.find("img");
     var $imgBox = $imgWrapper.find(".vnjson__blocks-wrapper--".concat(item.id));
 
     if (!item.timeout) {
@@ -7351,19 +7346,19 @@
 
     setTimeout(function () {
       if (item.image !== undefined) {
-        $img.attr('src', getImage(item));
+        $img.attr("src", getImage(item));
       }
 
-      if (item['z-index']) {
-        $imgWrapper.css('z-index', item['z-index']);
+      if (item["z-index"]) {
+        $imgWrapper.css("z-index", item["z-index"]);
       }
 
       if (item.animation) {
         animationType($imgWrapper, $img, $imgBox, item);
       } else {
         $img.css({
-          opacity: '1',
-          display: 'block'
+          opacity: "1",
+          display: "block"
         });
       }
     }, item.timeout + 100);

@@ -100,23 +100,42 @@
         "audio": false,
         "data-clear": true,
         "status-bar": false,
-        "scene": "alice",
         "next": true
       },
       {
-        "al": "te <font color=\"deepskyblue\">телескопом</font>"
+        "blocks": [
+          {
+            "image": "alice",
+            "id": "test1",
+            "timeout": 0,
+            "width": "130px",
+            "height": "180px",
+            "top": "100px",
+            "left": "400px",
+            "animation": {
+              "type": "zoom",
+              "duration": 1000,
+              "value": 2,
+              "onEnd": {
+                "$": "test test"
+              }
+            }
+          }
+        ]
       },
       {
-        "al": "Как указывает НАСА, использование SP именно в таком виде"
-      },
-      {
-        "+": "te <font color=\"deepskyblue\">телескопом </font>"
-      },
-      {
-        "+": "телескопом"
-      },
-      {
-        "+": "телескопом"
+        "blocks-step": {
+          "id": "test1",
+          "animation": {
+            "type": "moveTo",
+            "duration": 1000,
+            "left": "150px",
+            "top": "50px",
+            "onEnd": {
+              "$": "KRAB"
+            }
+          }
+        }
       },
       {
         "al": "Всё ходит по цепи кругом",
