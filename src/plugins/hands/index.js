@@ -19,7 +19,7 @@ export default {
          * Если есть, то ширину блока с репликой необходимо уменьшить
          * Так же, стили необходимо восстановить, если встретился персонаж без аватара
          */
-        vnjs.on("character", (character) => {
+        vnjs.on("vnjson.character", (character) => {
             setTimeout(() => {
                 this.characterHandler(vnjs.state.character)
             }, 50)

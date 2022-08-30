@@ -30,7 +30,7 @@ vnjs.on('$voice', data => {
 
 })
 
-vnjs.on('character', ctx => {
+vnjs.on("vnjson.character", ctx => {
   if( INDEX ){ 
     const name = this.getCurrentLabelBody()[INDEX].$voice
     this.store[name].stop();

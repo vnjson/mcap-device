@@ -2482,11 +2482,11 @@
 
   var tpl$d = "<div class=\"vnjson-loader\">\n    <div class=\"vnjson-loader__progress\">\n        <div class=\"vnjson-loader__progress--load\"></div>\n    </div>\n    <div class=\"vnjson-loader__status\"><span>{</span><span>}</span></div>\n</div>";
 
-  var $tpl$f = $(tpl$d);
+  var $tpl$g = $(tpl$d);
   function assetsLoader () {
     var _this = this;
 
-    $("#screen").append($tpl$f);
+    $("#screen").append($tpl$g);
 
     var getAssets = function getAssets() {
       vnjs.emit("preload");
@@ -2506,7 +2506,7 @@
               src: asset.url
             });
             sound.on("end", function () {
-              return vnjs.emit("audioEnd", asset.name);
+              return vnjs.emit("loader.audio-onend", asset.name);
             });
             sound.on("load", function (_) {
               vnjs.store[asset.name] = sound;
@@ -2604,9 +2604,9 @@
      */
 
     vnjs.on("preload", function () {
-      $tpl$f.css("display", "flex");
+      $tpl$g.css("display", "flex");
     });
-    var loadProgress = $tpl$f.find('.vnjson-loader__progress--load');
+    var loadProgress = $tpl$g.find('.vnjson-loader__progress--load');
     vnjs.on("load", function (asset, len, i) {
       var width = i / (len - 1) * 100;
       var roundWidth = Math.ceil(width);
@@ -2616,7 +2616,7 @@
       loadProgress.text("".concat(roundWidth, "%"));
     });
     vnjs.on("postload", function () {
-      $tpl$f.fadeOut(300);
+      $tpl$g.fadeOut(300);
     });
   }
 
@@ -2725,6 +2725,11 @@
       value: function print(character) {
         var reply = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
         var append = arguments.length > 2 ? arguments[2] : undefined;
+
+        if (append) {
+          this.forcePrintPrevReply();
+        }
+
         vnjs.emit("dialog-box.print");
         this.reset();
         this.character = character;
@@ -2987,10 +2992,14 @@
     }, {
       key: "forcePrintPrevReply",
       value: function forcePrintPrevReply() {
-        var letters = this.prevReplyStringTag.querySelectorAll("." + this.classNameLetter);
-        letters.forEach(function ($letter) {
-          $letter.style.opacity = 1;
-        });
+        var letters = null;
+
+        if (this.prevReplyStringTag) {
+          letters = this.prevReplyStringTag.querySelectorAll("." + this.classNameLetter);
+          letters.forEach(function ($letter) {
+            $letter.style.opacity = 1;
+          });
+        }
       }
     }]);
 
@@ -3003,26 +3012,19 @@
    */
   var errorSnippet = "# \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B \u0432 $root/package.yaml\n\ndialog-box:\n  #delay: 60\n  #alpha: 0.3\n  #endPoint: true\n  mode-classic: dialog-box # \u0438\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u0435 1024 x 200\n  mode-fullscreen: dialog-box-full # \u0438\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u0435 1024 x 768";
 
+  var $tpl$f = $(tpl$c);
   /**
-   * INIT
+   * DialogBox
    */
 
+  /**
+   * setup
+   */
+
+  var dBox = null;
   function dialogBox () {
-    var _this = this;
-
-    var $tpl = $(tpl$c);
-    this.store.screen.append($tpl); // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
-
-    $tpl.find(".dialog-box__reply-wrapper").on("mousedown", function (e) {
-      vnjs.emit("dialog-box.click");
-
-      _this.next();
-    });
-    /**
-     * DialogBox
-     */
-
-    var dBox = new DialogBox({
+    vnjs.store.screen.append($tpl$f);
+    dBox = new DialogBox({
       delay: 0,
       alpha: 0,
       endPoint: false,
@@ -3034,143 +3036,153 @@
       replyContaiterSelector: ".dialog-box__container",
       classNameLetter: "dialog-box__letter",
       classNameEndPoint: "dialog-box__reply-end-point"
+    }); // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
+
+    $tpl$f.find(".dialog-box__reply-wrapper").on("mousedown", function (e) {
+      vnjs.emit("dialog-box.click");
+      vnjs.next();
     });
     vnjs.plugins["dialog-box"] = dBox;
     /**
      * DELAY
      */
 
-    vnjs.on("postload", function () {
-      var _this$package;
-
-      var conf = (_this$package = _this["package"]) === null || _this$package === void 0 ? void 0 : _this$package["dialog-box"];
-
-      if (conf) {
-        for (var key in conf) {
-          switch (key) {
-            case "delay":
-              dBox.delay = conf.delay;
-              break;
-
-            case "alpha":
-              dBox.alpha = conf.alpha;
-              break;
-
-            case "endPoint":
-              dBox.endPoint = conf.endPoint;
-              break;
-
-            case "mode-classic":
-              dBox.setMode("mode-classic");
-              break;
-
-            case "mode-fullscreen":
-              /**/
-              break;
-
-            case "font-family":
-              $tpl.css("font-family", conf["font-family"]);
-              break;
-
-            case "font-size":
-              $tpl.css("font-size", conf["font-size"] + "px");
-              break;
-
-            default:
-              vnjs.emit("error", {
-                ru: "\u041D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440 <font color=\"deepskyblue\">".concat(key, "</font>"),
-                en: "Invalid parametr <font color=\"deepskyblue\">".concat(key, "</font>")
-              }
-              /*, jsyaml.dump(conf) */
-              );
-          }
-        }
-      } else {
-        vnjs.emit("vnjson.error", errorSnippet);
-      }
-    });
-    /**
-     * CHARACTER native event
-     */
-
-    vnjs.on("character", function (_character, param) {
-      var character = _objectSpread2({}, _character);
-
-      if (_typeof(param) === "object") {
-        if (param.nameColor) character.nameColor = param.nameColor;
-        if (param.replyColor) character.replyColor = param.replyColor;
-        if (param.avatar) character.avatar = param.avatar;
-        vnjs.emit('character.set-param', character);
-        dBox.print(character, String(param.reply));
-      } else {
-        dBox.print(character, String(param));
-      }
-    });
-    /**
-     * append reply
-     */
-
-    vnjs.on("+", function (reply) {
-      var character = vnjs.state.character;
-
-      if (!character) {
-        character = _this.getCharacterById('$');
-        vnjs.state.character = character;
-      }
-
-      dBox.forcePrintPrevReply();
-      dBox.print(character, String(reply), true);
-    });
+    vnjs.on("postload", onPostload);
     /**
      * SHOW HIDE DIALOG-BOX
      */
 
-    vnjs.on("dialog-box", function (param) {
-      var key = null;
-      key = String(param);
+    vnjs.on("dialog-box", handler$3);
+  }
+  /**
+   * @ character native event
+   */
 
-      if (_typeof(param) === "object") {
-        key = "object";
+  vnjs.on("vnjson.character", function (_character, args, append) {
+    var character = _objectSpread2({}, _character);
+
+    if (_typeof(args) === "object") {
+      if (args.nameColor) character.nameColor = args.nameColor;
+      if (args.replyColor) character.replyColor = args.replyColor;
+      if (args.avatar) character.avatar = args.avatar;
+      dBox.print(character, String(args.reply), append);
+    } else {
+      dBox.print(character, String(args), append);
+    }
+  });
+  /**
+   * append reply
+   */
+
+  /*
+  vnjs.on("+", (reply) => {
+      let character = vnjs.state.character;
+      if(!character) {
+          vnjs.state.character = vnjs.tree.$root.characters[0]
       }
 
-      var controller = {
-        object: function object() {
-          for (var _key in param) {
-            dBox[_key] = param[_key];
-          }
+      dBox.print(character, String(reply), true);
+  });*/
 
-          dBox.show();
-        },
-        "true": function _true() {
-          dBox.disabled(false);
-          dBox.show();
-        },
-        "false": function _false() {
-          dBox.hide();
-        },
-        clear: function clear() {
-          dBox.disabled(false);
-          dBox.clear();
-        },
-        disabled: function disabled() {
-          dBox.disabled(true);
-        },
-        transparent: function transparent() {
-          dBox.transparent();
-        },
-        classic: function classic() {
-          dBox.disabled(false);
-          dBox.setMode("mode-classic");
-          dBox.show();
-        },
-        fullscreen: function fullscreen() {
-          dBox.disabled(false);
-          dBox.setMode("mode-fullscreen");
-          dBox.show();
+  /**
+   * handler
+   */
+
+  function handler$3(args) {
+    var key = null;
+    key = String(args);
+
+    if (_typeof(args) === "object") {
+      key = "object";
+    }
+
+    var controller = {
+      object: function object() {
+        for (var _key in args) {
+          dBox[_key] = args[_key];
         }
-      };
-      controller[key]();
-    });
+
+        dBox.show();
+      },
+      "true": function _true() {
+        dBox.disabled(false);
+        dBox.show();
+      },
+      "false": function _false() {
+        dBox.hide();
+      },
+      clear: function clear() {
+        dBox.disabled(false);
+        dBox.clear();
+      },
+      disabled: function disabled() {
+        dBox.disabled(true);
+      },
+      transparent: function transparent() {
+        dBox.transparent();
+      },
+      classic: function classic() {
+        dBox.disabled(false);
+        dBox.setMode("mode-classic");
+        dBox.show();
+      },
+      fullscreen: function fullscreen() {
+        dBox.disabled(false);
+        dBox.setMode("mode-fullscreen");
+        dBox.show();
+      }
+    };
+    controller[key]();
+  }
+
+  function onPostload() {
+    var _vnjs$package;
+
+    var conf = (_vnjs$package = vnjs["package"]) === null || _vnjs$package === void 0 ? void 0 : _vnjs$package["dialog-box"];
+
+    if (conf) {
+      for (var key in conf) {
+        switch (key) {
+          case "delay":
+            dBox.delay = conf.delay;
+            break;
+
+          case "alpha":
+            dBox.alpha = conf.alpha;
+            break;
+
+          case "endPoint":
+            dBox.endPoint = conf.endPoint;
+            break;
+
+          case "mode-classic":
+            dBox.setMode("mode-classic");
+            break;
+
+          case "mode-fullscreen":
+            /**/
+            break;
+
+          case "font-family":
+            $tpl$f.css("font-family", conf["font-family"]);
+            break;
+
+          case "font-size":
+            $tpl$f.css("font-size", conf["font-size"] + "px");
+            break;
+
+          default:
+            vnjs.emit("error", {
+              ru: "\u041D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440 <font color=\"deepskyblue\">".concat(key, "</font>"),
+              en: "Invalid argsetr <font color=\"deepskyblue\">".concat(key, "</font>")
+            }
+            /*, jsyaml.dump(conf) */
+            );
+        }
+      }
+    } else {
+      vnjs.emit("vnjson.error", errorSnippet);
+    }
   }
 
   var css$s = ".vnjson__hands {\n    position: absolute;\n    opacity: 0.8;\n    top: unset;\n    right: 0;\n    bottom: 10px;\n    display: none; \n    height: 185px;\n  }\n.vnjson__hands .vnjson__hand {\n    width: 95px;\n    height: 95px;\n    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAGZmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLWMwMDIgNzkuMTY0NDYwLCAyMDIwLzA1LzEyLTE2OjA0OjE3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIxLTExLTA1VDEyOjM5OjM0KzAzOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDIxLTExLTA1VDEyOjM5OjM0KzAzOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMS0xMS0wNVQxMjozOTozNCswMzowMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo0ZDZhODRkYi1kYWE5LTE3NDYtOWYxZS1iMjE4ODRiZDRmNTkiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDphMmY2NzgyMy03MTY2LTRhNGYtOGMyMC04N2FlNzQ5YzJmZTMiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1MmI1MTYxMC1kMjQ0LTkzNGYtYjBmNS1jMjk1ZjJlNzY5OTQiIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIGRjOmZvcm1hdD0iaW1hZ2UvcG5nIj4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iY3JlYXRlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo1MmI1MTYxMC1kMjQ0LTkzNGYtYjBmNS1jMjk1ZjJlNzY5OTQiIHN0RXZ0OndoZW49IjIwMjEtMTEtMDVUMTI6Mzk6MzQrMDM6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMS4yIChXaW5kb3dzKSIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6NGQ2YTg0ZGItZGFhOS0xNzQ2LTlmMWUtYjIxODg0YmQ0ZjU5IiBzdEV2dDp3aGVuPSIyMDIxLTExLTA1VDEyOjM5OjM0KzAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDxwaG90b3Nob3A6RG9jdW1lbnRBbmNlc3RvcnM+IDxyZGY6QmFnPiA8cmRmOmxpPmFkb2JlOmRvY2lkOnBob3Rvc2hvcDoyZWIwNzk3Mi1hMTdlLTA0NGYtYWIxYi04MDExN2JmYWYzODM8L3JkZjpsaT4gPC9yZGY6QmFnPiA8L3Bob3Rvc2hvcDpEb2N1bWVudEFuY2VzdG9ycz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6BgqWgAAAF1klEQVR4nOVb247TMBA9YzvOZcWyVYWQeOEBxHfzA7zwzCfwD0gIgQQS0E1308Q3Hrr2Ote2CFiSHqlSktpJ5oxnMh57yDmHcwZ76Bd4aJw9ASI+efPmjcvzHF++fMHV1RX8sZQSQtw35Zxju91is9mAcw4iAgAYY7BarXBxcQHnHL5//46qqsA5B2OHuT7VHKfaExGUUrDWIs9zvH//HsYYEBFev35NgwTc3t7CWou6rlvHl5eXLQKEEFBKIUmSlnDGGGRZhjzP4ZxDmqYwxoBzDs75bwvknAMR9f4P5wQQqPVfrJQkSaC1hlIqXB8kgDEGxhiIqHX89evXlgCcc1RVhZubmyC8cw7GGBhjUJYlnHMoyxK73e4o4aeI8MITUUsAay2IAGcBh+E+ngTfd5IArz0pJd6+fRu03u1krYWUEmmawjmHpmnQNE1o5x+cJEl4aF3X0FqDiFqEGGPCsb/uyfTP5pzDOQchBGQqQz+jNRhjaGqFRjUtxRljsF6vkec5rLXh3pMExMM+TVMwxiCEQJqmrU7OOUgpkSQJAKBpGtR13WPYmwcRYbfbQd+9cOwPrLXhuDua/DXGWCAgzdJAgFZqkgD/foyx000AAKSU2G63+PjxY48AIUQYIUqpoN3u/Twp3iHFgk4REJuBJ4BzDpGI0M8aAyIGrTS00YEAf48XL15gvV4HwQ+agJQyaJaIUBQFPnz4gHfv3mGOWK1WeP78OTabTU+5HqMjwDc81YH9TyAiaK3vnCUNfopbBNzc3EBrjd1uB2stjDEnf5v/Jwghwqg2xqBpmh4JLQJ+/PgBKSWur6+D04htdG5IkgRZlu0d5p1iuyO6Nya8xofsZW7wznRKia0R8OjRI6RpCqVUGP5zNoEYQggkSTJtAo8fP0ZRFKiqahEExM58jIBRE3DOwdl5ExDDK7MrT2sEbDabMBHK8gwyu4/25o6jCNhut6jrGlVVIU1TyLQ9DZ4zxghomQDnHEKIEHpiGaN/Ei0C9gwBzlk0dY26rqGUeqh3+6PwUe5BJwjsidBaQysFY/Q/ecG/jbHJ0GieaqzD0tAjYC8vdX7LwEkj4Fxw9gQs4yN/BBhjrRR+uP5A7/PPcfJX4FzQMgHPjk9FH7ui878i1vpYTnC+0v0hLJ6AQ8Fc7yvgG1trYa2ddT4gyzIURRGSO03THM4JLgmxLxvDogkwxkApBaXU6EhedCB0fX2Nb9++oSzLsDw2mRCJMZZBmROOkWE0KbqEOMCHv/GyexctE/DLYcD9XoE5J0WllOErQESDCyQHTWDuONkEloqj9gcc02FecOG3nw9wMHZGOcFjZBgcAT4r7Le+zBXeqd/vc9in/WO0CPDOwm+Umvu6QKxE54bnNYv2AXF+wzkbtsrEWHQo7CdDRAQpUwy5vIUTwMC5ABGDlBk474u7+Djg3u5d53yPnhNcSgR4Dwei/WbOeDuvxyABS4RSCnVdH7c6vET4zPBZZYXjT/kZL4xMr3CPEuAzwnOPBGObHwrqek7QR0tXV1cQQuDVq1d49uzZXcUGcGi/wH6YhbPJh8fPJSKkaRoSF3ESo7sVn4hCkYZzDhcXFyiKIrT1iY+nT5+iLEsAe4Wqu/qCUQL8yzDGQpHEer3Gy5cvAwFtQfpC/S4BjDEURdETeqjQgTGGqqpwe3sL5xxWqxUuLy+DkL59WZao6xpCiOO2yeV5DiFEYJExBqVUqAH62wTEWvdC+NR2l4DdbhcIEEK0+vn21tqw6y1JEhhjpkfAkydPQqmc1vpuFuXw8+fPAUH3oaYXYKiiq7XlLkK8DT/O03lNMcYg5b42SGsdynHie8cJ28+fP+PTp09B6O7zfNWY7ztKQFwz5Bv7ffbdgqi4AKH7UL/VTko5SEBsp3HRlM/beyJ826qqegT4oi0AYeo+Nspih350xUis1aHvZ3yt/x/gHBvs1yVvqDYoDliGAphuHWE86xuKZON79d51qaHvsTiDQGgaZ0/ALy4XCMLKcyfBAAAAAElFTkSuQmCC);\n    background-size: contain;\n    background-position: center;\n    background-repeat: no-repeat;\n    z-index: 100;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    cursor: pointer;\n}\n.vnjson__hands .vnjson__hand-left {\n    width: 60px;\n    height: 60px;\n    background-size: contain;\n    background-position: center;\n    background-repeat: no-repeat; \n}\n.vnjson__hands .vnjson__hand-right {\n    width: 60px;\n    height: 60px;\n    background-size: contain;\n    background-position: center;\n    background-repeat: no-repeat; \n}\n\n";
@@ -3207,7 +3219,7 @@
        * Так же, стили необходимо восстановить, если встретился персонаж без аватара
        */
 
-      vnjs.on("character", function (character) {
+      vnjs.on("vnjson.character", function (character) {
         setTimeout(function () {
           _this.characterHandler(vnjs.state.character);
         }, 50);
@@ -3270,7 +3282,7 @@
 
       _defineProperty(this, "timeOutId", null);
 
-      _defineProperty(this, "soundData", null);
+      _defineProperty(this, "soundArgs", null);
 
       // не помню зачем это, но вроде раньше от чего то помогало
       this.stopAll();
@@ -3280,7 +3292,7 @@
       key: "isAudioExist",
       value: function isAudioExist(name) {
         if (!vnjs.store[name] && !vnjs.store.sprites[name]) {
-          vnjs.emit('error', 'assetNotFound', name);
+          vnjs.emit("error", "assetNotFound", name);
           return false;
         }
 
@@ -3288,78 +3300,84 @@
       }
     }, {
       key: "handler",
-      value: function handler(data) {
+      value: function handler(args) {
         /**
          * BOOLEAN
          */
-        if (typeof data === 'boolean') {
+        if (typeof args === "boolean") {
           this.stopAll();
           clearTimeout(this.timeOutId);
-        }
-        /**
-         * STRING
-         */
-        else if (typeof data === 'string') {
-          if (!this.isAudioExist(data)) return;
-          var soundName = vnjs.store.sprites[data];
+        } else if (typeof args === "string") {
+          /**
+           * STRING
+           */
+          if (!this.isAudioExist(args)) return;
+          var soundName = vnjs.store.sprites[args];
 
           if (soundName) {
             vnjs.store[soundName].stop();
             vnjs.store[soundName].rate(1);
             vnjs.store[soundName].loop(false);
             vnjs.store[soundName].volume(1);
-            vnjs.store[soundName].play(data);
+            vnjs.store[soundName].play(args);
           } else {
-            vnjs.store[data].stop();
-            vnjs.store[data].rate(1);
-            vnjs.store[data].loop(false);
-            vnjs.store[data].volume(1);
-            vnjs.store[data].play();
+            vnjs.store[args].stop();
+            vnjs.store[args].rate(1);
+            vnjs.store[args].loop(false);
+            vnjs.store[args].volume(1);
+            vnjs.store[args].play();
           }
-        }
-        /**
-         * OBJECT
-         */
-        else if (_typeof(data) === 'object') {
-          if (!this.isAudioExist(data.name)) return;
-          var _soundName = vnjs.store.sprites[data.name];
+        } else if (_typeof(args) === "object") {
+          /**
+           * OBJECT
+           */
+          if (!this.isAudioExist(args.name)) return;
+          var _soundName = vnjs.store.sprites[args.name];
           var sound = null;
 
           if (_soundName) {
             sound = vnjs.store[_soundName];
           } else {
-            sound = vnjs.store[data.name];
+            sound = vnjs.store[args.name];
           }
 
           sound.stop(); //sound.off('play')
 
-          sound.rate(data.speed || 1);
-          sound.loop(data.loop || false);
-          sound.volume(data.volume || 1);
+          sound.rate(args.speed || 1);
+
+          if (args.loop === true) {
+            sound.loop(true);
+          }
+
+          if (!args.loop) {
+            sound.loop(false);
+          }
+
+          sound.volume(args.volume || 1);
           /**
            * fadeIn
            */
 
-          if (data.fadeIn) {
-            sound.fade(0, 1, data.fadeIn);
+          if (args.fadeIn) {
+            sound.fade(0, 1, args.fadeIn);
           }
           /*sound.on('play', () => {
-            if(data.fadeOut&&soundName){
-                  const delay =  ((sound.duration() - sound.seek())  * 1000 ) - data.fadeOut
-                this.timeOutId = setTimeout(() => {
-                        sound.fade(1, 0, data.fadeOut);
-                }, delay)
-                 }
-                })*/
+          if(args.fadeOut&&soundName){
+              const delay =  ((sound.duration() - sound.seek())  * 1000 ) - args.fadeOut
+            this.timeOutId = setTimeout(() => {
+                    sound.fade(1, 0, args.fadeOut);
+            }, delay)
+             }
+            })*/
 
 
           if (_soundName) {
-            sound[data.action](data.name);
+            sound[args.action](args.name);
           } else {
-            sound[data.action]();
+            sound[args.action]();
           }
 
-          this.soundData = data;
+          this.soundArgs = args;
         }
       }
     }, {
@@ -3372,21 +3390,21 @@
         });
       }
       /**
-      * 
-      * @param {String} time [ 2:53 ] 
-      */
+       *
+       * @param {String} time [ 2:53 ]
+       */
 
     }, {
       key: "formatTime",
       value: function formatTime(time) {
-        var t = String(time).split(':');
+        var t = String(time).split(":");
 
-        if (!String(time).includes(':')) {
+        if (!String(time).includes(":")) {
           var errorBody = {
-            en: "Invalid time <font color=\"deepskyblue\">".concat(time, "</fon>"),
-            ru: "\u041D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440 \u0432\u0440\u0435\u043C\u0435\u043D\u0438 <font color=\"deepskyblue\">".concat(time, "</fon>")
+            en: "Invalid time <font color=\"deepskyblue\">".concat(time, "</font>"),
+            ru: "\u041D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440 \u0432\u0440\u0435\u043C\u0435\u043D\u0438 <font color=\"deepskyblue\">".concat(time, "</font>")
           };
-          vnjs.emit('error', errorBody);
+          vnjs.emit("error", errorBody);
           return 0;
         }
 
@@ -3398,10 +3416,10 @@
           sec = Number(t[1]);
         } else {
           var _errorBody = {
-            en: "Invalid time <font color=\"deepskyblue\">".concat(time, "</fon>"),
-            ru: "\u041D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440 \u0432\u0440\u0435\u043C\u0435\u043D\u0438 <font color=\"deepskyblue\">".concat(time, "</fon>")
+            en: "Invalid time <font color=\"deepskyblue\">".concat(time, "</font>"),
+            ru: "\u041D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440 \u0432\u0440\u0435\u043C\u0435\u043D\u0438 <font color=\"deepskyblue\">".concat(time, "</font>")
           };
-          vnjs.emit('error', _errorBody);
+          vnjs.emit("error", _errorBody);
           return 0;
         }
 
@@ -3409,14 +3427,14 @@
       }
     }, {
       key: "regSprites",
-      value: function regSprites(data) {
-        for (var spriteID in data.sprite) {
-          var startTime = this.formatTime(data.sprite[spriteID][0]);
-          var endTime = this.formatTime(data.sprite[spriteID][1]);
+      value: function regSprites(args) {
+        for (var spriteID in args.sprite) {
+          var startTime = this.formatTime(args.sprite[spriteID][0]);
+          var endTime = this.formatTime(args.sprite[spriteID][1]);
           var timeRange = [startTime, endTime];
-          vnjs.store.sprites[spriteID] = data.name;
-          vnjs.store[data.name]._sprite[spriteID] = timeRange;
-          vnjs.store[data.name].volume(data.volume || 1);
+          vnjs.store.sprites[spriteID] = args.name;
+          vnjs.store[args.name]._sprite[spriteID] = timeRange;
+          vnjs.store[args.name].volume(args.volume || 1);
         }
       }
     }]);
@@ -3424,24 +3442,52 @@
     return AudioControl;
   }();
 
+  /**
+   * setup
+   */
+
   function audio () {
-    var _this = this;
-
     vnjs.store.sprites = {};
-    var audioControl = new AudioControl();
-    vnjs.on('audio', function (data) {
-      return audioControl.handler(data);
-    });
-    vnjs.on('audio-sprite', function (data) {
-      return audioControl.regSprites(data);
-    });
-    vnjs.on('audioEnd', function () {
-      var _audioControl$soundDa;
+  }
+  var audioControl = new AudioControl();
+  var repeat = 0;
+  vnjs.on("audio", function (args) {
+    repeat = 0;
+    audioControl.handler(args);
+  });
+  vnjs.on("audio-sprite", function (args) {
+    return audioControl.regSprites(args);
+  });
+  vnjs.on("loader.audio-onend", function () {
+    if (audioControl.soundArgs.loop === true) {
+      var _audioControl$soundAr;
 
-      if ((_audioControl$soundDa = audioControl.soundData) !== null && _audioControl$soundDa !== void 0 && _audioControl$soundDa.onEnd) {
-        _this.exec(audioControl.soundData.onEnd);
+      if ((_audioControl$soundAr = audioControl.soundArgs) !== null && _audioControl$soundAr !== void 0 && _audioControl$soundAr.onLoop) {
+        vnjs.exec(audioControl.soundArgs.onLoop);
       }
-    });
+    } else if (typeof audioControl.soundArgs.loop === "number") {
+      repeater();
+    } else {
+      if (audioControl.soundArgs.onEnd) {
+        vnjs.exec(audioControl.soundArgs.onEnd);
+      }
+    }
+  });
+
+  function repeater() {
+    var _audioControl$soundAr2;
+
+    if (repeat < audioControl.soundArgs.loop - 1) {
+      audioControl.handler(audioControl.soundArgs);
+    } else {
+      audioControl.soundArgs.loop;
+    }
+
+    if ((_audioControl$soundAr2 = audioControl.soundArgs) !== null && _audioControl$soundAr2 !== void 0 && _audioControl$soundAr2.onLoop) {
+      vnjs.exec(audioControl.soundArgs.onLoop);
+    }
+
+    repeat++;
   }
 
   var Menu$1 = /*#__PURE__*/function () {
@@ -4054,22 +4100,20 @@
     this.store.screen.append($center);
     this.store.screen.append($right);
     /*
-    
-    
      */
 
-    vnjs.on('leftimg', function (id) {
+    vnjs.on("leftimg", function (id) {
       if (id) {
         $left.hide();
 
-        if (_typeof(id) === 'object') {
-          $left.attr('src', _this.getAssetByName(id.name).url);
+        if (_typeof(id) === "object") {
+          $left.attr("src", _this.getAssetByName(id.name).url);
 
           if (id.css) {
             $left.css(id.css);
           }
         } else {
-          $left.attr('src', _this.getAssetByName(id).url);
+          $left.attr("src", _this.getAssetByName(id).url);
         }
 
         $left.fadeIn();
@@ -4077,18 +4121,18 @@
         $left.fadeOut();
       }
     });
-    vnjs.on('centerimg', function (id) {
+    vnjs.on("centerimg", function (id) {
       if (id) {
         $center.hide();
 
-        if (_typeof(id) === 'object') {
-          $center.attr('src', _this.getAssetByName(id.name).url);
+        if (_typeof(id) === "object") {
+          $center.attr("src", _this.getAssetByName(id.name).url);
 
           if (id.css) {
             $center.css(id.css);
           }
         } else {
-          $center.attr('src', _this.getAssetByName(id).url);
+          $center.attr("src", _this.getAssetByName(id).url);
         }
 
         $center.fadeIn();
@@ -4096,18 +4140,18 @@
         $center.fadeOut();
       }
     });
-    vnjs.on('rightimg', function (id) {
+    vnjs.on("rightimg", function (id) {
       if (id) {
         $right.hide();
 
-        if (_typeof(id) === 'object') {
-          $right.attr('src', _this.getAssetByName(id.name).url);
+        if (_typeof(id) === "object") {
+          $right.attr("src", _this.getAssetByName(id.name).url);
 
           if (id.css) {
             $right.css(id.css);
           }
         } else {
-          $right.attr('src', _this.getAssetByName(id).url);
+          $right.attr("src", _this.getAssetByName(id).url);
         }
 
         $right.fadeIn();
@@ -5350,7 +5394,7 @@
         prev = null;
       }
     });
-    vnjs.on('character', function (ctx) {
+    vnjs.on("vnjson.character", function (ctx) {
       if (INDEX) {
         var name = _this.getCurrentLabelBody()[INDEX].$voice;
 
@@ -7574,7 +7618,7 @@
       return info.close();
     });
     var _param = null;
-    vnjs.on('character', function (character, param) {
+    vnjs.on("vnjson.character", function (character, param) {
       if (_typeof(param) === 'object') {
         if (param.info) {
           info.print(String(param.info));

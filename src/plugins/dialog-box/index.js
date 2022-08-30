@@ -3,23 +3,18 @@ import tpl from "./tpl.html";
 import DialogBox from "./DialogBox.js";
 import errorSnippet from "./error-snippet.js";
 
+const $tpl = $(tpl);
 /**
- * INIT
+ * DialogBox
  */
+
+/**
+ * setup
+ */
+let dBox = null
 export default function () {
-    const $tpl = $(tpl);
-
-    this.store.screen.append($tpl);
-    // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
-    $tpl.find(".dialog-box__reply-wrapper").on("mousedown", (e) => {
-        vnjs.emit("dialog-box.click");
-        this.next();
-    });
-
-    /**
-     * DialogBox
-     */
-    const dBox = new DialogBox({
+    vnjs.store.screen.append($tpl);
+    dBox = new DialogBox({
         delay: 0,
         alpha: 0,
         endPoint: false,
@@ -33,128 +28,140 @@ export default function () {
         classNameEndPoint: "dialog-box__reply-end-point",
     });
 
+    // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
+    $tpl.find(".dialog-box__reply-wrapper").on("mousedown", (e) => {
+        vnjs.emit("dialog-box.click");
+        vnjs.next();
+    });
+
+
+
     vnjs.plugins["dialog-box"] = dBox;
     /**
      * DELAY
      */
-    vnjs.on("postload", () => {
-        const conf = this.package?.["dialog-box"];
-        if (conf) {
-            for (let key in conf) {
-                switch (key) {
-                    case "delay":
-                        dBox.delay = conf.delay;
-                        break;
-                    case "alpha":
-                        dBox.alpha = conf.alpha;
-                        break;
-                    case "endPoint":
-                        dBox.endPoint = conf.endPoint;
-                        break;
-                    case "mode-classic":
-                        dBox.setMode("mode-classic");
-                        break;
-                    case "mode-fullscreen":
-                        /**/
-                        break;
-                    case "font-family":
-                        $tpl.css("font-family", conf["font-family"]);
-                        break;
-                    case "font-size":
-                        $tpl.css("font-size", conf["font-size"] + "px");
-                        break;
-                    default:
-                        vnjs.emit(
-                            "error",
-                            {
-                                ru: `Некоректный параметр <font color="deepskyblue">${key}</font>`,
-                                en: `Invalid parametr <font color="deepskyblue">${key}</font>`,
-                            } /*, jsyaml.dump(conf) */
-                        );
-                }
-            }
-        } 
-        else {
-            vnjs.emit("vnjson.error", errorSnippet);
-        }
-    });
-    /**
-     * CHARACTER native event
-     */
-    vnjs.on("character", (_character, param) => {
-        const character = { ..._character };
-        if (typeof param === "object") {
-            if (param.nameColor) character.nameColor = param.nameColor;
-            if (param.replyColor) character.replyColor = param.replyColor;
-            if (param.avatar) character.avatar = param.avatar;
-            vnjs.emit('character.set-param', character)
-            dBox.print(character, String(param.reply));
-        } 
-        else {
-            dBox.print(character, String(param));
-        }
-    });
-    /**
-     * append reply
-     */
-    vnjs.on("+", (reply) => {
-        
-        let character = vnjs.state.character;
-
-        if(!character) {
-            character = this.getCharacterById('$')
-            vnjs.state.character = character
-        }
-
-        dBox.forcePrintPrevReply();
-        dBox.print(character, String(reply), true);
-    });
+    vnjs.on("postload", onPostload);
 
     /**
      * SHOW HIDE DIALOG-BOX
      */
-    vnjs.on("dialog-box", (param) => {
-        let key = null;
-        key = String(param);
-        if (typeof param === "object") {
-            key = "object";
-        }
-        const controller = {
-            object: () => {
-                for (let _key in param) {
-                    dBox[_key] = param[_key];
-                }
-                dBox.show();
-            },
-            true: () => {
-                dBox.disabled(false);
-                dBox.show();
-            },
-            false: () => {
-                dBox.hide();
-            },
-            clear: () => {
-                dBox.disabled(false);
-                dBox.clear();
-            },
-            disabled: () => {
-                dBox.disabled(true);
-            },
-            transparent: () => {
-                dBox.transparent();
-            },
-            classic: () => {
-                dBox.disabled(false);
-                dBox.setMode("mode-classic");
-                dBox.show();
-            },
-            fullscreen: () => {
-                dBox.disabled(false);
-                dBox.setMode("mode-fullscreen");
-                dBox.show();
-            },
-        };
+    vnjs.on("dialog-box", handler);
+}
 
-        controller[key]();
-    });
+/**
+ * @ character native event
+ */
+vnjs.on("vnjson.character", (_character, args, append) => {
+    const character = { ..._character };
+    if (typeof args === "object") {
+        if (args.nameColor) character.nameColor = args.nameColor;
+        if (args.replyColor) character.replyColor = args.replyColor;
+        if (args.avatar) character.avatar = args.avatar;
+        dBox.print(character, String(args.reply), append);
+    } 
+    else {
+        dBox.print(character, String(args), append);
+    }
+});
+/**
+ * append reply
+ */
+/*
+vnjs.on("+", (reply) => {
+    let character = vnjs.state.character;
+    if(!character) {
+        vnjs.state.character = vnjs.tree.$root.characters[0]
+    }
+
+    dBox.print(character, String(reply), true);
+});*/
+
+/**
+ * handler
+ */
+function handler (args){
+    let key = null;
+    key = String(args);
+    if (typeof args === "object") {
+        key = "object";
+    }
+    const controller = {
+        object() {
+            for (let _key in args) {
+                dBox[_key] = args[_key];
+            }
+            dBox.show();
+        },
+        true() {
+            dBox.disabled(false);
+            dBox.show();
+        },
+        false() {
+            dBox.hide();
+        },
+        clear() {
+            dBox.disabled(false);
+            dBox.clear();
+        },
+        disabled() {
+            dBox.disabled(true);
+        },
+        transparent() {
+            dBox.transparent();
+        },
+        classic() {
+            dBox.disabled(false);
+            dBox.setMode("mode-classic");
+            dBox.show();
+        },
+        fullscreen() {
+            dBox.disabled(false);
+            dBox.setMode("mode-fullscreen");
+            dBox.show();
+        },
+    };
+
+    controller[key]();
+}
+
+function onPostload (){
+    const conf = vnjs.package?.["dialog-box"];
+    if (conf) {
+        for (let key in conf) {
+            switch (key) {
+                case "delay":
+                    dBox.delay = conf.delay;
+                    break;
+                case "alpha":
+                    dBox.alpha = conf.alpha;
+                    break;
+                case "endPoint":
+                    dBox.endPoint = conf.endPoint;
+                    break;
+                case "mode-classic":
+                    dBox.setMode("mode-classic");
+                    break;
+                case "mode-fullscreen":
+                    /**/
+                    break;
+                case "font-family":
+                    $tpl.css("font-family", conf["font-family"]);
+                    break;
+                case "font-size":
+                    $tpl.css("font-size", conf["font-size"] + "px");
+                    break;
+                default:
+                    vnjs.emit(
+                        "error",
+                        {
+                            ru: `Некоректный параметр <font color="deepskyblue">${key}</font>`,
+                            en: `Invalid argsetr <font color="deepskyblue">${key}</font>`,
+                        } /*, jsyaml.dump(conf) */
+                    );
+            }
+        }
+    } 
+    else {
+        vnjs.emit("vnjson.error", errorSnippet);
+    }    
 }

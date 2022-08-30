@@ -6,9 +6,41 @@
   #hud: true
   next: true
 
-- $: означает прибавить к текущему значению 750px
+
+- audio:
+    name: menu-item
+    action: play
+    speed: 0.7
+    volume: 1
+    #fadeIn: 2000
+    loop: 5 # true # false
+    onLoop:
+      data-set:
+        count: +=1
+      +: "{{count}} "
+    onEnd:
+      $: --END--
+
+
+  al: Привет мир
+
+
+
 - +: можно указать один параметр, если нужна анимация по одной оси
 
 - al: Всё ходит по цепи кругом
 
 - al: И днём и ночью, кот учёный
+
+- spriteimg:
+    source: img1234
+    items:
+      - name: chumkImgID
+        width: 100px
+        height: 50px
+        top: 100px
+        left: 417px
+
+- animate:
+    - name: chumkImgID
+      delay: 3

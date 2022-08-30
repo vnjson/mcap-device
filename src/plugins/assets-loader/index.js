@@ -21,7 +21,7 @@ export default function () {
                 if (this.state.assets.length - 1 >= ++i) {
                     let sound = new Howl({ src: asset.url });
 
-                    sound.on("end", () => vnjs.emit("audioEnd", asset.name));
+                    sound.on("end", () => vnjs.emit("loader.audio-onend", asset.name));
                     sound.on("load", (_) => {
                         vnjs.store[asset.name] = sound;
                         vnjs.emit("load", asset, this.state.assets.length, i);

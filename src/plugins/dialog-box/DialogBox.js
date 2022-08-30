@@ -72,6 +72,9 @@ class DialogBox {
         this.print(this.character, this.#reply);
     }
     print(character, reply = "", append) {
+        if(append){
+            this.forcePrintPrevReply();
+        }
         vnjs.emit("dialog-box.print");
         this.reset();
         this.character = character;
@@ -118,6 +121,7 @@ class DialogBox {
          * Определяем, есть ли у текущего персонажа аватар
          * Если есть, то отображаем его
          */
+
         if (this.character.avatar) {
             this.characterAvatarTag.style.backgroundImage = `url('${
                 vnjs.getAssetByName(this.character.avatar).url
@@ -297,12 +301,18 @@ class DialogBox {
      * А следующим плагином вызывается + , то предыдущая реплика прекатиться выводиться
      */
     forcePrintPrevReply() {
-        const letters = this.prevReplyStringTag.querySelectorAll(
-            "." + this.classNameLetter
-        );
-        letters.forEach(($letter) => {
-            $letter.style.opacity = 1;
-        });
+        let letters = null
+        if(this.prevReplyStringTag){
+            letters = this.prevReplyStringTag.querySelectorAll(
+                "." + this.classNameLetter
+            );
+            letters.forEach(($letter) => {
+                $letter.style.opacity = 1;
+            });
+        }
+  
+
+  
     }
 }
 

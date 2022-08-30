@@ -1,5 +1,5 @@
 class Vnjson {
-    version = "1.9.6";
+    version = "1.9.7";
     ctx = null;
     tree = null;
     package = null;
@@ -19,11 +19,7 @@ class Vnjson {
         tree: [],
         assets: [],
     };
-    constructor() {
-
-    }
-
-
+    constructor() {}
     getAssetByName(name) {
         const asset = this.state.assets.find((asset) => {
             return asset.name === name;
@@ -35,7 +31,6 @@ class Vnjson {
             return { url: name };
         }
     }
-
     getDataByName(id) {
         const scenesBody = Object.values(this.tree);
         let data = null;
@@ -117,7 +112,7 @@ class Vnjson {
              */
             this.on(character.id, (reply) => {
                 this.state.character = character;
-                this.emit("character", character, reply);
+                this.emit("vnjson.character", character, reply);
             });
         });
 
@@ -211,6 +206,16 @@ vnjs.on("log", function (data) {
 vnjs.on("next", function () {
     setTimeout(() => this.next(), 50);
 });
+/**
+ * - +: Append chunk to phrase
+ */
+vnjs.on('+', function (reply) {
+              
+    if(!this.state.character) {
+        this.state.character = this.tree.$root.characters[0]
+    } 
+    this.emit("vnjson.character", this.state.character, reply, true);
+})
 /**
  * timeout:
  *   timer: 1000

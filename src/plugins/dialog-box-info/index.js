@@ -18,7 +18,7 @@ export default function (){
   
 
   let _param = null
-	vnjs.on('character', (character, param) => {
+	vnjs.on("vnjson.character", (character, param) => {
     
           if(typeof param === 'object' ){
 
