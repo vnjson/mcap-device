@@ -6,6 +6,9 @@
   #hud: true
   next: true
 
+
+- paint-board: paintBoard
+
 - wiki:
     list:
       - Юань
@@ -16,18 +19,18 @@
        left: 3px
        top: 50px
   next: true
-        
+
 - audio:
     name: menu-item
     action: play
-    speed: 0.7
+    speed: 1
     volume: 0.2
     #fadeIn: 2000
     loop: 5 # true # false
     onLoop:
       data-set:
         count: +=1
-      +: "{{count}} "
+      $: "{{count}} "
     onEnd:
       $: --END--
 

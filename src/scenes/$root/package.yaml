@@ -10,7 +10,7 @@ dialog-box:
   endPoint: true
   mode-classic: dialog-box 
   mode-fullscreen: dialog-box-full
-  font-size: 24
+  font-size: 34
   font-family:  Jura-Font
 
 publish:

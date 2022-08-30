@@ -115,6 +115,9 @@
         "next": true
       },
       {
+        "paint-board": "paintBoard"
+      },
+      {
         "wiki": {
           "list": [
             "Юань",
@@ -133,14 +136,14 @@
         "audio": {
           "name": "menu-item",
           "action": "play",
-          "speed": 0.7,
+          "speed": 1,
           "volume": 0.2,
           "loop": 5,
           "onLoop": {
             "data-set": {
               "count": "+=1"
             },
-            "+": "{{count}} "
+            "$": "{{count}} "
           },
           "onEnd": {
             "$": "--END--"
@@ -264,7 +267,7 @@
         "endPoint": true,
         "mode-classic": "dialog-box",
         "mode-fullscreen": "dialog-box-full",
-        "font-size": 24,
+        "font-size": 34,
         "font-family": "Jura-Font"
       },
       "publish": {
