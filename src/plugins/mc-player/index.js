@@ -9,7 +9,7 @@ const rndID = new Date().toLocaleDateString()
         onSuccess: response=>{
           this.state.data.player = JSON.parse(response)
 
-          this.emit('player-load', this.state.data.player.name)
+          vnjs.emit('player-load', this.state.data.player.name)
         }
       })
 
@@ -20,7 +20,7 @@ const rndID = new Date().toLocaleDateString()
         uuid: new Date().toLocaleString()
       }
 
-      this.emit('player-load', this.state.data.player.name)
+      vnjs.emit('player-load', this.state.data.player.name)
   }
 
 }

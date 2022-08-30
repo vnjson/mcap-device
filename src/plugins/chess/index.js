@@ -1,7 +1,7 @@
 import "./style.css";
 
 export default function () {
-    this.on("vnjson.mount", () => {
+    vnjs.on("vnjson.mount", () => {
         if (this.package.chess) {
             chessInit();
         }
@@ -12,7 +12,7 @@ export default function () {
             '<iframe class="chess__vnjson component" src="data/chess/index.html" width="500" height="500"></iframe>'
         );
         this.store.screen.append($tpl);
-        this.on("chess", (fen) => {
+        vnjs.on("chess", (fen) => {
             if (fen) {
                 $tpl.show();
                 let win = document.querySelector(

@@ -7,7 +7,7 @@ export default function () {
     this.store.screen.append($tpl);
     const $dropZone = $tpl.find(".select-word__dropzone");
     let indexItem = 0;
-    this.on("select-word", (data) => {
+    vnjs.on("select-word", (data) => {
         _scriptData = data;
         $dropZone.removeClass("select-word__dropzone--disable");
         $dropZone.empty();

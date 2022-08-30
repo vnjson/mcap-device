@@ -13,7 +13,7 @@ export default function (){
    * @ event
    */
 
-  this.on('status-bar', param => {
+  vnjs.on('status-bar', param => {
 
     if(param==='clear'){
       statusBar.showReady(false)
@@ -36,7 +36,7 @@ export default function (){
   /**
    * Player
    */
-  this.on('player-load', name => {
+  vnjs.on('player-load', name => {
       $('#status-bar__player-logo').attr('src', playerImg);
       $('.status-bar__player-name').html(this.state.data.player.name);
   })
@@ -49,6 +49,6 @@ export default function (){
 
   $('.status-bar__image--first').on('click', () => statusBar.checkHandler())
   $('.status-bar__image--last').on('click', () => statusBar.handler())
-  this.on('dialog-box.mode', MODE => statusBar.controlDBoxPadding(MODE))
+  vnjs.on('dialog-box.mode', MODE => statusBar.controlDBoxPadding(MODE))
 }
         

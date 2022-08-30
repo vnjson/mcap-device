@@ -22,7 +22,7 @@ export default function (){
     /**
      * аудио
      */
-    this.on('postload', () => {
+    vnjs.on('postload', () => {
         const menuConf = this.package.menu
         if(menuConf){
             const audioUrl = this.getAssetByName(menuConf.audio).url
@@ -40,7 +40,7 @@ export default function (){
     /**
      * @event
      */
-    this.on('menu', (param) => {
+    vnjs.on('menu', (param) => {
 
         if(param===true){
             menu.setData(prevParam)

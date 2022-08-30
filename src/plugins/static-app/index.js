@@ -19,7 +19,7 @@ function eventRegistration (event) {
 
   this.store.screen.append($tpl)
 
-  this.on(event, data=>{
+  vnjs.on(event, data=>{
     if(data){
       $tpl.show()
     }

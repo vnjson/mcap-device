@@ -4,7 +4,7 @@ import './style.css';
 export default function (){
 
 
-this.on('vnjson.mount', ()=>{
+vnjs.on('vnjson.mount', ()=>{
     if(this.package['crossword']){
       init();
     }
@@ -14,7 +14,7 @@ let $tpl = null;
 const init = ()=>{
 
 
-    this.on('crossword', data=>{
+    vnjs.on('crossword', data=>{
         if($tpl){
           $tpl.remove();
           $tpl = null;

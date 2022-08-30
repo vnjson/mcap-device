@@ -3,7 +3,7 @@ export default function (){
 let webhook;
 const avatar_url = 'https://avatars.githubusercontent.com/u/17809187?s=200&v=4'
 
-this.on('postload', ()=>{
+vnjs.on('postload', ()=>{
   if(this.package){
     let discordLogParam = this.package['discord-log'];
     if(!discordLogParam) return;
@@ -13,7 +13,7 @@ this.on('postload', ()=>{
 })
 
 
-this.on('discord-log', msg=>{
+vnjs.on('discord-log', msg=>{
   var content = null
   if(typeof(msg)==='string'){
     content = this.package.name+' [ '+this.state.sceneName+'.'+this.state.labelName+' ]  '+ msg

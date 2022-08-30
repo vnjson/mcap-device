@@ -40,7 +40,7 @@ export default function () {
      * delay
      */
 
-    this.on("postload", () => {
+    vnjs.on("postload", () => {
         // delay
         const dBox = this.package?.["dialog-box"];
         $(".debug__delay").val(dBox?.delay || 0);
@@ -173,21 +173,21 @@ export default function () {
     /**
      * get original image size plugin
      */
-    this.on("vnjson.img-size", getImageSize);
+    vnjs.on("vnjson.img-size", getImageSize);
     /**
      * Minecraft CMD client
      */
-    this.on("vnjson.cmd-player", cmdPlayerPlugin);
+    vnjs.on("vnjson.cmd-player", cmdPlayerPlugin);
     /**
      * Minecraft CMD server
      */
-    this.on("vnjson.cmd-server", cmdServerPlugin);
+    vnjs.on("vnjson.cmd-server", cmdServerPlugin);
     /**
      * Minecraft query GET
      */
-    this.on("vnjson.query-get", queryGetPlugin);
+    vnjs.on("vnjson.query-get", queryGetPlugin);
     /**
      * Output data
      */
-    this.on("vnjson.data", outputDataPlugin);
+    vnjs.on("vnjson.data", outputDataPlugin);
 }

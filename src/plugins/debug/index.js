@@ -16,7 +16,7 @@ export default function () {
     this.local = "ru";
     new ErrorHandler(this.local);
 
-    this.on("vnjson.exec", (ctx) => {
+    vnjs.on("vnjson.exec", (ctx) => {
         /**
          * Добавляем параметры в URI
          */
@@ -37,13 +37,13 @@ export default function () {
                     !/^_/gi.test(event) &&
                     !this.events.hasOwnProperty(event)
                 ) {
-                    this.emit("error", "pluginNotFound", event);
+                    vnjs.emit("error", "pluginNotFound", event);
                 }
             });
         }
     });
 
-    this.on("error", (codeError, data) => {
+    vnjs.on("error", (codeError, data) => {
         // style
         $(".debug-error__status").css("background-color", "brown");
         $(".debug-error__msg").css("color", "brown");
@@ -65,7 +65,7 @@ export default function () {
             ErrorHandler.showModal(message, path, snippet);
         }
     });
-    this.on("warn", (codeError, data) => {
+    vnjs.on("warn", (codeError, data) => {
         const codes = {
             NoWayOutOfTheLabel: `No way out of the label [ ${this.state.labelName} ]`,
         };
@@ -73,13 +73,13 @@ export default function () {
         console.log(codes[codeError]);
     });
 
-    this.on("vnjson.info", (msg) => {
+    vnjs.on("vnjson.info", (msg) => {
         // style
         $(".debug-error__status").css("background-color", "darkcyan");
         $(".debug-error__msg").css("color", "gray");
         ErrorHandler.showModal(msg);
     });
-    this.on("vnjson.error", (msg) => {
+    vnjs.on("vnjson.error", (msg) => {
         // style
         $(".debug-error__status").css("background-color", "brown");
         $(".debug-error__msg").css("color", "brown");

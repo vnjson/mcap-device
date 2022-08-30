@@ -1,7 +1,7 @@
 
 export default function(){
 
-this.on('postload', ()=>{
+vnjs.on('postload', ()=>{
   var htmlChunk = this.tree.$root.html
 
 
@@ -22,7 +22,7 @@ export function eventRegistration(event, tpl){
   $tpl.hide().addClass("component").addClass('event__'+event)
   this.store.screen.append($tpl)
 
-  this.on(event, data => {
+  vnjs.on(event, data => {
     if( typeof(data) === 'object' ){
         $tpl.css(data.css)
         $tpl.fadeIn()

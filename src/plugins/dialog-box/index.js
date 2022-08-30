@@ -12,7 +12,7 @@ export default function () {
     this.store.screen.append($tpl);
     // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
     $tpl.find(".dialog-box__reply-wrapper").on("mousedown", (e) => {
-        this.emit("dialog-box.click");
+        vnjs.emit("dialog-box.click");
         this.next();
     });
 
@@ -37,7 +37,7 @@ export default function () {
     /**
      * DELAY
      */
-    this.on("postload", () => {
+    vnjs.on("postload", () => {
         const conf = this.package?.["dialog-box"];
         if (conf) {
             for (let key in conf) {
@@ -75,13 +75,13 @@ export default function () {
             }
         } 
         else {
-            this.emit("vnjson.error", errorSnippet);
+            vnjs.emit("vnjson.error", errorSnippet);
         }
     });
     /**
      * CHARACTER native event
      */
-    this.on("character", (_character, param) => {
+    vnjs.on("character", (_character, param) => {
         const character = { ..._character };
         if (typeof param === "object") {
             if (param.nameColor) character.nameColor = param.nameColor;
@@ -97,7 +97,7 @@ export default function () {
     /**
      * append reply
      */
-    this.on("+", (reply) => {
+    vnjs.on("+", (reply) => {
         
         let character = vnjs.state.character;
 
@@ -113,7 +113,7 @@ export default function () {
     /**
      * SHOW HIDE DIALOG-BOX
      */
-    this.on("dialog-box", (param) => {
+    vnjs.on("dialog-box", (param) => {
         let key = null;
         key = String(param);
         if (typeof param === "object") {

@@ -156,23 +156,24 @@
 ################################
 # STEP
 - blocks-step:
-        id: test1
-        image: ev # false - скрывает изображение
-        animation: 
-          type: moveTo
-          duration: 2000
-          left: 150px
-          top: 50px
+    id: test1
+    image: ev # false - скрывает изображение
+    animation: 
+      type: moveTo
+      duration: 2000
+      left: 150px
+      top: 50px
+
   al: STEP 1
 
 - blocks-step:
-        id: test1
-        image: ch  #false
-        z-index: 5
-        animation: 
-          type: moveTo
-          duration: 1000
-          left: +=100px
+    id: test1
+    image: ch  #false
+    z-index: 5
+    animation: 
+        type: moveTo
+        duration: 1000
+        left: +=100px
 
   al: STEP 2
 

@@ -10,6 +10,6 @@ export default function (asset) {
     }
 
     const _data = jsyaml.dump(data)
-    this.emit('vnjson.info', _data)
+    vnjs.emit('vnjson.info', _data)
 
 }

@@ -10,16 +10,14 @@ class Switch {
         '!==', 
         '\\[\\]', 
         '\\]\\[',
-        'default'
+        //'default'
     ]
     dataValue= null
     value = null
     OPERATOR = null
     equal = null
     PLUGIN_DATA = null
-    constructor (vnjs){
-        this.__vnjs = vnjs
-    }
+    constructor (){}
     parse (data){
         this.PLUGIN_DATA = data
         /**
@@ -32,10 +30,19 @@ class Switch {
              */
           
             for(let i=0;i<this.operators.length; i++){
-                const op = this.operators[i]
-                if( new RegExp(op).test(this.equal) ){
-                    this.OPERATOR = op
+                const operator = this.operators[i]
+                const isOperator = new RegExp(operator).test(this.equal) 
+       
+                if( isOperator){
+                    this.OPERATOR = operator
                 }
+            }
+            if(this.OPERATOR===null){
+                vnjs.emit('error', {
+                    ru: `Некоректный оператор <font color="deepskyblue">${this.equal}</font><br>Допустимые операторы <font color="lightgreen">${this.operators.join('  ').replaceAll('\\', '')}</font>`,
+                    en: `Invalid operator <font color="deepskyblue">${this.equal}</font><br>ValidoOperators <font color="lightgreen">${this.operators.join('  ').replaceAll('\\', '')}</font>`
+                })
+                return
             }
             if(this.OPERATOR.includes('\\') ){
                 this.OPERATOR = this.OPERATOR.replaceAll('\\', '')
@@ -43,7 +50,7 @@ class Switch {
            
             const [ key, val ] = this.equal.split(this.OPERATOR)
            
-            this.dataValue = this.__vnjs.state.data[key.trim()]
+            this.dataValue = vnjs.state.data[key.trim()]
             if( isNaN(+val) ){
                 this.value = val.trim()
             }
@@ -53,15 +60,8 @@ class Switch {
             
 
             const execData = this.PLUGIN_DATA[this.equal]
-            if(controller[this.OPERATOR]){
-                controller[this.OPERATOR](this.dataValue, this.value, execData)
-            }
-            else{
-                vnjs.emit('error', {
-                    ru: `Некоректный оператор ${this.OPERATOR}`,
-                    en: `Invalid operator ${this.OPERATOR}`
-                })
-            }
+            controller[this.OPERATOR](this.dataValue, this.value, execData)
+
 
         }
     }

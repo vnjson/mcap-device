@@ -9,7 +9,7 @@ function clearData(){
   if(this.state.data.score){
       this.state.data.score = new Score();
       //store.set(this.package.ISBN, this.state.data)
-      this.emit('setScore')
+      vnjs.emit('setScore')
   }
 
 }
@@ -34,10 +34,10 @@ export default function (){
      //store.set(this.package.ISBN, this.state.data)
 
 
-    this.emit('setScore')
+    vnjs.emit('setScore')
   }
 
-  this.on('оценка', (data)=>{
+  vnjs.on('оценка', (data)=>{
     if(data==='reset'){
       clearData.call(this)
       this.state.data.score = new Score()
@@ -83,7 +83,7 @@ export default function (){
   $(".vnjson__qa").on("click", ".vnjson__qa--item", clickHundler);
 
   }
-  this.on('qa', data=>{
+  vnjs.on('qa', data=>{
     if(data==='reset'){
       clearData.call(this)
 

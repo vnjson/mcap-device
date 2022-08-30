@@ -14,7 +14,7 @@ export default function (){
 
 
  */
-  this.on('leftimg', id=>{
+  vnjs.on('leftimg', id=>{
     if(id){
         $left.hide()
         if(typeof id==='object'){
@@ -32,7 +32,7 @@ export default function (){
       $left.fadeOut()
     }
   })
-  this.on('centerimg', id=>{
+  vnjs.on('centerimg', id=>{
 
     if(id){
         $center.hide()
@@ -52,7 +52,7 @@ export default function (){
       $center.fadeOut()
     }
   })
-  this.on('rightimg', id=>{
+  vnjs.on('rightimg', id=>{
     if(id){
         $right.hide()
         if(typeof id==='object'){

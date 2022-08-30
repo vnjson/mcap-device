@@ -104,14 +104,14 @@ class TypeWrite {
      * Неправильный символ
      */
     if(this.getTaskCharacter()!==this.key){
-      this.onInvalidCharacter();
+      vnjs.onInvalidCharacter();
       return;
     }
     /**
      * Правильный символ
      */
     if(this.getTaskCharacter()===this.key){
-        this.onValidCharater();
+        vnjs.onValidCharater();
         return;
     }
   }

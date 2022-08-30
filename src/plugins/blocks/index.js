@@ -6,11 +6,11 @@ let vnjs = null;
 export default function () {
     vnjs = this;
     this.store.screen.append($tpl);
-    this.on("blocks", (param) => {
+    vnjs.on("blocks", (param) => {
         stepsArray = param;
         blocksHandler.call(this, stepsArray);
     });
-    this.on("blocks-step", blocksStepHandler);
+    vnjs.on("blocks-step", blocksStepHandler);
 }
 function getImage(item) {
     if (item.image) {

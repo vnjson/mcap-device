@@ -11,7 +11,7 @@ export default function (){
   /**
    * @ content
    */
-  this.on('content', data => {
+  vnjs.on('content', data => {
       if(data){
         content.render()
         content.show()
@@ -23,7 +23,7 @@ export default function (){
   /**
    * @ content-switch
    */
-  this.on('content-switch', data => {
+  vnjs.on('content-switch', data => {
       content.switchItem(data)
       
   })
@@ -48,11 +48,11 @@ export default function (){
  
   $('.vnjson__hands').on('click', '.vnjson__hand-right', e => {
       if(content.open){
-        this.emit('content', false )
+        vnjs.emit('content', false )
         content.open = false
       } 
       else{
-        this.emit('content', true )
+        vnjs.emit('content', true )
         content.open = true
       }
 
@@ -64,7 +64,7 @@ export default function (){
     content.selectItem(label)
   })
 
-  this.on('dialog-box.click', () => {
+  vnjs.on('dialog-box.click', () => {
     content.hide()
   })
 }

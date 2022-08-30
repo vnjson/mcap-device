@@ -42,7 +42,7 @@ export default function (){
 
   this.store.screen.append($tpl)
 
-  this.on('test', data => {
+  vnjs.on('test', data => {
       if(data){
             $tpl.show()
             TEST = data

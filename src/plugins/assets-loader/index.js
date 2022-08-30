@@ -6,7 +6,7 @@ export default function () {
     $("#screen").append($tpl);
 
     const getAssets = () => {
-        this.emit("preload");
+        vnjs.emit("preload");
 
         let i = 0;
 
@@ -14,26 +14,26 @@ export default function () {
             let asset = this.state.assets[i];
 
             if (!asset) {
-                this.emit("postload");
+                vnjs.emit("postload");
                 return;
             }
             if (/\.mp3|\.wav|\.ogg/i.test(asset.url)) {
                 if (this.state.assets.length - 1 >= ++i) {
                     let sound = new Howl({ src: asset.url });
 
-                    sound.on("end", () => this.emit("audioEnd", asset.name));
+                    sound.on("end", () => vnjs.emit("audioEnd", asset.name));
                     sound.on("load", (_) => {
                         vnjs.store[asset.name] = sound;
-                        this.emit("load", asset);
+                        vnjs.emit("load", asset, this.state.assets.length, i);
                         load();
                     });
                     sound.on("loaderror", () => {
                         console.error(`File not found [ ${asset.name} ]`);
-                        this.emit("load", asset);
+                        vnjs.emit("load", asset, this.state.assets.length, i);
                         load();
                     });
                 } else {
-                    this.emit("postload");
+                    vnjs.emit("postload");
                 }
             } else if (/\.png|\.jpg|\.jpeg|\.webp|\.gif/i.test(asset.url)) {
                 if (this.tree.$root?.package) {
@@ -45,13 +45,13 @@ export default function () {
 
                                 img.onerror = () => {
                                     vnjs.store[asset.name] = img;
-                                    this.emit("load", asset);
+                                    vnjs.emit("load", asset, this.state.assets.length, i);
                                     console.error("Image not found");
                                     load();
                                 };
                                 img.onload = () => {
                                     vnjs.store[asset.name] = img;
-                                    this.emit("load", asset);
+                                    vnjs.emit("load", asset, this.state.assets.length, i);
                                     load();
                                 };
                             } else {
@@ -59,13 +59,15 @@ export default function () {
                                 load();
                             }
                         } else {
-                            this.emit("postload");
+                            vnjs.emit("postload");
                         }
                     }
                 }
             } else {
                 ++i;
+                vnjs.emit("load", asset, this.state.assets.length, i);
                 load();
+                
                 // console.warn(asset.url +' Resource does not support preload')
             }
         };
@@ -90,9 +92,9 @@ export default function () {
          * Которым требуются загруженные ресурсы.
          */
             setTimeout(() => {
-                this.emit("preload");
-                this.emit("load");
-                this.emit("postload");
+                vnjs.emit("preload");
+                vnjs.emit("load");
+                vnjs.emit("postload");
             }, 0);
         }
     };
@@ -100,15 +102,24 @@ export default function () {
     /**
      * Получили vn.json
      */
-    this.on("vnjson.mount", setAllAssets);
+    vnjs.on("vnjson.mount", setAllAssets);
     /**
      * Отображаем прелоэдер
      */
-    this.on("preload", () => {
+    vnjs.on("preload", () => {
         $tpl.css("display", "flex");
     });
-    this.on("load", () => {});
-    this.on("postload", () => {
-        $tpl.fadeOut();
+    const loadProgress = $tpl.find('.vnjson-loader__progress--load')
+    vnjs.on("load", (asset, len, i) => {
+        const width = ( (i / (len-1)  ) * 100 )
+        const roundWidth = Math.ceil(width)
+
+        loadProgress.css({
+            width: `${roundWidth}%`
+        })
+        loadProgress.text(`${roundWidth}%`)
+    });
+    vnjs.on("postload", () => {
+        $tpl.fadeOut(300);
     });
 }

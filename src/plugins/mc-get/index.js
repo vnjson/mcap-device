@@ -24,7 +24,7 @@ function query (request){
   
   export default function (){
   
-    this.on('mc-get', param => {
+    vnjs.on('mc-get', param => {
 
         const data = {
             "request": param.request,
@@ -56,10 +56,10 @@ function query (request){
     })
 
 /*
-    this.on('mc.player', () => {
+    vnjs.on('mc.player', () => {
         alert(JSON.stringify(thisstore.MINECRAFT.PLAYER))
     })
-    this.on('mc.slot', () => {
+    vnjs.on('mc.slot', () => {
         alert(JSON.stringify(thisstore.MINECRAFT.SLOT.id))
     })
     */

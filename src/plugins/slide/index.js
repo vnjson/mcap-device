@@ -4,7 +4,7 @@ import './style.css'
 const $tpl = $(`<img class="screen-vnjson__slide component"/>`)
 export default function (){
   this.store.screen.append($tpl)
-  this.on('slide', id=>{
+  vnjs.on('slide', id=>{
     $tpl.attr('src', null)
     if(typeof id==='string'){
         $tpl.attr('src', this.getAssetByName(id).url).show()

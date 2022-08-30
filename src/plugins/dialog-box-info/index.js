@@ -13,12 +13,12 @@ export default function (){
     const info = new Info( $info, $avatar)
     
    
-    this.on('dialog-box.print', () => info.close() )    
+    vnjs.on('dialog-box.print', () => info.close() )    
  
   
 
   let _param = null
-	this.on('character', (character, param) => {
+	vnjs.on('character', (character, param) => {
     
           if(typeof param === 'object' ){
 
@@ -47,9 +47,9 @@ export default function (){
 
         info.toggle()
       }
-      this.emit('dialog-box.avatar-click')
+      vnjs.emit('dialog-box.avatar-click')
     } )
  
-    this.on('dialog-box.click', () => info.removeBorder() )
-    this.on('dialog-box.mode', (MODE) => info.controlPadding(MODE))
+    vnjs.on('dialog-box.click', () => info.removeBorder() )
+    vnjs.on('dialog-box.mode', (MODE) => info.controlPadding(MODE))
 }

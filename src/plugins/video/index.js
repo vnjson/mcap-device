@@ -28,7 +28,7 @@ export default function (){
     }
   });
 
-  this.on('video', param=>{
+  vnjs.on('video', param=>{
     onEndObj = null;
     if(typeof param==='object'){
         const asset = this.getAssetByName(param.name);

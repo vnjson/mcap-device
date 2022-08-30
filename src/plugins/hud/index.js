@@ -7,6 +7,7 @@ const $hudRight = $tpl.find(".vnjson-hud__right");
 const $invTag = $tpl.find(".vnjson-hud__inv");
 
 export default {
+    name: 'input',
     slotData: null,
     mount() {
         vnjs.store.screen.append($tpl);

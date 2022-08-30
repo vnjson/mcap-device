@@ -4,7 +4,7 @@
 
 
 function callback (data){
-    this.emit('vnjson.error', data)
+    vnjs.emit('vnjson.error', data)
 }
 
 export default function (param) {

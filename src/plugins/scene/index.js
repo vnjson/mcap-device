@@ -4,8 +4,8 @@ const $tpl = $('<div class="vnjson-scene component"></div>');
 
 export default function () {
     this.store.screen.append($tpl);
-    this.on("scene", (id) => {
-        this.emit('image.update',  $tpl, {plugin: 'scene', prop: 'background-image'})
+    vnjs.on("scene", (id) => {
+        vnjs.emit('image.update',  $tpl, {plugin: 'scene', prop: 'background-image'})
         if (typeof id === "object") {
             $tpl.css({
                 "background-image": `url(${id.url})`,

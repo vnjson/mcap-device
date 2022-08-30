@@ -13,7 +13,7 @@ export default function () {
 
 .vnjson__show-show.component
  */
-    this.on("left", (id) => {
+    vnjs.on("left", (id) => {
         if (id) {
             $left.hide();
             $left
@@ -26,7 +26,7 @@ export default function () {
             $left.fadeOut();
         }
     });
-    this.on("center", (id) => {
+    vnjs.on("center", (id) => {
         if (id) {
             $center.hide();
             $center
@@ -39,7 +39,7 @@ export default function () {
             $center.fadeOut();
         }
     });
-    this.on("right", (id) => {
+    vnjs.on("right", (id) => {
         if (id) {
             $right.hide();
             $right
@@ -52,7 +52,7 @@ export default function () {
             $right.fadeOut();
         }
     });
-    this.on("show", (param) => {
+    vnjs.on("show", (param) => {
         if (param) {
             $show
                 .css(

@@ -1,6 +1,6 @@
 export default function (){
  
-   this.on('execute', (data) => {
+   vnjs.on('execute', (data) => {
  
         if(Array.isArray(data)){
 
@@ -15,7 +15,7 @@ export default function (){
                     this.exec(plugin)
                 }
                 else{
-                    this.emit('error', {
+                    vnjs.emit('error', {
                         ru: 'Нельзя использовать вложенный <font color="deepskyblue">execute</font> внутри <font color="deepskyblue">execute</font>',
                         en: 'Сan not use <font color="deepskyblue">execute</font> into <font color="deepskyblue">execute</font>'
                     })
@@ -23,7 +23,7 @@ export default function (){
             })
         }
         else{
-            this.emit('error', {
+            vnjs.emit('error', {
                 ru: 'Плагин  <font color="deepskyblue">execute</font> принимает в качестве аргумента, только список плагинов',
                 en: 'Plugin <font color="deepskyblue">execute</font> takes as an argument, only a list of plugins'
             })

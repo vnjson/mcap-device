@@ -427,7 +427,7 @@
 
     this.local = "ru";
     new ErrorHandler(this.local);
-    this.on("vnjson.exec", function (ctx) {
+    vnjs.on("vnjson.exec", function (ctx) {
       /**
        * Добавляем параметры в URI
        */
@@ -448,12 +448,12 @@
       if (_typeof(ctx) === "object") {
         Object.keys(ctx).forEach(function (event) {
           if (!/^_/gi.test(event) && !_this.events.hasOwnProperty(event)) {
-            _this.emit("error", "pluginNotFound", event);
+            vnjs.emit("error", "pluginNotFound", event);
           }
         });
       }
     });
-    this.on("error", function (codeError, data) {
+    vnjs.on("error", function (codeError, data) {
       // style
       $(".debug-error__status").css("background-color", "brown");
       $(".debug-error__msg").css("color", "brown");
@@ -473,19 +473,19 @@
         ErrorHandler.showModal(_message, _path, _snippet);
       }
     });
-    this.on("warn", function (codeError, data) {
+    vnjs.on("warn", function (codeError, data) {
       var codes = {
         NoWayOutOfTheLabel: "No way out of the label [ ".concat(_this.state.labelName, " ]")
       };
       console.log(codes[codeError]);
     });
-    this.on("vnjson.info", function (msg) {
+    vnjs.on("vnjson.info", function (msg) {
       // style
       $(".debug-error__status").css("background-color", "darkcyan");
       $(".debug-error__msg").css("color", "gray");
       ErrorHandler.showModal(msg);
     });
-    this.on("vnjson.error", function (msg) {
+    vnjs.on("vnjson.error", function (msg) {
       // style
       $(".debug-error__status").css("background-color", "brown");
       $(".debug-error__msg").css("color", "brown");
@@ -2218,7 +2218,7 @@
    * Выполняет консольную команду в MineCraft
    */
   function callback$2(data) {
-    this.emit('vnjson.error', data);
+    vnjs.emit('vnjson.error', data);
   }
 
   function cmdPlayerPlugin (param) {
@@ -2239,7 +2239,7 @@
    * Выполняет консольную команду в MineCraft
    */
   function callback$1(data) {
-    this.emit('vnjson.error', data);
+    vnjs.emit('vnjson.error', data);
   }
 
   function cmdServerPlugin (param) {
@@ -2268,7 +2268,7 @@
 
     _res.data = JSON.parse(_res.data);
     var outputData = JSON.stringify(_res, null, 2);
-    this.emit('vnjson.info', outputData);
+    vnjs.emit('vnjson.info', outputData);
   }
 
   function queryGetPlugin (param) {
@@ -2291,7 +2291,7 @@
 
     var _data = jsyaml.dump(data);
 
-    this.emit('vnjson.info', _data);
+    vnjs.emit('vnjson.info', _data);
   }
 
   /**
@@ -2316,7 +2316,7 @@
      * delay
      */
 
-    this.on("postload", function () {
+    vnjs.on("postload", function () {
       var _this$package;
 
       // delay
@@ -2454,33 +2454,33 @@
      * get original image size plugin
      */
 
-    this.on("vnjson.img-size", getImageSize);
+    vnjs.on("vnjson.img-size", getImageSize);
     /**
      * Minecraft CMD client
      */
 
-    this.on("vnjson.cmd-player", cmdPlayerPlugin);
+    vnjs.on("vnjson.cmd-player", cmdPlayerPlugin);
     /**
      * Minecraft CMD server
      */
 
-    this.on("vnjson.cmd-server", cmdServerPlugin);
+    vnjs.on("vnjson.cmd-server", cmdServerPlugin);
     /**
      * Minecraft query GET
      */
 
-    this.on("vnjson.query-get", queryGetPlugin);
+    vnjs.on("vnjson.query-get", queryGetPlugin);
     /**
      * Output data
      */
 
-    this.on("vnjson.data", outputDataPlugin);
+    vnjs.on("vnjson.data", outputDataPlugin);
   }
 
-  var css$u = "#loader {\n  background: black;\n  z-index: 9999;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  color: white;\n  display: none;\n  align-items: center;\n  justify-content: center;\n}\n\n.loader {\n  color: wheat;\n  font-family: Consolas, Menlo, Monaco, monospace;\n  font-weight: bold;\n  font-size: 100px;\n  opacity: 0.8;\n}\n.loader span {\n  display: inline-block;\n  animation: pulse 0.4s alternate infinite ease-in-out;\n}\n.loader span:nth-child(2) {\n  animation-delay: 0.4s;\n}\n\n@keyframes pulse {\n  to {\n    transform: scale(0.8);\n    opacity: 0.5; \n  } \n}\n";
+  var css$u = ".vnjson-loader {\n  background: black;\n  z-index: 9999;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  color: white;\n  display: none;\n  align-items: center;\n  justify-content: center;\n}\n.vnjson-loader__progress{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 20px;\n  background-color: #334;\n\n}\n.vnjson-loader__progress--load{\n  width: 0%;\n  height: 20px;\n  background-color: #223;\n  font-size: 12px;\n  padding: 5px 5px;\n  color: #556;\n  text-align: right;\n}\n.vnjson-loader__status {\n  color: wheat;\n  font-family: Consolas, Menlo, Monaco, monospace;\n  font-weight: bold;\n  font-size: 100px;\n  opacity: 0.8;\n}\n.vnjson-loader__status span {\n  display: inline-block;\n  animation: pulse 0.4s alternate infinite ease-in-out;\n}\n.vnjson-loader__status span:nth-child(2) {\n  animation-delay: 0.4s;\n}\n\n@keyframes pulse {\n  to {\n    transform: scale(0.8);\n    opacity: 0.5; \n  } \n}\n";
   n(css$u,{});
 
-  var tpl$d = "<div id=\"loader\">\n    <div class=\"loader\"><span>{</span><span>}</span></div>\n</div>";
+  var tpl$d = "<div class=\"vnjson-loader\">\n    <div class=\"vnjson-loader__progress\">\n        <div class=\"vnjson-loader__progress--load\"></div>\n    </div>\n    <div class=\"vnjson-loader__status\"><span>{</span><span>}</span></div>\n</div>";
 
   var $tpl$f = $(tpl$d);
   function assetsLoader () {
@@ -2489,16 +2489,14 @@
     $("#screen").append($tpl$f);
 
     var getAssets = function getAssets() {
-      _this.emit("preload");
-
+      vnjs.emit("preload");
       var i = 0;
 
       var load = function load() {
         var asset = _this.state.assets[i];
 
         if (!asset) {
-          _this.emit("postload");
-
+          vnjs.emit("postload");
           return;
         }
 
@@ -2508,24 +2506,20 @@
               src: asset.url
             });
             sound.on("end", function () {
-              return _this.emit("audioEnd", asset.name);
+              return vnjs.emit("audioEnd", asset.name);
             });
             sound.on("load", function (_) {
               vnjs.store[asset.name] = sound;
-
-              _this.emit("load", asset);
-
+              vnjs.emit("load", asset, _this.state.assets.length, i);
               load();
             });
             sound.on("loaderror", function () {
               console.error("File not found [ ".concat(asset.name, " ]"));
-
-              _this.emit("load", asset);
-
+              vnjs.emit("load", asset, _this.state.assets.length, i);
               load();
             });
           } else {
-            _this.emit("postload");
+            vnjs.emit("postload");
           }
         } else if (/\.png|\.jpg|\.jpeg|\.webp|\.gif/i.test(asset.url)) {
           var _this$tree$$root;
@@ -2541,18 +2535,14 @@
 
                   img.onerror = function () {
                     vnjs.store[asset.name] = img;
-
-                    _this.emit("load", asset);
-
+                    vnjs.emit("load", asset, _this.state.assets.length, i);
                     console.error("Image not found");
                     load();
                   };
 
                   img.onload = function () {
                     vnjs.store[asset.name] = img;
-
-                    _this.emit("load", asset);
-
+                    vnjs.emit("load", asset, _this.state.assets.length, i);
                     load();
                   };
                 } else {
@@ -2560,12 +2550,13 @@
                   load();
                 }
               } else {
-                _this.emit("postload");
+                vnjs.emit("postload");
               }
             }
           }
         } else {
           ++i;
+          vnjs.emit("load", asset, _this.state.assets.length, i);
           load(); // console.warn(asset.url +' Resource does not support preload')
         }
       };
@@ -2596,11 +2587,9 @@
          * Которым требуются загруженные ресурсы.
          */
         setTimeout(function () {
-          _this.emit("preload");
-
-          _this.emit("load");
-
-          _this.emit("postload");
+          vnjs.emit("preload");
+          vnjs.emit("load");
+          vnjs.emit("postload");
         }, 0);
       }
     };
@@ -2609,17 +2598,25 @@
      */
 
 
-    this.on("vnjson.mount", setAllAssets);
+    vnjs.on("vnjson.mount", setAllAssets);
     /**
      * Отображаем прелоэдер
      */
 
-    this.on("preload", function () {
+    vnjs.on("preload", function () {
       $tpl$f.css("display", "flex");
     });
-    this.on("load", function () {});
-    this.on("postload", function () {
-      $tpl$f.fadeOut();
+    var loadProgress = $tpl$f.find('.vnjson-loader__progress--load');
+    vnjs.on("load", function (asset, len, i) {
+      var width = i / (len - 1) * 100;
+      var roundWidth = Math.ceil(width);
+      loadProgress.css({
+        width: "".concat(roundWidth, "%")
+      });
+      loadProgress.text("".concat(roundWidth, "%"));
+    });
+    vnjs.on("postload", function () {
+      $tpl$f.fadeOut(300);
     });
   }
 
@@ -2919,14 +2916,14 @@
         var len = letters.length; // отображаем каждый символ по отдельности
 
         this.interval = setInterval(function () {
+          if (_this.index >= len) {
+            _this.onEndOutputReply();
+          }
+
           if (letters.length > 0) {
             vnjs.emit("dialog-box:letter", letters[_this.index].innerHTML);
             letters[_this.index].style.opacity = 1;
             _this.index++;
-          }
-
-          if (_this.index >= len) {
-            _this.onEndOutputReply();
           }
         }, this.delay);
       }
@@ -3017,7 +3014,7 @@
     this.store.screen.append($tpl); // при клике по диалоговому окну, продвигаемся дальше по yaml скрипту
 
     $tpl.find(".dialog-box__reply-wrapper").on("mousedown", function (e) {
-      _this.emit("dialog-box.click");
+      vnjs.emit("dialog-box.click");
 
       _this.next();
     });
@@ -3043,7 +3040,7 @@
      * DELAY
      */
 
-    this.on("postload", function () {
+    vnjs.on("postload", function () {
       var _this$package;
 
       var conf = (_this$package = _this["package"]) === null || _this$package === void 0 ? void 0 : _this$package["dialog-box"];
@@ -3089,14 +3086,14 @@
           }
         }
       } else {
-        _this.emit("vnjson.error", errorSnippet);
+        vnjs.emit("vnjson.error", errorSnippet);
       }
     });
     /**
      * CHARACTER native event
      */
 
-    this.on("character", function (_character, param) {
+    vnjs.on("character", function (_character, param) {
       var character = _objectSpread2({}, _character);
 
       if (_typeof(param) === "object") {
@@ -3113,7 +3110,7 @@
      * append reply
      */
 
-    this.on("+", function (reply) {
+    vnjs.on("+", function (reply) {
       var character = vnjs.state.character;
 
       if (!character) {
@@ -3128,7 +3125,7 @@
      * SHOW HIDE DIALOG-BOX
      */
 
-    this.on("dialog-box", function (param) {
+    vnjs.on("dialog-box", function (param) {
       var key = null;
       key = String(param);
 
@@ -3432,13 +3429,13 @@
 
     vnjs.store.sprites = {};
     var audioControl = new AudioControl();
-    this.on('audio', function (data) {
+    vnjs.on('audio', function (data) {
       return audioControl.handler(data);
     });
-    this.on('audio-sprite', function (data) {
+    vnjs.on('audio-sprite', function (data) {
       return audioControl.regSprites(data);
     });
-    this.on('audioEnd', function () {
+    vnjs.on('audioEnd', function () {
       var _audioControl$soundDa;
 
       if ((_audioControl$soundDa = audioControl.soundData) !== null && _audioControl$soundDa !== void 0 && _audioControl$soundDa.onEnd) {
@@ -3642,7 +3639,7 @@
      * аудио
      */
 
-    this.on('postload', function () {
+    vnjs.on('postload', function () {
       var menuConf = _this["package"].menu;
 
       if (menuConf) {
@@ -3665,7 +3662,7 @@
      * @event
      */
 
-    this.on('menu', function (param) {
+    vnjs.on('menu', function (param) {
       if (param === true) {
         menu.setData(prevParam);
         menu.show();
@@ -3878,7 +3875,7 @@
      * аудио
      */
 
-    this.on('postload', function () {
+    vnjs.on('postload', function () {
       var menuConf = _this["package"]['main-menu'];
 
       if (menuConf) {
@@ -3901,7 +3898,7 @@
      * @event
      */
 
-    this.on('main-menu', function (param) {
+    vnjs.on('main-menu', function (param) {
       if (param === true) {
         menu.setData(prevParam);
         menu.show();
@@ -3939,7 +3936,7 @@
 
     var $tpl = $(tpl$8);
     this.store.screen.append($tpl);
-    this.on("term", function (param) {
+    vnjs.on("term", function (param) {
       if (param === true) {
         $tpl.fadeIn();
       } else if (param) {
@@ -4011,7 +4008,7 @@
     .vnjson__show-show.component
     */
 
-    this.on("left", function (id) {
+    vnjs.on("left", function (id) {
       if (id) {
         $left.hide();
         $left.css("background-image", "url('".concat(_this.getAssetByName(id).url, "')")).fadeIn();
@@ -4019,7 +4016,7 @@
         $left.fadeOut();
       }
     });
-    this.on("center", function (id) {
+    vnjs.on("center", function (id) {
       if (id) {
         $center.hide();
         $center.css("background-image", "url('".concat(_this.getAssetByName(id).url, "')")).fadeIn();
@@ -4027,7 +4024,7 @@
         $center.fadeOut();
       }
     });
-    this.on("right", function (id) {
+    vnjs.on("right", function (id) {
       if (id) {
         $right.hide();
         $right.css("background-image", "url('".concat(_this.getAssetByName(id).url, "')")).fadeIn();
@@ -4035,7 +4032,7 @@
         $right.fadeOut();
       }
     });
-    this.on("show", function (param) {
+    vnjs.on("show", function (param) {
       if (param) {
         $show.css("background-image", "url('".concat(_this.getAssetByName(id).url, "')")).css(param.css).fadeIn();
       } else {
@@ -4061,7 +4058,7 @@
     
      */
 
-    this.on('leftimg', function (id) {
+    vnjs.on('leftimg', function (id) {
       if (id) {
         $left.hide();
 
@@ -4080,7 +4077,7 @@
         $left.fadeOut();
       }
     });
-    this.on('centerimg', function (id) {
+    vnjs.on('centerimg', function (id) {
       if (id) {
         $center.hide();
 
@@ -4099,7 +4096,7 @@
         $center.fadeOut();
       }
     });
-    this.on('rightimg', function (id) {
+    vnjs.on('rightimg', function (id) {
       if (id) {
         $right.hide();
 
@@ -4128,8 +4125,8 @@
     var _this = this;
 
     this.store.screen.append($tpl$b);
-    this.on("scene", function (id) {
-      _this.emit('image.update', $tpl$b, {
+    vnjs.on("scene", function (id) {
+      vnjs.emit('image.update', $tpl$b, {
         plugin: 'scene',
         prop: 'background-image'
       });
@@ -4187,7 +4184,7 @@
         vnjs.exec(cell.exec);
       }
     });
-    this.on('table', function (tableData) {
+    vnjs.on('table', function (tableData) {
       _tableData = tableData;
 
       if (tableData) {
@@ -4311,7 +4308,7 @@
   function clear () {
     var _this = this;
 
-    this.on('clear', function (param) {
+    vnjs.on('clear', function (param) {
       if (param === 'all') {
         $('.component').toArray().map(function (component) {
           $(component).hide();
@@ -4331,140 +4328,119 @@
     });
   }
 
-  var Data = /*#__PURE__*/function () {
-    function Data() {
-      _classCallCheck(this, Data);
+  var data = {
+    token: null,
+    mount: function mount() {
+      var _this = this;
 
-      _defineProperty(this, "token", null);
-    }
-
-    _createClass(Data, [{
-      key: "load",
-      value: function load(token) {
-        this.token = token;
-        var data = localStorage.getItem(this.token);
-
-        if (data) {
-          vnjs.state.data = JSON.parse(data);
-        } else {
-          vnjs.state.data = {};
-        }
-      }
-    }, {
-      key: "save",
-      value: function save(data) {
-        localStorage.setItem(this.token, JSON.stringify(data));
-      }
       /**
-       * localStorage.remove()
+       * events
+       */
+      vnjs.on("postload", function () {
+        _this.load(vnjs["package"].publish.token);
+      });
+      vnjs.on("data-set", function (params) {
+        return _this.set(params);
+      });
+      vnjs.on("data-clear", function () {
+        return _this.clear();
+      });
+      /**
+       * deprecated
        */
 
-    }, {
-      key: "clear",
-      value: function clear() {
-        localStorage.removeItem(this.token);
-        vnjs.state.data = {
-          score: vnjs.state.data.score,
-          player: vnjs.state.data.player
-        };
+      vnjs.on("set-data", function (params) {
+        console.warn("[set-data] is deprecated. Use [data-set]");
+
+        _this.set(params);
+      });
+      vnjs.on("clear-data", function () {
+        console.warn("[clear-data] is deprecated. Use [data-clear]");
+
+        _this.clear();
+      });
+    },
+    load: function load(token) {
+      this.token = token;
+      var data = localStorage.getItem(this.token);
+
+      if (data) {
+        vnjs.state.data = JSON.parse(data);
+      } else {
+        vnjs.state.data = {};
       }
-    }, {
-      key: "set",
-      value: function set(data) {
-        for (var key in data) {
-          var value = String(data[key]);
+    },
+    save: function save(data) {
+      localStorage.setItem(this.token, JSON.stringify(data));
+    },
 
-          if (value.includes("+=")) {
-            var val = value.replace("+=", "");
-            this.valueIncrement(key, val);
-          } else if (value.includes("-=")) {
-            var _val2 = value.replace("-=", "");
+    /**
+     * localStorage.remove()
+     */
+    clear: function clear() {
+      localStorage.removeItem(this.token);
+      vnjs.state.data = {
+        score: vnjs.state.data.score,
+        player: vnjs.state.data.player
+      };
+    },
+    set: function set(data) {
+      for (var key in data) {
+        var value = String(data[key]);
 
-            this.valueDecrement(key, _val2);
+        if (value.includes("+=")) {
+          var val = value.replace("+=", "");
+          this.valueIncrement(key, val);
+        } else if (value.includes("-=")) {
+          var _val2 = value.replace("-=", "");
+
+          this.valueDecrement(key, _val2);
+        } else {
+          if (isNaN(value)) {
+            vnjs.state.data[key] = value;
           } else {
-            if (isNaN(value)) {
-              vnjs.state.data[key] = value;
-            } else {
-              vnjs.state.data[key] = Number(value);
-            }
+            vnjs.state.data[key] = Number(value);
           }
         }
-
-        this.save(vnjs.state.data);
       }
-    }, {
-      key: "valueIncrement",
-      value: function valueIncrement(key, val) {
-        var _val = Number(val);
 
-        if (isNaN(_val)) {
-          _val = val;
-        }
+      this.save(vnjs.state.data);
+    },
+    valueIncrement: function valueIncrement(key, val) {
+      var _val = Number(val);
+
+      if (isNaN(_val)) {
+        _val = val;
+      }
+
+      if (vnjs.state.data[key]) {
+        vnjs.state.data[key] = vnjs.state.data[key] + _val;
+      } else {
+        vnjs.state.data[key] = _val;
+      }
+    },
+    valueDecrement: function valueDecrement(key, val) {
+      var _val = Number(val);
+
+      if (isNaN(_val)) {
+        _val = val;
 
         if (vnjs.state.data[key]) {
-          vnjs.state.data[key] = vnjs.state.data[key] + _val;
+          vnjs.state.data[key] = vnjs.state.data[key].replace(_val, '');
         } else {
-          vnjs.state.data[key] = _val;
+          vnjs.state.data[key] = '';
         }
+
+        return;
       }
-    }, {
-      key: "valueDecrement",
-      value: function valueDecrement(key, val) {
-        var _val = Number(val);
 
-        if (isNaN(_val)) {
-          _val = val;
-
-          if (vnjs.state.data[key]) {
-            vnjs.state.data[key] = vnjs.state.data[key].replace(_val, '');
-          } else {
-            vnjs.state.data[key] = '';
-          }
-
-          return;
-        }
-
-        if (vnjs.state.data[key]) {
-          vnjs.state.data[key] = vnjs.state.data[key] - _val;
-        } else {
-          vnjs.state.data[key] = -_val;
-        }
+      if (vnjs.state.data[key]) {
+        vnjs.state.data[key] = vnjs.state.data[key] - _val;
+      } else {
+        vnjs.state.data[key] = -_val;
       }
-    }]);
-
-    return Data;
-  }();
-
-  function data () {
-    var _this = this;
-
-    var data = new Data();
-    this.on("postload", function () {
-      data.load(_this["package"].publish.token);
-    });
-    /**
-     * events
-     */
-
-    this.on("data-set", function (params) {
-      return data.set(params);
-    });
-    this.on("data-clear", function () {
-      return data.clear();
-    });
-    /**
-     * deprecated
-     */
-
-    this.on("set-data", function (params) {
-      console.warn("[set-data] is deprecated. Use [data-set]");
-      data.set(params);
-    });
-    this.on("clear-data", function () {
-      console.warn("[clear-data] is deprecated. Use [data-clear]");
-      data.clear();
-    });
-  }
+    }
+  };
 
   var controller = {
     '===': function _(dataValue, value, execData) {
@@ -4510,10 +4486,11 @@
   };
 
   var Switch = /*#__PURE__*/function () {
-    function Switch(vnjs) {
+    function Switch() {
       _classCallCheck(this, Switch);
 
-      _defineProperty(this, "operators", ['===', '<', '>', '>=', '<=', '!==', '\\[\\]', '\\]\\[', 'default']);
+      _defineProperty(this, "operators", ['===', '<', '>', '>=', '<=', '!==', '\\[\\]', '\\]\\[' //'default'
+      ]);
 
       _defineProperty(this, "dataValue", null);
 
@@ -4524,8 +4501,6 @@
       _defineProperty(this, "equal", null);
 
       _defineProperty(this, "PLUGIN_DATA", null);
-
-      this.__vnjs = vnjs;
     }
 
     _createClass(Switch, [{
@@ -4543,11 +4518,20 @@
            */
 
           for (var i = 0; i < this.operators.length; i++) {
-            var op = this.operators[i];
+            var operator = this.operators[i];
+            var isOperator = new RegExp(operator).test(this.equal);
 
-            if (new RegExp(op).test(this.equal)) {
-              this.OPERATOR = op;
+            if (isOperator) {
+              this.OPERATOR = operator;
             }
+          }
+
+          if (this.OPERATOR === null) {
+            vnjs.emit('error', {
+              ru: "\u041D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u043E\u043F\u0435\u0440\u0430\u0442\u043E\u0440 <font color=\"deepskyblue\">".concat(this.equal, "</font><br>\u0414\u043E\u043F\u0443\u0441\u0442\u0438\u043C\u044B\u0435 \u043E\u043F\u0435\u0440\u0430\u0442\u043E\u0440\u044B <font color=\"lightgreen\">").concat(this.operators.join('  ').replaceAll('\\', ''), "</font>"),
+              en: "Invalid operator <font color=\"deepskyblue\">".concat(this.equal, "</font><br>ValidoOperators <font color=\"lightgreen\">").concat(this.operators.join('  ').replaceAll('\\', ''), "</font>")
+            });
+            return;
           }
 
           if (this.OPERATOR.includes('\\')) {
@@ -4559,7 +4543,7 @@
               key = _this$equal$split2[0],
               val = _this$equal$split2[1];
 
-          this.dataValue = this.__vnjs.state.data[key.trim()];
+          this.dataValue = vnjs.state.data[key.trim()];
 
           if (isNaN(+val)) {
             this.value = val.trim();
@@ -4568,15 +4552,7 @@
           }
 
           var execData = this.PLUGIN_DATA[this.equal];
-
-          if (controller[this.OPERATOR]) {
-            controller[this.OPERATOR](this.dataValue, this.value, execData);
-          } else {
-            vnjs.emit('error', {
-              ru: "\u041D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u043E\u043F\u0435\u0440\u0430\u0442\u043E\u0440 ".concat(this.OPERATOR),
-              en: "Invalid operator ".concat(this.OPERATOR)
-            });
-          }
+          controller[this.OPERATOR](this.dataValue, this.value, execData);
         }
       }
     }]);
@@ -4587,7 +4563,7 @@
   function switchVnjson () {
     var _switch = new Switch(this);
 
-    this.on('switch', function (data) {
+    vnjs.on('switch', function (data) {
       return _switch.parse(data);
     });
   }
@@ -4652,7 +4628,7 @@
     if (this.state.data.score) {
       this.state.data.score = new Score(); //store.set(this.package.ISBN, this.state.data)
 
-      this.emit('setScore');
+      vnjs.emit('setScore');
     }
   }
 
@@ -4674,10 +4650,10 @@
       } //store.set(this.package.ISBN, this.state.data)
 
 
-      _this.emit('setScore');
+      vnjs.emit('setScore');
     };
 
-    this.on('оценка', function (data) {
+    vnjs.on('оценка', function (data) {
       if (data === 'reset') {
         clearData.call(_this);
         _this.state.data.score = new Score();
@@ -4723,7 +4699,7 @@
       $(".vnjson__qa").on("click", ".vnjson__qa--item", clickHundler);
     };
 
-    this.on('qa', function (data) {
+    vnjs.on('qa', function (data) {
       if (data === 'reset') {
         clearData.call(_this);
       } else if (data) {
@@ -4740,7 +4716,7 @@
   function chess () {
     var _this = this;
 
-    this.on("vnjson.mount", function () {
+    vnjs.on("vnjson.mount", function () {
       if (_this["package"].chess) {
         chessInit();
       }
@@ -4751,7 +4727,7 @@
 
       _this.store.screen.append($tpl);
 
-      _this.on("chess", function (fen) {
+      vnjs.on("chess", function (fen) {
         if (fen) {
           $tpl.show();
           var win = document.querySelector("iframe.chess__vnjson").contentWindow;
@@ -4771,58 +4747,62 @@
   n(css$h,{});
 
   var $tpl$a = $(tpl$6);
-  var input = {
-    args: null,
-    mount: function mount() {
-      var _this = this;
+  var _args = null;
+  /**
+   * setup
+   */
 
-      vnjs.store.screen.append($tpl$a);
-      vnjs.on("input-name", function (args) {
-        return _this.handler(args);
-      });
-      vnjs.on("input-data", function (args) {
-        return _this.handler(args);
-      });
-      /**
-       * deprecated
-       */
+  function input () {
+    vnjs.store.screen.append($tpl$a);
+    /**
+     * click
+     */
 
-      vnjs.on("set-name", function (args) {
-        console.warn("[set-name] is deprecated. Use [input-name]");
+    $tpl$a.find(".vnjson__input-btn").on("click", function () {
+      return clickHandler();
+    });
+  }
+  vnjs.on("input-name", handler$2);
+  vnjs.on("input-data", handler$2);
+  /**
+   * deprecated
+   */
 
-        _this.handler(args);
-      });
-      /**
-       * click
-       */
+  vnjs.on("set-name", function (args) {
+    console.warn("[set-name] is deprecated. Use [input-name]");
+    handler$2(args);
+  });
+  /**
+   * event handler
+   */
 
-      $tpl$a.find(".vnjson__input-btn").on("click", function () {
-        return _this.clickHandler();
-      });
-    },
-    handler: function handler(args) {
-      if (args) {
-        this.args = args;
-        $tpl$a.css("display", "flex");
-      } else {
-        $tpl$a.hide();
-      }
-    },
-    clickHandler: function clickHandler() {
-      var input = $tpl$a.find(".vnjson__input-wrapper input");
-      $tpl$a.fadeOut();
-      var character = vnjs.getCharacterById(this.args);
-
-      if (character) {
-        character.name = input.val();
-      } else {
-        vnjs.emit("data-set", _defineProperty({}, this.args, input.val()));
-      }
-
-      input.val("");
-      vnjs.emit('next', true);
+  function handler$2(args) {
+    if (args) {
+      _args = args;
+      $tpl$a.css("display", "flex");
+    } else {
+      $tpl$a.hide();
     }
-  };
+  }
+  /**
+   * Обработка клика по кнопке ввода текста
+   */
+
+
+  function clickHandler() {
+    var input = $tpl$a.find(".vnjson__input-wrapper input");
+    $tpl$a.fadeOut();
+    var character = vnjs.getCharacterById(_args);
+
+    if (character) {
+      character.name = input.val();
+    } else {
+      vnjs.emit("data-set", _defineProperty({}, _args, input.val()));
+    }
+
+    input.val("");
+    vnjs.emit('next', true);
+  }
 
   var css$g = ".vnjson__wiki {\n  left: 10px;\n  top: 40px;\n  width: 300px;\n  height: 400px;\n  display: none;\n  padding: 10px;\n  border-radius: 4px;\n  background-color: rgba(0,0,0,0.5);\n  font-size: 14px;\n  overflow: auto;\n}\n.vnjson__wiki li{\n  padding: 5px 0;\n\n  line-height: 18px;\n    \n}\n.vnjson__wiki-key{\n  color: wheat;\n}\n.vnjson__wiki-dash{\n  padding: 0 5px;\n  color: silver;\n}\n.vnjson__wiki-value{\n  color: darkgray;\n}";
   n(css$g,{});
@@ -4832,7 +4812,7 @@
     var _this = this;
 
     this.store.screen.append($tpl$9);
-    this.on("wiki", function (data) {
+    vnjs.on("wiki", function (data) {
       if (data) {
         $tpl$9.html("");
         $tpl$9.fadeIn();
@@ -4876,7 +4856,7 @@
   function crossWord () {
     var _this = this;
 
-    this.on('vnjson.mount', function () {
+    vnjs.on('vnjson.mount', function () {
       if (_this["package"]['crossword']) {
         init();
       }
@@ -4884,7 +4864,7 @@
     var $tpl = null;
 
     var init = function init() {
-      _this.on('crossword', function (data) {
+      vnjs.on('crossword', function (data) {
         if ($tpl) {
           $tpl.remove();
           $tpl = null;
@@ -4951,7 +4931,7 @@
     var _this = this;
 
     this.store.screen.append($tpl$8);
-    this.on('test', function (data) {
+    vnjs.on('test', function (data) {
       if (data) {
         $tpl$8.show();
         TEST = data;
@@ -5075,7 +5055,7 @@
     var _this = this;
 
     this.store.screen.append($tpl$7);
-    this.on('slide', function (id) {
+    vnjs.on('slide', function (id) {
       $tpl$7.attr('src', null);
 
       if (typeof id === 'string') {
@@ -5285,15 +5265,13 @@
 
   var $tpl$6 = $("<ul class=\"vnjson__stage component\"></ul>");
   function content () {
-    var _this = this;
-
     var content = new Content(this, $tpl$6);
     this.store.screen.append($tpl$6);
     /**
      * @ content
      */
 
-    this.on('content', function (data) {
+    vnjs.on('content', function (data) {
       if (data) {
         content.render();
         content.show();
@@ -5305,7 +5283,7 @@
      * @ content-switch
      */
 
-    this.on('content-switch', function (data) {
+    vnjs.on('content-switch', function (data) {
       content.switchItem(data);
     });
     /**
@@ -5329,12 +5307,10 @@
 
     $('.vnjson__hands').on('click', '.vnjson__hand-right', function (e) {
       if (content.open) {
-        _this.emit('content', false);
-
+        vnjs.emit('content', false);
         content.open = false;
       } else {
-        _this.emit('content', true);
-
+        vnjs.emit('content', true);
         content.open = true;
       }
     });
@@ -5342,7 +5318,7 @@
       var label = $(this).data('label');
       content.selectItem(label);
     });
-    this.on('dialog-box.click', function () {
+    vnjs.on('dialog-box.click', function () {
       content.hide();
     });
   }
@@ -5354,14 +5330,14 @@
 
     var prev = null;
     var INDEX = null;
-    this.on('$voice', function (data) {
+    vnjs.on('$voice', function (data) {
       if (data) {
         $('.vnjson__hand-left').css('background-image', "url(".concat(icoPlay, ")"));
         _this.store.$voice = data;
         INDEX = _this.state.index;
         prev = data;
       } else {
-        _this.emit('hand-left', false);
+        vnjs.emit('hand-left', false);
 
         _this.store[prev].stop();
 
@@ -5374,19 +5350,18 @@
         prev = null;
       }
     });
-    this.on('character', function (ctx) {
+    vnjs.on('character', function (ctx) {
       if (INDEX) {
         var name = _this.getCurrentLabelBody()[INDEX].$voice;
 
         _this.store[name].stop();
 
-        _this.emit('hand-left', false);
-
+        vnjs.emit('hand-left', false);
         prev = null;
         INDEX = null;
       }
     });
-    this.on('voicePlay', function (data) {
+    vnjs.on('voicePlay', function (data) {
       if (INDEX) {
         if (prev) {
           _this.store[prev].stop();
@@ -5411,7 +5386,7 @@
       console.log(INDEX, _this.state.index);
 
       if (INDEX === _this.state.index) {
-        _this.emit('voicePlay');
+        vnjs.emit('voicePlay');
       }
     });
   }
@@ -5419,7 +5394,7 @@
   function html () {
     var _this = this;
 
-    this.on('postload', function () {
+    vnjs.on('postload', function () {
       var htmlChunk = _this.tree.$root.html;
 
       if (htmlChunk) {
@@ -5435,7 +5410,7 @@
     var $tpl = $(tpl);
     $tpl.hide().addClass("component").addClass('event__' + event);
     this.store.screen.append($tpl);
-    this.on(event, function (data) {
+    vnjs.on(event, function (data) {
       if (_typeof(data) === 'object') {
         $tpl.css(data.css);
         $tpl.fadeIn();
@@ -5456,14 +5431,14 @@
 
     var webhook;
     var avatar_url = 'https://avatars.githubusercontent.com/u/17809187?s=200&v=4';
-    this.on('postload', function () {
+    vnjs.on('postload', function () {
       if (_this["package"]) {
         var discordLogParam = _this["package"]['discord-log'];
         if (!discordLogParam) return;
         webhook = discordLogParam.webhook; //avatar_url = discordLogParam.avatar_url
       }
     });
-    this.on('discord-log', function (msg) {
+    vnjs.on('discord-log', function (msg) {
       var content = null;
 
       if (typeof msg === 'string') {
@@ -5633,7 +5608,7 @@
      * @ event
      */
 
-    this.on('status-bar', function (param) {
+    vnjs.on('status-bar', function (param) {
       if (param === 'clear') {
         statusBar.showReady(false);
         statusBar.showHelp(false);
@@ -5650,7 +5625,7 @@
      * Player
      */
 
-    this.on('player-load', function (name) {
+    vnjs.on('player-load', function (name) {
       $('#status-bar__player-logo').attr('src', playerImg);
       $('.status-bar__player-name').html(_this.state.data.player.name);
     });
@@ -5670,7 +5645,7 @@
     $('.status-bar__image--last').on('click', function () {
       return statusBar.handler();
     });
-    this.on('dialog-box.mode', function (MODE) {
+    vnjs.on('dialog-box.mode', function (MODE) {
       return statusBar.controlDBoxPadding(MODE);
     });
   }
@@ -5686,8 +5661,7 @@
         persistent: true,
         onSuccess: function onSuccess(response) {
           _this.state.data.player = JSON.parse(response);
-
-          _this.emit('player-load', _this.state.data.player.name);
+          vnjs.emit('player-load', _this.state.data.player.name);
         }
       });
     } catch (err) {
@@ -5695,7 +5669,7 @@
         name: 'mcap_uknown',
         uuid: new Date().toLocaleString()
       };
-      this.emit('player-load', this.state.data.player.name);
+      vnjs.emit('player-load', this.state.data.player.name);
     }
   }
 
@@ -5723,7 +5697,7 @@
   }
 
   function mcExec () {
-    this.on('mc-exec', function (param) {
+    vnjs.on('mc-exec', function (param) {
       var data = {
         "data": param.data,
         "action": param.action,
@@ -5773,7 +5747,7 @@
   }
 
   function mcGet () {
-    this.on('mc-get', function (param) {
+    vnjs.on('mc-get', function (param) {
       var data = {
         "request": param.request,
         "slot": param.slot || 0,
@@ -5802,10 +5776,10 @@
       });
     });
     /*
-        this.on('mc.player', () => {
+        vnjs.on('mc.player', () => {
             alert(JSON.stringify(thisstore.MINECRAFT.PLAYER))
         })
-        this.on('mc.slot', () => {
+        vnjs.on('mc.slot', () => {
             alert(JSON.stringify(thisstore.MINECRAFT.SLOT.id))
         })
         */
@@ -5814,7 +5788,7 @@
   function mcCheck () {
     var _this = this;
 
-    this.on('mc-check', function (data) {
+    vnjs.on('mc-check', function (data) {
       if (window.mcefQuery) {
         _this.exec(data["true"]);
       } else {
@@ -5829,7 +5803,7 @@
   function paintBoard () {
     var _this = this;
 
-    this.on('vnjson.mount', function () {
+    vnjs.on('vnjson.mount', function () {
       if (_this["package"]['paint-board']) {
         init();
       }
@@ -5840,7 +5814,7 @@
 
       _this.store.screen.append($tpl);
 
-      _this.on('paint-board', function (imgID) {
+      vnjs.on('paint-board', function (imgID) {
         if (imgID) {
           $tpl.show();
 
@@ -5864,7 +5838,7 @@
     var $tpl = $('<textarea class="vnjson__clipboard" style="position: absolute; left:-99999px;top:0;"></textarea>');
     this.store.screen.append($tpl);
     var flag = false;
-    this.on('clipboard', function (data) {
+    vnjs.on('clipboard', function (data) {
       flag = true; // получаем файл
 
       var dataFile = _this.getDataByName(data);
@@ -5962,7 +5936,7 @@
         _this.exec(onEndObj);
       }
     });
-    this.on('video', function (param) {
+    vnjs.on('video', function (param) {
       onEndObj = null;
 
       if (_typeof(param) === 'object') {
@@ -6598,7 +6572,7 @@
 
 
         if (this.getTaskCharacter() !== this.key) {
-          this.onInvalidCharacter();
+          vnjs.onInvalidCharacter();
           return;
         }
         /**
@@ -6607,7 +6581,7 @@
 
 
         if (this.getTaskCharacter() === this.key) {
-          this.onValidCharater();
+          vnjs.onValidCharater();
           return;
         }
       }
@@ -6741,7 +6715,7 @@
 
     this.store.screen.append($tpl$5);
     var tw = new TypeWrite();
-    this.on('typewrite', function (param) {
+    vnjs.on('typewrite', function (param) {
       if (typeof param === 'string') {
         $tpl$5.show();
         tw.setTask(param);
@@ -6791,7 +6765,7 @@
     var _this = this;
 
     this.store.screen.append($tpl$4);
-    this.on("area", handler$1.bind(this));
+    vnjs.on("area", handler$1.bind(this));
     $tpl$4.on("click", function (e) {
       if (!e.target.className.includes("vnjson__area-item")) return;
       var regIndex = JSON.parse(e.target.dataset.index);
@@ -6841,7 +6815,7 @@
     this.store.screen.append($tpl$3);
     var $dropZone = $tpl$3.find(".select-word__dropzone");
     var indexItem = 0;
-    this.on("select-word", function (data) {
+    vnjs.on("select-word", function (data) {
       _scriptData = data;
       $dropZone.removeClass("select-word__dropzone--disable");
       $dropZone.empty();
@@ -6922,7 +6896,7 @@
     var _this = this;
 
     this.store.screen.append($tpl$2);
-    this.on('drag-items', function (data) {
+    vnjs.on('drag-items', function (data) {
       if (data) {
         $tpl$2.show();
         renderItems.call(_this, data);
@@ -6979,7 +6953,7 @@
     $tpl.css({
       backgroundColor: '#000000'
     });
-    this.on('postload', function () {
+    vnjs.on('postload', function () {
       if (_this["package"]['console-port']) {
         port = _this["package"]['console-port'];
       }
@@ -6988,7 +6962,7 @@
       $tpl.attr('src', src);
     });
     var once = true;
-    this.on('console', function (data) {
+    vnjs.on('console', function (data) {
       /**
        * once - почему то iframe не хочет загрузаться, если не прибегнуть
        * к такому решению
@@ -7020,11 +6994,11 @@
 
     vnjs$1 = this;
     this.store.screen.append($tpl$1);
-    this.on("blocks", function (param) {
+    vnjs$1.on("blocks", function (param) {
       stepsArray = param;
       blocksHandler.call(_this, stepsArray);
     });
-    this.on("blocks-step", blocksStepHandler);
+    vnjs$1.on("blocks-step", blocksStepHandler);
   }
 
   function getImage(item) {
@@ -7386,7 +7360,7 @@
     var tpl = "<iframe src=\"".concat(src, "\" class=\"vnjson__").concat(event, " vnjson__static-app component\" ></iframe>");
     var $tpl = $(tpl);
     this.store.screen.append($tpl);
-    this.on(event, function (data) {
+    vnjs.on(event, function (data) {
       if (data) {
         $tpl.show();
       } else {
@@ -7405,6 +7379,7 @@
   var $hudRight = $tpl.find(".vnjson-hud__right");
   var $invTag = $tpl.find(".vnjson-hud__inv");
   var HUD = {
+    name: 'input',
     slotData: null,
     mount: function mount() {
       var _this2 = this;
@@ -7586,8 +7561,6 @@
   n(css,{});
 
   function dialogBoxInfo () {
-    var _this = this;
-
     var $tpl = $('<div class="dialog-box__info"></div>');
     this.store.screen.append($tpl);
     /**
@@ -7597,11 +7570,11 @@
     var $info = $('.dialog-box__info');
     var $avatar = $('.dialog-box__avatar');
     var info = new Info($info, $avatar);
-    this.on('dialog-box.print', function () {
+    vnjs.on('dialog-box.print', function () {
       return info.close();
     });
     var _param = null;
-    this.on('character', function (character, param) {
+    vnjs.on('character', function (character, param) {
       if (_typeof(param) === 'object') {
         if (param.info) {
           info.print(String(param.info));
@@ -7624,12 +7597,12 @@
         info.toggle();
       }
 
-      _this.emit('dialog-box.avatar-click');
+      vnjs.emit('dialog-box.avatar-click');
     });
-    this.on('dialog-box.click', function () {
+    vnjs.on('dialog-box.click', function () {
       return info.removeBorder();
     });
-    this.on('dialog-box.mode', function (MODE) {
+    vnjs.on('dialog-box.mode', function (MODE) {
       return info.controlPadding(MODE);
     });
   }
@@ -7637,7 +7610,7 @@
   function executeVnjson () {
     var _this = this;
 
-    this.on('execute', function (data) {
+    vnjs.on('execute', function (data) {
       if (Array.isArray(data)) {
         data.forEach(function (plugin) {
           var key = null;
@@ -7649,14 +7622,14 @@
           if (key !== 'execute') {
             _this.exec(plugin);
           } else {
-            _this.emit('error', {
+            vnjs.emit('error', {
               ru: 'Нельзя использовать вложенный <font color="deepskyblue">execute</font> внутри <font color="deepskyblue">execute</font>',
               en: 'Сan not use <font color="deepskyblue">execute</font> into <font color="deepskyblue">execute</font>'
             });
           }
         });
       } else {
-        _this.emit('error', {
+        vnjs.emit('error', {
           ru: 'Плагин  <font color="deepskyblue">execute</font> принимает в качестве аргумента, только список плагинов',
           en: 'Plugin <font color="deepskyblue">execute</font> takes as an argument, only a list of plugins'
         });
@@ -7677,7 +7650,7 @@
     });
   }
   function filter () {
-    this.on('filter', function (param) {
+    vnjs.on('filter', function (param) {
       var target = param.target;
           param.type;
           param.duration;
@@ -7688,12 +7661,12 @@
         type: 'grayscale'
       });
     });
-    this.on('image.update', function ($img) {
+    vnjs.on('image.update', function ($img) {
       $img.css('filter', 'unset');
     }); // Так не канает. Так как изображения задаются через style
 
     /*
-    this.on('scene', param => {
+    vnjs.on('scene', param => {
         document.querySelector(`.vnjson-scene`).removeAttribute('style')
     })
     */

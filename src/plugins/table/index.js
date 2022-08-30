@@ -30,7 +30,7 @@ export default function (){
       }
      
   })
-  this.on('table', tableData => {
+  vnjs.on('table', tableData => {
      _tableData = tableData
      if(tableData){
         $table.html('')

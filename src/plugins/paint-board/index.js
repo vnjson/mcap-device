@@ -2,7 +2,7 @@ import './style.css'
 
 export default function (){
 
-this.on('vnjson.mount', ()=>{
+vnjs.on('vnjson.mount', ()=>{
     if(this.package['paint-board']){
       init()
     }
@@ -13,7 +13,7 @@ var init = () => {
 
     const $tpl = $('<iframe id="paint-board__vnjson" src="data/paint-board/index.html" width="800" height="500"></iframe>');
     this.store.screen.append($tpl);  
-    this.on('paint-board', imgID => {
+    vnjs.on('paint-board', imgID => {
         if(imgID){
               $tpl.show();
               const url = this.getAssetByName(imgID).url

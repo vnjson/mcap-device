@@ -1,6 +1,6 @@
 export default function (){
 
-  this.on('mc-check', (data)=>{
+  vnjs.on('mc-check', (data)=>{
      if(window.mcefQuery){
         this.exec(data.true)
      }

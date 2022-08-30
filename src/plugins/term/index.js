@@ -12,7 +12,7 @@ export default function () {
 
     this.store.screen.append($tpl);
 
-    this.on("term", (param) => {
+    vnjs.on("term", (param) => {
         if (param === true) {
             $tpl.fadeIn();
         } else if (param) {

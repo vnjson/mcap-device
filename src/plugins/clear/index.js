@@ -1,6 +1,6 @@
 export default function (){
 
-  this.on('clear', param=>{
+  vnjs.on('clear', param=>{
     if(param==='all'){
       $('.component').toArray().map(function(component){
         $(component).hide()

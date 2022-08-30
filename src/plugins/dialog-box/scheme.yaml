@@ -91,22 +91,22 @@ dialog-box:
 #
 # EVENTS
 #
-#    this.on('dialog-box.print', () => {
+#    vnjs.on('dialog-box.print', () => {
 
 #    })
 
 
 #
-#    this.on('dialog-box:disabled', flag)
+#    vnjs.on('dialog-box:disabled', flag)
 
 ################ delay > 0 ###############
 
-#    this.on('dialog-box:character', letter => {
+#    vnjs.on('dialog-box:character', letter => {
 #        console.log(ch)
 #    })
-#    this.on('dialog-box:endOutputReply')
-#    this.on('dialog-box.false')
-#    this.on('dialog-box.clear')
-#    this.on('dialog-box.click' )
-#    this.on('dialog-box.avatar-click')
-#    this.on('dialog-box.mode', this.MODE)
+#    vnjs.on('dialog-box:endOutputReply')
+#    vnjs.on('dialog-box.false')
+#    vnjs.on('dialog-box.clear')
+#    vnjs.on('dialog-box.click' )
+#    vnjs.on('dialog-box.avatar-click')
+#    vnjs.on('dialog-box.mode', this.MODE)

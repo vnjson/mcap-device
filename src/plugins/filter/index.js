@@ -14,7 +14,7 @@
     };
 
 export default function (){
-    this.on('filter', (param) => {
+    vnjs.on('filter', (param) => {
         const { target, type, duration } = param
         greyscale({
             target: document.querySelector(`.vnjson-${target}`),
@@ -23,12 +23,12 @@ export default function (){
             type: 'grayscale'
         });
     })
-    this.on('image.update', ($img) => {
+    vnjs.on('image.update', ($img) => {
         $img.css('filter', 'unset')
     })
     // Так не канает. Так как изображения задаются через style
     /*
-    this.on('scene', param => {
+    vnjs.on('scene', param => {
         document.querySelector(`.vnjson-scene`).removeAttribute('style')
     })
     */

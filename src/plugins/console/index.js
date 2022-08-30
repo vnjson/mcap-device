@@ -9,7 +9,7 @@ export default function (){
   }) 
 
  
-  this.on('postload', ()=>{
+  vnjs.on('postload', ()=>{
 
       if(this.package['console-port']){
         port = this.package['console-port']
@@ -20,7 +20,7 @@ export default function (){
 
 
   let once = true
-  this.on('console', data=>{
+  vnjs.on('console', data=>{
       /**
        * once - почему то iframe не хочет загрузаться, если не прибегнуть
        * к такому решению

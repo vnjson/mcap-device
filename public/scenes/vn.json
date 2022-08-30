@@ -103,106 +103,16 @@
         "next": true
       },
       {
-        "blocks": [
-          {
-            "image": "alice",
-            "id": "test1",
-            "timeout": 0,
-            "width": "130px",
-            "height": "180px",
-            "top": "100px",
-            "left": "400px",
-            "animation": {
-              "type": "zoom",
-              "duration": 1000,
-              "value": 2,
-              "onEnd": {
-                "$": "test test"
-              }
-            }
-          }
-        ]
+        "$": "означает прибавить к текущему значению 750px"
       },
       {
-        "blocks-step": {
-          "id": "test1",
-          "animation": {
-            "type": "moveTo",
-            "duration": 1000,
-            "left": "150px",
-            "top": "50px",
-            "onEnd": {
-              "$": "KRAB"
-            }
-          }
-        }
+        "+": "можно указать один параметр, если нужна анимация по одной оси"
       },
       {
-        "al": "Всё ходит по цепи кругом",
-        "filter": {
-          "target": "scene",
-          "items": [
-            {
-              "type": "grayscale",
-              "duration": 4000,
-              "value": 5
-            }
-          ]
-        }
+        "al": "Всё ходит по цепи кругом"
       },
       {
-        "al": "И днём и ночью, кот учёный",
-        "hands": false,
-        "scene": false
-      },
-      {
-        "+": "<br/>Далее как только доходит до вызова функции callAllMsgs",
-        "scene": "alice"
-      },
-      {
-        "al": "Тестирую другого персонажа"
-      },
-      {
-        "+": "<br/><br/>Далее в стек попадает функция fn1() для которой также создается"
-      },
-      {
-        "+": "контекст выполнения, исполняется код из функции fn1() после выполнения которого",
-        "dialog-box": "fullscreen"
-      },
-      {
-        "+": "данная функция удаляется из стека и вызывается следующая функция fn2()."
-      },
-      {
-        "+": "Вывод от другого персонажа",
-        "dialog-box": "classic"
-      },
-      {
-        "mc-exec": {
-          "action": "executeCMD",
-          "data": "say TEST",
-          "type": "player"
-        }
-      },
-      {
-        "mc-get": {
-          "request": "PLAYER"
-        },
-        "$": "GET PLAYER"
-      },
-      {
-        "mc.player": true,
-        "$": "print"
-      },
-      {
-        "mc-get": {
-          "request": "SLOT",
-          "slot": 0
-        },
-        "$": "GET SLOT"
-      },
-      {
-        "$": "END",
-        "mc.slot": true
+        "al": "И днём и ночью, кот учёный"
       }
     ],
     "characters": [
@@ -287,7 +197,9 @@
         "delay": 30,
         "endPoint": true,
         "mode-classic": "dialog-box",
-        "mode-fullscreen": "dialog-box-full"
+        "mode-fullscreen": "dialog-box-full",
+        "font-family": "Consolas",
+        "font-size": 28
       },
       "publish": {
         "host": "http://vnjson.mcap.fun",
@@ -326,8 +238,16 @@
   "testdata": {
     "assets": [
       {
+        "name": "4bfc14e9-f288-4e14-85bb-f46f71cf5192",
+        "url": "scenes/assets/4bfc14e9-f288-4e14-85bb-f46f71cf5192.png"
+      },
+      {
         "name": "alice",
         "url": "scenes/assets/alice.png"
+      },
+      {
+        "name": "globe-rotation-animation-sprite-sheet_40831-47",
+        "url": "scenes/assets/globe-rotation-animation-sprite-sheet_40831-47.jpg"
       },
       {
         "name": "robocop",

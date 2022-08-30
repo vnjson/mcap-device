@@ -239,6 +239,9 @@ class DialogBox {
         let len = letters.length;
         // отображаем каждый символ по отдельности
         this.interval = setInterval(() => {
+            if (this.index >= len) {
+                this.onEndOutputReply();
+            }
             if (letters.length > 0) {
                 vnjs.emit(
                     "dialog-box:letter",
@@ -247,9 +250,7 @@ class DialogBox {
                 letters[this.index].style.opacity = 1;
                 this.index++;
             }
-            if (this.index >= len) {
-                this.onEndOutputReply();
-            }
+
         }, this.delay);
     }
 

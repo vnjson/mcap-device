@@ -1,77 +1,14 @@
 - dialog-box: true #fullscreen
-
   audio: false
   data-clear: true
   status-bar: false
   #scene: alice
   #hud: true
   next: true
-- blocks: 
-      - image: alice
-        id: test1
-        timeout: 0
-        width: 130px
-        height: 180px
-        top: 100px
-        left: 400px
-        animation: 
-          type: zoom
-          duration: 1000
-          value: 2 # размер стандарного изображения = 1
-          onEnd:
-            $: test test
-- blocks-step:
-        id: test1
-       
-        animation: 
-          type: moveTo
-          duration: 1000
-          left: 150px
-          top: 50px
-          onEnd:
-            $: KRAB
+
+- $: означает прибавить к текущему значению 750px
+- +: можно указать один параметр, если нужна анимация по одной оси
 
 - al: Всё ходит по цепи кругом
-  filter:
-      target: scene
-      items:
-          - type: grayscale
-            duration: 4000
-            value: 5
 
 - al: И днём и ночью, кот учёный
-  hands: false
-  scene: false
-#- jump: testdata.$init
-
-- +: <br/>Далее как только доходит до вызова функции callAllMsgs
-  scene: alice
-- al: Тестирую другого персонажа
-- +: <br/><br/>Далее в стек попадает функция fn1() для которой также создается
-
-- +: контекст выполнения, исполняется код из функции fn1() после выполнения которого
-  dialog-box: fullscreen
-- +: данная функция удаляется из стека и вызывается следующая функция fn2().
-
-
-- +: Вывод от другого персонажа
-  dialog-box: classic
-
-- mc-exec:
-      action: executeCMD
-      data: say TEST # give @p dirt 1
-      type: player # server
-- mc-get:
-      request: PLAYER #BLOCK #BLOCK, SLOT, PLAYER, ENTITY
-
-  $: GET PLAYER
-
-- mc.player: true
-  $: print
-- mc-get:
-      request: SLOT #BLOCK #BLOCK, SLOT, PLAYER, ENTITY
-      slot: 0
-
-  $: GET SLOT
-- $: END
-  mc.slot: true
