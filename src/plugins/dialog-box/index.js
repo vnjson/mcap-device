@@ -145,7 +145,7 @@ function onPostload (){
                     /**/
                     break;
                 case "font-family":
-                    $tpl.css("font-family", conf["font-family"]);
+                    vnjs.plugins['font-load'](conf["font-family"], '.dialog-box')
                     break;
                 case "font-size":
                     $tpl.css("font-size", conf["font-size"] + "px");

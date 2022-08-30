@@ -5,6 +5,7 @@ import debugUtils from "./plugins/debug-utils/index.js";
 /* basic */
 import assetsLoader from "./plugins/assets-loader/index.js";
 import screen from "./plugins/screen/index.js";
+import fontFamily from "./plugins/font-family/index.js";
 
 import dialogBox from "./plugins/dialog-box/index.js";
 import hands from "./plugins/hands/index.js";
@@ -59,6 +60,7 @@ import filter from "./plugins/filter/index.js";
 
 vnjs.use(assetsLoader);
 vnjs.use(screen);
+vnjs.use(fontFamily);
 /*components*/
 vnjs.use(scene);
 vnjs.use(show);

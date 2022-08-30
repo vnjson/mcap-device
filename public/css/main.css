@@ -2,7 +2,6 @@ html,
 body {
     padding: 0;
     margin: 0;
-    font-family: Minecraft;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -110,13 +109,4 @@ a {
 }
 iframe {
     border: none;
-}
-
-@font-face {
-    font-family: Minecraft;
-    src: url(../fonts/Minecraft.ttf);
-}
-@font-face {
-    font-family: MinecraftTitle;
-    src: url(../fonts/MinecraftTitle.ttf);
 }

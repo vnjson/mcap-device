@@ -6,12 +6,22 @@
   #hud: true
   next: true
 
-
+- wiki:
+    list:
+      - Юань
+      - Хакасы
+      - Явка
+      - Баба-яга
+    css:
+       left: 3px
+       top: 50px
+  next: true
+        
 - audio:
     name: menu-item
     action: play
     speed: 0.7
-    volume: 1
+    volume: 0.2
     #fadeIn: 2000
     loop: 5 # true # false
     onLoop:

@@ -1,5 +1,8 @@
 debug: true
 preload: true
+# include font  put font to catalog /$root/assets/Jura-Font.ttf
+# system font - Arial , Consolas
+font-family:  MinecraftTitle # Jura-Font # Consolas
 
 dialog-box:
   delay: 30
@@ -7,8 +10,8 @@ dialog-box:
   endPoint: true
   mode-classic: dialog-box 
   mode-fullscreen: dialog-box-full
-  font-family: Jura-Font.ttf #Consolas
-  font-size: 28
+  font-size: 24
+  font-family:  Jura-Font
 
 publish:
   host: http://vnjson.mcap.fun
