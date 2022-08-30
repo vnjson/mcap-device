@@ -3207,7 +3207,11 @@
             break;
 
           case "font-size":
-            $tpl$f.css("font-size", conf["font-size"] + "px");
+            $tpl$f.css("font-size", conf["font-size"]);
+            break;
+
+          case "line-height":
+            $tpl$f.css("line-height", conf["line-height"]);
             break;
 
           default:
@@ -3518,15 +3522,18 @@
 
     if (repeat < audioControl.soundArgs.loop - 1) {
       audioControl.handler(audioControl.soundArgs);
-    } else {
-      audioControl.soundArgs.loop;
+      repeat++;
     }
 
     if ((_audioControl$soundAr2 = audioControl.soundArgs) !== null && _audioControl$soundAr2 !== void 0 && _audioControl$soundAr2.onLoop) {
       vnjs.exec(audioControl.soundArgs.onLoop);
     }
 
-    repeat++;
+    if (repeat === audioControl.soundArgs.loop - 1) {
+      setTimeout(function () {
+        vnjs.exec(audioControl.soundArgs.onEnd);
+      }, 300);
+    }
   }
 
   var Menu$1 = /*#__PURE__*/function () {

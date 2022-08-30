@@ -115,22 +115,7 @@
         "next": true
       },
       {
-        "paint-board": "paintBoard"
-      },
-      {
-        "wiki": {
-          "list": [
-            "Юань",
-            "Хакасы",
-            "Явка",
-            "Баба-яга"
-          ],
-          "css": {
-            "left": "3px",
-            "top": "50px"
-          }
-        },
-        "next": true
+        "al": "Привет мир"
       },
       {
         "audio": {
@@ -148,8 +133,7 @@
           "onEnd": {
             "$": "--END--"
           }
-        },
-        "al": "Привет мир"
+        }
       },
       {
         "+": "можно указать один параметр, если нужна анимация по одной оси"
@@ -261,14 +245,15 @@
     "package": {
       "debug": true,
       "preload": true,
-      "font-family": "MinecraftTitle",
+      "font-family": "Minecraft",
       "dialog-box": {
         "delay": 30,
         "endPoint": true,
         "mode-classic": "dialog-box",
         "mode-fullscreen": "dialog-box-full",
-        "font-size": 34,
-        "font-family": "Jura-Font"
+        "font-size": "22px",
+        "font-family": "Minecraft",
+        "line-height": "32px"
       },
       "publish": {
         "host": "http://vnjson.mcap.fun",

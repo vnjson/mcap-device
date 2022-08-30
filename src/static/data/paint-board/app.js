@@ -4092,6 +4092,9 @@
         ctx.fillText(this.data, this.x - 7, this.y + 11);
       } else if (this.data === '❓') {
         ctx.fillText(this.data, this.x - 12, this.y + 11);
+      } else if (this.data === '●') {
+        ctx.fillStyle = this.color;
+        ctx.fillText(this.data, this.x - 8, this.y + 9);
       } else {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x - this.width / 2, this.y - this.height / 2, this.width, this.height);

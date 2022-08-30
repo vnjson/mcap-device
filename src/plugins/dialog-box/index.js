@@ -148,8 +148,11 @@ function onPostload (){
                     vnjs.plugins['font-load'](conf["font-family"], '.dialog-box')
                     break;
                 case "font-size":
-                    $tpl.css("font-size", conf["font-size"] + "px");
+                    $tpl.css("font-size", conf["font-size"]);
                     break;
+                    case "line-height":
+                        $tpl.css("line-height", conf["line-height"]);
+                        break;
                 default:
                     vnjs.emit(
                         "error",
