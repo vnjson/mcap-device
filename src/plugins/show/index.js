@@ -6,9 +6,9 @@ export default function () {
     let $center = $('<div class="vnjson__show-center component"></div>');
     let $show = $('<div class="vnjson__show-show component"></div>');
 
-    this.store.screen.append($left);
-    this.store.screen.append($right);
-    this.store.screen.append($center);
+    vnjs.store.screen.append($left);
+    vnjs.store.screen.append($right);
+    vnjs.store.screen.append($center);
     /*
 
 .vnjson__show-show.component
@@ -19,7 +19,7 @@ export default function () {
             $left
                 .css(
                     "background-image",
-                    `url('${this.getAssetByName(id).url}')`
+                    `url('${vnjs.getAssetByName(id).url}')`
                 )
                 .fadeIn();
         } else {
@@ -32,7 +32,7 @@ export default function () {
             $center
                 .css(
                     "background-image",
-                    `url('${this.getAssetByName(id).url}')`
+                    `url('${vnjs.getAssetByName(id).url}')`
                 )
                 .fadeIn();
         } else {
@@ -45,7 +45,7 @@ export default function () {
             $right
                 .css(
                     "background-image",
-                    `url('${this.getAssetByName(id).url}')`
+                    `url('${vnjs.getAssetByName(id).url}')`
                 )
                 .fadeIn();
         } else {
@@ -57,7 +57,7 @@ export default function () {
             $show
                 .css(
                     "background-image",
-                    `url('${this.getAssetByName(id).url}')`
+                    `url('${vnjs.getAssetByName(id).url}')`
                 )
                 .css(param.css)
                 .fadeIn();

@@ -18,14 +18,14 @@ export default function (){
         let label = $(this).data('label')
         menu.clickItemHundler(label)
     })
-    this.store.screen.append($tpl)
+    vnjs.store.screen.append($tpl)
     /**
      * аудио
      */
     vnjs.on('postload', () => {
         const menuConf = this.package.menu
         if(menuConf){
-            const audioUrl = this.getAssetByName(menuConf.audio).url
+            const audioUrl = vnjs.getAssetByName(menuConf.audio).url
             menu.audio = new Howl({src: audioUrl, volume: menuConf.volume||1})
 
         }

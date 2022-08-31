@@ -10,8 +10,8 @@ dialog-box:
   endPoint: true
   mode-classic: dialog-box 
   mode-fullscreen: dialog-box-full
-  font-size: 22px # default 22px
-  font-family: Minecraft # Jura-Font
+  font-size: 28px # default 22px
+  font-family: Jura-Font # Minecraft #
   line-height: 32px # default 32px
 
 publish:

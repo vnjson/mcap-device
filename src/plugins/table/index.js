@@ -16,7 +16,7 @@ function replaceDataTemplate(reply) {
 
 export default function (){
   const $table = $('<div class="vnjson__table component"></div>')
-  this.store.screen.append($table)
+  vnjs.store.screen.append($table)
   let _tableData = null
   $table.on('click', '.table__cell', function(){
       const indexRow = $(this).data('row')
@@ -50,7 +50,7 @@ export default function (){
                 // IMAGE
                 if(cell.hasOwnProperty('image') ){
                       TYPE = 'image'
-                      $cell = $(`<div class="table__img-wrapper"><img class="table__cell" style="width: ${cell.image.width}px" data-row="${indexRow}" data-cell="${indexCell}" data-type="${TYPE}" src="${this.getAssetByName(cell.image.name).url}"/></div>`)
+                      $cell = $(`<div class="table__img-wrapper"><img class="table__cell" style="width: ${cell.image.width}px" data-row="${indexRow}" data-cell="${indexCell}" data-type="${TYPE}" src="${vnjs.getAssetByName(cell.image.name).url}"/></div>`)
   
                       if(cell.image.hasOwnProperty('exec')){
                           $cell.css('cursor', 'pointer')

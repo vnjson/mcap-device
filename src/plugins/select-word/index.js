@@ -4,7 +4,7 @@ const $tpl = $(tpl);
 let correct = null;
 let _scriptData = false;
 export default function () {
-    this.store.screen.append($tpl);
+    vnjs.store.screen.append($tpl);
     const $dropZone = $tpl.find(".select-word__dropzone");
     let indexItem = 0;
     vnjs.on("select-word", (data) => {

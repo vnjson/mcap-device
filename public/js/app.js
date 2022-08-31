@@ -2210,7 +2210,7 @@
         _vnjs.emit('vnjson.info', str);
       };
 
-      img.src = this.getAssetByName(asset).url;
+      img.src = vnjs.getAssetByName(asset).url;
     }
   }
 
@@ -2621,7 +2621,7 @@
   }
 
   function screen () {
-    this.store.screen = $("#screen");
+    vnjs.store.screen = $("#screen");
   }
 
   function fontFamily () {}
@@ -3281,7 +3281,7 @@
       if (args) {
         this.show = true;
         $tpl$e.show();
-        $tpl$e.find(".vnjson__hand-left").css("background-image", "url('".concat(this.getAssetByName(id).url, "')"));
+        $tpl$e.find(".vnjson__hand-left").css("background-image", "url('".concat(vnjs.getAssetByName(id).url, "')"));
       } else {
         $tpl$e.find(".vnjson__hand-left").css("background-image", "unset");
       }
@@ -3726,7 +3726,7 @@
       var label = $(this).data('label');
       menu.clickItemHundler(label);
     });
-    this.store.screen.append($tpl$d);
+    vnjs.store.screen.append($tpl$d);
     /**
      * аудио
      */
@@ -3735,8 +3735,7 @@
       var menuConf = _this["package"].menu;
 
       if (menuConf) {
-        var audioUrl = _this.getAssetByName(menuConf.audio).url;
-
+        var audioUrl = vnjs.getAssetByName(menuConf.audio).url;
         menu.audio = new Howl({
           src: audioUrl,
           volume: menuConf.volume || 1
@@ -3962,7 +3961,7 @@
       var label = $(this).data('label');
       menu.clickItemHundler(label);
     });
-    this.store.screen.append($tpl$c);
+    vnjs.store.screen.append($tpl$c);
     /**
      * аудио
      */
@@ -3971,8 +3970,7 @@
       var menuConf = _this["package"]['main-menu'];
 
       if (menuConf) {
-        var audioUrl = _this.getAssetByName(menuConf.audio).url;
-
+        var audioUrl = vnjs.getAssetByName(menuConf.audio).url;
         menu.audio = new Howl({
           src: audioUrl,
           volume: menuConf.volume || 1
@@ -4027,7 +4025,7 @@
     var _this = this;
 
     var $tpl = $(tpl$8);
-    this.store.screen.append($tpl);
+    vnjs.store.screen.append($tpl);
     vnjs.on("term", function (param) {
       if (param === true) {
         $tpl.fadeIn();
@@ -4069,7 +4067,7 @@
           if (param === "clear") {
             $tpl.find("pre code").empty();
           } else {
-            var img = $("<img src=".concat(_this.getAssetByName(param).url, " />"));
+            var img = $("<img src=".concat(vnjs.getAssetByName(param).url, " />"));
             $tpl.find("pre code").empty();
             $tpl.find("pre code").css("overflow", "hidden");
             $tpl.find("pre code").append(img);
@@ -4087,15 +4085,13 @@
   n(css$n,{});
 
   function show () {
-    var _this = this;
-
     var $left = $('<div class="vnjson__show-left component"></div>');
     var $right = $('<div class="vnjson__show-right component"></div>');
     var $center = $('<div class="vnjson__show-center component"></div>');
     var $show = $('<div class="vnjson__show-show component"></div>');
-    this.store.screen.append($left);
-    this.store.screen.append($right);
-    this.store.screen.append($center);
+    vnjs.store.screen.append($left);
+    vnjs.store.screen.append($right);
+    vnjs.store.screen.append($center);
     /*
     .vnjson__show-show.component
     */
@@ -4103,7 +4099,7 @@
     vnjs.on("left", function (id) {
       if (id) {
         $left.hide();
-        $left.css("background-image", "url('".concat(_this.getAssetByName(id).url, "')")).fadeIn();
+        $left.css("background-image", "url('".concat(vnjs.getAssetByName(id).url, "')")).fadeIn();
       } else {
         $left.fadeOut();
       }
@@ -4111,7 +4107,7 @@
     vnjs.on("center", function (id) {
       if (id) {
         $center.hide();
-        $center.css("background-image", "url('".concat(_this.getAssetByName(id).url, "')")).fadeIn();
+        $center.css("background-image", "url('".concat(vnjs.getAssetByName(id).url, "')")).fadeIn();
       } else {
         $center.fadeOut();
       }
@@ -4119,102 +4115,117 @@
     vnjs.on("right", function (id) {
       if (id) {
         $right.hide();
-        $right.css("background-image", "url('".concat(_this.getAssetByName(id).url, "')")).fadeIn();
+        $right.css("background-image", "url('".concat(vnjs.getAssetByName(id).url, "')")).fadeIn();
       } else {
         $right.fadeOut();
       }
     });
     vnjs.on("show", function (param) {
       if (param) {
-        $show.css("background-image", "url('".concat(_this.getAssetByName(id).url, "')")).css(param.css).fadeIn();
+        $show.css("background-image", "url('".concat(vnjs.getAssetByName(id).url, "')")).css(param.css).fadeIn();
       } else {
         $show.fadeOut();
       }
     });
   }
 
-  var css$m = ".vnjson__show-auto-left {\n  position: absolute;\n  left: 50px;\n  bottom: 210px;\n  top: unset;\n  z-index: 2000;\n}\n\n.vnjson__show-auto-center {\n  position: absolute;\n  bottom: 210px;\n  top: unset;\n  left: 50%;\n  transform: translateX(-50%);\n  z-index: 2000;\n\n}\n\n.vnjson__show-auto-right {\n  position: absolute;\n  right: 50px;\n  bottom: 210px;\n  top: unset;\n  z-index: 2000;\n\n}\n";
+  var css$m = ".vnjson__show-auto-left {\n  position: absolute;\n  left: 50px;\n  bottom: 210px;\n  top: unset;\n  z-index: 2000;\n}\n\n.vnjson__show-auto-center {\n  position: absolute;\n  bottom: 210px;\n  top: unset;\n  left: 50%;\n  transform: translateX(-50%);\n  z-index: 2000;\n\n}\n\n.vnjson__show-auto-right {\n  position: absolute;\n  right: 50px;\n  bottom: 210px;\n  top: unset;\n  z-index: 2000;\n\n}\n.vnjson__show-auto-sprite{\n  position: absolute;\n  left: 300px;\n  bottom: 210px;\n  top: unset;\n  background-repeat: no-repeat;\n}";
   n(css$m,{});
 
+  var $left = $('<img alt="" src="" class="vnjson__show-auto-left component"/>');
+  var $center = $('<img alt="" src="" class="vnjson__show-auto-center component"/>');
+  var $right = $('<img alt="" src="" class="vnjson__show-auto-right component"/>');
+  var $sprite = $('<div  class="vnjson__show-auto-sprite component"></div>');
+  /**
+   * setup
+   */
+
   function showAuto () {
-    var _this = this;
-
-    var $left = $('<img alt="" src="" class="vnjson__show-auto-left component"/>');
-    var $center = $('<img alt="" src="" class="vnjson__show-auto-center component"/>');
-    var $right = $('<img alt="" src="" class="vnjson__show-auto-right component"/>');
-    this.store.screen.append($left);
-    this.store.screen.append($center);
-    this.store.screen.append($right);
-    /*
-     */
-
-    vnjs.on("leftimg", function (id) {
-      if (id) {
-        $left.hide();
-
-        if (_typeof(id) === "object") {
-          $left.attr("src", _this.getAssetByName(id.name).url);
-
-          if (id.css) {
-            $left.css(id.css);
-          }
-        } else {
-          $left.attr("src", _this.getAssetByName(id).url);
-        }
-
-        $left.fadeIn();
-      } else {
-        $left.fadeOut();
-      }
-    });
-    vnjs.on("centerimg", function (id) {
-      if (id) {
-        $center.hide();
-
-        if (_typeof(id) === "object") {
-          $center.attr("src", _this.getAssetByName(id.name).url);
-
-          if (id.css) {
-            $center.css(id.css);
-          }
-        } else {
-          $center.attr("src", _this.getAssetByName(id).url);
-        }
-
-        $center.fadeIn();
-      } else {
-        $center.fadeOut();
-      }
-    });
-    vnjs.on("rightimg", function (id) {
-      if (id) {
-        $right.hide();
-
-        if (_typeof(id) === "object") {
-          $right.attr("src", _this.getAssetByName(id.name).url);
-
-          if (id.css) {
-            $right.css(id.css);
-          }
-        } else {
-          $right.attr("src", _this.getAssetByName(id).url);
-        }
-
-        $right.fadeIn();
-      } else {
-        $right.fadeOut();
-      }
-    });
+    vnjs.store.screen.append($left);
+    vnjs.store.screen.append($center);
+    vnjs.store.screen.append($right);
+    vnjs.store.screen.append($sprite);
   }
+  vnjs.on("leftimg", function (id) {
+    if (id) {
+      $left.hide();
+
+      if (_typeof(id) === "object") {
+        $left.attr("src", vnjs.getAssetByName(id.name).url);
+
+        if (id.css) {
+          $left.css(id.css);
+        }
+      } else {
+        $left.attr("src", vnjs.getAssetByName(id).url);
+      }
+
+      $left.fadeIn();
+    } else {
+      $left.fadeOut();
+    }
+  });
+  vnjs.on("centerimg", function (id) {
+    if (id) {
+      $center.hide();
+
+      if (_typeof(id) === "object") {
+        $center.attr("src", vnjs.getAssetByName(id.name).url);
+
+        if (id.css) {
+          $center.css(id.css);
+        }
+      } else {
+        $center.attr("src", vnjs.getAssetByName(id).url);
+      }
+
+      $center.fadeIn();
+    } else {
+      $center.fadeOut();
+    }
+  });
+  vnjs.on("rightimg", function (id) {
+    if (id) {
+      $right.hide();
+
+      if (_typeof(id) === "object") {
+        $right.attr("src", vnjs.getAssetByName(id.name).url);
+
+        if (id.css) {
+          $right.css(id.css);
+        }
+      } else {
+        $right.attr("src", vnjs.getAssetByName(id).url);
+      }
+
+      $right.fadeIn();
+    } else {
+      $right.fadeOut();
+    }
+  });
+  vnjs.on("spriteimg", function (args) {
+    if (args) {
+      console.log(vnjs.getAssetByName(args.source).url);
+      $sprite.css({
+        'background-image': "url(".concat(vnjs.getAssetByName(args.source).url, ")"),
+        'background-position': "-".concat(args.x, " -").concat(args.y),
+        'width': args.width,
+        'height': args.height,
+        'top': args.top,
+        'left': args.left
+      });
+      $sprite.show();
+    } else {
+      $sprite.hide();
+    }
+  });
 
   var css$l = ".vnjson-scene{\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\r\n    z-index: 0;\r\n    width: 100%;\r\n    height: 100%\r\n}";
   n(css$l,{});
 
   var $tpl$b = $('<div class="vnjson-scene component"></div>');
   function scene () {
-    var _this = this;
-
-    this.store.screen.append($tpl$b);
+    vnjs.store.screen.append($tpl$b);
     vnjs.on("scene", function (id) {
       vnjs.emit('image.update', $tpl$b, {
         plugin: 'scene',
@@ -4228,7 +4239,7 @@
         $tpl$b.fadeIn();
       } else if (typeof id === "string") {
         $tpl$b.css({
-          "background-image": "url('".concat(_this.getAssetByName(id).url, "')")
+          "background-image": "url('".concat(vnjs.getAssetByName(id).url, "')")
         });
         $tpl$b.fadeIn();
       } else {
@@ -4259,10 +4270,8 @@
   }
 
   function table () {
-    var _this = this;
-
     var $table = $('<div class="vnjson__table component"></div>');
-    this.store.screen.append($table);
+    vnjs.store.screen.append($table);
     var _tableData = null;
     $table.on('click', '.table__cell', function () {
       var indexRow = $(this).data('row');
@@ -4302,7 +4311,7 @@
 
             if (cell.hasOwnProperty('image')) {
               TYPE = 'image';
-              $cell = $("<div class=\"table__img-wrapper\"><img class=\"table__cell\" style=\"width: ".concat(cell.image.width, "px\" data-row=\"").concat(indexRow, "\" data-cell=\"").concat(indexCell, "\" data-type=\"").concat(TYPE, "\" src=\"").concat(_this.getAssetByName(cell.image.name).url, "\"/></div>"));
+              $cell = $("<div class=\"table__img-wrapper\"><img class=\"table__cell\" style=\"width: ".concat(cell.image.width, "px\" data-row=\"").concat(indexRow, "\" data-cell=\"").concat(indexCell, "\" data-type=\"").concat(TYPE, "\" src=\"").concat(vnjs.getAssetByName(cell.image.name).url, "\"/></div>"));
 
               if (cell.image.hasOwnProperty('exec')) {
                 $cell.css('cursor', 'pointer');
@@ -4730,7 +4739,7 @@
     }
 
     var $tpl = $(tpl$7);
-    this.store.screen.append($tpl);
+    vnjs.store.screen.append($tpl);
 
     var setScore = function setScore(data) {
       for (var key in data) {
@@ -4814,9 +4823,7 @@
 
     var chessInit = function chessInit() {
       var $tpl = $('<iframe class="chess__vnjson component" src="data/chess/index.html" width="500" height="500"></iframe>');
-
-      _this.store.screen.append($tpl);
-
+      vnjs.store.screen.append($tpl);
       vnjs.on("chess", function (fen) {
         if (fen) {
           $tpl.show();
@@ -4901,7 +4908,7 @@
   function wiki () {
     var _this = this;
 
-    this.store.screen.append($tpl$9);
+    vnjs.store.screen.append($tpl$9);
     vnjs.on("wiki", function (data) {
       if (data) {
         $tpl$9.html("");
@@ -4962,9 +4969,7 @@
 
         if (data) {
           $tpl = $('<iframe id="crossword" src="data/crossword/index.html" width="975" height="500"></iframe>');
-
-          _this.store.screen.append($tpl);
-
+          vnjs.store.screen.append($tpl);
           setTimeout(function () {
             $tpl.show();
             var win = document.querySelector("iframe#crossword").contentWindow;
@@ -5020,7 +5025,7 @@
   function test () {
     var _this = this;
 
-    this.store.screen.append($tpl$8);
+    vnjs.store.screen.append($tpl$8);
     vnjs.on('test', function (data) {
       if (data) {
         $tpl$8.show();
@@ -5142,14 +5147,12 @@
 
   var $tpl$7 = $("<img class=\"screen-vnjson__slide component\"/>");
   function slide () {
-    var _this = this;
-
-    this.store.screen.append($tpl$7);
+    vnjs.store.screen.append($tpl$7);
     vnjs.on('slide', function (id) {
       $tpl$7.attr('src', null);
 
       if (typeof id === 'string') {
-        $tpl$7.attr('src', _this.getAssetByName(id).url).show();
+        $tpl$7.attr('src', vnjs.getAssetByName(id).url).show();
       } else if (_typeof(id) === 'object') {
         /*
          * id.name
@@ -5164,7 +5167,7 @@
         if (id.hasOwnProperty('url')) {
           $tpl$7.attr('src', id.url).fadeIn();
         } else {
-          $tpl$7.attr('src', _this.getAssetByName(id.name).url).show();
+          $tpl$7.attr('src', vnjs.getAssetByName(id.name).url).show();
         }
         /*
         .css(id.css)
@@ -5356,7 +5359,7 @@
   var $tpl$6 = $("<ul class=\"vnjson__stage component\"></ul>");
   function content () {
     var content = new Content(this, $tpl$6);
-    this.store.screen.append($tpl$6);
+    vnjs.store.screen.append($tpl$6);
     /**
      * @ content
      */
@@ -5495,11 +5498,9 @@
     });
   }
   function eventRegistration$1(event, tpl) {
-    var _this2 = this;
-
     var $tpl = $(tpl);
     $tpl.hide().addClass("component").addClass('event__' + event);
-    this.store.screen.append($tpl);
+    vnjs.store.screen.append($tpl);
     vnjs.on(event, function (data) {
       if (_typeof(data) === 'object') {
         $tpl.css(data.css);
@@ -5510,8 +5511,7 @@
         var $src = $tpl;
         $tpl.remove();
         $src.hide();
-
-        _this2.store.screen.append($tpl);
+        vnjs.store.screen.append($tpl);
       }
     });
   }
@@ -5692,7 +5692,7 @@
 
     this.state.data.readyСheck = false;
     var $tpl = $(tpl$4);
-    this.store.screen.append($tpl);
+    vnjs.store.screen.append($tpl);
     var statusBar = new StatusBar($tpl);
     /**
      * @ event
@@ -5901,15 +5901,11 @@
 
     var init = function init() {
       var $tpl = $('<iframe id="paint-board__vnjson" src="data/paint-board/index.html" width="800" height="500"></iframe>');
-
-      _this.store.screen.append($tpl);
-
+      vnjs.store.screen.append($tpl);
       vnjs.on('paint-board', function (imgID) {
         if (imgID) {
           $tpl.show();
-
-          var url = _this.getAssetByName(imgID).url;
-
+          var url = vnjs.getAssetByName(imgID).url;
           var IMG = "".concat(location.protocol, "//").concat(location.host, "/").concat(url);
           var win = document.querySelector("iframe#paint-board__vnjson").contentWindow;
           win.postMessage({
@@ -5926,7 +5922,7 @@
     var _this = this;
 
     var $tpl = $('<textarea class="vnjson__clipboard" style="position: absolute; left:-99999px;top:0;"></textarea>');
-    this.store.screen.append($tpl);
+    vnjs.store.screen.append($tpl);
     var flag = false;
     vnjs.on('clipboard', function (data) {
       flag = true; // получаем файл
@@ -6007,7 +6003,7 @@
     var _this = this;
 
     var $tpl = $(tpl$3);
-    this.store.screen.append($tpl);
+    vnjs.store.screen.append($tpl);
     var options = {
       responsive: true,
       controls: false,
@@ -6030,8 +6026,7 @@
       onEndObj = null;
 
       if (_typeof(param) === 'object') {
-        var asset = _this.getAssetByName(param.name);
-
+        var asset = vnjs.getAssetByName(param.name);
         player.src(asset.url);
 
         if (param.css) {
@@ -6066,7 +6061,7 @@
             break;
 
           default:
-            var _asset = _this.getAssetByName(param);
+            var _asset = vnjs.getAssetByName(param);
 
             player.src(_asset.url);
             player.ready(function () {
@@ -6803,7 +6798,7 @@
   function typewrite () {
     var _this = this;
 
-    this.store.screen.append($tpl$5);
+    vnjs.store.screen.append($tpl$5);
     var tw = new TypeWrite();
     vnjs.on('typewrite', function (param) {
       if (typeof param === 'string') {
@@ -6854,7 +6849,7 @@
   function area () {
     var _this = this;
 
-    this.store.screen.append($tpl$4);
+    vnjs.store.screen.append($tpl$4);
     vnjs.on("area", handler$1.bind(this));
     $tpl$4.on("click", function (e) {
       if (!e.target.className.includes("vnjson__area-item")) return;
@@ -6902,7 +6897,7 @@
   function selectWord () {
     var _this = this;
 
-    this.store.screen.append($tpl$3);
+    vnjs.store.screen.append($tpl$3);
     var $dropZone = $tpl$3.find(".select-word__dropzone");
     var indexItem = 0;
     vnjs.on("select-word", function (data) {
@@ -6985,7 +6980,7 @@
   function dragItems () {
     var _this = this;
 
-    this.store.screen.append($tpl$2);
+    vnjs.store.screen.append($tpl$2);
     vnjs.on('drag-items', function (data) {
       if (data) {
         $tpl$2.show();
@@ -7058,8 +7053,7 @@
        * к такому решению
        */
       if (once) {
-        _this.store.screen.append($tpl);
-
+        vnjs.store.screen.append($tpl);
         once = false;
       }
 
@@ -7083,7 +7077,7 @@
     var _this = this;
 
     vnjs$1 = this;
-    this.store.screen.append($tpl$1);
+    vnjs$1.store.screen.append($tpl$1);
     vnjs$1.on("blocks", function (param) {
       stepsArray = param;
       blocksHandler.call(_this, stepsArray);
@@ -7449,7 +7443,7 @@
     var src = "apps/".concat(event, "/index.html");
     var tpl = "<iframe src=\"".concat(src, "\" class=\"vnjson__").concat(event, " vnjson__static-app component\" ></iframe>");
     var $tpl = $(tpl);
-    this.store.screen.append($tpl);
+    vnjs.store.screen.append($tpl);
     vnjs.on(event, function (data) {
       if (data) {
         $tpl.show();
@@ -7652,7 +7646,7 @@
 
   function dialogBoxInfo () {
     var $tpl = $('<div class="dialog-box__info"></div>');
-    this.store.screen.append($tpl);
+    vnjs.store.screen.append($tpl);
     /**
      * INFO
      */

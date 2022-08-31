@@ -4,7 +4,7 @@ import "./style.css"
 export default function (){
 
     const $tpl = $('<div class="dialog-box__info"></div>')
-    this.store.screen.append($tpl)
+    vnjs.store.screen.append($tpl)
     /**
      * INFO
      */

@@ -1,3 +1,3 @@
 export default function () {
-    this.store.screen = $("#screen");
+    vnjs.store.screen = $("#screen");
 }

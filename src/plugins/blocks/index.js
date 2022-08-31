@@ -5,7 +5,7 @@ let stepsArray = [];
 let vnjs = null;
 export default function () {
     vnjs = this;
-    this.store.screen.append($tpl);
+    vnjs.store.screen.append($tpl);
     vnjs.on("blocks", (param) => {
         stepsArray = param;
         blocksHandler.call(this, stepsArray);

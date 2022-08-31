@@ -115,48 +115,361 @@
         "next": true
       },
       {
-        "al": "Привет мир"
+        "left": "id2"
       },
       {
-        "audio": {
-          "name": "menu-item",
-          "action": "play",
-          "speed": 1,
-          "volume": 0.2,
-          "loop": 5,
-          "onLoop": {
-            "data-set": {
-              "count": "+=1"
-            },
-            "$": "{{count}} "
-          },
-          "onEnd": {
-            "$": "--END--"
-          }
+        "sprite-animate": {
+          "delay": 100,
+          "top": 0,
+          "left": 0,
+          "width": "150px",
+          "height": "150px",
+          "source": "boom",
+          "rows": 4,
+          "cols": 8
         }
       },
       {
-        "+": "можно указать один параметр, если нужна анимация по одной оси"
+        "al": "<font color=\"deepskyblue\">1</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "0px",
+          "x": "0px"
+        }
+      },
+      {
+        "al": "<font color=\"deepskyblue\">2</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "0px",
+          "x": "150px"
+        }
+      },
+      {
+        "al": "<font color=\"deepskyblue\">3</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "0px",
+          "x": "300px"
+        }
+      },
+      {
+        "al": "<font color=\"deepskyblue\">4</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "0px",
+          "x": "450px"
+        }
+      },
+      {
+        "al": "<font color=\"deepskyblue\">5</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "0px",
+          "x": "600px"
+        }
+      },
+      {
+        "al": "<font color=\"deepskyblue\">6/font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "0px",
+          "x": "750px"
+        }
+      },
+      {
+        "al": "<font color=\"deepskyblue\">7</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "0px",
+          "x": "900px"
+        }
+      },
+      {
+        "al": "<font color=\"deepskyblue\">8</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "0px",
+          "x": "1050px"
+        }
+      },
+      {
+        "al": "<font color=\"orange\">9</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "150px",
+          "x": "0px"
+        }
+      },
+      {
+        "al": "<font color=\"orange\">10</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "150px",
+          "x": "150px"
+        }
+      },
+      {
+        "al": "<font color=\"orange\">11</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "150px",
+          "x": "300px"
+        }
+      },
+      {
+        "al": "<font color=\"orange\">12</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "150px",
+          "x": "450px"
+        }
+      },
+      {
+        "al": "<font color=\"orange\">13</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "150px",
+          "x": "600px"
+        }
+      },
+      {
+        "al": "<font color=\"orange\">14</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "150px",
+          "x": "750px"
+        }
+      },
+      {
+        "al": "<font color=\"orange\">15</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "150px",
+          "x": "900px"
+        }
+      },
+      {
+        "al": "<font color=\"orange\">16</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "150px",
+          "x": "1050px"
+        }
+      },
+      {
+        "al": "<font color=\"lightgreen\">17</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "300px",
+          "x": "0px"
+        }
+      },
+      {
+        "al": "<font color=\"lightgreen\">18</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "300px",
+          "x": "150px"
+        }
+      },
+      {
+        "al": "<font color=\"lightgreen\">19</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "300px",
+          "x": "300px"
+        }
+      },
+      {
+        "al": "<font color=\"lightgreen\">20</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "300px",
+          "x": "450px"
+        }
+      },
+      {
+        "al": "<font color=\"lightgreen\">21</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "300px",
+          "x": "600px"
+        }
+      },
+      {
+        "al": "<font color=\"lightgreen\">22</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "300px",
+          "x": "750px"
+        }
+      },
+      {
+        "al": "<font color=\"lightgreen\">23</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "300px",
+          "x": "900px"
+        }
+      },
+      {
+        "al": "<font color=\"lightgreen\">24</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "300px",
+          "x": "1050px"
+        }
+      },
+      {
+        "al": "<font color=\"lightgreen\">25</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "450px",
+          "x": "0px"
+        }
+      },
+      {
+        "al": "<font color=\"lightgreen\">26</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "450px",
+          "x": "150px"
+        }
+      },
+      {
+        "al": "<font color=\"lightgreen\">27</font>",
+        "spriteimg": {
+          "source": "boom",
+          "top": "300px",
+          "left": "300px",
+          "width": "150px",
+          "height": "150px",
+          "y": "450px",
+          "x": "300px"
+        }
+      },
+      {
+        "al": "-------------- END --------------"
+      },
+      {
+        "al": "-------------- END --------------"
+      },
+      {
+        "al": "-------------- END --------------"
+      },
+      {
+        "al": "можно указать один параметр, если нужна анимация по одной оси"
       },
       {
         "al": "Всё ходит по цепи кругом"
       },
       {
         "al": "И днём и ночью, кот учёный"
-      },
-      {
-        "spriteimg": {
-          "source": "img1234",
-          "items": [
-            {
-              "name": "chumkImgID",
-              "width": "100px",
-              "height": "50px",
-              "top": "100px",
-              "left": "417px"
-            }
-          ]
-        }
       },
       {
         "animate": [
@@ -251,8 +564,8 @@
         "endPoint": true,
         "mode-classic": "dialog-box",
         "mode-fullscreen": "dialog-box-full",
-        "font-size": "22px",
-        "font-family": "Minecraft",
+        "font-size": "28px",
+        "font-family": "Jura-Font",
         "line-height": "32px"
       },
       "publish": {

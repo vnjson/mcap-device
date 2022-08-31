@@ -3,7 +3,7 @@ import "./style.css";
 const $tpl = $('<div class="vnjson-scene component"></div>');
 
 export default function () {
-    this.store.screen.append($tpl);
+    vnjs.store.screen.append($tpl);
     vnjs.on("scene", (id) => {
         vnjs.emit('image.update',  $tpl, {plugin: 'scene', prop: 'background-image'})
         if (typeof id === "object") {
@@ -13,7 +13,7 @@ export default function () {
             $tpl.fadeIn();
         } else if (typeof id === "string") {
             $tpl.css({
-                "background-image": `url('${this.getAssetByName(id).url}')`,
+                "background-image": `url('${vnjs.getAssetByName(id).url}')`,
             });
             $tpl.fadeIn();
         } else {

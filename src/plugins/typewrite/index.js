@@ -6,7 +6,7 @@ import TypeWrite from './TypeWrite.js';
 const $tpl = $(tpl);
 
 export default function (){
-  this.store.screen.append($tpl);
+  vnjs.store.screen.append($tpl);
   const tw = new TypeWrite();
   vnjs.on('typewrite', param=>{
       if(typeof param ==='string'){

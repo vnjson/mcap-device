@@ -5,7 +5,7 @@ let selectedElement = null
 
 export default function (){
 
-  this.store.screen.append($tpl)
+  vnjs.store.screen.append($tpl)
   vnjs.on('drag-items', data=>{
     if(data){
       $tpl.show()

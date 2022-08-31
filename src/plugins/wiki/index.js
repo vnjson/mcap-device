@@ -3,7 +3,7 @@ import "./style.css";
 const $tpl = $('<ul class="vnjson__wiki component"></ul>');
 
 export default function () {
-    this.store.screen.append($tpl);
+    vnjs.store.screen.append($tpl);
     vnjs.on("wiki", (data) => {
         if (data) {
             $tpl.html("");

@@ -40,7 +40,7 @@ export default {
             $tpl.show();
             $tpl.find(".vnjson__hand-left").css(
                 "background-image",
-                `url('${this.getAssetByName(id).url}')`
+                `url('${vnjs.getAssetByName(id).url}')`
             );
         } else {
             $tpl.find(".vnjson__hand-left").css("background-image", "unset");

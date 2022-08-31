@@ -40,7 +40,7 @@ function applyStyles (){
 
 export default function (){
 
-  this.store.screen.append($tpl)
+  vnjs.store.screen.append($tpl)
 
   vnjs.on('test', data => {
       if(data){

@@ -21,7 +21,7 @@ export default function (){
   }
 
   var $tpl = $(tpl)
-  this.store.screen.append($tpl)
+  vnjs.store.screen.append($tpl)
 
 
   var setScore = data=>{

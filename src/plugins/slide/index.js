@@ -3,11 +3,11 @@ import './style.css'
 
 const $tpl = $(`<img class="screen-vnjson__slide component"/>`)
 export default function (){
-  this.store.screen.append($tpl)
+  vnjs.store.screen.append($tpl)
   vnjs.on('slide', id=>{
     $tpl.attr('src', null)
     if(typeof id==='string'){
-        $tpl.attr('src', this.getAssetByName(id).url).show()
+        $tpl.attr('src', vnjs.getAssetByName(id).url).show()
     }
     else if(typeof id==='object'){
       /*
@@ -24,7 +24,7 @@ export default function (){
         $tpl.attr('src', id.url).fadeIn()
       }
       else{
-        $tpl.attr('src', this.getAssetByName(id.name).url).show()
+        $tpl.attr('src', vnjs.getAssetByName(id.name).url).show()
       }
       /*
       .css(id.css)

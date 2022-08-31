@@ -4,7 +4,7 @@ import tpl from './tpl.html';
 export default function (){
 
   const $tpl = $(tpl);
-  this.store.screen.append($tpl);
+  vnjs.store.screen.append($tpl);
 
   const options = {
     responsive: true,
@@ -31,7 +31,7 @@ export default function (){
   vnjs.on('video', param=>{
     onEndObj = null;
     if(typeof param==='object'){
-        const asset = this.getAssetByName(param.name);
+        const asset = vnjs.getAssetByName(param.name);
         player.src(asset.url);
         if(param.css){
           $tpl.find('.video-js').css(param.css);
@@ -62,7 +62,7 @@ export default function (){
               hide()
             break;
           default:
-              const asset = this.getAssetByName(param);
+              const asset = vnjs.getAssetByName(param);
               player.src(asset.url);
               player.ready( () => {
                  player.play()

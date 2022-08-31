@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 export default function () {
     const $tpl = $(tpl);
 
-    this.store.screen.append($tpl);
+    vnjs.store.screen.append($tpl);
 
     vnjs.on("term", (param) => {
         if (param === true) {
@@ -62,7 +62,7 @@ export default function () {
                     $tpl.find("pre code").empty();
                 } else {
                     let img = $(
-                        `<img src=${this.getAssetByName(param).url} />`
+                        `<img src=${vnjs.getAssetByName(param).url} />`
                     );
                     $tpl.find("pre code").empty();
                     $tpl.find("pre code").css("overflow", "hidden");

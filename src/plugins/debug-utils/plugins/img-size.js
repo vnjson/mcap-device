@@ -7,7 +7,7 @@ export default function (asset) {
           const str = `image: ${asset}<br>width: ${this.width}px<br>height: ${this.height}px`
           _vnjs.emit('vnjson.info', str)
         }
-        img.src = this.getAssetByName(asset).url
+        img.src = vnjs.getAssetByName(asset).url
     }
 
 

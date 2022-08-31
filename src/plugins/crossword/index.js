@@ -21,7 +21,7 @@ const init = ()=>{
         }
         if(data){
             $tpl = $('<iframe id="crossword" src="data/crossword/index.html" width="975" height="500"></iframe>');
-            this.store.screen.append($tpl);
+            vnjs.store.screen.append($tpl);
             setTimeout(()=>{
                 $tpl.show();
                 let win = document.querySelector("iframe#crossword").contentWindow;
