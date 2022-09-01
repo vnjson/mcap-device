@@ -7,20 +7,71 @@
   next: true
 
 
+- sprites-animate:
+      id: elixir
+      source: sprite_animation
+      delay: 50
+      loop: false
+      #scale: 4
+      top: 200px
+      left: 200px
+      width: 50px
+      height: 61px
+      rows: 2
+      cols: 5
+      onLoop:
+        $: abc
+      onEnd:
+        $: test
+ 
+  next: true
+- sprites-animate:
+      id: globe
+      source: globe
+      delay: 10
+      loop: 3
+      #scale: 7
+      top: 200px
+      left: 500px
+      width: 65px
+      height: 65px
+      rows: 4
+      cols: 12
 
-
-
-- left: id2
-
-- sprite-animate:
+    
+  next: true
+- sprites-animate:
+      id: boom
+      source: boom
       delay: 100
-      top: 0
-      left: 0
+      #scale: 10
+      loop: false
+      top: 160px
+      left: 500px
       width: 150px
       height: 150px
-      source: boom
       rows: 4
       cols: 8
+      onLoop:
+        $: abc
+      onEnd:
+        $: test
+  #next: true
+
+
+- sprites-animate:
+      id: 3dbfca4
+      source: 3dbfca4
+      delay: 100
+      scale: 2
+      loop: false
+      top: 350px
+      left: 900px
+      width: 55px
+      height: 55px
+      rows: 3
+      cols: 8
+
 
 
 - al: <font color="deepskyblue">1</font>
@@ -34,270 +85,6 @@
       x:  0px
 
 
-- al: <font color="deepskyblue">2</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  0px
-      x:  150px
-
-- al: <font color="deepskyblue">3</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  0px
-      x:  300px
-
-- al: <font color="deepskyblue">4</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  0px
-      x:  450px
-
-- al: <font color="deepskyblue">5</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  0px
-      x:  600px
-
-- al: <font color="deepskyblue">6/font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  0px
-      x:  750px
-
-- al: <font color="deepskyblue">7</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  0px
-      x:  900px
-- al: <font color="deepskyblue">8</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  0px
-      x:  1050px
-##############################
-- al: <font color="orange">9</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  150px
-      x:  0px
-
-- al: <font color="orange">10</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  150px
-      x:  150px
-
-- al: <font color="orange">11</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  150px
-      x:  300px
-
-- al: <font color="orange">12</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  150px
-      x:  450px
-
-
-- al: <font color="orange">13</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  150px
-      x:  600px
-
-- al: <font color="orange">14</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  150px
-      x:  750px
-
-- al: <font color="orange">15</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  150px
-      x:  900px
-
-- al: <font color="orange">16</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  150px
-      x:  1050px
-
-####################################################
-
-- al: <font color="lightgreen">17</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  300px
-      x:  0px
-
-- al: <font color="lightgreen">18</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  300px
-      x:  150px
-
-- al: <font color="lightgreen">19</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  300px
-      x:  300px
-
-- al: <font color="lightgreen">20</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  300px
-      x:  450px
-
-
-- al: <font color="lightgreen">21</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  300px
-      x:  600px
-
-- al: <font color="lightgreen">22</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  300px
-      x:  750px
-
-- al: <font color="lightgreen">23</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  300px
-      x:  900px
-
-- al: <font color="lightgreen">24</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  300px
-      x:  1050px
-
-####################################################
-
-- al: <font color="lightgreen">25</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  450px
-      x:  0px
-
-- al: <font color="lightgreen">26</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  450px
-      x:  150px
-
-- al: <font color="lightgreen">27</font>
-  spriteimg:
-      source: boom
-      top: 300px
-      left: 300px
-      width: 150px
-      height: 150px
-      y:  450px
-      x:  300px
 
 
 - al: -------------- END --------------
@@ -308,7 +95,6 @@
 - al: Всё ходит по цепи кругом
 
 - al: И днём и ночью, кот учёный
-
 
 
 - animate:

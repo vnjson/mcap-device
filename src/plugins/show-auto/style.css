@@ -25,9 +25,6 @@
 
 }
 .vnjson__show-auto-sprite{
-  position: absolute;
-  left: 300px;
-  bottom: 210px;
-  top: unset;
+
   background-repeat: no-repeat;
 }
