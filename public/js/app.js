@@ -4843,7 +4843,7 @@
   n(css$i,{});
 
   var $tpl$a = $(tpl$6);
-  var _args = null;
+  var _args$1 = null;
   /**
    * setup
    */
@@ -4874,7 +4874,7 @@
 
   function handler$2(args) {
     if (args) {
-      _args = args;
+      _args$1 = args;
       $tpl$a.css("display", "flex");
     } else {
       $tpl$a.hide();
@@ -4888,12 +4888,12 @@
   function clickHandler() {
     var input = $tpl$a.find(".vnjson__input-wrapper input");
     $tpl$a.fadeOut();
-    var character = vnjs.getCharacterById(_args);
+    var character = vnjs.getCharacterById(_args$1);
 
     if (character) {
       character.name = input.val();
     } else {
-      vnjs.emit("data-set", _defineProperty({}, _args, input.val()));
+      vnjs.emit("data-set", _defineProperty({}, _args$1, input.val()));
     }
 
     input.val("");
@@ -7737,7 +7737,7 @@
       this.left = args.left;
       this.cols = args.cols;
       this.rows = args.rows;
-      this.loop = args.loop - 1;
+      this.loop = args.loop;
       this.x = 0;
       this.y = 0;
       this.canvas = null;
@@ -7769,7 +7769,8 @@
     }, {
       key: "remove",
       value: function remove() {
-        this.stop();
+        clearInterval(this.intervalID);
+        vnjs.emit("sprite-animation.end", this.id);
         this.canvas.remove();
       }
     }, {
@@ -7778,19 +7779,13 @@
         Object.assign(this.canvas.style, {
           top: this.top,
           left: this.left,
-          border: "1px dashed magenta",
           transform: "scale(".concat(this.scale, ")")
         });
       }
     }, {
       key: "start",
       value: function start() {
-        this.loadImage(); // this.repeat()
-      }
-    }, {
-      key: "stop",
-      value: function stop() {
-        clearInterval(this.intervalID);
+        this.loadImage();
       }
     }, {
       key: "loadImage",
@@ -7816,31 +7811,9 @@
         }, this.delay);
       }
     }, {
-      key: "repeat",
-      value: function repeat() {
-        /*
-        if (typeof this.loop === "number") {
-        const d = this.cols * this.rows * this.delay;
-        const timeoutID = setTimeout(() => {
-          if (this.n < this.loop) {
-              this.start();
-              this.n++;
-          } else {
-              console.log("--end-loop--");
-              vnjs.emit("srites-animation.end", this.id);
-          }
-        }, d);
-        }
-        if (this.loop === true) {
-        this.loop = Infinity;
-        } else {
-        this.loop = 1;
-        }*/
-      }
-    }, {
       key: "draw",
       value: function draw() {
-        //  console.log(`frame: ${this.currentFrame+1}  / ${this.maxFrame}  col: ${this.frameCol+1} / ${this.cols} row: ${ this.frameRow+1} / ${this.rows}`)
+        //console.log(`frame: ${this.currentFrame+1}  / ${this.maxFrame}  col: ${this.frameCol+1} / ${this.cols} row: ${ this.frameRow+1} / ${this.rows}`)
         var origin = {
           w: this.frameCol * this.width,
           h: this.frameRow * this.height,
@@ -7864,12 +7837,29 @@
 
         if (this.currentFrame > this.maxFrame) {
           this.currentFrame = 0;
-          vnjs.emit("srites-animation.loop", this.id);
-          this.stop();
+          this.onLoop();
         } else {
           this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
           this.draw();
           this.currentFrame++;
+        }
+      }
+    }, {
+      key: "onLoop",
+      value: function onLoop() {
+        vnjs.emit("sprite-animation.loop", this.id, this.n);
+
+        if (this.loop === true) ; else if (typeof this.loop === "number") {
+          console.log(this.n, this.loop);
+
+          if (this.n === this.loop - 1) {
+            this.remove();
+          } else {
+            this.n++;
+          } //this.repeat(this.loop);
+
+        } else {
+          this.remove();
         }
       }
     }]);
@@ -7877,24 +7867,42 @@
     return SritesAnimation;
   }();
 
-  function spritesAnimate () {}
+  var _this = undefined;
+  function spriteAnimate () {}
   var animation = null;
+  var _args = null;
   var storeAnimation = {};
-  vnjs.on("sprites-animate", function (args) {
+  vnjs.on("sprite-animate", function (args) {
+    _args = args;
 
-    if (args) {
+    if (_typeof(args) === 'object') {
       animation = new SritesAnimation(args);
       animation.start();
       storeAnimation[animation.id] = animation;
     } else {
-      storeAnimation[animation.id].remove();
+      vnjs.emit('vnjson.error', "\u041D\u0435 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u0442\u0438\u043F \u0434\u0430\u043D\u043D\u044B\u0445 <font color=\"deepskyblue\"> ".concat(args, "</font> === <font color=\"magenta\">").concat(_typeof(args), "</font><br>\u041F\u0440\u0438\u043D\u0438\u043C\u0430\u0435\u0442 \u0442\u043E\u043B\u044C\u043A\u043E object"));
     }
   });
-  vnjs.on('srites-animation.loop', function (id) {
-    storeAnimation[id].remove();
+  vnjs.on("sprite-animate-remove", function (args) {
+    if (storeAnimation[args]) {
+      storeAnimation[args].remove();
+    } else {
+      _this.emit('vnjson', "\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0438\u043D\u0434\u0438\u0444\u0438\u043A\u0430\u0442\u043E\u0440 \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 <font color=\"deepskyblue\">".concat(args, "</font>"));
+    }
   });
-  vnjs.on('srites-animation.end', function (id) {//console.log(_args.id)
-    //animation.remove(_args.id);
+  vnjs.on('sprite-animation.loop', function (id, n) {
+    console.log('sprite-animation.loop: ' + id, n);
+
+    if (_args.onLoop) {
+      vnjs.exec(_args.onLoop);
+    }
+  });
+  vnjs.on('sprite-animation.end', function (id) {
+    console.log('sprite-animation.end: ' + id);
+
+    if (_args.onEnd) {
+      vnjs.exec(_args.onEnd);
+    }
   });
 
   /**
@@ -7951,7 +7959,7 @@
   vnjs.use(dialogBoxInfo);
   vnjs.use(executeVnjson); //vnjs.use(filter);
 
-  vnjs.use(spritesAnimate);
+  vnjs.use(spriteAnimate);
   /**
    * LOAD scenes
    */

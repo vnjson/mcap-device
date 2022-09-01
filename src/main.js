@@ -54,7 +54,7 @@ import HUD from "./plugins/hud/index.js";
 import dialogBoxInfo from "./plugins/dialog-box-info/index.js";
 import executeVnjson from "./plugins/execute/index.js";
 //import filter from "./plugins/filter/index.js";
-import spritesAnimate from './plugins/sprites-animate/index.js';
+import spriteAnimate from './plugins/sprite-animate/index.js';
 /**
  * Init plugins
  */
@@ -108,7 +108,7 @@ vnjs.use(HUD);
 vnjs.use(dialogBoxInfo);
 vnjs.use(executeVnjson);
 //vnjs.use(filter);
-vnjs.use(spritesAnimate);
+vnjs.use(spriteAnimate);
 
 /**
  * LOAD scenes

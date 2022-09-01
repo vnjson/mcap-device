@@ -1,0 +1,21 @@
+# Создать анимацию
+- sprite-animate:
+      id: elixir
+      source: sprite_animation
+      delay: 50
+      loop: 3
+      scale: 4
+      top: 200px
+      left: 200px
+      width: 50px
+      height: 61px
+      rows: 2
+      cols: 5
+      onLoop:
+        +: abc
+      onEnd:
+        +: test
+
+# Удалить анимацию
+
+- sprite-animate-remove: boom1 # id

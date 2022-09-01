@@ -115,12 +115,33 @@
         "next": true
       },
       {
-        "sprites-animate": {
+        "sprite-animate": {
           "id": "elixir",
           "source": "sprite_animation",
           "delay": 50,
-          "loop": false,
+          "loop": 5,
           "top": "200px",
+          "left": "200px",
+          "width": "50px",
+          "height": "61px",
+          "rows": 2,
+          "cols": 5,
+          "onLoop": {
+            "+": "abc"
+          },
+          "onEnd": {
+            "+": "test"
+          }
+        },
+        "next": true
+      },
+      {
+        "sprite-animate": {
+          "id": "elixir",
+          "source": "sprite_animation",
+          "delay": 100,
+          "loop": true,
+          "top": "100px",
           "left": "200px",
           "width": "50px",
           "height": "61px",
@@ -136,11 +157,33 @@
         "next": true
       },
       {
-        "sprites-animate": {
+        "sprite-animate": {
+          "id": "elixir",
+          "source": "sprite_animation",
+          "delay": 100,
+          "loop": false,
+          "top": "300px",
+          "left": "200px",
+          "width": "50px",
+          "height": "61px",
+          "rows": 2,
+          "cols": 5,
+          "onLoop": {
+            "$": "abc"
+          },
+          "onEnd": {
+            "$": "test"
+          }
+        },
+        "next": true
+      },
+      {
+        "sprite-animate": {
           "id": "globe",
           "source": "globe",
-          "delay": 10,
+          "delay": 30,
           "loop": 3,
+          "scale": 7,
           "top": "200px",
           "left": "500px",
           "width": "65px",
@@ -151,13 +194,13 @@
         "next": true
       },
       {
-        "sprites-animate": {
+        "sprite-animate": {
           "id": "boom",
           "source": "boom",
           "delay": 100,
           "loop": false,
           "top": "160px",
-          "left": "500px",
+          "left": "700px",
           "width": "150px",
           "height": "150px",
           "rows": 4,
@@ -168,21 +211,40 @@
           "onEnd": {
             "$": "test"
           }
-        }
+        },
+        "next": true
       },
       {
-        "sprites-animate": {
-          "id": "3dbfca4",
-          "source": "3dbfca4",
+        "sprite-animate": {
+          "id": "boom1",
+          "source": "boom",
           "delay": 100,
           "scale": 2,
           "loop": false,
-          "top": "350px",
-          "left": "900px",
-          "width": "55px",
-          "height": "55px",
-          "rows": 3,
+          "top": "260px",
+          "left": "500px",
+          "width": "150px",
+          "height": "150px",
+          "rows": 4,
           "cols": 8
+        },
+        "timeout": {
+          "timer": 4000,
+          "exec": {
+            "sprite-animate": {
+              "id": "boom3",
+              "source": "boom",
+              "delay": 100,
+              "scale": 8,
+              "loop": false,
+              "top": "60px",
+              "left": "500px",
+              "width": "150px",
+              "height": "150px",
+              "rows": 4,
+              "cols": 8
+            }
+          }
         }
       },
       {
@@ -363,6 +425,10 @@
       {
         "name": "globe",
         "url": "scenes/assets/globe.webp"
+      },
+      {
+        "name": "globe",
+        "url": "scenes/assets/globe.webp~"
       },
       {
         "name": "robocop",

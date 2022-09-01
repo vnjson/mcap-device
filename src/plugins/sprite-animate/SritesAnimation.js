@@ -10,7 +10,7 @@ export default class SritesAnimation {
         this.left = args.left;
         this.cols = args.cols;
         this.rows = args.rows;
-        this.loop = args.loop - 1;
+        this.loop = args.loop;
         this.x = 0;
         this.y = 0;
         this.canvas = null;
@@ -22,7 +22,7 @@ export default class SritesAnimation {
         this.frameCol = 0;
         this.frameRow = 0;
         this.scale = args.scale || "unset";
-        this.maxFrame = 0
+        this.maxFrame = 0;
         this.create();
     }
 
@@ -40,26 +40,21 @@ export default class SritesAnimation {
         this.style();
     }
     remove() {
-        this.stop();
+        clearInterval(this.intervalID);
+
+        vnjs.emit("sprite-animation.end", this.id);
         this.canvas.remove();
     }
     style() {
         Object.assign(this.canvas.style, {
             top: this.top,
             left: this.left,
-            border: "1px dashed magenta",
             transform: `scale(${this.scale})`,
         });
     }
     start() {
         this.loadImage();
-        // this.repeat()
     }
-
-    stop() {
-        clearInterval(this.intervalID);
-    }
-
     loadImage() {
         this.img = new Image();
         this.img.onload = () => {
@@ -67,34 +62,17 @@ export default class SritesAnimation {
         };
         this.img.src = this.src;
     }
+
     startAnimate() {
         this.update();
-        
+
         this.intervalID = setInterval(() => {
             this.update();
         }, this.delay);
     }
-    repeat() {/*
-        if (typeof this.loop === "number") {
-            const d = this.cols * this.rows * this.delay;
-            const timeoutID = setTimeout(() => {
-                if (this.n < this.loop) {
-                    this.start();
-                    this.n++;
-                } else {
-                    console.log("--end-loop--");
-                    vnjs.emit("srites-animation.end", this.id);
-                }
-            }, d);
-        }
-        if (this.loop === true) {
-            this.loop = Infinity;
-        } else {
-            this.loop = 1;
-        }*/
-    }
+
     draw() {
-      //  console.log(`frame: ${this.currentFrame+1}  / ${this.maxFrame}  col: ${this.frameCol+1} / ${this.cols} row: ${ this.frameRow+1} / ${this.rows}`)
+        //console.log(`frame: ${this.currentFrame+1}  / ${this.maxFrame}  col: ${this.frameCol+1} / ${this.cols} row: ${ this.frameRow+1} / ${this.rows}`)
 
         const origin = {
             w: this.frameCol * this.width,
@@ -124,25 +102,42 @@ export default class SritesAnimation {
     }
 
     update() {
-     
- 
         this.frameCol = this.currentFrame % this.cols;
         this.frameRow = Math.floor(this.currentFrame / this.cols);
         this.maxFrame = this.cols * this.rows - 1;
 
         if (this.currentFrame > this.maxFrame) {
             this.currentFrame = 0;
-            vnjs.emit("srites-animation.loop", this.id);
-            this.stop()
  
-        }
-        else{
+            this.onLoop();
+        } 
+        else {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             this.draw();
             this.currentFrame++;
         }
-
-
-        
     }
+    onLoop() {
+        vnjs.emit("sprite-animation.loop", this.id, this.n);
+
+        if (this.loop === true) {
+            /***/
+        } else if (typeof this.loop === "number") {
+            console.log(this.n, this.loop)
+            if(this.n===this.loop-1){
+               
+                this.remove();
+             
+            }
+            else{
+                this.n++
+            }
+           
+            //this.repeat(this.loop);
+        } else {
+            this.remove();
+        }
+    }
+ 
 }
+
