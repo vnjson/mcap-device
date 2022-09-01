@@ -7867,7 +7867,6 @@
     return SritesAnimation;
   }();
 
-  var _this = undefined;
   function spriteAnimate () {}
   var animation = null;
   var _args = null;
@@ -7887,7 +7886,7 @@
     if (storeAnimation[args]) {
       storeAnimation[args].remove();
     } else {
-      _this.emit('vnjson', "\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0438\u043D\u0434\u0438\u0444\u0438\u043A\u0430\u0442\u043E\u0440 \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 <font color=\"deepskyblue\">".concat(args, "</font>"));
+      vnjs.emit('vnjson', "\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0438\u043D\u0434\u0438\u0444\u0438\u043A\u0430\u0442\u043E\u0440 \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 <font color=\"deepskyblue\">".concat(args, "</font>"));
     }
   });
   vnjs.on('sprite-animation.loop', function (id, n) {

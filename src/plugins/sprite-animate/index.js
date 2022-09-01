@@ -29,7 +29,7 @@ vnjs.on("sprite-animate-remove", (args) => {
         storeAnimation[args].remove();
     }
     else{
-        this.emit('vnjson', `Неверный индификатор анимации <font color="deepskyblue">${args}</font>`)
+        vnjs.emit('vnjson', `Неверный индификатор анимации <font color="deepskyblue">${args}</font>`)
     }
    
 });
