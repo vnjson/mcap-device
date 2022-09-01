@@ -7879,36 +7879,37 @@
       animation.start();
       storeAnimation[animation.id] = animation;
     } else {
-      vnjs.emit('vnjson.error', "\u041D\u0435 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u0442\u0438\u043F \u0434\u0430\u043D\u043D\u044B\u0445 <font color=\"deepskyblue\"> ".concat(args, "</font> === <font color=\"magenta\">").concat(_typeof(args), "</font><br>\u041F\u0440\u0438\u043D\u0438\u043C\u0430\u0435\u0442 \u0442\u043E\u043B\u044C\u043A\u043E object"));
+      vnjs.emit('vnjson.error', "\u041D\u0435\u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u0442\u0438\u043F \u0434\u0430\u043D\u043D\u044B\u0445 <font color=\"deepskyblue\"> ".concat(args, "</font> === <font color=\"magenta\">").concat(_typeof(args), "</font><br>\u041F\u0440\u0438\u043D\u0438\u043C\u0430\u0435\u0442 \u0442\u043E\u043B\u044C\u043A\u043E object"));
     }
   });
   vnjs.on("sprite-animate-remove", function (args) {
     if (storeAnimation[args]) {
       storeAnimation[args].remove();
     } else {
-      vnjs.emit('vnjson', "\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0438\u043D\u0434\u0438\u0444\u0438\u043A\u0430\u0442\u043E\u0440 \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 <font color=\"deepskyblue\">".concat(args, "</font>"));
+      vnjs.emit('vnjson.error', "\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0438\u043D\u0434\u0438\u0444\u0438\u043A\u0430\u0442\u043E\u0440 \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 <font color=\"deepskyblue\">".concat(args, "</font>"));
     }
   });
   vnjs.on('sprite-animation.loop', function (id, n) {
-    console.log('sprite-animation.loop: ' + id, n);
-
     if (_args.onLoop) {
       vnjs.exec(_args.onLoop);
     }
   });
   vnjs.on('sprite-animation.end', function (id) {
-    console.log('sprite-animation.end: ' + id);
-
     if (_args.onEnd) {
       vnjs.exec(_args.onEnd);
     }
   });
   vnjs.on('sprite-animate-move', function (args) {
-    if (args) {
+    if (storeAnimation[args.id]) {
       $(storeAnimation[args.id].canvas).animate({
         top: args.top.replace(' ', ''),
         left: args.left.replace(' ', '')
       }, args.duration);
+    } else {
+      vnjs.emit('error', {
+        ru: "\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0438\u043D\u0434\u0438\u0444\u0438\u043A\u0430\u0442\u043E\u0440 \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 <font color=\"deepskyblue\">".concat(args.id, "</font>"),
+        en: "\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0438\u043D\u0434\u0438\u0444\u0438\u043A\u0430\u0442\u043E\u0440 \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 <font color=\"deepskyblue\">".concat(args.id, "</font>")
+      }, jsyaml.dump(vnjs.ctx));
     }
   });
 

@@ -30,7 +30,7 @@
         +: test
 
 - sprite-animate-move: 
-      id: elixir
+      id: elixir1
       duration: 1000
       left: += 200px
       top: += 150px
