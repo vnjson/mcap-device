@@ -115,20 +115,9 @@
         "next": true
       },
       {
-        "push": {
-          "icon": "tes",
-          "info": 1234
-        }
-      },
-      {
-        "data-set": {
-          "playerPush": false
-        }
-      },
-      {
         "sprite-animate": {
           "id": "elixir",
-          "source": "sprite_animation",
+          "name": "sprite_animation",
           "delay": 100,
           "loop": true,
           "scale": 4,
@@ -165,7 +154,7 @@
       {
         "sprite-animate": {
           "id": "elixir",
-          "source": "sprite_animation",
+          "name": "sprite_animation",
           "delay": 100,
           "loop": true,
           "top": "100px",
@@ -186,7 +175,7 @@
       {
         "sprite-animate": {
           "id": "elixir",
-          "source": "sprite_animation",
+          "name": "sprite_animation",
           "delay": 100,
           "loop": false,
           "top": "300px",
@@ -207,7 +196,7 @@
       {
         "sprite-animate": {
           "id": "globe",
-          "source": "globe",
+          "name": "globe",
           "delay": 30,
           "loop": 3,
           "scale": 7,
@@ -223,7 +212,7 @@
       {
         "sprite-animate": {
           "id": "boom",
-          "source": "boom",
+          "name": "boom",
           "delay": 100,
           "loop": false,
           "top": "160px",
@@ -244,7 +233,7 @@
       {
         "sprite-animate": {
           "id": "boom1",
-          "source": "boom",
+          "name": "boom",
           "delay": 100,
           "scale": 2,
           "loop": false,
@@ -260,7 +249,7 @@
           "exec": {
             "sprite-animate": {
               "id": "boom3",
-              "source": "boom",
+              "name": "boom",
               "delay": 100,
               "scale": 8,
               "loop": false,
@@ -277,7 +266,7 @@
       {
         "al": "<font color=\"deepskyblue\">1</font>",
         "spriteimg": {
-          "source": "boom",
+          "name": "boom",
           "top": "300px",
           "left": "300px",
           "width": "150px",

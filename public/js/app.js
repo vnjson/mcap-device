@@ -4206,8 +4206,8 @@
   vnjs.on("spriteimg", function (args) {
     if (args) {
       $sprite.css({
-        'background-image': "url(".concat(vnjs.getAssetByName(args.source).url, ")"),
-        'background-position': "-".concat(args.x, " -").concat(args.y),
+        'background-image': "url(".concat(vnjs.getAssetByName(args.name).url, ")"),
+        'background-position': "-".concat(args['frame-left'], " -").concat(args['frame-top']),
         'width': args.width,
         'height': args.height,
         'top': args.top,
@@ -7729,7 +7729,7 @@
 
       this.id = args.id;
       this.className = "vnjson__sprites-animate-".concat(this.id);
-      this.src = vnjs.getAssetByName(args.source).url;
+      this.src = vnjs.getAssetByName(args.name).url;
       this.delay = args.delay;
       this.width = +args.width.replace("px", "");
       this.height = +args.height.replace("px", "");

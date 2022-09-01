@@ -1,7 +1,7 @@
 # Создать анимацию
 - sprite-animate:
       id: elixir
-      source: sprite_animation
+      name: sprite_animation
       delay: 50
       loop: 3
       scale: 4

@@ -74,8 +74,8 @@ vnjs.on("rightimg", (id) => {
 vnjs.on("spriteimg", (args) => {
     if(args){
         $sprite.css({
-            'background-image': `url(${vnjs.getAssetByName(args.source).url})`,
-            'background-position': `-${args.x} -${args.y}`,
+            'background-image': `url(${vnjs.getAssetByName(args.name).url})`,
+            'background-position': `-${args['frame-left']} -${args['frame-top']}`,
             'width': args.width,
             'height': args.height,
             'top': args.top,

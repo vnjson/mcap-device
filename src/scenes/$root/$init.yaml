@@ -6,16 +6,15 @@
   #hud: true
   next: true
 
-- push: 
-    icon: tes
-    info: 1234
-  # [array]
-- data-set:
-    playerPush: false
+#- push: 
+#    icon: tes
+#    info: 1234
+#  # [array]
+#- push: false
 
 - sprite-animate:
       id: elixir
-      source: sprite_animation
+      name: sprite_animation
       delay: 100
       loop: true
       scale: 4
@@ -43,7 +42,7 @@
  # next: true
 - sprite-animate:
       id: elixir
-      source: sprite_animation
+      name: sprite_animation
       delay: 100
       loop: true
       #scale: 4
@@ -61,7 +60,7 @@
   next: true
 - sprite-animate:
       id: elixir
-      source: sprite_animation
+      name: sprite_animation
       delay: 100
       loop: false
       #scale: 4
@@ -79,7 +78,7 @@
   next: true
 - sprite-animate:
       id: globe
-      source: globe
+      name: globe
       delay: 30
       loop: 3
       scale: 7
@@ -94,7 +93,7 @@
   next: true
 - sprite-animate:
       id: boom
-      source: boom
+      name: boom
       delay: 100
       #scale: 10
       loop: false
@@ -112,7 +111,7 @@
 
 - sprite-animate:
       id: boom1
-      source: boom
+      name: boom
       delay: 100
       scale: 2
       loop: false
@@ -127,7 +126,7 @@
     exec:
       sprite-animate:
           id: boom3
-          source: boom
+          name: boom
           delay: 100
           scale: 8
           loop: false
@@ -141,7 +140,7 @@
 
 - al: <font color="deepskyblue">1</font>
   spriteimg:
-      source: boom
+      name: boom
       top: 300px
       left: 300px
       width: 150px

@@ -2,7 +2,7 @@ export default class SritesAnimation {
     constructor(args) {
         this.id = args.id;
         this.className = `vnjson__sprites-animate-${this.id}`;
-        this.src = vnjs.getAssetByName(args.source).url;
+        this.src = vnjs.getAssetByName(args.name).url;
         this.delay = args.delay;
         this.width = +args.width.replace("px", "");
         this.height = +args.height.replace("px", "");
