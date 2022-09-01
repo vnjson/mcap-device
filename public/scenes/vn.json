@@ -111,15 +111,27 @@
         "dialog-box": true,
         "audio": false,
         "data-clear": true,
-        "status-bar": false,
+        "status-bar": true,
         "next": true
+      },
+      {
+        "push": {
+          "icon": "tes",
+          "info": 1234
+        }
+      },
+      {
+        "data-set": {
+          "playerPush": false
+        }
       },
       {
         "sprite-animate": {
           "id": "elixir",
           "source": "sprite_animation",
-          "delay": 50,
-          "loop": 5,
+          "delay": 100,
+          "loop": true,
+          "scale": 4,
           "top": "200px",
           "left": "200px",
           "width": "50px",
@@ -132,8 +144,23 @@
           "onEnd": {
             "+": "test"
           }
-        },
-        "next": true
+        }
+      },
+      {
+        "sprite-animate-move": {
+          "id": "elixir",
+          "duration": 1000,
+          "left": "+= 200px",
+          "top": "+= 150px"
+        }
+      },
+      {
+        "sprite-animate-move": {
+          "id": "elixir",
+          "duration": 1000,
+          "left": "100px",
+          "top": "100px"
+        }
       },
       {
         "sprite-animate": {
@@ -410,10 +437,6 @@
   },
   "testdata": {
     "assets": [
-      {
-        "name": "3dbfca4",
-        "url": "scenes/assets/3dbfca4.png"
-      },
       {
         "name": "alice",
         "url": "scenes/assets/alice.png"

@@ -1,17 +1,24 @@
 - dialog-box: true #fullscreen
   audio: false
   data-clear: true
-  status-bar: false
+  status-bar: true
   #scene: alice
   #hud: true
   next: true
 
+- push: 
+    icon: tes
+    info: 1234
+  # [array]
+- data-set:
+    playerPush: false
+
 - sprite-animate:
       id: elixir
       source: sprite_animation
-      delay: 50
-      loop: 5
-      #scale: 2
+      delay: 100
+      loop: true
+      scale: 4
       top: 200px
       left: 200px
       width: 50px
@@ -22,9 +29,18 @@
         +: abc
       onEnd:
         +: test
- 
-  next: true
 
+- sprite-animate-move: 
+      id: elixir
+      duration: 1000
+      left: += 200px
+      top: += 150px
+- sprite-animate-move: 
+      id: elixir
+      duration: 1000
+      left: 100px
+      top: 100px
+ # next: true
 - sprite-animate:
       id: elixir
       source: sprite_animation

@@ -7903,6 +7903,14 @@
       vnjs.exec(_args.onEnd);
     }
   });
+  vnjs.on('sprite-animate-move', function (args) {
+    if (args) {
+      $(storeAnimation[args.id].canvas).animate({
+        top: args.top.replace(' ', ''),
+        left: args.left.replace(' ', '')
+      }, args.duration);
+    }
+  });
 
   /**
    * Init plugins

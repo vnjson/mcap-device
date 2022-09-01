@@ -19,3 +19,16 @@
 # Удалить анимацию
 
 - sprite-animate-remove: boom1 # id
+
+
+- sprite-animate-move: 
+      id: elixir
+      duration: 1000
+      left: += 200px
+      top: += 150px
+      
+- sprite-animate-move: 
+      id: elixir
+      duration: 1000
+      left: 100px
+      top: 100px

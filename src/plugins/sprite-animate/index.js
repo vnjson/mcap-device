@@ -47,7 +47,15 @@ vnjs.on('sprite-animation.end', (id) => {
     console.log('sprite-animation.end: '+id)
     if(_args.onEnd){
         vnjs.exec(_args.onEnd)
+    }    
+})
+
+vnjs.on('sprite-animate-move', (args)=>{
+    if(args){
+        $(storeAnimation[args.id].canvas).animate({
+            top: args.top.replace(' ', ''),
+            left: args.left.replace(' ', '')
+        }, args.duration);
     }
-    
 })
 
