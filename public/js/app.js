@@ -7585,6 +7585,7 @@
 
       this.$info = $info;
       this.$avatar = $avatar;
+      this.$text = this.$info.find('.dialog-box__info-text');
       this.mount();
     }
 
@@ -7600,9 +7601,9 @@
     }, {
       key: "open",
       value: function open() {
-        if (this.$info.text() === '') return;
-        if (this.$info.text() === 'undefined') return;
-        this.$info.fadeIn(200);
+        if (this.$text.text() === '') return;
+        if (this.$text.text() === 'undefined') return;
+        this.$info.css('display', 'flex');
         this.openModal = true;
         this.hideBorder();
       }
@@ -7629,7 +7630,7 @@
     }, {
       key: "print",
       value: function print(data) {
-        this.$info.html(data);
+        this.$text.html(data);
       }
     }, {
       key: "addBorder",
@@ -7657,11 +7658,11 @@
     return Info;
   }();
 
-  var css$2 = "\r\n\r\n.dialog-box__avatar{\r\n    border: 3px solid transparent;\r\n    border-radius: 4px;\r\n\r\n}\r\n\r\n.dialog-box__info{\r\n    position: absolute;\r\n    bottom: 205px;\r\n    left: 5px;\r\n    min-width: 200px;\r\n    max-width: 400px;\r\n \r\n    border-radius: 6px;\r\n    background-color: rgba(0,0,0,0.8);\r\n    color: gray;\r\n    display: none;\r\n    border: 4px solid gray;\r\n    padding: 5px;\r\n    z-index: 5000;\r\n    font-size: 22px;\r\n    line-height: 32px;\r\n    word-spacing: 10px;\r\n\r\n  }\r\n ";
+  var css$2 = "\r\n\r\n.dialog-box__avatar{\r\n    border: 3px solid transparent;\r\n    border-radius: 4px;\r\n\r\n}\r\n\r\n.dialog-box__info{\r\n    position: absolute;\r\n    bottom: 205px;\r\n    left: 5px;\r\n    min-width: 200px;\r\n    max-width: 400px;\r\n    border-radius: 6px;\r\n    background-color: rgba(0,0,0,0.8);\r\n    display: none;\r\n    border: 4px solid gray;\r\n    padding: 5px;\r\n    z-index: 5000;\r\n  }\r\n  .dialog-box__info-icon{\r\n    width: 30px;\r\n    height: 30px;\r\n    min-width: 30px;\r\n    background-size: contain;\r\n    background-repeat: no-repeat;\r\n    margin-right: 10px;\r\n}\r\n.dialog-box__info-text{\r\n    font-size: 22px;\r\n    line-height: 32px;\r\n    word-spacing: 10px;\r\n    color: gray;\r\n}";
   n(css$2,{});
 
   function dialogBoxInfo () {
-    var $tpl = $('<div class="dialog-box__info"></div>');
+    var $tpl = $("<div class=\"dialog-box__info\">\n                        <div class=\"dialog-box__info-icon\"></div>\n                        <div class=\"dialog-box__info-text\"></div>\n                  </div>");
     vnjs.store.screen.append($tpl);
     /**
      * INFO
@@ -7683,10 +7684,21 @@
             info.addBorder(param.borderColor);
           }
 
+          var $icon = $tpl.find('.dialog-box__info-icon');
+
+          if (param.icon) {
+            var url = vnjs.getAssetByName(param.icon).url;
+            $icon.show();
+            $icon.css('background-image', "url(".concat(url, ")"));
+          } else {
+            $icon.css('background-image', "unset");
+            $icon.hide();
+          }
+
           _param = true;
           return;
         } else {
-          info.$info.text('');
+          info.$info.find('.dialog-box__info-text').text('');
         }
       }
 
@@ -7930,10 +7942,10 @@
     }
   });
 
-  var css = ".status-bar-push{\r\n    top: 40px;\r\n    left: 8px;\r\n    background-color: rgba(0,0,0,0.7);\r\n    border: 2px solid gray;\r\n    border-radius: 4px;\r\n    max-height: 200px;\r\n    width: 400px;\r\n    min-height: 50px;\r\n    color: wheat;\r\n    padding: 0px 10px;\r\n    \r\n}\r\n\r\n\r\n.status-bar__player-logo--status {\r\n    cursor: pointer;\r\n    animation-duration: 0.7s;\r\n    animation-name: end-point;\r\n    animation-iteration-count: infinite;\r\n    animation-direction: alternate;\r\n}\r\n.status-bar__player-logo--status:hover{\r\n    animation-name: unset;\r\n    border-color: deepskyblue;\r\n}\r\n@keyframes end-point {\r\n    from {\r\n        border-color: gray;\r\n    }\r\n    to {\r\n        border-color: deepskyblue;\r\n    }\r\n}\r\n\r\n.status-bar__status--open{\r\n\r\n    cursor: pointer;\r\n}\r\n.status-bar__status--open:active{\r\n    border-color: magenta;\r\n}";
+  var css = ".status-bar-push{\r\n    top: 40px;\r\n    left: 8px;\r\n    background-color: rgba(0,0,0,0.7);\r\n    border: 2px solid gray;\r\n    border-radius: 4px;\r\n    max-height: 215px;\r\n    width: 400px;\r\n    min-height: 50px;\r\n    padding: 5px;\r\n    flex-direction: column;\r\n    overflow: auto;\r\n}\r\n\r\n\r\n.status-bar__player-logo--status {\r\n    cursor: pointer;\r\n    animation-duration: 0.5s;\r\n    animation-name: push-status;\r\n    animation-iteration-count: infinite;\r\n    animation-direction: alternate;\r\n\r\n}\r\n.status-bar__player-logo--status:hover{\r\n    animation-name: unset;\r\n    border-color: deepskyblue;\r\n}\r\n@keyframes push-status {\r\n    from {\r\n        border-color: gray;\r\n        opacity: 0.1;\r\n    }\r\n    to {\r\n        border-color: deepskyblue;\r\n        opacity: 1;\r\n    }\r\n}\r\n.status-bar__status{\r\n    margin: 5px 0px;\r\n    border: 1px solid gray;\r\n    border-radius: 4px;\r\n    padding: 5px 5px;\r\n    display: flex;\r\n    align-items: center;\r\n\r\n}\r\n.status-bar__status--open{\r\n\r\n    cursor: pointer;\r\n}\r\n.status-bar__status--open:active{\r\n    border-color: magenta;\r\n}\r\n.status-bar-push__icon{\r\n    width: 30px;\r\n    height: 30px;\r\n    background-size: contain;\r\n    background-repeat: no-repeat;\r\n    min-width: 30px;\r\n    align-self: flex-start;\r\n\r\n}\r\n.status-bar-push__info{\r\n    line-height: 26px;\r\n    color: gray;\r\n    padding-left: 10px;\r\n}";
   n(css,{});
 
-  var $tpl = $('<div class="status-bar-push component"></div>');
+  var $tpl = $("<div class=\"status-bar-push component\"></div>");
   var $logo = null;
   var openList = false;
   function statusBarPush () {
@@ -7950,7 +7962,11 @@
   function pushHandler(args) {
     vnjs.state.data['pushStore'] = vnjs.state.data['pushStore'] || [];
 
-    if (args) {
+    if (!args) {
+      vnjs.state['pushStore'] = [];
+      $tpl.empty();
+      $tpl.close();
+    } else {
       var message = _objectSpread2(_objectSpread2({}, args), {}, {
         read: false
       });
@@ -7958,8 +7974,6 @@
       vnjs.state.data['pushStore'].push(message);
       outputMessages();
       updateStatus();
-    } else {
-      vnjs.state['pushStore'] = [];
     }
 
     vnjs.emit('data-save', true);
@@ -7967,6 +7981,10 @@
 
   function updateStatus() {
     $logo.addClass('status-bar__player-logo--status');
+
+    if (vnjs["package"].push) {
+      vnjs.emit('audio', vnjs["package"].push);
+    }
   }
 
   function outputMessages() {
@@ -7974,7 +7992,18 @@
     var pushStore = vnjs.state.data.pushStore;
     pushStore[0].read = true;
     pushStore.forEach(function (msg, index) {
-      var $str = $("<p class=\"status-bar__status\">".concat(msg.info, "</p>"));
+      var $str = $("<div class=\"status-bar__status\">\n                            <div class=\"status-bar-push__icon\"></div>\n                            <div class=\"status-bar-push__info\">".concat(msg.info, "</div>       \n                      </div>"));
+      var $icon = $str.find('.status-bar-push__icon');
+
+      if (msg.icon) {
+        var url = vnjs.getAssetByName(msg.icon).url;
+        $icon.css('background-image', "url(".concat(url, ")"));
+        $icon.show();
+      } else {
+        $icon.hide();
+        $icon.css('background-image', "unset");
+      }
+
       $tpl.append($str);
     });
   }
@@ -7985,6 +8014,7 @@
     if (openList) {
       close();
     } else {
+      if ($tpl.html() === "") return;
       open();
     }
   }
@@ -7997,9 +8027,16 @@
 
   function open() {
     $logo.addClass('status-bar__status--open');
-    $tpl.show();
+    $tpl.css('display', 'flex');
     openList = true;
+    $tpl.animate({
+      scrollTop: $tpl.height()
+    }, 500);
   }
+
+  vnjs.on('dialog-box.click', function () {
+    return close();
+  });
 
   /**
    * Init plugins

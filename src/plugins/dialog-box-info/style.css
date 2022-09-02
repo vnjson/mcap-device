@@ -12,17 +12,24 @@
     left: 5px;
     min-width: 200px;
     max-width: 400px;
- 
     border-radius: 6px;
     background-color: rgba(0,0,0,0.8);
-    color: gray;
     display: none;
     border: 4px solid gray;
     padding: 5px;
     z-index: 5000;
+  }
+  .dialog-box__info-icon{
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 10px;
+}
+.dialog-box__info-text{
     font-size: 22px;
     line-height: 32px;
     word-spacing: 10px;
-
-  }
- 
+    color: gray;
+}

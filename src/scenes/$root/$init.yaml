@@ -7,15 +7,41 @@
   #hud: true
 
   next: true
-
+- al:
+    reply: Привет мир
+    info: Тестирую изображение
+    borderColor: '#ff0497' 
+    icon: alice
 - push: 
     icon: alice
-    info: 12345678
+    info: 111111111
 
 - push: 
-    icon: alice2
+
     info: Привет мир
-#- push: false
+- push: 
+    icon: alice
+    info: 222222
+- push: 
+    icon: alice
+    info: 3333333333
+- push: 
+    icon: alice
+    info: 4444444444
+- push: 
+    icon: alice
+    info: 555555555555
+- push: 
+    icon: alice
+    info: 666666666666
+- push: 
+    icon: alice
+    info: 777777777777777
+- push: 
+
+    info: 88888888888888
+
+- push: false
 
 
 - al: можно указать один параметр, если нужна анимация по одной оси

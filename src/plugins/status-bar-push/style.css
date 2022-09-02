@@ -4,39 +4,64 @@
     background-color: rgba(0,0,0,0.7);
     border: 2px solid gray;
     border-radius: 4px;
-    max-height: 200px;
+    max-height: 215px;
     width: 400px;
     min-height: 50px;
-    color: wheat;
-    padding: 0px 10px;
-    
+    padding: 5px;
+    flex-direction: column;
+    overflow: auto;
 }
 
 
 .status-bar__player-logo--status {
     cursor: pointer;
-    animation-duration: 0.7s;
-    animation-name: end-point;
+    animation-duration: 0.5s;
+    animation-name: push-status;
     animation-iteration-count: infinite;
     animation-direction: alternate;
+
 }
 .status-bar__player-logo--status:hover{
     animation-name: unset;
     border-color: deepskyblue;
 }
-@keyframes end-point {
+@keyframes push-status {
     from {
         border-color: gray;
+        opacity: 0.1;
     }
     to {
         border-color: deepskyblue;
+        opacity: 1;
     }
 }
+.status-bar__status{
+    margin: 5px 0px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 5px 5px;
+    display: flex;
+    align-items: center;
 
+}
 .status-bar__status--open{
 
     cursor: pointer;
 }
 .status-bar__status--open:active{
     border-color: magenta;
+}
+.status-bar-push__icon{
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    min-width: 30px;
+    align-self: flex-start;
+
+}
+.status-bar-push__info{
+    line-height: 26px;
+    color: gray;
+    padding-left: 10px;
 }

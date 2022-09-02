@@ -6,15 +6,16 @@ class Info {
     constructor ($info, $avatar){
       this.$info = $info
       this.$avatar = $avatar
+      this.$text = this.$info.find('.dialog-box__info-text')
       this.mount()
     }
     mount (){
       this.$info.on('mousedown', () => this.close() )
     }
     open (){
-      if(this.$info.text()==='') return
-      if(this.$info.text()==='undefined') return
-      this.$info.fadeIn(200)
+      if(this.$text.text()==='') return
+      if(this.$text.text()==='undefined') return
+      this.$info.css('display', 'flex')
       this.openModal = true
       this.hideBorder()
     }
@@ -34,7 +35,7 @@ class Info {
       }
     }
     print (data){
-      this.$info.html(data)
+      this.$text.html(data)
     }
     addBorder (borderColor){
       this.$avatar.css('border-color', borderColor)

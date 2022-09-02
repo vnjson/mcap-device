@@ -32,3 +32,5 @@ discord-log:
 # chess: false
 paint-board: true
 # crossword: false
+
+push: menu-item

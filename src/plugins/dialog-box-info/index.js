@@ -3,7 +3,10 @@ import "./style.css"
 
 export default function (){
 
-    const $tpl = $('<div class="dialog-box__info"></div>')
+    const $tpl = $(`<div class="dialog-box__info">
+                        <div class="dialog-box__info-icon"></div>
+                        <div class="dialog-box__info-text"></div>
+                  </div>`)
     vnjs.store.screen.append($tpl)
     /**
      * INFO
@@ -28,12 +31,22 @@ export default function (){
                 if(param.borderColor){
                    info.addBorder(param.borderColor)
                 }
+                const $icon = $tpl.find('.dialog-box__info-icon')
+                if(param.icon){
+                  const url = vnjs.getAssetByName(param.icon).url
+                  $icon.show()
+                  $icon.css('background-image', `url(${url})`)
+                }
+                else{
+                  $icon.css('background-image', `unset`)
+                  $icon.hide()
+                }
                 _param = true
                 return 
               }
               else{
 
-                info.$info.text('')
+                info.$info.find('.dialog-box__info-text').text('')
               }
 
 

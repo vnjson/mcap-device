@@ -116,16 +116,67 @@
         "next": true
       },
       {
-        "push": {
-          "icon": "alice",
-          "info": 12345678
+        "al": {
+          "reply": "Привет мир",
+          "info": "Тестирую изображение",
+          "borderColor": "#ff0497",
+          "icon": "alice"
         }
       },
       {
         "push": {
-          "icon": "alice2",
+          "icon": "alice",
+          "info": 111111111
+        }
+      },
+      {
+        "push": {
           "info": "Привет мир"
         }
+      },
+      {
+        "push": {
+          "icon": "alice",
+          "info": 222222
+        }
+      },
+      {
+        "push": {
+          "icon": "alice",
+          "info": 3333333333
+        }
+      },
+      {
+        "push": {
+          "icon": "alice",
+          "info": 4444444444
+        }
+      },
+      {
+        "push": {
+          "icon": "alice",
+          "info": 555555555555
+        }
+      },
+      {
+        "push": {
+          "icon": "alice",
+          "info": 666666666666
+        }
+      },
+      {
+        "push": {
+          "icon": "alice",
+          "info": 777777777777777
+        }
+      },
+      {
+        "push": {
+          "info": 88888888888888
+        }
+      },
+      {
+        "push": false
       },
       {
         "al": "можно указать один параметр, если нужна анимация по одной оси"
@@ -240,7 +291,8 @@
       "discord-log": {
         "webhook": "https://discord.com/api/webhooks/995314212500938789/C4ul6cKMwYadYYaOCSyla_dlwDVd1IPSZu0wb24l9kkjo971QCfdHolkEPrExR2KcpzO"
       },
-      "paint-board": true
+      "paint-board": true,
+      "push": "menu-item"
     },
     "wiki": {
       "Абажур": "Колпак для лампы, светильника",

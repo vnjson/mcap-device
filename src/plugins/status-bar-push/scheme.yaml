@@ -1,0 +1,15 @@
+
+# Можно установить звук уведомления в файле конфига # $root/package.yaml
+push: menu-item
+
+
+# применение
+- push: 
+    icon: alice
+    info: 12345678
+
+- push: 
+    info: Привет мир
+
+# Очистить списокуведомлений
+- push: false
