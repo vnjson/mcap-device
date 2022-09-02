@@ -1,0 +1,42 @@
+.status-bar-push{
+    top: 40px;
+    left: 8px;
+    background-color: rgba(0,0,0,0.7);
+    border: 2px solid gray;
+    border-radius: 4px;
+    max-height: 200px;
+    width: 400px;
+    min-height: 50px;
+    color: wheat;
+    padding: 0px 10px;
+    
+}
+
+
+.status-bar__player-logo--status {
+    cursor: pointer;
+    animation-duration: 0.7s;
+    animation-name: end-point;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+.status-bar__player-logo--status:hover{
+    animation-name: unset;
+    border-color: deepskyblue;
+}
+@keyframes end-point {
+    from {
+        border-color: gray;
+    }
+    to {
+        border-color: deepskyblue;
+    }
+}
+
+.status-bar__status--open{
+
+    cursor: pointer;
+}
+.status-bar__status--open:active{
+    border-color: magenta;
+}

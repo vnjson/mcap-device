@@ -55,6 +55,7 @@ import dialogBoxInfo from "./plugins/dialog-box-info/index.js";
 import executeVnjson from "./plugins/execute/index.js";
 //import filter from "./plugins/filter/index.js";
 import spriteAnimate from './plugins/sprite-animate/index.js';
+import statusBarPush from './plugins/status-bar-push/index.js'
 /**
  * Init plugins
  */
@@ -109,6 +110,7 @@ vnjs.use(dialogBoxInfo);
 vnjs.use(executeVnjson);
 //vnjs.use(filter);
 vnjs.use(spriteAnimate);
+vnjs.use(statusBarPush);
 
 /**
  * LOAD scenes

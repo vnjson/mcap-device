@@ -41,13 +41,14 @@ vnjs.on("vnjson.character", ctx => {
 })
 
 vnjs.on('voicePlay', data => {
-    
+
   if(INDEX){
       if(prev){
           this.store[prev].stop()
           
       } 
       const name = this.getCurrentLabelBody()[INDEX].$voice
+
       this.store[name].play()
   }
   else{
@@ -68,7 +69,6 @@ vnjs.on('voicePlay', data => {
 
   
   $('.vnjson__hands').on('click', '.vnjson__hand-left', e => {
-    console.log(INDEX, this.state.index)
      if(INDEX===this.state.index){
         vnjs.emit('voicePlay')
      }

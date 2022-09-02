@@ -18,7 +18,11 @@ vnjs.on("audio", (args) => {
 vnjs.on("audio-sprite", (args) => audioControl.regSprites(args));
 
 vnjs.on("loader.audio-onend", () => {
-    if (audioControl.soundArgs.loop === true) {
+
+    if(!audioControl.soundArgs){
+        return
+    }
+    if (audioControl.soundArgs?.loop === true) {
         if (audioControl.soundArgs?.onLoop) {
             vnjs.exec(audioControl.soundArgs.onLoop);
         }

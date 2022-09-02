@@ -180,11 +180,7 @@ class Vnjson {
     }
 
     use(plugin) {
-        if(typeof plugin === 'object'){
-            plugin.mount()
-            //this.plugins[plugin] = plugin
-            return
-        }
+
         plugin.call(this);
     }
 }

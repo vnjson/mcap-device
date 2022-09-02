@@ -36,7 +36,7 @@ export default function () {
                     vnjs.emit("postload");
                 }
             } else if (/\.png|\.jpg|\.jpeg|\.webp|\.gif/i.test(asset.url)) {
-                if (this.tree.$root?.package) {
+               
                     if (this.package?.preload) {
                         if (this.state.assets.length - 1 >= ++i) {
                             if (this.package.preload) {
@@ -62,7 +62,8 @@ export default function () {
                             vnjs.emit("postload");
                         }
                     }
-                }
+             
+             
             } else {
                 ++i;
                 vnjs.emit("load", asset, this.state.assets.length, i);

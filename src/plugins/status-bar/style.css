@@ -78,3 +78,17 @@
   display: flex;
   align-items: center;
 }
+.status-bar__logo-wrapper{
+  border: 2px solid gray;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+}
+#status-bar__player-logo{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-48.0%, -50.5%);
+  width: 24px;
+  height: 24px;
+}

@@ -112,177 +112,20 @@
         "audio": false,
         "data-clear": true,
         "status-bar": true,
+        "hands": true,
         "next": true
       },
       {
-        "sprite-animate": {
-          "id": "elixir",
-          "name": "sprite_animation",
-          "delay": 100,
-          "loop": true,
-          "scale": 4,
-          "top": "200px",
-          "left": "200px",
-          "width": "50px",
-          "height": "61px",
-          "rows": 2,
-          "cols": 5,
-          "onLoop": {
-            "+": "abc"
-          },
-          "onEnd": {
-            "+": "test"
-          }
+        "push": {
+          "icon": "alice",
+          "info": 12345678
         }
       },
       {
-        "sprite-animate-move": {
-          "id": "elixir1",
-          "duration": 1000,
-          "left": "+= 200px",
-          "top": "+= 150px"
+        "push": {
+          "icon": "alice2",
+          "info": "Привет мир"
         }
-      },
-      {
-        "sprite-animate-move": {
-          "id": "elixir",
-          "duration": 1000,
-          "left": "100px",
-          "top": "100px"
-        }
-      },
-      {
-        "sprite-animate": {
-          "id": "elixir",
-          "name": "sprite_animation",
-          "delay": 100,
-          "loop": true,
-          "top": "100px",
-          "left": "200px",
-          "width": "50px",
-          "height": "61px",
-          "rows": 2,
-          "cols": 5,
-          "onLoop": {
-            "$": "abc"
-          },
-          "onEnd": {
-            "$": "test"
-          }
-        },
-        "next": true
-      },
-      {
-        "sprite-animate": {
-          "id": "elixir",
-          "name": "sprite_animation",
-          "delay": 100,
-          "loop": false,
-          "top": "300px",
-          "left": "200px",
-          "width": "50px",
-          "height": "61px",
-          "rows": 2,
-          "cols": 5,
-          "onLoop": {
-            "$": "abc"
-          },
-          "onEnd": {
-            "$": "test"
-          }
-        },
-        "next": true
-      },
-      {
-        "sprite-animate": {
-          "id": "globe",
-          "name": "globe",
-          "delay": 30,
-          "loop": 3,
-          "scale": 7,
-          "top": "200px",
-          "left": "500px",
-          "width": "65px",
-          "height": "65px",
-          "rows": 4,
-          "cols": 12
-        },
-        "next": true
-      },
-      {
-        "sprite-animate": {
-          "id": "boom",
-          "name": "boom",
-          "delay": 100,
-          "loop": false,
-          "top": "160px",
-          "left": "700px",
-          "width": "150px",
-          "height": "150px",
-          "rows": 4,
-          "cols": 8,
-          "onLoop": {
-            "$": "abc"
-          },
-          "onEnd": {
-            "$": "test"
-          }
-        },
-        "next": true
-      },
-      {
-        "sprite-animate": {
-          "id": "boom1",
-          "name": "boom",
-          "delay": 100,
-          "scale": 2,
-          "loop": false,
-          "top": "260px",
-          "left": "500px",
-          "width": "150px",
-          "height": "150px",
-          "rows": 4,
-          "cols": 8
-        },
-        "timeout": {
-          "timer": 4000,
-          "exec": {
-            "sprite-animate": {
-              "id": "boom3",
-              "name": "boom",
-              "delay": 100,
-              "scale": 8,
-              "loop": false,
-              "top": "60px",
-              "left": "500px",
-              "width": "150px",
-              "height": "150px",
-              "rows": 4,
-              "cols": 8
-            }
-          }
-        }
-      },
-      {
-        "al": "<font color=\"deepskyblue\">1</font>",
-        "spriteimg": {
-          "name": "boom",
-          "top": "300px",
-          "left": "300px",
-          "width": "150px",
-          "height": "150px",
-          "y": "0px",
-          "x": "0px"
-        }
-      },
-      {
-        "al": "-------------- END --------------"
-      },
-      {
-        "al": "-------------- END --------------"
-      },
-      {
-        "al": "-------------- END --------------"
       },
       {
         "al": "можно указать один параметр, если нужна анимация по одной оси"
@@ -292,14 +135,6 @@
       },
       {
         "al": "И днём и ночью, кот учёный"
-      },
-      {
-        "animate": [
-          {
-            "name": "chumkImgID",
-            "delay": 3
-          }
-        ]
       }
     ],
     "characters": [
