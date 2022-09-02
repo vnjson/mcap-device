@@ -117,7 +117,7 @@
           "name": "sprite_animation",
           "delay": 100,
           "loop": true,
-          "scale": 3,
+          "scale": 2,
           "top": "200px",
           "left": "200px",
           "width": "50px",
@@ -133,32 +133,11 @@
         }
       },
       {
-        "audio": {
-          "name": "menu-item",
-          "action": "play",
-          "speed": 0.3,
-          "volume": 0.2,
-          "loop": true,
-          "onEnd": {
-            "$": "--END--"
-          }
-        }
-      },
-      {
         "sprite-animate-remove": "elixir",
         "next": true
       },
       {
         "jump": "$root.$init.1"
-      },
-      {
-        "al": "можно указать один параметр, если нужна анимация по одной оси"
-      },
-      {
-        "al": "Всё ходит по цепи кругом"
-      },
-      {
-        "al": "И днём и ночью, кот учёный"
       }
     ],
     "characters": [

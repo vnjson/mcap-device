@@ -30,8 +30,10 @@
   color: wheat;
   padding-left: 10px;
   width: 100%; 
+  /*
   display: flex;
   flex-wrap: wrap;
+  */
 }
 .dialog-box__reply-append{
   padding-left: 8px;
