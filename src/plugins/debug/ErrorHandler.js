@@ -7,6 +7,7 @@ class ErrorHandler {
     constructor(local = "en") {
         this.local = local;
         this.url = "/socket.io/socket.io.js";
+ 
         this.init();
     }
     init() {
@@ -14,31 +15,29 @@ class ErrorHandler {
             const socket = io();
             socket.on("yaml-error", (err, sceneName, labelName) => {
                 if (err) {
-                    /*
-                    vnjs.emit("data-set", {
-                        yamlError: [msg, path, err.mark.snippet, pos],
-                    });
-                    */
                     const path = `${sceneName}.${labelName.replace(/.ya?ml/i ,"")}`;
                     const pos = `line ${err.mark.line} column ${err.mark.column}`;
                     const msg = ErrorHandler.getMessage(this.local, err.reason);
                     ErrorHandler.showModal(msg, path, err.mark.snippet, pos);
+                    //this.saveError([msg, path, err.mark.snippet, pos])
                     return;
                 }
-                /*
-                # data-clear - вначале новеллы стирает информацию об ошибке
-                # Поэтому ошибку надо хранить в другом ключе localStorage
-                vnjs.emit("data-set", {
-                    yamlError: null,
-                });
-                */
-                ErrorHandler.hideModal();
-                // перезагрузка браузера при сохранении файла
-                location.reload();
+                else{
+                    ErrorHandler.hideModal();
+                    // перезагрузка браузера при сохранении файла
+                    location.reload();
+                }
+    
+
             });
             //socket.on("disconnect", () => {})
         });
     }
+    /*
+    saveError (err){
+        localStorage.setItem('vnjson.yamlError', JSON.stringify(err))
+    }*/
+
     /**
      * Так как я не хочу мусорить в index.html, что бы потом не вычищать
      * То скрипт для сокетов я подлючаю динамически
@@ -99,3 +98,15 @@ $modal.on("mousedown", function (e) {
     if (!$(e.target).hasClass("debug-error")) return;
     ErrorHandler.hideModal();
 });
+
+/*
+vnjs._loadError = () => {
+    const err = localStorage.getItem('vnjson.yamlError')
+    if(err){
+        const error = JSON.parse(err)
+        ErrorHandler.showModal([...error])
+        return true
+    }
+    return false
+}
+*/

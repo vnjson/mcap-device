@@ -7,42 +7,36 @@
   #hud: true
 
   next: true
-- al:
-    reply: Привет мир
-    info: Тестирую изображение
-    borderColor: '#ff0497' 
-    icon: alice
-- push: 
-    icon: alice
-    info: 111111111
+# Создать анимацию
+- sprite-animate:
+      id: elixir
+      name: sprite_animation
+      delay: 100
+      loop: true
+      scale: 3
+      top: 200px
+      left: 200px
+      width: 50px
+      height: 61px
+      rows: 2
+      cols: 5
+      onLoop:
+        +: abc
+      onEnd:
+        +: test
 
-- push: 
+- audio:
+    name: menu-item
+    action: play
+    speed: 0.3
+    volume: 0.2
+    loop: true
+    onEnd: # Сработает после окончания воспроизведения
+        $: --END--
 
-    info: Привет мир
-- push: 
-    icon: alice
-    info: 222222
-- push: 
-    icon: alice
-    info: 3333333333
-- push: 
-    icon: alice
-    info: 4444444444
-- push: 
-    icon: alice
-    info: 555555555555
-- push: 
-    icon: alice
-    info: 666666666666
-- push: 
-    icon: alice
-    info: 777777777777777
-- push: 
-
-    info: 88888888888888
-
-- push: false
-
+- sprite-animate-remove: elixir
+  next: true
+- jump: $root.$init.1
 
 - al: можно указать один параметр, если нужна анимация по одной оси
 

@@ -35,7 +35,7 @@
         opacity: 1;
     }
 }
-.status-bar__status{
+.status-bar__push-status{
     margin: 5px 0px;
     border: 1px solid gray;
     border-radius: 4px;
@@ -44,11 +44,11 @@
     align-items: center;
 
 }
-.status-bar__status--open{
+.status-bar__push-status--open{
 
     cursor: pointer;
 }
-.status-bar__status--open:active{
+.status-bar__push-status--open:active{
     border-color: magenta;
 }
 .status-bar-push__icon{

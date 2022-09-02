@@ -2,9 +2,9 @@
 - sprite-animate:
       id: elixir
       name: sprite_animation
-      delay: 50
-      loop: 3
-      scale: 4
+      delay: 100
+      loop: 3 # true # false
+      scale: 2
       top: 200px
       left: 200px
       width: 50px

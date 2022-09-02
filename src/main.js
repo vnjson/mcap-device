@@ -115,6 +115,7 @@ vnjs.use(statusBarPush);
 /**
  * LOAD scenes
  */
+
 fetch(`scenes/vn.json?v=${new Date().getTime()}`)
     .then((r) => r.json())
     .then((tree) => {

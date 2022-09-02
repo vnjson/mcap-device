@@ -53,7 +53,7 @@ function outputMessages (){
    const { pushStore } = vnjs.state.data;
    pushStore[0].read = true
    pushStore.forEach( (msg, index) => {
-        const $str = $(`<div class="status-bar__status">
+        const $str = $(`<div class="status-bar__push-status">
                             <div class="status-bar-push__icon"></div>
                             <div class="status-bar-push__info">${msg.info}</div>       
                       </div>`)
@@ -87,13 +87,13 @@ function clickHandler (){
 }
 
 function close (){
-    $logo.removeClass('status-bar__status--open')
+    $logo.removeClass('status-bar__push-status--open')
     $tpl.hide();
     openList = false;
 };
 
 function open (){
-    $logo.addClass('status-bar__status--open');
+    $logo.addClass('status-bar__push-status--open');
     $tpl.css('display', 'flex');
     openList = true;
     $tpl.animate({ scrollTop: $tpl.height()}, 500);

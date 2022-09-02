@@ -277,32 +277,25 @@
           var socket = io();
           socket.on("yaml-error", function (err, sceneName, labelName) {
             if (err) {
-              /*
-              vnjs.emit("data-set", {
-                  yamlError: [msg, path, err.mark.snippet, pos],
-              });
-              */
               var path = "".concat(sceneName, ".").concat(labelName.replace(/.ya?ml/i, ""));
               var pos = "line ".concat(err.mark.line, " column ").concat(err.mark.column);
               var msg = ErrorHandler.getMessage(_this.local, err.reason);
-              ErrorHandler.showModal(msg, path, err.mark.snippet, pos);
+              ErrorHandler.showModal(msg, path, err.mark.snippet, pos); //this.saveError([msg, path, err.mark.snippet, pos])
+
               return;
+            } else {
+              ErrorHandler.hideModal(); // перезагрузка браузера при сохранении файла
+
+              location.reload();
             }
-            /*
-            # data-clear - вначале новеллы стирает информацию об ошибке
-            # Поэтому ошибку надо хранить в другом ключе localStorage
-            vnjs.emit("data-set", {
-                yamlError: null,
-            });
-            */
-
-
-            ErrorHandler.hideModal(); // перезагрузка браузера при сохранении файла
-
-            location.reload();
           }); //socket.on("disconnect", () => {})
         });
       }
+      /*
+      saveError (err){
+          localStorage.setItem('vnjson.yamlError', JSON.stringify(err))
+      }*/
+
       /**
        * Так как я не хочу мусорить в index.html, что бы потом не вычищать
        * То скрипт для сокетов я подлючаю динамически
@@ -382,6 +375,17 @@
     if (!$(e.target).hasClass("debug-error")) return;
     ErrorHandler.hideModal();
   });
+  /*
+  vnjs._loadError = () => {
+      const err = localStorage.getItem('vnjson.yamlError')
+      if(err){
+          const error = JSON.parse(err)
+          ErrorHandler.showModal([...error])
+          return true
+      }
+      return false
+  }
+  */
 
   var errors = {
     en: {
@@ -2482,139 +2486,164 @@
 
   var tpl$d = "<div class=\"vnjson-loader\">\n    <div class=\"vnjson-loader__progress\">\n        <div class=\"vnjson-loader__progress--load\"></div>\n    </div>\n    <div class=\"vnjson-loader__status\"><span>{</span><span>}</span></div>\n</div>";
 
-  var $tpl$h = $(tpl$d);
-  function assetsLoader () {
-    var _this = this;
+  var Loader = /*#__PURE__*/function () {
+    function Loader() {
+      _classCallCheck(this, Loader);
 
-    $("#screen").append($tpl$h);
+      _defineProperty(this, "asset", null);
 
-    var getAssets = function getAssets() {
-      vnjs.emit("preload");
-      var i = 0;
+      _defineProperty(this, "index", 0);
 
-      var load = function load() {
-        var asset = _this.state.assets[i];
+      _defineProperty(this, "assets", []);
+    }
 
-        if (!asset) {
-          vnjs.emit("postload");
-          return;
-        }
+    _createClass(Loader, [{
+      key: "start",
+      value: function start(assets) {
+        vnjs.store.audio = {};
+        vnjs.emit('preload');
+        this.assets = assets;
+        this.assetsLength = this.assets.length;
+        this.load();
+      }
+    }, {
+      key: "next",
+      value: function next() {
+        this.index++; //console.log(this.index +'/'+this.assetsLength, this.asset)
 
-        if (/\.mp3|\.wav|\.ogg/i.test(asset.url)) {
-          if (_this.state.assets.length - 1 >= ++i) {
-            var sound = new Howl({
-              src: asset.url
-            });
-            sound.on("end", function () {
-              return vnjs.emit("loader.audio-onend", asset.name);
-            });
-            sound.on("load", function (_) {
-              vnjs.store[asset.name] = sound;
-              vnjs.emit("load", asset, _this.state.assets.length, i);
-              load();
-            });
-            sound.on("loaderror", function () {
-              console.error("File not found [ ".concat(asset.name, " ]"));
-              vnjs.emit("load", asset, _this.state.assets.length, i);
-              load();
-            });
+        vnjs.emit("load", this.asset, this.assetsLength, this.index);
+        this.load();
+      }
+    }, {
+      key: "load",
+      value: function load() {
+        if (this.index < this.assetsLength) {
+          this.asset = this.assets[this.index];
+
+          if (/\.png|\.jpg|\.jpeg|\.webp|\.gif/i.test(this.asset.url)) {
+            this.loadImage();
+          } else if (/\.mp3|\.wav|\.ogg/i.test(this.asset.url)) {
+            this.loadAudio();
           } else {
-            vnjs.emit("postload");
-          }
-        } else if (/\.png|\.jpg|\.jpeg|\.webp|\.gif/i.test(asset.url)) {
-          var _this$package;
-
-          if ((_this$package = _this["package"]) !== null && _this$package !== void 0 && _this$package.preload) {
-            if (_this.state.assets.length - 1 >= ++i) {
-              if (_this["package"].preload) {
-                var img = new Image();
-                img.src = asset.url;
-
-                img.onerror = function () {
-                  vnjs.store[asset.name] = img;
-                  vnjs.emit("load", asset, _this.state.assets.length, i);
-                  console.error("Image not found");
-                  load();
-                };
-
-                img.onload = function () {
-                  vnjs.store[asset.name] = img;
-                  vnjs.emit("load", asset, _this.state.assets.length, i);
-                  load();
-                };
-              } else {
-                vnjs.store[asset.name] = asset.url;
-                load();
-              }
-            } else {
-              vnjs.emit("postload");
-            }
+            /**
+             * Пропускаем неизвестные файлы
+             */
+            // console.warn(this.asset.url +' Resource does not support preload')
+            this.next();
           }
         } else {
-          ++i;
-          vnjs.emit("load", asset, _this.state.assets.length, i);
-          load(); // console.warn(asset.url +' Resource does not support preload')
+          //console.log('Данные загружены')
+          vnjs.emit('postload');
         }
-      };
-
-      load();
-    };
-
-    var setAllAssets = function setAllAssets() {
-      for (var _i = 0, _Object$entries = Object.entries(_this.tree); _i < _Object$entries.length; _i++) {
-        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2);
-            _Object$entries$_i[0];
-            var body = _Object$entries$_i[1];
-
-        _this.state.assets = _this.state.assets.concat(body.assets);
       }
-      /**
-       * Загрузка ресурсов происходит только тогда, когда есть ресурсы
-       */
+    }, {
+      key: "loadImage",
+      value: function loadImage() {
+        var _this = this;
 
+        var img = new Image();
 
-      if (_this.state.assets.length > 0) {
-        getAssets();
-      } else {
-        /**
-         * Если ресурсов нет, то эмулируем событыия, будто ресурсы есть
-         * [ postlaod ] - Является важным событием, так как первый прыжок совершается
-         * после этого события. Так же для коректной работы некоторых плагинов.
-         * Которым требуются загруженные ресурсы.
-         */
-        setTimeout(function () {
-          vnjs.emit("preload");
-          vnjs.emit("load");
-          vnjs.emit("postload");
-        }, 0);
+        img.onerror = function () {
+          vnjs.emit("load", _this.asset, _this.assets.length, _this.index);
+          console.error("Image not found", _this.asset);
+
+          _this.next();
+        };
+
+        img.onload = function () {
+          return _this.next();
+        };
+
+        img.src = this.asset.url;
       }
-    };
-    /**
-     * Получили vn.json
-     */
+    }, {
+      key: "loadAudio",
+      value: function loadAudio() {
+        var _this2 = this;
 
+        var sound = new Howl({
+          src: this.asset.url
+        });
+        sound.on("end", function () {
+          vnjs.emit("loader.audio-onend");
+        });
+        sound.on("load", function () {
+          vnjs.store[_this2.asset.name] = sound;
+          vnjs.emit("load", _this2.asset, _this2.assets.length, _this2.index);
 
-    vnjs.on("vnjson.mount", setAllAssets);
-    /**
-     * Отображаем прелоэдер
-     */
+          _this2.next();
+        });
+        sound.on("loaderror", function () {
+          console.error('Audio not found', _this2.asset);
 
-    vnjs.on("preload", function () {
-      $tpl$h.css("display", "flex");
-    });
-    var loadProgress = $tpl$h.find('.vnjson-loader__progress--load');
-    vnjs.on("load", function (asset, len, i) {
-      var width = i / (len - 1) * 100;
-      var roundWidth = Math.ceil(width);
-      loadProgress.css({
-        width: "".concat(roundWidth, "%")
-      });
-      loadProgress.text("".concat(roundWidth, "%"));
-    });
-    vnjs.on("postload", function () {
-      $tpl$h.fadeOut(300);
-    });
+          _this2.next();
+        });
+      }
+    }]);
+
+    return Loader;
+  }();
+
+  var loader = new Loader();
+
+  var $tpl$h = $(tpl$d);
+  function assetsLoader () {
+    $("#screen").append($tpl$h);
   }
+  /**
+   * Получили vn.json
+   */
+
+  vnjs.on("vnjson.mount", concatAssets);
+
+  function concatAssets() {
+    for (var _i = 0, _Object$entries = Object.entries(vnjs.tree); _i < _Object$entries.length; _i++) {
+      var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2);
+          _Object$entries$_i[0];
+          var body = _Object$entries$_i[1];
+
+      vnjs.state.assets = vnjs.state.assets.concat(body.assets);
+    }
+    /**
+     * Загрузка ресурсов происходит только тогда, когда есть ресурсы
+     */
+
+
+    if (vnjs.state.assets.length > 0) {
+      loader.start(vnjs.state.assets);
+    } else {
+      /**
+       * Если ресурсов нет, то эмулируем событыия, будто ресурсы есть
+       * [ postlaod ] - Является важным событием, так как первый прыжок совершается
+       * после этого события. Так же для коректной работы некоторых плагинов.
+       * Которым требуются загруженные ресурсы.
+       */
+      setTimeout(function () {
+        vnjs.emit("preload");
+        vnjs.emit("load");
+        vnjs.emit("postload");
+      }, 0);
+    }
+  }
+  /**
+   * Отображаем прелоэдер
+   */
+
+  vnjs.on("preload", function () {
+    return $tpl$h.css("display", "flex");
+  });
+  var loadProgress = $tpl$h.find('.vnjson-loader__progress--load');
+  vnjs.on("load", function (asset, len, i) {
+    var width = i / (len - 1) * 100;
+    var roundWidth = Math.ceil(width);
+    loadProgress.css({
+      width: "".concat(roundWidth, "%")
+    });
+    loadProgress.text("".concat(roundWidth, "%"));
+  });
+  vnjs.on("postload", function () {
+    return $tpl$h.fadeOut(300);
+  });
 
   function screen () {
     vnjs.store.screen = $("#screen");
@@ -2659,7 +2688,7 @@
 
   vnjs.plugins['font-load'] = fontLoad;
 
-  var css$v = ".dialog-box {\n  z-index: 1000;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  line-height: 32px;\n  font-size: 22px;\n  height: 200px;\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: none;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.dialog-box__name {\n  color: wheat;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.dialog-box__reply {\n  color: wheat;\n  padding-left: 10px;\n  width: 100%; \n}\n.dialog-box__reply-append{\n  padding-left: 8px;\n}\n.dialog-box__reply-end-point{\n  display: inline-block;\n}\n.dialog-box__reply-end-point::before{\n  content: '';\n  position: absolute;\n  left: 10px;\n  width: 7px;\n  height: 7px;\n  background-color: silver;\n  opacity: 0.7;\n  animation-duration: 0.7s;\n  animation-name: end-point;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}\n@keyframes end-point {\n  from {\n    top: -10px;\n    opacity: 0.1;\n  }\n  to {\n    top: -20px;\n    opacity: 0.7;\n  }\n}\n\n.dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.dialog-box__avatar{\n  margin-top: 15px;\n  min-width: 150px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  display: none;\n}\n.dialog-box__avatar--show{\n  display: block;\n}\n\n\n.dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n  min-width: 75%;\n}\n";
+  var css$v = ".dialog-box {\n  z-index: 1000;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  line-height: 32px;\n  font-size: 22px;\n  height: 200px;\n  cursor: pointer;\n  display: block;\n  padding-top: 10px;\n  padding-left: 10px;\n  word-spacing: 10px;\n  display: none;\n  top: unset;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n}\n\n.dialog-box__name {\n  color: wheat;\n  width: 100%;\n  font-weight: bold;\n  padding-left: 10px;\n  padding-bottom: 10px;\n}\n\n.dialog-box__reply {\n  color: wheat;\n  padding-left: 10px;\n  width: 100%; \n  display: flex;\n  flex-wrap: wrap;\n}\n.dialog-box__reply-append{\n  padding-left: 8px;\n}\n.dialog-box__reply-end-point{\n  display: inline-block;\n}\n.dialog-box__reply-end-point::before{\n  content: '';\n  position: absolute;\n  left: 10px;\n  width: 7px;\n  height: 7px;\n  background-color: silver;\n  opacity: 0.7;\n  animation-duration: 0.7s;\n  animation-name: end-point;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}\n@keyframes end-point {\n  from {\n    top: -10px;\n    opacity: 0.1;\n  }\n  to {\n    top: -20px;\n    opacity: 0.7;\n  }\n}\n\n.dialog-box__container{\n  display: flex; \n  height: 100%; \n}\n.dialog-box__avatar{\n  margin-top: 15px;\n  min-width: 150px;\n  width: 150px;\n  height: 150px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  display: none;\n}\n.dialog-box__avatar--show{\n  display: block;\n}\n\n\n.dialog-box__reply-wrapper{\n  position: relative;\n  max-width: 99%;\n  min-width: 75%;\n}\n";
   n(css$v,{});
 
   var tpl$c = "<div class=\"dialog-box component\">\n  <div class=\"dialog-box__container\">\n        <div class=\"dialog-box__avatar\"></div>\n        <div class=\"dialog-box__reply-wrapper\">\n          <div class=\"dialog-box__name\"></div>\n          <div class=\"dialog-box__reply\"></div>\n        </div>\n  </div>\n</div>";
@@ -7585,7 +7614,7 @@
 
       this.$info = $info;
       this.$avatar = $avatar;
-      this.$text = this.$info.find('.dialog-box__info-text');
+      this.$text = this.$info.find(".dialog-box__info-text");
       this.mount();
     }
 
@@ -7594,16 +7623,16 @@
       value: function mount() {
         var _this = this;
 
-        this.$info.on('mousedown', function () {
+        this.$info.on("mousedown", function () {
           return _this.close();
         });
       }
     }, {
       key: "open",
       value: function open() {
-        if (this.$text.text() === '') return;
-        if (this.$text.text() === 'undefined') return;
-        this.$info.css('display', 'flex');
+        if (this.$text.text() === "") return;
+        if (this.$text.text() === "undefined") return;
+        this.$info.css("display", "flex");
         this.openModal = true;
         this.hideBorder();
       }
@@ -7616,7 +7645,7 @@
     }, {
       key: "hideBorder",
       value: function hideBorder() {
-        this.$avatar.css('border-color', 'transparent');
+        this.$avatar.css("border-color", "transparent");
       }
     }, {
       key: "toggle",
@@ -7635,22 +7664,23 @@
     }, {
       key: "addBorder",
       value: function addBorder(borderColor) {
-        this.$avatar.css('border-color', borderColor);
-        this.$info.css('border-color', borderColor);
+        this.$avatar.css("border-color", borderColor);
+        this.$info.css("border-color", borderColor);
       }
     }, {
       key: "removeBorder",
       value: function removeBorder() {
-        this.$avatar.css('border-color', 'transparent');
-        this.$info.css('border-color', 'transparent');
+        this.$avatar.css("border-color", "transparent");
+        this.$info.css("border-color", "transparent");
+        this.close();
       }
     }, {
       key: "controlPadding",
       value: function controlPadding(MODE) {
-        if (MODE === 'mode-classic') {
-          this.$info.css('bottom', '205px');
+        if (MODE === "mode-classic") {
+          this.$info.css("bottom", "205px");
         } else {
-          this.$info.css('bottom', '5px');
+          this.$info.css("bottom", "5px");
         }
       }
     }]);
@@ -7658,7 +7688,7 @@
     return Info;
   }();
 
-  var css$2 = "\r\n\r\n.dialog-box__avatar{\r\n    border: 3px solid transparent;\r\n    border-radius: 4px;\r\n\r\n}\r\n\r\n.dialog-box__info{\r\n    position: absolute;\r\n    bottom: 205px;\r\n    left: 5px;\r\n    min-width: 200px;\r\n    max-width: 400px;\r\n    border-radius: 6px;\r\n    background-color: rgba(0,0,0,0.8);\r\n    display: none;\r\n    border: 4px solid gray;\r\n    padding: 5px;\r\n    z-index: 5000;\r\n  }\r\n  .dialog-box__info-icon{\r\n    width: 30px;\r\n    height: 30px;\r\n    min-width: 30px;\r\n    background-size: contain;\r\n    background-repeat: no-repeat;\r\n    margin-right: 10px;\r\n}\r\n.dialog-box__info-text{\r\n    font-size: 22px;\r\n    line-height: 32px;\r\n    word-spacing: 10px;\r\n    color: gray;\r\n}";
+  var css$2 = "\r\n\r\n.dialog-box__avatar{\r\n    border: 3px solid transparent;\r\n    border-radius: 4px;\r\n\r\n}\r\n\r\n.dialog-box__info{\r\n    position: absolute;\r\n    bottom: 205px;\r\n    left: 5px;\r\n    min-width: 200px;\r\n    max-width: 400px;\r\n    border-radius: 6px;\r\n    background-color: rgba(0,0,0,0.8);\r\n    display: none;\r\n    border: 4px solid gray;\r\n    padding: 5px;\r\n    z-index: 5000;\r\n  }\r\n  .dialog-box__info-icon{\r\n    width: 30px;\r\n    height: 30px;\r\n    min-width: 30px;\r\n    background-size: contain;\r\n    background-repeat: no-repeat;\r\n    margin-right: 10px;\r\n}\r\n.dialog-box__info-text{\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    word-spacing: 10px;\r\n    color: gray;\r\n    display: flex;\r\n    align-items: center;\r\n}";
   n(css$2,{});
 
   function dialogBoxInfo () {
@@ -7668,53 +7698,53 @@
      * INFO
      */
 
-    var $info = $('.dialog-box__info');
-    var $avatar = $('.dialog-box__avatar');
+    var $info = $(".dialog-box__info");
+    var $avatar = $(".dialog-box__avatar");
     var info = new Info($info, $avatar);
-    vnjs.on('dialog-box.print', function () {
+    vnjs.on("dialog-box.print", function () {
       return info.close();
     });
     var _param = null;
     vnjs.on("vnjson.character", function (character, param) {
-      if (_typeof(param) === 'object') {
+      if (_typeof(param) === "object") {
         if (param.info) {
-          info.print(String(param.info));
+          info.print(String(param.info)); // addBorder
 
           if (param.borderColor) {
             info.addBorder(param.borderColor);
           }
 
-          var $icon = $tpl.find('.dialog-box__info-icon');
+          var $icon = $tpl.find(".dialog-box__info-icon");
 
           if (param.icon) {
             var url = vnjs.getAssetByName(param.icon).url;
             $icon.show();
-            $icon.css('background-image', "url(".concat(url, ")"));
+            $icon.css("background-image", "url(".concat(url, ")"));
           } else {
-            $icon.css('background-image', "unset");
+            $icon.css("background-image", "unset");
             $icon.hide();
           }
 
           _param = true;
           return;
         } else {
-          info.$info.find('.dialog-box__info-text').text('');
+          info.$info.find(".dialog-box__info-text").text("");
         }
       }
 
       _param = false;
     });
-    $avatar.on('mousedown', function () {
+    $avatar.on("mousedown", function () {
       if (_param) {
         info.toggle();
       }
 
-      vnjs.emit('dialog-box.avatar-click');
+      vnjs.emit("dialog-box.avatar-click");
     });
-    vnjs.on('dialog-box.click', function () {
+    vnjs.on("dialog-box.click", function () {
       return info.removeBorder();
     });
-    vnjs.on('dialog-box.mode', function (MODE) {
+    vnjs.on("dialog-box.mode", function (MODE) {
       return info.controlPadding(MODE);
     });
   }
@@ -7942,7 +7972,7 @@
     }
   });
 
-  var css = ".status-bar-push{\r\n    top: 40px;\r\n    left: 8px;\r\n    background-color: rgba(0,0,0,0.7);\r\n    border: 2px solid gray;\r\n    border-radius: 4px;\r\n    max-height: 215px;\r\n    width: 400px;\r\n    min-height: 50px;\r\n    padding: 5px;\r\n    flex-direction: column;\r\n    overflow: auto;\r\n}\r\n\r\n\r\n.status-bar__player-logo--status {\r\n    cursor: pointer;\r\n    animation-duration: 0.5s;\r\n    animation-name: push-status;\r\n    animation-iteration-count: infinite;\r\n    animation-direction: alternate;\r\n\r\n}\r\n.status-bar__player-logo--status:hover{\r\n    animation-name: unset;\r\n    border-color: deepskyblue;\r\n}\r\n@keyframes push-status {\r\n    from {\r\n        border-color: gray;\r\n        opacity: 0.1;\r\n    }\r\n    to {\r\n        border-color: deepskyblue;\r\n        opacity: 1;\r\n    }\r\n}\r\n.status-bar__status{\r\n    margin: 5px 0px;\r\n    border: 1px solid gray;\r\n    border-radius: 4px;\r\n    padding: 5px 5px;\r\n    display: flex;\r\n    align-items: center;\r\n\r\n}\r\n.status-bar__status--open{\r\n\r\n    cursor: pointer;\r\n}\r\n.status-bar__status--open:active{\r\n    border-color: magenta;\r\n}\r\n.status-bar-push__icon{\r\n    width: 30px;\r\n    height: 30px;\r\n    background-size: contain;\r\n    background-repeat: no-repeat;\r\n    min-width: 30px;\r\n    align-self: flex-start;\r\n\r\n}\r\n.status-bar-push__info{\r\n    line-height: 26px;\r\n    color: gray;\r\n    padding-left: 10px;\r\n}";
+  var css = ".status-bar-push{\r\n    top: 40px;\r\n    left: 8px;\r\n    background-color: rgba(0,0,0,0.7);\r\n    border: 2px solid gray;\r\n    border-radius: 4px;\r\n    max-height: 215px;\r\n    width: 400px;\r\n    min-height: 50px;\r\n    padding: 5px;\r\n    flex-direction: column;\r\n    overflow: auto;\r\n}\r\n\r\n\r\n.status-bar__player-logo--status {\r\n    cursor: pointer;\r\n    animation-duration: 0.5s;\r\n    animation-name: push-status;\r\n    animation-iteration-count: infinite;\r\n    animation-direction: alternate;\r\n\r\n}\r\n.status-bar__player-logo--status:hover{\r\n    animation-name: unset;\r\n    border-color: deepskyblue;\r\n}\r\n@keyframes push-status {\r\n    from {\r\n        border-color: gray;\r\n        opacity: 0.1;\r\n    }\r\n    to {\r\n        border-color: deepskyblue;\r\n        opacity: 1;\r\n    }\r\n}\r\n.status-bar__push-status{\r\n    margin: 5px 0px;\r\n    border: 1px solid gray;\r\n    border-radius: 4px;\r\n    padding: 5px 5px;\r\n    display: flex;\r\n    align-items: center;\r\n\r\n}\r\n.status-bar__push-status--open{\r\n\r\n    cursor: pointer;\r\n}\r\n.status-bar__push-status--open:active{\r\n    border-color: magenta;\r\n}\r\n.status-bar-push__icon{\r\n    width: 30px;\r\n    height: 30px;\r\n    background-size: contain;\r\n    background-repeat: no-repeat;\r\n    min-width: 30px;\r\n    align-self: flex-start;\r\n\r\n}\r\n.status-bar-push__info{\r\n    line-height: 26px;\r\n    color: gray;\r\n    padding-left: 10px;\r\n}";
   n(css,{});
 
   var $tpl = $("<div class=\"status-bar-push component\"></div>");
@@ -7992,7 +8022,7 @@
     var pushStore = vnjs.state.data.pushStore;
     pushStore[0].read = true;
     pushStore.forEach(function (msg, index) {
-      var $str = $("<div class=\"status-bar__status\">\n                            <div class=\"status-bar-push__icon\"></div>\n                            <div class=\"status-bar-push__info\">".concat(msg.info, "</div>       \n                      </div>"));
+      var $str = $("<div class=\"status-bar__push-status\">\n                            <div class=\"status-bar-push__icon\"></div>\n                            <div class=\"status-bar-push__info\">".concat(msg.info, "</div>       \n                      </div>"));
       var $icon = $str.find('.status-bar-push__icon');
 
       if (msg.icon) {
@@ -8020,13 +8050,13 @@
   }
 
   function close() {
-    $logo.removeClass('status-bar__status--open');
+    $logo.removeClass('status-bar__push-status--open');
     $tpl.hide();
     openList = false;
   }
 
   function open() {
-    $logo.addClass('status-bar__status--open');
+    $logo.addClass('status-bar__push-status--open');
     $tpl.css('display', 'flex');
     openList = true;
     $tpl.animate({
