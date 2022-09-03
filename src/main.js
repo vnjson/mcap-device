@@ -115,7 +115,21 @@ vnjs.use(statusBarPush);
 /**
  * LOAD scenes
  */
-
+function showError (err){
+    const $errorWindow =  $(".debug-error");
+    $errorWindow.show();
+    const $errorMessageContainer = $errorWindow.find(".debug-error__msg")
+    const yamlError = vnjs._loadError();
+    if(yamlError){
+        $errorMessageContainer.html(yamlError.msg);
+        $errorWindow.find('.debug-error__path').html(yamlError.path)
+        $errorWindow.find('.debug-error__pos').html(yamlError.pos)
+        $errorWindow.find('.debug-error__code').html(yamlError.snippet)
+    }
+    else{   
+        $errorMessageContainer.html("Невалидный скрипт " +  err.message);
+    }
+}
 fetch(`scenes/vn.json?v=${new Date().getTime()}`)
     .then((r) => r.json())
     .then((tree) => {
@@ -126,11 +140,7 @@ fetch(`scenes/vn.json?v=${new Date().getTime()}`)
         }
     })
     .catch((err) => {
-        $(".debug-error")
-            .css("display", "flex")
-            .find(".debug-error__msg")
-            .html("Невалидный скрипт");
-
+        showError(err);
         console.error("Invalid script", err.message);
     });
 

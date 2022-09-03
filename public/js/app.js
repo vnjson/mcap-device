@@ -249,7 +249,7 @@
     }
   }
 
-  var css$z = "\n.debug-error{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  font-size: 20px;\n  z-index: 9999;  \n  background-color: #334;\n  justify-content: center;\n  align-items: center;\n  display: none;\n  font-family: Consolas;\n  user-select: all;\n}\n.debug-error__status{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 10px;\n  background-color: brown;\n  border-radius: 8px 8px 0 0;\n}\n.debug-error__modal{\n  background-color: #181818;\n  border-radius: 8px;\n  padding: 20px;\n  width: 80%;\n  height: 60%;\n  box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.5);\n}\n\n.debug-error__msg{\n  color: brown;\n  line-height: 28px;\n  word-break: break-all;\n  overflow: auto;\n  max-height: 100%;\n}\n\n\n.debug-error__path{\n  color: #cfa4ff;\n}\n.debug-error__pos{\n  color: skyblue;\n}\n.debug-error__code{\n  color: #e2aa53;\n  height: 290px;\n  overflow: auto;\n}\n";
+  var css$z = "\n.debug-error{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  font-size: 20px;\n  z-index: 9999;  \n  background-color: #334;\n  display: none;\n  font-family: Consolas;\n  user-select: all;\n}\n.debug-error__status{\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 10px;\n  background-color: brown;\n  border-radius: 8px 8px 0 0;\n}\n.debug-error__modal{\n  background-color: #181818;\n  border-radius: 8px;\n  padding: 20px;\n  width: 80%;\n  height: 60%;\n  box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.5);\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n}\n\n.debug-error__msg{\n  color: brown;\n  line-height: 28px;\n  word-break: break-all;\n  overflow: auto;\n  max-height: 100%;\n}\n\n\n.debug-error__path{\n  color: #cfa4ff;\n}\n.debug-error__pos{\n  color: skyblue;\n}\n.debug-error__code{\n  color: #e2aa53;\n  height: 290px;\n  overflow: auto;\n}\n";
   n(css$z,{});
 
   var tpl$f = "<div class=\"debug-error\">\r\n                        \r\n    <div class=\"debug-error__modal\">\r\n        <div class=\"debug-error__status\"></div>\r\n        <code> <pre class=\"debug-error__msg\"></pre></code>\r\n        <p class=\"debug-error__path\"></p>\r\n        <p class=\"debug-error__pos\"></p>\r\n        <pre class=\"debug-error__code\"></pre>\r\n    </div>\r\n</div>";
@@ -280,7 +280,14 @@
               var path = "".concat(sceneName, ".").concat(labelName.replace(/.ya?ml/i, ""));
               var pos = "line ".concat(err.mark.line, " column ").concat(err.mark.column);
               var msg = ErrorHandler.getMessage(_this.local, err.reason);
-              ErrorHandler.showModal(msg, path, err.mark.snippet, pos); //this.saveError([msg, path, err.mark.snippet, pos])
+              ErrorHandler.showModal(msg, path, err.mark.snippet, pos);
+
+              _this.saveError({
+                msg: msg,
+                path: path,
+                snippet: err.mark.snippet,
+                pos: pos
+              });
 
               return;
             } else {
@@ -291,11 +298,12 @@
           }); //socket.on("disconnect", () => {})
         });
       }
-      /*
-      saveError (err){
-          localStorage.setItem('vnjson.yamlError', JSON.stringify(err))
-      }*/
-
+    }, {
+      key: "saveError",
+      value: function saveError(err) {
+        console.log(err);
+        localStorage.setItem("vnjson.yamlError", JSON.stringify(err));
+      }
       /**
        * Так как я не хочу мусорить в index.html, что бы потом не вычищать
        * То скрипт для сокетов я подлючаю динамически
@@ -331,7 +339,7 @@
         $modal.find(".debug-error__path").html(path);
         $modal.find(".debug-error__pos").html(pos);
         $modal.find(".debug-error__code").html(snippet);
-        $modal.css("display", "flex");
+        $modal.show();
       }
       /**
        * По аналогии с yaml-снипетами от сборщика
@@ -375,17 +383,16 @@
     if (!$(e.target).hasClass("debug-error")) return;
     ErrorHandler.hideModal();
   });
-  /*
-  vnjs._loadError = () => {
-      const err = localStorage.getItem('vnjson.yamlError')
-      if(err){
-          const error = JSON.parse(err)
-          ErrorHandler.showModal([...error])
-          return true
-      }
-      return false
-  }
-  */
+
+  vnjs._loadError = function () {
+    var err = localStorage.getItem("vnjson.yamlError");
+
+    if (err) {
+      return JSON.parse(err);
+    }
+
+    return null;
+  };
 
   var errors = {
     en: {
@@ -451,7 +458,7 @@
 
       if (_typeof(ctx) === "object") {
         Object.keys(ctx).forEach(function (event) {
-          if (!/^_/gi.test(event) && !_this.events.hasOwnProperty(event)) {
+          if (!/^_/gi.test(event) && !vnjs.events[event]) {
             vnjs.emit("error", "pluginNotFound", event);
           }
         });
@@ -6896,6 +6903,7 @@
 
   var $tpl$5 = $('<div class="vnjson__area component"></div>');
   var _regions = null;
+  var onClickData = null;
   function area () {
     var _this = this;
 
@@ -6911,6 +6919,7 @@
 
   function handler$1(regions) {
     if (!regions) {
+      onClickData = null;
       $tpl$5.hide();
       return;
     }
@@ -6919,20 +6928,38 @@
     $tpl$5.empty();
     $tpl$5.show();
     regions.forEach(function (reg, index) {
-      var style = "position:absolute;\n                    top:".concat(reg.top, "px;\n                    left:").concat(reg.left, "px;\n                    width:").concat(reg.width, "px;\n                    height:").concat(reg.height, "px;");
+      var $regTpl = $("<div  class=\"vnjson__area-item\" data-index=\"".concat(index, "\"></div>"));
+
+      if (reg.onClick) {
+        onClickData = reg.onClick;
+        return;
+      }
+
+      $regTpl.css({
+        position: "absolute",
+        top: "".concat(reg.top, "px"),
+        left: "".concat(reg.left, "px"),
+        width: "".concat(reg.width, "px"),
+        height: "".concat(reg.height, "px")
+      });
 
       if (reg.show) {
         if (reg.show === true) {
-          style += "border: 5px solid #11f285;";
+          $regTpl.css('border', '5px solid #11f285');
         }
 
         if (typeof reg.show === "string") {
-          style += "border: 5px solid ".concat(reg.show, ";");
+          $regTpl.css('border', "5px solid ".concat(reg.show));
         }
       }
 
-      var regTpl = "<div style=\"".concat(style, "\" class=\"vnjson__area-item\" data-index=\"").concat(index, "\"></div>");
-      $tpl$5.append(regTpl);
+      if (onClickData) {
+        $regTpl.on('click', function () {
+          return vnjs.exec(onClickData);
+        });
+      }
+
+      $tpl$5.append($regTpl);
     });
   }
 
@@ -8128,6 +8155,23 @@
    * LOAD scenes
    */
 
+  function showError(err) {
+    var $errorWindow = $(".debug-error");
+    $errorWindow.show();
+    var $errorMessageContainer = $errorWindow.find(".debug-error__msg");
+
+    var yamlError = vnjs._loadError();
+
+    if (yamlError) {
+      $errorMessageContainer.html(yamlError.msg);
+      $errorWindow.find('.debug-error__path').html(yamlError.path);
+      $errorWindow.find('.debug-error__pos').html(yamlError.pos);
+      $errorWindow.find('.debug-error__code').html(yamlError.snippet);
+    } else {
+      $errorMessageContainer.html("Невалидный скрипт " + err.message);
+    }
+  }
+
   fetch("scenes/vn.json?v=".concat(new Date().getTime())).then(function (r) {
     return r.json();
   }).then(function (tree) {
@@ -8138,7 +8182,7 @@
       vnjs.use(debugUtils);
     }
   })["catch"](function (err) {
-    $(".debug-error").css("display", "flex").find(".debug-error__msg").html("Невалидный скрипт");
+    showError(err);
     console.error("Invalid script", err.message);
   });
   vnjs.on("postload", function () {

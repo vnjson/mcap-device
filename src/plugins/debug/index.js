@@ -35,7 +35,7 @@ export default function () {
             Object.keys(ctx).forEach((event) => {
                 if (
                     !/^_/gi.test(event) &&
-                    !this.events.hasOwnProperty(event)
+                    !vnjs.events[event]
                 ) {
                     vnjs.emit("error", "pluginNotFound", event);
                 }

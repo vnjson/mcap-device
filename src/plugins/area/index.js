@@ -2,6 +2,7 @@ import "./style.css";
 
 const $tpl = $('<div class="vnjson__area component"></div>');
 let _regions = null;
+let onClickData = null
 export default function () {
     vnjs.store.screen.append($tpl);
     vnjs.on("area", handler.bind(this));
@@ -14,6 +15,7 @@ export default function () {
 
 function handler(regions) {
     if (!regions) {
+        onClickData = null
         $tpl.hide();
         return;
     }
@@ -21,20 +23,32 @@ function handler(regions) {
     $tpl.empty();
     $tpl.show();
     regions.forEach((reg, index) => {
-        let style = `position:absolute;
-                    top:${reg.top}px;
-                    left:${reg.left}px;
-                    width:${reg.width}px;
-                    height:${reg.height}px;`;
+        const $regTpl = $(`<div  class="vnjson__area-item" data-index="${index}"></div>`);
+        if(reg.onClick){
+            onClickData = reg.onClick
+            return
+        }
+        $regTpl.css({
+            position: "absolute",
+            top: `${reg.top}px`,
+            left: `${reg.left}px`,
+            width: `${reg.width}px`,
+            height: `${reg.height}px`
+        })
+  
         if (reg.show) {
             if (reg.show === true) {
-                style += "border: 5px solid #11f285;";
+                $regTpl.css('border', '5px solid #11f285')
+              
             }
             if (typeof reg.show === "string") {
-                style += `border: 5px solid ${reg.show};`;
+                $regTpl.css('border', `5px solid ${reg.show}`)
             }
         }
-        const regTpl = `<div style="${style}" class="vnjson__area-item" data-index="${index}"></div>`;
-        $tpl.append(regTpl);
+        
+       if(onClickData){
+            $regTpl.on('click', () => vnjs.exec(onClickData))
+       }
+        $tpl.append($regTpl);
     });
 }
