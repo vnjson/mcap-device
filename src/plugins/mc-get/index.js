@@ -38,32 +38,37 @@ function query (request){
   
         query(str)
           .then(res => { 
-              const data = JSON.stringify(res) 
-              console.log( data )
-              thisstore.MINECRAFT = thisstore.MINECRAFT||{}
-              thisstore.MINECRAFT[param.request] = res
+              const response = res
+            
+              vnjs.store.MINECRAFT = vnjs.store.MINECRAFT||{}
+              vnjs.store.MINECRAFT[param.request] = res
               if(param.callback){
-                  param.callback(data)
+                  param.callback(response)
               }
           })
           .catch(err => { 
-              const data = JSON.stringify(err) 
-              console.log( data )
+              const response = JSON.stringify(err) 
+              console.log( response )
               if(param.callback){
-                  param.callback(data)
+                  param.callback(response)
               }
           })
     })
 
 /*
     vnjs.on('mc.player', () => {
-        alert(JSON.stringify(thisstore.MINECRAFT.PLAYER))
+        alert(JSON.stringify(vnjs.store.MINECRAFT.PLAYER))
     })
     vnjs.on('mc.slot', () => {
-        alert(JSON.stringify(thisstore.MINECRAFT.SLOT.id))
+        alert(JSON.stringify(vnjs.store.MINECRAFT.SLOT.id))
     })
     */
   }
   
   
-  
+  /**
+- mc-get-block
+    minecraft.chest
+      - команда 1
+      - команда 2
+   */

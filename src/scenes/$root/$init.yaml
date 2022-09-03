@@ -7,125 +7,28 @@
   #hud: true
   next: true
 
-- area:
-    - onClick:
-        $: test
-    - left: 10
-      top: 250
-      width: 100
-      height: 100
-      show: true # Показывает рамку цветом поумолчанию. '#e11c90' - можно передать цвет
-      exec: 
-        wiki:
-          - Абажур
-          - Вагонетка
-          - Жабры
-    - left: 260
-      top: 60
-      width: 100
-      height: 100
-      show: red
-      exec: 
-        wiki:
-          list:
-            - Юань
-            - Хакасы
-            - Явка
-            - Баба-яга
-          css:
-             left: 700px
-# Создать анимацию
-- sprite-animate:
-      id: elixir
-      name: sprite_animation
-      delay: 100
-      loop: true
-      scale: 2
-      top: 200px
-      left: 200px
-      width: 50px
-      height: 61px
-      rows: 2
-      cols: 5
-  next: true
+- test
+- $: У лукоморья дуб зелёный;
+  input-name: $ # character id
+- $: test2
+  data-set:
+    age: 9999
+# Так же возможно сохранять переменные
+- input-data: age # имя переменой. Можно как создать новую, так и переопределить
+- $: Возраст <font color="brown">{{age}}</font> # вывод переменной в реплику
 
-- sprite-animate:
-      id: elixir2
-      name: sprite_animation
-      delay: 100
-      loop: true
-      scale: 2
-      top: 200px
-      left: 300px
-      width: 50px
-      height: 61px
-      rows: 2
-      cols: 5
-  next: true
-- sprite-animate:
-      id: elixir4
-      name: sprite_animation
-      delay: 100
-      loop: true
-      scale: 2
-      top: 200px
-      left: 400px
-      width: 50px
-      height: 61px
-      rows: 2
-      cols: 5
-  next: true
-- sprite-animate:
-      id: elixir5
-      name: sprite_animation
-      delay: 100
-      loop: true
-      scale: 2
-      top: 200px
-      left: 500px
-      width: 50px
-      height: 61px
-      rows: 2
-      cols: 5
-  next: true
-- sprite-animate:
-      id: elixir61
-      name: sprite_animation
-      delay: 100
-      loop: true
-      scale: 2
-      top: 200px
-      left: 600px
-      width: 50px
-      height: 61px
-      rows: 2
-      cols: 5
-  next: true
-- sprite-animate:
-      id: elixir6
-      name: sprite_animation
-      delay: 100
-      loop: true
-      scale: 2
-      top: 200px
-      left: 700px
-      width: 50px
-      height: 61px
-      rows: 2
-      cols: 5
-  next: true
-- sprite-animate:
-      id: elixir7
-      name: sprite_animation
-      delay: 100
-      loop: true
-      scale: 2
-      top: 200px
-      left: 800px
-      width: 50px
-      height: 61px
-      rows: 2
-      cols: 5
 
+
+- mc-get:
+    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
+    slot: 0
+    x: -307
+    y: 4
+    z: 682
+  al: GET
+
+- al: -----END-----
+- al: -----END-----
+- al: -----END-----
 
 - jump: $root.$init.1

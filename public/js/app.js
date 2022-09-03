@@ -4903,12 +4903,14 @@
   n(css$j,{});
 
   var $tpl$b = $(tpl$6);
+  var input = $tpl$b.find(".vnjson__input-wrapper input");
   var _args$1 = null;
+  var character = null;
   /**
    * setup
    */
 
-  function input () {
+  function input$1 () {
     vnjs.store.screen.append($tpl$b);
     /**
      * click
@@ -4933,8 +4935,19 @@
    */
 
   function handler$2(args) {
+    character = vnjs.getCharacterById(args);
+
     if (args) {
       _args$1 = args;
+
+      if (character) {
+        input.val(character.name);
+      } else {
+        var _varData = vnjs.state.data[args];
+        console.log(_varData);
+        input.val(_varData);
+      }
+
       $tpl$b.css("display", "flex");
     } else {
       $tpl$b.hide();
@@ -4946,9 +4959,7 @@
 
 
   function clickHandler$1() {
-    var input = $tpl$b.find(".vnjson__input-wrapper input");
     $tpl$b.fadeOut();
-    var character = vnjs.getCharacterById(_args$1);
 
     if (character) {
       character.name = input.val();
@@ -5905,32 +5916,37 @@
       };
       var str = "GET_".concat(JSON.stringify(data));
       query(str).then(function (res) {
-        var data = JSON.stringify(res);
-        console.log(data);
-        thisstore.MINECRAFT = thisstore.MINECRAFT || {};
-        thisstore.MINECRAFT[param.request] = res;
+        var response = res;
+        vnjs.store.MINECRAFT = vnjs.store.MINECRAFT || {};
+        vnjs.store.MINECRAFT[param.request] = res;
 
         if (param.callback) {
-          param.callback(data);
+          param.callback(response);
         }
       })["catch"](function (err) {
-        var data = JSON.stringify(err);
-        console.log(data);
+        var response = JSON.stringify(err);
+        console.log(response);
 
         if (param.callback) {
-          param.callback(data);
+          param.callback(response);
         }
       });
     });
     /*
         vnjs.on('mc.player', () => {
-            alert(JSON.stringify(thisstore.MINECRAFT.PLAYER))
+            alert(JSON.stringify(vnjs.store.MINECRAFT.PLAYER))
         })
         vnjs.on('mc.slot', () => {
-            alert(JSON.stringify(thisstore.MINECRAFT.SLOT.id))
+            alert(JSON.stringify(vnjs.store.MINECRAFT.SLOT.id))
         })
         */
   }
+  /**
+  - mc-get-block
+    minecraft.chest
+      - команда 1
+      - команда 2
+   */
 
   function mcCheck () {
     var _this = this;
@@ -8119,7 +8135,7 @@
   vnjs.use(switchVnjson);
   vnjs.use(qa);
   vnjs.use(chess);
-  vnjs.use(input);
+  vnjs.use(input$1);
   vnjs.use(wiki);
   vnjs.use(crossWord);
   vnjs.use(test);

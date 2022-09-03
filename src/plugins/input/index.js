@@ -2,8 +2,9 @@ import tpl from "./tpl.html";
 import "./style.css";
 
 const $tpl = $(tpl);
-
-let _args = null
+const input = $tpl.find(".vnjson__input-wrapper input");
+let _args = null;
+let character = null;
 /**
  * setup
  */
@@ -29,8 +30,17 @@ vnjs.on("set-name", (args) => {
  * event handler
  */
 function handler (args){
+    character = vnjs.getCharacterById(args);
     if (args) {
         _args = args;
+        if(character){
+            input.val(character.name)
+        }
+        else{   
+            const _varData = vnjs.state.data[args]
+            console.log(_varData)
+            input.val(_varData)
+        }
         $tpl.css("display", "flex");
     } 
     else {
@@ -41,9 +51,9 @@ function handler (args){
  * Обработка клика по кнопке ввода текста
  */
 function clickHandler () {
-    const input = $tpl.find(".vnjson__input-wrapper input");
+    
     $tpl.fadeOut();
-    const character = vnjs.getCharacterById(_args);
+    
     if (character) {
         character.name = input.val();
     } 

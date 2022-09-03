@@ -9,7 +9,7 @@
 
 # С приходящими данными пока не очень ясно как обращаться
 # Я их пока положил сюда
-# thisstore.MINECRAFT["request"] = data
-# thisstore.MINECRAFT.ENTITY.nbt.id
+# vnjs.store.MINECRAFT["request"] = data
+# vnjs.store.MINECRAFT.ENTITY.nbt.id
 
 
