@@ -38,7 +38,6 @@ function handler (args){
         }
         else{   
             const _varData = vnjs.state.data[args]
-            console.log(_varData)
             input.val(_varData)
         }
         $tpl.css("display", "flex");

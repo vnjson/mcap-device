@@ -4944,7 +4944,6 @@
         input.val(character.name);
       } else {
         var _varData = vnjs.state.data[args];
-        console.log(_varData);
         input.val(_varData);
       }
 
@@ -5905,18 +5904,19 @@
   }
 
   function mcGet () {
-    vnjs.on('mc-get', function (param) {
+    vnjs.on("mc-get", function (param) {
       var data = {
-        "request": param.request,
-        "slot": param.slot || 0,
-        "posX": param.x || 0,
-        "posY": param.y || 0,
-        "posZ": param.z || 0,
-        "data": ""
+        request: param.request,
+        slot: param.slot || 0,
+        posX: param.x || 0,
+        posY: param.y || 0,
+        posZ: param.z || 0,
+        data: ""
       };
       var str = "GET_".concat(JSON.stringify(data));
       query(str).then(function (res) {
-        var response = res;
+        res.data = JSON.parse(res.data);
+        console.log(res);
         vnjs.store.MINECRAFT = vnjs.store.MINECRAFT || {};
         vnjs.store.MINECRAFT[param.request] = res;
 
@@ -5924,29 +5924,77 @@
           param.callback(response);
         }
       })["catch"](function (err) {
-        var response = JSON.stringify(err);
-        console.log(response);
-
         if (param.callback) {
-          param.callback(response);
+          param.callback(err);
         }
       });
     });
-    /*
-        vnjs.on('mc.player', () => {
-            alert(JSON.stringify(vnjs.store.MINECRAFT.PLAYER))
-        })
-        vnjs.on('mc.slot', () => {
-            alert(JSON.stringify(vnjs.store.MINECRAFT.SLOT.id))
-        })
-        */
   }
   /**
-  - mc-get-block
-    minecraft.chest
-      - команда 1
-      - команда 2
+   * сравнение по ID
    */
+
+  vnjs.on('mc-get-block', function (args) {
+    var block = vnjs.store.MINECRAFT.BLOCK;
+
+    if (args.id === block.data.id) {
+      vnjs.exec(args.exec);
+    }
+  });
+  /**
+   * сравнение по цвету
+   */
+
+  vnjs.on('mc-get-block-color', function (args) {
+    var block = vnjs.store.MINECRAFT.BLOCK;
+    var color = null;
+
+    for (var key in block.data.state) {
+      if (key.includes('name=color')) {
+        color = block.data.state[key].toLowerCase();
+      }
+    }
+
+    if (args.id === block.data.id && args.color === color) {
+      vnjs.exec(args.exec);
+    }
+  });
+  /**
+   * сравнение по типу
+   */
+
+  vnjs.on('mc-get-block-variant', function (args) {
+    var block = vnjs.store.MINECRAFT.BLOCK;
+    var variant = null;
+
+    for (var key in block.data.state) {
+      if (key.includes('name=variant')) {
+        variant = block.data.state[key].toLowerCase();
+      }
+    }
+
+    if (args.id === block.data.id && args.variant === variant) {
+      vnjs.exec(args.exec);
+    }
+  });
+  /**
+   * сравнение по направлению раположения
+   */
+
+  vnjs.on('mc-get-block-axis', function (args) {
+    var block = vnjs.store.MINECRAFT.BLOCK;
+    var axis = null;
+
+    for (var key in block.data.state) {
+      if (key.includes('name=axis')) {
+        axis = block.data.state[key].toLowerCase();
+      }
+    }
+
+    if (args.id === block.data.id && args.axis === axis) {
+      vnjs.exec(args.exec);
+    }
+  });
 
   function mcCheck () {
     var _this = this;

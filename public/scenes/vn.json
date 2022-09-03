@@ -111,23 +111,6 @@
         "hands": true,
         "next": true
       },
-      "test",
-      {
-        "$": "У лукоморья дуб зелёный;",
-        "input-name": "$"
-      },
-      {
-        "$": "test2",
-        "data-set": {
-          "age": 9999
-        }
-      },
-      {
-        "input-data": "age"
-      },
-      {
-        "$": "Возраст <font color=\"brown\">{{age}}</font>"
-      },
       {
         "mc-get": {
           "request": "BLOCK",
@@ -136,7 +119,78 @@
           "y": 4,
           "z": 682
         },
-        "al": "GET"
+        "next": true
+      },
+      {
+        "al": "ID",
+        "mc-get-block": {
+          "id": "minecraft:diamond_block",
+          "exec": {
+            "$": "Алмазный блок",
+            "scene": "alice"
+          }
+        }
+      },
+      {
+        "mc-get": {
+          "request": "BLOCK",
+          "slot": 0,
+          "x": -307,
+          "y": 5,
+          "z": 682
+        },
+        "next": true
+      },
+      {
+        "al": "ID & COLOR",
+        "mc-get-block-color": {
+          "id": "minecraft:wool",
+          "color": "lime",
+          "exec": {
+            "$": "Цвет lime. Блок шерсть",
+            "scene": "robocop"
+          }
+        }
+      },
+      {
+        "mc-get": {
+          "request": "BLOCK",
+          "slot": 0,
+          "x": -307,
+          "y": 6,
+          "z": 682
+        },
+        "next": true
+      },
+      {
+        "al": "ID & VARIANT",
+        "mc-get-block-variant": {
+          "id": "minecraft:log",
+          "variant": "birch",
+          "exec": {
+            "$": "Вариант берёза. Блок дерево"
+          }
+        }
+      },
+      {
+        "mc-get": {
+          "request": "BLOCK",
+          "slot": 0,
+          "x": -307,
+          "y": 7,
+          "z": 682
+        },
+        "next": true
+      },
+      {
+        "al": "ID & AXIS",
+        "mc-get-block-axis": {
+          "id": "minecraft:log",
+          "axis": "x",
+          "exec": {
+            "$": "Расположен по оси x. Блок дерево"
+          }
+        }
       },
       {
         "al": "-----END-----"

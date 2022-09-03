@@ -7,26 +7,66 @@
   #hud: true
   next: true
 
-- test
-- $: У лукоморья дуб зелёный;
-  input-name: $ # character id
-- $: test2
-  data-set:
-    age: 9999
-# Так же возможно сохранять переменные
-- input-data: age # имя переменой. Можно как создать новую, так и переопределить
-- $: Возраст <font color="brown">{{age}}</font> # вывод переменной в реплику
-
-
-
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
     slot: 0
     x: -307
     y: 4
     z: 682
-  al: GET
+  next: true
 
+- al: ID
+  mc-get-block:
+    id: minecraft:diamond_block
+    exec:
+      $: Алмазный блок
+      scene: alice
+
+- mc-get:
+    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
+    slot: 0
+    x: -307
+    y: 5 #4
+    z: 682
+  next: true
+
+- al: ID & COLOR
+  mc-get-block-color:
+    id: minecraft:wool
+    color: lime
+    exec:
+      $: Цвет lime. Блок шерсть
+      scene: robocop
+
+- mc-get:
+    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
+    slot: 0
+    x: -307
+    y: 6 #4
+    z: 682
+  next: true
+
+- al: ID & VARIANT
+  mc-get-block-variant:
+    id: minecraft:log
+    variant: birch
+    exec:
+      $: Вариант берёза. Блок дерево
+
+- mc-get:
+    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
+    slot: 0
+    x: -307
+    y: 7 #4
+    z: 682
+  next: true
+
+- al: ID & AXIS
+  mc-get-block-axis:
+    id: minecraft:log
+    axis: x
+    exec:
+      $: Расположен по оси x. Блок дерево
 - al: -----END-----
 - al: -----END-----
 - al: -----END-----

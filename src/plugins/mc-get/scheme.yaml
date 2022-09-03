@@ -12,4 +12,57 @@
 # vnjs.store.MINECRAFT["request"] = data
 # vnjs.store.MINECRAFT.ENTITY.nbt.id
 
+# Проверям соответсвут ли  блок полученый командой mc-get уазанным критериям
+# В данном случае, проверяется id блока
+- al: ID
+  mc-get-block:
+    id: minecraft:diamond_block
+    exec:
+      $: Алмазный блок
+      scene: alice
 
+- mc-get:
+    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
+    slot: 0
+    x: -307
+    y: 5 #4
+    z: 682
+  next: true
+
+- al: ID & COLOR
+  mc-get-block-color:
+    id: minecraft:wool
+    color: lime
+    exec:
+      $: Цвет lime. Блок шерсть
+      scene: robocop
+
+- mc-get:
+    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
+    slot: 0
+    x: -307
+    y: 6 #4
+    z: 682
+  next: true
+
+- al: ID & VARIANT
+  mc-get-block-variant:
+    id: minecraft:log
+    variant: birch
+    exec:
+      $: Вариант берёза. Блок дерево
+
+- mc-get:
+    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
+    slot: 0
+    x: -307
+    y: 7 #4
+    z: 682
+  next: true
+
+- al: ID & AXIS
+  mc-get-block-axis:
+    id: minecraft:log
+    axis: x
+    exec:
+      $: Расположен по оси x. Блок дерево
