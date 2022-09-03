@@ -5,8 +5,49 @@
   #scene: alice
   hands: true
   #hud: true
-
   next: true
+
+- $: test 
+
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+- +: привет
+
 
 
 # Создать анимацию
@@ -22,13 +63,85 @@
       height: 61px
       rows: 2
       cols: 5
-      onLoop:
-        +: abc
-      onEnd:
-        +: test
-
-
-
-- sprite-animate-remove: elixir
   next: true
+
+- sprite-animate:
+      id: elixir2
+      name: sprite_animation
+      delay: 100
+      loop: true
+      scale: 2
+      top: 200px
+      left: 300px
+      width: 50px
+      height: 61px
+      rows: 2
+      cols: 5
+  next: true
+- sprite-animate:
+      id: elixir4
+      name: sprite_animation
+      delay: 100
+      loop: true
+      scale: 2
+      top: 200px
+      left: 400px
+      width: 50px
+      height: 61px
+      rows: 2
+      cols: 5
+  next: true
+- sprite-animate:
+      id: elixir5
+      name: sprite_animation
+      delay: 100
+      loop: true
+      scale: 2
+      top: 200px
+      left: 500px
+      width: 50px
+      height: 61px
+      rows: 2
+      cols: 5
+  next: true
+- sprite-animate:
+      id: elixir61
+      name: sprite_animation
+      delay: 100
+      loop: true
+      scale: 2
+      top: 200px
+      left: 600px
+      width: 50px
+      height: 61px
+      rows: 2
+      cols: 5
+  next: true
+- sprite-animate:
+      id: elixir6
+      name: sprite_animation
+      delay: 100
+      loop: true
+      scale: 2
+      top: 200px
+      left: 700px
+      width: 50px
+      height: 61px
+      rows: 2
+      cols: 5
+  next: true
+- sprite-animate:
+      id: elixir7
+      name: sprite_animation
+      delay: 100
+      loop: true
+      scale: 2
+      top: 200px
+      left: 800px
+      width: 50px
+      height: 61px
+      rows: 2
+      cols: 5
+
+
 - jump: $root.$init.1
