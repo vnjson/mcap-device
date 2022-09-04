@@ -8,61 +8,21 @@
   next: true
 
 
-- test:
-    name: Название теста
-    self-control: false
-    type: SummText # TrueFalse
-    onEnd:
-      data-set: 
-         textTest: Результат первого теста 
-    quetions:
-      - quetion: Туристы, приезжающие на Майорку, обязаны заплатить налог
-        correct: 3
-        variants:
-          - На песок: 3
-          - На пальмы: 10
-          - На солнце: 100
 
-      - quetion: Что в Российской империи было вещевым эквивалентом денег?
-        image: alice # Можно передать изображение вкачестве илюстрации к вопросу
-        correct: 1
-        audio: sysFlipPages
-        variants:
-          - Шкуры пушных зверей: 1
-          - Крупный рогатый скот: 5
-          - Табак: 10
-          - Женские серьги: 20
-
-      - quetion: Кто из знаменитых художников за жизнь продал всего одну картину? 
-        correct: 1
-        variants:
-          - Винсент Ван Гог: 10
-          - Пьер Огюст Ренуар: 20
-
-
-- 4321
-- 1234
 
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
     slot: 0
     pos: [-307, 4, 682]
   next: true
-#- mc-get-block:
-#    "minecraft:diamond_block":
-#        $: tes
-#    "minecraft:air":
-#       
-#    "default":
-#        $: 
-    
 - mc-get-block:
-    id: "minecraft:diamond_block"
-    true:
-      $: Алмазный блок
-      scene: alice
-    false:
-      $: Не алмазный блок
+    "minecraft:diamond_block":
+        al: DIAMOND
+    "minecraft:air":
+        $: AIR
+    "default":
+        $:  DEFAULT
+
 
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
@@ -71,13 +31,13 @@
   next: true
 
 - mc-get-block-color:
-    id: minecraft:wool
-    color: lime
-    true:
-      $: Цвет lime. Блок шерсть
-      scene: robocop
-    false:
-      $: цвет не красный
+    "minecraft:wool.lime":
+        $: Цвет lime. Блок шерсть
+    "minecraft:wool.red":
+        $: RED
+    "default":
+        $:  DEFAULT COLOR
+
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
     slot: 0
@@ -85,10 +45,13 @@
   next: true
 
 - mc-get-block-variant:
-    id: minecraft:log
-    variant: birch
-    true:
+    "minecraft:log.birch":
       $: Вариант берёза. Блок дерево
+    "minecraft:log.birch111":
+      $: test
+    "default":
+      $: Вариант поумолчанию
+
 
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
@@ -97,10 +60,13 @@
   next: true
 
 - mc-get-block-axis:
-    id: minecraft:log
-    axis: x
-    true:
-      $: Расположен по оси x. Блок дерево
+    "minecraft:log.x":
+        $: Расположен по оси x. Блок дерево
+    "minecraft:log.y":
+        $: Y
+    "default":
+        $: xyz  
+
 
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
@@ -109,10 +75,12 @@
   next: true
 
 - mc-get-block-facing:
-    id: minecraft:chest
-    facing: north
-    true:
-      $: Сундук смотрит на север
+    "minecraft:chest.north":
+        $: Сундук смотрит на север
+    "minecraft:chest.south":
+        $: ЮГ
+    "default":
+        $: Сторона света не определена
     
 - al: -----END-----
 - al: -----END-----

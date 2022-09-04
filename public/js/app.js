@@ -5670,7 +5670,7 @@
     request.send(JSON.stringify(params));
   }
 
-  var css$d = ".status-bar{\n  position: absolute;\n  top: 0;\n  left: 0;\n  background: rgba(0,0,0,0.7);\n  color: gray;\n  width: 100%;\n  height: 4%;\n  align-items: center;\n  justify-content: space-between;\n  padding: 5px 15px;\n  display: none;\n}\n.status-bar__status--ready,\n.status-bar__status--help{\n  display: inline-flex;\n  align-items: center;\n  cursor: pointer;\n  margin-right: 10px;\n}\n.status-bar__status--ready span{\n  width: 15px;\n  height: 15px;\n  border-radius: 50%;\n  background-color: gray;\n  display: inline-block;\n  margin-right: 10px;\n}\n\n.status-bar__status--help span{\n  width: 15px;\n  height: 15px;\n  border-radius: 50%;\n  background-color: gray;\n  display: i gray;\n  margin-right: 10px;\n}\n\n.status-bar__status--ready.status-active span{\n    background-color: lightgreen;\n}\n.status-bar__status--ready.status-active {\n   color: white;\n}\n.status-bar__status--help.status-active span{\n    background-color: red;\n}\n.status-bar__status--help.status-active{\n  color: white;\n}\n\n\n.status-bar__image-containter{\n  position: absolute;\n  top: 40px;\n  right: 0;\n  display: flex;\n\n}\n.status-bar__image{\n  background-repeat: no-repeat;\n  background-size: contain;\n  width: 100px;\n  height: 100px;\n}\n.status-bar__image:hover{\n  cursor: pointer;\n}\n\n/*\n * PLAYER\n */\n\n.status-bar__player-name{\n  padding-left: 10px;\n}\n.status-bar__player{\n  display: flex;\n  align-items: center;\n}\n.status-bar__logo-wrapper{\n  border: 2px solid gray;\n  border-radius: 50%;\n  width: 26px;\n  height: 26px;\n}\n#status-bar__player-logo{\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-48.0%, -50.5%);\n  width: 24px;\n  height: 24px;\n}\n";
+  var css$d = ".status-bar{\n  position: absolute;\n  top: 0;\n  left: 0;\n  background: rgba(0,0,0,0.7);\n  color: gray;\n  width: 100%;\n  height: 4%;\n  align-items: center;\n  justify-content: space-between;\n  padding: 5px 15px;\n  display: none;\n  z-index: 4000;\n}\n.status-bar__status--ready,\n.status-bar__status--help{\n  display: inline-flex;\n  align-items: center;\n  cursor: pointer;\n  margin-right: 10px;\n}\n.status-bar__status--ready span{\n  width: 15px;\n  height: 15px;\n  border-radius: 50%;\n  background-color: gray;\n  display: inline-block;\n  margin-right: 10px;\n}\n\n.status-bar__status--help span{\n  width: 15px;\n  height: 15px;\n  border-radius: 50%;\n  background-color: gray;\n  display: i gray;\n  margin-right: 10px;\n}\n\n.status-bar__status--ready.status-active span{\n    background-color: lightgreen;\n}\n.status-bar__status--ready.status-active {\n   color: white;\n}\n.status-bar__status--help.status-active span{\n    background-color: red;\n}\n.status-bar__status--help.status-active{\n  color: white;\n}\n\n\n.status-bar__image-containter{\n  position: absolute;\n  top: 40px;\n  right: 0;\n  display: flex;\n\n}\n.status-bar__image{\n  background-repeat: no-repeat;\n  background-size: contain;\n  width: 100px;\n  height: 100px;\n}\n.status-bar__image:hover{\n  cursor: pointer;\n}\n\n/*\n * PLAYER\n */\n\n.status-bar__player-name{\n  padding-left: 10px;\n}\n.status-bar__player{\n  display: flex;\n  align-items: center;\n}\n.status-bar__logo-wrapper{\n  border: 2px solid gray;\n  border-radius: 50%;\n  width: 26px;\n  height: 26px;\n}\n#status-bar__player-logo{\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-48.0%, -50.5%);\n  width: 24px;\n  height: 24px;\n}\n";
   n(css$d,{});
 
   var tpl$4 = "<div class=\"status-bar component\">\n  <div class=\"status-bar__player\">\n    <div class=\"status-bar__logo-wrapper\"><img id=\"status-bar__player-logo\"></div>\n    <span class=\"status-bar__player-name\"></span>\n  </div>\n  <div class=\"status-bar__status\">\n      <span class=\"status-bar__item status-bar__status--ready\"><span></span>Готов</span>\n      <span class=\"status-bar__item status-bar__status--help\"><span></span>Помощь</span>\n      <div class=\"status-bar__image-containter\">\n          <div class=\"status-bar__image status-bar__image--first\"></div>\n          <div class=\"status-bar__image status-bar__image--last\"></div>\n      </div>\n  </div>\n\n</div>";
@@ -5841,7 +5841,7 @@
      */
 
     $('.status-bar__status--ready').on('click', function () {
-      return statusBar.showReady(true);
+      statusBar.showReady(true);
     });
     $('.status-bar__status--help').on('click', function () {
       return statusBar.showHelp(true);
@@ -5945,84 +5945,48 @@
     },*/
     "mc-get-block": function mcGetBlock(args) {
       var block = vnjs.store.MINECRAFT.BLOCK;
+      var flag = false;
 
-      if (args.id === block.data.id) {
-        vnjs.exec(args["true"]);
-      } else {
-        if (args["false"]) {
-          vnjs.exec(args["false"]);
+      for (var key in args) {
+        if (key === block.data.id) {
+          flag = true;
+          vnjs.exec(args[key]);
+        }
+      }
+
+      if (!flag) {
+        if (args["default"]) {
+          vnjs.exec(args["default"]);
         }
       }
     },
-    "mc-get-block-color": function mcGetBlockColor(args) {
+    handler: function handler(args, prop) {
       var block = vnjs.store.MINECRAFT.BLOCK;
-      var color = null;
+      var flag = false;
 
-      for (var key in block.data.state) {
-        if (key.includes("name=color")) {
-          color = block.data.state[key].toLowerCase();
+      for (var key in args) {
+        var _key$split = key.split('.'),
+            _key$split2 = _slicedToArray(_key$split, 2),
+            id = _key$split2[0],
+            param = _key$split2[1];
+
+        var blockParam = null;
+
+        for (var blockKey in block.data.state) {
+          if (blockKey.includes("name=".concat(prop))) {
+            blockParam = block.data.state[blockKey].toLowerCase();
+          }
+        }
+
+        if (id === block.data.id && blockParam === param) {
+          flag = true;
+          vnjs.exec(args[key]);
         }
       }
 
-      if (args.id === block.data.id && args.color === color) {
-        vnjs.exec(args["true"]);
-      } else {
-        if (args["false"]) {
-          vnjs.exec(args["false"]);
-        }
-      }
-    },
-    "mc-get-block-variant": function mcGetBlockVariant(args) {
-      var block = vnjs.store.MINECRAFT.BLOCK;
-      var variant = null;
-
-      for (var key in block.data.state) {
-        if (key.includes("name=variant")) {
-          variant = block.data.state[key].toLowerCase();
-        }
-      }
-
-      if (args.id === block.data.id && args.variant === variant) {
-        vnjs.exec(args["true"]);
-      } else {
-        if (args["false"]) {
-          vnjs.exec(args["false"]);
-        }
-      }
-    },
-    "mc-get-block-axis": function mcGetBlockAxis(args) {
-      var block = vnjs.store.MINECRAFT.BLOCK;
-      var axis = null;
-
-      for (var key in block.data.state) {
-        if (key.includes("name=axis")) {
-          axis = block.data.state[key].toLowerCase();
-        }
-      }
-
-      if (args.id === block.data.id && args.axis === axis) {
-        vnjs.exec(args["true"]);
-      } else {
-        if (args["false"]) {
-          vnjs.exec(args["false"]);
-        }
-      }
-    },
-    "mc-get-block-facing": function mcGetBlockFacing(args) {
-      var block = vnjs.store.MINECRAFT.BLOCK;
-      var facing = null;
-
-      for (var key in block.data.state) {
-        if (key.includes("name=facing")) {
-          facing = block.data.state[key].toLowerCase();
-        }
-      }
-
-      if (args.id === block.data.id && args.facing === facing) {
-        vnjs.exec(args["true"]);
-      } else {
-        if (args["false"]) {
-          vnjs.exec(args["false"]);
+      if (!flag) {
+        if (args["default"]) {
+          vnjs.exec(args["default"]);
         }
       }
     }
@@ -6108,7 +6072,7 @@
 
   vnjs.on("mc-get-block-color", function (args) {
     setTimeout(function () {
-      blockHandler["mc-get-block-color"](args);
+      blockHandler.handler(args, "color");
     }, 100);
   });
   /**
@@ -6117,7 +6081,7 @@
 
   vnjs.on("mc-get-block-variant", function (args) {
     setTimeout(function () {
-      blockHandler["mc-get-block-variant"](args);
+      blockHandler.handler(args, "variant");
     }, 100);
   });
   /**
@@ -6126,7 +6090,7 @@
 
   vnjs.on("mc-get-block-axis", function (args) {
     setTimeout(function () {
-      blockHandler["mc-get-block-axis"](args);
+      blockHandler.handler(args, "axis");
     }, 100);
   });
   /**
@@ -6135,7 +6099,7 @@
 
   vnjs.on("mc-get-block-facing", function (args) {
     setTimeout(function () {
-      blockHandler["mc-get-block-facing"](args);
+      blockHandler.handler(args, "facing");
     }, 100);
   });
 

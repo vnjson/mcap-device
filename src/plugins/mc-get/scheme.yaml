@@ -14,19 +14,19 @@
 
 # Проверям соответсвут ли  блок полученый командой mc-get уазанным критериям
 # В данном случае, проверяется id блока
-
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
     slot: 0
     pos: [-307, 4, 682]
   next: true
+- mc-get-block:
+    "minecraft:diamond_block":
+        al: DIAMOND
+    "minecraft:air":
+        $: AIR
+    "default":
+        $:  DEFAULT
 
-- al: ID
-  mc-get-block:
-    id: minecraft:diamond_block
-    exec:
-      $: Алмазный блок
-      scene: alice
 
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
@@ -34,13 +34,13 @@
     pos: [-307, 5, 682]
   next: true
 
-- al: ID & COLOR
-  mc-get-block-color:
-    id: minecraft:wool
-    color: lime
-    exec:
-      $: Цвет lime. Блок шерсть
-      scene: robocop
+- mc-get-block-color:
+    "minecraft:wool.lime":
+        $: Цвет lime. Блок шерсть
+    "minecraft:wool.red":
+        $: RED
+    "default":
+        $:  DEFAULT COLOR
 
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
@@ -48,12 +48,14 @@
     pos: [-307, 6, 682]
   next: true
 
-- al: ID & VARIANT
-  mc-get-block-variant:
-    id: minecraft:log
-    variant: birch
-    exec:
+- mc-get-block-variant:
+    "minecraft:log.birch":
       $: Вариант берёза. Блок дерево
+    "minecraft:log.birch111":
+      $: test
+    "default":
+      $: Вариант поумолчанию
+
 
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
@@ -61,12 +63,14 @@
     pos: [-307, 7, 682]
   next: true
 
-- al: ID & AXIS
-  mc-get-block-axis:
-    id: minecraft:log
-    axis: x
-    exec:
-      $: Расположен по оси x. Блок дерево
+- mc-get-block-axis:
+    "minecraft:log.x":
+        $: Расположен по оси x. Блок дерево
+    "minecraft:log.y":
+        $: Y
+    "default":
+        $: xyz  
+
 
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
@@ -74,9 +78,10 @@
     pos: [-307, 8, 682]
   next: true
 
-- al: chest
-  mc-get-block-facing:
-    id: minecraft:chest
-    facing: north
-    exec:
-      $: Сундук смотрит на север
+- mc-get-block-facing:
+    "minecraft:chest.north":
+        $: Сундук смотрит на север
+    "minecraft:chest.south":
+        $: ЮГ
+    "default":
+        $: Сторона света не определена

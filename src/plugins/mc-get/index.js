@@ -70,47 +70,42 @@ function blockHandler (prop){
  * сравнение по ID
  */
 vnjs.on("mc-get-block", (args) => {
-    setTimeout(()=>{
-        blockHandler["mc-get-block"](args)
-    }, 100)
-
+    setTimeout(() => {
+        blockHandler["mc-get-block"](args);
+    }, 100);
 });
 /**
  * сравнение по цвету
  */
 vnjs.on("mc-get-block-color", (args) => {
-    setTimeout(()=>{
-        blockHandler["mc-get-block-color"](args)
-    }, 100)
-
+    setTimeout(() => {
+        blockHandler.handler(args, "color");
+    }, 100);
 });
 
 /**
  * сравнение по типу
  */
 vnjs.on("mc-get-block-variant", (args) => {
-    setTimeout(()=>{
-        blockHandler["mc-get-block-variant"](args)
-    }, 100)
-
+    setTimeout(() => {
+        blockHandler.handler(args, "variant");
+    }, 100);
 });
 
 /**
  * сравнение по направлению раположения
  */
 vnjs.on("mc-get-block-axis", (args) => {
-    setTimeout(()=>{
-        blockHandler["mc-get-block-axis"](args)
-    }, 100)
-
+    setTimeout(() => {
+        blockHandler.handler(args, "axis");
+    }, 100);
 });
 
 /**
  * куда смотрит предмет
  */
- vnjs.on("mc-get-block-facing", (args) => {
-    setTimeout(()=>{
-        blockHandler["mc-get-block-facing"](args)
-    }, 100)
-
+vnjs.on("mc-get-block-facing", (args) => {
+    setTimeout(() => {
+        blockHandler.handler(args, "facing");
+    }, 100);
 });

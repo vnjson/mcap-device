@@ -43,7 +43,10 @@ export default function (){
   /**
    * help | ready
    */
-  $('.status-bar__status--ready').on('click', () => statusBar.showReady(true))
+  $('.status-bar__status--ready').on('click', () =>{
+ 
+      statusBar.showReady(true)
+  })
 
   $('.status-bar__status--help').on('click', () => statusBar.showHelp(true))
 
