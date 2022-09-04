@@ -7,71 +7,69 @@
   #hud: true
   next: true
 
-- test
-- switch:
-    age === false:
-      +: age не определено
 
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
     slot: 0
-    x: -307
-    y: 4
-    z: 682
+    pos: [-307, 4, 682]
   next: true
 
-- al: ID
-  mc-get-block:
+- mc-get-block:
     id: minecraft:diamond_block
-    exec:
+    true:
       $: Алмазный блок
       scene: alice
 
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
     slot: 0
-    x: -307
-    y: 5 #4
-    z: 682
+    pos: [-307, 5, 682]
   next: true
 
-- al: ID & COLOR
-  mc-get-block-color:
+- mc-get-block-color:
     id: minecraft:wool
-    color: lime
-    exec:
+    color: red #lime
+    true:
       $: Цвет lime. Блок шерсть
       scene: robocop
-
+    false:
+      $: цвет не красный
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
     slot: 0
-    x: -307
-    y: 6 #4
-    z: 682
+    pos: [-307, 6, 682]
   next: true
 
-- al: ID & VARIANT
-  mc-get-block-variant:
+- mc-get-block-variant:
     id: minecraft:log
     variant: birch
-    exec:
+    true:
       $: Вариант берёза. Блок дерево
 
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
     slot: 0
-    x: -307
-    y: 7 #4
-    z: 682
+    pos: [-307, 7, 682]
   next: true
 
-- al: ID & AXIS
-  mc-get-block-axis:
+- mc-get-block-axis:
     id: minecraft:log
     axis: x
-    exec:
+    true:
       $: Расположен по оси x. Блок дерево
+
+- mc-get:
+    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
+    slot: 0
+    pos: [-307, 8, 682]
+  next: true
+
+- mc-get-block-facing:
+    id: minecraft:chest
+    facing: north
+    true:
+      $: Сундук смотрит на север
+    
 - al: -----END-----
 - al: -----END-----
 - al: -----END-----

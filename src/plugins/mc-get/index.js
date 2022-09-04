@@ -1,3 +1,5 @@
+import blockHandler from "./block-handler";
+
 function query(request) {
     return new Promise((resolve, reject) => {
         try {
@@ -22,12 +24,13 @@ function getTime() {
 
 export default function () {
     vnjs.on("mc-get", (param) => {
+        const [x, y, z] = param.pos;
         const data = {
             request: param.request,
             slot: param.slot || 0,
-            posX: param.x || 0,
-            posY: param.y || 0,
-            posZ: param.z || 0,
+            posX: x || 0,
+            posY: y || 0,
+            posZ: z || 0,
             data: "",
         };
         const str = `GET_${JSON.stringify(data)}`;
@@ -35,7 +38,7 @@ export default function () {
         query(str)
             .then((res) => {
                 res.data = JSON.parse(res.data);
-                console.log(res)
+                console.log(res);
                 vnjs.store.MINECRAFT = vnjs.store.MINECRAFT || {};
                 vnjs.store.MINECRAFT[param.request] = res;
                 if (param.callback) {
@@ -48,66 +51,66 @@ export default function () {
                 }
             });
     });
-
- 
-
-
 }
+
+/*
+function blockHandler (prop){
+    const block = vnjs.store.MINECRAFT.BLOCK;
+    let propValue = null;
+    for (let key in block.data.state) {
+        if (key.includes(`name=${prop}`)) {
+            propValue = block.data.state[key].toLowerCase();
+        }
+    }
+    if (args.id === block.data.id && args[prop] === propValue) {
+        vnjs.exec(args.exec);
+    }
+}*/
 /**
  * сравнение по ID
  */
-vnjs.on('mc-get-block', (args) => {
-    const block = vnjs.store.MINECRAFT.BLOCK;
-    if(args.id=== block.data.id){
-            vnjs.exec(args.exec)
-    }
-})
+vnjs.on("mc-get-block", (args) => {
+    setTimeout(()=>{
+        blockHandler["mc-get-block"](args)
+    }, 100)
+
+});
 /**
  * сравнение по цвету
  */
- vnjs.on('mc-get-block-color', (args) => {
-    const block = vnjs.store.MINECRAFT.BLOCK;
-    let color = null;
-    for(let key in block.data.state){
-        if(key.includes('name=color')){
-            color = block.data.state[key].toLowerCase()
-        }
-    }
-    if(args.id === block.data.id && args.color === color){
-            vnjs.exec(args.exec)
-    }
-})
+vnjs.on("mc-get-block-color", (args) => {
+    setTimeout(()=>{
+        blockHandler["mc-get-block-color"](args)
+    }, 100)
+
+});
 
 /**
  * сравнение по типу
  */
- vnjs.on('mc-get-block-variant', (args) => {
-    const block = vnjs.store.MINECRAFT.BLOCK;
-    let variant = null;
-    for(let key in block.data.state){
-        if(key.includes('name=variant')){
-            variant = block.data.state[key].toLowerCase()
-        }
-    }
-    if(args.id === block.data.id && args.variant === variant){
-            vnjs.exec(args.exec)
-    }     
-})
+vnjs.on("mc-get-block-variant", (args) => {
+    setTimeout(()=>{
+        blockHandler["mc-get-block-variant"](args)
+    }, 100)
 
+});
 
 /**
  * сравнение по направлению раположения
  */
- vnjs.on('mc-get-block-axis', (args) => {
-    const block = vnjs.store.MINECRAFT.BLOCK;
-    let axis = null;
-    for(let key in block.data.state){
-        if(key.includes('name=axis')){
-            axis = block.data.state[key].toLowerCase()
-        }
-    }
-    if(args.id === block.data.id && args.axis === axis){
-            vnjs.exec(args.exec)
-    }     
-})
+vnjs.on("mc-get-block-axis", (args) => {
+    setTimeout(()=>{
+        blockHandler["mc-get-block-axis"](args)
+    }, 100)
 
+});
+
+/**
+ * куда смотрит предмет
+ */
+ vnjs.on("mc-get-block-facing", (args) => {
+    setTimeout(()=>{
+        blockHandler["mc-get-block-facing"](args)
+    }, 100)
+
+});

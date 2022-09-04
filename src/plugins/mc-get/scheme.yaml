@@ -14,6 +14,13 @@
 
 # Проверям соответсвут ли  блок полученый командой mc-get уазанным критериям
 # В данном случае, проверяется id блока
+
+- mc-get:
+    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
+    slot: 0
+    pos: [-307, 4, 682]
+  next: true
+
 - al: ID
   mc-get-block:
     id: minecraft:diamond_block
@@ -24,9 +31,7 @@
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
     slot: 0
-    x: -307
-    y: 5 #4
-    z: 682
+    pos: [-307, 5, 682]
   next: true
 
 - al: ID & COLOR
@@ -40,9 +45,7 @@
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
     slot: 0
-    x: -307
-    y: 6 #4
-    z: 682
+    pos: [-307, 6, 682]
   next: true
 
 - al: ID & VARIANT
@@ -55,9 +58,7 @@
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
     slot: 0
-    x: -307
-    y: 7 #4
-    z: 682
+    pos: [-307, 7, 682]
   next: true
 
 - al: ID & AXIS
@@ -66,3 +67,16 @@
     axis: x
     exec:
       $: Расположен по оси x. Блок дерево
+
+- mc-get:
+    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
+    slot: 0
+    pos: [-307, 8, 682]
+  next: true
+
+- al: chest
+  mc-get-block-facing:
+    id: minecraft:chest
+    facing: north
+    exec:
+      $: Сундук смотрит на север

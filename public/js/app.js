@@ -5896,6 +5896,92 @@
     });
   }
 
+  var blockHandler = {
+    "mc-get-block": function mcGetBlock(args) {
+      var block = vnjs.store.MINECRAFT.BLOCK;
+
+      if (args.id === block.data.id) {
+        vnjs.exec(args["true"]);
+      } else {
+        if (args["false"]) {
+          vnjs.exec(args["false"]);
+        }
+      }
+    },
+    "mc-get-block-color": function mcGetBlockColor(args) {
+      var block = vnjs.store.MINECRAFT.BLOCK;
+      var color = null;
+
+      for (var key in block.data.state) {
+        if (key.includes("name=color")) {
+          color = block.data.state[key].toLowerCase();
+        }
+      }
+
+      if (args.id === block.data.id && args.color === color) {
+        vnjs.exec(args["true"]);
+      } else {
+        if (args["false"]) {
+          vnjs.exec(args["false"]);
+        }
+      }
+    },
+    "mc-get-block-variant": function mcGetBlockVariant(args) {
+      var block = vnjs.store.MINECRAFT.BLOCK;
+      var variant = null;
+
+      for (var key in block.data.state) {
+        if (key.includes("name=variant")) {
+          variant = block.data.state[key].toLowerCase();
+        }
+      }
+
+      if (args.id === block.data.id && args.variant === variant) {
+        vnjs.exec(args["true"]);
+      } else {
+        if (args["false"]) {
+          vnjs.exec(args["false"]);
+        }
+      }
+    },
+    "mc-get-block-axis": function mcGetBlockAxis(args) {
+      var block = vnjs.store.MINECRAFT.BLOCK;
+      var axis = null;
+
+      for (var key in block.data.state) {
+        if (key.includes("name=axis")) {
+          axis = block.data.state[key].toLowerCase();
+        }
+      }
+
+      if (args.id === block.data.id && args.axis === axis) {
+        vnjs.exec(args["true"]);
+      } else {
+        if (args["false"]) {
+          vnjs.exec(args["false"]);
+        }
+      }
+    },
+    "mc-get-block-facing": function mcGetBlockFacing(args) {
+      var block = vnjs.store.MINECRAFT.BLOCK;
+      var facing = null;
+
+      for (var key in block.data.state) {
+        if (key.includes("name=facing")) {
+          facing = block.data.state[key].toLowerCase();
+        }
+      }
+
+      if (args.id === block.data.id && args.facing === facing) {
+        vnjs.exec(args["true"]);
+      } else {
+        if (args["false"]) {
+          vnjs.exec(args["false"]);
+        }
+      }
+    }
+  };
+
   function query(request) {
     return new Promise(function (resolve, reject) {
       try {
@@ -5917,12 +6003,17 @@
 
   function mcGet () {
     vnjs.on("mc-get", function (param) {
+      var _param$pos = _slicedToArray(param.pos, 3),
+          x = _param$pos[0],
+          y = _param$pos[1],
+          z = _param$pos[2];
+
       var data = {
         request: param.request,
         slot: param.slot || 0,
-        posX: param.x || 0,
-        posY: param.y || 0,
-        posZ: param.z || 0,
+        posX: x || 0,
+        posY: y || 0,
+        posZ: z || 0,
         data: ""
       };
       var str = "GET_".concat(JSON.stringify(data));
@@ -5942,70 +6033,64 @@
       });
     });
   }
+  /*
+  function blockHandler (prop){
+      const block = vnjs.store.MINECRAFT.BLOCK;
+      let propValue = null;
+      for (let key in block.data.state) {
+          if (key.includes(`name=${prop}`)) {
+              propValue = block.data.state[key].toLowerCase();
+          }
+      }
+      if (args.id === block.data.id && args[prop] === propValue) {
+          vnjs.exec(args.exec);
+      }
+  }*/
+
   /**
    * сравнение по ID
    */
 
-  vnjs.on('mc-get-block', function (args) {
-    var block = vnjs.store.MINECRAFT.BLOCK;
-
-    if (args.id === block.data.id) {
-      vnjs.exec(args.exec);
-    }
+  vnjs.on("mc-get-block", function (args) {
+    setTimeout(function () {
+      blockHandler["mc-get-block"](args);
+    }, 100);
   });
   /**
    * сравнение по цвету
    */
 
-  vnjs.on('mc-get-block-color', function (args) {
-    var block = vnjs.store.MINECRAFT.BLOCK;
-    var color = null;
-
-    for (var key in block.data.state) {
-      if (key.includes('name=color')) {
-        color = block.data.state[key].toLowerCase();
-      }
-    }
-
-    if (args.id === block.data.id && args.color === color) {
-      vnjs.exec(args.exec);
-    }
+  vnjs.on("mc-get-block-color", function (args) {
+    setTimeout(function () {
+      blockHandler["mc-get-block-color"](args);
+    }, 100);
   });
   /**
    * сравнение по типу
    */
 
-  vnjs.on('mc-get-block-variant', function (args) {
-    var block = vnjs.store.MINECRAFT.BLOCK;
-    var variant = null;
-
-    for (var key in block.data.state) {
-      if (key.includes('name=variant')) {
-        variant = block.data.state[key].toLowerCase();
-      }
-    }
-
-    if (args.id === block.data.id && args.variant === variant) {
-      vnjs.exec(args.exec);
-    }
+  vnjs.on("mc-get-block-variant", function (args) {
+    setTimeout(function () {
+      blockHandler["mc-get-block-variant"](args);
+    }, 100);
   });
   /**
    * сравнение по направлению раположения
    */
 
-  vnjs.on('mc-get-block-axis', function (args) {
-    var block = vnjs.store.MINECRAFT.BLOCK;
-    var axis = null;
+  vnjs.on("mc-get-block-axis", function (args) {
+    setTimeout(function () {
+      blockHandler["mc-get-block-axis"](args);
+    }, 100);
+  });
+  /**
+   * куда смотрит предмет
+   */
 
-    for (var key in block.data.state) {
-      if (key.includes('name=axis')) {
-        axis = block.data.state[key].toLowerCase();
-      }
-    }
-
-    if (args.id === block.data.id && args.axis === axis) {
-      vnjs.exec(args.exec);
-    }
+  vnjs.on("mc-get-block-facing", function (args) {
+    setTimeout(function () {
+      blockHandler["mc-get-block-facing"](args);
+    }, 100);
   });
 
   function mcCheck () {
