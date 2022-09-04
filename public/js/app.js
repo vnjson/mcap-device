@@ -5064,10 +5064,10 @@
     };
   }
 
-  var css$g = "\n.vnjson__test{\n  width: 600px;\n  min-height: 250px;\n  top: 50px;\n  left: 50%;\n  transform: translateX(-50%);\n  background-color: wheat;\n  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);\n  padding: 20px;\n  border-radius: 4px;\n  min-height: 300px;\n\n}\n\n.vnjson__test-name{\n  border-bottom: 2px solid gray;\n  padding: 5px;\n  font-size: 16px;\n  padding-left: 0;\n  padding-bottom: 10px;\n  color: brown;\n}\n\n.vnjson__test-quetions-wrapper{\n  position: relative;\n}\n\n\n.vnjson__test-quetion{\n  display: flex;\n}\n.vnjson__test-quetion-img{\n  display: none;\n  width: 250px;\n  height: 250px;\n  min-width: 250px;\n  margin: 10px 10px 10px 0;\n}\n.vnjson__test-quetion-val{\n  padding: 15px 0;\n  color: black;\n}\n.vnjson__variants-item{\n  padding: 10px;\n  margin-top: 5px;\n  background-color: darkslateblue;\n\n  color: rgba(255, 255, 255, 0.7);\n  cursor: pointer;\n  border-radius: 4px;\n}\n\n.vnjson__variants-item_success{\n  background-color: darkcyan;\n  color: white;\n}\n\n.vnjson__variants-item_fail{\n  background-color: crimson;\n  color: white;\n}\n.vnjson__variants-item:hover,\n.vnjson__variants-item_success:hover,\n.vnjson__variants-item_fail:hover{\n\n  filter: brightness(110%);\n}\n\n/**\n * RESULT\n */\n.vnjson__test-result{\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n  position: absolute;\n  border-radius: 4px;\n  display: none;\n  background-color: wheat;\n  padding: 20px 0;\n}\n.vnjson__test-result-data{\n  height: 110px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n\n}\n.vnjson__test-result-item{\n  color: black;\n  padding: 10px 0;\n  display: flex;\n  justify-content: space-between;\n  width: 250px;\n}\n.vnjson__test-result-item:first-child span:last-child{\n  color: darkcyan;\n}\n.vnjson__test-result-item:last-child span:last-child{\n  color: crimson;\n}\n.vnjson__test-next-btn{\n  background-color: burlywood;\n  color: rgba(255, 255, 255, 0.7);\n  border-radius: 4px;\n  padding: 10px 10px;\n  width: 250px;\n  text-align: center;\n  cursor: pointer;\n  box-shadow: 2px 2px 2px rgba(0,0,0,0.3);\n  position: absolute;\n  bottom: 20px;\n  left: 50%;\n  transform: translateX(-50%);\n}\n.vnjson__test-next-btn:hover{\n  background-color:  darkslateblue;\n  color: white;\n}";
+  var css$g = "\n.vnjson__test{\n  width: 600px;\n  top: 50px;\n  left: 50%;\n  transform: translateX(-50%);\n  background-color: wheat;\n  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);\n  padding: 20px;\n  border-radius: 4px;\n  min-height: 300px;\n\n}\n\n.vnjson__test-name{\n  border-bottom: 2px solid gray;\n  padding: 5px;\n  font-size: 16px;\n  padding-left: 0;\n  padding-bottom: 10px;\n  color: brown;\n}\n\n.vnjson__test-quetions-wrapper{\n  position: relative;\n}\n\n\n.vnjson__test-quetion{\n  display: flex;\n}\n.vnjson__test-quetion-img{\n  display: none;\n  width: 250px;\n  height: 250px;\n  min-width: 250px;\n  margin: 10px 10px 10px 0;\n}\n.vnjson__test-quetion-val{\n  padding: 15px 0;\n  color: black;\n}\n.vnjson__variants-item{\n  padding: 10px;\n  margin-top: 5px;\n  background-color: darkslateblue;\n\n  color: rgba(255, 255, 255, 0.7);\n  cursor: pointer;\n  border-radius: 4px;\n}\n\n.vnjson__variants-item_success{\n  background-color: darkcyan;\n  color: white;\n}\n\n.vnjson__variants-item_fail{\n  background-color: crimson;\n  color: white;\n}\n.vnjson__variants-item:hover,\n.vnjson__variants-item_success:hover,\n.vnjson__variants-item_fail:hover{\n\n  filter: brightness(110%);\n}\n\n/**\n * RESULT\n */\n.vnjson__test-result{\n  width: 100%;\n  height: 200px;\n  top: 0;\n  left: 0;\n  position: absolute;\n  border-radius: 4px;\n  display: none;\n  background-color: wheat;\n  padding: 20px 0;\n}\n.vnjson__test-result-data{\n  height: 110px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n\n}\n.vnjson__test-result-item{\n  color: black;\n  padding: 10px 0;\n  display: flex;\n  justify-content: space-between;\n  width: 250px;\n}\n.vnjson__test-result-item:first-child span:last-child{\n  color: darkcyan;\n}\n.vnjson__test-result-item:last-child span:last-child{\n  color: crimson;\n}\n.vnjson__test-next-btn{\n  background-color: burlywood;\n  color: rgba(255, 255, 255, 0.7);\n  border-radius: 4px;\n  padding: 10px 10px;\n  width: 250px;\n  text-align: center;\n  cursor: pointer;\n  box-shadow: 2px 2px 2px rgba(0,0,0,0.3);\n  position: absolute;\n  bottom: 20px;\n  left: 50%;\n  transform: translateX(-50%);\n}\n.vnjson__test-next-btn:hover{\n  background-color:  darkslateblue;\n  color: white;\n}";
   n(css$g,{});
 
-  var tpl$5 = "<div class=\"vnjson__test component\">\n    <div class=\"vnjson__test-name\"></div>\n    <div class=\"vnjson__test-quetions-wrapper\">\n        <div class=\"vnjson__test-quetion\">\n                <img class=\"vnjson__test-quetion-img\">\n                <div class=\"vnjson__test-quetion-val\"></div>\n        </div>\n        <div class=\"vnjson__test-variants\"></div>\n        <!--result-->\n        <div class=\"vnjson__test-result\">\n            <div class=\"vnjson__test-result-data\">\n                <div class=\"vnjson__test-result-item\">\n                      <span>Правильно</span>\n                      <span class=\"vnjson__test-result-item_true\">0</span>\n                </div>\n               <div class=\"vnjson__test-result-item\">\n                      <span>Не правильно</span>\n                      <span class=\"vnjson__test-result-item_false\">0</span>\n                </div>\n            </div>\n            <div class=\"vnjson__test-next-btn\">Продолжить</div>\n        </div>\n    </div>\n</div>";
+  var tpl$5 = "<div class=\"vnjson__test component\">\n    <div class=\"vnjson__test-name\"></div>\n    <div class=\"vnjson__test-quetions-wrapper\">\n        <div class=\"vnjson__test-quetion\">\n                <img class=\"vnjson__test-quetion-img\">\n                <div class=\"vnjson__test-quetion-val\"></div>\n        </div>\n        <div class=\"vnjson__test-variants\"></div>\n        <!--result-->\n        <div class=\"vnjson__test-result\">\n            <div class=\"vnjson__test-result-data\">\n                <div>\n                    <div class=\"vnjson__test-result-item\">\n                        <span class=\"vnjson__test-result-item_true--text\">Правильно</span>\n                        <span class=\"vnjson__test-result-item_true\">0</span>\n                  </div>\n                 <div class=\"vnjson__test-result-item vnjson__test-result-item--2\">\n                        <span>Не правильно</span>\n                        <span class=\"vnjson__test-result-item_false\">0</span>\n                  </div>\n                </div>\n            </div>\n            <div class=\"vnjson__test-next-btn\">Продолжить</div>\n        </div>\n    </div>\n</div>";
 
   var $tpl$9 = $(tpl$5);
   var TEST = null;
@@ -5086,32 +5086,34 @@
     _falseAnswer = 0;
     vnjs.state.data.trueAnswer = 0;
     vnjs.state.data.falseAnswer = 0;
-    $('.vnjson__test').css('background-color', 'wheat');
-    $('.vnjson__variants-item').css('background-color', 'unset');
-    $('.vnjson__test-next-btn').css('background-color', 'black');
-    $('.vnjson__variants-item_success').css('background-color', 'unset');
-    $('.vnjson__variants-item_fail').css('background-color', 'unset');
-    $('.vnjson__test-result').css('background-color', 'wheat');
+    vnjs.state.data.summTest = 0;
+    vnjs.state.data.textTest = "Результат";
+    $(".vnjson__test").css("background-color", "wheat");
+    $(".vnjson__variants-item").css("background-color", "unset");
+    $(".vnjson__test-next-btn").css("background-color", "black");
+    $(".vnjson__variants-item_success").css("background-color", "unset");
+    $(".vnjson__variants-item_fail").css("background-color", "unset");
+    $(".vnjson__test-result").css("background-color", "wheat");
   }
 
   function applyStyles() {
-    $('.vnjson__test').css('background-color', TEST['color-background']);
-    $('.vnjson__variants-item').css('background-color', TEST['color-item']);
-    $('.vnjson__test-next-btn').css('background-color', TEST['color-item']);
-    $('.vnjson__variants-item_success').css('background-color', TEST['color-item-correct']);
-    $('.vnjson__variants-item_fail').css('background-color', TEST['color-item-incorrect']);
-    $('.vnjson__test-result').css('background-color', TEST['color-result']);
+    $(".vnjson__test").css("background-color", TEST["color-background"]);
+    $(".vnjson__variants-item").css("background-color", TEST["color-item"]);
+    $(".vnjson__test-next-btn").css("background-color", TEST["color-item"]);
+    $(".vnjson__variants-item_success").css("background-color", TEST["color-item-correct"]);
+    $(".vnjson__variants-item_fail").css("background-color", TEST["color-item-incorrect"]);
+    $(".vnjson__test-result").css("background-color", TEST["color-result"]);
   }
 
   function test () {
     var _this = this;
 
     vnjs.store.screen.append($tpl$9);
-    vnjs.on('test', function (data) {
+    vnjs.on("test", function (data) {
       if (data) {
+        reset();
         $tpl$9.show();
         TEST = data;
-        reset();
         renderQuetion.call(_this);
       } else {
         $tpl$9.hide();
@@ -5124,27 +5126,37 @@
     var _quetionItem2;
 
     _quetionItem = TEST.quetions[qIndex];
-    $('.vnjson__test-name').html(TEST.name);
-    var $imageContaner = $('.vnjson__test-quetion-img'); // AUDIO
+    $(".vnjson__test-name").html(TEST.name);
+    var $imageContaner = $(".vnjson__test-quetion-img"); // AUDIO
 
     if ((_quetionItem2 = _quetionItem) !== null && _quetionItem2 !== void 0 && _quetionItem2.audio) {
-      vnjs.emit('audio', _quetionItem.audio);
+      vnjs.emit("audio", _quetionItem.audio);
     }
 
-    $('.vnjson__test-variants').html('');
+    $(".vnjson__test-variants").html("");
 
     if (_quetionItem.image) {
       var url = vnjs.getAssetByName(_quetionItem.image).url;
-      $imageContaner.attr('src', url).show();
+      $imageContaner.attr("src", url).show();
     } else {
       $imageContaner.hide();
     }
 
-    $('.vnjson__test-quetion-val').html(_quetionItem.quetion);
+    $(".vnjson__test-quetion-val").html(_quetionItem.quetion);
 
     _quetionItem.variants.map(function (item, index) {
-      var tplItem = "<div class=\"vnjson__variants-item\" data-index=\"".concat(index, "\">").concat(item, "</div>");
-      $('.vnjson__test-variants').append(tplItem);
+      var $tplItem = $("<div class=\"vnjson__variants-item\" data-index=\"".concat(index, "\"></div>"));
+
+      if (_typeof(item) === "object") {
+        for (var key in item) {
+          $tplItem.attr('data-point', item[key]);
+          $tplItem.html(key);
+        }
+      } else {
+        $tplItem.html(item);
+      }
+
+      $(".vnjson__test-variants").append($tplItem);
     });
 
     applyStyles();
@@ -5155,13 +5167,18 @@
 
 
   var click = true;
-  $tpl$9.find('.vnjson__test-variants').on('click', '.vnjson__variants-item', function () {
-    var index = $(this).data('index');
+  $tpl$9.find(".vnjson__test-variants").on("click", ".vnjson__variants-item", function () {
+    var index = $(this).data("index");
+    var point = $(this).data("point");
+
+    if (point) {
+      vnjs.state.data.summTest = vnjs.state.data.summTest + point;
+    }
 
     if (click) {
       if (index === _quetionItem.correct - 1) {
-        if (TEST['self-control']) {
-          $(this).addClass('vnjson__variants-item_success');
+        if (TEST["self-control"]) {
+          $(this).addClass("vnjson__variants-item_success");
         }
 
         ++_trueAnswer;
@@ -5170,12 +5187,12 @@
           quetion: _quetionItem
         });
       } else {
-        if (TEST['self-control']) {
-          $(this).addClass('vnjson__variants-item_fail'); // навешиваем класс на правильный ответ
+        if (TEST["self-control"]) {
+          $(this).addClass("vnjson__variants-item_fail"); // навешиваем класс на правильный ответ
 
-          $('.vnjson__variants-item').toArray().map(function (item) {
-            if ($(item).data('index') === TEST.quetions[qIndex].correct - 1) {
-              $(item).addClass('vnjson__variants-item_success');
+          $(".vnjson__variants-item").toArray().map(function (item) {
+            if ($(item).data("index") === TEST.quetions[qIndex].correct - 1) {
+              $(item).addClass("vnjson__variants-item_success");
             }
           });
           applyStyles();
@@ -5195,33 +5212,54 @@
   });
 
   function nextStep() {
-    var timer = typeof TEST['self-control'] === 'number' ? TEST['self-control'] : 1000;
+    var timer = typeof TEST["self-control"] === "number" ? TEST["self-control"] : 100;
     setTimeout(function () {
       click = true;
       ++qIndex;
 
       if (qIndex === TEST.quetions.length) {
-        /**
-         * Записываем результаты в data
-         */
-        vnjs.state.data.trueAnswer = _trueAnswer;
-        vnjs.state.data.falseAnswer = _falseAnswer;
-        $('.vnjson__test-result-item_true').html(_trueAnswer);
-        $('.vnjson__test-result-item_false').html(_falseAnswer);
-        $('.vnjson__test-result').show();
+        onEnd();
       } else {
         renderQuetion();
       }
     }, timer);
   }
 
-  $tpl$9.find('.vnjson__test-next-btn').on('click', function () {
+  $tpl$9.find(".vnjson__test-next-btn").on("click", function () {
     vnjs.exec({
       next: true,
       test: false
     });
-    $('.vnjson__test-result').hide();
+    $(".vnjson__test-result").hide();
   });
+
+  function onEnd() {
+    vnjs.state.data.trueAnswer = _trueAnswer;
+    vnjs.state.data.falseAnswer = _falseAnswer;
+
+    if (TEST.type === 'SummText') {
+      $('.vnjson__test-result-item--2').hide();
+
+      if (TEST.onEnd) {
+        vnjs.exec(TEST.onEnd);
+      }
+
+      $('.vnjson__test-result-item_true--text').html(vnjs.state.data.textTest);
+      $(".vnjson__test-result-item_true").html(vnjs.state.data.summTest);
+    }
+
+    if (TEST.type === 'TrueFalse') {
+      if (TEST.onEnd) {
+        vnjs.exec(TEST.onEnd);
+      }
+
+      $(".vnjson__test-result-item_true").html(_trueAnswer);
+      $(".vnjson__test-result-item_false").html(_falseAnswer);
+      $('.vnjson__test-result-item--2').show();
+    }
+
+    $(".vnjson__test-result").show();
+  }
 
   var css$f = ".screen-vnjson__slide{\n  position: absolute;\n  display: none;\n  top: 5%;\n  left: 50%;\n  transform: translateX(-50%);\n  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5);\n  z-index: 2000;\n}";
   n(css$f,{});
@@ -5897,6 +5935,14 @@
   }
 
   var blockHandler = {
+    /*
+    isMinecraft (){
+        if(!vnjs.store.MINECRAFT?.BLOCK){
+            vnjs.emit('vnjson.error', `Плагин работает только внутри Minecraft`)
+            return false
+        }
+        return true
+    },*/
     "mc-get-block": function mcGetBlock(args) {
       var block = vnjs.store.MINECRAFT.BLOCK;
 

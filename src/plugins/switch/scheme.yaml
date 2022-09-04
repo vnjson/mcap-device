@@ -16,9 +16,9 @@
   scene: ev
 
 - switch:
-    age === 17:
+    age === 17: 
       +: age равно 17
-    age === false: # false # null # undefined. 
+    age === undefined: # Переменная неопределена. 
       +: age не определено. Значения age ранее не задавались
     age > 17:
       +: <br>age больше 17

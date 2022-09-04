@@ -8,17 +8,61 @@
   next: true
 
 
+- test:
+    name: Название теста
+    self-control: false
+    type: SummText # TrueFalse
+    onEnd:
+      data-set: 
+         textTest: Результат первого теста 
+    quetions:
+      - quetion: Туристы, приезжающие на Майорку, обязаны заплатить налог
+        correct: 3
+        variants:
+          - На песок: 3
+          - На пальмы: 10
+          - На солнце: 100
+
+      - quetion: Что в Российской империи было вещевым эквивалентом денег?
+        image: alice # Можно передать изображение вкачестве илюстрации к вопросу
+        correct: 1
+        audio: sysFlipPages
+        variants:
+          - Шкуры пушных зверей: 1
+          - Крупный рогатый скот: 5
+          - Табак: 10
+          - Женские серьги: 20
+
+      - quetion: Кто из знаменитых художников за жизнь продал всего одну картину? 
+        correct: 1
+        variants:
+          - Винсент Ван Гог: 10
+          - Пьер Огюст Ренуар: 20
+
+
+- 4321
+- 1234
+
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
     slot: 0
     pos: [-307, 4, 682]
   next: true
-
+#- mc-get-block:
+#    "minecraft:diamond_block":
+#        $: tes
+#    "minecraft:air":
+#       
+#    "default":
+#        $: 
+    
 - mc-get-block:
-    id: minecraft:diamond_block
+    id: "minecraft:diamond_block"
     true:
       $: Алмазный блок
       scene: alice
+    false:
+      $: Не алмазный блок
 
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
@@ -28,7 +72,7 @@
 
 - mc-get-block-color:
     id: minecraft:wool
-    color: red #lime
+    color: lime
     true:
       $: Цвет lime. Блок шерсть
       scene: robocop

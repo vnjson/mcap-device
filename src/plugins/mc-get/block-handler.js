@@ -1,5 +1,14 @@
 export default {
+    /*
+    isMinecraft (){
+        if(!vnjs.store.MINECRAFT?.BLOCK){
+            vnjs.emit('vnjson.error', `Плагин работает только внутри Minecraft`)
+            return false
+        }
+        return true
+    },*/
     "mc-get-block" (args){
+
         const block = vnjs.store.MINECRAFT.BLOCK;
 
         if (args.id === block.data.id) {
