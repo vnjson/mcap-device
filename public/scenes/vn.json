@@ -111,6 +111,14 @@
         "hands": true,
         "next": true
       },
+      "test",
+      {
+        "switch": {
+          "age === false": {
+            "+": "age не определено"
+          }
+        }
+      },
       {
         "mc-get": {
           "request": "BLOCK",

@@ -4647,7 +4647,7 @@
     function Switch() {
       _classCallCheck(this, Switch);
 
-      _defineProperty(this, "operators", ['===', '<', '>', '>=', '<=', '!==', '\\[\\]', '\\]\\[' //'default'
+      _defineProperty(this, "operators", ["===", "<", ">", ">=", "<=", "!==", "\\[\\]", "\\]\\[" //'default'
       ]);
 
       _defineProperty(this, "dataValue", null);
@@ -4685,15 +4685,15 @@
           }
 
           if (this.OPERATOR === null) {
-            vnjs.emit('error', {
-              ru: "\u041D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u043E\u043F\u0435\u0440\u0430\u0442\u043E\u0440 <font color=\"deepskyblue\">".concat(this.equal, "</font><br>\u0414\u043E\u043F\u0443\u0441\u0442\u0438\u043C\u044B\u0435 \u043E\u043F\u0435\u0440\u0430\u0442\u043E\u0440\u044B <font color=\"lightgreen\">").concat(this.operators.join('  ').replaceAll('\\', ''), "</font>"),
-              en: "Invalid operator <font color=\"deepskyblue\">".concat(this.equal, "</font><br>ValidoOperators <font color=\"lightgreen\">").concat(this.operators.join('  ').replaceAll('\\', ''), "</font>")
+            vnjs.emit("error", {
+              ru: "\u041D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u043E\u043F\u0435\u0440\u0430\u0442\u043E\u0440 <font color=\"deepskyblue\">".concat(this.equal, "</font><br>\u0414\u043E\u043F\u0443\u0441\u0442\u0438\u043C\u044B\u0435 \u043E\u043F\u0435\u0440\u0430\u0442\u043E\u0440\u044B <font color=\"lightgreen\">").concat(this.operators.join("  ").replaceAll("\\", ""), "</font>"),
+              en: "Invalid operator <font color=\"deepskyblue\">".concat(this.equal, "</font><br>ValidoOperators <font color=\"lightgreen\">").concat(this.operators.join("  ").replaceAll("\\", ""), "</font>")
             });
             return;
           }
 
-          if (this.OPERATOR.includes('\\')) {
-            this.OPERATOR = this.OPERATOR.replaceAll('\\', '');
+          if (this.OPERATOR.includes("\\")) {
+            this.OPERATOR = this.OPERATOR.replaceAll("\\", "");
           }
 
           var _this$equal$split = this.equal.split(this.OPERATOR),
@@ -4704,7 +4704,19 @@
           this.dataValue = vnjs.state.data[key.trim()];
 
           if (isNaN(+val)) {
-            this.value = val.trim();
+            this.value = val.trim(); // false
+
+            if (this.value === "false") {
+              this.value = undefined;
+            }
+
+            if (this.value === "undefined") {
+              this.value = undefined;
+            }
+
+            if (this.value === "null") {
+              this.value = undefined;
+            }
           } else {
             this.value = Number(val);
           }
