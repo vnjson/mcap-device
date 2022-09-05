@@ -16,12 +16,20 @@ class Controller {
     /**
      * localStorage.remove()
      */
-    clear() {
-        localStorage.removeItem(this.token);
-        vnjs.state.data = {
-            score: vnjs.state.data.score,
-            player: vnjs.state.data.player,
-        };
+    clear(args) {
+        if(args===true){
+            localStorage.removeItem(this.token);
+            vnjs.state.data = {
+                score: vnjs.state.data.score,
+                player: vnjs.state.data.player,
+            };
+        }
+        else if(Array.isArray(args)){
+            args.forEach( (item) => {
+                delete vnjs.state.data[item];
+            })
+            this.save(vnjs.state.data);
+        }
     }
     set(data) {
         for (let key in data) {

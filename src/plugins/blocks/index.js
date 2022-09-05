@@ -75,7 +75,7 @@ function blocksHandler(param) {
     }
 }
 
-function animationType($imgWrapper, $img, $imgBox, item) {
+function animationType($imgWrapper, $img, $imgBox, item, _isStep) {
     switch (item.animation.type) {
         /**
          * slide
@@ -251,12 +251,30 @@ function animationType($imgWrapper, $img, $imgBox, item) {
                 }
             });
             break;
-        default:
-            vnjs.exec({
-                $: `<font color="red">Неверный тип анимации ${JSON.stringify(
-                    item.animation.type
-                )}</font>`,
+
+        /**
+         * zoom
+         */
+         case "sizeTo":
+            $img.css({ display: "block", opacity: 1 });
+
+            let data = {
+                width: item.animation.width||item.width,
+                height: item.animation.height||item.height
+            };
+
+            $imgWrapper.animate(data, item.animation.duration)
+            $img.animate(data, item.animation.duration, () => {
+                if (item.animation.onEnd) {
+                    vnjs.exec(item.animation.onEnd);
+                }
             });
+            break;
+        default:
+            vnjs.emit('vnjson.error', `<font color="red">Неверный тип анимации ${JSON.stringify(
+                item.animation.type
+            )}</font>`)
+
     }
 }
 
@@ -264,7 +282,7 @@ function blocksStepHandler(item) {
     const $imgWrapper = $(`.vnjson__blocks--${item.id}`);
     const $img = $imgWrapper.find("img");
     const $imgBox = $imgWrapper.find(`.vnjson__blocks-wrapper--${item.id}`);
-
+    const isStep = true;
     if (!item.timeout) {
         item.timeout = 0;
     }
@@ -278,7 +296,7 @@ function blocksStepHandler(item) {
             $imgWrapper.css("z-index", item["z-index"]);
         }
         if (item.animation) {
-            animationType($imgWrapper, $img, $imgBox, item);
+            animationType($imgWrapper, $img, $imgBox, item, isStep);
         } else {
             $img.css({ opacity: "1", display: "block" });
         }

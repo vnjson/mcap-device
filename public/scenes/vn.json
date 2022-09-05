@@ -111,32 +111,66 @@
         "next": true
       },
       {
-        "$": "data",
         "data-set": {
-          "age": 500
-        }
+          "w": 200,
+          "h": 100
+        },
+        "next": true
       },
       {
-        "eval": "vnjs.state.data.age = vnjs.state.data.age / 2"
+        "blocks": [
+          {
+            "image": "alice",
+            "id": "test1",
+            "timeout": 0,
+            "width": "100px",
+            "height": "100px",
+            "top": "100px",
+            "left": "400px",
+            "animation": {
+              "type": "sizeTo",
+              "duration": 1000,
+              "width": "500px",
+              "height": "300px"
+            }
+          }
+        ]
       },
       {
-        "blocks": {
+        "blocks-step": {
+          "id": "test1",
+          "image": "alice",
           "animation": {
             "type": "sizeTo",
-            "duration": 3000,
-            "width": "{{val1234}}px",
-            "height": "{{val1234}}px",
-            "onEnd": {
-              "$": "test test"
-            }
+            "duration": 1000,
+            "width": "50px",
+            "height": "100px"
           }
         }
       },
       {
-        "push": {
+        "blocks-step": {
           "id": "test1",
-          "icon": "alice",
-          "info": 12345678
+          "image": "alice",
+          "animation": {
+            "type": "sizeTo",
+            "duration": 1000,
+            "width": "250px",
+            "height": "100px"
+          }
+        }
+      },
+      {
+        "al": "TTTTTTTTTTTTTTTTTTTTTT"
+      },
+      {
+        "blocks-step": {
+          "animation": {
+            "type": "sizeTo",
+            "duration": 3000,
+            "width": "{{val1234}}px",
+            "height": "{{val1234}}px"
+          }
         }
       },
       {
@@ -147,6 +181,34 @@
       },
       {
         "al": "-----END----- 2"
+      },
+      {
+        "data-set": {
+          "age": 100,
+          "name": "Test"
+        }
+      },
+      "очистить",
+      {
+        "data-clear": [
+          "age"
+        ]
+      },
+      {
+        "push": {
+          "id": "test1",
+          "icon": "alice",
+          "info": "12345678"
+        }
+      },
+      {
+        "$": "data",
+        "data-set": {
+          "age": 500
+        }
+      },
+      {
+        "eval": "vnjs.state.data.age = vnjs.state.data.age / 2"
       },
       {
         "jump": "$root.$init.1"

@@ -127,11 +127,12 @@ export default function () {
     });
 
     /**
-     * кликаем по кнопке css
+     * кликаем по кнопке snippet
      */
     $(".debug-btn--value").on("click", function () {
-        const name = pluginsSnipet[pluginName];
-        $pluginValue.val(name);
+        const snippet = pluginsSnipet[pluginName.replace('vnjson.', "")]
+
+        $pluginValue.val(snippet);
     });
 
     /**
@@ -166,7 +167,7 @@ export default function () {
     /**
      * Screenshot
      */
-    $(".debug__inner-screenshot").on("click", () => screenShot.nodeToCanvas());
+    //$(".debug__inner-screenshot").on("click", () => screenShot.nodeToCanvas());
     /**
      * PLUGINS
      */

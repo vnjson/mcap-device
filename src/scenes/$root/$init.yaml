@@ -7,7 +7,70 @@
   #hud: true
   next: true
 
-# cmd-mc-get
+- data-set:
+    w: 200
+    h: 100
+  next: true
+- blocks: 
+      - image: alice
+        id: test1
+        timeout: 0
+        width: 100px
+        height: 100px
+        top: 100px
+        left: 400px
+        animation: 
+          type: sizeTo
+          duration: 1000
+          width: 500px
+          height: 300px
+# STEP
+- blocks-step:
+    id: test1
+    image: alice # false - скрывает изображение
+    animation: 
+      type: sizeTo
+      duration: 1000
+      width: 50px
+      height: 100px
+# STEP
+- blocks-step:
+    id: test1
+    image: alice # false - скрывает изображение
+    animation: 
+      type: sizeTo
+      duration: 1000
+      width: 250px
+      height: 100px
+
+- al: TTTTTTTTTTTTTTTTTTTTTT
+
+- blocks-step: 
+        animation: 
+          type: sizeTo
+          duration: 3000
+          width: "{{val1234}}px"
+          height: "{{val1234}}px"
+
+
+
+- al: -----END----- 0
+- al: -----END----- 1
+- al: -----END----- 2
+
+
+- data-set:
+    age: 100
+    name: Test
+- очистить    
+- data-clear:
+        - age
+        #- name
+
+- push: # false # - id: test1 
+    id: test1 # sort
+    icon: alice
+    info: "12345678"
 
 # moveTo sizeTo . {{var}}
 - $:  data
@@ -16,28 +79,6 @@
 
 - eval: "vnjs.state.data.age = vnjs.state.data.age / 2"
 
-- blocks: 
-        animation: 
-          type: sizeTo
-          duration: 3000
-          width: "{{val1234}}px"
-          height: "{{val1234}}px"
-         # value: {{val1234}} px
-          onEnd:
-            $: test test
-#   data-clear:
-#        - age
-#        - name
 
-- push: # false # - id: test1 
-    id: test1 # sort
-    icon: alice
-    info: 12345678
-
-
-
-- al: -----END----- 0
-- al: -----END----- 1
-- al: -----END----- 2
 
 - jump: $root.$init.1

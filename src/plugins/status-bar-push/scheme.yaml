@@ -7,9 +7,9 @@ push: menu-item
 - push: 
     icon: alice
     info: 12345678
-
+    id: test1
 - push: 
     info: Привет мир
-
+    id: test2
 # Очистить списокуведомлений
 - push: false

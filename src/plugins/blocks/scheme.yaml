@@ -15,6 +15,7 @@
 # showDown
 # showLeft 
 # showRight 
+# sizeTo
 
   blocks: 
       - image: Patterns # Изображение отоброжаемое в на экране
@@ -254,3 +255,27 @@
         animation: 
           type: showRight
           duration: 2000
+
+### sizeTo
+- blocks: 
+      - image: alice
+        id: test1
+        timeout: 0
+        width: 100px
+        height: 100px
+        top: 100px
+        left: 400px
+        animation: 
+          type: sizeTo
+          duration: 1000
+          width: 500px
+          height: 300px
+# STEP
+- blocks-step:
+    id: test1
+    image: alice # false - скрывает изображение
+    animation: 
+      type: sizeTo
+      duration: 1000
+      width: 50px
+      height: 100px

@@ -2406,12 +2406,12 @@
       pluginName = $(this).data("plugin");
     });
     /**
-     * кликаем по кнопке css
+     * кликаем по кнопке snippet
      */
 
     $(".debug-btn--value").on("click", function () {
-      var name = pluginsSnipet[pluginName];
-      $pluginValue.val(name);
+      var snippet = pluginsSnipet[pluginName.replace('vnjson.', "")];
+      $pluginValue.val(snippet);
     });
     /**
      * Кликаем по кнопке [ выполнить плагин ]
@@ -2453,10 +2453,8 @@
     /**
      * Screenshot
      */
+    //$(".debug__inner-screenshot").on("click", () => screenShot.nodeToCanvas());
 
-    $(".debug__inner-screenshot").on("click", function () {
-      return screenShot.nodeToCanvas();
-    });
     /**
      * PLUGINS
      */
@@ -4494,12 +4492,19 @@
 
     }, {
       key: "clear",
-      value: function clear() {
-        localStorage.removeItem(this.token);
-        vnjs.state.data = {
-          score: vnjs.state.data.score,
-          player: vnjs.state.data.player
-        };
+      value: function clear(args) {
+        if (args === true) {
+          localStorage.removeItem(this.token);
+          vnjs.state.data = {
+            score: vnjs.state.data.score,
+            player: vnjs.state.data.player
+          };
+        } else if (Array.isArray(args)) {
+          args.forEach(function (item) {
+            delete vnjs.state.data[item];
+          });
+          this.save(vnjs.state.data);
+        }
       }
     }, {
       key: "set",
@@ -4578,11 +4583,11 @@
   vnjs.on("postload", function () {
     controller$1.load(vnjs["package"].publish.token);
   });
-  vnjs.on("data-set", function (params) {
-    return controller$1.set(params);
+  vnjs.on("data-set", function (args) {
+    return controller$1.set(args);
   });
-  vnjs.on("data-clear", function () {
-    return controller$1.clear();
+  vnjs.on("data-clear", function (args) {
+    return controller$1.clear(args);
   });
   vnjs.on("data-save", function () {
     controller$1.save(vnjs.state.data);
@@ -4591,9 +4596,9 @@
    * deprecated
    */
 
-  vnjs.on("set-data", function (params) {
+  vnjs.on("set-data", function (args) {
     console.warn("[set-data] is deprecated. Use [data-set]");
-    controller$1.set(params);
+    controller$1.set(args);
   });
   vnjs.on("clear-data", function () {
     console.warn("[clear-data] is deprecated. Use [data-clear]");
@@ -4916,7 +4921,7 @@
 
   var $tpl$b = $(tpl$6);
   var input = $tpl$b.find(".vnjson__input-wrapper input");
-  var _args$1 = null;
+  var _args$2 = null;
   var character = null;
   /**
    * setup
@@ -4950,7 +4955,7 @@
     character = vnjs.getCharacterById(args);
 
     if (args) {
-      _args$1 = args;
+      _args$2 = args;
 
       if (character) {
         input.val(character.name);
@@ -4975,7 +4980,7 @@
     if (character) {
       character.name = input.val();
     } else {
-      vnjs.emit("data-set", _defineProperty({}, _args$1, input.val()));
+      vnjs.emit("data-set", _defineProperty({}, _args$2, input.val()));
     }
 
     input.val("");
@@ -7389,7 +7394,7 @@
     }
   }
 
-  function animationType($imgWrapper, $img, $imgBox, item) {
+  function animationType($imgWrapper, $img, $imgBox, item, _isStep) {
     switch (item.animation.type) {
       /**
        * slide
@@ -7634,10 +7639,29 @@
         });
         break;
 
-      default:
-        vnjs$1.exec({
-          $: "<font color=\"red\">\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0442\u0438\u043F \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 ".concat(JSON.stringify(item.animation.type), "</font>")
+      /**
+       * zoom
+       */
+
+      case "sizeTo":
+        $img.css({
+          display: "block",
+          opacity: 1
         });
+        var data = {
+          width: item.animation.width || item.width,
+          height: item.animation.height || item.height
+        };
+        $imgWrapper.animate(data, item.animation.duration);
+        $img.animate(data, item.animation.duration, function () {
+          if (item.animation.onEnd) {
+            vnjs$1.exec(item.animation.onEnd);
+          }
+        });
+        break;
+
+      default:
+        vnjs$1.emit('vnjson.error', "<font color=\"red\">\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0442\u0438\u043F \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 ".concat(JSON.stringify(item.animation.type), "</font>"));
     }
   }
 
@@ -8126,10 +8150,10 @@
 
   function spriteAnimate () {}
   var animation = null;
-  var _args = null;
+  var _args$1 = null;
   var storeAnimation = {};
   vnjs.on("sprite-animate", function (args) {
-    _args = args;
+    _args$1 = args;
 
     if (_typeof(args) === 'object') {
       animation = new SritesAnimation(args);
@@ -8147,13 +8171,13 @@
     }
   });
   vnjs.on('sprite-animation.loop', function (id, n) {
-    if (_args.onLoop) {
-      vnjs.exec(_args.onLoop);
+    if (_args$1.onLoop) {
+      vnjs.exec(_args$1.onLoop);
     }
   });
   vnjs.on('sprite-animation.end', function (id) {
-    if (_args.onEnd) {
-      vnjs.exec(_args.onEnd);
+    if (_args$1.onEnd) {
+      vnjs.exec(_args$1.onEnd);
     }
   });
   vnjs.on('sprite-animate-move', function (args) {
@@ -8176,6 +8200,7 @@
   var $tpl = $("<div class=\"status-bar-push component\"></div>");
   var $logo = null;
   var openList = false;
+  var _args = null;
   function statusBarPush () {
     this.store.screen.append($tpl);
     $logo = $('.status-bar__logo-wrapper');
@@ -8188,6 +8213,7 @@
   }
 
   function pushHandler(args) {
+    _args = args;
     vnjs.state.data['pushStore'] = vnjs.state.data['pushStore'] || [];
 
     if (!args) {
@@ -8195,12 +8221,20 @@
       $tpl.empty();
       $tpl.close();
     } else {
-      var message = _objectSpread2(_objectSpread2({}, args), {}, {
-        read: false
-      });
+      var message = _objectSpread2({}, args);
+      /**
+       * Проверяю существует ли запись с таким id
+       */
 
+
+      setTimeout(function () {
+        outputMessages();
+      }, 100);
+      var itemExist = vnjs.state.data['pushStore'].find(function (item) {
+        return item.id === _args.id;
+      });
+      if (itemExist) return;
       vnjs.state.data['pushStore'].push(message);
-      outputMessages();
       updateStatus();
     }
 
@@ -8217,16 +8251,32 @@
 
   function outputMessages() {
     $tpl.empty();
-    var pushStore = vnjs.state.data.pushStore;
-    pushStore[0].read = true;
+    var pushStore = vnjs.state.data.pushStore.sort(function (a, b) {
+      if (a.id > b.id) {
+        return 1;
+      }
+
+      if (a.id < b.id) {
+        return -1;
+      }
+
+      return 0;
+    }).reverse();
+    /**
+     * Перебираем массив с записями
+     */
+
     pushStore.forEach(function (msg, index) {
       var $str = $("<div class=\"status-bar__push-status\">\n                            <div class=\"status-bar-push__icon\"></div>\n                            <div class=\"status-bar-push__info\">".concat(msg.info, "</div>       \n                      </div>"));
       var $icon = $str.find('.status-bar-push__icon');
 
       if (msg.icon) {
         var url = vnjs.getAssetByName(msg.icon).url;
-        $icon.css('background-image', "url(".concat(url, ")"));
-        $icon.show();
+
+        if (url) {
+          $icon.css('background-image', "url(".concat(url, ")"));
+          $icon.show();
+        }
       } else {
         $icon.hide();
         $icon.css('background-image', "unset");
@@ -8261,7 +8311,6 @@
       scrollTop: $tpl.height()
     }, 500);
   }
-
   vnjs.on('dialog-box.click', function () {
     return close();
   });
