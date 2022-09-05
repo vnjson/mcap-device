@@ -112,10 +112,8 @@
       },
       {
         "data-set": {
-          "w": 200,
-          "h": 100
-        },
-        "next": true
+          "w": 20
+        }
       },
       {
         "blocks": [
@@ -126,12 +124,10 @@
             "width": "100px",
             "height": "100px",
             "top": "100px",
-            "left": "400px",
+            "left": "100px",
             "animation": {
-              "type": "sizeTo",
-              "duration": 1000,
-              "width": "500px",
-              "height": "300px"
+              "type": "moveTo",
+              "duration": 1000
             }
           }
         ]
@@ -155,7 +151,7 @@
           "animation": {
             "type": "sizeTo",
             "duration": 1000,
-            "width": "250px",
+            "width": "800px",
             "height": "100px"
           }
         }
@@ -363,144 +359,14 @@
     ],
     "$init": [
       {
-        "al": "Тестирую таблицу",
-        "scene": "paintBoardBlack",
-        "table": [
-          {
-            "row": [
-              {
-                "height": 100
-              },
-              {
-                "text": {
-                  "content": "Aaaa",
-                  "width": 150,
-                  "size": 32,
-                  "border": "#ff0096",
-                  "exec": {
-                    "$": "EXECUTE TEXT 1"
-                  }
-                }
-              },
-              {
-                "image": {
-                  "name": "ev",
-                  "width": 50,
-                  "exec": {
-                    "$": "EXECUTE TEXT 2"
-                  }
-                }
-              },
-              {
-                "text": {
-                  "content": "test",
-                  "width": 180,
-                  "color-background": "brown",
-                  "border": "darkcyan",
-                  "align-h": "right",
-                  "align-v": "bottom"
-                }
-              }
-            ]
-          },
-          {
-            "row": [
-              {
-                "height": 50
-              },
-              {
-                "text": {
-                  "content": "Screenshot",
-                  "width": 150,
-                  "border": true,
-                  "color-background": "darkcyan",
-                  "exec": {
-                    "$": "EXECUTE TEXT 3"
-                  }
-                }
-              },
-              {
-                "image": {
-                  "name": "ev",
-                  "width": 100,
-                  "border": "cyan"
-                }
-              },
-              {
-                "image": {
-                  "name": "p1",
-                  "width": 80,
-                  "border": true
-                }
-              }
-            ]
-          },
-          {
-            "row": [
-              {
-                "height": 100,
-                "text": {
-                  "content": "Эксперименты с баранами",
-                  "border": "#3d85c6",
-                  "width": 500,
-                  "size": 25,
-                  "align-h": "center"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "$": "--END--"
-      },
-      {
-        "al": "--END--"
-      },
-      {
-        "paint-board": "paintBoardBlack"
-      },
-      {
-        "paint-board": false,
+        "data-set": {
+          "w": 200,
+          "h": 100
+        },
         "next": true
       },
       {
-        "test": {
-          "name": "Название теста",
-          "self-control": true,
-          "quetions": [
-            {
-              "quetion": "Туристы, приезжающие на Майорку, обязаны заплатить налог",
-              "correct": 3,
-              "audio": "sysFlipPages",
-              "variants": [
-                "На песок",
-                "На пальмы",
-                "На солнце"
-              ]
-            },
-            {
-              "quetion": "Что в Российской империи было вещевым эквивалентом денег?",
-              "image": "c71c347ae",
-              "correct": 1,
-              "variants": [
-                "Шкуры пушных зверей",
-                "Крупный рогатый скот",
-                "Табак",
-                "Женские серьги"
-              ]
-            },
-            {
-              "quetion": "Кто из знаменитых художников за жизнь продал всего одну картину?",
-              "correct": 1,
-              "audio": "sysFlipPages",
-              "variants": [
-                "Винсент Ван Гог",
-                "Пьер Огюст Ренуар"
-              ]
-            }
-          ]
-        }
+        "al": "Тестирую таблицу"
       }
     ],
     "content": [

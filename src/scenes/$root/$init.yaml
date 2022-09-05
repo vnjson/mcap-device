@@ -7,10 +7,11 @@
   #hud: true
   next: true
 
+#- jump: testdata.$init
+
 - data-set:
-    w: 200
-    h: 100
-  next: true
+    w: 20
+
 - blocks: 
       - image: alice
         id: test1
@@ -18,12 +19,12 @@
         width: 100px
         height: 100px
         top: 100px
-        left: 400px
+        left: 100px
         animation: 
-          type: sizeTo
+          type: moveTo
           duration: 1000
-          width: 500px
-          height: 300px
+          #width: "{{w}}px"
+          #height: 500px
 # STEP
 - blocks-step:
     id: test1
@@ -40,7 +41,7 @@
     animation: 
       type: sizeTo
       duration: 1000
-      width: 250px
+      width: 800px
       height: 100px
 
 - al: TTTTTTTTTTTTTTTTTTTTTT

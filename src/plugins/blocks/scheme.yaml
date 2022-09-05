@@ -16,6 +16,7 @@
 # showLeft 
 # showRight 
 # sizeTo
+# В sizeTo и moveTo можно запихать переменные в параметры width/height/top/left
 
   blocks: 
       - image: Patterns # Изображение отоброжаемое в на экране
@@ -268,7 +269,7 @@
         animation: 
           type: sizeTo
           duration: 1000
-          width: 500px
+          width: "{{width}}px"
           height: 300px
 # STEP
 - blocks-step:

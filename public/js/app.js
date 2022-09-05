@@ -7571,11 +7571,11 @@
         var animationData = {};
 
         if (item.animation.left) {
-          animationData.left = item.animation.left.replaceAll(" ", "");
+          animationData.left = replaceData(item.animation.left.replaceAll(" ", ""));
         }
 
         if (item.animation.top) {
-          animationData.top = item.animation.top.replaceAll(" ", "");
+          animationData.top = replaceData(item.animation.top.replaceAll(" ", ""));
         }
 
         $imgWrapper.animate(animationData, item.animation.duration, function () {
@@ -7649,8 +7649,8 @@
           opacity: 1
         });
         var data = {
-          width: item.animation.width || item.width,
-          height: item.animation.height || item.height
+          width: item.animation.width ? replaceData(item.animation.width) : item.width,
+          height: item.animation.height ? replaceData(item.animation.height) : item.height
         };
         $imgWrapper.animate(data, item.animation.duration);
         $img.animate(data, item.animation.duration, function () {
@@ -7692,6 +7692,10 @@
         });
       }
     }, item.timeout + 100);
+  }
+
+  function replaceData(str) {
+    return vnjs$1.plugins['dialog-box'].replaceDataTemplate(str);
   }
 
   var css$4 = ".vnjson__static-app{\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  top: 50px;\r\n  width: 750px;\r\n  height: 500px;\r\n\r\n}";

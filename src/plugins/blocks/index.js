@@ -203,11 +203,13 @@ function animationType($imgWrapper, $img, $imgBox, item, _isStep) {
             $img.css({ display: "block", opacity: 1 });
             const animationData = {};
             if (item.animation.left) {
-                animationData.left = item.animation.left.replaceAll(" ", "");
+                animationData.left = replaceData( item.animation.left.replaceAll(" ", "") );
             }
             if (item.animation.top) {
-                animationData.top = item.animation.top.replaceAll(" ", "");
+                animationData.top = replaceData( item.animation.top.replaceAll(" ", "") );
             }
+           
+
             $imgWrapper.animate(animationData, item.animation.duration, () => {
                 if (item.animation.onEnd) {
                     vnjs.exec(item.animation.onEnd);
@@ -259,8 +261,8 @@ function animationType($imgWrapper, $img, $imgBox, item, _isStep) {
             $img.css({ display: "block", opacity: 1 });
 
             let data = {
-                width: item.animation.width||item.width,
-                height: item.animation.height||item.height
+                width:  item.animation.width?replaceData(item.animation.width):item.width,
+                height: item.animation.height?replaceData(item.animation.height):item.height
             };
 
             $imgWrapper.animate(data, item.animation.duration)
@@ -301,4 +303,9 @@ function blocksStepHandler(item) {
             $img.css({ opacity: "1", display: "block" });
         }
     }, item.timeout + 100);
+}
+
+
+function replaceData (str){
+    return vnjs.plugins['dialog-box'].replaceDataTemplate(str)
 }
