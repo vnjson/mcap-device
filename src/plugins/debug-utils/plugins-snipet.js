@@ -94,11 +94,9 @@ css:
 give @p dirt 1`,
   'cmd-server': `executeCMD
 say TEST`,
-  'query-get': `request: PLAYER #BLOCK #SLOT #ENTITY
+  'cmd-mc-get': `request: PLAYER #BLOCK #SLOT #ENTITY
 slot: 0
-x: 0
-y: 0
-z: 0`,
+post: [0, 0, 0]`,
 /**
  * DATA
  */

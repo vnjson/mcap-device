@@ -56,6 +56,7 @@ import executeVnjson from "./plugins/execute/index.js";
 //import filter from "./plugins/filter/index.js";
 import spriteAnimate from './plugins/sprite-animate/index.js';
 import statusBarPush from './plugins/status-bar-push/index.js'
+import evalVnjson from './plugins/eval/index.js'
 /**
  * Init plugins
  */
@@ -111,6 +112,7 @@ vnjs.use(executeVnjson);
 //vnjs.use(filter);
 vnjs.use(spriteAnimate);
 vnjs.use(statusBarPush);
+vnjs.use(evalVnjson)
 
 /**
  * LOAD scenes

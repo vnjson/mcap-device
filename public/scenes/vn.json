@@ -106,144 +106,47 @@
       {
         "dialog-box": true,
         "audio": false,
-        "data-clear": true,
         "status-bar": true,
         "hands": true,
         "next": true
       },
       {
-        "mc-get": {
-          "request": "BLOCK",
-          "slot": 0,
-          "pos": [
-            -307,
-            4,
-            682
-          ]
-        },
-        "next": true
+        "$": "data",
+        "data-set": {
+          "age": 500
+        }
       },
       {
-        "mc-get-block": {
-          "minecraft:diamond_block": {
-            "al": "DIAMOND"
-          },
-          "minecraft:air": {
-            "$": "AIR"
-          },
-          "default": {
-            "$": "DEFAULT"
+        "eval": "vnjs.state.data.age = vnjs.state.data.age / 2"
+      },
+      {
+        "blocks": {
+          "animation": {
+            "type": "sizeTo",
+            "duration": 3000,
+            "width": "{{val1234}}px",
+            "height": "{{val1234}}px",
+            "onEnd": {
+              "$": "test test"
+            }
           }
         }
       },
       {
-        "mc-get": {
-          "request": "BLOCK",
-          "slot": 0,
-          "pos": [
-            -307,
-            5,
-            682
-          ]
-        },
-        "next": true
-      },
-      {
-        "mc-get-block-color": {
-          "minecraft:wool.lime": {
-            "$": "Цвет lime. Блок шерсть"
-          },
-          "minecraft:wool.red": {
-            "$": "RED"
-          },
-          "default": {
-            "$": "DEFAULT COLOR"
-          }
+        "push": {
+          "id": "test1",
+          "icon": "alice",
+          "info": 12345678
         }
       },
       {
-        "mc-get": {
-          "request": "BLOCK",
-          "slot": 0,
-          "pos": [
-            -307,
-            6,
-            682
-          ]
-        },
-        "next": true
+        "al": "-----END----- 0"
       },
       {
-        "mc-get-block-variant": {
-          "minecraft:log.birch": {
-            "$": "Вариант берёза. Блок дерево"
-          },
-          "minecraft:log.birch111": {
-            "$": "test"
-          },
-          "default": {
-            "$": "Вариант поумолчанию"
-          }
-        }
+        "al": "-----END----- 1"
       },
       {
-        "mc-get": {
-          "request": "BLOCK",
-          "slot": 0,
-          "pos": [
-            -307,
-            7,
-            682
-          ]
-        },
-        "next": true
-      },
-      {
-        "mc-get-block-axis": {
-          "minecraft:log.x": {
-            "$": "Расположен по оси x. Блок дерево"
-          },
-          "minecraft:log.y": {
-            "$": "Y"
-          },
-          "default": {
-            "$": "xyz"
-          }
-        }
-      },
-      {
-        "mc-get": {
-          "request": "BLOCK",
-          "slot": 0,
-          "pos": [
-            -307,
-            8,
-            682
-          ]
-        },
-        "next": true
-      },
-      {
-        "mc-get-block-facing": {
-          "minecraft:chest.north": {
-            "$": "Сундук смотрит на север"
-          },
-          "minecraft:chest.south": {
-            "$": "ЮГ"
-          },
-          "default": {
-            "$": "Сторона света не определена"
-          }
-        }
-      },
-      {
-        "al": "-----END-----"
-      },
-      {
-        "al": "-----END-----"
-      },
-      {
-        "al": "-----END-----"
+        "al": "-----END----- 2"
       },
       {
         "jump": "$root.$init.1"

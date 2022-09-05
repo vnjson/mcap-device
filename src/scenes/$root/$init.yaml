@@ -1,89 +1,43 @@
 - dialog-box: true #fullscreen
   audio: false
-  data-clear: true
+  #data-clear: true
   status-bar: true
   #scene: alice
   hands: true
   #hud: true
   next: true
 
+# cmd-mc-get
+
+# moveTo sizeTo . {{var}}
+- $:  data
+  data-set:
+    age: 500
+
+- eval: "vnjs.state.data.age = vnjs.state.data.age / 2"
+
+- blocks: 
+        animation: 
+          type: sizeTo
+          duration: 3000
+          width: "{{val1234}}px"
+          height: "{{val1234}}px"
+         # value: {{val1234}} px
+          onEnd:
+            $: test test
+#   data-clear:
+#        - age
+#        - name
+
+- push: # false # - id: test1 
+    id: test1 # sort
+    icon: alice
+    info: 12345678
 
 
 
-- mc-get:
-    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
-    slot: 0
-    pos: [-307, 4, 682]
-  next: true
-- mc-get-block:
-    "minecraft:diamond_block":
-        al: DIAMOND
-    "minecraft:air":
-        $: AIR
-    "default":
-        $:  DEFAULT
-
-
-- mc-get:
-    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
-    slot: 0
-    pos: [-307, 5, 682]
-  next: true
-
-- mc-get-block-color:
-    "minecraft:wool.lime":
-        $: Цвет lime. Блок шерсть
-    "minecraft:wool.red":
-        $: RED
-    "default":
-        $:  DEFAULT COLOR
-
-- mc-get:
-    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
-    slot: 0
-    pos: [-307, 6, 682]
-  next: true
-
-- mc-get-block-variant:
-    "minecraft:log.birch":
-      $: Вариант берёза. Блок дерево
-    "minecraft:log.birch111":
-      $: test
-    "default":
-      $: Вариант поумолчанию
-
-
-- mc-get:
-    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
-    slot: 0
-    pos: [-307, 7, 682]
-  next: true
-
-- mc-get-block-axis:
-    "minecraft:log.x":
-        $: Расположен по оси x. Блок дерево
-    "minecraft:log.y":
-        $: Y
-    "default":
-        $: xyz  
-
-
-- mc-get:
-    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
-    slot: 0
-    pos: [-307, 8, 682]
-  next: true
-
-- mc-get-block-facing:
-    "minecraft:chest.north":
-        $: Сундук смотрит на север
-    "minecraft:chest.south":
-        $: ЮГ
-    "default":
-        $: Сторона света не определена
-    
-- al: -----END-----
-- al: -----END-----
-- al: -----END-----
+- al: -----END----- 0
+- al: -----END----- 1
+- al: -----END----- 2
 
 - jump: $root.$init.1

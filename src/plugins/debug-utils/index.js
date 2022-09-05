@@ -87,7 +87,7 @@ export default function () {
         "img-size",
         "cmd-player",
         "cmd-server",
-        "query-get",
+        "cmd-mc-get",
         "data",
     ];
     /**
@@ -185,7 +185,7 @@ export default function () {
     /**
      * Minecraft query GET
      */
-    vnjs.on("vnjson.query-get", queryGetPlugin);
+    vnjs.on("vnjson.cmd-mc-get", queryGetPlugin);
     /**
      * Output data
      */

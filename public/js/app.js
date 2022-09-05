@@ -2091,7 +2091,7 @@
      */
     'cmd-player': "executeCMD\ngive @p dirt 1",
     'cmd-server': "executeCMD\nsay TEST",
-    'query-get': "request: PLAYER #BLOCK #SLOT #ENTITY\nslot: 0\nx: 0\ny: 0\nz: 0",
+    'cmd-mc-get': "request: PLAYER #BLOCK #SLOT #ENTITY\nslot: 0\npost: [0, 0, 0]",
 
     /**
      * DATA
@@ -2290,7 +2290,7 @@
     this.exec(plugins);
   }
 
-  var exclude = ['score', 'player'];
+  var exclude = ["score", "player", "pushStore"];
   function outputDataPlugin (asset) {
     var data = {};
 
@@ -2302,7 +2302,7 @@
 
     var _data = jsyaml.dump(data);
 
-    vnjs.emit('vnjson.info', _data);
+    vnjs.emit("vnjson.info", _data);
   }
 
   /**
@@ -2369,7 +2369,7 @@
      * degug plugins
      */
 
-    var devPlugins = ["img-size", "cmd-player", "cmd-server", "query-get", "data"];
+    var devPlugins = ["img-size", "cmd-player", "cmd-server", "cmd-mc-get", "data"];
     /**
      * Выводим список плагинов
      */
@@ -2480,7 +2480,7 @@
      * Minecraft query GET
      */
 
-    vnjs.on("vnjson.query-get", queryGetPlugin);
+    vnjs.on("vnjson.cmd-mc-get", queryGetPlugin);
     /**
      * Output data
      */
@@ -8266,6 +8266,12 @@
     return close();
   });
 
+  function evalVnjson () {
+    vnjs.on('eval', function (str) {
+      window.eval(str);
+    });
+  }
+
   /**
    * Init plugins
    */
@@ -8322,6 +8328,7 @@
 
   vnjs.use(spriteAnimate);
   vnjs.use(statusBarPush);
+  vnjs.use(evalVnjson);
   /**
    * LOAD scenes
    */

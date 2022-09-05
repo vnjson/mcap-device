@@ -83,7 +83,6 @@
       data: {
         score: null
       },
-      tree: [],
       assets: []
     };
     on = emitter.on;
