@@ -4512,6 +4512,15 @@
         for (var key in data) {
           var value = String(data[key]);
 
+          var _valueVar = value.match(/{{.+?}}/g);
+
+          if (_valueVar) {
+            var _val = _valueVar[0].replace('{{', '').replace('}}', '');
+
+            vnjs.state.data[key] = vnjs.state.data[_val];
+            return;
+          }
+
           if (value.includes("+=")) {
             var val = value.replace("+=", "");
             this.valueIncrement(key, val);

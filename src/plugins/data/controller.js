@@ -33,7 +33,15 @@ class Controller {
     }
     set(data) {
         for (let key in data) {
-            const value = String(data[key]);
+            let value = String(data[key]);
+            const _valueVar = value.match(/{{.+?}}/g)
+
+            if(_valueVar){
+                const _val = _valueVar[0].replace('{{', '').replace('}}', '') 
+                vnjs.state.data[key] = vnjs.state.data[_val];
+                return
+            }
+
             if (value.includes("+=")) {
                 const val = value.replace("+=", "");
                 this.valueIncrement(key, val);

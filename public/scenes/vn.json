@@ -111,6 +111,19 @@
         "next": true
       },
       {
+        "data-set": {
+          "age": 100
+        }
+      },
+      {
+        "data-set": {
+          "name": "{{age}}"
+        }
+      },
+      {
+        "$": "test {{name}}"
+      },
+      {
         "blocks": [
           {
             "image": "alice",
