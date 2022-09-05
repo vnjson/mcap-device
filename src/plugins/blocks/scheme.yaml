@@ -16,6 +16,9 @@
 # showLeft 
 # showRight 
 # sizeTo
+# rotate # принимает число  градусов, на сколько нужно повернуть изображение.
+
+
 # В sizeTo и moveTo можно запихать переменные в параметры width/height/top/left
 
   blocks: 
@@ -280,3 +283,16 @@
       duration: 1000
       width: 50px
       height: 100px
+# rotate
+- blocks: 
+      - image: alice
+        id: test1
+        timeout: 0
+        width: 100px
+        height: 100px
+        top: 100px
+        left: 100px
+        animation: 
+          type: rotate
+          duration: 500
+          value: 180

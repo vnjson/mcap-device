@@ -208,9 +208,7 @@ function animationType($imgWrapper, $img, $imgBox, item, _isStep) {
             if (item.animation.top) {
                 animationData.top = replaceData( item.animation.top.replaceAll(" ", "") );
             }
-           
-
-            $imgWrapper.animate(animationData, item.animation.duration, () => {
+            $imgWrapper.animate(animationData, item.animation.duration, 'linear', () => {
                 if (item.animation.onEnd) {
                     vnjs.exec(item.animation.onEnd);
                 }
@@ -222,12 +220,32 @@ function animationType($imgWrapper, $img, $imgBox, item, _isStep) {
         case "zoom":
             $img.css({ display: "block", opacity: 1 });
 
-            const animationData2 = {
+            let animationData2 = {
                 transform: `scale(${item.animation.value})`,
                 transition: `${item.animation.duration / 1000}s`,
+                'transition-timing-function': 'linear'
             };
 
             $imgWrapper.css(animationData2);
+            if (item.animation.onEnd) {
+                setTimeout(() => {
+                    vnjs.exec(item.animation.onEnd);
+                }, item.animation.duration);
+            }
+            break;
+        /**
+         * zoom
+         */
+         case "rotate":
+            $img.css({ display: "block", opacity: 1 });
+
+            let _data = {
+                transform: `rotate(${item.animation.value}deg)`,
+                transition: `${item.animation.duration / 1000}s`,
+                'transition-timing-function': 'linear'
+            };
+
+            $imgWrapper.css(_data);
             if (item.animation.onEnd) {
                 setTimeout(() => {
                     vnjs.exec(item.animation.onEnd);

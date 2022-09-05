@@ -55,8 +55,9 @@ import dialogBoxInfo from "./plugins/dialog-box-info/index.js";
 import executeVnjson from "./plugins/execute/index.js";
 //import filter from "./plugins/filter/index.js";
 import spriteAnimate from './plugins/sprite-animate/index.js';
-import statusBarPush from './plugins/status-bar-push/index.js'
-import evalVnjson from './plugins/eval/index.js'
+import statusBarPush from './plugins/status-bar-push/index.js';
+import evalVnjson from './plugins/eval/index.js';
+import chartVnjson from './plugins/chart/index.js';
 /**
  * Init plugins
  */
@@ -113,7 +114,7 @@ vnjs.use(executeVnjson);
 vnjs.use(spriteAnimate);
 vnjs.use(statusBarPush);
 vnjs.use(evalVnjson)
-
+vnjs.use(chartVnjson)
 /**
  * LOAD scenes
  */

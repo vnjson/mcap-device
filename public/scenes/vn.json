@@ -111,11 +111,6 @@
         "next": true
       },
       {
-        "data-set": {
-          "w": 20
-        }
-      },
-      {
         "blocks": [
           {
             "image": "alice",
@@ -126,8 +121,9 @@
             "top": "100px",
             "left": "100px",
             "animation": {
-              "type": "moveTo",
-              "duration": 1000
+              "type": "rotate",
+              "duration": 500,
+              "value": 180
             }
           }
         ]
@@ -135,37 +131,10 @@
       {
         "blocks-step": {
           "id": "test1",
-          "image": "alice",
           "animation": {
-            "type": "sizeTo",
-            "duration": 1000,
-            "width": "50px",
-            "height": "100px"
-          }
-        }
-      },
-      {
-        "blocks-step": {
-          "id": "test1",
-          "image": "alice",
-          "animation": {
-            "type": "sizeTo",
-            "duration": 1000,
-            "width": "800px",
-            "height": "100px"
-          }
-        }
-      },
-      {
-        "al": "TTTTTTTTTTTTTTTTTTTTTT"
-      },
-      {
-        "blocks-step": {
-          "animation": {
-            "type": "sizeTo",
-            "duration": 3000,
-            "width": "{{val1234}}px",
-            "height": "{{val1234}}px"
+            "type": "rotate",
+            "duration": 500,
+            "value": 0
           }
         }
       },

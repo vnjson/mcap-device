@@ -7578,7 +7578,7 @@
           animationData.top = replaceData(item.animation.top.replaceAll(" ", ""));
         }
 
-        $imgWrapper.animate(animationData, item.animation.duration, function () {
+        $imgWrapper.animate(animationData, item.animation.duration, 'linear', function () {
           if (item.animation.onEnd) {
             vnjs$1.exec(item.animation.onEnd);
           }
@@ -7596,9 +7596,34 @@
         });
         var animationData2 = {
           transform: "scale(".concat(item.animation.value, ")"),
-          transition: "".concat(item.animation.duration / 1000, "s")
+          transition: "".concat(item.animation.duration / 1000, "s"),
+          'transition-timing-function': 'linear'
         };
         $imgWrapper.css(animationData2);
+
+        if (item.animation.onEnd) {
+          setTimeout(function () {
+            vnjs$1.exec(item.animation.onEnd);
+          }, item.animation.duration);
+        }
+
+        break;
+
+      /**
+       * zoom
+       */
+
+      case "rotate":
+        $img.css({
+          display: "block",
+          opacity: 1
+        });
+        var _data = {
+          transform: "rotate(".concat(item.animation.value, "deg)"),
+          transition: "".concat(item.animation.duration / 1000, "s"),
+          'transition-timing-function': 'linear'
+        };
+        $imgWrapper.css(_data);
 
         if (item.animation.onEnd) {
           setTimeout(function () {
@@ -8325,6 +8350,25 @@
     });
   }
 
+  $("<canvas class=\"vnjson__chart component\"></canvas>");
+  var chartVnjson = (function () {
+    /* vnjs.store.screen.append($tpl);
+     chart = new Chart($tpl.get(0));
+     chart.draw();*/
+    //var datalist= new Array(35, 25, 20, 12, 7, 1); 
+    //var colist = new Array('blue', 'red', 'green', 'orange', 'gray', 'yellow');
+    // char.pie(datalist);
+    // $tpl.show();
+  });
+  /*
+  vnjs.on("chart", (args) => {
+      if (args) {
+      } else {
+          $tpl.hide();
+      }
+  });
+  */
+
   /**
    * Init plugins
    */
@@ -8382,6 +8426,7 @@
   vnjs.use(spriteAnimate);
   vnjs.use(statusBarPush);
   vnjs.use(evalVnjson);
+  vnjs.use(chartVnjson);
   /**
    * LOAD scenes
    */
