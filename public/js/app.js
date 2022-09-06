@@ -5078,167 +5078,232 @@
     };
   }
 
-  var css$g = "\n.vnjson__test{\n  width: 600px;\n  top: 50px;\n  left: 50%;\n  transform: translateX(-50%);\n  background-color: wheat;\n  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);\n  padding: 20px;\n  border-radius: 4px;\n  min-height: 300px;\n\n}\n\n.vnjson__test-name{\n  border-bottom: 2px solid gray;\n  padding: 5px;\n  font-size: 16px;\n  padding-left: 0;\n  padding-bottom: 10px;\n  color: brown;\n}\n\n.vnjson__test-quetions-wrapper{\n  position: relative;\n}\n\n\n.vnjson__test-quetion{\n  display: flex;\n}\n.vnjson__test-quetion-img{\n  display: none;\n  width: 250px;\n  height: 250px;\n  min-width: 250px;\n  margin: 10px 10px 10px 0;\n}\n.vnjson__test-quetion-val{\n  padding: 15px 0;\n  color: black;\n}\n.vnjson__variants-item{\n  padding: 10px;\n  margin-top: 5px;\n  background-color: darkslateblue;\n\n  color: rgba(255, 255, 255, 0.7);\n  cursor: pointer;\n  border-radius: 4px;\n}\n\n.vnjson__variants-item_success{\n  background-color: darkcyan;\n  color: white;\n}\n\n.vnjson__variants-item_fail{\n  background-color: crimson;\n  color: white;\n}\n.vnjson__variants-item:hover,\n.vnjson__variants-item_success:hover,\n.vnjson__variants-item_fail:hover{\n\n  filter: brightness(110%);\n}\n\n/**\n * RESULT\n */\n.vnjson__test-result{\n  width: 100%;\n  height: 200px;\n  top: 0;\n  left: 0;\n  position: absolute;\n  border-radius: 4px;\n  display: none;\n  background-color: wheat;\n  padding: 20px 0;\n}\n.vnjson__test-result-data{\n  height: 110px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n\n}\n.vnjson__test-result-item{\n  color: black;\n  padding: 10px 0;\n  display: flex;\n  justify-content: space-between;\n  width: 250px;\n}\n.vnjson__test-result-item:first-child span:last-child{\n  color: darkcyan;\n}\n.vnjson__test-result-item:last-child span:last-child{\n  color: crimson;\n}\n.vnjson__test-next-btn{\n  background-color: burlywood;\n  color: rgba(255, 255, 255, 0.7);\n  border-radius: 4px;\n  padding: 10px 10px;\n  width: 250px;\n  text-align: center;\n  cursor: pointer;\n  box-shadow: 2px 2px 2px rgba(0,0,0,0.3);\n  position: absolute;\n  bottom: 20px;\n  left: 50%;\n  transform: translateX(-50%);\n}\n.vnjson__test-next-btn:hover{\n  background-color:  darkslateblue;\n  color: white;\n}";
+  var css$g = "\n.vnjson__test{\n  width: 600px;\n  top: 50px;\n  left: 50%;\n  transform: translateX(-50%);\n  background-color: wheat;\n  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);\n  padding: 20px;\n  border-radius: 4px;\n  min-height: 300px;\n\n}\n\n.vnjson__test-name{\n  border-bottom: 2px solid gray;\n  padding: 5px;\n  font-size: 16px;\n  padding-left: 0;\n  padding-bottom: 10px;\n  color: brown;\n}\n\n.vnjson__test-quetions-wrapper{\n  position: relative;\n}\n\n\n.vnjson__test-quetion{\n  display: flex;\n}\n.vnjson__test-quetion-img{\n  display: none;\n  width: 250px;\n  height: 250px;\n  min-width: 250px;\n  margin: 10px 10px 10px 0;\n}\n.vnjson__test-quetion-val{\n  padding: 15px 0;\n  color: black;\n}\n.vnjson__variants-item{\n  padding: 10px;\n  margin-top: 5px;\n  background-color: darkslateblue;\n\n  color: rgba(255, 255, 255, 0.7);\n  cursor: pointer;\n  border-radius: 4px;\n}\n\n.vnjson__variants-item_success{\n  background-color: darkcyan;\n  color: white;\n}\n\n.vnjson__variants-item_fail{\n  background-color: crimson;\n  color: white;\n}\n.vnjson__variants-item:hover,\n.vnjson__variants-item_success:hover,\n.vnjson__variants-item_fail:hover{\n\n  filter: brightness(110%);\n}\n\n/**\n * RESULT\n */\n.vnjson__test-result{\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n  position: absolute;\n  border-radius: 4px;\n  display: none;\n  background-color: wheat;\n  padding: 20px 0;\n}\n.vnjson__test-result-data{\n\n  display: flex;\n\n\n}\n.vnjson__test-result-output{\n  display: flex;\n}\n.vnjson__test-result-image{\n  width: 150px;\n  height: 150px;\n}\n\n.vnjson__test-result-item{\n  color: black;\n  padding: 10px 0;\n  display: flex;\n  flex-direction: column;\n  width: 200px;\n  align-items: center;\n}\n.vnjson__test-result-item:first-child span:last-child{\n  color: darkcyan;\n}\n.vnjson__test-result-item:last-child span:last-child{\n  color: crimson;\n}\n.vnjson__test-next-btn{\n  background-color: burlywood;\n  color: rgba(255, 255, 255, 0.7);\n  border-radius: 4px;\n  padding: 10px 10px;\n  width: 250px;\n  text-align: center;\n  cursor: pointer;\n  box-shadow: 2px 2px 2px rgba(0,0,0,0.3);\n  left: 50%;\n  transform: translateX(-50%);\n}\n.vnjson__test-next-btn:hover{\n  background-color:  darkslateblue;\n  color: white;\n}\n\n";
   n(css$g,{});
 
-  var tpl$5 = "<div class=\"vnjson__test component\">\n    <div class=\"vnjson__test-name\"></div>\n    <div class=\"vnjson__test-quetions-wrapper\">\n        <div class=\"vnjson__test-quetion\">\n                <img class=\"vnjson__test-quetion-img\">\n                <div class=\"vnjson__test-quetion-val\"></div>\n        </div>\n        <div class=\"vnjson__test-variants\"></div>\n        <!--result-->\n        <div class=\"vnjson__test-result\">\n            <div class=\"vnjson__test-result-data\">\n                <div>\n                    <div class=\"vnjson__test-result-item\">\n                        <span class=\"vnjson__test-result-item_true--text\">Правильно</span>\n                        <span class=\"vnjson__test-result-item_true\">0</span>\n                  </div>\n                 <div class=\"vnjson__test-result-item vnjson__test-result-item--2\">\n                        <span>Не правильно</span>\n                        <span class=\"vnjson__test-result-item_false\">0</span>\n                  </div>\n                </div>\n            </div>\n            <div class=\"vnjson__test-next-btn\">Продолжить</div>\n        </div>\n    </div>\n</div>";
+  var tpl$5 = "<div class=\"vnjson__test component\">\n    <div class=\"vnjson__test-wrapper\">  \n        <div class=\"vnjson__test-name\"></div>\n        <div class=\"vnjson__test-quetions-wrapper\">\n            <!--body-->\n            <div class=\"vnjson__test-body\">\n                <div class=\"vnjson__test-quetion\">\n                    <img class=\"vnjson__test-quetion-img\">\n                    <div class=\"vnjson__test-quetion-val\"></div>\n                </div>\n                <div class=\"vnjson__test-variants\"></div>\n            </div>\n\n        </div>\n    </div>\n    <!--result-->\n    <div class=\"vnjson__test-result\">\n            <div class=\"vnjson__test-result-data\">\n                <img class=\"vnjson__test-result-image\">\n                <div>\n                        <div class=\"vnjson__test-result-output\">\n                                <div class=\"vnjson__test-result-item\">\n                                    <span class=\"vnjson__test-result-item_true--text\">Верно</span>\n                                    <span class=\"vnjson__test-result-item_true\">0</span>\n                                </div>\n                                <div class=\"vnjson__test-result-item vnjson__test-result-item--2\">\n                                        <span>Не верно</span>\n                                        <span class=\"vnjson__test-result-item_false\">0</span>\n                                </div>\n                        </div>\n                        <div class=\"vnjson__test-textTest\"></div>\n                </div>\n            </div>\n            <div class=\"vnjson__test-next-btn\">Продолжить</div>\n    </div>\n</div>";
+
+  var Test = /*#__PURE__*/function () {
+    function Test($tpl) {
+      _classCallCheck(this, Test);
+
+      _defineProperty(this, "qIndex", 0);
+
+      _defineProperty(this, "answers", []);
+
+      _defineProperty(this, "_trueAnswer", 0);
+
+      _defineProperty(this, "_falseAnswer", 0);
+
+      _defineProperty(this, "click", true);
+
+      this.$tpl = $tpl;
+    }
+
+    _createClass(Test, [{
+      key: "start",
+      value: function start(args) {
+        $('.vnjson__test-result').hide();
+        $('.vnjson__test-wrapper').show();
+        this.reset();
+        this.$tpl.show();
+        this.args = args;
+        this.renderQuetion();
+      }
+    }, {
+      key: "reset",
+      value: function reset() {
+        this.qIndex = 0;
+        this.answers = [];
+        this._trueAnswer = 0;
+        this._falseAnswer = 0;
+        vnjs.state.data.trueAnswer = 0;
+        vnjs.state.data.falseAnswer = 0;
+        vnjs.state.data.summTest = 0;
+        $(".vnjson__test").css("background-color", "wheat");
+        $(".vnjson__variants-item").css("background-color", "unset");
+        $(".vnjson__test-next-btn").css("background-color", "black");
+        $(".vnjson__variants-item_success").css("background-color", "unset");
+        $(".vnjson__variants-item_fail").css("background-color", "unset");
+        $(".vnjson__test-result").css("background-color", "wheat");
+      }
+    }, {
+      key: "applyStyles",
+      value: function applyStyles() {
+        $(".vnjson__test").css("background-color", this.args["color-background"]);
+        $(".vnjson__variants-item").css("background-color", this.args["color-item"]);
+        $(".vnjson__test-next-btn").css("background-color", this.args["color-item"]);
+        $(".vnjson__variants-item_success").css("background-color", this.args["color-item-correct"]);
+        $(".vnjson__variants-item_fail").css("background-color", this.args["color-item-incorrect"]);
+        $(".vnjson__test-result").css("background-color", this.args["color-result"]);
+      }
+    }, {
+      key: "renderQuetion",
+      value: function renderQuetion() {
+        var _this$_quetionItem;
+
+        this._quetionItem = this.args.quetions[this.qIndex];
+        $(".vnjson__test-name").html(this.args.name);
+        var $imageContaner = $(".vnjson__test-quetion-img"); // AUDIO
+
+        if ((_this$_quetionItem = this._quetionItem) !== null && _this$_quetionItem !== void 0 && _this$_quetionItem.audio) {
+          vnjs.emit("audio", this._quetionItem.audio);
+        }
+
+        $(".vnjson__test-variants").html("");
+
+        if (this._quetionItem.image) {
+          var url = vnjs.getAssetByName(this._quetionItem.image).url;
+          $imageContaner.attr("src", url).show();
+        } else {
+          $imageContaner.hide();
+        }
+
+        $(".vnjson__test-quetion-val").html(this._quetionItem.quetion);
+
+        this._quetionItem.variants.map(function (item, index) {
+          var $tplItem = $("<div class=\"vnjson__variants-item\" data-index=\"".concat(index, "\"></div>"));
+
+          if (_typeof(item) === "object") {
+            for (var key in item) {
+              $tplItem.attr('data-point', item[key]);
+              $tplItem.html(key);
+            }
+          } else {
+            $tplItem.html(item);
+          }
+
+          $(".vnjson__test-variants").append($tplItem);
+        });
+
+        this.applyStyles();
+      }
+    }, {
+      key: "nextStep",
+      value: function nextStep() {
+        var _this = this;
+
+        var timer = typeof this.args["self-control"] === "number" ? this.args["self-control"] : 2000;
+        setTimeout(function () {
+          _this.click = true;
+          ++_this.qIndex;
+
+          if (_this.qIndex === _this.args.quetions.length) {
+            _this.onEnd();
+          } else {
+            _this.renderQuetion();
+          }
+        }, timer);
+      }
+    }, {
+      key: "onEnd",
+      value: function onEnd() {
+        if (this.args.onEnd) {
+          vnjs.exec(this.args.onEnd);
+        }
+
+        if (!this.args.result) {
+          vnjs.exec({
+            test: false,
+            next: true
+          });
+          return;
+        }
+
+        $('.vnjson__test-wrapper').hide();
+        $('.vnjson__test-result').show();
+        var _vnjs$state$data = vnjs.state.data,
+            imgTest = _vnjs$state$data.imgTest,
+            textTest = _vnjs$state$data.textTest;
+
+        if (imgTest) {
+          var url = vnjs.getAssetByName(imgTest).url;
+          $('.vnjson__test-result-image').attr('src', url).show();
+        } else {
+          $('.vnjson__test-result-image').hide();
+        }
+
+        if (textTest) {
+          $('.vnjson__test-textTest').show().html(textTest);
+        } else {
+          $('.vnjson__test-textTest').hide().empty();
+        } //vnjs.state.data.trueAnswer = this._trueAnswer;
+        //vnjs.state.data.falseAnswer = this._falseAnswer;
+
+
+        if (this.args.type === 'SummText') ;
+
+        if (this.args.type === 'TrueFalse') ;
+
+        $(".vnjson__test-result").show();
+      }
+    }, {
+      key: "clickItem",
+      value: function clickItem($node) {
+        var _this2 = this;
+
+        var index = $($node).data("index");
+        var point = $($node).data("point");
+
+        if (point) {
+          vnjs.state.data.summTest = vnjs.state.data.summTest + point;
+        }
+
+        if (this.click) {
+          if (index === this._quetionItem.correct - 1) {
+            if (this.args["self-control"]) {
+              $($node).addClass("vnjson__variants-item_success");
+            }
+
+            ++this._trueAnswer;
+            this.answers.push({
+              answer: true,
+              quetion: this._quetionItem
+            });
+          } else {
+            if (this.args["self-control"]) {
+              $($node).addClass("vnjson__variants-item_fail"); // навешиваем класс на правильный ответ
+
+              $(".vnjson__variants-item").toArray().map(function (item) {
+                if ($(item).data("index") === _this2.args.quetions[_this2.qIndex].correct - 1) {
+                  $(item).addClass("vnjson__variants-item_success");
+                }
+              });
+              this.applyStyles();
+            }
+
+            ++this._falseAnswer;
+            this.answers.push({
+              answer: false,
+              quetion: this._quetionItem
+            });
+          }
+
+          this.click = false;
+          this.applyStyles();
+          this.nextStep();
+        }
+      }
+    }]);
+
+    return Test;
+  }();
 
   var $tpl$9 = $(tpl$5);
-  var TEST = null;
-  var answers = [];
-  var qIndex = 0;
-  var _trueAnswer = 0;
-  var _falseAnswer = 0;
-  /**
-   * STYLES
-   */
-
-  function reset() {
-    qIndex = 0;
-    answers = [];
-    _trueAnswer = 0;
-    _falseAnswer = 0;
-    vnjs.state.data.trueAnswer = 0;
-    vnjs.state.data.falseAnswer = 0;
-    vnjs.state.data.summTest = 0;
-    vnjs.state.data.textTest = "Результат";
-    $(".vnjson__test").css("background-color", "wheat");
-    $(".vnjson__variants-item").css("background-color", "unset");
-    $(".vnjson__test-next-btn").css("background-color", "black");
-    $(".vnjson__variants-item_success").css("background-color", "unset");
-    $(".vnjson__variants-item_fail").css("background-color", "unset");
-    $(".vnjson__test-result").css("background-color", "wheat");
-  }
-
-  function applyStyles() {
-    $(".vnjson__test").css("background-color", TEST["color-background"]);
-    $(".vnjson__variants-item").css("background-color", TEST["color-item"]);
-    $(".vnjson__test-next-btn").css("background-color", TEST["color-item"]);
-    $(".vnjson__variants-item_success").css("background-color", TEST["color-item-correct"]);
-    $(".vnjson__variants-item_fail").css("background-color", TEST["color-item-incorrect"]);
-    $(".vnjson__test-result").css("background-color", TEST["color-result"]);
-  }
-
-  function test () {
-    var _this = this;
-
+  var test = new Test($tpl$9);
+  function test$1 () {
     vnjs.store.screen.append($tpl$9);
-    vnjs.on("test", function (data) {
-      if (data) {
-        reset();
-        $tpl$9.show();
-        TEST = data;
-        renderQuetion.call(_this);
-      } else {
-        $tpl$9.hide();
-      }
-    });
   }
-  var _quetionItem = null;
-
-  function renderQuetion() {
-    var _quetionItem2;
-
-    _quetionItem = TEST.quetions[qIndex];
-    $(".vnjson__test-name").html(TEST.name);
-    var $imageContaner = $(".vnjson__test-quetion-img"); // AUDIO
-
-    if ((_quetionItem2 = _quetionItem) !== null && _quetionItem2 !== void 0 && _quetionItem2.audio) {
-      vnjs.emit("audio", _quetionItem.audio);
-    }
-
-    $(".vnjson__test-variants").html("");
-
-    if (_quetionItem.image) {
-      var url = vnjs.getAssetByName(_quetionItem.image).url;
-      $imageContaner.attr("src", url).show();
+  vnjs.on("test", function (args) {
+    if (args) {
+      test.start(args);
     } else {
-      $imageContaner.hide();
-    }
-
-    $(".vnjson__test-quetion-val").html(_quetionItem.quetion);
-
-    _quetionItem.variants.map(function (item, index) {
-      var $tplItem = $("<div class=\"vnjson__variants-item\" data-index=\"".concat(index, "\"></div>"));
-
-      if (_typeof(item) === "object") {
-        for (var key in item) {
-          $tplItem.attr('data-point', item[key]);
-          $tplItem.html(key);
-        }
-      } else {
-        $tplItem.html(item);
-      }
-
-      $(".vnjson__test-variants").append($tplItem);
-    });
-
-    applyStyles();
-  }
-  /**
-   * @click
-   */
-
-
-  var click = true;
-  $tpl$9.find(".vnjson__test-variants").on("click", ".vnjson__variants-item", function () {
-    var index = $(this).data("index");
-    var point = $(this).data("point");
-
-    if (point) {
-      vnjs.state.data.summTest = vnjs.state.data.summTest + point;
-    }
-
-    if (click) {
-      if (index === _quetionItem.correct - 1) {
-        if (TEST["self-control"]) {
-          $(this).addClass("vnjson__variants-item_success");
-        }
-
-        ++_trueAnswer;
-        answers.push({
-          answer: true,
-          quetion: _quetionItem
-        });
-      } else {
-        if (TEST["self-control"]) {
-          $(this).addClass("vnjson__variants-item_fail"); // навешиваем класс на правильный ответ
-
-          $(".vnjson__variants-item").toArray().map(function (item) {
-            if ($(item).data("index") === TEST.quetions[qIndex].correct - 1) {
-              $(item).addClass("vnjson__variants-item_success");
-            }
-          });
-          applyStyles();
-        }
-
-        ++_falseAnswer;
-        answers.push({
-          answer: false,
-          quetion: _quetionItem
-        });
-      }
-
-      click = false;
-      applyStyles();
-      nextStep();
+      $tpl$9.hide();
     }
   });
-
-  function nextStep() {
-    var timer = typeof TEST["self-control"] === "number" ? TEST["self-control"] : 100;
-    setTimeout(function () {
-      click = true;
-      ++qIndex;
-
-      if (qIndex === TEST.quetions.length) {
-        onEnd();
-      } else {
-        renderQuetion();
-      }
-    }, timer);
-  }
-
+  $tpl$9.find(".vnjson__test-variants").on("click", ".vnjson__variants-item", function () {
+    test.clickItem(this);
+  });
   $tpl$9.find(".vnjson__test-next-btn").on("click", function () {
     vnjs.exec({
       next: true,
@@ -5246,34 +5311,6 @@
     });
     $(".vnjson__test-result").hide();
   });
-
-  function onEnd() {
-    vnjs.state.data.trueAnswer = _trueAnswer;
-    vnjs.state.data.falseAnswer = _falseAnswer;
-
-    if (TEST.type === 'SummText') {
-      $('.vnjson__test-result-item--2').hide();
-
-      if (TEST.onEnd) {
-        vnjs.exec(TEST.onEnd);
-      }
-
-      $('.vnjson__test-result-item_true--text').html(vnjs.state.data.textTest);
-      $(".vnjson__test-result-item_true").html(vnjs.state.data.summTest);
-    }
-
-    if (TEST.type === 'TrueFalse') {
-      if (TEST.onEnd) {
-        vnjs.exec(TEST.onEnd);
-      }
-
-      $(".vnjson__test-result-item_true").html(_trueAnswer);
-      $(".vnjson__test-result-item_false").html(_falseAnswer);
-      $('.vnjson__test-result-item--2').show();
-    }
-
-    $(".vnjson__test-result").show();
-  }
 
   var css$f = ".screen-vnjson__slide{\n  position: absolute;\n  display: none;\n  top: 5%;\n  left: 50%;\n  transform: translateX(-50%);\n  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5);\n  z-index: 2000;\n}";
   n(css$f,{});
@@ -8359,25 +8396,6 @@
     });
   }
 
-  $("<canvas class=\"vnjson__chart component\"></canvas>");
-  var chartVnjson = (function () {
-    /* vnjs.store.screen.append($tpl);
-     chart = new Chart($tpl.get(0));
-     chart.draw();*/
-    //var datalist= new Array(35, 25, 20, 12, 7, 1); 
-    //var colist = new Array('blue', 'red', 'green', 'orange', 'gray', 'yellow');
-    // char.pie(datalist);
-    // $tpl.show();
-  });
-  /*
-  vnjs.on("chart", (args) => {
-      if (args) {
-      } else {
-          $tpl.hide();
-      }
-  });
-  */
-
   /**
    * Init plugins
    */
@@ -8405,7 +8423,7 @@
   vnjs.use(input$1);
   vnjs.use(wiki);
   vnjs.use(crossWord);
-  vnjs.use(test);
+  vnjs.use(test$1);
   vnjs.use(slide);
   vnjs.use(content);
   vnjs.use(voice);
@@ -8435,7 +8453,6 @@
   vnjs.use(spriteAnimate);
   vnjs.use(statusBarPush);
   vnjs.use(evalVnjson);
-  vnjs.use(chartVnjson);
   /**
    * LOAD scenes
    */

@@ -39,7 +39,7 @@
     self-control: 1500 # Можно задать время появления статуса ответа #true #false
     color-background: 'gray'
     color-item: 'black'  #Цвет фона плашки
-    color-item-correct: '#0d88f7'     #Цвет фона верного
+    color-item-correct: '#0d88f7' #Цвет фона верного
     color-item-incorrect: '#ff0c9b' #Цвет фона неверного
     color-result: orange # Цвет окошка с результатами
     quetions:
@@ -84,6 +84,3 @@
           - Винсент Ван Гог: 10
           - Пьер Огюст Ренуар: 20
 
-
-- data-set:
-    age: "{{summTest}}"

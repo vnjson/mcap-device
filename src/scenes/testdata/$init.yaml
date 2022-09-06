@@ -1,7 +1,22 @@
 
-- data-set:
-    w: 200
-    h: 100
-  next: true
-- al: Тестирую таблицу
- 
+##################################### type SummText ##################################
+- test:
+    name: Название теста
+    self-control: true
+    result: true
+    type: TrueFalse #SummText # TrueFalse
+    onEnd:
+      data-set: 
+         textTest: Результат первого теста 
+         imgTest: boom
+    quetions:
+      - quetion: Туристы, приезжающие на Майорку, обязаны заплатить налог
+        correct: 3
+        variants:
+          - На песок: 3
+          - На пальмы: 10
+          - На солнце: 100
+
+
+
+

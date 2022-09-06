@@ -111,45 +111,7 @@
         "next": true
       },
       {
-        "data-set": {
-          "age": 100
-        }
-      },
-      {
-        "data-set": {
-          "name": "{{age}}"
-        }
-      },
-      {
-        "$": "test {{name}}"
-      },
-      {
-        "blocks": [
-          {
-            "image": "alice",
-            "id": "test1",
-            "timeout": 0,
-            "width": "100px",
-            "height": "100px",
-            "top": "100px",
-            "left": "100px",
-            "animation": {
-              "type": "rotate",
-              "duration": 500,
-              "value": 180
-            }
-          }
-        ]
-      },
-      {
-        "blocks-step": {
-          "id": "test1",
-          "animation": {
-            "type": "rotate",
-            "duration": 500,
-            "value": 0
-          }
-        }
+        "jump": "testdata.$init"
       },
       {
         "al": "-----END----- 0"
@@ -341,14 +303,35 @@
     ],
     "$init": [
       {
-        "data-set": {
-          "w": 200,
-          "h": 100
-        },
-        "next": true
-      },
-      {
-        "al": "Тестирую таблицу"
+        "test": {
+          "name": "Название теста",
+          "self-control": true,
+          "result": true,
+          "type": "TrueFalse",
+          "onEnd": {
+            "data-set": {
+              "textTest": "Результат первого теста",
+              "imgTest": "boom"
+            }
+          },
+          "quetions": [
+            {
+              "quetion": "Туристы, приезжающие на Майорку, обязаны заплатить налог",
+              "correct": 3,
+              "variants": [
+                {
+                  "На песок": 3
+                },
+                {
+                  "На пальмы": 10
+                },
+                {
+                  "На солнце": 100
+                }
+              ]
+            }
+          ]
+        }
       }
     ],
     "content": [
