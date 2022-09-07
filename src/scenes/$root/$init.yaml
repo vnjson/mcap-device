@@ -1,39 +1,12 @@
-- dialog-box: true #fullscreen
-  audio: false
-  #data-clear: true
-  status-bar: true
-  #scene: alice
-  hands: true
-  #hud: true
+- dialog-box: true
+  data-clear: true
   next: true
 
-- jump: testdata.$init
+#- jump: testdata.$init
 
-- al: -----END----- 0
-- al: -----END----- 1
-- al: -----END----- 2
+- $: "У лукоморья дуб зелёный;"
+- al: "Златая цепь на дубе том:"
+- $: "И днём и ночью кот учёный"
+- al: "Всё ходит по цепи кругом;"
 
-
-- data-set:
-    age: 100
-    name: Test
-- очистить    
-- data-clear:
-        - age
-        #- name
-
-- push: # false # - id: test1 
-    id: test1 # sort
-    icon: alice
-    info: "12345678"
-
-# moveTo sizeTo . {{var}}
-- $:  data
-  data-set:
-    age: 500
-
-- eval: "vnjs.state.data.age = vnjs.state.data.age / 2"
-
-
-
-- jump: $root.$init.1
+- jump: $root.$init

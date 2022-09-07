@@ -1,8 +1,6 @@
 class Test {
     qIndex = 0;
     answers = [];
-    _trueAnswer = 0;
-    _falseAnswer = 0;
     click = true;
     constructor ($tpl){
         this.$tpl = $tpl;
@@ -19,11 +17,11 @@ class Test {
     reset() {
         this.qIndex = 0;
         this.answers = [];
-        this._trueAnswer = 0;
-        this._falseAnswer = 0;
         vnjs.state.data.trueAnswer = 0;
         vnjs.state.data.falseAnswer = 0;
         vnjs.state.data.summTest = 0;
+        vnjs.state.data.textTest = "";
+        vnjs.state.data.imgTest = null;
 
         $(".vnjson__test").css("background-color", "wheat");
         $(".vnjson__variants-item").css("background-color", "unset");
@@ -111,34 +109,43 @@ class Test {
         return
       }
       $('.vnjson__test-wrapper').hide();
-      $('.vnjson__test-result').show();
-      const { imgTest, textTest } = vnjs.state.data;
+      $('.vnjson__test-result').css('display', 'flex');
+      const { 
+            imgTest, 
+            textTest, 
+            trueAnswer,
+            falseAnswer
+      } = vnjs.state.data;
       if(imgTest){
-        const url = vnjs.getAssetByName(imgTest).url
-        $('.vnjson__test-result-image').attr('src', url).show()
+        console.log(imgTest)
+        const url = vnjs.getAssetByName(imgTest).url;
+        $('.vnjson__test-result-image').attr('src', url).show();
       }
       else{
         $('.vnjson__test-result-image').hide();
       }
-      if(textTest){
+
+      if(textTest!==""){
         $('.vnjson__test-textTest').show().html(textTest);
       }
       else{
         $('.vnjson__test-textTest').hide().empty();
       }
-      //vnjs.state.data.trueAnswer = this._trueAnswer;
-      //vnjs.state.data.falseAnswer = this._falseAnswer;
+
+      //vnjs.state.data.trueAnswer = vnjs.state.data.trueAnswer;
+      //vnjs.state.data.falseAnswer = vnjs.state.data.falseAnswer;
 
       if(this.args.type==='SummText'){
+        $('.vnjson__test-result-TrueFalse').hide()
             //$('.vnjson__test-result-item--2').hide()
 
             //$('.vnjson__test-result-item_true--text').html(vnjs.state.data.textTest);
             //$(".vnjson__test-result-item_true").html(vnjs.state.data.summTest);
       }
       if(this.args.type==='TrueFalse'){
-
-       // $(".vnjson__test-result-item_true").html(this._trueAnswer);
-        //$(".vnjson__test-result-item_false").html(this._falseAnswer);
+        $('.vnjson__test-result-TrueFalse').show()
+        $(".vnjson__test-result-item_true").html(trueAnswer);
+        $(".vnjson__test-result-item_false").html(falseAnswer);
         //$('.vnjson__test-result-item--2').show()
       }
       $(".vnjson__test-result").show();
@@ -154,7 +161,7 @@ class Test {
                 if (this.args["self-control"]) {
                     $($node).addClass("vnjson__variants-item_success");
                 }
-                ++this._trueAnswer;
+                ++vnjs.state.data.trueAnswer;
                 this.answers.push({ answer: true, quetion: this._quetionItem });
             } else {
                 if (this.args["self-control"]) {
@@ -169,7 +176,7 @@ class Test {
                         });
                     this.applyStyles();
                 }
-                ++this._falseAnswer;
+                ++vnjs.state.data.falseAnswer;
                 this.answers.push({ answer: false, quetion: this._quetionItem });
             }
             this.click = false;

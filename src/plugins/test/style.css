@@ -9,7 +9,8 @@
   padding: 20px;
   border-radius: 4px;
   min-height: 300px;
-
+  flex-direction: column;
+  align-items: center;
 }
 
 .vnjson__test-name{
@@ -71,29 +72,29 @@
  */
 .vnjson__test-result{
   width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  position: absolute;
+  min-height: 250px;
   border-radius: 4px;
   display: none;
   background-color: wheat;
-  padding: 20px 0;
+  align-items: center;
+  flex-direction: column;
 }
 .vnjson__test-result-data{
-
   display: flex;
-
-
+  flex: 1 0 auto;
 }
-.vnjson__test-result-output{
+.vnjson__test-result-TrueFalse{
   display: flex;
 }
 .vnjson__test-result-image{
   width: 150px;
   height: 150px;
+  border-radius: 4px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
-
+.vnjson__test-content{
+  padding-left: 15px;
+}
 .vnjson__test-result-item{
   color: black;
   padding: 10px 0;
@@ -101,13 +102,35 @@
   flex-direction: column;
   width: 200px;
   align-items: center;
+  
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  margin-right: 10px;
+
+}
+.vnjson__test-result-item:last-child{
+  margin-right: 0;
 }
 .vnjson__test-result-item:first-child span:last-child{
   color: darkcyan;
+  padding-top: 15px;
 }
 .vnjson__test-result-item:last-child span:last-child{
   color: crimson;
+  padding-top: 15px;
 }
+
+
+.vnjson__test-textTest{
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  margin-top: 20px;
+  border-radius: 4px;
+  padding: 10px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+}
+
 .vnjson__test-next-btn{
   background-color: burlywood;
   color: rgba(255, 255, 255, 0.7);
@@ -117,11 +140,10 @@
   text-align: center;
   cursor: pointer;
   box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
-  left: 50%;
-  transform: translateX(-50%);
+
 }
 .vnjson__test-next-btn:hover{
-  background-color:  darkslateblue;
+  background-color: darkslateblue;
   color: white;
 }
 

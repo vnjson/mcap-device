@@ -7,8 +7,8 @@
     type: TrueFalse #SummText # TrueFalse
     onEnd:
       data-set: 
-         textTest: Результат первого теста 
-         imgTest: boom
+         textTest: "Результат первого {{summTest}} теста" 
+         imgTest: items
     quetions:
       - quetion: Туристы, приезжающие на Майорку, обязаны заплатить налог
         correct: 3
@@ -19,4 +19,20 @@
 
 
 
+- $: test 2
+
+##################################### type SummText ##################################
+- test:
+    name: Название теста
+    self-control: true
+    type: SummText # TrueFalse
+    onEnd:
+      data-set: 
+         textTest: Результат первого теста 
+    quetions:
+      - quetion: Кто из знаменитых художников за жизнь продал всего одну картину? 
+        correct: 1
+        variants:
+          - Винсент Ван Гог: 10
+          - Пьер Огюст Ренуар: 20
 

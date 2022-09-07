@@ -32,23 +32,29 @@ class Controller {
         }
     }
     set(data) {
+
         for (let key in data) {
             let value = String(data[key]);
             const _valueVar = value.match(/{{.+?}}/g)
 
-            if(_valueVar){
-                const _val = _valueVar[0].replace('{{', '').replace('}}', '') 
-                vnjs.state.data[key] = vnjs.state.data[_val];
-                return
-            }
-
+            
             if (value.includes("+=")) {
                 const val = value.replace("+=", "");
                 this.valueIncrement(key, val);
             } else if (value.includes("-=")) {
                 const val = value.replace("-=", "");
                 this.valueDecrement(key, val);
-            } else {
+            } 
+            /**
+             * LINK
+             * varname: {{age}}
+             * varname: Hello {{name}}
+             */
+            else if(_valueVar){
+                const _val = _valueVar[0].replace('{{', '').replace('}}', '') 
+                vnjs.state.data[key] =  value.replace(_valueVar, vnjs.state.data[_val]) 
+            }
+            else {
                 if (isNaN(value)) {
                     vnjs.state.data[key] = value;
                 } else {

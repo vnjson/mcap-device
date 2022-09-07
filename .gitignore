@@ -105,3 +105,4 @@ typings/
 _refs
 
 ./public
+./testdata

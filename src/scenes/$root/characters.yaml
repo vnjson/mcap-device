@@ -2,11 +2,11 @@
   name: . . . .
   nameColor: '#49de58'
   replyColor: '#a4deaa'
-  avatar: robocop
+  avatar: paintBoardBlack
 
 
 - id: al
   name: Алиса
   nameColor: '#f1c232'
   replyColor: '#ee068e'
-  avatar: alice
+  avatar: paintBoardWhite

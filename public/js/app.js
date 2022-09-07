@@ -4514,13 +4514,6 @@
 
           var _valueVar = value.match(/{{.+?}}/g);
 
-          if (_valueVar) {
-            var _val = _valueVar[0].replace('{{', '').replace('}}', '');
-
-            vnjs.state.data[key] = vnjs.state.data[_val];
-            return;
-          }
-
           if (value.includes("+=")) {
             var val = value.replace("+=", "");
             this.valueIncrement(key, val);
@@ -4528,6 +4521,16 @@
             var _val2 = value.replace("-=", "");
 
             this.valueDecrement(key, _val2);
+          }
+          /**
+           * LINK
+           * varname: {{age}}
+           * varname: Hello {{name}}
+           */
+          else if (_valueVar) {
+            var _val = _valueVar[0].replace('{{', '').replace('}}', '');
+
+            vnjs.state.data[key] = value.replace(_valueVar, vnjs.state.data[_val]);
           } else {
             if (isNaN(value)) {
               vnjs.state.data[key] = value;
@@ -5078,10 +5081,10 @@
     };
   }
 
-  var css$g = "\n.vnjson__test{\n  width: 600px;\n  top: 50px;\n  left: 50%;\n  transform: translateX(-50%);\n  background-color: wheat;\n  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);\n  padding: 20px;\n  border-radius: 4px;\n  min-height: 300px;\n\n}\n\n.vnjson__test-name{\n  border-bottom: 2px solid gray;\n  padding: 5px;\n  font-size: 16px;\n  padding-left: 0;\n  padding-bottom: 10px;\n  color: brown;\n}\n\n.vnjson__test-quetions-wrapper{\n  position: relative;\n}\n\n\n.vnjson__test-quetion{\n  display: flex;\n}\n.vnjson__test-quetion-img{\n  display: none;\n  width: 250px;\n  height: 250px;\n  min-width: 250px;\n  margin: 10px 10px 10px 0;\n}\n.vnjson__test-quetion-val{\n  padding: 15px 0;\n  color: black;\n}\n.vnjson__variants-item{\n  padding: 10px;\n  margin-top: 5px;\n  background-color: darkslateblue;\n\n  color: rgba(255, 255, 255, 0.7);\n  cursor: pointer;\n  border-radius: 4px;\n}\n\n.vnjson__variants-item_success{\n  background-color: darkcyan;\n  color: white;\n}\n\n.vnjson__variants-item_fail{\n  background-color: crimson;\n  color: white;\n}\n.vnjson__variants-item:hover,\n.vnjson__variants-item_success:hover,\n.vnjson__variants-item_fail:hover{\n\n  filter: brightness(110%);\n}\n\n/**\n * RESULT\n */\n.vnjson__test-result{\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n  position: absolute;\n  border-radius: 4px;\n  display: none;\n  background-color: wheat;\n  padding: 20px 0;\n}\n.vnjson__test-result-data{\n\n  display: flex;\n\n\n}\n.vnjson__test-result-output{\n  display: flex;\n}\n.vnjson__test-result-image{\n  width: 150px;\n  height: 150px;\n}\n\n.vnjson__test-result-item{\n  color: black;\n  padding: 10px 0;\n  display: flex;\n  flex-direction: column;\n  width: 200px;\n  align-items: center;\n}\n.vnjson__test-result-item:first-child span:last-child{\n  color: darkcyan;\n}\n.vnjson__test-result-item:last-child span:last-child{\n  color: crimson;\n}\n.vnjson__test-next-btn{\n  background-color: burlywood;\n  color: rgba(255, 255, 255, 0.7);\n  border-radius: 4px;\n  padding: 10px 10px;\n  width: 250px;\n  text-align: center;\n  cursor: pointer;\n  box-shadow: 2px 2px 2px rgba(0,0,0,0.3);\n  left: 50%;\n  transform: translateX(-50%);\n}\n.vnjson__test-next-btn:hover{\n  background-color:  darkslateblue;\n  color: white;\n}\n\n";
+  var css$g = "\n.vnjson__test{\n  width: 600px;\n  top: 50px;\n  left: 50%;\n  transform: translateX(-50%);\n  background-color: wheat;\n  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);\n  padding: 20px;\n  border-radius: 4px;\n  min-height: 300px;\n  flex-direction: column;\n  align-items: center;\n}\n\n.vnjson__test-name{\n  border-bottom: 2px solid gray;\n  padding: 5px;\n  font-size: 16px;\n  padding-left: 0;\n  padding-bottom: 10px;\n  color: brown;\n}\n\n.vnjson__test-quetions-wrapper{\n  position: relative;\n}\n\n\n.vnjson__test-quetion{\n  display: flex;\n}\n.vnjson__test-quetion-img{\n  display: none;\n  width: 250px;\n  height: 250px;\n  min-width: 250px;\n  margin: 10px 10px 10px 0;\n}\n.vnjson__test-quetion-val{\n  padding: 15px 0;\n  color: black;\n}\n.vnjson__variants-item{\n  padding: 10px;\n  margin-top: 5px;\n  background-color: darkslateblue;\n\n  color: rgba(255, 255, 255, 0.7);\n  cursor: pointer;\n  border-radius: 4px;\n}\n\n.vnjson__variants-item_success{\n  background-color: darkcyan;\n  color: white;\n}\n\n.vnjson__variants-item_fail{\n  background-color: crimson;\n  color: white;\n}\n.vnjson__variants-item:hover,\n.vnjson__variants-item_success:hover,\n.vnjson__variants-item_fail:hover{\n\n  filter: brightness(110%);\n}\n\n/**\n * RESULT\n */\n.vnjson__test-result{\n  width: 100%;\n  min-height: 250px;\n  border-radius: 4px;\n  display: none;\n  background-color: wheat;\n  align-items: center;\n  flex-direction: column;\n}\n.vnjson__test-result-data{\n  display: flex;\n  flex: 1 0 auto;\n}\n.vnjson__test-result-TrueFalse{\n  display: flex;\n}\n.vnjson__test-result-image{\n  width: 150px;\n  height: 150px;\n  border-radius: 4px;\n  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);\n}\n.vnjson__test-content{\n  padding-left: 15px;\n}\n.vnjson__test-result-item{\n  color: black;\n  padding: 10px 0;\n  display: flex;\n  flex-direction: column;\n  width: 200px;\n  align-items: center;\n  \n  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);\n  border-radius: 4px;\n  margin-right: 10px;\n\n}\n.vnjson__test-result-item:last-child{\n  margin-right: 0;\n}\n.vnjson__test-result-item:first-child span:last-child{\n  color: darkcyan;\n  padding-top: 15px;\n}\n.vnjson__test-result-item:last-child span:last-child{\n  color: crimson;\n  padding-top: 15px;\n}\n\n\n.vnjson__test-textTest{\n  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);\n  margin-top: 20px;\n  border-radius: 4px;\n  padding: 10px;\n  min-height: 60px;\n  display: flex;\n  align-items: center;\n}\n\n.vnjson__test-next-btn{\n  background-color: burlywood;\n  color: rgba(255, 255, 255, 0.7);\n  border-radius: 4px;\n  padding: 10px 10px;\n  width: 250px;\n  text-align: center;\n  cursor: pointer;\n  box-shadow: 2px 2px 2px rgba(0,0,0,0.3);\n\n}\n.vnjson__test-next-btn:hover{\n  background-color: darkslateblue;\n  color: white;\n}\n\n";
   n(css$g,{});
 
-  var tpl$5 = "<div class=\"vnjson__test component\">\n    <div class=\"vnjson__test-wrapper\">  \n        <div class=\"vnjson__test-name\"></div>\n        <div class=\"vnjson__test-quetions-wrapper\">\n            <!--body-->\n            <div class=\"vnjson__test-body\">\n                <div class=\"vnjson__test-quetion\">\n                    <img class=\"vnjson__test-quetion-img\">\n                    <div class=\"vnjson__test-quetion-val\"></div>\n                </div>\n                <div class=\"vnjson__test-variants\"></div>\n            </div>\n\n        </div>\n    </div>\n    <!--result-->\n    <div class=\"vnjson__test-result\">\n            <div class=\"vnjson__test-result-data\">\n                <img class=\"vnjson__test-result-image\">\n                <div>\n                        <div class=\"vnjson__test-result-output\">\n                                <div class=\"vnjson__test-result-item\">\n                                    <span class=\"vnjson__test-result-item_true--text\">Верно</span>\n                                    <span class=\"vnjson__test-result-item_true\">0</span>\n                                </div>\n                                <div class=\"vnjson__test-result-item vnjson__test-result-item--2\">\n                                        <span>Не верно</span>\n                                        <span class=\"vnjson__test-result-item_false\">0</span>\n                                </div>\n                        </div>\n                        <div class=\"vnjson__test-textTest\"></div>\n                </div>\n            </div>\n            <div class=\"vnjson__test-next-btn\">Продолжить</div>\n    </div>\n</div>";
+  var tpl$5 = "<div class=\"vnjson__test component\">\n    <div class=\"vnjson__test-wrapper\">  \n        <div class=\"vnjson__test-name\"></div>\n        <div class=\"vnjson__test-quetions-wrapper\">\n            <!--body-->\n            <div class=\"vnjson__test-body\">\n                <div class=\"vnjson__test-quetion\">\n                    <img class=\"vnjson__test-quetion-img\">\n                    <div class=\"vnjson__test-quetion-val\"></div>\n                </div>\n                <div class=\"vnjson__test-variants\"></div>\n            </div>\n\n        </div>\n    </div>\n    <!--result-->\n    <div class=\"vnjson__test-result\">\n            <div class=\"vnjson__test-result-data\">\n                <img class=\"vnjson__test-result-image\">\n                <div class=\"vnjson__test-content\">\n                        <div class=\"vnjson__test-result-TrueFalse\">\n                                <div class=\"vnjson__test-result-item\">\n                                    <span class=\"vnjson__test-result-item_true--text\">Верно</span>\n                                    <span class=\"vnjson__test-result-item_true\">0</span>\n                                </div>\n                                <div class=\"vnjson__test-result-item vnjson__test-result-item--2\">\n                                        <span>Не верно</span>\n                                        <span class=\"vnjson__test-result-item_false\">0</span>\n                                </div>\n                        </div>\n                        <div class=\"vnjson__test-textTest\"></div>\n                </div>\n            </div>\n            <div class=\"vnjson__test-next-btn\">Продолжить</div>\n    </div>\n</div>";
 
   var Test = /*#__PURE__*/function () {
     function Test($tpl) {
@@ -5090,10 +5093,6 @@
       _defineProperty(this, "qIndex", 0);
 
       _defineProperty(this, "answers", []);
-
-      _defineProperty(this, "_trueAnswer", 0);
-
-      _defineProperty(this, "_falseAnswer", 0);
 
       _defineProperty(this, "click", true);
 
@@ -5115,11 +5114,11 @@
       value: function reset() {
         this.qIndex = 0;
         this.answers = [];
-        this._trueAnswer = 0;
-        this._falseAnswer = 0;
         vnjs.state.data.trueAnswer = 0;
         vnjs.state.data.falseAnswer = 0;
         vnjs.state.data.summTest = 0;
+        vnjs.state.data.textTest = "";
+        vnjs.state.data.imgTest = null;
         $(".vnjson__test").css("background-color", "wheat");
         $(".vnjson__variants-item").css("background-color", "unset");
         $(".vnjson__test-next-btn").css("background-color", "black");
@@ -5211,29 +5210,40 @@
         }
 
         $('.vnjson__test-wrapper').hide();
-        $('.vnjson__test-result').show();
+        $('.vnjson__test-result').css('display', 'flex');
         var _vnjs$state$data = vnjs.state.data,
             imgTest = _vnjs$state$data.imgTest,
-            textTest = _vnjs$state$data.textTest;
+            textTest = _vnjs$state$data.textTest,
+            trueAnswer = _vnjs$state$data.trueAnswer,
+            falseAnswer = _vnjs$state$data.falseAnswer;
 
         if (imgTest) {
+          console.log(imgTest);
           var url = vnjs.getAssetByName(imgTest).url;
           $('.vnjson__test-result-image').attr('src', url).show();
         } else {
           $('.vnjson__test-result-image').hide();
         }
 
-        if (textTest) {
+        if (textTest !== "") {
           $('.vnjson__test-textTest').show().html(textTest);
         } else {
           $('.vnjson__test-textTest').hide().empty();
-        } //vnjs.state.data.trueAnswer = this._trueAnswer;
-        //vnjs.state.data.falseAnswer = this._falseAnswer;
+        } //vnjs.state.data.trueAnswer = vnjs.state.data.trueAnswer;
+        //vnjs.state.data.falseAnswer = vnjs.state.data.falseAnswer;
 
 
-        if (this.args.type === 'SummText') ;
+        if (this.args.type === 'SummText') {
+          $('.vnjson__test-result-TrueFalse').hide(); //$('.vnjson__test-result-item--2').hide()
+          //$('.vnjson__test-result-item_true--text').html(vnjs.state.data.textTest);
+          //$(".vnjson__test-result-item_true").html(vnjs.state.data.summTest);
+        }
 
-        if (this.args.type === 'TrueFalse') ;
+        if (this.args.type === 'TrueFalse') {
+          $('.vnjson__test-result-TrueFalse').show();
+          $(".vnjson__test-result-item_true").html(trueAnswer);
+          $(".vnjson__test-result-item_false").html(falseAnswer); //$('.vnjson__test-result-item--2').show()
+        }
 
         $(".vnjson__test-result").show();
       }
@@ -5255,7 +5265,7 @@
               $($node).addClass("vnjson__variants-item_success");
             }
 
-            ++this._trueAnswer;
+            ++vnjs.state.data.trueAnswer;
             this.answers.push({
               answer: true,
               quetion: this._quetionItem
@@ -5272,7 +5282,7 @@
               this.applyStyles();
             }
 
-            ++this._falseAnswer;
+            ++vnjs.state.data.falseAnswer;
             this.answers.push({
               answer: false,
               quetion: this._quetionItem

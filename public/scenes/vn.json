@@ -105,53 +105,23 @@
     "$init": [
       {
         "dialog-box": true,
-        "audio": false,
-        "status-bar": true,
-        "hands": true,
+        "data-clear": true,
         "next": true
       },
       {
-        "jump": "testdata.$init"
+        "$": "У лукоморья дуб зелёный;"
       },
       {
-        "al": "-----END----- 0"
+        "al": "Златая цепь на дубе том:"
       },
       {
-        "al": "-----END----- 1"
+        "$": "И днём и ночью кот учёный"
       },
       {
-        "al": "-----END----- 2"
+        "al": "Всё ходит по цепи кругом;"
       },
       {
-        "data-set": {
-          "age": 100,
-          "name": "Test"
-        }
-      },
-      "очистить",
-      {
-        "data-clear": [
-          "age"
-        ]
-      },
-      {
-        "push": {
-          "id": "test1",
-          "icon": "alice",
-          "info": "12345678"
-        }
-      },
-      {
-        "$": "data",
-        "data-set": {
-          "age": 500
-        }
-      },
-      {
-        "eval": "vnjs.state.data.age = vnjs.state.data.age / 2"
-      },
-      {
-        "jump": "$root.$init.1"
+        "jump": "$root.$init"
       }
     ],
     "characters": [
@@ -160,14 +130,14 @@
         "name": ". . . .",
         "nameColor": "#49de58",
         "replyColor": "#a4deaa",
-        "avatar": "robocop"
+        "avatar": "paintBoardBlack"
       },
       {
         "id": "al",
         "name": "Алиса",
         "nameColor": "#f1c232",
         "replyColor": "#ee068e",
-        "avatar": "alice"
+        "avatar": "paintBoardWhite"
       }
     ],
     "content": [
@@ -229,7 +199,6 @@
         ]
       }
     ],
-    "html": null,
     "package": {
       "debug": true,
       "preload": true,
@@ -260,22 +229,6 @@
       },
       "paint-board": true,
       "push": "menu-item"
-    },
-    "wiki": {
-      "Абажур": "Колпак для лампы, светильника",
-      "Баба-яга": "В русских сказках: злая старуха-колдунья",
-      "Вагонетка": {
-        "text": "Небольшой открытый вагон для перевозки грузов на узкоколейных или подвесных дорогах",
-        "color": "lightgreen"
-      },
-      "Жабры": "Органы дыхания рыб и некоторых других водных животных",
-      "Пагинация": "Нумерация страниц",
-      "Хакасы": "Народ, составляющий основное коренное население Хакасии",
-      "Юань": {
-        "text": "Денежная единица в Китае",
-        "color": "red"
-      },
-      "Явка": "Место, где происходят конспиративные встречи, а также сама такая встреча или условный знак при такой встрече"
     }
   },
   "testdata": {
@@ -291,6 +244,10 @@
       {
         "name": "globe",
         "url": "scenes/assets/globe.webp"
+      },
+      {
+        "name": "items",
+        "url": "scenes/assets/items.jpg"
       },
       {
         "name": "robocop",
@@ -310,8 +267,8 @@
           "type": "TrueFalse",
           "onEnd": {
             "data-set": {
-              "textTest": "Результат первого теста",
-              "imgTest": "boom"
+              "textTest": "Результат первого {{summTest}} теста",
+              "imgTest": "items"
             }
           },
           "quetions": [
@@ -327,6 +284,35 @@
                 },
                 {
                   "На солнце": 100
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "$": "test 2"
+      },
+      {
+        "test": {
+          "name": "Название теста",
+          "self-control": true,
+          "type": "SummText",
+          "onEnd": {
+            "data-set": {
+              "textTest": "Результат первого теста"
+            }
+          },
+          "quetions": [
+            {
+              "quetion": "Кто из знаменитых художников за жизнь продал всего одну картину?",
+              "correct": 1,
+              "variants": [
+                {
+                  "Винсент Ван Гог": 10
+                },
+                {
+                  "Пьер Огюст Ренуар": 20
                 }
               ]
             }
