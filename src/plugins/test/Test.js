@@ -1,3 +1,4 @@
+
 class Test {
     qIndex = 0;
     answers = [];
@@ -81,8 +82,11 @@ class Test {
         this.applyStyles();
     }
     nextStep() {
-        const timer =
+        let timer =
             typeof this.args["self-control"] === "number" ? this.args["self-control"] : 2000;
+        if(!this.args["self-control"]){
+            timer = 300;
+        }
         setTimeout(() => {
             this.click = true;
             ++this.qIndex;
@@ -96,18 +100,17 @@ class Test {
     }
     
     onEnd(){
-
-
       if(this.args.onEnd){
         vnjs.exec(this.args.onEnd);
       }
-      if(!this.args.result){
+      if(this.args.result===false){
         vnjs.exec({
             test: false,
             next: true
         })
         return
       }
+
       $('.vnjson__test-wrapper').hide();
       $('.vnjson__test-result').css('display', 'flex');
       const { 
@@ -117,7 +120,6 @@ class Test {
             falseAnswer
       } = vnjs.state.data;
       if(imgTest){
-        console.log(imgTest)
         const url = vnjs.getAssetByName(imgTest).url;
         $('.vnjson__test-result-image').attr('src', url).show();
       }
@@ -131,24 +133,38 @@ class Test {
       else{
         $('.vnjson__test-textTest').hide().empty();
       }
-
+      
       //vnjs.state.data.trueAnswer = vnjs.state.data.trueAnswer;
       //vnjs.state.data.falseAnswer = vnjs.state.data.falseAnswer;
 
       if(this.args.type==='SummText'){
-        $('.vnjson__test-result-TrueFalse').hide()
-            //$('.vnjson__test-result-item--2').hide()
+        $('.vnjson__test-result-TrueFalse').hide();
 
-            //$('.vnjson__test-result-item_true--text').html(vnjs.state.data.textTest);
-            //$(".vnjson__test-result-item_true").html(vnjs.state.data.summTest);
+        if(this.args.resultData===false){
+            $('.vnjson__test-result-SummTest').hide()
+           return
+        }
+
+        $('.vnjson__test-result-SummTest').show();
+        $('.vnjson__test-SummTest-value').html(vnjs.state.data.summTest);
       }
+      
       if(this.args.type==='TrueFalse'){
-        $('.vnjson__test-result-TrueFalse').show()
+        $('.vnjson__test-result-SummTest').hide();
+        console.log(this.args.resultData, false)
+        if(this.args.resultData===false){
+           $('.vnjson__test-result-TrueFalse').hide()
+           return
+        }
+        $('.vnjson__test-result-TrueFalse').show();
+    
+        
         $(".vnjson__test-result-item_true").html(trueAnswer);
         $(".vnjson__test-result-item_false").html(falseAnswer);
-        //$('.vnjson__test-result-item--2').show()
       }
+
       $(".vnjson__test-result").show();
+      vnjs.state.data.summTest = 0;
     }
     clickItem ($node){
         const index = $($node).data("index");

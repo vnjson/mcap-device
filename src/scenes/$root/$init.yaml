@@ -2,7 +2,7 @@
   data-clear: true
   next: true
 
-#- jump: testdata.$init
+
 
 - $: "У лукоморья дуб зелёный;"
 - al: "Златая цепь на дубе том:"

@@ -52,14 +52,23 @@
           - На пальмы
           - На солнце
 
+
 ##################################### type SummText ##################################
+# Пока не вывелось окно result. То общая сумма баллов теста типа  summTest копится
+# в переменной {{summTest}}
+# Сумма баллов к каждом конкретном тесте хранится в переменной {{summ}}
+
 - test:
     name: Название теста
-    self-control: false
-    type: SummText # TrueFalse
+    self-control: true
+    result: false # скрыть окно результата
+    type:  SummText # TrueFalse
+    resultData: false # скрыть блоки с верно/не верно/результат
     onEnd:
       data-set: 
-         textTest: Результат первого теста 
+         textTest: "Результат первого {{summTest}} теста" 
+         imgTest: items
+         summ1: "{{summ}}"
     quetions:
       - quetion: Туристы, приезжающие на Майорку, обязаны заплатить налог
         correct: 3
@@ -68,19 +77,26 @@
           - На пальмы: 10
           - На солнце: 100
 
-      - quetion: Что в Российской империи было вещевым эквивалентом денег?
-        image: alice # Можно передать изображение вкачестве илюстрации к вопросу
-        correct: 1
-        audio: sysFlipPages
-        variants:
-          - Шкуры пушных зверей: 1
-          - Крупный рогатый скот: 5
-          - Табак: 10
-          - Женские серьги: 20
 
-      - quetion: Кто из знаменитых художников за жизнь продал всего одну картину? 
-        correct: 1
-        variants:
-          - Винсент Ван Гог: 10
-          - Пьер Огюст Ренуар: 20
 
+##################################### type SummText ##################################
+- test:
+    name: Название теста
+    self-control: true
+    #result: false
+    type:  SummText # TrueFalse
+    #resultData: false
+    onEnd:
+      data-set: 
+         textTest: "Результат первого {{summTest}} теста" 
+         imgTest: items
+         summ1: "{{summTest}}"
+    quetions:
+      - quetion: Туристы, приезжающие на Майорку, обязаны заплатить налог
+        correct: 3
+        variants:
+          - На песок: 3
+          - На пальмы: 10
+          - На солнце: 100
+
+##################################### type SummText ##################################

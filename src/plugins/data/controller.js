@@ -1,6 +1,6 @@
 class Controller {
     token = null;
-
+    #value = null
     load(token) {
         this.token = token;
         const data = localStorage.getItem(this.token);
@@ -32,9 +32,10 @@ class Controller {
         }
     }
     set(data) {
-
+        this.#value = null;
         for (let key in data) {
             let value = String(data[key]);
+            this.#value = value
             const _valueVar = value.match(/{{.+?}}/g)
 
             
@@ -45,21 +46,32 @@ class Controller {
                 const val = value.replace("-=", "");
                 this.valueDecrement(key, val);
             } 
-            /**
-             * LINK
-             * varname: {{age}}
-             * varname: Hello {{name}}
-             */
-            else if(_valueVar){
-                const _val = _valueVar[0].replace('{{', '').replace('}}', '') 
-                vnjs.state.data[key] =  value.replace(_valueVar, vnjs.state.data[_val]) 
-            }
             else {
                 if (isNaN(value)) {
                     vnjs.state.data[key] = value;
                 } else {
                     vnjs.state.data[key] = Number(value);
                 }
+            }
+            /**
+             * LINK
+             * varname: {{age}}
+             * varname: Hello {{name}}
+             */
+
+             if(_valueVar){
+   
+                _valueVar.forEach( _varData => {
+                    //console.log(_var)
+                    const _key2 = _varData.replace('{{', '').replace('}}', '');
+                    let _value2 = vnjs.state.data[_key2]
+                    if(!isNaN(_value2)){
+                        _value2 = Number(_value2)
+                    }
+                    this.#value = this.#value.replaceAll(_varData, _value2);
+                    vnjs.state.data[key] = this.#value
+                })
+
             }
         }
         this.save(vnjs.state.data);
