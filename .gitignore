@@ -105,4 +105,4 @@ typings/
 _refs
 
 ./public
-./testdata
+src/scenes/testdata/

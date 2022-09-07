@@ -22,7 +22,8 @@ const config = YAML.parse(fse.readFileSync('./config.yaml', 'utf8'))
 import packageConfig from './package.json'
 
 const printVersion = () => {
-  return color.magenta('Version: ') + color.red(packageConfig.version)
+  const str = `${color.gray('v'+packageConfig.version)} ${color.magenta(config.src)}`
+  return str
 }
 
 const production = false;

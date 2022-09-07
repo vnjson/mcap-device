@@ -2,3 +2,6 @@ port: 9000
 src: src
 updateDirs:
   - src
+  - vn_3
+  - vn_1
+  - vn1
