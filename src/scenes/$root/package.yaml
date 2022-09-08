@@ -2,9 +2,9 @@ debug: true
 font-family:  Minecraft # Consolas
 
 dialog-box:
-  delay: 0
+  delay: 20
   #alpha: 0.3
-  #endPoint: true
+  endPoint: true
   mode-classic: dialog-box 
   mode-fullscreen: dialog-box-full
   font-size: 22px # default 22px

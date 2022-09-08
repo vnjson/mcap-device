@@ -1,12 +1,11 @@
 .vnjson-loader {
-  background: black;
+  background: #223;
   z-index: 9999;
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  color: white;
   display: none;
   align-items: center;
   justify-content: center;
@@ -17,7 +16,7 @@
   flex-direction: column;
 }
 .vnjson-loader__progress{
-  color: wheat;
+  color: cadetblue;
   width: 100%;
   text-align: right;
   font-size: 22px;
@@ -45,7 +44,7 @@
 .vnjson-loader__indicator::before {
 	height: 2px;
 	width: 100%;
-	background-color: wheat;
+	background-color: cadetblue;
 	animation: vnjson__loader-4 0.8s cubic-bezier(0, 0, 0.03, 0.9) infinite;
 }
 

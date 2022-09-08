@@ -3,23 +3,7 @@
   next: true
 
 
-- test:
-    name: Название теста
-    self-control: true
-    type:  SummText # TrueFalse
-    onEnd:
-      data-set: 
-         textTest: "Результат первого {{summTest}} теста" 
-         imgTest: paintBoard
-         summTest: false
-    quetions:
-      - quetion: Туристы, приезжающие на Майорку, обязаны заплатить налог
-        correct: 3
-        variants:
-          - На песок: 3
-          - На пальмы: 10
-          - На солнце: 100
-
+- jump: dev.$init  # development 
 
 - $: "У лукоморья дуб зелёный;"
 - al: "Златая цепь на дубе том:"

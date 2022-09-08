@@ -17,7 +17,7 @@
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
     slot: 0
-    pos: [-307, 4, 682]
+    pos: "307 4 682"
   next: true
 - mc-get-block:
     "minecraft:diamond_block":
@@ -26,12 +26,12 @@
         $: AIR
     "default":
         $:  DEFAULT
-
+################################################################
 
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
     slot: 0
-    pos: [-307, 5, 682]
+    pos: "307 5 682"
   next: true
 
 - mc-get-block-color:
@@ -41,11 +41,11 @@
         $: RED
     "default":
         $:  DEFAULT COLOR
-
+################################################################
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
     slot: 0
-    pos: [-307, 6, 682]
+    pos: "307 6 682"
   next: true
 
 - mc-get-block-variant:
@@ -56,11 +56,11 @@
     "default":
       $: Вариант поумолчанию
 
-
+################################################################
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
     slot: 0
-    pos: [-307, 7, 682]
+    pos: "307 7 682"
   next: true
 
 - mc-get-block-axis:
@@ -71,11 +71,12 @@
     "default":
         $: xyz  
 
-
+################################################################
 - mc-get:
     request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
     slot: 0
-    pos: [-307, 8, 682]
+    pos: "307 8 682"
+     
   next: true
 
 - mc-get-block-facing:
@@ -85,3 +86,5 @@
         $: ЮГ
     "default":
         $: Сторона света не определена
+
+################################################################

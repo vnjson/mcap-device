@@ -334,7 +334,7 @@
    * next: true
    */
   function next () {
-    setTimeout(() => this.next(), 50);
+    setTimeout(() => this.next(), 100);
   }
   
   const vnjs = new Vnjson();

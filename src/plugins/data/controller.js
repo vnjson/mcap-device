@@ -60,16 +60,14 @@ class Controller {
              */
 
              if(_valueVar){
-   
-                _valueVar.forEach( _varData => {
-                    //console.log(_var)
+                _valueVar.forEach( (_varData) => {
                     const _key2 = _varData.replace('{{', '').replace('}}', '');
-                    let _value2 = vnjs.state.data[_key2]
+                    let _value2 = vnjs.state.data[_key2];
                     if(!isNaN(_value2)){
-                        _value2 = Number(_value2)
+                        _value2 = Number(_value2);
                     }
                     this.#value = this.#value.replaceAll(_varData, _value2);
-                    vnjs.state.data[key] = this.#value
+                    vnjs.state.data[key] = this.#value;
                 })
 
             }
