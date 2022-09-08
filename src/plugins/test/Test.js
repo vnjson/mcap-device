@@ -117,7 +117,8 @@ class Test {
             imgTest, 
             textTest, 
             trueAnswer,
-            falseAnswer
+            falseAnswer,
+            summTest
       } = vnjs.state.data;
       if(imgTest){
         const url = vnjs.getAssetByName(imgTest).url;
@@ -127,40 +128,39 @@ class Test {
         $('.vnjson__test-result-image').hide();
       }
 
-      if(textTest!==""){
+      if(textTest){
         $('.vnjson__test-textTest').show().html(textTest);
       }
       else{
         $('.vnjson__test-textTest').hide().empty();
       }
       
-      //vnjs.state.data.trueAnswer = vnjs.state.data.trueAnswer;
-      //vnjs.state.data.falseAnswer = vnjs.state.data.falseAnswer;
 
       if(this.args.type==='SummText'){
         $('.vnjson__test-result-TrueFalse').hide();
-
-        if(this.args.resultData===false){
+        if(summTest==='false'){
             $('.vnjson__test-result-SummTest').hide()
            return
         }
+        else{
+            $('.vnjson__test-result-SummTest').show();
+            $('.vnjson__test-SummTest-value').html(vnjs.state.data.summTest);
+        }
 
-        $('.vnjson__test-result-SummTest').show();
-        $('.vnjson__test-SummTest-value').html(vnjs.state.data.summTest);
+
       }
       
       if(this.args.type==='TrueFalse'){
         $('.vnjson__test-result-SummTest').hide();
-        console.log(this.args.resultData, false)
-        if(this.args.resultData===false){
-           $('.vnjson__test-result-TrueFalse').hide()
-           return
+        if(trueAnswer||falseAnswer){
+            $('.vnjson__test-result-TrueFalse').show();
+            $(".vnjson__test-result-item_true").html(trueAnswer);
+            $(".vnjson__test-result-item_false").html(falseAnswer);
         }
-        $('.vnjson__test-result-TrueFalse').show();
-    
-        
-        $(".vnjson__test-result-item_true").html(trueAnswer);
-        $(".vnjson__test-result-item_false").html(falseAnswer);
+        else{
+            $('.vnjson__test-result-TrueFalse').hide()
+        }
+
       }
 
       $(".vnjson__test-result").show();
@@ -173,6 +173,7 @@ class Test {
             vnjs.state.data.summTest = vnjs.state.data.summTest + point;
         }
         if (this.click) {
+
             if (index === this._quetionItem.correct - 1) {
                 if (this.args["self-control"]) {
                     $($node).addClass("vnjson__variants-item_success");

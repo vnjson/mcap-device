@@ -42,15 +42,17 @@ function concatAssets (){
  */
  vnjs.on("preload", () => $tpl.css("display", "flex"));
 
- const loadProgress = $tpl.find('.vnjson-loader__progress--load')
+ const loadProgress = $tpl.find('.vnjson-loader__progress')
  vnjs.on("load", (asset, len, i) => {
      const width = ( (i / (len-1)  ) * 100 )
      const roundWidth = Math.ceil(width)
  
-     loadProgress.css({
-         width: `${roundWidth}%`
-     })
-     loadProgress.text(`${roundWidth}%`)
+
+     if(roundWidth<=100){
+
+        loadProgress.text(`${roundWidth} %`)
+     }
+
  });
  
  vnjs.on("postload", () => $tpl.fadeOut(300));

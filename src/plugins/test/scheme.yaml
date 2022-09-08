@@ -36,6 +36,7 @@
 # STYLES
 - test:
     name: Название теста
+    type:  TrueFalse
     self-control: 1500 # Можно задать время появления статуса ответа #true #false
     color-background: 'gray'
     color-item: 'black'  #Цвет фона плашки
@@ -54,21 +55,17 @@
 
 
 ##################################### type SummText ##################################
-# Пока не вывелось окно result. То общая сумма баллов теста типа  summTest копится
-# в переменной {{summTest}}
-# Сумма баллов к каждом конкретном тесте хранится в переменной {{summ}}
 
 - test:
     name: Название теста
     self-control: true
     result: false # скрыть окно результата
     type:  SummText # TrueFalse
-    resultData: false # скрыть блоки с верно/не верно/результат
     onEnd:
       data-set: 
          textTest: "Результат первого {{summTest}} теста" 
          imgTest: items
-         summ1: "{{summ}}"
+         summData: false # скрыть блоки с верно/не верно/результат
     quetions:
       - quetion: Туристы, приезжающие на Майорку, обязаны заплатить налог
         correct: 3
@@ -85,7 +82,6 @@
     self-control: true
     #result: false
     type:  SummText # TrueFalse
-    #resultData: false
     onEnd:
       data-set: 
          textTest: "Результат первого {{summTest}} теста" 
@@ -99,4 +95,4 @@
           - На пальмы: 10
           - На солнце: 100
 
-##################################### type SummText ##################################
+
