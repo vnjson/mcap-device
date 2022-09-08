@@ -22,7 +22,7 @@ export default {
            }
         }
     },
-    handler (args, prop){
+    handlerProp (args, prop){
         const block = vnjs.store.MINECRAFT.BLOCK;
         let flag = false
         for(let key in args){
@@ -44,5 +44,11 @@ export default {
            }
         }
     },
-
+    "mc-get-block-nbt" (args) {
+        const block = vnjs.store.MINECRAFT.BLOCK;
+        for(let key in args){
+            let value = block.data.nbt[key];
+            vnjs.state.data[ args[key] ] = value;
+        }
+    }
 }

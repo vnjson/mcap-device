@@ -1,5 +1,5 @@
 import mcGet from './mc-get.js';
-import blockHandler from "./block-handler";
+import blockController from "./block-controller";
 
 
 
@@ -11,37 +11,46 @@ vnjs.on("mc-get", mcGet);
 /**
  * сравнение по ID
  */
-vnjs.on("mc-get-block", (args) => blockHandler["mc-get-block"](args));
+vnjs.on("mc-get-block", (args) => blockController["mc-get-block"](args));
 /**
  * сравнение по цвету
  */
-vnjs.on("mc-get-block-color", (args) => blockHandler.handler(args, "color") );
+vnjs.on("mc-get-block-color", (args) => blockController.handlerProp(args, "color") );
 
 /**
  * сравнение по типу
  */
-vnjs.on("mc-get-block-variant", (args) => blockHandler.handler(args, "variant") );
+vnjs.on("mc-get-block-variant", (args) => blockController.handlerProp(args, "variant") );
 
 /**
  * сравнение по направлению раположения
  */
-vnjs.on("mc-get-block-axis", (args) => blockHandler.handler(args, "axis") );
+vnjs.on("mc-get-block-axis", (args) => blockController.handlerProp(args, "axis") );
 
 /**
  * куда смотрит предмет
  */
-vnjs.on("mc-get-block-facing", (args) => blockHandler.handler(args, "facing") );
+vnjs.on("mc-get-block-facing", (args) => blockController.handlerProp(args, "facing") );
 
 /**
  * nbt
  */
 
-vnjs.on('mc-get-block-nbt', (args) => {
- 
-        const block = vnjs.store.MINECRAFT.BLOCK;
-        for(let key in args){
-            let value = block.data.nbt[key];
-            vnjs.state.data[ args[key] ] = value;
-        }
+vnjs.on('mc-get-block-nbt', (args) => blockController["mc-get-block-nbt"](args) )
 
+/**
+ * get chest
+ */
+vnjs.on('mc-get-store-slot', (args) => {
+    const { slot } = args;
+    const block = vnjs.store.MINECRAFT.BLOCK;
+    const items = block.data.nbt.Items;
+   
+    const _item = items.find( (item) => item.Slot===slot)
+           
+
+    vnjs.state.data[args.count] = _item.Count;
+    vnjs.state.data[args.damage] = _item.Damage;
+    vnjs.state.data[args.id] = _item.id;
+    console.log(block.data.nbt)
 })

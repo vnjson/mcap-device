@@ -325,5 +325,5 @@ function blocksStepHandler(item) {
 
 
 function replaceData (str){
-    return vnjs.plugins['dialog-box'].replaceDataTemplate(str)
+    return vnjs.plugins['data'].stringToData(str)
 }

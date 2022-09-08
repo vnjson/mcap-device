@@ -1,5 +1,6 @@
 export default function (args){
-    const [x, y, z] = args.pos.split(" ");
+    let _pos = vnjs.plugins['data'].stringToData(args.pos) 
+    const [x, y, z] = _pos.split(" ");
     const data = {
         request: args.request,
         slot: args.slot || 0,
