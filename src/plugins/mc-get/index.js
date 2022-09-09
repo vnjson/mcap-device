@@ -41,16 +41,34 @@ vnjs.on('mc-get-block-nbt', (args) => blockController["mc-get-block-nbt"](args) 
 /**
  * get chest
  */
+const notIDProp = ['count', 'damage', 'slot'];
 vnjs.on('mc-get-store-slot', (args) => {
     const { slot } = args;
     const block = vnjs.store.MINECRAFT.BLOCK;
     const items = block.data.nbt.Items;
    
-    const _item = items.find( (item) => item.Slot===slot)
-           
-
+    const _item = items.find( (item) => item.Slot === slot);
+    if(!_item){
+        if(args.default){
+            vnjs.exec(args.default)
+        }
+        return;
+    }
     vnjs.state.data[args.count] = _item.Count;
     vnjs.state.data[args.damage] = _item.Damage;
-    vnjs.state.data[args.id] = _item.id;
+    let idExist = false;
+    for(let key in args){
+        if(key===_item.id){
+            idExist = true;
+            vnjs.exec(args[key]);
+        }
+
+    }
+
+    if(!idExist && args.default){
+        vnjs.exec(args.default)
+    }
+
+
     console.log(block.data.nbt)
 })
