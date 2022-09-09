@@ -17,11 +17,7 @@ export default function () {
      * Если есть, то ширину блока с репликой необходимо уменьшить
      * Так же, стили необходимо восстановить, если встретился персонаж без аватара
      */
-    vnjs.on("vnjson.character", (character) => {
-        setTimeout(() => {
-            characterHandler(vnjs.state.character);
-        }, 50);
-    });
+    vnjs.on("vnjson.character", (character) => characterHandler(vnjs.state.character));
 }
 
 function handler(args) {
