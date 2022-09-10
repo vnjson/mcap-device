@@ -103,11 +103,10 @@ export function mcGetStoreTotal(args) {
     /**
      * formula
      */
-    let sum = 0;
     if (args.formula === "SumRateCount") {
+        let sum = 0;
         args.rates.forEach((item) => {
             let key = Object.keys(item)[0];
-
             if (args.damage === +key) {
                 _items.forEach((_i) => {
                     sum += Number(item[args.damage]) * _i.Count;
@@ -115,8 +114,14 @@ export function mcGetStoreTotal(args) {
             }
         });
         vnjs.state.data[args.result] = sum;
-        console.log(sum);
+    }
+    if(args.formula === "SumCount"){
+        let sum = 0;
+        _items.forEach((_i) => {
+            sum += _i.Count;
+        });
+        vnjs.state.data[args.result] = sum;
+        console.log(sum)
     }
 
-    console.log(_items);
 }
