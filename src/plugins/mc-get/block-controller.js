@@ -125,3 +125,35 @@ export function mcGetStoreTotal(args) {
     }
 
 }
+
+
+export function mcGetSign (args){
+    const block = vnjs.store.MINECRAFT.BLOCK;
+
+    const { Text1, Text2, Text3, Text4 } = block.data.nbt;
+    
+    const _strings = [ Text1, Text2, Text3, Text4 ].map( (item) => {
+        return JSON.parse(item).text;
+    });
+ 
+
+
+    if('minecraft:standing_sign' === block.data.id){
+        vnjs.state.data[args.text1] = _strings[0];
+        vnjs.state.data[args.text2] = _strings[1];
+        vnjs.state.data[args.text3] = _strings[2];
+        vnjs.state.data[args.text4] = _strings[3];
+        vnjs.exec( args['minecraft:standing_sign'] );
+
+    }   
+    else if('minecraft:wall_sign' === block.data.id){
+        vnjs.state.data[args.text1] = _strings[0];
+        vnjs.state.data[args.text2] = _strings[1];
+        vnjs.state.data[args.text3] = _strings[2];
+        vnjs.state.data[args.text4] = _strings[3];
+        vnjs.exec( args['minecraft:wall_sign'] );
+    }  
+    else if(args['default']){
+        vnjs.exec( args['default'] );
+    }
+}

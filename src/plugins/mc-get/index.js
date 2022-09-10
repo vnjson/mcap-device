@@ -27,3 +27,10 @@ vnjs.on("mc-get-store-slot", blockController.mcGetStoreSlot);
  * get chest total items
  */
 vnjs.on("mc-get-store-total", blockController.mcGetStoreTotal);
+
+/**
+ * табличка
+ */
+ vnjs.on("mc-get-sign", blockController.mcGetSign);
+
+
