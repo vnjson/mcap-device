@@ -57,7 +57,7 @@ import executeVnjson from "./plugins/execute/index.js";
 import spriteAnimate from './plugins/sprite-animate/index.js';
 import statusBarPush from './plugins/status-bar-push/index.js';
 import evalVnjson from './plugins/eval/index.js';
-
+import getTimeVnjson from './plugins/get-time/index.js';
 /**
  * Init plugins
  */
@@ -114,6 +114,7 @@ vnjs.use(executeVnjson);
 vnjs.use(spriteAnimate);
 vnjs.use(statusBarPush);
 vnjs.use(evalVnjson);
+vnjs.use(getTimeVnjson);
 /**
  * LOAD scenes
  */

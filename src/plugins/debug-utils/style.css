@@ -1,5 +1,9 @@
 .debug__dialog-box-controls{
-  background-color: wheat;
+  --shadow-btn: 0 0 3px rgb(0, 0, 0, 0.5);
+  --input-bg: #171a23;
+  --bg-color: #252733;
+  --font-color: lightslategray;
+  background-color: var(--bg-color);
   padding: 5px;
   display: flex;
   justify-content: space-between;
@@ -8,16 +12,21 @@
   font-size: 14px;
   width: 1024px;
   font-family: Arial, Helvetica, sans-serif;
+
 }
 
+.debug__dialog-box-controls *::selection{
+  background-color: deepskyblue;
+  color: black;
+}
 
 .debug__dialog-box-controls >div{
   display: flex;
   flex-direction: column;
   border-radius: 4px;
   height: 100%;
-  border: 1px solid #ccc;
   padding: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .debug__controls-left{
@@ -46,35 +55,25 @@
 
 .debug__dialog-box-controls .debug__input-text{
   flex: 1 0 auto;
-  color: black;
-  background-color: burlywood;
+  color: var(--font-color);
+  background-color: var(--input-bg);
   border-radius: 4px;
   padding: 3px 5px;
   text-align: left;
- 
-  
 }
-/* убираю стрелочки */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+.debug__dialog-box-controls .debug__input-text::placeholder{
+  color: #ccc;
 }
 
-input[type=number] {
-    -moz-appearance:textfield; /* Firefox */
-    outline: 0;
-    border: 0;
-}
 /*delay*/
 .debug__delay-wrapper{
   display: flex;
   align-items: center;
-  background-color: burlywood;
+  background-color: var(--bg-color);
   border-radius: 4px;
   margin-left: 5px;
   padding-left: 5px;
+  box-shadow: var(--shadow-btn);
 }
 .debug__delay-img{
   width: 20px;
@@ -86,10 +85,11 @@ input[type=number] {
 .debug__alpha-wrapper{
   display: flex;
   align-items: center;
-  background-color: burlywood;
+  background-color: var(--bg-color);
   border-radius: 4px;
   margin-left: 5px;
   padding-left: 5px;
+  box-shadow: var(--shadow-btn);
 }
 .debug__alpha-img{
   width: 20px;
@@ -100,7 +100,8 @@ input[type=number] {
 .debug__dialog-box-controls .debug__alpha{
   width: 40px;
   text-align: center;
-  flex: 0 0 auto;
+  height: 80%;
+  margin: 0 5px;
 }
 
 .debug__btn-screenshot{
@@ -115,11 +116,12 @@ input[type=number] {
 .debug__dialog-box-controls .debug__delay{
   width: 40px;
   text-align: center;
-  flex: 0 0 auto;
+  height: 80%;
+  margin: 0 5px;
 }
 
 .debug__btn{
-  background-color: burlywood;
+  background-color: var(--bg-color);
   border-radius: 4px;
   padding: 5px 5px;
   cursor: pointer;
@@ -129,7 +131,7 @@ input[type=number] {
   justify-content: center;
   align-items: center;
   margin-left: 5px;
-
+  box-shadow: var(--shadow-btn);
 }
 .debug__btn-img{
   width: 20px;
@@ -156,8 +158,8 @@ input[type=number] {
 .debug__textarea{
   width: 100%;
   flex: 1 0 auto;
-  color: black;
-  background-color: burlywood;
+  color: var(--font-color);
+  background-color: var(--input-bg);
   border-radius: 4px;
   padding: 3px 5px;
   resize: unset;
@@ -165,30 +167,12 @@ input[type=number] {
   outline: unset;
   caret-color: deepskyblue;
   margin-top: 5px;
-
+  
 }
-.debug__output{
-  background-color: burlywood;
-  border-radius: 4px;
-  padding: 3px 5px;
-  width: 100%;
-  flex: 1 0 auto;
-  overflow: auto;
-  height: 100%;
-  user-select: all;
+.debug__textarea::placeholder{
+  color: #445;
 }
 
-.debug__checkbox-wrapper{
-  display: flex;
-  align-items: center;
-
-  background-color: burlywood;
-  border-radius: 4px;
-  margin-left: 5px;
-  padding: 5px;
-  padding-right: 10px;
-  justify-content: center;
-}
 .debug__mcexec-type{
   margin-top: 5px;
   margin-right: 5px;
@@ -203,14 +187,14 @@ input[type=number] {
   width: 65px;
 }
 #debug__color-picker{
-  background-color: burlywood;
   padding: 5px;
-  width: 90px;
+  width: 70px;
 
   outline: none;
   border: 0;
   height: 100%;
   cursor: pointer;
+  box-shadow: var(--shadow-btn);
 }
 
 
@@ -224,6 +208,7 @@ input[type=number] {
 .debug-plugin__select{
   width: 35%;
   overflow: auto;
+  padding: 5px;
 }
 
 .debug-plugin__right{
@@ -259,23 +244,22 @@ input[type=number] {
 }
 .debug-plugin__name{
   border-radius: 4px;
-  border: 1px solid #ccc;
+  box-shadow: var(--shadow-btn);
   margin-bottom: 5px;
   padding: 1px 5px;
   cursor: pointer;
   margin-right: 5px;
   display: block;
+  color: var(--font-color);
 }
 .debug-plugin__name--active{
   color: cadetblue;
-  border-color: cadetblue;
 }
 .debug-plugin__name--dev{
-  color: brown;
+  color: hotpink;
 }
 .debug-plugin__name:hover{
   color: cadetblue;
-  border-color: cadetblue;
 }
 .debug-plugin__value{
   max-width: 155px;
