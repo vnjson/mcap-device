@@ -67,7 +67,7 @@ export default function () {
     });
 
     $("#debug__color-picker").spectrum({
-        color: "#d8dfe3",
+        color: "#455e61",
         type: "text",
     });
     /**

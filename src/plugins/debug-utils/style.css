@@ -1,8 +1,9 @@
 .debug__dialog-box-controls{
-  --shadow-btn: 0 0 3px rgb(0, 0, 0, 0.5);
+  --shadow-btn: 0 0 2px rgb(0, 0, 0, 0.8);
   --input-bg: #171a23;
   --bg-color: #252733;
   --font-color: lightslategray;
+  --font-family: system-ui, Helvetica, sans-serif;
   background-color: var(--bg-color);
   padding: 5px;
   display: flex;
@@ -11,10 +12,23 @@
   height: 120px;
   font-size: 14px;
   width: 1024px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-family);
+}
+/* scroll */
+.debug__dialog-box-controls *::-webkit-scrollbar {
+  width: 8px;
 
 }
+.debug__dialog-box-controls *::-webkit-scrollbar-track {
+  background-color: #1f202b;
+  border-radius: 0 4px 4px 0;
+}
+.debug__dialog-box-controls *::-webkit-scrollbar-thumb {
+  background: #445;
+  border-radius: 8px;
+}
 
+/**/
 .debug__dialog-box-controls *::selection{
   background-color: deepskyblue;
   color: black;
@@ -60,6 +74,7 @@
   border-radius: 4px;
   padding: 3px 5px;
   text-align: left;
+  font-family: var(--font-family);
 }
 .debug__dialog-box-controls .debug__input-text::placeholder{
   color: #ccc;
@@ -167,8 +182,10 @@
   outline: unset;
   caret-color: deepskyblue;
   margin-top: 5px;
-  
+  font-family: var(--font-family);
 }
+
+
 .debug__textarea::placeholder{
   color: #445;
 }
@@ -185,6 +202,7 @@
   overflow: hidden;
   margin-left: 5px;
   width: 65px;
+  box-shadow: var(--shadow-btn);
 }
 #debug__color-picker{
   padding: 5px;
@@ -223,12 +241,10 @@
 }
 .debug-plugin__params{
   display: flex;
-}
-
-.debug-plugin__params{
-  display: flex;
   height: 100%;
 }
+
+
 .debug__plugin-param{
   width: 50%;
 
@@ -246,22 +262,28 @@
   border-radius: 4px;
   box-shadow: var(--shadow-btn);
   margin-bottom: 5px;
-  padding: 1px 5px;
+  padding: 3px 8px;
   cursor: pointer;
   margin-right: 5px;
   display: block;
   color: var(--font-color);
 }
+
 .debug-plugin__name--active{
   color: cadetblue;
+  background-color: rgba(0,0,0,0.3);
 }
 .debug-plugin__name--dev{
   color: hotpink;
 }
 .debug-plugin__name:hover{
   color: cadetblue;
+  background-color: rgba(0,0,0,0.3);
 }
 .debug-plugin__value{
   max-width: 155px;
   margin-left: 5px;
 }
+
+
+

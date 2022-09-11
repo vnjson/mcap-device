@@ -96,7 +96,7 @@ give @p dirt 1`,
 say TEST`,
   'cmd-mc-get': `request: PLAYER #BLOCK #SLOT #ENTITY
 slot: 0
-post: [0, 0, 0]`,
+pos: "0 0 0"`,
 /**
  * DATA
  */
