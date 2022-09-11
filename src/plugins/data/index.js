@@ -1,10 +1,8 @@
-import stringToData from './stringToData.js';
-
 import controller from "./controller";
 
 export default function () {
 
-    vnjs.plugins['data'] = { stringToData }
+    vnjs.plugins['data'] = { stringToData: controller.stringToData };
 
 }
 /**

@@ -1,11 +1,8 @@
-export default function (){
-    
-}
-vnjs.on('get-time', () => {
-    vnjs.state.data.localtime = getTime();
-})
+import Time from './Time.js';
 
-function getTime (){
-    const [ hh, mm ] = new Date().toTimeString().split(":");
-    return `${hh}-${mm}`;
+export default function (){
+    const time = new Time();
+
+    vnjs.on('get-time', (args) => time.parse(args) )  
 }
+

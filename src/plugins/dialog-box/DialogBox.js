@@ -81,7 +81,7 @@ class DialogBox {
         this.#reply = reply;
         //проверяем сущесвуют ли внутри реплики ссылки на персонажей
         this.#reply = this.replaceCharacterLink(this.#reply);
-        this.reply = this.replaceDataTemplate(this.#reply);
+        this.reply = vnjs.plugins['data'].stringToData(this.#reply);
         //вырезаем пустые теги
         //this.reply = this.reply.replaceAll(/<.{0,}><\/.{0,}>/gi, '')
         // Если скорость вывода символов равна нулю, то строка не разбивается на символы
@@ -182,7 +182,7 @@ class DialogBox {
     /**
      * {{data}} Подставляем данные в реплику из this.state.data
      */
-    replaceDataTemplate(reply) {
+    /*eplaceDataTemplate(reply) {
       let _newReply = reply
       const variables = reply.match(/{{.+?}}/g)
       if(!variables) return  _newReply
@@ -191,7 +191,7 @@ class DialogBox {
           _newReply = _newReply.replaceAll(varItem, vnjs.state.data[dataKey]||'')
       })
       return _newReply
-    }
+    }*/
     /**
      * Вызывается в качестве callback функции метода map
      * при переборе разделенной на символы входящей строки.

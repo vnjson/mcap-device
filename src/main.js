@@ -6,7 +6,7 @@ import debugUtils from "./plugins/debug-utils/index.js";
 import assetsLoader from "./plugins/assets-loader/index.js";
 import screen from "./plugins/screen/index.js";
 import fontFamily from "./plugins/font-family/index.js";
-
+import data from "./plugins/data/index.js";
 import dialogBox from "./plugins/dialog-box/index.js";
 import hands from "./plugins/hands/index.js";
 import audio from "./plugins/audio/index.js";
@@ -18,7 +18,6 @@ import showAuto from "./plugins/show-auto/index.js";
 import scene from "./plugins/scene/index.js";
 import table from "./plugins/table/index.js";
 import clear from "./plugins/clear/index.js";
-import data from "./plugins/data/index.js";
 import switchVnjson from "./plugins/switch/index.js";
 import qa from "./plugins/qa/index.js";
 import chess from "./plugins/chess/index.js";

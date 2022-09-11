@@ -20,7 +20,7 @@ export default {
         }
     },
     '<=': (dataValue, value, execData) => {
-        if(dataValue<value){
+        if(dataValue<=value){
             vnjs.exec(execData)
         }
     },
