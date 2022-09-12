@@ -17,7 +17,9 @@ class Time {
     OPERATOR = null;
     equal = null;
     PLUGIN_DATA = null;
-    constructor() {}
+    constructor(mode) {
+        this.mode = mode;
+    }
     parse(data) {
         this.PLUGIN_DATA = data;
         /**
@@ -56,10 +58,22 @@ class Time {
                 this.OPERATOR = this.OPERATOR.replaceAll("\\", "");
             }
             const [ key, val ] = this.equal.split(this.OPERATOR);
+            if(this.mode==='localdate'){
+                this.dateEval(val)
+            }
+            if(this.mode==='localtime'){
+                this.timeEval(val)
+            }
+            console.log(key,this.OPERATOR, val)
+
+
+        }
+    }
+    timeEval (val){
             /**
              * Определяем диапазон ли лежит в значении
              */
-            if(val.includes('--')){
+             if(val.includes('--')){
                 this.value = val.trim().split('--').map( (item) => {
                     return Number(item.replace('-', ''))
                 });
@@ -70,14 +84,41 @@ class Time {
  
             const execData = this.PLUGIN_DATA[this.equal];
             controller[this.OPERATOR](this.localtime, this.value, execData)
-
-        }
     }
     get localtime (){
         const [ hh, mm ] = new Date().toTimeString().split(":");
         return  Number(hh+mm);
     }
-    
+
+    dateEval (val){
+            /**
+             * Определяем диапазон ли лежит в значении
+             */
+            if(val.includes('--')){
+                this.value = val.split('--').map( (item) => {
+                    return this.transformDate( item.trim() );
+                });
+            }
+            else{
+                this.value = this.transformDate( val.trim() );
+            }
+            console.log(this.localdate, this.value)
+            const execData = this.PLUGIN_DATA[this.equal];
+            controller[this.OPERATOR](this.localdate, this.value, execData, this.mode);
+    }
+    get localdate (){
+        return this.transformDate();
+    }
+    transformDate (date){
+        let _date;
+        if(date){
+            _date = new Date(date);
+        }
+        else{
+            _date = new Date();
+        }
+        return Math.ceil( _date.getTime() / 100000 );
+    }
 }
 
 export default Time;

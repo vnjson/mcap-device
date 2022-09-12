@@ -1,5 +1,13 @@
 export default {
-    '===': (localtime, value, execData) => {
+    '===': (localtime, value, execData, mode) => {
+        if(mode==="localdate"){
+            let localdate = new Date(localtime * 100000).toLocaleDateString();
+            let val = new Date(value * 100000).toLocaleDateString();
+            if(localdate === val){
+                vnjs.exec(execData)
+            }
+            return;
+        }
         if(localtime===value){
             vnjs.exec(execData)
         }
@@ -10,22 +18,54 @@ export default {
         }
     },
     '<': (localtime, value, execData) => {
-        console.log(localtime, value )
         if(localtime<value){
             vnjs.exec(execData)
         }
     },
-    '!==': (localtime, value, execData) => {
+    '!==': (localtime, value, execData, mode) => {
+        if(mode==="localdate"){
+            let localdate = new Date(localtime * 100000).toLocaleDateString();
+            let val = new Date(value * 100000).toLocaleDateString();
+            if(localdate !== val){
+                vnjs.exec(execData)
+            }
+            return;
+        }
+
         if(localtime!==value){
             vnjs.exec(execData)
         }
     },
-    '<=': (localtime, value, execData) => {
+    '<=': (localtime, value, execData, mode) => {
+        
+        if(mode === "localdate"){
+            let localdate = new Date(localtime * 100000).toLocaleDateString();
+            let val = new Date(value * 100000).toLocaleDateString();
+            if(localdate === val){
+                vnjs.exec(execData);
+            }
+            else if(localtime < value){
+                vnjs.exec(execData);
+            }
+            return;
+        }
+
         if(localtime<=value){
             vnjs.exec(execData)
         }
     },
-    '>=': (localtime, value, execData) => {
+    '>=': (localtime, value, execData, mode) => {
+        if(mode === "localdate"){
+            let localdate = new Date(localtime * 100000).toLocaleDateString();
+            let val = new Date(value * 100000).toLocaleDateString();
+            if(localdate === val){
+                vnjs.exec(execData)
+            }
+            else if(localtime > value){
+                vnjs.exec(execData)
+            }
+            return;
+        }
         if(localtime>=value){
             vnjs.exec(execData)
         }

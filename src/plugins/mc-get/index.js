@@ -33,4 +33,8 @@ vnjs.on("mc-get-store-total", blockController.mcGetStoreTotal);
  */
  vnjs.on("mc-get-sign", blockController.mcGetSign);
 
+/**
+ * Рамка
+ */
 
+vnjs.on('mc-get-frame-item', blockController.mcGetFrameItem);

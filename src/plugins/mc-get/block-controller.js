@@ -157,3 +157,27 @@ export function mcGetSign (args){
         vnjs.exec( args['default'] );
     }
 }
+
+/**
+ * Рамка
+ */
+export function mcGetFrameItem (args) {
+    const block = vnjs.store.MINECRAFT.ENTITY;
+    const excludeProps = [ "default", "damage" ];
+    const { id, Damage } = block.data.nbt.Item;
+    /**
+     * Получаю id предмета
+     */
+    let def = false;
+    for(let key in args){
+        if( !excludeProps.includes(key) && id === key ){
+            vnjs.state.data[args.damage] = Damage;
+            def = true;
+            vnjs.exec(args[key]);
+        }
+    }
+    if(!def && args.default){
+        vnjs.exec(args.default);
+    }
+
+}
