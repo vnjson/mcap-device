@@ -64,8 +64,6 @@ class Time {
             if(this.mode==='localtime'){
                 this.timeEval(val)
             }
-            console.log(key,this.OPERATOR, val)
-
 
         }
     }
@@ -73,9 +71,9 @@ class Time {
             /**
              * Определяем диапазон ли лежит в значении
              */
-             if(val.includes('--')){
-                this.value = val.trim().split('--').map( (item) => {
-                    return Number(item.replace('-', ''))
+            if(val.includes('--')){
+                this.value = val.split('--').map( (item) => {
+                    return Number( item.replace('-', '').trim() )
                 });
             }
             else{
@@ -91,18 +89,29 @@ class Time {
     }
 
     dateEval (val){
-            /**
-             * Определяем диапазон ли лежит в значении
-             */
-            if(val.includes('--')){
-                this.value = val.split('--').map( (item) => {
-                    return this.transformDate( item.trim() );
-                });
+      
+            if(val.trim() === 'EasterWeek'){
+                /**
+                 * Обрабатываем пасхальную неделю
+                 */
+                this.value = this.getEasterWeek();
+                console.log(this.value , this.localdate)
+
             }
             else{
-                this.value = this.transformDate( val.trim() );
+                     /**
+                     * Определяем диапазон ли лежит в значении
+                     */
+                    if(val.includes('--')){
+                        this.value = val.split('--').map( (item) => {
+                            return this.transformDate( item.trim() );
+                        });
+                    }
+                    else{
+                        this.value = this.transformDate( val.trim() );
+                    }
             }
-            console.log(this.localdate, this.value)
+ 
             const execData = this.PLUGIN_DATA[this.equal];
             controller[this.OPERATOR](this.localdate, this.value, execData, this.mode);
     }
@@ -118,6 +127,23 @@ class Time {
             _date = new Date();
         }
         return Math.ceil( _date.getTime() / 100000 );
+    }
+    getEasterWeek (){
+        const years = [
+            { year: "2022", range: [16507584, 16512768] }, // 2022-04-24 --> 2022-04-30
+            { year: "2023", range: [16816032, 16821216] }, // 2023-04-16 --> 2023-04-22
+            { year: "2024", range: [17148672, 17153856] }, // 2024-05-05 --> 2024-05-11
+            { year: "2025", range: [17451072, 17456256] }, // 2025-04-20 --> 2025-04-26
+        ];
+        /**
+         * получаю текущую дату в формате 2022.04.14
+         */
+        const currentYear = new Date(this.localdate*100000).toLocaleDateString();
+        /**
+         * Ищую соответсвие ключе year с годом в текущей дате
+         */
+        const _year = years.find( (date) => currentYear.includes(date.year) );
+        return _year.range;
     }
 }
 
