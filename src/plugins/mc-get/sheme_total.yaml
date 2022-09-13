@@ -32,3 +32,30 @@
     formula: SumRateCount
     result: RESULT_1
 - $: "Результат {{RESULT_1}}"
+
+
+
+## Проверяем контейнеры котырые держим в руке
+
+- mc-get:
+    request: HAND
+    slot: 0
+    pos: "0 0 0"
+  next: true
+
+
+- $: Проверяем сумму из куплюр номиналом 100
+  mc-get-store-total:
+    id: "cashcraft:cash" # filter
+    #damage: 5  # filter
+    rates:
+      - 0: 1 # монета
+      - 1: 2 # монета
+      - 2: 5 # монета
+      - 3: 10 # монета
+      - 4: 20 # монета
+      - 5: 50 # монета
+    formula: SumRateCount
+    result: RESULT_1
+  next: true
+- $: "Результат {{RESULT_1}}"

@@ -88,7 +88,15 @@ export function mcGetStoreSlot(args) {
  */
 export function mcGetStoreTotal(args) {
     const block = vnjs.store.MINECRAFT.BLOCK;
-    const items = block.data.nbt.Items;
+    const hand = vnjs.store.MINECRAFT.HAND;
+    let items = null;
+    if(block){
+        items = block.data.nbt.Items;
+    }
+    if(hand){
+        items = hand.data.ForgeCaps.Parent.Items;
+    }
+
     const _items = items.filter((item) => {
         if (args.damage) {
             if (item.id === args.id && item.Damage === args.damage) {
@@ -103,16 +111,34 @@ export function mcGetStoreTotal(args) {
     /**
      * formula
      */
+
     if (args.formula === "SumRateCount") {
         let sum = 0;
-        args.rates.forEach((item) => {
-            let key = Object.keys(item)[0];
-            if (args.damage === +key) {
-                _items.forEach((_i) => {
-                    sum += Number(item[args.damage]) * _i.Count;
-                });
+        _items.forEach((_i) => {
+            let rate = args.rates.filter( (r) => {
+                let rateDamage = Number( Object.keys(r)[0] );
+                return rateDamage === _i.Damage;
+            })[0]
+ 
+            if(rate){
+                let val = Object.values(rate)[0]
+                sum += val * _i.Count;
+               
             }
+
         });
+        console.log(sum)
+    /*    args.rates.forEach((item) => {
+            let val = Object.values(item)[0];
+            _items.forEach((_i) => {
+                console.log(val, _i)
+                sum += val * _i.Count;
+                   // sum += Number(item[args.damage]) * _i.Count;
+            });
+       
+         
+        });
+*/
         vnjs.state.data[args.result] = sum;
     }
     if(args.formula === "SumCount"){
@@ -125,8 +151,9 @@ export function mcGetStoreTotal(args) {
     }
 
 }
-
-
+/**
+ * Табличка
+ */
 export function mcGetSign (args){
     const block = vnjs.store.MINECRAFT.BLOCK;
 
