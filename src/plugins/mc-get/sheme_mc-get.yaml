@@ -1,3 +1,9 @@
+# PLAYER 
+# BLOCK 
+# SLOT 
+# ENTITY 
+# HAND
+
 - mc-get:
     request: BLOCK
     slot: 0

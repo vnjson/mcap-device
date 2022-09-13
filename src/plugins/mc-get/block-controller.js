@@ -181,3 +181,26 @@ export function mcGetFrameItem (args) {
     }
 
 }
+/**
+ * Предметы в руках
+ */
+export function mcGetHandItem (args){
+    const { id, Damage } = vnjs.store.MINECRAFT.HAND.data;
+
+
+    const excludeProps = [ "default", "damage" ];
+    /**
+     * Получаю id предмета
+     */
+    let def = false;
+    for(let key in args){
+        if( !excludeProps.includes(key) && id === key ){
+            vnjs.state.data[args.damage] = Damage;
+            def = true;
+            vnjs.exec(args[key]);
+        }
+    }
+    if(!def && args.default){
+        vnjs.exec(args.default);
+    }
+}

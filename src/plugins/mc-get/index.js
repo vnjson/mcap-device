@@ -38,3 +38,9 @@ vnjs.on("mc-get-store-total", blockController.mcGetStoreTotal);
  */
 
 vnjs.on('mc-get-frame-item', blockController.mcGetFrameItem);
+
+/**
+ * Предметы в руках
+ */
+vnjs.on('mc-get-hand-item', blockController.mcGetHandItem);
+
