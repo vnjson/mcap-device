@@ -231,3 +231,58 @@ export function mcGetHandItem (args){
         vnjs.exec(args.default);
     }
 }
+
+/**
+ * Book
+ */
+
+export function mcGetBook (args){
+    const book = vnjs.store.MINECRAFT.HAND.data;
+    if(book.id!=='minecraft:written_book'){
+        vnjs.emit('vnjson.error', `Запрашиваемый предмет должен быть завершённой книгой.<br/><font color="deepskyblue">minecraft:written_book</font>`);
+        return;
+    }
+    const { author, title, pages } = book.tag;
+
+
+    let commonText = "";
+    pages.forEach( (page, index) => {
+        let pageBreak = '';
+        vnjs.state.data.pageNumber = index + 1;
+
+        if(args['page-break']===false){
+            pageBreak = "";
+        }
+        else{
+            /**
+             * В свойсвте page-break может лежать переменная {{pageNumber}}
+             */
+            pageBreak = vnjs.plugins['data'].stringToData( args['page-break']) + "<br/>";
+        }
+        let _strings = JSON.parse(page).text.replaceAll('\n', '<br/>');
+        commonText += `${_strings}<br/>${pageBreak}`;
+        if(args.onPage){
+            vnjs.exec(args.onPage);
+        }
+    })
+    vnjs.state.data[args.author] = author;
+    vnjs.state.data[args.title] = title;
+    vnjs.state.data[args.pages] = pages.length;
+    vnjs.state.data[ args["book-text"] ] = commonText;
+
+}
+
+
+export function mcGetBookPage (args){
+    const book = vnjs.store.MINECRAFT.HAND.data;
+    if(book.id!=='minecraft:written_book'){
+        vnjs.emit('vnjson.error', `Запрашиваемый предмет должен быть завершённой книгой.<br/><font color="deepskyblue">minecraft:written_book</font>`);
+        return;
+    }
+    const { author, title, pages } = book.tag;
+
+    const pageBodyJSON = pages[args.page-1];
+    const pageBody = JSON.parse(pageBodyJSON).text.replaceAll('\n', '<br/>');
+    vnjs.state.data[ args['page-text'] ] = pageBody;
+
+}

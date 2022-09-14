@@ -44,3 +44,8 @@ vnjs.on('mc-get-frame-item', blockController.mcGetFrameItem);
  */
 vnjs.on('mc-get-hand-item', blockController.mcGetHandItem);
 
+/**
+ * book
+ */
+ vnjs.on('mc-get-book', blockController.mcGetBook);
+ vnjs.on('mc-get-book-page', blockController.mcGetBookPage);
