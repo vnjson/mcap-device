@@ -280,8 +280,13 @@ export function mcGetBookPage (args){
         return;
     }
     const { author, title, pages } = book.tag;
-
-    const pageBodyJSON = pages[args.page-1];
+    const PAGE = pages[args.page-1]
+    console.log(PAGE)
+    if(!PAGE){
+        vnjs.emit('vnjson.error', `Страницы № <font color="deepskyblue">${args.page}</font> не существует`);
+        return;
+    }
+    const pageBodyJSON = PAGE;
     const pageBody = JSON.parse(pageBodyJSON).text.replaceAll('\n', '<br/>');
     vnjs.state.data[ args['page-text'] ] = pageBody;
 

@@ -1,12 +1,11 @@
 # Переменная {{pageNumber}} хранит номер страницы
-
 - mc-get:
     request: HAND
     slot: 0 
     pos: "0 0 0"
   next: true
 
-
+# получаем книгу целиком
 - mc-get-book:
     title: title_1 # Название книги
     pages: pages_len # Количество страниц
@@ -26,4 +25,17 @@
 - $: "{{bookText}}"
 
 ########################################
+# Получаем конкретную страницу
+- mc-get:
+    request: HAND
+    slot: 0 
+    pos: "0 0 0"
+  next: true
+###########################
 
+- mc-get-book-page:
+    page: 2 # Номер страницы
+    page-text: pageText # Текст страницы
+  next: true
+- "{{pageText}}"
+- al: x x x x
