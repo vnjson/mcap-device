@@ -57,6 +57,8 @@ class Time {
             if (this.OPERATOR.includes("\\")) {
                 this.OPERATOR = this.OPERATOR.replaceAll("\\", "");
             }
+            console.log(this.OPERATOR)
+          
             const [ key, val ] = this.equal.split(this.OPERATOR);
             if(this.mode==='localdate'){
                 this.dateEval(val)
@@ -89,14 +91,11 @@ class Time {
     }
 
     dateEval (val){
-      
             if(val.trim() === 'EasterWeek'){
                 /**
                  * Обрабатываем пасхальную неделю
                  */
                 this.value = this.getEasterWeek();
-                console.log(this.value , this.localdate)
-
             }
             else{
                      /**

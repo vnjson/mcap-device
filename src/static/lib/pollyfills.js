@@ -13,7 +13,7 @@
 		}
 
 		// If a string
-		return this.replace(new RegExp(str, 'g'), newStr);
+		return this.replace(new RegExp("\\"+str, 'g'), newStr);
 
 	};
 }
