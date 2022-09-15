@@ -360,9 +360,12 @@ export function mcGetPlayerNBT (args){
     const { playerEffects } = playerData;
 
     const commonData = {...playerData, ...playerEffects}
-    console.log(commonData)
+  
     for (let key in args) {
         let value = commonData[key];
+        if(typeof value === 'number'){
+            value = Math.floor(value);
+        }
         vnjs.state.data[args[key]] = String(value);
         console.log(key, value)
     }
