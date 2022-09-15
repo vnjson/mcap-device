@@ -47,5 +47,10 @@ vnjs.on('mc-get-hand-item', blockController.mcGetHandItem);
 /**
  * book
  */
- vnjs.on('mc-get-book', blockController.mcGetBook);
- vnjs.on('mc-get-book-page', blockController.mcGetBookPage);
+vnjs.on('mc-get-book', blockController.mcGetBook);
+vnjs.on('mc-get-book-page', blockController.mcGetBookPage);
+
+/**
+ * player
+ */
+vnjs.on('mc-get-player-nbt', blockController.mcGetPlayerNBT);

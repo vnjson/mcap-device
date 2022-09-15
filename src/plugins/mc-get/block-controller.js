@@ -347,3 +347,24 @@ export function mcGetBookPage (args){
     vnjs.state.data[ args['page-text'] ] = pageBody;
 
 }
+
+
+/**
+ * PLAYER
+ */
+
+export function mcGetPlayerNBT (args){
+    const { PLAYER } = vnjs.store.MINECRAFT;
+
+    const playerData = PLAYER.data.player;
+    const { playerEffects } = playerData;
+
+    const commonData = {...playerData, ...playerEffects}
+    console.log(commonData)
+    for (let key in args) {
+        let value = commonData[key];
+        vnjs.state.data[args[key]] = String(value);
+        console.log(key, value)
+    }
+    
+}
