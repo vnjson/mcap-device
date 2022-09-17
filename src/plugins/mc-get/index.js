@@ -1,5 +1,8 @@
 import mcGet from "./mc-get.js";
 import * as blockController from "./block-controller";
+import mcGetCard from "./controllers/mc-get-card.js";
+import mcGetCardSlot from "./controllers/mc-get-card-slot.js";
+
 
 export default function () {}
 /**
@@ -54,3 +57,9 @@ vnjs.on('mc-get-book-page', blockController.mcGetBookPage);
  * player
  */
 vnjs.on('mc-get-player-nbt', blockController.mcGetPlayerNBT);
+
+/**
+ * card
+ */
+vnjs.on('mc-get-card', mcGetCard);
+vnjs.on('mc-get-card-slot', mcGetCardSlot);
