@@ -2,17 +2,27 @@
  * mc-get-card-slot
  */
 export default function (args){
-    const { BLOCK } = vnjs.store.MINECRAFT;
-    const IDs = ['is_mtc:block_monodisplayer', 'is_mtc:block_displayer']
+    const IDs = ['is_mtc:block_monodisplayer', 'is_mtc:block_displayer', 'is_mtc:item_card_common'];
+    const { TYPE } = vnjs.store.MINECRAFT;
+    const ITEM = vnjs.store.MINECRAFT[TYPE];
     /**
      * В заданных координатах не тот блок, что нам нужен
      */
-    if(!IDs.includes(BLOCK.data.id)) {
+    
+    if(!IDs.includes(ITEM.data.id)) {
         vnjs.exec(args.default);
         return;
     }
-    console.log(BLOCK.data.nbt.Items.Items)
-    const card = BLOCK.data.nbt.Items.Items.find( (item) => item.Slot===args.slot);
+    let card =  null;
+
+    if(TYPE==="BLOCK"){
+        card = ITEM.data.nbt.Items.Items.find( (item) => item.Slot===args.slot);
+    }
+    else if(TYPE === "HAND"){
+        card = ITEM.data;
+    }
+
+    
     /**
      * Пустой блок, без карточки
      */

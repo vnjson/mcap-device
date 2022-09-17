@@ -16,6 +16,7 @@ export default function (args){
             res.data = JSON.parse(res.data);
             console.log(res);
             vnjs.store.MINECRAFT = vnjs.store.MINECRAFT || {};
+            vnjs.store.MINECRAFT.TYPE = args.request;
             vnjs.store.MINECRAFT[args.request] = res;
             if (args.callback) {
                 args.callback(response);

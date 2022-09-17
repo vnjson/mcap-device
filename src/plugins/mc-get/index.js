@@ -1,8 +1,8 @@
-import mcGet from "./mc-get.js";
+import mcGet from "./controllers/mc-get.js";
 import * as blockController from "./block-controller";
-import mcGetCard from "./controllers/mc-get-card.js";
+import mcGetCardItem from "./controllers/mc-get-card-item.js";
 import mcGetCardSlot from "./controllers/mc-get-card-slot.js";
-
+import mcGetCardInfo from './controllers/mc-get-card-info.js';
 
 export default function () {}
 /**
@@ -17,7 +17,6 @@ vnjs.on("mc-get-block", blockController.mcGetBlockCommon);
 /**
  * nbt
  */
-
 vnjs.on("mc-get-block-nbt", blockController.mcGetBlockNBT);
 
 /**
@@ -61,5 +60,6 @@ vnjs.on('mc-get-player-nbt', blockController.mcGetPlayerNBT);
 /**
  * card
  */
-vnjs.on('mc-get-card', mcGetCard);
-vnjs.on('mc-get-card-slot', mcGetCardSlot);
+vnjs.on('mc-get-card-item', mcGetCardItem);
+vnjs.on('mc-get-card', mcGetCardSlot);
+vnjs.on('mc-get-card-info', mcGetCardInfo); // доступ из новеллы к карточкам описаным в файле $root/mtcs.yaml
