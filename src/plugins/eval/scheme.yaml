@@ -1,3 +1,0 @@
-
-# выполняет javascript строку
-- eval: "vnjs.state.data.age = vnjs.state.data.age / 2"
