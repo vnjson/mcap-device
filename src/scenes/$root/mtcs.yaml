@@ -1,7 +1,0 @@
-"mng_000 mcap 0 0": #idCard idEdition rarityIndex assetNumber
-  name: "Имя карточки"
-  price: Цена карты
-  image: ИмяАссетаИзображения
-  sound: ИмяАссетаЗвука
-  сategory: "Категория карты"
-  desription: "Описание карты"
