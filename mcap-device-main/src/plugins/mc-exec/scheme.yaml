@@ -1,4 +1,0 @@
-- mc-exec:
-    action: executeCMD
-    data: say TEST # give @p dirt 1
-    type: player # server

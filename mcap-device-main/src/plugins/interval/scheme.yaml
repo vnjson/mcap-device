@@ -1,8 +1,0 @@
-
-# add interval
-- interval:
-    timer: 1000
-    exec:
-      +: a
-
-- interval: false # remove interval
