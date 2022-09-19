@@ -1,0 +1,12 @@
+- id: $
+  name: . . . .
+  nameColor: '#49de58'
+  replyColor: '#a4deaa'
+  avatar: paintBoardBlack
+
+
+- id: al
+  name: Алиса
+  nameColor: '#f1c232'
+  replyColor: '#ee068e'
+  avatar: paintBoardWhite

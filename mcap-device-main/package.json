@@ -1,6 +1,6 @@
 {
   "name": "mcap-device",
-  "version": "2.2.3",
+  "version": "2.2.2",
   "description": "Visual Novel Engine",
   "main": "rollup.config.js",
   "scripts": {
@@ -36,7 +36,7 @@
     "socket.io": "^4.4.1",
     "vnjson-publish": "^1.0.9",
     "vnjson-update": "^1.3.0",
-    "vnjson-init": "^1.0.4"
+    "vnjson-init": "^1.0.2"
   },
   "keywords": [
     "renpy",
