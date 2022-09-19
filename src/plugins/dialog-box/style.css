@@ -5,7 +5,7 @@
   width: 100%;
   line-height: 32px;
   font-size: 22px;
-  height: 200px;
+  height: 25%;
   cursor: pointer;
   display: block;
   padding-top: 10px;
@@ -15,7 +15,7 @@
   top: unset;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: auto;
 }
 
 .dialog-box__name {
@@ -88,3 +88,6 @@
   max-width: 99%;
   min-width: 75%;
 }
+
+
+

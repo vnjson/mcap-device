@@ -11,48 +11,32 @@ import dialogBox from "./plugins/dialog-box/index.js";
 import audio from "./plugins/audio/index.js";
 import menu from "./plugins/menu/index.js";
 import mainMenu from "./plugins/main-menu/index.js";
-
 import show from "./plugins/show/index.js";
 import showAuto from "./plugins/show-auto/index.js";
 import scene from "./plugins/scene/index.js";
 import table from "./plugins/table/index.js";
 import clear from "./plugins/clear/index.js";
 import switchVnjson from "./plugins/switch/index.js";
-
-
 import input from "./plugins/input/index.js";
 import wiki from "./plugins/wiki/index.js";
-
-
 import slide from "./plugins/slide/index.js";
 import content from "./plugins/content/index.js";
 import voice from "./plugins/voice/index.js";
 import html from "./plugins/html/index.js";
 import discordLog from "./plugins/discord-log/index.js";
-
 // minecraft
 import mcPlayer from "./plugins/mc-player/index.js";
 import mcExec from "./plugins/mc-exec/index.js";
 import mcGet from "./plugins/mc-get/index.js";
 import mcCheck from "./plugins/mc-check/index.js";
 //
-
-
 import video from "./plugins/video/index.js";
-
 import area from "./plugins/area/index.js";
-
-
 import blocks from "./plugins/blocks/index.js";
-
-import HUD from "./plugins/hud/index.js";
-
 import dialogBoxInfo from "./plugins/dialog-box-info/index.js";
 import executeVnjson from "./plugins/execute/index.js";
 //import filter from "./plugins/filter/index.js";
 import spriteAnimate from './plugins/sprite-animate/index.js';
-
-
 import getLocalTime from './plugins/get-localtime/index.js';
 import intervalVnjson from './plugins/interval/index.js';
 /**
@@ -91,7 +75,6 @@ vnjs.use(mcGet);
 vnjs.use(video);
 vnjs.use(area);
 vnjs.use(blocks);
-vnjs.use(HUD);
 vnjs.use(dialogBoxInfo);
 vnjs.use(executeVnjson);
 //vnjs.use(filter);
