@@ -30,6 +30,7 @@ import mcExec from "./plugins/mc-exec/index.js";
 import mcGet from "./plugins/mc-get/index.js";
 import mcCheck from "./plugins/mc-check/index.js";
 //
+import hands from "./plugins/hands/index.js";
 import video from "./plugins/video/index.js";
 import area from "./plugins/area/index.js";
 import blocks from "./plugins/blocks/index.js";
@@ -61,6 +62,7 @@ vnjs.use(switchVnjson);
 vnjs.use(input);
 vnjs.use(wiki);
 vnjs.use(slide);
+vnjs.use(hands);
 vnjs.use(content);
 vnjs.use(voice);
 vnjs.use(html);
@@ -72,6 +74,7 @@ vnjs.use(mcCheck);
 vnjs.use(mcExec);
 vnjs.use(mcGet);
 //
+
 vnjs.use(video);
 vnjs.use(area);
 vnjs.use(blocks);

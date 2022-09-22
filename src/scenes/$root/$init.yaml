@@ -1,12 +1,15 @@
 - dialog-box: true
   data-clear: true
+  hands: true
+
   next: true
 
 
-- jump: dev.$init  # development 
+#- jump: dev.$init  # development 
 
 - $: "У лукоморья дуб зелёный;"
 - al: "Златая цепь на дубе том:"
+
 - $: "И днём и ночью кот учёный"
 - al: "Всё ходит по цепи кругом;"
 
