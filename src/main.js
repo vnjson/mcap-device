@@ -40,6 +40,7 @@ import executeVnjson from "./plugins/execute/index.js";
 import spriteAnimate from './plugins/sprite-animate/index.js';
 import getLocalTime from './plugins/get-localtime/index.js';
 import intervalVnjson from './plugins/interval/index.js';
+import getData from './plugins/get-data/index.js';
 /**
  * Init plugins
  */
@@ -84,6 +85,7 @@ vnjs.use(executeVnjson);
 vnjs.use(spriteAnimate);
 vnjs.use(getLocalTime);
 vnjs.use(intervalVnjson);
+vnjs.use(getData);
 /**
  * LOAD scenes
  */
