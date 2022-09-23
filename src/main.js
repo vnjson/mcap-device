@@ -41,6 +41,7 @@ import spriteAnimate from './plugins/sprite-animate/index.js';
 import getLocalTime from './plugins/get-localtime/index.js';
 import intervalVnjson from './plugins/interval/index.js';
 import getData from './plugins/get-data/index.js';
+import craftOS from './plugins/craft-os/index.js';
 /**
  * Init plugins
  */
@@ -86,6 +87,7 @@ vnjs.use(spriteAnimate);
 vnjs.use(getLocalTime);
 vnjs.use(intervalVnjson);
 vnjs.use(getData);
+vnjs.use(craftOS);
 /**
  * LOAD scenes
  */

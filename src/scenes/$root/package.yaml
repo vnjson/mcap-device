@@ -28,3 +28,5 @@ discord-log:
   webhook: https://discord.com/api/webhooks/995314212500938789/C4ul6cKMwYadYYaOCSyla_dlwDVd1IPSZu0wb24l9kkjo971QCfdHolkEPrExR2KcpzO
 
 url-db: http://vnjson.mcap.fun/reindexer/api/v1/db/mcap_vnjson_store
+
+craft-os: ws://127.0.0.1:9001
