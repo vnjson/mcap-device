@@ -30,3 +30,4 @@ discord-log:
 url-db: http://vnjson.mcap.fun/reindexer/api/v1/db/mcap_vnjson_store
 
 craft-os: ws://127.0.0.1:9001
+mc-cct: http://localhost:5000/
