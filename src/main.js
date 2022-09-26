@@ -43,6 +43,7 @@ import intervalVnjson from './plugins/interval/index.js';
 import getData from './plugins/get-data/index.js';
 import craftOS from './plugins/craft-os/index.js';
 import mcCCT from './plugins/mc-cct/index.js';
+import HUD from "./plugins/hud/index.js";
 /**
  * Init plugins
  */
@@ -90,6 +91,7 @@ vnjs.use(intervalVnjson);
 vnjs.use(getData);
 vnjs.use(craftOS);
 vnjs.use(mcCCT);
+vnjs.use(HUD);
 /**
  * LOAD scenes
  */
